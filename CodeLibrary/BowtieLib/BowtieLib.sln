@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowtieLib", "BowtieLib.csproj", "{488D241B-CBA6-4096-B76F-A1FB03EA5F76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowtieTest", "..\BowtieTest\BowtieTest.csproj", "{61E6C3D8-92C7-49F6-A283-4B3041C2FBFC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61E6C3D8-92C7-49F6-A283-4B3041C2FBFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61E6C3D8-92C7-49F6-A283-4B3041C2FBFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61E6C3D8-92C7-49F6-A283-4B3041C2FBFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61E6C3D8-92C7-49F6-A283-4B3041C2FBFC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
