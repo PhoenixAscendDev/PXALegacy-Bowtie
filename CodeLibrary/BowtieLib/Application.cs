@@ -17,6 +17,7 @@ namespace JB2.Bowtie
 
         public Application(string publickey, string secretKey )
         {
+            
 
         }
 
