@@ -12,7 +12,7 @@ namespace JB2.Bowtie
 
         internal static string _sigFormat = "{0}{1}{2}{3}{4}";
 
-        internal static IUnitOfWork _uofw;
+
 
         internal const string _headerDelimiter = ":";
 
