@@ -16,7 +16,9 @@ namespace Bowtie.ConsoleTest
     {
         static void Main(string[] args)
         {
+            JB2.Bowtie.Manager.Initialize("F79676FF52F9018B4FC1BEE5E0.battlesim", "HuCSuRTYGyJhMJbTjsCU4O6YemrZLOrwoGJLMe5CnSE=");
             RunAsync().Wait();
+            
         }
 
         static async Task RunAsync()
@@ -32,7 +34,7 @@ namespace Bowtie.ConsoleTest
 
             var command = new GameCommand();
 
-            HttpResponseMessage response = await client.PostAsJsonAsync(apiBaseAddress + "api/commands", command);
+            HttpResponseMessage response = await client.PostAsJsonAsync(apiBaseAddress + "api/v1/commands", command);
 
             if (response.IsSuccessStatusCode)
             {

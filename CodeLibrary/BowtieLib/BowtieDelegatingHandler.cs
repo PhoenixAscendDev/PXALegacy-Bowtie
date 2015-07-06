@@ -49,7 +49,7 @@ namespace JB2.Bowtie
 
             //Creating the raw signature string
             //string signatureRawData = String.Format("{0}{1}{2}{3}{4}{5}", APPId, requestHttpMethod, requestUri, requestTimeStamp, nonce, requestContentBase64String);
-            string signatureRawData = String.Format(JB2.Bowtie.Settings.SignatureFormat, requestHttpMethod, requestUri, requestTimeStamp, nonce, requestContentBase64String);
+            string signatureRawData = String.Format(JB2.Bowtie.Settings.SignatureFormat, APPId, requestHttpMethod, requestUri, requestTimeStamp, nonce, requestContentBase64String);
 
             var secretKeyByteArray = Convert.FromBase64String(APIKey);
 

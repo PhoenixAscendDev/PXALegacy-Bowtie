@@ -149,22 +149,22 @@ namespace JB2.Bowtie
         }
 
 
-        public static string HashData(string rawdata)
-        {
-            string result = string.Empty;
-            var secretKeyByteArray = Convert.FromBase64String(JB2.Bowtie.Settings.CurrentApplication.Secret);
+        //public static string HashData(string rawdata)
+        //{
+        //    string result = string.Empty;
+        //    var secretKeyByteArray = Convert.FromBase64String(JB2.Bowtie.Settings.CurrentApplication.Secret);
 
-            byte[] signature = Encoding.UTF8.GetBytes(rawdata);
+        //    byte[] signature = Encoding.UTF8.GetBytes(rawdata);
 
-            using (HMACSHA256 hmac = new HMACSHA256(secretKeyByteArray))
-            {
-                byte[] signatureBytes = hmac.ComputeHash(signature);
-                 result = Convert.ToBase64String(signatureBytes);
-            }
+        //    using (HMACSHA256 hmac = new HMACSHA256(secretKeyByteArray))
+        //    {
+        //        byte[] signatureBytes = hmac.ComputeHash(signature);
+        //         result = Convert.ToBase64String(signatureBytes);
+        //    }
 
-            return result;
+        //    return result;
 
 
-        }
+        //}
     }
 }

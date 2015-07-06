@@ -12,9 +12,19 @@ using Bowtie.WebAPI.Filters;
 namespace Bowtie.WebAPI.Controllers
 {
     [BowtieAuthentication]
-    [RoutePrefix("api/commands")]
+    [RoutePrefix("api/v1/commands")]
     public class CommandController : ApiController
     {
+        private JB2.Bowtie.IUnitOfWork _unitOfWork;
+
+
+        public CommandController()
+            : base()
+        {
+            this._unitOfWork = new Bowtie.WebAPI.Models.UnitOfWork();
+        }
+
+
         [Route("")]
         public IHttpActionResult Get()
         {
@@ -31,6 +41,18 @@ namespace Bowtie.WebAPI.Controllers
             //cmd.CommandCode = "test";
             return Ok(1);
         }
+
+        public IEnumerable<JB2.Bowtie.GameCommand> GetAllCommands()
+        {
+            List<JB2.Bowtie.GameCommand> list = new List<JB2.Bowtie.GameCommand>();
+
+            list.Add(new JB2.Bowtie.GameCommand());
+
+            return list;
+        }
+
+
+
 
     }
 

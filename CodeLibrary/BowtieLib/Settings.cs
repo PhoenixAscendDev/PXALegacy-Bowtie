@@ -10,7 +10,7 @@ namespace JB2.Bowtie
     {
         internal static Application _application = null;
 
-        internal static string _sigFormat = "{0}{1}{2}{3}{4}";
+        internal static string _sigFormat = "{0}>*<{1}{2}{3}{4}";
 
 
 
@@ -21,10 +21,7 @@ namespace JB2.Bowtie
         {
             get
             {
-                if (_application == null)
-                    return new Application("4d53bce03ec34c0a911182d4c228ee6c", "A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=");
-                else
-                    return _application;
+                return _application;
             }
         }
 
@@ -32,9 +29,10 @@ namespace JB2.Bowtie
         {
             get
             {
-                StringBuilder result = new StringBuilder(JB2.Bowtie.Settings.CurrentApplication.ID);
-                result.Append(">*<");
-                result.Append(_sigFormat);
+                //StringBuilder result = new StringBuilder(JB2.Bowtie.Settings.CurrentApplication.ID);
+               //result.Append(">*<");
+                StringBuilder result = new StringBuilder(_sigFormat);
+                //result.Append(_sigFormat);
                 return result.ToString();
             }
         }

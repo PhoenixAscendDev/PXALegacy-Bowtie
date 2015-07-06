@@ -135,7 +135,7 @@ namespace Bowtie.WebAPI.Filters
                 requestContentBase64String = Convert.ToBase64String(hash);
             }
 
-            string data = String.Format(JB2.Bowtie.Settings.SignatureFormat, requestHttpMethod, requestUri, requestTimeStamp, nonce, requestContentBase64String);
+            string data = String.Format(JB2.Bowtie.Settings.SignatureFormat, APPId, requestHttpMethod, requestUri, requestTimeStamp, nonce, requestContentBase64String);
 
             var secretKeyBytes = Convert.FromBase64String(sharedKey);
 
