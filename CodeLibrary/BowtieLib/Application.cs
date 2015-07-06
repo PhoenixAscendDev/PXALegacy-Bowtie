@@ -10,13 +10,15 @@ namespace JB2.Bowtie
     {
         private string _id;
         private string _name;
-        private string _publickey;
         private string _secret;
 
         
 
         public Application(string publickey, string secretKey )
         {
+            this._secret = secretKey;
+            this._id = publickey;
+
             
 
         }

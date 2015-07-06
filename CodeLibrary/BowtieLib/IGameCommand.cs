@@ -8,12 +8,12 @@ namespace JB2.Bowtie
 {
     public interface IGameCommand
     {
-        public IPlayer IssuedPlayer { get; set; }
-        public IPlayer AffectedPlayer { get; set; }
-        public string CommandCode { get; set; }
-        public string AppID { get; set; }
-        public string GameID { get; set; }
+        IPlayer IssuedPlayer { get; set; }
+        IPlayer AffectedPlayer { get; set; }
+        string CommandCode { get; set; }
+        string AppID { get; set; }
+        string GameID { get; set; }
 
-        public string ToPacket();
+        string ToPacket();
     }
 }

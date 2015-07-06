@@ -12,10 +12,7 @@ namespace BowtieTest
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //var key = JB2.Bowtie.Utility.Appkey("vg-102");
-            var key = JB2.Bowtie.Utility.ComputeWep40("vg-102");
-
-            var appKey = BitConverter.ToString(key[0]).Replace("-","");
+            var appKey = JB2.Common.Utility.GenerateKey(JB2.Common.Enum.KeyBitSize.keybit64, "vg-102");
 
             var cmdCode = "1223344444";
 

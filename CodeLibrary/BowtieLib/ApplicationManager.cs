@@ -23,9 +23,9 @@ namespace JB2.Bowtie
 
         public static string GetPublicKeyByPassPhrase(string phrase)
         {
-            var key = JB2.Common.Utility.ComputeWep40(phrase);
 
-            var appKey = BitConverter.ToString(key[0]).Replace("-", "");
+
+            var appKey = JB2.Common.Utility.GenerateKey(Common.Enum.KeyBitSize.keybit64, phrase);
 
             return appKey;
         }
