@@ -13,7 +13,7 @@ using System.Net.Http.Headers;
 
 namespace JB2.Bowtie
 {
-    public class CustomDelegatingHandler : DelegatingHandler
+    public class BowtieDelegatingHandler : DelegatingHandler
     {
         //Obtained from the server earlier, APIKey MUST be stored securly and in App.Config
         private string APPId = JB2.Bowtie.Settings.CurrentApplication.ID; //"4d53bce03ec34c0a911182d4c228ee6c";

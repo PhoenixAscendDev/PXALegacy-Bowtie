@@ -12,7 +12,7 @@ using Bowtie.WebAPI.Filters;
 namespace Bowtie.WebAPI.Controllers
 {
     [BowtieAuthentication]
-    [RoutePrefix("api/Commands")]
+    [RoutePrefix("api/commands")]
     public class CommandController : ApiController
     {
         [Route("")]
@@ -26,9 +26,10 @@ namespace Bowtie.WebAPI.Controllers
         }
 
         [Route("")]
-        public IHttpActionResult Post(Order order)
+        public IHttpActionResult Post(JB2.Bowtie.GameCommand cmd)
         {
-            return Ok(order);
+            //cmd.CommandCode = "test";
+            return Ok(1);
         }
 
     }
