@@ -14,12 +14,24 @@ namespace Bowtie.WebAPI.Models
     {
         private Dictionary<JB2.Bowtie.Enum.RepositoryType, object> _repos;
         private DataContext _dataContext;
+        private JB2.Bowtie.Enum.RepoDataSource _defaultSource;
 
 
+        public UnitOfWork()
+        {
+            _repos = new Dictionary<RepositoryType, object>();
+            _defaultSource = RepoDataSource.NoDB;
+        }
 
-        public UnitOfWork(DataContext dataContext)
+        public UnitOfWork(RepoDataSource defaultSource) : this()
+        {
+            _defaultSource = defaultSource;
+        }
+
+        public UnitOfWork(DataContext dataContext) : this()
         {
             _dataContext = dataContext;
+            _defaultSource = RepoDataSource.Standard;
         }
 
         public JB2.Bowtie.IApplicationRepository ApplicationRepository
@@ -44,7 +56,7 @@ namespace Bowtie.WebAPI.Models
 
         public object GetRepository(JB2.Bowtie.Enum.RepositoryType repository)
         {
-            return GetRepository(repository, RepoDataSource.Standard);
+            return GetRepository(repository, _defaultSource);
         }
 
 
@@ -65,6 +77,14 @@ namespace Bowtie.WebAPI.Models
                         }
                     }
                     return _repos[repository];
+                case RepoDataSource.NoDB:
+                    switch(repository)
+                    {
+                        case RepositoryType.Application:
+                            return new JB2.Bowtie.NoDBData.ApplicationRepository();
+                        default:
+                            return null;
+                    }
             }
             return null;
         }

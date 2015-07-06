@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Test
+namespace JB2.Bowtie.NoDBData
 {
     public class ApplicationRepository : JB2.Bowtie.IApplicationRepository
     {
@@ -20,7 +20,7 @@ namespace JB2.Bowtie.Test
 
         public Application GetById(int id)
         {
-            return new Application("174B863C17", "39c11f9ccc0d48349918-093505a8df32.battlesim");
+            return new Application("4d53bce03ec34c0a911182d4c228ee6c", "A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=");
         }
 
         public void Insert(Application entity)
@@ -31,6 +31,15 @@ namespace JB2.Bowtie.Test
         public Application[] SearchFor()
         {
             throw new NotImplementedException();
+        }
+
+        public Application[] GetAPIAllowedApps()
+        {
+            List<Application> result = new List<Application>();
+
+            result.Add(this.GetById(1));
+
+            return result.ToArray();
         }
     }
 }
