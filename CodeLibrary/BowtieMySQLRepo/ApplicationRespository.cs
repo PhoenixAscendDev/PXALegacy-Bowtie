@@ -23,7 +23,6 @@ namespace JB2.Bowtie.Data
         }
 
 
-
         public Application[] GetAPIAllowedApps()
         {
             throw new NotImplementedException();

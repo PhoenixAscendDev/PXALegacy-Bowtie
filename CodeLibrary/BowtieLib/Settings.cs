@@ -12,6 +12,10 @@ namespace JB2.Bowtie
 
         internal static string _sigFormat = "{0}{1}{2}{3}{4}";
 
+        internal static IUnitOfWork _uofw;
+
+        internal const string _headerDelimiter = ":";
+
 
         public static Application CurrentApplication
         {
@@ -34,6 +38,16 @@ namespace JB2.Bowtie
                 return result.ToString();
             }
         }
+
+        public static string HeaderDelimiter
+        {
+            get
+            {
+                return _headerDelimiter;
+            }
+        }
+
+        
 
         
     }

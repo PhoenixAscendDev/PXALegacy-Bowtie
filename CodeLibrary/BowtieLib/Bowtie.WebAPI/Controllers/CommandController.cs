@@ -6,9 +6,12 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
 
+using Bowtie.WebAPI.Filters;
+
 
 namespace Bowtie.WebAPI.Controllers
 {
+    [BowtieAuthentication]
     [RoutePrefix("api/Commands")]
     public class CommandController : ApiController
     {

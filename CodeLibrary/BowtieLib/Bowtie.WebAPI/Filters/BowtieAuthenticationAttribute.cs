@@ -14,6 +14,9 @@ using System.Web.Http;
 using System.Web.Http.Filters;
 using System.Web.Http.Results;
 
+using JB2.Bowtie;
+using JB2.Bowtie.Enum;
+
 namespace Bowtie.WebAPI.Filters
 {
     public class BowtieAuthenticationAttribute : Attribute, IAuthenticationFilter
@@ -21,12 +24,20 @@ namespace Bowtie.WebAPI.Filters
         private static Dictionary<string, string> allowedApps = new Dictionary<string, string>();
         private readonly UInt64 requestMaxAgeInSeconds = 300;  //5 mins
         private readonly string authenticationScheme = "amx";
+        private JB2.Bowtie.IUnitOfWork _uofw;
 
         public BowtieAuthenticationAttribute()
         {
+            _uofw = new Bowtie.WebAPI.Models.UnitOfWork(RepoDataSource.NoDB);
+
             if (allowedApps.Count == 0)
             {
-                allowedApps.Add("4d53bce03ec34c0a911182d4c228ee6c", "A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=");
+                Application[] apps = _uofw.ApplicationRepository.GetAPIAllowedApps();
+                foreach(Application app in apps)
+                {
+                    allowedApps.Add(app.ID, app.Secret);
+                }
+                //allowedApps.Add("4d53bce03ec34c0a911182d4c228ee6c", "A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=");
             }
         }
 
@@ -47,17 +58,17 @@ namespace Bowtie.WebAPI.Filters
                     var nonce = autherizationHeaderArray[2];
                     var requestTimeStamp = autherizationHeaderArray[3];
 
-                    //var isValid = isValidRequest(req, APPId, incomingBase64Signature, nonce, requestTimeStamp);
+                    var isValid = isValidRequest(req, APPId, incomingBase64Signature, nonce, requestTimeStamp);
 
-                    //if (isValid.Result)
-                    //{
-                    //    var currentPrincipal = new GenericPrincipal(new GenericIdentity(APPId), null);
-                    //    context.Principal = currentPrincipal;
-                    //}
-                    //else
-                    //{
-                    //    context.ErrorResult = new UnauthorizedResult(new AuthenticationHeaderValue[0], context.Request);
-                    //}
+                    if (isValid.Result)
+                    {
+                        var currentPrincipal = new GenericPrincipal(new GenericIdentity(APPId), null);
+                        context.Principal = currentPrincipal;
+                    }
+                    else
+                    {
+                        context.ErrorResult = new UnauthorizedResult(new AuthenticationHeaderValue[0], context.Request);
+                    }
                 }
                 else
                 {
@@ -74,7 +85,7 @@ namespace Bowtie.WebAPI.Filters
 
         public Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken)
         {
-            //context.Result = new ResultWithChallenge(context.Result);
+            context.Result = new ResultWithChallenge(context.Result);
             return Task.FromResult(0);
         }
 
@@ -86,7 +97,7 @@ namespace Bowtie.WebAPI.Filters
         private string[] GetAutherizationHeaderValues(string rawAuthzHeader)
         {
 
-            var credArray = rawAuthzHeader.Split(':');
+            var credArray = rawAuthzHeader.Split(JB2.Bowtie.Settings.HeaderDelimiter.ToCharArray());
 
             if (credArray.Length == 4)
             {
@@ -97,6 +108,83 @@ namespace Bowtie.WebAPI.Filters
                 return null;
             }
 
+        }
+
+        private async Task<bool> isValidRequest(HttpRequestMessage req, string APPId, string incomingBase64Signature, string nonce, string requestTimeStamp)
+        {
+            string requestContentBase64String = "";
+            string requestUri = HttpUtility.UrlEncode(req.RequestUri.AbsoluteUri.ToLower());
+            string requestHttpMethod = req.Method.Method;
+
+            if (!allowedApps.ContainsKey(APPId))
+            {
+                return false;
+            }
+
+            var sharedKey = allowedApps[APPId];
+
+            if (isReplayRequest(nonce, requestTimeStamp))
+            {
+                return false;
+            }
+
+            byte[] hash = await ComputeHash(req.Content);
+
+            if (hash != null)
+            {
+                requestContentBase64String = Convert.ToBase64String(hash);
+            }
+
+            string data = String.Format(JB2.Bowtie.Settings.SignatureFormat, requestHttpMethod, requestUri, requestTimeStamp, nonce, requestContentBase64String);
+
+            var secretKeyBytes = Convert.FromBase64String(sharedKey);
+
+            byte[] signature = Encoding.UTF8.GetBytes(data);
+
+            using (HMACSHA256 hmac = new HMACSHA256(secretKeyBytes))
+            {
+                byte[] signatureBytes = hmac.ComputeHash(signature);
+
+                return (incomingBase64Signature.Equals(Convert.ToBase64String(signatureBytes), StringComparison.Ordinal));
+            }
+
+        }
+
+        private bool isReplayRequest(string nonce, string requestTimeStamp)
+        {
+            if (System.Runtime.Caching.MemoryCache.Default.Contains(nonce))
+            {
+                return true;
+            }
+
+            DateTime epochStart = new DateTime(1970, 01, 01, 0, 0, 0, 0, DateTimeKind.Utc);
+            TimeSpan currentTs = DateTime.UtcNow - epochStart;
+
+            var serverTotalSeconds = Convert.ToUInt64(currentTs.TotalSeconds);
+            var requestTotalSeconds = Convert.ToUInt64(requestTimeStamp);
+
+            if ((serverTotalSeconds - requestTotalSeconds) > requestMaxAgeInSeconds)
+            {
+                return true;
+            }
+
+            System.Runtime.Caching.MemoryCache.Default.Add(nonce, requestTimeStamp, DateTimeOffset.UtcNow.AddSeconds(requestMaxAgeInSeconds));
+
+            return false;
+        }
+
+        private static async Task<byte[]> ComputeHash(HttpContent httpContent)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] hash = null;
+                var content = await httpContent.ReadAsByteArrayAsync();
+                if (content.Length != 0)
+                {
+                    hash = md5.ComputeHash(content);
+                }
+                return hash;
+            }
         }
     }
 }

@@ -60,7 +60,9 @@ namespace JB2.Bowtie
                 byte[] signatureBytes = hmac.ComputeHash(signature);
                 string requestSignatureBase64String = Convert.ToBase64String(signatureBytes);
                 //Setting the values in the Authorization header using custom scheme (amx)
-                request.Headers.Authorization = new AuthenticationHeaderValue("amx", string.Format("{0}:{1}:{2}:{3}", APPId, requestSignatureBase64String, nonce, requestTimeStamp));
+                string d = JB2.Bowtie.Settings.HeaderDelimiter;
+                string authHeaderFormat = "{0}" + d + "{1}" + d + "{2}" + d + "{3}";
+                request.Headers.Authorization = new AuthenticationHeaderValue("amx", string.Format(authHeaderFormat, APPId, requestSignatureBase64String, nonce, requestTimeStamp));
             }
 
             response = await base.SendAsync(request, cancellationToken);
