@@ -3,11 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowtieLib", "BowtieLib.csproj", "{488D241B-CBA6-4096-B76F-A1FB03EA5F76}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowtieTest", "..\BowtieTest\BowtieTest.csproj", "{61E6C3D8-92C7-49F6-A283-4B3041C2FBFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowtieMySQLRepo", "..\BowtieMySQLRepo\BowtieMySQLRepo.csproj", "{A1701AB0-0670-4A88-A4D4-304CE4898699}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.RepoDreamhost", "..\BowtieMySQLRepo\Bowtie.RepoDreamhost.csproj", "{A1701AB0-0670-4A88-A4D4-304CE4898699}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.ClientWeb", "..\BowtieClientWeb\Bowtie.ClientWeb.csproj", "{66987C26-B983-46EC-B524-E1A2C1E2C3B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.Lib", "Bowtie.Lib.csproj", "{488D241B-CBA6-4096-B76F-A1FB03EA5F76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.RepoNoDB", "..\BowTieTestRepo\Bowtie.RepoNoDB.csproj", "{226CE497-A55F-4B8B-8178-9C9B41AB34DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.WebAPI", "Bowtie.WebAPI\Bowtie.WebAPI.csproj", "{3E628990-417C-4185-8A74-4C7EA96C815A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Release|Any CPU.Build.0 = Release|Any CPU
 		{61E6C3D8-92C7-49F6-A283-4B3041C2FBFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{61E6C3D8-92C7-49F6-A283-4B3041C2FBFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61E6C3D8-92C7-49F6-A283-4B3041C2FBFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +29,22 @@ Global
 		{A1701AB0-0670-4A88-A4D4-304CE4898699}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1701AB0-0670-4A88-A4D4-304CE4898699}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1701AB0-0670-4A88-A4D4-304CE4898699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66987C26-B983-46EC-B524-E1A2C1E2C3B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66987C26-B983-46EC-B524-E1A2C1E2C3B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66987C26-B983-46EC-B524-E1A2C1E2C3B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66987C26-B983-46EC-B524-E1A2C1E2C3B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{226CE497-A55F-4B8B-8178-9C9B41AB34DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{226CE497-A55F-4B8B-8178-9C9B41AB34DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{226CE497-A55F-4B8B-8178-9C9B41AB34DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{226CE497-A55F-4B8B-8178-9C9B41AB34DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E628990-417C-4185-8A74-4C7EA96C815A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E628990-417C-4185-8A74-4C7EA96C815A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E628990-417C-4185-8A74-4C7EA96C815A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E628990-417C-4185-8A74-4C7EA96C815A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
