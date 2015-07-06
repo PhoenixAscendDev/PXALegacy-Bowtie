@@ -86,6 +86,10 @@
       <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
       <Name>Bowtie.Lib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BowTieTestRepo\Bowtie.RepoNoDB.csproj">
+      <Project>{226ce497-a55f-4b8b-8178-9c9b41ab34dc}</Project>
+      <Name>Bowtie.RepoNoDB</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

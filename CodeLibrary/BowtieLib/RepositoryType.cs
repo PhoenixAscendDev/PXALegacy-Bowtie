@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BowtieMySQLRepo
+namespace JB2.Bowtie.Enum
 {
-    public class Class1
+    public enum RepositoryType
     {
+        Application,
+        Player,
+        Game
     }
 }

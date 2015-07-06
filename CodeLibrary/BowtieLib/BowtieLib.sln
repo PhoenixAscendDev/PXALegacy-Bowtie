@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowtieTest", "..\BowtieTest\BowtieTest.csproj", "{61E6C3D8-92C7-49F6-A283-4B3041C2FBFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.RepoDreamhost", "..\BowtieMySQLRepo\Bowtie.RepoDreamhost.csproj", "{A1701AB0-0670-4A88-A4D4-304CE4898699}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.RepoLinq", "..\BowtieMySQLRepo\Bowtie.RepoLinq.csproj", "{A1701AB0-0670-4A88-A4D4-304CE4898699}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.ClientWeb", "..\BowtieClientWeb\Bowtie.ClientWeb.csproj", "{66987C26-B983-46EC-B524-E1A2C1E2C3B8}"
 EndProject
