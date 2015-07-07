@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class GameCommand : IGameCommand
+    public class GameCommand : BowtieObject,IGameCommand,IBowtieObject
     {
+
+        public GameCommand() : base(Enum.BowtieObjectType.bowtie_command,Guid.NewGuid().ToString())
+        {
+
+        }
         public IPlayer IssuedPlayer
         {
             get

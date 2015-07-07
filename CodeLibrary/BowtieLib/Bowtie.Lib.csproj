@@ -50,9 +50,12 @@
     <Compile Include="Application.cs" />
     <Compile Include="ApplicationManager.cs" />
     <Compile Include="BowtieDelegatingHandler.cs" />
+    <Compile Include="BowtieObject.cs" />
+    <Compile Include="BowtieObjectType.cs" />
     <Compile Include="ClientAPI.cs" />
     <Compile Include="GameCommand.cs" />
     <Compile Include="IApplicationRepository.cs" />
+    <Compile Include="IBowtieObject.cs" />
     <Compile Include="IGameCommand.cs" />
     <Compile Include="IPlayer.cs" />
     <Compile Include="IUnitOfWork.cs" />

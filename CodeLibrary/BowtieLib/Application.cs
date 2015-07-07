@@ -6,50 +6,17 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class Application : JB2.Common.IIDNamePair<string, string>
+    public class Application : BowtieObject,JB2.Common.IIDNamePair<string, string>
     {
-        private string _id;
-        private string _name;
-        private string _secret;
+        private string _secret;     
 
-        
-
-        public Application(string publickey, string secretKey )
+        public Application(string publickey, string secretKey ) : base(Enum.BowtieObjectType.bowtie_application,publickey)
         {
-            this._secret = secretKey;
-            this._id = publickey;
-
-            
-
+            this._secret = secretKey;           
         }
 
         #region Public Properies
-
-        public string ID
-        {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                _id = value;
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
-        }
-
-        
+    
         public string Secret
         {
             get
