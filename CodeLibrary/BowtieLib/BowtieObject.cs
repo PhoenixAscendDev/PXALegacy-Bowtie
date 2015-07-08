@@ -40,11 +40,10 @@ namespace JB2.Bowtie
             get
             {
                 StringBuilder token = new StringBuilder(this._id);
-                switch(this._kind)
-                {
-                    
-                }
 
+                string tokenName = this._kind.GetAttributeOfType<Attributes.TokenName>().Name;
+                token.Append(">*<");
+                token.Append(tokenName);
                 return token.ToString();
             }
         }

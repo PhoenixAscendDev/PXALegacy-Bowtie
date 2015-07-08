@@ -8,11 +8,11 @@ namespace JB2.Bowtie.Attributes
 {
     public class TokenName : System.Attribute
     {
-        public string name;
+        public string Name;
 
         public TokenName(string name)
         {
-            this.name = name;
+            this.Name = name;
         }
 
 

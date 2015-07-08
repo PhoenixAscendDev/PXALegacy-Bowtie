@@ -7,6 +7,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Security.Cryptography;
 
+using JB2.Bowtie;
+
 namespace BowtieTest
 {
     public partial class test : System.Web.UI.Page
@@ -14,6 +16,8 @@ namespace BowtieTest
         protected void Page_Load(object sender, EventArgs e)
         {
             var appKey = JB2.Common.Utility.GenerateKey(JB2.Common.Enum.KeyBitSize.keybit64, "vg-102");
+
+            Player player = new Player();
 
 
             string APIKey = string.Empty;
