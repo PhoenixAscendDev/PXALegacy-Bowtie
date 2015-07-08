@@ -52,9 +52,11 @@
     <Compile Include="Attributes\TokenName.cs" />
     <Compile Include="BowtieDelegatingHandler.cs" />
     <Compile Include="BowtieObject.cs" />
+    <Compile Include="Enum\APIAuthorizeState.cs" />
     <Compile Include="Enum\BowtieObjectType.cs" />
     <Compile Include="ClientAPI.cs" />
     <Compile Include="GameCommand.cs" />
+    <Compile Include="Interfaces\IApplication.cs" />
     <Compile Include="Interfaces\IApplicationRepository.cs" />
     <Compile Include="Interfaces\IBowtieObject.cs" />
     <Compile Include="Interfaces\IGameCommand.cs" />

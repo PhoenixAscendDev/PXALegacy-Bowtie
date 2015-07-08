@@ -24,10 +24,9 @@ namespace JB2.Bowtie
 
         public BowtieObject(string id) : this()
         {
-            if(id == null)
-            {
-                this._id = JB2.Bowtie.Utility.GenerateNewObjectID();
-            }
+            this._id = id == null ? JB2.Bowtie.Utility.GenerateNewObjectID() : id;
+            //if(id == null)
+            //    this._id = ;
             
         }
 

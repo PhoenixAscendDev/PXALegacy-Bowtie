@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class Application : BowtieObject,JB2.Common.IIDNamePair<string, string>
+    public class Application : BowtieObject,IApplication
     {
-        private string _secret;     
+        private string _secret;
+        
+        private Enum.APIAuthorizeState _APIstate;
 
         public Application(string publickey, string secretKey ) : base(Enum.BowtieObjectType.bowtie_application,publickey)
         {
@@ -24,6 +26,25 @@ namespace JB2.Bowtie
                 return _secret;
             }
         }
+
+        public bool isAuthorized
+        {
+            get
+            {
+                return _APIstate == Enum.APIAuthorizeState.Authorized || _APIstate == Enum.APIAuthorizeState.Unknown;
+            }
+        }
+
+        public Enum.APIAuthorizeState AuthorizedState
+        {
+            get
+            {
+                return _APIstate;
+            }
+
+        }
+
+
 
        #endregion Public Properies
     }

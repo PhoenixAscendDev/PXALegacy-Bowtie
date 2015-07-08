@@ -16,7 +16,7 @@ namespace Bowtie.ConsoleTest
     {
         static void Main(string[] args)
         {
-            JB2.Bowtie.Manager.Initialize("F79676FF52F9018B4FC1BEE5E0.battlesim", "HuCSuRTYGyJhMJbTjsCU4O6YemrZLOrwoGJLMe5CnSE=");
+            JB2.Bowtie.Manager.Initialize("4d53bce03ec34c0a911182d4c228ee6d", "A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=");
             RunAsync().Wait();
             
         }
@@ -26,7 +26,8 @@ namespace Bowtie.ConsoleTest
 
             Console.WriteLine("Calling the back-end API");
 
-            string apiBaseAddress = "http://jb2-bowtie.azurewebsites.net/"; //"http://localhost:52151/";
+            //string apiBaseAddress = "http://jb2-bowtie.azurewebsites.net/"; //"http://localhost:52151/";
+            string apiBaseAddress = "http://localhost:52151/";
 
             BowtieDelegatingHandler customDelegatingHandler = new BowtieDelegatingHandler();
 

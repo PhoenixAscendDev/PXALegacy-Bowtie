@@ -1,2 +1,155 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="JB2.Bowtie.Application" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAABAAAAIAIAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Application.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="JB2.Bowtie.ApplicationManager" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>ApplicationManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JB2.Bowtie.BowtieDelegatingHandler" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>BowtieDelegatingHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JB2.Bowtie.BowtieObject" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAIAAAAABAgAEAAABgAAQAAADAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>BowtieObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="JB2.Bowtie.GameCommand" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAEAEAAAAAAAAAEAAAQAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>GameCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="JB2.Bowtie.Manager" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JB2.Bowtie.Player" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAQAAIAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="JB2.Bowtie.Settings" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAEABAIAAEAAABAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Static\Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JB2.Bowtie.Utility" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAgAQAAAAAAAAAAAAAAAAAMEAAAgAgAA=</HashCode>
+      <FileName>Static\Utility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JB2.Bowtie.Attributes.TokenName" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Attributes\TokenName.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JB2.Bowtie.API.Client.BaseGame" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>ClientAPI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="JB2.Bowtie.IApplication" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Interfaces\IApplication.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="JB2.Bowtie.IApplicationRepository" Collapsed="true">
+    <Position X="7.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IApplicationRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="JB2.Bowtie.IBowtieObject" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IBowtieObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="JB2.Bowtie.IGameCommand" Collapsed="true">
+    <Position X="9.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAEAEAAAAAAAAAEAAAQAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Interfaces\IGameCommand.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="JB2.Bowtie.IPlayer" Collapsed="true">
+    <Position X="2.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="JB2.Bowtie.IUnitOfWork" Collapsed="true">
+    <Position X="11.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAABAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="JB2.Bowtie.Enum.APIAuthorizeState" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAQAAAAAAAAAAAAAAQAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Enum\APIAuthorizeState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JB2.Bowtie.Enum.BowtieObjectType" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAEAAAAgAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enum\BowtieObjectType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JB2.Bowtie.Enum.RepositoryType" Collapsed="true">
+    <Position X="7.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAgAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Enum\RepositoryType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JB2.Bowtie.Enum.RepoDataSource" Collapsed="true">
+    <Position X="11.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAIAAAACAAAAAA=</HashCode>
+      <FileName>RepoDataSource.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
