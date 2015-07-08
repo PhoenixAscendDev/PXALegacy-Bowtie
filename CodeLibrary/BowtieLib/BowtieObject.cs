@@ -35,6 +35,20 @@ namespace JB2.Bowtie
             this._kind = BowtieObjectType.unknown;
         }
 
+        public string UniqueToken
+        {
+            get
+            {
+                StringBuilder token = new StringBuilder(this._id);
+                switch(this._kind)
+                {
+                    
+                }
+
+                return token.ToString();
+            }
+        }
+
         public bool AddTag(Common.ObjectTag tag)
         {
             _tags.Add(tag);
