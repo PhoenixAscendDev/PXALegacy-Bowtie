@@ -24,14 +24,18 @@ namespace JB2.Bowtie
 
         public BowtieObject(string id) : this()
         {
-            this._id = id;
+            if(id == null)
+            {
+                this._id = JB2.Bowtie.Utility.GenerateNewObjectID();
+            }
+            
         }
 
         public BowtieObject()
         {
             this._tags = new List<ObjectTag>();
             this._name = string.Empty;
-            this._id = string.Empty;
+            this._id = JB2.Bowtie.Utility.GenerateNewObjectID();
             this._kind = BowtieObjectType.unknown;
         }
 

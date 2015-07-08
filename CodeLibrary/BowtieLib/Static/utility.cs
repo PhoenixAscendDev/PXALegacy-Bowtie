@@ -10,6 +10,18 @@ namespace JB2.Bowtie
 {
     public static class Utility
     {
+
+        public static string GenerateNewObjectID()
+        {
+            Guid guid = Guid.NewGuid();
+            JB2.Common.ShortGuid sguid = guid;
+
+            return sguid.ToString();
+
+            //return JB2.Common.Utility.GenerateKey(Common.Enum.KeyBitSize.keybit256, null);
+
+        }
+
         public static char[] asciiArray = new char[95] {
         ' ', '!', '"', '#', '$', '%', '&', '\'', '(', ')', 
        '*', '+', ',', '-', '.', '/','0', '1', '2', '3', 

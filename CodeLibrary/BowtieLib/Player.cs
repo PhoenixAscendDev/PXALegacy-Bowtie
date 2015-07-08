@@ -11,7 +11,7 @@ namespace JB2.Bowtie
         private string _displayName;
         private Common.Name _nameinfo;
 
-        public Player() : base(Enum.BowtieObjectType.bowtie_player,"testkdke")
+        public Player() : base(Enum.BowtieObjectType.bowtie_player,null)
         {
             _displayName = "newguy";
             _nameinfo = new Common.Name();
