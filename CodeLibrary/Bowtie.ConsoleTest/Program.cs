@@ -16,7 +16,24 @@ namespace Bowtie.ConsoleTest
     {
         static void Main(string[] args)
         {
-            JB2.Bowtie.Manager.Initialize("4d53bce03ec34c0a911182d4c228ee6d", "A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=");
+            //JB2.Bowtie.Manager.Initialize("4d53bce03ec34c0a911182d4c228ee6d", "A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=");
+
+
+            var debugPath = string.Empty;
+#if (DEBUG)
+            debugPath = "..\\..\\";
+#endif
+
+
+            string settingsFilePath =  System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, debugPath) + "bowtieApp_v1.config";
+
+            BowtieConfig settings = BowtieConfig.Load(settingsFilePath);
+
+
+
+            JB2.Bowtie.Manager.Initialize(settingsFilePath);
+
+
             RunAsync().Wait();
             
         }
@@ -29,7 +46,7 @@ namespace Bowtie.ConsoleTest
             string apiBaseAddress = "http://jb2-bowtie.azurewebsites.net/"; //"http://localhost:52151/";
             //string apiBaseAddress = "http://localhost:52151/";
 
-            BowtieDelegatingHandler customDelegatingHandler = new BowtieDelegatingHandler(JB2.Bowtie.Settings.CurrentApplication.ID, JB2.Bowtie.Settings.CurrentApplication.Secret, JB2.Bowtie.Settings._sigFormat);
+            BowtieDelegatingHandler customDelegatingHandler = new BowtieDelegatingHandler();
 
             HttpClient client = HttpClientFactory.Create(customDelegatingHandler);
 

@@ -21,11 +21,17 @@ namespace JB2.Bowtie
         private string SignatureFormat = "{0}>*<{1}{2}{3}{4}";
         private string HeaderDelimiter = ":";
 
-        public BowtieDelegatingHandler(string publicKey, string secret,string signatureFormat)
+        public BowtieDelegatingHandler() : this(JB2.Bowtie.Settings.CurrentApplication.ID, JB2.Bowtie.Settings.CurrentApplication.Secret,JB2.Bowtie.Settings.SignatureFormat,":")
+        {
+
+        }
+
+        public BowtieDelegatingHandler(string publicKey, string secret,string signatureFormat,string headerDelimiter)
         {
             this.APPId = publicKey;
             this.APIKey = secret;
             this.SignatureFormat = signatureFormat;
+            this.HeaderDelimiter = headerDelimiter;
         }
 
         protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)

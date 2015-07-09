@@ -39,7 +39,7 @@ namespace Bowtie.WebAPI.Filters
                 {
                     allowedApps.Add(app.ID, app.Secret);
                 }
-                //allowedApps.Add("4d53bce03ec34c0a911182d4c228ee6c", "A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=");
+                
             }
         }
 

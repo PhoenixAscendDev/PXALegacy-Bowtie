@@ -19,6 +19,15 @@ namespace BowtieTest
 
             Player player = new Player();
 
+            string settingsFilePath = Server.MapPath("~") + "settings\\bowtieApp_v1.config";
+
+            BowtieConfig settings = BowtieConfig.Load(settingsFilePath);
+
+            //settings.AppKey = "Just updated it";
+
+            //Server.MapPath("~")
+            //settings.Save(settingsFilePath);
+
 
             string APIKey = string.Empty;
             using (var cryptoProvider = new RNGCryptoServiceProvider())
