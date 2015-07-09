@@ -20,12 +20,12 @@ namespace Bowtie.ConsoleTest
 
 
             var debugPath = string.Empty;
-#if (DEBUG)
-            debugPath = "..\\..\\";
-#endif
+            #if (DEBUG)
+                debugPath = "..\\..\\";
+            #endif
 
 
-            string settingsFilePath =  System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, debugPath) + "bowtieApp_v1.config";
+            string settingsFilePath =  System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, debugPath) + "bowtieApp_v1.json";
 
             BowtieConfig settings = BowtieConfig.Load(settingsFilePath);
 

@@ -8,7 +8,7 @@ using System.Data.Linq;
 
 namespace JB2.Bowtie.Data
 {
-    public class LinqRepository
+    public class LinqRepository<Tobject> : JB2.Common.IRepository<Tobject, string> where Tobject : IBowtieObject
     {
         protected DataContext _dbcontext;
 
@@ -24,5 +24,30 @@ namespace JB2.Bowtie.Data
         }
 
 
+
+        public void Delete(Tobject entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Tobject[] GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Tobject GetById(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(Tobject entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Tobject[] SearchFor()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

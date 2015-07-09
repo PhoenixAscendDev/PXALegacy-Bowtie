@@ -8,16 +8,16 @@ using JB2.Bowtie;
 
 namespace JB2.Bowtie.Data
 {
-    public class ApplicationRespository :  LinqRepository, IApplicationRepository
+    public class ApplicationRepository :  LinqRepository<IApplication>, IApplicationRepository
     {
 
 
-        public ApplicationRespository() : base()
+        public ApplicationRepository() : base()
         {
 
         }
 
-        public ApplicationRespository(System.Data.Linq.DataContext dbc) : base(dbc)
+        public ApplicationRepository(System.Data.Linq.DataContext dbc) : base(dbc)
         {
 
         }

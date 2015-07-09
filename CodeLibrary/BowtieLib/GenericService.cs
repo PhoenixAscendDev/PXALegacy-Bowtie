@@ -8,7 +8,7 @@ namespace JB2.Bowtie
 {
     public class GenericService<Tobject> : JB2.Common.IObjectService<Tobject, bool, string> where Tobject : IBowtieObject
     {
-        private JB2.Common.IRepository<Tobject, string> _repo;
+        protected JB2.Common.IRepository<Tobject, string> _repo;
 
 
         public GenericService()

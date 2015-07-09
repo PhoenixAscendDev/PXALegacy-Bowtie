@@ -71,7 +71,7 @@ namespace Bowtie.WebAPI.Models
                         switch(repository)
                         {
                             case RepositoryType.Application:
-                                _repos.Add(repository, new JB2.Bowtie.Data.ApplicationRespository(_dataContext));
+                                _repos.Add(repository, new JB2.Bowtie.Data.ApplicationRepository(_dataContext));
                                 break;
                         
                         }

@@ -18,6 +18,8 @@ namespace JB2.Bowtie
 
         internal static string _configFile;
 
+        internal static int _authCheckInterval = 5;
+
         public static string SettingsFilename
         {
             get
@@ -72,6 +74,32 @@ namespace JB2.Bowtie
             }
         }
 
+        public static DateTime LastAPIAuthCheck
+        {
+            get
+            {
+                return _lastAPIAuthCheck;
+            }
+            set
+            {
+                _lastAPIAuthCheck = value;
+            }
+        }
+
+        public static int AuthCheckInterval
+        {
+            get
+            {
+                if (_authCheckInterval > 60)
+                    return 60;
+                if (_authCheckInterval < 5)
+                    return 5;
+                else return _authCheckInterval;
+            }
+
+
+        }
+
         private static BowtieConfig getSettingsFromFile()
         {
             BowtieConfig settings = BowtieConfig.Load(_configFile);
@@ -83,6 +111,8 @@ namespace JB2.Bowtie
         {
             _application = new Application(config.AppKey, config.SecretKey);
             _sigFormat = config.Signature;
+            _authCheckInterval = config.AuthCheckInterval;
+
 
         }
 

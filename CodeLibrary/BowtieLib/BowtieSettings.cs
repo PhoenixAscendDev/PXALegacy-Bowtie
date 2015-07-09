@@ -12,6 +12,7 @@ namespace JB2.Bowtie
             public string AppKey = "appkey";
             public string Signature = "";
             public JB2.Bowtie.BowtieAPI API = new JB2.Bowtie.BowtieAPI();
+            public int AuthCheckInterval = 5;
 
         }
 }
