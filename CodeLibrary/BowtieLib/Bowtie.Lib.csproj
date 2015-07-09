@@ -62,19 +62,14 @@
     <Compile Include="Interfaces\IGameCommand.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Manager.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="RepoDataSource.cs" />
     <Compile Include="Enum\RepositoryType.cs" />
-    <Compile Include="Static\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Static\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DllReference\JB2.Common.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -25,6 +25,8 @@ namespace Bowtie.WebAPI.Filters
         private readonly UInt64 requestMaxAgeInSeconds = 300;  //5 mins
         private readonly string authenticationScheme = "amx";
         private JB2.Bowtie.IUnitOfWork _uofw;
+        private string _headerDelimiter = ":";
+        private string _signatureFormat = "";
 
         public BowtieAuthenticationAttribute()
         {
@@ -97,7 +99,7 @@ namespace Bowtie.WebAPI.Filters
         private string[] GetAutherizationHeaderValues(string rawAuthzHeader)
         {
 
-            var credArray = rawAuthzHeader.Split(JB2.Bowtie.Settings.HeaderDelimiter.ToCharArray());
+            var credArray = rawAuthzHeader.Split(this._headerDelimiter.ToCharArray());
 
             if (credArray.Length == 4)
             {
@@ -135,7 +137,7 @@ namespace Bowtie.WebAPI.Filters
                 requestContentBase64String = Convert.ToBase64String(hash);
             }
 
-            string data = String.Format(JB2.Bowtie.Settings.SignatureFormat, APPId, requestHttpMethod, requestUri, requestTimeStamp, nonce, requestContentBase64String);
+            string data = String.Format(this._signatureFormat, APPId, requestHttpMethod, requestUri, requestTimeStamp, nonce, requestContentBase64String);
 
             var secretKeyBytes = Convert.FromBase64String(sharedKey);
 

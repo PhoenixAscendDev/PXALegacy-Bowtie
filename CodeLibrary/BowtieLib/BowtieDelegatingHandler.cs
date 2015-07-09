@@ -16,8 +16,17 @@ namespace JB2.Bowtie
     public class BowtieDelegatingHandler : DelegatingHandler
     {
         //Obtained from the server earlier, APIKey MUST be stored securly and in App.Config
-        private string APPId = JB2.Bowtie.Settings.CurrentApplication.ID; //"4d53bce03ec34c0a911182d4c228ee6c";
-        private string APIKey = JB2.Bowtie.Settings.CurrentApplication.Secret; //"A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=";
+        private string APPId = "4d53bce03ec34c0a911182d4c228ee6c";
+        private string APIKey = "A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=";
+        private string SignatureFormat = "{0}>*<{1}{2}{3}{4}";
+        private string HeaderDelimiter = ":";
+
+        public BowtieDelegatingHandler(string publicKey, string secret,string signatureFormat)
+        {
+            this.APPId = publicKey;
+            this.APIKey = secret;
+            this.SignatureFormat = signatureFormat;
+        }
 
         protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
@@ -49,7 +58,7 @@ namespace JB2.Bowtie
 
             //Creating the raw signature string
             //string signatureRawData = String.Format("{0}{1}{2}{3}{4}{5}", APPId, requestHttpMethod, requestUri, requestTimeStamp, nonce, requestContentBase64String);
-            string signatureRawData = String.Format(JB2.Bowtie.Settings.SignatureFormat, APPId, requestHttpMethod, requestUri, requestTimeStamp, nonce, requestContentBase64String);
+            string signatureRawData = String.Format(this.SignatureFormat, APPId, requestHttpMethod, requestUri, requestTimeStamp, nonce, requestContentBase64String);
 
             var secretKeyByteArray = Convert.FromBase64String(APIKey);
 
@@ -60,7 +69,7 @@ namespace JB2.Bowtie
                 byte[] signatureBytes = hmac.ComputeHash(signature);
                 string requestSignatureBase64String = Convert.ToBase64String(signatureBytes);
                 //Setting the values in the Authorization header using custom scheme (amx)
-                string d = JB2.Bowtie.Settings.HeaderDelimiter;
+                string d = this.HeaderDelimiter;
                 string authHeaderFormat = "{0}" + d + "{1}" + d + "{2}" + d + "{3}";
                 request.Headers.Authorization = new AuthenticationHeaderValue("amx", string.Format(authHeaderFormat, APPId, requestSignatureBase64String, nonce, requestTimeStamp));
             }

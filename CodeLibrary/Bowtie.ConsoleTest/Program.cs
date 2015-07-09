@@ -29,7 +29,7 @@ namespace Bowtie.ConsoleTest
             //string apiBaseAddress = "http://jb2-bowtie.azurewebsites.net/"; //"http://localhost:52151/";
             string apiBaseAddress = "http://localhost:52151/";
 
-            BowtieDelegatingHandler customDelegatingHandler = new BowtieDelegatingHandler();
+            BowtieDelegatingHandler customDelegatingHandler = new BowtieDelegatingHandler(JB2.Bowtie.Settings.CurrentApplication.ID, JB2.Bowtie.Settings.CurrentApplication.Secret, JB2.Bowtie.Settings._sigFormat);
 
             HttpClient client = HttpClientFactory.Create(customDelegatingHandler);
 
