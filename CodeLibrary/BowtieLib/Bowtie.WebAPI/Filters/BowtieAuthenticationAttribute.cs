@@ -26,7 +26,7 @@ namespace Bowtie.WebAPI.Filters
         private readonly string authenticationScheme = "amx";
         private JB2.Bowtie.IUnitOfWork _uofw;
         private string _headerDelimiter = ":";
-        private string _signatureFormat = "";
+        private string _signatureFormat = "{0}>*<{1}{2}{3}{4}";
 
         public BowtieAuthenticationAttribute()
         {
