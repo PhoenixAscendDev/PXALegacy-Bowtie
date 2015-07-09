@@ -23,34 +23,38 @@ namespace JB2.Bowtie.Data
         }
 
 
-        public Application[] GetAPIAllowedApps()
+        public IApplication[] GetAPIAllowedApps()
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Application entity)
+        public void Delete(IApplication entity)
         {
             throw new NotImplementedException();
         }
 
-        public Application[] GetAll()
+        public IApplication[] GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Application GetById(int id)
+        public IApplication GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(Application entity)
+        public void Insert(IApplication entity)
         {
             throw new NotImplementedException();
         }
 
-        public Application[] SearchFor()
+        public IApplication[] SearchFor()
         {
             throw new NotImplementedException();
         }
+
+
+
+
     }
 }

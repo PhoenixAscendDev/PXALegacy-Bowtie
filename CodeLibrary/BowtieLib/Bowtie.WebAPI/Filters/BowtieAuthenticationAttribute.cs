@@ -34,7 +34,7 @@ namespace Bowtie.WebAPI.Filters
 
             if (allowedApps.Count == 0)
             {
-                Application[] apps = _uofw.ApplicationRepository.GetAPIAllowedApps();
+                IApplication[] apps = _uofw.ApplicationRepository.GetAPIAllowedApps();
                 foreach(Application app in apps)
                 {
                     allowedApps.Add(app.ID, app.Secret);

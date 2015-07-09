@@ -58,6 +58,7 @@
     <Compile Include="Enum\BowtieObjectType.cs" />
     <Compile Include="ClientAPI.cs" />
     <Compile Include="GameCommand.cs" />
+    <Compile Include="GenericService.cs" />
     <Compile Include="Interfaces\IApplication.cs" />
     <Compile Include="Interfaces\IApplicationRepository.cs" />
     <Compile Include="Interfaces\IBowtieObject.cs" />

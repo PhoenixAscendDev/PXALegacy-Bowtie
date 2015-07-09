@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IApplicationRepository : JB2.Common.IRepository<JB2.Bowtie.Application, int>
+    public interface IApplicationRepository : JB2.Common.IRepository<JB2.Bowtie.IApplication, string>
     {
-        Application[] GetAPIAllowedApps();
+        IApplication[] GetAPIAllowedApps();
     }
 }
