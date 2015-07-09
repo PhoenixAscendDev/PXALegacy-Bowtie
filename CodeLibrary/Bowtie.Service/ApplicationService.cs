@@ -6,7 +6,7 @@ using System.Web;
 using JB2.Bowtie;
 using JB2.Bowtie.Enum;
 
-namespace Bowtie.WebAPI.Service
+namespace JB2.Bowtie.Service
 {
     public class ApplicationService : GenericService<IApplication>
     {

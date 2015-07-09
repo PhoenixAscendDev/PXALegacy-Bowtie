@@ -94,7 +94,6 @@
     <Compile Include="Models\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultWithChallenge.cs" />
-    <Compile Include="Service\ApplicationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
