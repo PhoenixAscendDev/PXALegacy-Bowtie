@@ -8,11 +8,12 @@ using System.Data.Linq;
 
 namespace JB2.Bowtie.Data
 {
-    public class LinqRepository<Tobject> : JB2.Common.IRepository<Tobject, string> where Tobject : IBowtieObject
+    public class LinqRepository<Tobject> : BaseRespository, JB2.Common.IRepository<Tobject, string> where Tobject : IBowtieObject
     {
-        protected DataContext _dbcontext;
+        protected BowtieDataContext _dbcontext;
+        private const string DB_PREFIX = "jb2bt_";
 
-        public LinqRepository(DataContext dbc)
+        public LinqRepository(BowtieDataContext dbc)
         {
             this._dbcontext = dbc;
         }

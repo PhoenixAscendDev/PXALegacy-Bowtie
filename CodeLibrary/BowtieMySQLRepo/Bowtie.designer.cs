@@ -22,6 +22,7 @@ namespace JB2.Bowtie.Data
 	using System;
 	
 	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="JB2-Bowtie")]
 	public partial class BowtieDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,9 +31,9 @@ namespace JB2.Bowtie.Data
     #region Extensibility Method Definitions
     partial void OnCreated();
     #endregion
-
-        public BowtieDataContext() : 
-				base("nothing", mappingSource)
+		
+		public BowtieDataContext() : 
+				base(global::JB2.Bowtie.Data.Properties.Settings.Default.JB2_BowtieConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -59,6 +60,93 @@ namespace JB2.Bowtie.Data
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.jb2bt_Application_Get")]
+		public ISingleResult<jb2bt_Application_GetResult> jb2bt_Application_Get([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string publickey)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, publickey);
+			return ((ISingleResult<jb2bt_Application_GetResult>)(result.ReturnValue));
+		}
+	}
+	
+	public partial class jb2bt_Application_GetResult
+	{
+		
+		private int _ID;
+		
+		private string _PublicKey;
+		
+		private string _Name;
+		
+		private string _Secret;
+		
+		public jb2bt_Application_GetResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PublicKey", DbType="VarChar(50)")]
+		public string PublicKey
+		{
+			get
+			{
+				return this._PublicKey;
+			}
+			set
+			{
+				if ((this._PublicKey != value))
+				{
+					this._PublicKey = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NChar(10)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secret", DbType="VarChar(50)")]
+		public string Secret
+		{
+			get
+			{
+				return this._Secret;
+			}
+			set
+			{
+				if ((this._Secret != value))
+				{
+					this._Secret = value;
+				}
+			}
 		}
 	}
 }

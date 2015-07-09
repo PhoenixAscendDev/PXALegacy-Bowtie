@@ -1,1 +1,13 @@
-﻿
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="JB2-Bowtie" Class="BowtieDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=cx8yl1ofvr.database.windows.net;Initial Catalog=JB2-Bowtie;User ID=polkadot;Connect Timeout=60" SettingsObjectName="JB2.Bowtie.Data.Properties.Settings" SettingsPropertyName="JB2_BowtieConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.jb2bt_Application_Get" Method="jb2bt_Application_Get">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="publickey" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="jb2bt_Application_GetResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PublicKey" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Secret" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

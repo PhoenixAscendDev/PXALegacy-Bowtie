@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JB2.Common">
+      <HintPath>..\BowtieLib\DllReference\JB2.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -231,6 +234,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bowtie.Service\Bowtie.Service.csproj">
+      <Project>{e9f8abc3-957e-4ada-b7db-a61e16beaa1e}</Project>
+      <Name>Bowtie.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BowtieLib\Bowtie.Lib.csproj">
+      <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
+      <Name>Bowtie.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BowtieMySQLRepo\Bowtie.RepoLinq.csproj">
+      <Project>{a1701ab0-0670-4a88-a4d4-304ce4898699}</Project>
+      <Name>Bowtie.RepoLinq</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BowTieTestRepo\Bowtie.RepoNoDB.csproj">
+      <Project>{226ce497-a55f-4b8b-8178-9c9b41ab34dc}</Project>
+      <Name>Bowtie.RepoNoDB</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

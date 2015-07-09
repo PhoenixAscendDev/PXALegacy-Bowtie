@@ -17,7 +17,8 @@ namespace JB2.Bowtie.Data
 
         }
 
-        public ApplicationRepository(System.Data.Linq.DataContext dbc) : base(dbc)
+        public ApplicationRepository(BowtieDataContext dbc)
+            : base(dbc)
         {
 
         }
@@ -35,7 +36,9 @@ namespace JB2.Bowtie.Data
 
         public IApplication[] GetAll()
         {
-            throw new NotImplementedException();
+            var query = from i in _dbcontext.jb2bt_Application_Get(null, null)
+                        select getApplication(i);
+            return query.ToArray();
         }
 
         public IApplication GetById(string id)
@@ -52,6 +55,24 @@ namespace JB2.Bowtie.Data
         {
             throw new NotImplementedException();
         }
+
+
+        internal static IApplication getApplication<T>(T r) where T : class
+        {
+            //int id = -1;
+            //int.TryParse(getString(r, "Id"), out id);
+            Application result = new Application( getString(r,"PublicKey"), getString(r,"Secret"))
+            {
+                ID = getString(r, "ID"),
+                Name = getString(r, "Name")
+            };
+
+
+
+
+            return result;
+        }
+
 
 
 

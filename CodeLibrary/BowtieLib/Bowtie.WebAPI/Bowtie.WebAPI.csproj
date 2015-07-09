@@ -110,6 +110,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Bowtie.Service\Bowtie.Service.csproj">
+      <Project>{e9f8abc3-957e-4ada-b7db-a61e16beaa1e}</Project>
+      <Name>Bowtie.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BowtieMySQLRepo\Bowtie.RepoLinq.csproj">
       <Project>{a1701ab0-0670-4a88-a4d4-304ce4898699}</Project>
       <Name>Bowtie.RepoLinq</Name>

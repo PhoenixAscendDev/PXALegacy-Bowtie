@@ -13,7 +13,7 @@ namespace Bowtie.WebAPI.Models
     public class UnitOfWork : JB2.Bowtie.IUnitOfWork
     {
         private Dictionary<JB2.Bowtie.Enum.RepositoryType, object> _repos;
-        private DataContext _dataContext;
+        private JB2.Bowtie.Data.BowtieDataContext _dataContext;
         private JB2.Bowtie.Enum.RepoDataSource _defaultSource;
 
 
@@ -28,7 +28,8 @@ namespace Bowtie.WebAPI.Models
             _defaultSource = defaultSource;
         }
 
-        public UnitOfWork(DataContext dataContext) : this()
+        public UnitOfWork(JB2.Bowtie.Data.BowtieDataContext dataContext)
+            : this()
         {
             _dataContext = dataContext;
             _defaultSource = RepoDataSource.Standard;
