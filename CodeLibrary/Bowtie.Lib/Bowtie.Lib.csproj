@@ -57,13 +57,15 @@
     <Compile Include="Enum\APIAuthorizeState.cs" />
     <Compile Include="Enum\BowtieObjectType.cs" />
     <Compile Include="ClientAPI.cs" />
+    <Compile Include="Enum\ScoreOrderType.cs" />
     <Compile Include="GameCommand.cs" />
     <Compile Include="GenericService.cs" />
     <Compile Include="Interfaces\IApplication.cs" />
     <Compile Include="Interfaces\IApplicationRepository.cs" />
     <Compile Include="Interfaces\IBowtieObject.cs" />
-    <Compile Include="Interfaces\ICompany.cs" />
+    <Compile Include="Interfaces\IClient.cs" />
     <Compile Include="Interfaces\IGameCommand.cs" />
+    <Compile Include="Interfaces\ILeaderboard.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Manager.cs" />

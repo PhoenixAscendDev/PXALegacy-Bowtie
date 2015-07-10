@@ -12,10 +12,12 @@ namespace JB2.Bowtie.Data
     {
         protected BowtieDataContext _dbcontext;
         private const string DB_PREFIX = "jb2bt_";
+        protected JB2.Bowtie.Enum.BowtieObjectType _objType;
 
         public LinqRepository(BowtieDataContext dbc)
         {
             this._dbcontext = dbc;
+
         }
 
         public LinqRepository()
@@ -24,8 +26,6 @@ namespace JB2.Bowtie.Data
            
         }
 
-
-
         public void Delete(Tobject entity)
         {
             throw new NotImplementedException();
@@ -33,12 +33,27 @@ namespace JB2.Bowtie.Data
 
         public Tobject[] GetAll()
         {
-            throw new NotImplementedException();
+            switch(_objType)
+            {
+                case Enum.BowtieObjectType.bowtie_application:
+                    var query = from i in _dbcontext.jb2bt_Application_Get(null, null)
+                        select (Tobject)getApplication(i);
+                    return query.ToArray();
+            }
+            return default(Tobject[]);
         }
 
         public Tobject GetById(string id)
         {
-            throw new NotImplementedException();
+            switch(_objType)
+            {
+                case Enum.BowtieObjectType.bowtie_application:
+                    var query = from i in _dbcontext.jb2bt_Application_Get(null,id)
+                        select getApplication(i);
+                    return (Tobject)query.ToArray().FirstOrDefault();
+            }
+            return default(Tobject);
+            //throw new NotImplementedException();
         }
 
         public void Insert(Tobject entity)
@@ -49,6 +64,16 @@ namespace JB2.Bowtie.Data
         public Tobject[] SearchFor()
         {
             throw new NotImplementedException();
+        }
+
+        internal static IApplication getApplication<T>(T r) where T : class
+        {
+            Application result = new Application(getString(r, "PublicKey"), getString(r, "Secret"))
+            {
+                ID = getString(r, "ID"),
+                Name = getString(r, "Name")
+            };
+            return result;
         }
     }
 }

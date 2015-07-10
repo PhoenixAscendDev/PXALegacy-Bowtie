@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Interfaces
+namespace JB2.Bowtie.Enum
 {
-    public interface ICompany : JB2.Common.IBusiness<string>
+    public enum ScoreOrderType
     {
+        LargestScoreBest,
+        SmallestScoreBest
 
     }
 }

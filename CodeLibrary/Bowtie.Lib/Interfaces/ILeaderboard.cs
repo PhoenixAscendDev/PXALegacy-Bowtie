@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class BowtieAPI
+    public interface ILeaderboard : IBowtieObject, JB2.Common.IIDNamePair<string, string>
     {
-        public string Version { get; set; }
-        public string URL { get; set; }
-        
+        Enum.ScoreOrderType OrderType { get; set; }
+
     }
 }
