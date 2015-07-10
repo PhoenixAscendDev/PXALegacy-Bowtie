@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="JB2.Common">
-      <HintPath>..\BowtieLib\DllReference\JB2.Common.dll</HintPath>
+      <HintPath>..\..\..\..\..\scratch\Bowtie\CodeLibrary\Bowtie.Lib\DllReference\JB2.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,7 +56,7 @@
     <None Include="bowtieApp_v1.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BowtieLib\Bowtie.Lib.csproj">
+    <ProjectReference Include="..\Bowtie.Lib\Bowtie.Lib.csproj">
       <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
       <Name>Bowtie.Lib</Name>
     </ProjectReference>
