@@ -44,6 +44,12 @@ namespace JB2.Bowtie
 
         }
 
+        public string CompanyID
+        {
+            get;
+            set;
+        }
+
 
 
        #endregion Public Properies

@@ -62,6 +62,7 @@
     <Compile Include="Interfaces\IApplication.cs" />
     <Compile Include="Interfaces\IApplicationRepository.cs" />
     <Compile Include="Interfaces\IBowtieObject.cs" />
+    <Compile Include="Interfaces\ICompany.cs" />
     <Compile Include="Interfaces\IGameCommand.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />

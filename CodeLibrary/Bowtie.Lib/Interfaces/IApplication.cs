@@ -11,5 +11,6 @@ namespace JB2.Bowtie
         string Secret { get; }
         bool isAuthorized { get; }
         Enum.APIAuthorizeState AuthorizedState { get; }
+        string CompanyID { get; set; }
     }
 }

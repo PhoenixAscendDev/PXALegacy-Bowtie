@@ -7,8 +7,8 @@
     <ProjectGuid>{226CE497-A55F-4B8B-8178-9C9B41AB34DC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JB2.Bowtie.Test</RootNamespace>
-    <AssemblyName>JB2.Bowtie.Test</AssemblyName>
+    <RootNamespace>JB2.Bowtie.Data.NoDB</RootNamespace>
+    <AssemblyName>JB2.Bowtie.Data.NoDB</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
