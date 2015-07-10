@@ -18,7 +18,7 @@ This project currently includes the following
 * JB2-Bowtie - Production 
  * cx8yl1ofvr.database.windows.net (will mirgrate to new server closer to launch)
 * JB2-Dev - Development
-* cx8yl1ofvr.database.windows.net
+ * cx8yl1ofvr.database.windows.net
 
 project's database prefix:  "jb2bt" 
 all Jbsquared project database objects are prefix to simplify data resources and scaleability between servers and databases. 
