@@ -20,8 +20,10 @@ This project currently includes the following
 * JB2-Dev - Development
  * cx8yl1ofvr.database.windows.net
 
-project's database prefix:  "jb2bt" 
-all Jbsquared project database objects are prefix to simplify data resources and scaleability between servers and databases. 
+Database prefix:  "jb2bt" 
+
+##Dependances
+* JB2.Common API (dll) is required for the Bowtie Class Library 
 
 
 ## VS Projects
