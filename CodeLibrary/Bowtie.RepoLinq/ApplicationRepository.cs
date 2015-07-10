@@ -10,7 +10,7 @@ namespace JB2.Bowtie.Data
 {
     public class ApplicationRepository :  LinqRepository<IApplication>, IApplicationRepository
     {
-        public ApplicationRepository(BowtieDataContext context): base(context)
+        public ApplicationRepository(BowtieDataContext context): base(context,Enum.BowtieObjectType.bowtie_application)
         {
 
         }

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Bowtie.WebAPI
+namespace JB2.Bowtie.WebAPI
 {
     public class BundleConfig
     {

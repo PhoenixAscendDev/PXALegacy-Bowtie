@@ -14,9 +14,10 @@ namespace JB2.Bowtie.Data
         private const string DB_PREFIX = "jb2bt_";
         protected JB2.Bowtie.Enum.BowtieObjectType _objType;
 
-        public LinqRepository(BowtieDataContext dbc)
+        public LinqRepository(BowtieDataContext dbc, JB2.Bowtie.Enum.BowtieObjectType type)
         {
             this._dbcontext = dbc;
+            this._objType = type;
 
         }
 

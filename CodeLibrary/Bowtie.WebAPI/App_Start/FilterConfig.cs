@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Bowtie.WebAPI
+namespace JB2.Bowtie.WebAPI
 {
     public class FilterConfig
     {

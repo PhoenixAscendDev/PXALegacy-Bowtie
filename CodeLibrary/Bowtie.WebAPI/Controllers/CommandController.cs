@@ -11,7 +11,7 @@ using Bowtie.WebAPI.Filters;
 
 namespace Bowtie.WebAPI.Controllers
 {
-    [BowtieAuthentication]
+    
     [RoutePrefix("api/v1/commands")]
     public class CommandController : ApiController
     {
@@ -21,13 +21,22 @@ namespace Bowtie.WebAPI.Controllers
         public CommandController()
             : base()
         {
-            this._unitOfWork = new Bowtie.WebAPI.Models.UnitOfWork();
+            this._unitOfWork = new Bowtie.WebAPI.Models.UnitOfWork(JB2.Bowtie.Enum.RepoDataSource.Standard);
         }
 
+        // GET api/v1/commands/5
+        public string Get(int id)
+        {
+            return "value";
+        }
 
         [Route("")]
         public IHttpActionResult Get()
         {
+            JB2.Bowtie.IApplicationRepository repo = (JB2.Bowtie.IApplicationRepository)this._unitOfWork.GetRepository(JB2.Bowtie.Enum.RepositoryType.Application);
+
+
+            JB2.Bowtie.IApplication app = repo.GetById("1");
             ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
 
             var Name = ClaimsPrincipal.Current.Identity.Name;

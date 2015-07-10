@@ -25,6 +25,8 @@ namespace Bowtie.WebAPI.Models
         public UnitOfWork(RepoDataSource defaultSource) : this()
         {
             _defaultSource = defaultSource;
+            if (_defaultSource == RepoDataSource.Standard)
+                _dataContext = new JB2.Bowtie.Data.BowtieDataContext();
         }
 
         public UnitOfWork(JB2.Bowtie.Data.BowtieDataContext dataContext)
@@ -66,7 +68,7 @@ namespace Bowtie.WebAPI.Models
             switch(datasource)
             {
                 case RepoDataSource.Standard:
-                    if (_repos[repository] == null)
+                    if (!_repos.ContainsKey(repository))
                     {
                         switch(repository)
                         {
