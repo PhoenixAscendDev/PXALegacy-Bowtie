@@ -30,8 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common">
-      <HintPath>..\BowtieLib\DllReference\JB2.Common.dll</HintPath>
+    <Reference Include="JB2.Common, Version=1.0.0.3637, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\scratch\Bowtie\CodeLibrary\Bowtie.Lib\DllReference\JB2.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

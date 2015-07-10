@@ -43,7 +43,7 @@ namespace Bowtie.ConsoleTest
 
             Console.WriteLine("Calling the back-end API");
 
-            string apiBaseAddress = "http://jb2-bowtie.azurewebsites.net/"; //"http://localhost:52151/";
+            string apiBaseAddress = JB2.Bowtie.Settings.APIInfo.URL;
             //string apiBaseAddress = "http://localhost:52151/";
 
             BowtieDelegatingHandler customDelegatingHandler = new BowtieDelegatingHandler();
