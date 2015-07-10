@@ -62,11 +62,80 @@ namespace JB2.Bowtie.Data
 			OnCreated();
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.jb2bt_Client_Get")]
+		public ISingleResult<jb2bt_Client_GetResult> jb2bt_Client_Get([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string key)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, key);
+			return ((ISingleResult<jb2bt_Client_GetResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.jb2bt_Application_Get")]
 		public ISingleResult<jb2bt_Application_GetResult> jb2bt_Application_Get([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string publickey)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, publickey);
 			return ((ISingleResult<jb2bt_Application_GetResult>)(result.ReturnValue));
+		}
+	}
+	
+	public partial class jb2bt_Client_GetResult
+	{
+		
+		private int _ID;
+		
+		private string _Name;
+		
+		private string _Key;
+		
+		public jb2bt_Client_GetResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NChar(10)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Key]", Storage="_Key", DbType="VarChar(50)")]
+		public string Key
+		{
+			get
+			{
+				return this._Key;
+			}
+			set
+			{
+				if ((this._Key != value))
+				{
+					this._Key = value;
+				}
+			}
 		}
 	}
 	
@@ -80,6 +149,8 @@ namespace JB2.Bowtie.Data
 		private string _Name;
 		
 		private string _Secret;
+		
+		private string _Client_Key;
 		
 		public jb2bt_Application_GetResult()
 		{
@@ -145,6 +216,22 @@ namespace JB2.Bowtie.Data
 				if ((this._Secret != value))
 				{
 					this._Secret = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Client_Key", DbType="VarChar(50)")]
+		public string Client_Key
+		{
+			get
+			{
+				return this._Client_Key;
+			}
+			set
+			{
+				if ((this._Client_Key != value))
+				{
+					this._Client_Key = value;
 				}
 			}
 		}

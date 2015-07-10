@@ -20,5 +20,11 @@ namespace JB2.Bowtie.Data
         {
             throw new NotImplementedException();
         }
+
+
+        public IApplication[] GetApplicationsByClientID()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace JB2.Bowtie
 
         }
 
-        public string CompanyID
+        public string ClientID
         {
             get;
             set;

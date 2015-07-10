@@ -54,6 +54,7 @@
     <Compile Include="BowtieDelegatingHandler.cs" />
     <Compile Include="BowtieObject.cs" />
     <Compile Include="BowtieSettings.cs" />
+    <Compile Include="Client.cs" />
     <Compile Include="Enum\APIAuthorizeState.cs" />
     <Compile Include="Enum\BowtieObjectType.cs" />
     <Compile Include="ClientAPI.cs" />

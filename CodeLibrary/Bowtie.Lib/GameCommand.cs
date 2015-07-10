@@ -9,7 +9,7 @@ namespace JB2.Bowtie
     public class GameCommand : BowtieObject,IGameCommand,IBowtieObject
     {
 
-        public GameCommand() : base(Enum.BowtieObjectType.bowtie_command,Guid.NewGuid().ToString())
+        public GameCommand() : base(Enum.BowtieObjectType.bowtie_command,null)
         {
 
         }

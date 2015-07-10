@@ -33,12 +33,17 @@ namespace JB2.Bowtie.Data
 
         public Tobject[] GetAll()
         {
+            
             switch(_objType)
             {
                 case Enum.BowtieObjectType.bowtie_application:
                     var query = from i in _dbcontext.jb2bt_Application_Get(null, null)
                         select (Tobject)getApplication(i);
                     return query.ToArray();
+                case Enum.BowtieObjectType.bowtie_client:
+                    var query2 = from i in _dbcontext.jb2bt_Client_Get(null, null)
+                                select (Tobject)getClient(i);
+                    return query2.ToArray();
             }
             return default(Tobject[]);
         }
@@ -51,6 +56,10 @@ namespace JB2.Bowtie.Data
                     var query = from i in _dbcontext.jb2bt_Application_Get(null,id)
                         select getApplication(i);
                     return (Tobject)query.ToArray().FirstOrDefault();
+                case Enum.BowtieObjectType.bowtie_client:
+                    var query2 = from i in _dbcontext.jb2bt_Client_Get(null, null)
+                                 select (Tobject)getClient(i);
+                    return query2.ToArray().FirstOrDefault();
             }
             return default(Tobject);
             //throw new NotImplementedException();
@@ -71,7 +80,17 @@ namespace JB2.Bowtie.Data
             Application result = new Application(getString(r, "PublicKey"), getString(r, "Secret"))
             {
                 ID = getString(r, "ID"),
-                Name = getString(r, "Name")
+                Name = getString(r, "Name"),
+                ClientID = getString(r,"Client_Key")
+            };
+            return result;
+        }
+
+        internal static IClient getClient<T>(T r) where T : class
+        {
+            Client result = new Client(getString(r, "Key"))
+            {
+                Name = getString(r, "Name"),
             };
             return result;
         }

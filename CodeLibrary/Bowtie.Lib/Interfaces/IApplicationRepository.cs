@@ -9,5 +9,7 @@ namespace JB2.Bowtie
     public interface IApplicationRepository : JB2.Common.IRepository<JB2.Bowtie.IApplication, string>
     {
         IApplication[] GetAPIAllowedApps();
+
+        IApplication[] GetApplicationsByClientID();
     }
 }

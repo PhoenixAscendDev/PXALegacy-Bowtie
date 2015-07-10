@@ -47,6 +47,12 @@ namespace JB2.Bowtie.NoDBData
             return result.ToArray();
         }
 
-        
+
+
+
+        public IApplication[] GetApplicationsByClientID()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
