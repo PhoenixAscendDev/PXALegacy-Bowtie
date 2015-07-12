@@ -20,28 +20,6 @@
       <Column Name="Client_Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.jb2bt_Achievement_Get" Method="jb2bt_Achievement_Get">
-    <Parameter Name="key" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="applicationKey" Type="System.String" DbType="VarChar(50)" />
-    <ElementType Name="jb2bt_Achievement_GetResult">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ObjectKey" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
-      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Application_Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SortOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="AchievementType" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Category" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
-      <Column Name="StepsRequire" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IconUrlEarned" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="IconUrlHidden" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="IconUrlShown" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="EventStartTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="EventEndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="PointsWorth" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.jb2bt_Achievement_Save" Method="jb2bt_Achievement_Save">
     <Parameter Name="key" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="name" Type="System.String" DbType="VarChar(25)" />
@@ -92,6 +70,29 @@
       <Column Name="Success" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="[Key]" Member="Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Message" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.jb2bt_Achievement_Get" Method="jb2bt_Achievement_Get">
+    <Parameter Name="key" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="applicationKey" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="jb2bt_Achievement_GetResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ObjectKey" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Application_Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="AchievementType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Category" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="StepsRequire" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IconUrlEarned" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="IconUrlHidden" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="IconUrlShown" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="EventStartTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EventEndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PointsWorth" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RarityLevel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

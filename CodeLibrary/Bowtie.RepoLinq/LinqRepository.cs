@@ -34,7 +34,6 @@ namespace JB2.Bowtie.Data
 
         public Tobject[] GetAll()
         {
-            
             switch(_objType)
             {
                 case Enum.BowtieObjectType.bowtie_application:
@@ -45,6 +44,10 @@ namespace JB2.Bowtie.Data
                     var query2 = from i in _dbcontext.jb2bt_Client_Get(null, null)
                                 select (Tobject)getClient(i);
                     return query2.ToArray();
+                case Enum.BowtieObjectType.bowtie_achievement:
+                     var query3 = from i in _dbcontext.jb2bt_Achievement_Get(null,null)
+                                select (Tobject)getAchievement(i);
+                    return query3.ToArray();
             }
             return default(Tobject[]);
         }
@@ -61,6 +64,10 @@ namespace JB2.Bowtie.Data
                     var query2 = from i in _dbcontext.jb2bt_Client_Get(null, null)
                                  select (Tobject)getClient(i);
                     return query2.ToArray().FirstOrDefault();
+                case Enum.BowtieObjectType.bowtie_achievement:
+                     var query3 = from i in _dbcontext.jb2bt_Achievement_Get(id,null)
+                                select (Tobject)getAchievement(i);
+                     return query3.ToArray().FirstOrDefault();
             }
             return default(Tobject);
             //throw new NotImplementedException();
@@ -95,5 +102,40 @@ namespace JB2.Bowtie.Data
             };
             return result;
         }
+
+        internal static IAchievement getAchievement<T>(T r) where T : class
+        {
+            IAchievement result = null;
+            Enum.AchievementType type = (Enum.AchievementType)getInt(r, "AchievementType");
+
+            switch(type)
+            {
+                case Enum.AchievementType.Standard :
+                    result = new JB2.Bowtie.StandardAchievement(getString(r, "ObjectKey"));
+                    break;
+                case Enum.AchievementType.LabelPin :
+                    result = new JB2.Bowtie.LapelPin(getString(r, "ObjectKey"));
+                    break;
+                case Enum.AchievementType.TimeBound:
+                    result = new JB2.Bowtie.EventAchievement(getString(r, "ObjectKey"));
+                    break;
+            }
+
+            result.ApplicationID = getString(r, "Application_Key");
+            result.Category = getString(r, "Category");
+            result.Description = getString(r, "Description");
+            result.EarnedIconUrl = getString(r, "IconUrlEarned");
+            result.HiddenIconUrl = getString(r, "IconUrlHidden");
+            result.Name = getString(r, "Name");
+            result.Points = getInt(r, "PointsWorth");
+            result.Rarity = (Enum.AchievementRarityType)getInt(r, "RarityLevel");
+            result.ShownIconUrl = getString(r, "IconUrlShown");
+            result.SortOrder = getInt(r, "SortOrder");
+            result.StepsRequired = getInt(r, "StepsRequire");
+            result.TimeBoundEnd = getDate(r, "EventStartTime");
+            result.TimeBoundStart = getDate(r, "EventEndTime");
+            return result;
+        }
+
     }
 }

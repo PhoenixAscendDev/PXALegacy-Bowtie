@@ -11,5 +11,7 @@ namespace JB2.Bowtie
         IPlayerAchievement[] GetPlayerAchievements(string playerID, string appID);
 
         bool SavePlayerAchievements(IPlayerAchievement playerAchievement);
+
+        IAchievement[] GetAchievementsByApplication(string appID);
     }
 }

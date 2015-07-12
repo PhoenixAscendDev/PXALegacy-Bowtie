@@ -76,13 +76,6 @@ namespace JB2.Bowtie.Data
 			return ((ISingleResult<jb2bt_Application_GetResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.jb2bt_Achievement_Get")]
-		public ISingleResult<jb2bt_Achievement_GetResult> jb2bt_Achievement_Get([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string key, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string applicationKey)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), key, applicationKey);
-			return ((ISingleResult<jb2bt_Achievement_GetResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.jb2bt_Achievement_Save")]
 		public ISingleResult<jb2bt_Achievement_SaveResult> jb2bt_Achievement_Save([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string key, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(25)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string applicationKey, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> sortOrder, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string description, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> achievementType, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(25)")] string category, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> steps, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(200)")] string iconEarned, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(200)")] string iconHidden, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(200)")] string iconShown, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> eventStart, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> eventEnd, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> points, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string saveMode)
 		{
@@ -102,6 +95,13 @@ namespace JB2.Bowtie.Data
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), key, name, playerKey, achievementKey, currentStep, achievementFlags, pointsEarned, saveMode);
 			return ((ISingleResult<jb2bt_Player_Achievement_SaveResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.jb2bt_Achievement_Get")]
+		public ISingleResult<jb2bt_Achievement_GetResult> jb2bt_Achievement_Get([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string key, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string applicationKey)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), key, applicationKey);
+			return ((ISingleResult<jb2bt_Achievement_GetResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -260,302 +260,6 @@ namespace JB2.Bowtie.Data
 				if ((this._Client_Key != value))
 				{
 					this._Client_Key = value;
-				}
-			}
-		}
-	}
-	
-	public partial class jb2bt_Achievement_GetResult
-	{
-		
-		private int _Id;
-		
-		private string _ObjectKey;
-		
-		private string _Name;
-		
-		private System.Nullable<System.DateTime> _LastUpdate;
-		
-		private string _Application_Key;
-		
-		private System.Nullable<int> _SortOrder;
-		
-		private string _Description;
-		
-		private System.Nullable<int> _AchievementType;
-		
-		private string _Category;
-		
-		private System.Nullable<int> _StepsRequire;
-		
-		private string _IconUrlEarned;
-		
-		private string _IconUrlHidden;
-		
-		private string _IconUrlShown;
-		
-		private System.Nullable<System.DateTime> _EventStartTime;
-		
-		private System.Nullable<System.DateTime> _EventEndTime;
-		
-		private System.Nullable<int> _PointsWorth;
-		
-		public jb2bt_Achievement_GetResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ObjectKey", DbType="VarChar(50)")]
-		public string ObjectKey
-		{
-			get
-			{
-				return this._ObjectKey;
-			}
-			set
-			{
-				if ((this._ObjectKey != value))
-				{
-					this._ObjectKey = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(25)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this._Name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> LastUpdate
-		{
-			get
-			{
-				return this._LastUpdate;
-			}
-			set
-			{
-				if ((this._LastUpdate != value))
-				{
-					this._LastUpdate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Application_Key", DbType="VarChar(50)")]
-		public string Application_Key
-		{
-			get
-			{
-				return this._Application_Key;
-			}
-			set
-			{
-				if ((this._Application_Key != value))
-				{
-					this._Application_Key = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SortOrder", DbType="Int")]
-		public System.Nullable<int> SortOrder
-		{
-			get
-			{
-				return this._SortOrder;
-			}
-			set
-			{
-				if ((this._SortOrder != value))
-				{
-					this._SortOrder = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(255)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this._Description = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AchievementType", DbType="Int")]
-		public System.Nullable<int> AchievementType
-		{
-			get
-			{
-				return this._AchievementType;
-			}
-			set
-			{
-				if ((this._AchievementType != value))
-				{
-					this._AchievementType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category", DbType="VarChar(25)")]
-		public string Category
-		{
-			get
-			{
-				return this._Category;
-			}
-			set
-			{
-				if ((this._Category != value))
-				{
-					this._Category = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StepsRequire", DbType="Int")]
-		public System.Nullable<int> StepsRequire
-		{
-			get
-			{
-				return this._StepsRequire;
-			}
-			set
-			{
-				if ((this._StepsRequire != value))
-				{
-					this._StepsRequire = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IconUrlEarned", DbType="VarChar(200)")]
-		public string IconUrlEarned
-		{
-			get
-			{
-				return this._IconUrlEarned;
-			}
-			set
-			{
-				if ((this._IconUrlEarned != value))
-				{
-					this._IconUrlEarned = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IconUrlHidden", DbType="VarChar(200)")]
-		public string IconUrlHidden
-		{
-			get
-			{
-				return this._IconUrlHidden;
-			}
-			set
-			{
-				if ((this._IconUrlHidden != value))
-				{
-					this._IconUrlHidden = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IconUrlShown", DbType="VarChar(200)")]
-		public string IconUrlShown
-		{
-			get
-			{
-				return this._IconUrlShown;
-			}
-			set
-			{
-				if ((this._IconUrlShown != value))
-				{
-					this._IconUrlShown = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventStartTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> EventStartTime
-		{
-			get
-			{
-				return this._EventStartTime;
-			}
-			set
-			{
-				if ((this._EventStartTime != value))
-				{
-					this._EventStartTime = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventEndTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> EventEndTime
-		{
-			get
-			{
-				return this._EventEndTime;
-			}
-			set
-			{
-				if ((this._EventEndTime != value))
-				{
-					this._EventEndTime = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PointsWorth", DbType="Int")]
-		public System.Nullable<int> PointsWorth
-		{
-			get
-			{
-				return this._PointsWorth;
-			}
-			set
-			{
-				if ((this._PointsWorth != value))
-				{
-					this._PointsWorth = value;
 				}
 			}
 		}
@@ -832,6 +536,320 @@ namespace JB2.Bowtie.Data
 				if ((this._Message != value))
 				{
 					this._Message = value;
+				}
+			}
+		}
+	}
+	
+	public partial class jb2bt_Achievement_GetResult
+	{
+		
+		private int _Id;
+		
+		private string _ObjectKey;
+		
+		private string _Name;
+		
+		private System.Nullable<System.DateTime> _LastUpdate;
+		
+		private string _Application_Key;
+		
+		private System.Nullable<int> _SortOrder;
+		
+		private string _Description;
+		
+		private System.Nullable<int> _AchievementType;
+		
+		private string _Category;
+		
+		private System.Nullable<int> _StepsRequire;
+		
+		private string _IconUrlEarned;
+		
+		private string _IconUrlHidden;
+		
+		private string _IconUrlShown;
+		
+		private System.Nullable<System.DateTime> _EventStartTime;
+		
+		private System.Nullable<System.DateTime> _EventEndTime;
+		
+		private System.Nullable<int> _PointsWorth;
+		
+		private int _RarityLevel;
+		
+		public jb2bt_Achievement_GetResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ObjectKey", DbType="VarChar(50)")]
+		public string ObjectKey
+		{
+			get
+			{
+				return this._ObjectKey;
+			}
+			set
+			{
+				if ((this._ObjectKey != value))
+				{
+					this._ObjectKey = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(25)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastUpdate
+		{
+			get
+			{
+				return this._LastUpdate;
+			}
+			set
+			{
+				if ((this._LastUpdate != value))
+				{
+					this._LastUpdate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Application_Key", DbType="VarChar(50)")]
+		public string Application_Key
+		{
+			get
+			{
+				return this._Application_Key;
+			}
+			set
+			{
+				if ((this._Application_Key != value))
+				{
+					this._Application_Key = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SortOrder", DbType="Int")]
+		public System.Nullable<int> SortOrder
+		{
+			get
+			{
+				return this._SortOrder;
+			}
+			set
+			{
+				if ((this._SortOrder != value))
+				{
+					this._SortOrder = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(255)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AchievementType", DbType="Int")]
+		public System.Nullable<int> AchievementType
+		{
+			get
+			{
+				return this._AchievementType;
+			}
+			set
+			{
+				if ((this._AchievementType != value))
+				{
+					this._AchievementType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category", DbType="VarChar(25)")]
+		public string Category
+		{
+			get
+			{
+				return this._Category;
+			}
+			set
+			{
+				if ((this._Category != value))
+				{
+					this._Category = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StepsRequire", DbType="Int")]
+		public System.Nullable<int> StepsRequire
+		{
+			get
+			{
+				return this._StepsRequire;
+			}
+			set
+			{
+				if ((this._StepsRequire != value))
+				{
+					this._StepsRequire = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IconUrlEarned", DbType="VarChar(200)")]
+		public string IconUrlEarned
+		{
+			get
+			{
+				return this._IconUrlEarned;
+			}
+			set
+			{
+				if ((this._IconUrlEarned != value))
+				{
+					this._IconUrlEarned = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IconUrlHidden", DbType="VarChar(200)")]
+		public string IconUrlHidden
+		{
+			get
+			{
+				return this._IconUrlHidden;
+			}
+			set
+			{
+				if ((this._IconUrlHidden != value))
+				{
+					this._IconUrlHidden = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IconUrlShown", DbType="VarChar(200)")]
+		public string IconUrlShown
+		{
+			get
+			{
+				return this._IconUrlShown;
+			}
+			set
+			{
+				if ((this._IconUrlShown != value))
+				{
+					this._IconUrlShown = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventStartTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EventStartTime
+		{
+			get
+			{
+				return this._EventStartTime;
+			}
+			set
+			{
+				if ((this._EventStartTime != value))
+				{
+					this._EventStartTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventEndTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EventEndTime
+		{
+			get
+			{
+				return this._EventEndTime;
+			}
+			set
+			{
+				if ((this._EventEndTime != value))
+				{
+					this._EventEndTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PointsWorth", DbType="Int")]
+		public System.Nullable<int> PointsWorth
+		{
+			get
+			{
+				return this._PointsWorth;
+			}
+			set
+			{
+				if ((this._PointsWorth != value))
+				{
+					this._PointsWorth = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RarityLevel", DbType="Int NOT NULL")]
+		public int RarityLevel
+		{
+			get
+			{
+				return this._RarityLevel;
+			}
+			set
+			{
+				if ((this._RarityLevel != value))
+				{
+					this._RarityLevel = value;
 				}
 			}
 		}

@@ -43,5 +43,11 @@ namespace JB2.Bowtie.Data.NoDB
         {
             throw new NotImplementedException();
         }
+
+
+        public IAchievement[] GetAchievementsByApplication(string appID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

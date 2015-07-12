@@ -18,5 +18,12 @@ namespace JB2.Bowtie.Data
         {
             throw new NotImplementedException();
         }
+
+        public IAchievement[] GetAchievementsByApplication(string appID)
+        {
+            var query3 = from i in _dbcontext.jb2bt_Achievement_Get(null,appID)
+                         select (IAchievement)getAchievement(i);
+            return query3.ToArray();
+        }
     }
 }
