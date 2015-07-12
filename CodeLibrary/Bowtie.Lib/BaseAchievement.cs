@@ -8,23 +8,21 @@ namespace JB2.Bowtie
 {
     public class BaseAchievement : BowtieObject, IAchievement
     {
-        private string _appID;
-        private int _sortorder;
-        private string _description;
-        private Enum.AchievementType _achievementType;
-        private string _category;
-        private int _steps;
-        private Dictionary<string, string> _icons;
-        private Enum.AchievementRarityType _rarity;
-        private DateTime _timeStart;
-        private DateTime _timeEnd;
-        private long _points;
-
+        protected string _appID;
+        protected int _sortorder;
+        protected string _description;
+        protected Enum.AchievementType _achievementType;
+        protected string _category;
+        protected int _steps;
+        protected Dictionary<string, string> _icons;
+        protected Enum.AchievementRarityType _rarity;
+        protected DateTime _timeStart;
+        protected DateTime _timeEnd;
+        protected long _points;
 
 
         public BaseAchievement() : this(null)
         {
-
         }
 
         public BaseAchievement(string id) : base(Enum.BowtieObjectType.bowtie_achievement,id)

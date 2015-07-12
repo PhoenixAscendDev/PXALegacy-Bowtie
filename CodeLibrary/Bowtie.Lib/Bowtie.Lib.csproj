@@ -63,6 +63,7 @@
     <Compile Include="Enum\BowtieObjectType.cs" />
     <Compile Include="ClientAPI.cs" />
     <Compile Include="Enum\ScoreOrderType.cs" />
+    <Compile Include="EventAchievement.cs" />
     <Compile Include="GameCommand.cs" />
     <Compile Include="GenericService.cs" />
     <Compile Include="Interfaces\IAchievement.cs" />
@@ -76,12 +77,14 @@
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IPlayerAchievement.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="LapelPin.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="RepoDataSource.cs" />
     <Compile Include="Enum\RepositoryType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="StandardAchievement.cs" />
     <Compile Include="Static\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
