@@ -48,6 +48,10 @@ namespace JB2.Bowtie.Data
                      var query3 = from i in _dbcontext.jb2bt_Achievement_Get(null,null)
                                 select (Tobject)getAchievement(i);
                     return query3.ToArray();
+                case Enum.BowtieObjectType.bowtie_playerachievement:
+                    var query4 = from i in _dbcontext.jb2bt_Player_Achievement_Get(null,null,null)
+                                 select (Tobject)getPlayerAchievement(i);
+                    return query4.ToArray();
             }
             return default(Tobject[]);
         }
@@ -68,6 +72,10 @@ namespace JB2.Bowtie.Data
                      var query3 = from i in _dbcontext.jb2bt_Achievement_Get(id,null)
                                 select (Tobject)getAchievement(i);
                      return query3.ToArray().FirstOrDefault();
+                case Enum.BowtieObjectType.bowtie_playerachievement:
+                     var query4 = from i in _dbcontext.jb2bt_Player_Achievement_Get(id,null,null)
+                                  select (Tobject)getPlayerAchievement(i);
+                     return query4.ToArray().FirstOrDefault();
             }
             return default(Tobject);
             //throw new NotImplementedException();
@@ -75,13 +83,31 @@ namespace JB2.Bowtie.Data
 
         public void Insert(Tobject entity)
         {
-            throw new NotImplementedException();
+            switch(_objType)
+            {
+                case Enum.BowtieObjectType.bowtie_achievement:
+                    SaveAchievement( (IAchievement)entity, null);
+                    break;
+                case Enum.BowtieObjectType.bowtie_playerachievement:
+                    SavePlayerAchievement( (IPlayerAchievement)entity,null);
+                    break;
+                
+            }
         }
+
+        public void Update(Tobject entity)
+        {
+            ///Currently we are not seperating out Insert and Update into seperate SQL sp.
+            this.Insert(entity);
+        }
+
 
         public Tobject[] SearchFor()
         {
             throw new NotImplementedException();
         }
+
+        #region Get Methods
 
         internal static IApplication getApplication<T>(T r) where T : class
         {
@@ -136,6 +162,50 @@ namespace JB2.Bowtie.Data
             result.TimeBoundStart = getDate(r, "EventEndTime");
             return result;
         }
+
+        internal static IPlayerAchievement getPlayerAchievement<T>(T r) where T : class
+        {
+
+            ///TODO Bitwise thing with the Flags
+            PlayerAchievement result = new PlayerAchievement(getString(r, "ObjectKey"))
+            {
+              //AchievementFlags = new Enum.AchievementFlag[](),
+              Name = getString(r,"Name"),
+              PlayerID = getString(r,"Player_Key"),
+              AchievementID = getString(r,"Achievement_Key"),
+               CurrentStep = getInt(r,"CurrentStep")
+            };
+
+            return result;
+
+
+        }
+        #endregion
+
+        #region Save Methods
+
+
+        private bool SaveAchievement(IAchievement a,string mode)
+        {
+            jb2bt_Achievement_SaveResult result = _dbcontext.jb2bt_Achievement_Save(a.ID, a.Name, a.ApplicationID, a.SortOrder, a.Description, (int)a.AchievementType, a.Category, a.StepsRequired
+                                              , a.EarnedIconUrl, a.HiddenIconUrl, a.ShownIconUrl,
+                                              a.TimeBoundStart, a.TimeBoundEnd, (int)a.Points, mode).FirstOrDefault();
+            return (result.Key == a.ID);
+        }
+
+        private bool SavePlayerAchievement(IPlayerAchievement a, string mode)
+        {
+            ///TODO: Find that bitwise to Int utility method (maybe in the JB2.Common
+            jb2bt_Player_Achievement_SaveResult result = _dbcontext.jb2bt_Player_Achievement_Save(a.ID, a.Name, a.PlayerID, a.AchievementID, a.CurrentStep,
+                                                                                                  (int)a.AchievementFlags.FirstOrDefault(), a.PointsEarned, mode).FirstOrDefault();
+
+            return (result.Key == a.ID);
+
+            
+        }
+
+
+        #endregion
 
     }
 }

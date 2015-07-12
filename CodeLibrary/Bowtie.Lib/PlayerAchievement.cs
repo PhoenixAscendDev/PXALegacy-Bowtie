@@ -15,6 +15,16 @@ namespace JB2.Bowtie
         protected int _points;
 
 
+        public PlayerAchievement() :this(null)
+        {
+
+        }
+
+        public PlayerAchievement(string id) : base(Enum.BowtieObjectType.bowtie_playerachievement,id)
+        {
+
+        }
+
 
         public string PlayerID
         {
