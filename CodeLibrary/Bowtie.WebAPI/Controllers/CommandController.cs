@@ -13,15 +13,13 @@ namespace Bowtie.WebAPI.Controllers
 {
     
     [RoutePrefix("api/v1/commands")]
-    public class CommandController : ApiController
+    public class CommandController : JB2.Bowtie.WebAPI.Controllers.BaseAPIController
     {
-        private JB2.Bowtie.IUnitOfWork _unitOfWork;
 
 
         public CommandController()
             : base()
         {
-            this._unitOfWork = new Bowtie.WebAPI.Models.UnitOfWork(JB2.Bowtie.Enum.RepoDataSource.Standard);
         }
 
         // GET api/v1/commands/5

@@ -20,6 +20,11 @@ namespace JB2.Bowtie
 
         internal static int _authCheckInterval = 5;
 
+
+
+
+
+
         public static string SettingsFilename
         {
             get
@@ -31,6 +36,19 @@ namespace JB2.Bowtie
                 _configFile = value;
             }
         }
+
+        public static Enum.APIMode Mode
+        {
+            get 
+            {
+                   Enum.APIMode result = Enum.APIMode.Debug;
+                    #if DEBUG
+                        result =  Enum.APIMode.Debug;    
+                    #endif
+                return result;
+            }
+        }
+
 
         public static Application CurrentApplication
         {

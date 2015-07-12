@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using JB2.Bowtie;
 
-namespace JB2.Bowtie.Data
+namespace JB2.Bowtie.Data.Linq
 {
     public class ApplicationRepository :  LinqRepository<IApplication>, IApplicationRepository
     {

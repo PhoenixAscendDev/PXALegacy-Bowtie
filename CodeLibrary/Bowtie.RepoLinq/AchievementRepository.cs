@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Data
+namespace JB2.Bowtie.Data.Linq
 {
     public class AchievementRepository : LinqRepository<IAchievement>, IAchievementRepository
     {

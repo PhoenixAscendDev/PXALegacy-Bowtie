@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JB2.Bowtie.Data
+namespace JB2.Bowtie.Data.Linq
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -33,7 +33,7 @@ namespace JB2.Bowtie.Data
     #endregion
 		
 		public BowtieDataContext() : 
-				base(global::JB2.Bowtie.Data.Properties.Settings.Default.JB2_BowtieConnectionString, mappingSource)
+				base(global::JB2.Bowtie.Data.Linq.Properties.Settings.Default.JB2_BowtieConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

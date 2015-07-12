@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JB2.Bowtie.Data.Properties {
+namespace JB2.Bowtie.Data.Linq.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

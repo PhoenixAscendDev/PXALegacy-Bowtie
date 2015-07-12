@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Data.Linq;
 
-namespace JB2.Bowtie.Data
+namespace JB2.Bowtie.Data.Linq
 {
     public class LinqRepository<Tobject> : BaseRespository, JB2.Common.IRepository<Tobject, string> where Tobject : IBowtieObject
     {

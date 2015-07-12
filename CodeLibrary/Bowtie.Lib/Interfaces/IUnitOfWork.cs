@@ -9,14 +9,10 @@ namespace JB2.Bowtie
     public interface IUnitOfWork: IDisposable
     {
         IApplicationRepository ApplicationRepository { get; }
+        IAchievementRepository AchievementRepository { get; }
 
         object GetRepository(Enum.RepositoryType respository);
 
-        object GetRepository(Enum.RepositoryType respository, Enum.RepoDataSource datasource);
-
-        IApplicationRepository GetApplicationRepository();
-
-        IApplicationRepository GetApplicationRepository(Enum.RepoDataSource datasource);
-
+      
     }
 }
