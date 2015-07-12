@@ -24,7 +24,8 @@ namespace JB2.Bowtie
 
         public bool Remove(Tobject entity)
         {
-            throw new NotImplementedException();
+            _repo.Delete(entity);
+            return true;
         }
 
         public List<Tobject> Retrieve(string request)
@@ -39,12 +40,12 @@ namespace JB2.Bowtie
 
         public List<Tobject> Retrieve()
         {
-            throw new NotImplementedException();
+            return _repo.GetAll().ToList();
         }
 
         public Tobject RetrieveById(string id)
         {
-            throw new NotImplementedException();
+            return _repo.GetById(id);
         }
 
         public Tobject RetrieveByName(string name)

@@ -10,6 +10,7 @@ namespace JB2.Bowtie.Enum
     {
         Application,
         Player,
-        Game
+        Game,
+        Achievement
     }
 }

@@ -42,12 +42,24 @@ namespace Bowtie.WebAPI.Models
             {
                 return GetApplicationRepository();
             }
+        }
 
+        public JB2.Bowtie.IAchievementRepository AchievementRepository
+        {
+            get
+            {
+                return GetAchievementRepository();
+            }
         }
 
         public JB2.Bowtie.IApplicationRepository GetApplicationRepository(JB2.Bowtie.Enum.RepoDataSource repoType)
         {
-            return (IApplicationRepository)GetRepository(RepositoryType.Application);
+            return (IApplicationRepository)GetRepository(RepositoryType.Application,repoType);
+        }
+
+        public JB2.Bowtie.IAchievementRepository GetAchievementRepository(JB2.Bowtie.Enum.RepoDataSource repoType)
+        {
+            return (IAchievementRepository)GetRepository(RepositoryType.Achievement,repoType);
         }
 
 
@@ -55,6 +67,13 @@ namespace Bowtie.WebAPI.Models
         {
             return (IApplicationRepository)GetRepository(RepositoryType.Application);
         }
+
+        public IAchievementRepository GetAchievementRepository()
+        {
+            return (IAchievementRepository)GetRepository(RepositoryType.Achievement);
+
+        }
+
 
         public object GetRepository(JB2.Bowtie.Enum.RepositoryType repository)
         {
