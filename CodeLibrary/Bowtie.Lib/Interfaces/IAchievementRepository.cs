@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IAchievementRepository : JB2.Common.IRepository<JB2.Bowtie.IApplication, string>
+    public interface IAchievementRepository : JB2.Common.IRepository<JB2.Bowtie.IAchievement, string>
     {
         IPlayerAchievement[] GetPlayerAchievements(string playerID, string appID);
 

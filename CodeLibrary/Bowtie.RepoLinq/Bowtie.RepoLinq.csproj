@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AchievementRepository.cs" />
     <Compile Include="ApplicationRepository.cs" />
     <Compile Include="BaseRespository.cs" />
     <Compile Include="Bowtie.designer.cs">
