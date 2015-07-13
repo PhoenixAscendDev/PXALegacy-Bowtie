@@ -30,16 +30,7 @@ namespace Bowtie.WebAPI.Filters
 
         public BowtieAuthenticationAttribute()
         {
-            switch(JB2.Bowtie.Settings.Mode)
-            {
-                case APIMode.Production:
-                case APIMode.Debug:
-                    _uofw = new JB2.Bowtie.Data.Linq.UnitOfWork();
-                    break;
-                default:
-                    _uofw = new JB2.Bowtie.Data.NoDB.UnitofWork();
-                    break;
-            }
+            _uofw = JB2.Bowtie.Web.Helper.UnitofWork;
             
 
             if (allowedApps.Count == 0)

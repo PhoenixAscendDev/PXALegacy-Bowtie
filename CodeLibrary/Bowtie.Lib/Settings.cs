@@ -45,6 +45,7 @@ namespace JB2.Bowtie
                     #if DEBUG
                         result =  Enum.APIMode.Debug;    
                     #endif
+                    
                 return result;
             }
         }

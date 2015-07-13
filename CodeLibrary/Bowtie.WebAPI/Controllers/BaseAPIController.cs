@@ -50,15 +50,8 @@ namespace JB2.Bowtie.WebAPI.Controllers
 
         protected bool ChangeDataSource(Enum.RepoDataSource source)
         {
-            switch(source)
-            {
-                case Enum.RepoDataSource.Standard:
-                    _unitOfWork = new JB2.Bowtie.Data.Linq.UnitOfWork();
-                    break;
-                default:
-                    _unitOfWork = new JB2.Bowtie.Data.NoDB.UnitofWork();
-                    break;
-            }
+            _unitOfWork = JB2.Bowtie.Web.Helper.GetUnitofWork(source);
+            
             _repoSource = source;
             return true;
         }
