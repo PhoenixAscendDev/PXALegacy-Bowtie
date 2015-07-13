@@ -16,7 +16,9 @@ namespace Bowtie.WebMain.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+
+            int ApplicationCount = this.ApplicationService.Retrieve().Count;
+            ViewBag.Message = "Number of Applications: " + ApplicationCount.ToString();
 
             return View();
         }

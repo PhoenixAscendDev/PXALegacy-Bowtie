@@ -6,8 +6,28 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.Service
 {
-    public class AchievementService : GenericService<IAchievement>
+    public class AchievementService : GenericService<IAchievement,IAchievementRepository>
     {
+
+        public AchievementService()
+        {
+           
+        }
+
+        public AchievementService(IUnitOfWork unitOfWork) : this(unitOfWork.AchievementRepository)
+        {
+            _uofw = unitOfWork;
+        }
+
+        public AchievementService(IAchievementRepository repo)
+            : base(repo)
+        {
+
+        }
+
+
+
+
         IPlayerAchievement[] RetrievePlayerAchievement(string playerid, string applicationid)
         {
             throw new NotImplementedException();

@@ -45,6 +45,10 @@ namespace JB2.Bowtie
                     #if DEBUG
                         result =  Enum.APIMode.Debug;    
                     #endif
+                    #if NODB
+                        result = Enum.APIMode.UnitTest;
+                    #endif
+
                     
                 return result;
             }

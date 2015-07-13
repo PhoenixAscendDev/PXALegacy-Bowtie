@@ -8,16 +8,22 @@ using JB2.Bowtie.Enum;
 
 namespace JB2.Bowtie.Service
 {
-    public class ApplicationService : GenericService<IApplication>
+    public class ApplicationService : GenericService<IApplication,IApplicationRepository>
     {
 
         public ApplicationService()
         {
+           
+        }
 
+        public ApplicationService(IUnitOfWork unitOfWork) : this(unitOfWork.ApplicationRepository)
+        {
+            _uofw = unitOfWork;
         }
 
         public ApplicationService(IApplicationRepository repo): base( repo)
         {
+
         }
 
         public JB2.Bowtie.Enum.APIAuthorizeState CheckAPIAuthorization(string applicationID)

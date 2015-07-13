@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JB2.Common, Version=1.0.0.39211, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\scratch\Bowtie\CodeLibrary\Bowtie.Lib\DllReference\JB2.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -248,6 +252,10 @@
       <Project>{226ce497-a55f-4b8b-8178-9c9b41ab34dc}</Project>
       <Name>Bowtie.RepoNoDB</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bowtie.Service\Bowtie.Service.csproj">
+      <Project>{e9f8abc3-957e-4ada-b7db-a61e16beaa1e}</Project>
+      <Name>Bowtie.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -256,7 +264,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NoDB|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NODB</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>

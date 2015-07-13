@@ -35,7 +35,7 @@ namespace JB2.Bowtie.Data.NoDB
                 case Enum.RepositoryType.Achievement:
                     return new AchievementRepository();
                 case Enum.RepositoryType.Application:
-                    return new AchievementRepository();
+                    return new ApplicationRepository();
             }
 
             return null;

@@ -63,5 +63,48 @@ namespace JB2.Bowtie.Web.Controllers
             _repoSource = source;
             return true;
         }
+
+        #region BowtieServices
+
+        protected JB2.Bowtie.Service.AchievementService AchievementService
+        {
+            get
+            {
+                return this.GetAchievementService();
+            }
+        }
+
+        private JB2.Bowtie.Service.AchievementService GetAchievementService()
+        {
+            return this.GetAchievementService(null);
+        }
+
+        private JB2.Bowtie.Service.AchievementService GetAchievementService(int? testCount)
+        {
+            return new JB2.Bowtie.Service.AchievementService(_unitOfWork);
+        }
+
+
+        protected JB2.Bowtie.Service.ApplicationService ApplicationService
+        {
+            get
+            {
+                return this.GetApplicationService();
+            }
+        }
+
+        private JB2.Bowtie.Service.ApplicationService GetApplicationService()
+        {
+            return this.GetApplicationService(null);
+        }
+
+        private JB2.Bowtie.Service.ApplicationService GetApplicationService(int? testCount)
+        {
+            return new JB2.Bowtie.Service.ApplicationService(_unitOfWork);
+        }
+
+
+
+        #endregion
     }
 }

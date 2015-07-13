@@ -6,17 +6,25 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class GenericService<Tobject> : JB2.Common.IObjectService<Tobject, bool, string> where Tobject : IBowtieObject
+    public class GenericService<Tobject,Trepo> : JB2.Common.IObjectService<Tobject, bool, string> 
+          where Tobject : IBowtieObject
+          where Trepo : JB2.Common.IRepository<Tobject, string>
     {
-        protected JB2.Common.IRepository<Tobject, string> _repo;
+        protected Trepo _repo;
+        protected IUnitOfWork _uofw;
 
 
+
+
+
+
+       
         public GenericService()
         {
-            _repo = null;
+            _repo = default(Trepo);
         }
 
-        public GenericService(JB2.Common.IRepository<Tobject, string> repository)
+        public GenericService(Trepo repository)
         {
             _repo = repository;
         }
