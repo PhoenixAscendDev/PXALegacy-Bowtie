@@ -6,10 +6,11 @@ using System.Web.Mvc;
 
 namespace Bowtie.WebMain.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : JB2.Bowtie.Web.Controllers.BaseController
     {
         public ActionResult Index()
         {
+            
             return View();
         }
 
