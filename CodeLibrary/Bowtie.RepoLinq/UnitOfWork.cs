@@ -24,7 +24,6 @@ namespace JB2.Bowtie.Data.Linq
         
 
         public UnitOfWork(BowtieDataContext dataContext)
-            : this()
         {
             _repos = new Dictionary<RepositoryType, object>();
             _dataContext = dataContext;
