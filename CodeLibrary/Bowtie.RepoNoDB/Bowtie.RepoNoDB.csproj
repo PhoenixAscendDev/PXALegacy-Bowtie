@@ -56,6 +56,7 @@
     <Compile Include="ApplicationRepository.cs" />
     <Compile Include="GameCommandRepository.cs" />
     <Compile Include="GenericRepository.cs" />
+    <Compile Include="LeaderboardRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitofWork.cs" />
   </ItemGroup>

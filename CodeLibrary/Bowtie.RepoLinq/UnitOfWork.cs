@@ -52,6 +52,14 @@ namespace JB2.Bowtie.Data.Linq
                 return (IGameCommandRepository)GetRepository(RepositoryType.GameCommand);
             }
         }
+
+        public JB2.Bowtie.ILeaderboardRepository LeaderboardRepository
+        {
+            get
+            {
+                return (ILeaderboardRepository)GetRepository(RepositoryType.Leaderboard);
+            }
+        }
       
 
         public object GetRepository(JB2.Bowtie.Enum.RepositoryType repository)

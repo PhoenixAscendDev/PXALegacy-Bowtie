@@ -37,6 +37,15 @@ namespace JB2.Bowtie.Data.NoDB
             }
         }
 
+        public ILeaderboardRepository LeaderboardRepository
+        {
+            get
+            {
+                return (ILeaderboardRepository)GetRepository(Enum.RepositoryType.Leaderboard);
+
+            }
+        }
+
 
 
         public object GetRepository(Enum.RepositoryType respository)
@@ -49,6 +58,8 @@ namespace JB2.Bowtie.Data.NoDB
                     return new ApplicationRepository();
                 case Enum.RepositoryType.GameCommand:
                     return new GameCommandRepository();
+                case Enum.RepositoryType.Leaderboard:
+                    return new LeaderboardRepository();
             }
 
             return null;
