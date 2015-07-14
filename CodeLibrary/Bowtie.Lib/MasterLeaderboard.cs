@@ -14,6 +14,16 @@ namespace JB2.Bowtie
         private Dictionary<Enum.LeaderboardType,ILeaderboard> _leaderboards;
         private List<Enum.LeaderboardType> _types;
 
+        public MasterLeaderboard()
+        {
+
+        }
+
+        public MasterLeaderboard(string id) : base(id)
+        {
+            _kind = Enum.BowtieObjectType.bowtie_masterLeaderboard;
+            _leaderboards = new Dictionary<Enum.LeaderboardType, ILeaderboard>();
+        }
 
 
         public string ApplicationID

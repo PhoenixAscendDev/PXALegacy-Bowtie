@@ -117,6 +117,20 @@ namespace JB2.Bowtie.Data.Linq
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), key, name, applicationKey, gameKey, issuedPlayerKey, affectedPlayerKey, commandCode, saveMode);
 			return ((ISingleResult<jb2bt_Game_Command_SaveResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.jb2bt_Leaderboard_Get")]
+		public ISingleResult<jb2bt_Leaderboard_GetResult> jb2bt_Leaderboard_Get([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string key, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string masterKey)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), key, masterKey);
+			return ((ISingleResult<jb2bt_Leaderboard_GetResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.jb2bt_Leaderboard_Save")]
+		public ISingleResult<jb2bt_Leaderboard_SaveResult> jb2bt_Leaderboard_Save([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string key, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(25)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(200)")] string iconurl, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> type, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> listOrder, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> scoreFormat, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] System.Nullable<long> scoreLowerLimit, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] System.Nullable<long> scoreUpperLimit, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> scoreOrderType, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> dateEventStart, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> dateEventEnd, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string masterLeaderboardKey, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string applicationKey, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string saveMode)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), key, name, iconurl, type, listOrder, scoreFormat, scoreLowerLimit, scoreUpperLimit, scoreOrderType, dateEventStart, dateEventEnd, masterLeaderboardKey, applicationKey, saveMode);
+			return ((ISingleResult<jb2bt_Leaderboard_SaveResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class jb2bt_Client_GetResult
@@ -1049,6 +1063,346 @@ namespace JB2.Bowtie.Data.Linq
 		private string _Message;
 		
 		public jb2bt_Game_Command_SaveResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Success", DbType="Bit")]
+		public System.Nullable<bool> Success
+		{
+			get
+			{
+				return this._Success;
+			}
+			set
+			{
+				if ((this._Success != value))
+				{
+					this._Success = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Key]", Storage="_Key", DbType="VarChar(50)")]
+		public string Key
+		{
+			get
+			{
+				return this._Key;
+			}
+			set
+			{
+				if ((this._Key != value))
+				{
+					this._Key = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="VarChar(100)")]
+		public string Message
+		{
+			get
+			{
+				return this._Message;
+			}
+			set
+			{
+				if ((this._Message != value))
+				{
+					this._Message = value;
+				}
+			}
+		}
+	}
+	
+	public partial class jb2bt_Leaderboard_GetResult
+	{
+		
+		private int _Id;
+		
+		private string _ObjectKey;
+		
+		private string _Name;
+		
+		private System.Nullable<System.DateTime> _LastUpdate;
+		
+		private string _IconUrl;
+		
+		private System.Nullable<int> _Type;
+		
+		private System.Nullable<int> _ListOrder;
+		
+		private System.Nullable<int> _ScoreFormat;
+		
+		private System.Nullable<long> _ScoreLowerLimit;
+		
+		private System.Nullable<long> _ScoreUpperLimit;
+		
+		private System.Nullable<int> _ScoreOrderType;
+		
+		private System.Nullable<System.DateTime> _DateEventStart;
+		
+		private System.Nullable<System.DateTime> _DateEventEnd;
+		
+		private string _MasterLeaderboard_Key;
+		
+		private string _Application_Key;
+		
+		public jb2bt_Leaderboard_GetResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ObjectKey", DbType="VarChar(50)")]
+		public string ObjectKey
+		{
+			get
+			{
+				return this._ObjectKey;
+			}
+			set
+			{
+				if ((this._ObjectKey != value))
+				{
+					this._ObjectKey = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(25)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastUpdate
+		{
+			get
+			{
+				return this._LastUpdate;
+			}
+			set
+			{
+				if ((this._LastUpdate != value))
+				{
+					this._LastUpdate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IconUrl", DbType="VarChar(200)")]
+		public string IconUrl
+		{
+			get
+			{
+				return this._IconUrl;
+			}
+			set
+			{
+				if ((this._IconUrl != value))
+				{
+					this._IconUrl = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="Int")]
+		public System.Nullable<int> Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this._Type = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ListOrder", DbType="Int")]
+		public System.Nullable<int> ListOrder
+		{
+			get
+			{
+				return this._ListOrder;
+			}
+			set
+			{
+				if ((this._ListOrder != value))
+				{
+					this._ListOrder = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ScoreFormat", DbType="Int")]
+		public System.Nullable<int> ScoreFormat
+		{
+			get
+			{
+				return this._ScoreFormat;
+			}
+			set
+			{
+				if ((this._ScoreFormat != value))
+				{
+					this._ScoreFormat = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ScoreLowerLimit", DbType="BigInt")]
+		public System.Nullable<long> ScoreLowerLimit
+		{
+			get
+			{
+				return this._ScoreLowerLimit;
+			}
+			set
+			{
+				if ((this._ScoreLowerLimit != value))
+				{
+					this._ScoreLowerLimit = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ScoreUpperLimit", DbType="BigInt")]
+		public System.Nullable<long> ScoreUpperLimit
+		{
+			get
+			{
+				return this._ScoreUpperLimit;
+			}
+			set
+			{
+				if ((this._ScoreUpperLimit != value))
+				{
+					this._ScoreUpperLimit = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ScoreOrderType", DbType="Int")]
+		public System.Nullable<int> ScoreOrderType
+		{
+			get
+			{
+				return this._ScoreOrderType;
+			}
+			set
+			{
+				if ((this._ScoreOrderType != value))
+				{
+					this._ScoreOrderType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateEventStart", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateEventStart
+		{
+			get
+			{
+				return this._DateEventStart;
+			}
+			set
+			{
+				if ((this._DateEventStart != value))
+				{
+					this._DateEventStart = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateEventEnd", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateEventEnd
+		{
+			get
+			{
+				return this._DateEventEnd;
+			}
+			set
+			{
+				if ((this._DateEventEnd != value))
+				{
+					this._DateEventEnd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MasterLeaderboard_Key", DbType="VarChar(50)")]
+		public string MasterLeaderboard_Key
+		{
+			get
+			{
+				return this._MasterLeaderboard_Key;
+			}
+			set
+			{
+				if ((this._MasterLeaderboard_Key != value))
+				{
+					this._MasterLeaderboard_Key = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Application_Key", DbType="VarChar(50)")]
+		public string Application_Key
+		{
+			get
+			{
+				return this._Application_Key;
+			}
+			set
+			{
+				if ((this._Application_Key != value))
+				{
+					this._Application_Key = value;
+				}
+			}
+		}
+	}
+	
+	public partial class jb2bt_Leaderboard_SaveResult
+	{
+		
+		private System.Nullable<bool> _Success;
+		
+		private string _Key;
+		
+		private string _Message;
+		
+		public jb2bt_Leaderboard_SaveResult()
 		{
 		}
 		

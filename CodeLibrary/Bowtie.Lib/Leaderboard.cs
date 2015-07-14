@@ -20,6 +20,17 @@ namespace JB2.Bowtie
         protected string _masterLeadboardID;
 
 
+        public Leaderboard() : this(null)
+        {
+
+        }
+
+        public Leaderboard(string id) : base(Enum.BowtieObjectType.bowtie_leaderboard,id)
+        {
+
+        }
+
+
 
         public string IconUrl
         {

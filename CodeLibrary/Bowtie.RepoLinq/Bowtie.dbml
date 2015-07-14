@@ -125,4 +125,46 @@
       <Column Name="Message" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.jb2bt_Leaderboard_Get" Method="jb2bt_Leaderboard_Get">
+    <Parameter Name="key" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="masterKey" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="jb2bt_Leaderboard_GetResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ObjectKey" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IconUrl" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ListOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ScoreFormat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ScoreLowerLimit" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ScoreUpperLimit" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ScoreOrderType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateEventStart" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DateEventEnd" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MasterLeaderboard_Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Application_Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.jb2bt_Leaderboard_Save" Method="jb2bt_Leaderboard_Save">
+    <Parameter Name="key" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="name" Type="System.String" DbType="VarChar(25)" />
+    <Parameter Name="iconurl" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="type" Type="System.Int32" DbType="Int" />
+    <Parameter Name="listOrder" Type="System.Int32" DbType="Int" />
+    <Parameter Name="scoreFormat" Type="System.Int32" DbType="Int" />
+    <Parameter Name="scoreLowerLimit" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="scoreUpperLimit" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="scoreOrderType" Type="System.Int32" DbType="Int" />
+    <Parameter Name="dateEventStart" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="dateEventEnd" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="masterLeaderboardKey" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="applicationKey" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="saveMode" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="jb2bt_Leaderboard_SaveResult">
+      <Column Name="Success" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="[Key]" Member="Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

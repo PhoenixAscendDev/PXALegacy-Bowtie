@@ -56,6 +56,14 @@ namespace JB2.Bowtie.Data.Linq
                     var query5 = from i in _dbcontext.jb2bt_Game_Command_Get(null, null)
                                  select (Tobject)getGameCommand(i);
                     return query5.ToArray();
+                case Enum.BowtieObjectType.bowtie_leaderboard:
+                    var query6 = from i in _dbcontext.jb2bt_Leaderboard_Get(null, null)
+                                 select (Tobject)getGameCommand(i);
+                    return query6.ToArray();
+                case Enum.BowtieObjectType.bowtie_masterLeaderboard:
+                    var query7 = from i in _dbcontext.jb2bt_Leaderboard_Get(null, null)
+                                 select (Tobject)getGameCommand(i);
+                    return query7.ToArray();
             }
             return default(Tobject[]);
         }
@@ -84,6 +92,14 @@ namespace JB2.Bowtie.Data.Linq
                      var query5 = from i in _dbcontext.jb2bt_Game_Command_Get(id, null)
                                   select (Tobject)getGameCommand(i);
                      return query5.ToArray().FirstOrDefault();
+                case Enum.BowtieObjectType.bowtie_leaderboard:
+                     var query6 = from i in _dbcontext.jb2bt_Leaderboard_Get(id,null)
+                                  select (Tobject)getGameCommand(i);
+                     return query6.ToArray().FirstOrDefault();
+                case Enum.BowtieObjectType.bowtie_masterLeaderboard:
+                     var query7 = from i in _dbcontext.jb2bt_Leaderboard_Get(id, null)
+                                  select (Tobject)getGameCommand(i);
+                     return query7.ToArray().FirstOrDefault();
 
             }
             return default(Tobject);
@@ -212,6 +228,47 @@ namespace JB2.Bowtie.Data.Linq
 
         }
 
+        internal static ILeaderboard getLeaderboard<T>(T r) where T : class
+        {
+            Leaderboard result = new Leaderboard(getString(r, "ObjectKey"))
+            {
+                Name = getString(r, "Name"),
+                DateRangeEnd = getDate(r,"DateEventEnd"),
+                DateRangeStart = getDate(r,"DateEventStart"),
+                IconUrl = getString(r,"IconUrl"),
+                ListOrder = getInt(r,"ListOrder"),
+                MasterLeaderboardID = getString(r,"MasterLeaderboard_Key"),
+                ScoreFormat = (Enum.NumberFormatType)getInt(r,"ScoreFormat"),
+                ScoreLowerLimit = getInt(r,"ScoreLowerLimit"),
+                ScoreUpperLimit = getInt(r,"ScoreUpperLimit"),
+                ScoreOrderType = (Enum.ScoreOrderType)getInt(r,"ScoreOrderType"),
+                Type = (Enum.LeaderboardType)getInt(r,"Type")
+            };
+            return result;
+
+        }
+
+        internal static IMasterLeaderboard getMasterLeaderboard<T>(T r) where T : class
+        {
+            MasterLeaderboard result = new MasterLeaderboard(getString(r, "ObjectKey"))
+            {
+                Name = getString(r, "Name"),
+                DateRangeEnd = getDate(r, "DateEventEnd"),
+                DateRangeStart = getDate(r, "DateEventStart"),
+                IconUrl = getString(r, "IconUrl"),
+                ListOrder = getInt(r, "ListOrder"),
+                MasterLeaderboardID = getString(r, "MasterLeaderboard_Key"),
+                ScoreFormat = (Enum.NumberFormatType)getInt(r, "ScoreFormat"),
+                ScoreLowerLimit = getInt(r, "ScoreLowerLimit"),
+                ScoreUpperLimit = getInt(r, "ScoreUpperLimit"),
+                ScoreOrderType = (Enum.ScoreOrderType)getInt(r, "ScoreOrderType"),
+                //Type = (Enum.LeaderboardType)getInt(r, "Type"),
+                ApplicationID = getString(r,"ApplicationID")
+            };
+            return result;
+
+        }
+
 
 
         #endregion
@@ -241,6 +298,15 @@ namespace JB2.Bowtie.Data.Linq
             jb2bt_Game_Command_SaveResult result = _dbcontext.jb2bt_Game_Command_Save(a.ID, a.Name, a.AppID, a.GameID, a.IssuedPlayer.ID, a.AffectedPlayer.ID, a.CommandCode, mode).FirstOrDefault();
 
             return (result.Key == a.ID); 
+        }
+
+        private bool SaveLeaderboard(ILeaderboard a, string mode)
+        {
+            jb2bt_Leaderboard_SaveResult result = _dbcontext.jb2bt_Leaderboard_Save(a.ID, a.Name, a.IconUrl, (int)a.Type, a.ListOrder, (int)a.ScoreFormat,
+                                                                                     a.ScoreLowerLimit, a.ScoreUpperLimit, (int)a.ScoreOrderType,
+                                                                                     a.DateRangeStart, a.DateRangeEnd, a.MasterLeaderboardID, string.Empty, mode).FirstOrDefault();
+
+            return (result.Key == a.ID);
         }
 
 

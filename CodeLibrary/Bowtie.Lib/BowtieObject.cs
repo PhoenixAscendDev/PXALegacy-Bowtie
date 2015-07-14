@@ -12,10 +12,10 @@ namespace JB2.Bowtie
 {
     public class BowtieObject : IBowtieObject
     {
-        private List<ObjectTag> _tags;
-        private BowtieObjectType _kind;
-        private string _id;
-        private string _name;
+        protected List<ObjectTag> _tags;
+        protected BowtieObjectType _kind;
+        protected string _id;
+        protected string _name;
 
         public BowtieObject(BowtieObjectType kind,string id): this(id)
         {
