@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.Enum
 {
-    public enum RepositoryType
+    public enum NumberFormatType
     {
-        Application,
-        Player,
-        Game,
-        Achievement,
-        GameCommand,
-        Leaderboard
+        Number,
+        Time,
+        Currency
+
     }
 }

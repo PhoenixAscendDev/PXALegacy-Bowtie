@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.Enum
 {
-    public enum RepositoryType
+    public enum LeaderboardType
     {
-        Application,
-        Player,
-        Game,
-        Achievement,
-        GameCommand,
-        Leaderboard
+        Daily,
+        Weekly,
+        Monthly,
+        Yearly,
+        AllTime,
+        Event
+
     }
 }

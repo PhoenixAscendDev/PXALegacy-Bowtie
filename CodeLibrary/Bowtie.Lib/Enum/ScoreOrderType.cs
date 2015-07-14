@@ -8,8 +8,8 @@ namespace JB2.Bowtie.Enum
 {
     public enum ScoreOrderType
     {
-        LargestScoreBest,
-        SmallestScoreBest
+        LargeOnTop,
+        SmallOnTop
 
     }
 }

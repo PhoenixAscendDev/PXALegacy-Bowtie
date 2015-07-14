@@ -8,6 +8,12 @@ namespace JB2.Bowtie
 {
     public class GameCommand : BowtieObject,IGameCommand,IBowtieObject
     {
+        private IPlayer _issuedPlayer;
+        private IPlayer _affectedPlayer;
+        private string _commandCode;
+        private string _applicationID;
+        private string _gameID;
+
 
         public GameCommand() : this(null)
         {
@@ -22,11 +28,11 @@ namespace JB2.Bowtie
         {
             get
             {
-                return null;
+                return _issuedPlayer;
             }
             set
             {
-                throw new NotImplementedException();
+                _issuedPlayer = value;
             }
         }
 
@@ -34,11 +40,11 @@ namespace JB2.Bowtie
         {
             get
             {
-                return null;
+                return _affectedPlayer;
             }
             set
             {
-                throw new NotImplementedException();
+                _affectedPlayer = value;
             }
         }
 
@@ -46,11 +52,11 @@ namespace JB2.Bowtie
         {
             get
             {
-                return "1223344444";
+                return _commandCode;
             }
             set
             {
-                throw new NotImplementedException();
+                _commandCode = value;
             }
         }
 
@@ -58,11 +64,11 @@ namespace JB2.Bowtie
         {
             get
             {
-                return null;
+                return _applicationID;
             }
             set
             {
-                throw new NotImplementedException();
+                _applicationID = value;
             }
         }
 
@@ -70,11 +76,11 @@ namespace JB2.Bowtie
         {
             get
             {
-                return null;
+                return _gameID;
             }
             set
             {
-                throw new NotImplementedException();
+                _gameID = value;
             }
         }
 

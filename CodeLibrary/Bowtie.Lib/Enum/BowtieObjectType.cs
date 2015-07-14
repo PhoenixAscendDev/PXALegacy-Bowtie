@@ -25,6 +25,8 @@ namespace JB2.Bowtie.Enum
         [TokenName("Bowtie>*<PlayerAchievement")]
         bowtie_playerachievement,
         [TokenName("Bowtie>*<Achievement")]
-        bowtie_achievement
+        bowtie_achievement,
+        [TokenName("Bowtie>*<MasterLeaderboard")]
+        bowtie_masterLeaderboard
     }
 }
