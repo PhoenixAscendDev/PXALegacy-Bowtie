@@ -44,6 +44,14 @@ namespace JB2.Bowtie.Data.Linq
                 return (IAchievementRepository)GetRepository(RepositoryType.Achievement);
             }
         }
+
+        public JB2.Bowtie.IGameCommandRepository GameCommandRepository
+        {
+            get
+            {
+                return (IGameCommandRepository)GetRepository(RepositoryType.GameCommand);
+            }
+        }
       
 
         public object GetRepository(JB2.Bowtie.Enum.RepositoryType repository)
@@ -53,7 +61,7 @@ namespace JB2.Bowtie.Data.Linq
 
 
 
-        public object GetRepository(JB2.Bowtie.Enum.RepositoryType repository, JB2.Bowtie.Enum.RepoDataSource datasource)
+        private object GetRepository(JB2.Bowtie.Enum.RepositoryType repository, JB2.Bowtie.Enum.RepoDataSource datasource)
         {
             switch(datasource)
             {

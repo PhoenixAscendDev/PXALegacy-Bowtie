@@ -61,6 +61,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Bowtie.dbml</DependentUpon>
     </Compile>
+    <Compile Include="GameCommandRepository.cs" />
     <Compile Include="LinqRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

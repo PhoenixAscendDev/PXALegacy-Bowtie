@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AchievementService.cs" />
     <Compile Include="ApplicationService.cs" />
+    <Compile Include="GameCommandService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

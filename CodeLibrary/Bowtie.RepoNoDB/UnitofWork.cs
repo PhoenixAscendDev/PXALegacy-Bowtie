@@ -28,6 +28,17 @@ namespace JB2.Bowtie.Data.NoDB
             }
         }
 
+        public IGameCommandRepository GameCommandRepository
+        {
+            get
+            {
+                return (IGameCommandRepository)GetRepository(Enum.RepositoryType.GameCommand);
+
+            }
+        }
+
+
+
         public object GetRepository(Enum.RepositoryType respository)
         {
             switch(respository)
@@ -36,6 +47,8 @@ namespace JB2.Bowtie.Data.NoDB
                     return new AchievementRepository();
                 case Enum.RepositoryType.Application:
                     return new ApplicationRepository();
+                case Enum.RepositoryType.GameCommand:
+                    return new GameCommandRepository();
             }
 
             return null;

@@ -11,6 +11,7 @@ namespace JB2.Bowtie.Enum
         Application,
         Player,
         Game,
-        Achievement
+        Achievement,
+        GameCommand
     }
 }

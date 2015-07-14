@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IGameCommand
+    public interface IGameCommand : IBowtieObject, JB2.Common.IIDNamePair<string, string>
     {
         IPlayer IssuedPlayer { get; set; }
         IPlayer AffectedPlayer { get; set; }

@@ -83,6 +83,7 @@
     <Compile Include="Interfaces\IBowtieObject.cs" />
     <Compile Include="Interfaces\IClient.cs" />
     <Compile Include="Interfaces\IGameCommand.cs" />
+    <Compile Include="Interfaces\IGameCommandRepository.cs" />
     <Compile Include="Interfaces\ILeaderboard.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IPlayerAchievement.cs" />
