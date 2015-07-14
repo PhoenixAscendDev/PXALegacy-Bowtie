@@ -119,6 +119,12 @@ namespace JB2.Bowtie.Data.Linq
                 case Enum.BowtieObjectType.bowtie_command:
                     SaveGameCommand((IGameCommand)entity, null);
                     break;
+                case Enum.BowtieObjectType.bowtie_leaderboard:
+                    SaveLeaderboard((ILeaderboard)entity, null);
+                    break;
+                case Enum.BowtieObjectType.bowtie_masterLeaderboard:
+                    SaveMasterLeaderboard((IMasterLeaderboard)entity, null);
+                    break;
                 
             }
         }
@@ -305,6 +311,15 @@ namespace JB2.Bowtie.Data.Linq
             jb2bt_Leaderboard_SaveResult result = _dbcontext.jb2bt_Leaderboard_Save(a.ID, a.Name, a.IconUrl, (int)a.Type, a.ListOrder, (int)a.ScoreFormat,
                                                                                      a.ScoreLowerLimit, a.ScoreUpperLimit, (int)a.ScoreOrderType,
                                                                                      a.DateRangeStart, a.DateRangeEnd, a.MasterLeaderboardID, string.Empty, mode).FirstOrDefault();
+
+            return (result.Key == a.ID);
+        }
+
+        private bool SaveMasterLeaderboard(IMasterLeaderboard a, string mode)
+        {
+            jb2bt_Leaderboard_SaveResult result = _dbcontext.jb2bt_Leaderboard_Save(a.ID, a.Name, a.IconUrl, (int)a.Type, a.ListOrder, (int)a.ScoreFormat,
+                                                                                     a.ScoreLowerLimit, a.ScoreUpperLimit, (int)a.ScoreOrderType,
+                                                                                     a.DateRangeStart, a.DateRangeEnd, a.MasterLeaderboardID, a.MasterLeaderboardID, mode).FirstOrDefault();
 
             return (result.Key == a.ID);
         }

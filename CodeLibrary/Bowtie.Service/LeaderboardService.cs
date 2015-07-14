@@ -32,7 +32,7 @@ namespace JB2.Bowtie.Service
 
         IMasterLeaderboard[] RetrieveMasterByApplicationID(string applicationID)
         {
-            return _uofw.LeaderboardRepository.GetMasterAll();
+            return _uofw.LeaderboardRepository.GetMasterByApplicationID(applicationID);
 
         }
 

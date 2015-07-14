@@ -18,6 +18,7 @@ namespace JB2.Bowtie.Data.NoDB
             throw new NotImplementedException();
         }
 
+
         public void Delete(ILeaderboard entity)
         {
             throw new NotImplementedException();
@@ -39,6 +40,12 @@ namespace JB2.Bowtie.Data.NoDB
         }
 
         public ILeaderboard[] SearchFor()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public IMasterLeaderboard[] GetMasterByApplicationID(string id)
         {
             throw new NotImplementedException();
         }

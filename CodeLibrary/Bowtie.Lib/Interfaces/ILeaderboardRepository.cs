@@ -12,5 +12,7 @@ namespace JB2.Bowtie
 
         IMasterLeaderboard GetMasterByID(string id);
 
+        IMasterLeaderboard[] GetMasterByApplicationID(string id);
+
     }
 }

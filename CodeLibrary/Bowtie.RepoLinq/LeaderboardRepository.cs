@@ -18,12 +18,19 @@ namespace JB2.Bowtie.Data.Linq
 
         public IMasterLeaderboard[] GetMasterAll()
         {
-            throw new NotImplementedException();
+            return _masterAchievementRepo.GetAll();
         }
 
         public IMasterLeaderboard GetMasterByID(string id)
         {
-            throw new NotImplementedException();
+            return _masterAchievementRepo.GetById(id);
+        }
+
+        public IMasterLeaderboard[] GetMasterByApplicationID(string id)
+        {
+            var query7 = from i in _dbcontext.jb2bt_Leaderboard_Get(id, null)
+                         select (IMasterLeaderboard)getMasterLeaderboard(i);
+            return query7.ToArray();
         }
     }
 }
