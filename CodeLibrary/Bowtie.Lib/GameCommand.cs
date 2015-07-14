@@ -9,7 +9,12 @@ namespace JB2.Bowtie
     public class GameCommand : BowtieObject,IGameCommand,IBowtieObject
     {
 
-        public GameCommand() : base(Enum.BowtieObjectType.bowtie_command,null)
+        public GameCommand() : this(null)
+        {
+
+        }
+
+        public GameCommand(string id) : base(Enum.BowtieObjectType.bowtie_command,id)
         {
 
         }

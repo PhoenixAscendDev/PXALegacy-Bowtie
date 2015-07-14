@@ -24,5 +24,10 @@ namespace JB2.Bowtie.Service
 
         }
 
+        public IGameCommand[] RetrieveByGameID(string gameID)
+        {
+            return _uofw.GameCommandRepository.GetByGameID(gameID);
+        }
+
     }
 }

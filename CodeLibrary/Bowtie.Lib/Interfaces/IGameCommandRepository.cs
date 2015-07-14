@@ -8,6 +8,6 @@ namespace JB2.Bowtie
 {
     public interface IGameCommandRepository : JB2.Common.IRepository<JB2.Bowtie.IGameCommand, string>
     {
-        IGameCommand[] GetGameCommandsByGameID(string gameID);
+        IGameCommand[] GetByGameID(string gameID);
     }
 }

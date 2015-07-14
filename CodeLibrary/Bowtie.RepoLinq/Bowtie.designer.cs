@@ -103,6 +103,20 @@ namespace JB2.Bowtie.Data.Linq
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), key, applicationKey);
 			return ((ISingleResult<jb2bt_Achievement_GetResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.jb2bt_Game_Command_Get")]
+		public ISingleResult<jb2bt_Game_Command_GetResult> jb2bt_Game_Command_Get([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string key, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string gameKey)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), key, gameKey);
+			return ((ISingleResult<jb2bt_Game_Command_GetResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.jb2bt_Game_Command_Save")]
+		public ISingleResult<jb2bt_Game_Command_SaveResult> jb2bt_Game_Command_Save([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string key, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(25)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string applicationKey, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string gameKey, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string issuedPlayerKey, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string affectedPlayerKey, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(255)")] string commandCode, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string saveMode)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), key, name, applicationKey, gameKey, issuedPlayerKey, affectedPlayerKey, commandCode, saveMode);
+			return ((ISingleResult<jb2bt_Game_Command_SaveResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class jb2bt_Client_GetResult
@@ -850,6 +864,238 @@ namespace JB2.Bowtie.Data.Linq
 				if ((this._RarityLevel != value))
 				{
 					this._RarityLevel = value;
+				}
+			}
+		}
+	}
+	
+	public partial class jb2bt_Game_Command_GetResult
+	{
+		
+		private int _Id;
+		
+		private string _ObjectKey;
+		
+		private string _Name;
+		
+		private System.Nullable<System.DateTime> _LastUpdate;
+		
+		private string _Application_Key;
+		
+		private string _Game_Key;
+		
+		private string _Issued_Player_Key;
+		
+		private string _Affected_Player_Key;
+		
+		private string _CommandCode;
+		
+		public jb2bt_Game_Command_GetResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ObjectKey", DbType="VarChar(50)")]
+		public string ObjectKey
+		{
+			get
+			{
+				return this._ObjectKey;
+			}
+			set
+			{
+				if ((this._ObjectKey != value))
+				{
+					this._ObjectKey = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(25)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastUpdate
+		{
+			get
+			{
+				return this._LastUpdate;
+			}
+			set
+			{
+				if ((this._LastUpdate != value))
+				{
+					this._LastUpdate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Application_Key", DbType="VarChar(50)")]
+		public string Application_Key
+		{
+			get
+			{
+				return this._Application_Key;
+			}
+			set
+			{
+				if ((this._Application_Key != value))
+				{
+					this._Application_Key = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Game_Key", DbType="VarChar(50)")]
+		public string Game_Key
+		{
+			get
+			{
+				return this._Game_Key;
+			}
+			set
+			{
+				if ((this._Game_Key != value))
+				{
+					this._Game_Key = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Issued_Player_Key", DbType="VarChar(50)")]
+		public string Issued_Player_Key
+		{
+			get
+			{
+				return this._Issued_Player_Key;
+			}
+			set
+			{
+				if ((this._Issued_Player_Key != value))
+				{
+					this._Issued_Player_Key = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Affected_Player_Key", DbType="VarChar(50)")]
+		public string Affected_Player_Key
+		{
+			get
+			{
+				return this._Affected_Player_Key;
+			}
+			set
+			{
+				if ((this._Affected_Player_Key != value))
+				{
+					this._Affected_Player_Key = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CommandCode", DbType="VarChar(255)")]
+		public string CommandCode
+		{
+			get
+			{
+				return this._CommandCode;
+			}
+			set
+			{
+				if ((this._CommandCode != value))
+				{
+					this._CommandCode = value;
+				}
+			}
+		}
+	}
+	
+	public partial class jb2bt_Game_Command_SaveResult
+	{
+		
+		private System.Nullable<bool> _Success;
+		
+		private string _Key;
+		
+		private string _Message;
+		
+		public jb2bt_Game_Command_SaveResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Success", DbType="Bit")]
+		public System.Nullable<bool> Success
+		{
+			get
+			{
+				return this._Success;
+			}
+			set
+			{
+				if ((this._Success != value))
+				{
+					this._Success = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Key]", Storage="_Key", DbType="VarChar(50)")]
+		public string Key
+		{
+			get
+			{
+				return this._Key;
+			}
+			set
+			{
+				if ((this._Key != value))
+				{
+					this._Key = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="VarChar(100)")]
+		public string Message
+		{
+			get
+			{
+				return this._Message;
+			}
+			set
+			{
+				if ((this._Message != value))
+				{
+					this._Message = value;
 				}
 			}
 		}

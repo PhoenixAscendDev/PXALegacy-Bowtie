@@ -95,4 +95,34 @@
       <Column Name="RarityLevel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.jb2bt_Game_Command_Get" Method="jb2bt_Game_Command_Get">
+    <Parameter Name="key" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="gameKey" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="jb2bt_Game_Command_GetResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ObjectKey" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Application_Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Game_Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Issued_Player_Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Affected_Player_Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CommandCode" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.jb2bt_Game_Command_Save" Method="jb2bt_Game_Command_Save">
+    <Parameter Name="key" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="name" Type="System.String" DbType="VarChar(25)" />
+    <Parameter Name="applicationKey" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="gameKey" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="issuedPlayerKey" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="affectedPlayerKey" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="commandCode" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="saveMode" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="jb2bt_Game_Command_SaveResult">
+      <Column Name="Success" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="[Key]" Member="Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

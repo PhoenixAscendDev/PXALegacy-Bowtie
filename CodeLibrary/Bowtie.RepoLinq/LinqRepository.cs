@@ -52,6 +52,10 @@ namespace JB2.Bowtie.Data.Linq
                     var query4 = from i in _dbcontext.jb2bt_Player_Achievement_Get(null,null,null)
                                  select (Tobject)getPlayerAchievement(i);
                     return query4.ToArray();
+                case Enum.BowtieObjectType.bowtie_command:
+                    var query5 = from i in _dbcontext.jb2bt_Game_Command_Get(null, null)
+                                 select (Tobject)getGameCommand(i);
+                    return query5.ToArray();
             }
             return default(Tobject[]);
         }
@@ -76,6 +80,11 @@ namespace JB2.Bowtie.Data.Linq
                      var query4 = from i in _dbcontext.jb2bt_Player_Achievement_Get(id,null,null)
                                   select (Tobject)getPlayerAchievement(i);
                      return query4.ToArray().FirstOrDefault();
+                case Enum.BowtieObjectType.bowtie_command:
+                     var query5 = from i in _dbcontext.jb2bt_Game_Command_Get(id, null)
+                                  select (Tobject)getGameCommand(i);
+                     return query5.ToArray().FirstOrDefault();
+
             }
             return default(Tobject);
             //throw new NotImplementedException();
@@ -90,6 +99,9 @@ namespace JB2.Bowtie.Data.Linq
                     break;
                 case Enum.BowtieObjectType.bowtie_playerachievement:
                     SavePlayerAchievement( (IPlayerAchievement)entity,null);
+                    break;
+                case Enum.BowtieObjectType.bowtie_command:
+                    SaveGameCommand((IGameCommand)entity, null);
                     break;
                 
             }
@@ -177,9 +189,31 @@ namespace JB2.Bowtie.Data.Linq
             };
 
             return result;
+        }
+
+        internal static IGameCommand getGameCommand<T>(T r) where T : class
+        {
+
+            IPlayer iplayer = new Player(getString(r,"Affected_Player_Key"));
+            IPlayer aplayer = new Player(getString(r,"Affected_Player_Key"));
+            ///TODO Bitwise thing with the Flags
+            GameCommand result = new GameCommand(getString(r, "ObjectKey"))
+            {
+                //AchievementFlags = new Enum.AchievementFlag[](),
+                Name = getString(r, "Name"),
+                AffectedPlayer = aplayer,
+                AppID = getString(r, "Application_Key"),
+                CommandCode = getString(r, "CommandCode"),
+                GameID = getString(r, "Game_Key"),
+                IssuedPlayer = iplayer
+            };
+            return result;
 
 
         }
+
+
+
         #endregion
 
         #region Save Methods
@@ -199,9 +233,14 @@ namespace JB2.Bowtie.Data.Linq
             jb2bt_Player_Achievement_SaveResult result = _dbcontext.jb2bt_Player_Achievement_Save(a.ID, a.Name, a.PlayerID, a.AchievementID, a.CurrentStep,
                                                                                                   (int)a.AchievementFlags.FirstOrDefault(), a.PointsEarned, mode).FirstOrDefault();
 
-            return (result.Key == a.ID);
+            return (result.Key == a.ID);          
+        }
 
-            
+        private bool SaveGameCommand(IGameCommand a, string mode)
+        {
+            jb2bt_Game_Command_SaveResult result = _dbcontext.jb2bt_Game_Command_Save(a.ID, a.Name, a.AppID, a.GameID, a.IssuedPlayer.ID, a.AffectedPlayer.ID, a.CommandCode, mode).FirstOrDefault();
+
+            return (result.Key == a.ID); 
         }
 
 

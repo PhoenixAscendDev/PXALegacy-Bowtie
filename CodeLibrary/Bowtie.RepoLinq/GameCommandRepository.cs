@@ -14,9 +14,11 @@ namespace JB2.Bowtie.Data.Linq
 
         }
 
-        public IGameCommand[] GetGameCommandsByGameID(string gameID)
+        public IGameCommand[] GetByGameID(string gameID)
         {
-            throw new NotImplementedException();
+            var query5 = from i in _dbcontext.jb2bt_Game_Command_Get(null,gameID)
+                         select getGameCommand(i);
+            return query5.ToArray();
         }
     }
 }

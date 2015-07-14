@@ -8,7 +8,7 @@ namespace JB2.Bowtie.Data.NoDB
 {
     public class GameCommandRepository : JB2.Bowtie.IGameCommandRepository
     {
-        public IGameCommand[] GetGameCommandsByGameID(string gameID)
+        public IGameCommand[] GetByGameID(string gameID)
         {
             throw new NotImplementedException();
         }
