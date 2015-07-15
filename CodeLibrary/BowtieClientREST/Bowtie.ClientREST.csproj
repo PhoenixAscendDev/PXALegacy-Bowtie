@@ -7,8 +7,8 @@
     <ProjectGuid>{66987C26-B983-46EC-B524-E1A2C1E2C3B8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JB2.Bowtie.Client.Web</RootNamespace>
-    <AssemblyName>JB2.Bowtie.Client.Web</AssemblyName>
+    <RootNamespace>JB2.Bowtie.Client.REST</RootNamespace>
+    <AssemblyName>JB2.Bowtie.Client.REST</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

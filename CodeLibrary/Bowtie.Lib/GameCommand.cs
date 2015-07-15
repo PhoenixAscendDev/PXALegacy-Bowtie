@@ -86,35 +86,14 @@ namespace JB2.Bowtie
 
         public string ToPacket()
         {
-            var cmdCode = "1223344444";
-
-            System.Text.StringBuilder finalCmd = new System.Text.StringBuilder();
-            finalCmd.Append(cmdCode);
-
-            //System.Text.StringBuilder keyAndCmd = new System.Text.StringBuilder();
-
-            //for (int i = 0; i < appKey.Length; i++)
-            //{
-            //    keyAndCmd.Append(appKey[i]);
-            //    keyAndCmd.Append(cmdCode[i]);
-            //}
-            //var checksum = JB2.Bowtie.Utility.GetChecksum(keyAndCmd.ToString(), 16);
-            //var byte[] test2 = 23;
+            //var cmdCode = "1223344444";
 
 
-            //char[] reverseChecksum = checksum.ToString().ToCharArray();
-            //Array.Reverse(reverseChecksum);
-
-            //string strchecksum = new string(reverseChecksum);
+            string cmdFormat = "{0}>*<{1}>*<{2}>*<{3}";
 
 
-           
+            return string.Format(cmdFormat, this._applicationID, this._issuedPlayer.ID, this._affectedPlayer.ID, this._commandCode);
 
-            //finalCmd.Append(strchecksum.Substring(0, 3));
-            //finalCmd.Append(keyAndCmd.ToString());
-            //finalCmd.Append(strchecksum.Substring(3, 2));
-
-            return finalCmd.ToString();
         }
     }
 }
