@@ -8,8 +8,8 @@ namespace JB2.Bowtie
 {
     public class GameCommand : BowtieObject,IGameCommand,IBowtieObject
     {
-        private IPlayer _issuedPlayer;
-        private IPlayer _affectedPlayer;
+        private string _issuedPlayer;
+        private string _affectedPlayer;
         private string _commandCode;
         private string _applicationID;
         private string _gameID;
@@ -24,7 +24,7 @@ namespace JB2.Bowtie
         {
 
         }
-        public IPlayer IssuedPlayer
+        public string IssuedPlayerID
         {
             get
             {
@@ -36,7 +36,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public IPlayer AffectedPlayer
+        public string AffectedPlayerID
         {
             get
             {
@@ -92,7 +92,7 @@ namespace JB2.Bowtie
             string cmdFormat = "{0}>*<{1}>*<{2}>*<{3}";
 
 
-            return string.Format(cmdFormat, this._applicationID, this._issuedPlayer.ID, this._affectedPlayer.ID, this._commandCode);
+            return string.Format(cmdFormat, this._applicationID, this._issuedPlayer, this._affectedPlayer, this._commandCode);
 
         }
     }

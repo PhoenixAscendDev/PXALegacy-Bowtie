@@ -216,18 +216,17 @@ namespace JB2.Bowtie.Data.Linq
         internal static IGameCommand getGameCommand<T>(T r) where T : class
         {
 
-            IPlayer iplayer = new Player(getString(r,"Affected_Player_Key"));
-            IPlayer aplayer = new Player(getString(r,"Affected_Player_Key"));
+            
             ///TODO Bitwise thing with the Flags
             GameCommand result = new GameCommand(getString(r, "ObjectKey"))
             {
                 //AchievementFlags = new Enum.AchievementFlag[](),
                 Name = getString(r, "Name"),
-                AffectedPlayer = aplayer,
+                AffectedPlayerID = getString(r,"Affected_Player_Key"),
                 AppID = getString(r, "Application_Key"),
                 CommandCode = getString(r, "CommandCode"),
                 GameID = getString(r, "Game_Key"),
-                IssuedPlayer = iplayer
+                IssuedPlayerID = getString(r,"Issued_Player_Ley")
             };
             return result;
 
@@ -301,7 +300,7 @@ namespace JB2.Bowtie.Data.Linq
 
         private bool SaveGameCommand(IGameCommand a, string mode)
         {
-            jb2bt_Game_Command_SaveResult result = _dbcontext.jb2bt_Game_Command_Save(a.ID, a.Name, a.AppID, a.GameID, a.IssuedPlayer.ID, a.AffectedPlayer.ID, a.CommandCode, mode).FirstOrDefault();
+            jb2bt_Game_Command_SaveResult result = _dbcontext.jb2bt_Game_Command_Save(a.ID, a.Name, a.AppID, a.GameID, a.IssuedPlayerID, a.AffectedPlayerID, a.CommandCode, mode).FirstOrDefault();
 
             return (result.Key == a.ID); 
         }

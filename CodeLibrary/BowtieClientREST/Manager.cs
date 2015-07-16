@@ -14,7 +14,8 @@ namespace JB2.Bowtie
             Application app = new Application(publicKey, secretKey);
             JB2.Bowtie.Settings._application = app;
             return true;
-
         }
+
+
     }
 }

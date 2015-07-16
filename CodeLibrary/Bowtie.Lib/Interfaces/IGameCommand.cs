@@ -8,8 +8,8 @@ namespace JB2.Bowtie
 {
     public interface IGameCommand : IBowtieObject, JB2.Common.IIDNamePair<string, string>
     {
-        IPlayer IssuedPlayer { get; set; }
-        IPlayer AffectedPlayer { get; set; }
+        string IssuedPlayerID { get; set; }
+        string AffectedPlayerID { get; set; }
         string CommandCode { get; set; }
         string AppID { get; set; }
         string GameID { get; set; }
