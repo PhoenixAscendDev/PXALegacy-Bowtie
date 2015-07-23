@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class JBean : ICurrency
+    public class JBean : ICurrency<JBeanToken>
     {
         public byte BaseUnit
         {
@@ -29,7 +29,7 @@ namespace JB2.Bowtie
             set { }
         }
 
-        public IDenomination[] Denominations
+        public JBeanToken[] Denominations
         {
             get;set;
         }

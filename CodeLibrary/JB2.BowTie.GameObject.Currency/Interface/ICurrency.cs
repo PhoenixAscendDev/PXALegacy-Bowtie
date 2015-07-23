@@ -9,8 +9,13 @@ using JB2.Bowtie.Enum;
 
 namespace JB2.Bowtie
 {
-    public interface ICurrency : JB2.Bowtie.ICurrency<string, byte, IDenomination, byte, string>,
-                                      JB2.Common.IIDNamePair<string, string>
+
+    public interface ICurrency : ICurrency<IDenomination>
+    {
+
+    }
+    public interface ICurrency<TDenomination> : JB2.Bowtie.ICurrency<string,byte,TDenomination,byte,string>
+        where TDenomination : IDenomination<string, byte, string, string>
     {
 
     }

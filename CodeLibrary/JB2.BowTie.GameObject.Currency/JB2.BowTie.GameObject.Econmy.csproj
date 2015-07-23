@@ -46,6 +46,7 @@
     <Compile Include="Interface\IBank.cs" />
     <Compile Include="Interface\ICurrency.cs" />
     <Compile Include="Interface\IDenomination.cs" />
+    <Compile Include="Interface\IWallet.cs" />
     <Compile Include="JBean.cs" />
     <Compile Include="JBeanToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
