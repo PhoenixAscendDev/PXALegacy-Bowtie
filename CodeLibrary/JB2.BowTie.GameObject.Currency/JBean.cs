@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class JBean : ICurrency<JBeanToken>
+    public class JBean : ICurrency<JBeanToken,Enum.JBeanTokenType>
     {
+        Dictionary<Enum.JBeanTokenType, JBeanToken> _tokens;
+
+        #region Public Properties
+
         public byte BaseUnit
         {
             get
@@ -31,7 +35,18 @@ namespace JB2.Bowtie
 
         public JBeanToken[] Denominations
         {
-            get;set;
+            get
+            {
+               return _tokens.Values.ToArray();
+            }
+            set
+            {
+                Dictionary<JBeanToken,JBean> result = new Dictionary<JBeanToken,JBean>();
+                foreach(JBeanToken t in value)
+                {
+                    _tokens.Add(t.DenominationType,t);
+                }         
+            }
         }
 
         public float[] SubUnits
@@ -58,5 +73,18 @@ namespace JB2.Bowtie
         {
             get;set;
         }
+
+        #endregion Public Properties
+
+
+        #region Public Methods
+
+        public JBeanToken[] GetDenomination(Enum.JBeanTokenType dType)
+        {
+
+            return new JBeanToken[] {_tokens[dType]};
+        }
+
+        #endregion Public Methods
     }
 }

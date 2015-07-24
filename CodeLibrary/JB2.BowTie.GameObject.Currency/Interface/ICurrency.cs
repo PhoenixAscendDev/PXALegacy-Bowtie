@@ -10,18 +10,18 @@ using JB2.Bowtie.Enum;
 namespace JB2.Bowtie
 {
 
-    public interface ICurrency : ICurrency<IDenomination>
+    public interface ICurrency : ICurrency<IDenomination<string>,string>
     {
 
     }
-    public interface ICurrency<TDenomination> : JB2.Bowtie.ICurrency<string,byte,TDenomination,byte,string>
-        where TDenomination : IDenomination<string, byte, string, string>
+    public interface ICurrency<TDenomination,TDenominationType> : JB2.Bowtie.ICurrency<string,byte,TDenomination,TDenominationType,byte,string>
+        where TDenomination : IDenomination<TDenominationType,string, byte, string, string>
     {
 
     }
 
-    public interface ICurrency<TKey, TUnit, TDenomination, TMultiplier,TSerial> : JB2.Common.IIDNamePair<TKey, string>
-        where TDenomination : IDenomination<TKey, TMultiplier,TKey,TSerial>
+    public interface ICurrency<TKey, TUnit, TDenomination,TDenominationType, TMultiplier,TSerial> : JB2.Common.IIDNamePair<TKey, string>
+        where TDenomination : IDenomination<TDenominationType,TKey, TMultiplier,TKey,TSerial>
     {
 
         TUnit BaseUnit { get; set; }
@@ -37,6 +37,8 @@ namespace JB2.Bowtie
         string PluralName { get; set; }
 
         string SymbolUrl { get; set; }
+
+        TDenomination[] GetDenomination(TDenominationType dType);
 
         
 
