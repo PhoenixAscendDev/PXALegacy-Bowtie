@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.WebMain", "Bowtie.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.WebAPI", "Bowtie.WebAPI\Bowtie.WebAPI.csproj", "{0381E8E2-27DF-48E2-A659-DE2488917DAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.BowTie.GameObject.Econmy", "JB2.BowTie.GameObject.Currency\JB2.BowTie.GameObject.Econmy.csproj", "{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,12 @@ Global
 		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
 		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

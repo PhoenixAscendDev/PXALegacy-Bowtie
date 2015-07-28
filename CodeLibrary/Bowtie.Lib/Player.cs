@@ -15,15 +15,12 @@ namespace JB2.Bowtie
         {
 
         }
-
         public Player(string id) : base(Enum.BowtieObjectType.bowtie_player, id)
         {
             _displayName = "newguy";
             _nameinfo = new Common.Name();
         }
         
-
-
         public string DisplayName
         {
             get

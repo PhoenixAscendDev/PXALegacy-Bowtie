@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JB2.Bowtie</RootNamespace>
-    <AssemblyName>JB2.Bowtie.GameObject.Economy</AssemblyName>
+    <AssemblyName>JB2.Bowtie.Economy</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -51,7 +51,14 @@
     <Compile Include="Interface\IWallet.cs" />
     <Compile Include="JBean.cs" />
     <Compile Include="JBeanToken.cs" />
+    <Compile Include="jBeanWallet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bowtie.Lib\Bowtie.Lib.csproj">
+      <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
+      <Name>Bowtie.Lib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
