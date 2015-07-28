@@ -38,7 +38,7 @@ namespace JB2.Bowtie.Economy
                 throw new JB2.Bowtie.Exceptions.ApplicationNotInitialized();
 
             if (!JB2.Bowtie.Settings.CurrentApplication.canIssueJBeans)
-                throw new JB2.Bowtie.Economy.Exceptions.IssueJBeanProhibited();
+                throw new JB2.Bowtie.Exceptions.IssueJBeanProhibited();
 
 
             List<JBeanToken> result = new List<JBeanToken>(quantity);

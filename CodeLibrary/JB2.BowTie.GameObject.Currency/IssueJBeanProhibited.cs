@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Economy.Exceptions
+namespace JB2.Bowtie.Exceptions
 {
     public class IssueJBeanProhibited : Exception
     {
