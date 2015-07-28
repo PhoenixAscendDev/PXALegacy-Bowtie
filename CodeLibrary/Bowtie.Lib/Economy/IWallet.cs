@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie
+namespace JB2.Bowtie.Economy
 {
     public interface IWallet<TOwner,TDenomination> : IWallet<TOwner,ulong,TDenomination,string,string>
         where TDenomination : IDenomination<string,string, byte, string, string>

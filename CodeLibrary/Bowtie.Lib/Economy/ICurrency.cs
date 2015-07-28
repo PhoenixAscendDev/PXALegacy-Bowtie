@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 using JB2.Bowtie.Enum;
 
 
-namespace JB2.Bowtie
+namespace JB2.Bowtie.Economy
 {
 
     public interface ICurrency : ICurrency<IDenomination<string>,string>
     {
 
     }
-    public interface ICurrency<TDenomination,TDenominationType> : JB2.Bowtie.ICurrency<string,byte,TDenomination,TDenominationType,byte,string>
+    public interface ICurrency<TDenomination,TDenominationType> : ICurrency<string,byte,TDenomination,TDenominationType,byte,string>
         where TDenomination : IDenomination<TDenominationType,string, byte, string, string>
     {
 

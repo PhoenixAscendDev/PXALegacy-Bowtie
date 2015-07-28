@@ -65,12 +65,14 @@
     <Compile Include="BowtieObject.cs" />
     <Compile Include="BowtieSettings.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="Economy\BasicCurrency.cs" />
     <Compile Include="Economy\CurrencyType.cs" />
     <Compile Include="Economy\IBank.cs" />
     <Compile Include="Economy\ICurrency.cs" />
     <Compile Include="Economy\IDenomination.cs" />
     <Compile Include="Economy\ITreasuryService.cs" />
     <Compile Include="Economy\IWallet.cs" />
+    <Compile Include="Economy\Token.cs" />
     <Compile Include="Enum\AchievementRarityType.cs" />
     <Compile Include="Enum\AchievementState.cs" />
     <Compile Include="Enum\AchievementType.cs" />

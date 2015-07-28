@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Interface
+namespace JB2.Bowtie.Economy
 {
     public interface ITreasuryService<TCurrency,TDenomination,TDenominationType,TCurrencyKey,TSerial>
         where TCurrency : ICurrency<TCurrencyKey,byte,TDenomination,TDenominationType,byte,TSerial>

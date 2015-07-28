@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie
+using JB2.Bowtie;
+
+namespace JB2.Bowtie.Economy
 {
     public class JBeanToken : IDenomination<Enum.JBeanTokenType>
     {
