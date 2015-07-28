@@ -42,13 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enum\CurrencyType.cs" />
     <Compile Include="Enum\jBeanTokenType.cs" />
-    <Compile Include="Interface\IBank.cs" />
-    <Compile Include="Interface\ICurrency.cs" />
-    <Compile Include="Interface\IDenomination.cs" />
-    <Compile Include="Interface\ITreasuryService.cs" />
-    <Compile Include="Interface\IWallet.cs" />
     <Compile Include="JBean.cs" />
     <Compile Include="JBeanToken.cs" />
     <Compile Include="jBeanWallet.cs" />

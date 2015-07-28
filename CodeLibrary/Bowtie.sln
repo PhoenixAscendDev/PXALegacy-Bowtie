@@ -24,7 +24,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.WebMain", "Bowtie.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.WebAPI", "Bowtie.WebAPI\Bowtie.WebAPI.csproj", "{0381E8E2-27DF-48E2-A659-DE2488917DAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.BowTie.GameObject.Econmy", "JB2.BowTie.GameObject.Currency\JB2.BowTie.GameObject.Econmy.csproj", "{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.Jbean", "JB2.BowTie.GameObject.Currency\JB2.Bowtie.Jbean.csproj", "{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
