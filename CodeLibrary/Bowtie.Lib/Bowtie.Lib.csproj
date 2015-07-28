@@ -70,9 +70,11 @@
     <Compile Include="Economy\IBank.cs" />
     <Compile Include="Economy\ICurrency.cs" />
     <Compile Include="Economy\IDenomination.cs" />
+    <Compile Include="Economy\ITreasuryLogEntry.cs" />
     <Compile Include="Economy\ITreasuryService.cs" />
     <Compile Include="Economy\IWallet.cs" />
     <Compile Include="Economy\Token.cs" />
+    <Compile Include="Economy\TreasuryLogItem.cs" />
     <Compile Include="Enum\AchievementRarityType.cs" />
     <Compile Include="Enum\AchievementState.cs" />
     <Compile Include="Enum\AchievementType.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="Interfaces\IMasterLeaderboard.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IPlayerAchievement.cs" />
+    <Compile Include="Economy\ITreasuryRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="LapelPin.cs" />
     <Compile Include="Leaderboard.cs" />

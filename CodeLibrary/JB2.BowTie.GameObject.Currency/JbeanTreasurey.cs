@@ -10,6 +10,26 @@ namespace JB2.Bowtie.Economy
 {
     public class JBeanTreasury : ITreasuryService<JBean,JBeanToken,Enum.JBeanTokenType,string,string>
     {
+        private ITreasuryRepository<JB2.Bowtie.Economy.JBeanTreasuryLogEntry,Enum.JBeanTokenType,string> _repo;
+        
+
+        public JBeanTreasury(ITreasuryRepository<JB2.Bowtie.Economy.JBeanTreasuryLogEntry,Enum.JBeanTokenType,string> repo)
+        {
+            _repo = repo;
+        }
+
+        public JBeanTreasury() : this( new JB2.Bowtie.Data.Linq.JBeanRespository())
+        {
+
+        }
+
+
+
+        private  bool LogTransaction(JBeanTreasuryLogEntry log)
+        {
+            _repo.AddLog(log);
+            return true;
+        }
 
         public JBeanToken[] IssueDenomination(Enum.JBeanTokenType type, int quantity)
         {
@@ -19,8 +39,13 @@ namespace JB2.Bowtie.Economy
             {
                 JBeanToken t = new JBeanToken(type);
                 result.Add(t);
+
+
             }
+            JBeanToken logtoken = new JBeanToken(type);
+            LogTransaction(new JBeanTreasuryLogEntry(JB2.Bowtie.Settings.CurrentApplication.ID, logtoken, quantity));
             return result.ToArray();
+
         }
 
         public ulong TotalAmountIssued

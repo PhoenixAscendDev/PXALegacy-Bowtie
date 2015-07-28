@@ -236,6 +236,10 @@
       <Project>{e9f8abc3-957e-4ada-b7db-a61e16beaa1e}</Project>
       <Name>Bowtie.Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JB2.BowTie.GameObject.Currency\JB2.Bowtie.Jbean.csproj">
+      <Project>{387bae94-cbd5-45fa-8e9d-f16ad1229e1c}</Project>
+      <Name>JB2.Bowtie.Jbean</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Settings
+namespace JB2.Bowtie.Economy.Settings
 {
     public static class JBean
     {

@@ -35,6 +35,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,17 +45,49 @@
   <ItemGroup>
     <Compile Include="Enum\jBeanTokenType.cs" />
     <Compile Include="JBean.cs" />
+    <Compile Include="JBean.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JBean.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="JBeanRespository.cs" />
     <Compile Include="JBeanSettings.cs" />
     <Compile Include="JBeanToken.cs" />
     <Compile Include="JbeanTreasurey.cs" />
+    <Compile Include="JBeanTreasuryLogEntry.cs" />
     <Compile Include="jBeanWallet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bowtie.Lib\Bowtie.Lib.csproj">
       <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
       <Name>Bowtie.Lib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="JBean.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>JBean.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="JBean.dbml.layout">
+      <DependentUpon>JBean.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
