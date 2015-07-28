@@ -124,8 +124,6 @@ namespace JB2.Bowtie.GameObjects
                         for(int j=0;j < 5; j++)
                         {
                             _cells[i,j] = 0;
-                           
-
                             _marks[i,j] = (i==2 && j==2 && this._freeCenter) ? (byte)1 : (byte)0;
                         }
                     }
