@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.Lib", "Bowtie.Lib\Bowtie.Lib.csproj", "{488D241B-CBA6-4096-B76F-A1FB03EA5F76}"
 EndProject
@@ -25,6 +25,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.WebAPI", "Bowtie.WebAPI\Bowtie.WebAPI.csproj", "{0381E8E2-27DF-48E2-A659-DE2488917DAA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.Jbean", "JB2.BowTie.GameObject.Currency\JB2.Bowtie.Jbean.csproj", "{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.GameObjects", "JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj", "{878DA1E1-F733-4555-BB1D-B1C9188D287B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,12 @@ Global
 		{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}.NoDB|Any CPU.Build.0 = Release|Any CPU
 		{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{878DA1E1-F733-4555-BB1D-B1C9188D287B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{878DA1E1-F733-4555-BB1D-B1C9188D287B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{878DA1E1-F733-4555-BB1D-B1C9188D287B}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{878DA1E1-F733-4555-BB1D-B1C9188D287B}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{878DA1E1-F733-4555-BB1D-B1C9188D287B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{878DA1E1-F733-4555-BB1D-B1C9188D287B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
