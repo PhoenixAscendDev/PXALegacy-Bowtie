@@ -69,13 +69,6 @@ namespace JB2.Bowtie.Data.Linq
 			return ((ISingleResult<jb2bt_Client_GetResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.jb2bt_Application_Get")]
-		public ISingleResult<jb2bt_Application_GetResult> jb2bt_Application_Get([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string publickey)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, publickey);
-			return ((ISingleResult<jb2bt_Application_GetResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.jb2bt_Achievement_Save")]
 		public ISingleResult<jb2bt_Achievement_SaveResult> jb2bt_Achievement_Save([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string key, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(25)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string applicationKey, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> sortOrder, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string description, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> achievementType, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(25)")] string category, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> steps, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(200)")] string iconEarned, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(200)")] string iconHidden, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(200)")] string iconShown, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> eventStart, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> eventEnd, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> points, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string saveMode)
 		{
@@ -130,6 +123,13 @@ namespace JB2.Bowtie.Data.Linq
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), key, name, iconurl, type, listOrder, scoreFormat, scoreLowerLimit, scoreUpperLimit, scoreOrderType, dateEventStart, dateEventEnd, masterLeaderboardKey, applicationKey, saveMode);
 			return ((ISingleResult<jb2bt_Leaderboard_SaveResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.jb2bt_Application_Get")]
+		public ISingleResult<jb2bt_Application_GetResult> jb2bt_Application_Get([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string publickey)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, publickey);
+			return ((ISingleResult<jb2bt_Application_GetResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -190,104 +190,6 @@ namespace JB2.Bowtie.Data.Linq
 				if ((this._Key != value))
 				{
 					this._Key = value;
-				}
-			}
-		}
-	}
-	
-	public partial class jb2bt_Application_GetResult
-	{
-		
-		private int _ID;
-		
-		private string _PublicKey;
-		
-		private string _Name;
-		
-		private string _Secret;
-		
-		private string _Client_Key;
-		
-		public jb2bt_Application_GetResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PublicKey", DbType="VarChar(50)")]
-		public string PublicKey
-		{
-			get
-			{
-				return this._PublicKey;
-			}
-			set
-			{
-				if ((this._PublicKey != value))
-				{
-					this._PublicKey = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NChar(10)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this._Name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secret", DbType="VarChar(50)")]
-		public string Secret
-		{
-			get
-			{
-				return this._Secret;
-			}
-			set
-			{
-				if ((this._Secret != value))
-				{
-					this._Secret = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Client_Key", DbType="VarChar(50)")]
-		public string Client_Key
-		{
-			get
-			{
-				return this._Client_Key;
-			}
-			set
-			{
-				if ((this._Client_Key != value))
-				{
-					this._Client_Key = value;
 				}
 			}
 		}
@@ -1450,6 +1352,122 @@ namespace JB2.Bowtie.Data.Linq
 				if ((this._Message != value))
 				{
 					this._Message = value;
+				}
+			}
+		}
+	}
+	
+	public partial class jb2bt_Application_GetResult
+	{
+		
+		private int _ID;
+		
+		private string _PublicKey;
+		
+		private string _Name;
+		
+		private string _Secret;
+		
+		private string _Client_Key;
+		
+		private System.Nullable<bool> _CanIssueJBeans;
+		
+		public jb2bt_Application_GetResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PublicKey", DbType="VarChar(50)")]
+		public string PublicKey
+		{
+			get
+			{
+				return this._PublicKey;
+			}
+			set
+			{
+				if ((this._PublicKey != value))
+				{
+					this._PublicKey = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(25)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secret", DbType="VarChar(50)")]
+		public string Secret
+		{
+			get
+			{
+				return this._Secret;
+			}
+			set
+			{
+				if ((this._Secret != value))
+				{
+					this._Secret = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Client_Key", DbType="VarChar(50)")]
+		public string Client_Key
+		{
+			get
+			{
+				return this._Client_Key;
+			}
+			set
+			{
+				if ((this._Client_Key != value))
+				{
+					this._Client_Key = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanIssueJBeans", DbType="Bit")]
+		public System.Nullable<bool> CanIssueJBeans
+		{
+			get
+			{
+				return this._CanIssueJBeans;
+			}
+			set
+			{
+				if ((this._CanIssueJBeans != value))
+				{
+					this._CanIssueJBeans = value;
 				}
 			}
 		}

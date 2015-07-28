@@ -53,5 +53,12 @@ namespace JB2.Bowtie
 
 
        #endregion Public Properies
+
+
+        public bool canIssueJBeans
+        {
+            get;set;
+            
+        }
     }
 }

@@ -9,17 +9,6 @@
       <Column Name="[Key]" Member="Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.jb2bt_Application_Get" Method="jb2bt_Application_Get">
-    <Parameter Name="id" Type="System.Int32" DbType="Int" />
-    <Parameter Name="publickey" Type="System.String" DbType="VarChar(50)" />
-    <ElementType Name="jb2bt_Application_GetResult">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PublicKey" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Name" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="Secret" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Client_Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.jb2bt_Achievement_Save" Method="jb2bt_Achievement_Save">
     <Parameter Name="key" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="name" Type="System.String" DbType="VarChar(25)" />
@@ -165,6 +154,18 @@
       <Column Name="Success" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="[Key]" Member="Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Message" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.jb2bt_Application_Get" Method="jb2bt_Application_Get">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="publickey" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="jb2bt_Application_GetResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PublicKey" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="Secret" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Client_Key" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CanIssueJBeans" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

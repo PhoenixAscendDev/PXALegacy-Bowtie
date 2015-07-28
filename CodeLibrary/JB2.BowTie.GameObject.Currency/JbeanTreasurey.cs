@@ -33,14 +33,21 @@ namespace JB2.Bowtie.Economy
 
         public JBeanToken[] IssueDenomination(Enum.JBeanTokenType type, int quantity)
         {
+
+            if(JB2.Bowtie.Settings.CurrentApplication == null)
+                throw new JB2.Bowtie.Exceptions.ApplicationNotInitialized();
+
+            if (!JB2.Bowtie.Settings.CurrentApplication.canIssueJBeans)
+                throw new JB2.Bowtie.Economy.Exceptions.IssueJBeanProhibited();
+
+
             List<JBeanToken> result = new List<JBeanToken>(quantity);
+
 
             for(int i = 1; i <=quantity;i++)
             {
                 JBeanToken t = new JBeanToken(type);
                 result.Add(t);
-
-
             }
             JBeanToken logtoken = new JBeanToken(type);
             LogTransaction(new JBeanTreasuryLogEntry(JB2.Bowtie.Settings.CurrentApplication.ID, logtoken, quantity));
@@ -50,19 +57,13 @@ namespace JB2.Bowtie.Economy
 
         public ulong TotalAmountIssued
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get;
+            set;
         }
 
         public long DenominationIssuedCount(Enum.JBeanTokenType type)
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 }

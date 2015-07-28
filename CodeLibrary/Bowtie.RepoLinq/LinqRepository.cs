@@ -149,7 +149,8 @@ namespace JB2.Bowtie.Data.Linq
             {
                 ID = getString(r, "ID"),
                 Name = getString(r, "Name"),
-                ClientID = getString(r,"Client_Key")
+                ClientID = getString(r,"Client_Key"),
+                canIssueJBeans = getBoolean(r,"CanIssueJBeans")            
             };
             return result;
         }

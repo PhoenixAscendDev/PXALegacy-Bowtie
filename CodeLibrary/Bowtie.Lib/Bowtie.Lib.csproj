@@ -86,6 +86,7 @@
     <Compile Include="Enum\LeaderboardType.cs" />
     <Compile Include="Enum\ScoreOrderType.cs" />
     <Compile Include="EventAchievement.cs" />
+    <Compile Include="Exceptions\ApplicationNotInitialized.cs" />
     <Compile Include="GameCommand.cs" />
     <Compile Include="Interfaces\ILeaderboard.cs" />
     <Compile Include="Interfaces\IAchievement.cs" />

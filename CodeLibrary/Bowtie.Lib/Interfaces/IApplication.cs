@@ -12,5 +12,6 @@ namespace JB2.Bowtie
         bool isAuthorized { get; }
         Enum.APIAuthorizeState AuthorizedState { get; }
         string ClientID { get; set; }
+        bool canIssueJBeans { get; set; }
     }
 }

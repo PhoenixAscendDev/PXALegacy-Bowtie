@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enum\jBeanTokenType.cs" />
+    <Compile Include="IssueJBeanProhibited.cs" />
     <Compile Include="JBean.cs" />
     <Compile Include="JBean.designer.cs">
       <AutoGen>True</AutoGen>
