@@ -12,10 +12,11 @@ namespace JB2.Bowtie
     {
         protected Trepo _repo;
         protected IUnitOfWork _uofw;
+        
 
 
 
-
+       
 
 
        
@@ -27,6 +28,14 @@ namespace JB2.Bowtie
         public GenericService(Trepo repository)
         {
             _repo = repository;
+        }
+
+
+        protected JB2.Bowtie.Economy.JBeanToken[] retrieveJBeanTokens(Enum.JBeanTokenType type,int quantity)
+        {
+            JB2.Bowtie.Economy.JBeanTreasury treasury = JB2.Bowtie.Economy.Settings.JBean.Treasury;
+
+            return treasury.IssueDenomination(type, quantity);
         }
 
 

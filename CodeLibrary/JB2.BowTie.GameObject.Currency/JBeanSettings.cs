@@ -9,6 +9,7 @@ namespace JB2.Bowtie.Economy.Settings
     public static class JBean
     {
         private static readonly string  CURRENCYID = "111000";
+        private static JBeanTreasury _treasury;
 
         public static byte GetMultiplier(Enum.JBeanTokenType type)
         {
@@ -41,6 +42,23 @@ namespace JB2.Bowtie.Economy.Settings
             {
                 return CURRENCYID;
             }
+        }
+
+        public static JBeanTreasury Treasury
+        {
+            get
+            {
+                if (_treasury != null)
+                    _treasury = new JBeanTreasury();
+
+                return _treasury;
+            }
+            set
+            {
+                _treasury = value;
+            }
+            
+
         }
     }
 }

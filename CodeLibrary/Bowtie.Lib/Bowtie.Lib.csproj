@@ -87,7 +87,6 @@
     <Compile Include="Enum\ScoreOrderType.cs" />
     <Compile Include="EventAchievement.cs" />
     <Compile Include="GameCommand.cs" />
-    <Compile Include="GenericService.cs" />
     <Compile Include="Interfaces\ILeaderboard.cs" />
     <Compile Include="Interfaces\IAchievement.cs" />
     <Compile Include="Interfaces\IAchievementRepository.cs" />

@@ -10,7 +10,8 @@ namespace JB2.Bowtie.Service
     {
 
         public AchievementService()
-        {           
+        {    
+            
         }
 
         public AchievementService(IUnitOfWork unitOfWork) : this(unitOfWork.AchievementRepository)
