@@ -14,23 +14,26 @@ namespace JB2.Bowtie.GameObjects
         private string _id;
         private string _name;
         private Enum.BingoCardSize _gridsize;
+        private bool _freeCenter;
 
         #region Public Properies
 
         public StandardBingoCard() : 
-            this(Enum.BingoType.Standard, JB2.Common.Utility.GenerateKey(Common.Enum.KeyBitSize.keybit64,Common.Utility.RandomString(8,true)))
+            this(Enum.BingoType.Standard)
         {
 
         }
 
-        public StandardBingoCard(Enum.BingoType type) :
-            this(type, JB2.Common.Utility.GenerateKey(Common.Enum.KeyBitSize.keybit64, Common.Utility.RandomString(8, true)))
+        public StandardBingoCard(Enum.BingoType type): this(type,true,JB2.Bowtie.Utility.GenerateNewObjectID())
         {
 
         }
 
-        public StandardBingoCard(Enum.BingoType type, string id)
+        
+
+        public StandardBingoCard(Enum.BingoType type,bool freeCenter,string id)
         {
+            _freeCenter = freeCenter;
             _id = id;
             _type = type;
             _name = string.Empty;
@@ -109,8 +112,7 @@ namespace JB2.Bowtie.GameObjects
         #endregion Public Properies
 
         private void initGrid()
-        {
-            
+        {          
             switch(this._gridsize)
             {
                 case Enum.BingoCardSize.s5:
@@ -122,7 +124,9 @@ namespace JB2.Bowtie.GameObjects
                         for(int j=0;j < 5; j++)
                         {
                             _cells[i,j] = 0;
-                            _marks[i,j] = 0;
+                           
+
+                            _marks[i,j] = (i==2 && j==2 && this._freeCenter) ? (byte)1 : (byte)0;
                         }
                     }
                     break;
@@ -130,10 +134,48 @@ namespace JB2.Bowtie.GameObjects
 
         }
 
-
         public Enum.BingoCardSize CardSize
         {
             get { return _gridsize;}
+        }
+
+        public static implicit operator System.Collections.BitArray(StandardBingoCard card)
+        {
+            List<bool> marks = new List<bool>(25);
+            for(int r=0;r < 5;r++)
+            {
+                for(int c=0;c < 5;c++)
+                {
+                    marks.Add(card.CellMarks[r, c] >= 1 ? true : false);
+                }
+            }
+            return new System.Collections.BitArray(marks.ToArray());
+        }
+
+        public System.Collections.BitArray ToBitArray()
+        {
+            return (System.Collections.BitArray)this;
+        }
+       
+        public string MarkString
+        {
+            get
+            {
+                StringBuilder result = new StringBuilder();
+                System.Collections.BitArray bitArray = this.GetMarks();
+                for (int i = 0; i < bitArray.Count; i++)
+                {
+                    bool bit = bitArray.Get(i);
+                    result.Append(bit ? "1" : "0");
+                    
+                }
+                return result.ToString();
+            }
+        }
+
+        public System.Collections.BitArray GetMarks()
+        {
+            return this.ToBitArray();
         }
     }
 }
