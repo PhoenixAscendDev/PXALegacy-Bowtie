@@ -22,5 +22,6 @@ namespace JB2.Bowtie.Economy
         TSerial SerialNumber { get; set; }
         string ImageFrontUrl { get; set; }
         string ImageBackUrl { get; set; }
+        
     }
 }

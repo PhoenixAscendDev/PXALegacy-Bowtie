@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Enum\jBeanTokenType.cs" />
     <Compile Include="JBean.cs" />
+    <Compile Include="JBeanSettings.cs" />
     <Compile Include="JBeanToken.cs" />
     <Compile Include="JbeanTreasurey.cs" />
     <Compile Include="jBeanWallet.cs" />

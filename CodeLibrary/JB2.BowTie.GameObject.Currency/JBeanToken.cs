@@ -10,56 +10,148 @@ namespace JB2.Bowtie.Economy
 {
     public class JBeanToken : IDenomination<Enum.JBeanTokenType>
     {
+        private Enum.JBeanTokenType _type;
+        private string _name;
+        private string _serialNumber;
+        
+        
+
+        public JBeanToken(): this(Enum.JBeanTokenType.Kidney)
+        {
+
+        }
+
+        public JBeanToken(Enum.JBeanTokenType type): this(null,type)
+        {
+
+        }
+
+        public JBeanToken(string serialNumber,Enum.JBeanTokenType type)
+        {
+            _type = type;
+            _serialNumber = String.IsNullOrEmpty(serialNumber) ? string.Empty : serialNumber;
+        }
+
+
+
+
         public string ImageFrontUrl
         {
-            get;set;
+            get
+            {
+                   return JB2.Bowtie.Settings.JBean.GetFrontImage(this._type);
+            }
+            set
+            {
+                throw new NotSupportedException();
+            }
         }
 
         public string ImageBackUrl
         {
-            get;set;
+            get
+            {
+                return JB2.Bowtie.Settings.JBean.GetBackImage(this._type);
+            }
+            set
+            {
+                throw new NotSupportedException();
+            }
         }
 
         public string CurrencyID
         {
-            get;set;
+            get
+            {
+                return JB2.Bowtie.Settings.JBean.CurrencyID;
+            }
+            set
+            {
+                throw new NotSupportedException();
+            }
         }
 
         public byte UnitMultiplier
         {
-            get;set;
+            get
+            {
+                return JB2.Bowtie.Settings.JBean.GetMultiplier(this._type);
+            }
+            set
+            {
+                throw new NotSupportedException();
+            }
         }
 
         public bool isSubUnit
         {
-            get;set;
+            get
+            {
+                return false;
+            }
+            set
+            {
+                throw new NotSupportedException();
+            }
         }
 
         public string SerialNumber
         {
-            get;set;
+            get
+            {
+                return _serialNumber;
+            }
+            set
+            {
+                throw new NotSupportedException();
+            }
         }
 
         public string ID
         {
-            get;set;
-        }
-
-        public string Name
-        {
-            get;set;
-        }
-
-        public Enum.JBeanTokenType DenominationType
-        {
             get
             {
-                throw new NotImplementedException();
+                return _serialNumber;
             }
             set
             {
                 throw new NotImplementedException();
             }
         }
+
+        public string Name
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_name))
+                    return System.Enum.GetName(typeof(Enum.JBeanTokenType), this._type);
+                else
+                    return _name;
+            }
+            set
+            {
+                _name = value;
+            }
+        }
+
+        public Enum.JBeanTokenType DenominationType
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                _type = value;
+            }
+        }
+
+
+        public static implicit operator int(JBeanToken r)
+        {
+            return (int)r.UnitMultiplier;
+        }
+
+
     }
 }

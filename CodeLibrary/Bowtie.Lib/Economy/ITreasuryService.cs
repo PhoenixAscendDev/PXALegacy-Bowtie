@@ -10,7 +10,7 @@ namespace JB2.Bowtie.Economy
         where TCurrency : ICurrency<TCurrencyKey,byte,TDenomination,TDenominationType,byte,TSerial>
         where TDenomination : IDenomination<TDenominationType,TCurrencyKey,byte,TCurrencyKey,TSerial>
     {
-        bool IssueDenomination(TDenomination type, int quantity);
+        TDenomination[] IssueDenomination(TDenominationType type, int quantity);
 
         ulong TotalAmountIssued { get; set; }
 

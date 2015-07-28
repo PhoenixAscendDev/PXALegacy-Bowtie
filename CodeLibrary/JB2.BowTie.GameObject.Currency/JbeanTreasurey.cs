@@ -11,9 +11,16 @@ namespace JB2.Bowtie.Economy
     public class JBeanTreasury : ITreasuryService<JBean,JBeanToken,Enum.JBeanTokenType,string,string>
     {
 
-        public bool IssueDenomination(JBeanToken type, int quantity)
+        public JBeanToken[] IssueDenomination(Enum.JBeanTokenType type, int quantity)
         {
-            throw new NotImplementedException();
+            List<JBeanToken> result = new List<JBeanToken>(quantity);
+
+            for(int i = 1; i <=quantity;i++)
+            {
+                JBeanToken t = new JBeanToken(type);
+                result.Add(t);
+            }
+            return result.ToArray();
         }
 
         public ulong TotalAmountIssued
