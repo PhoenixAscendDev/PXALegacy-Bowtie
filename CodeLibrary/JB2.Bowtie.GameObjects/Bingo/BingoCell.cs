@@ -9,6 +9,17 @@ namespace JB2.Bowtie.GameObjects
 {
     public class BingoBall<T>
     {
+
+        public BingoBall()
+        {
+
+        }
+
+        public BingoBall(T value, string label)
+        {
+            this.Value = value;
+            this.Label = label;
+        }
         //private string _label
         //private T _value;
 

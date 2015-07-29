@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.GameObjects
 {
-    public class BingoPatternType : JB2.API.BaseObject, JB2.Common.IIDNamePair<string,string>
+    public class BingoPatternType : JB2.Common.IIDNamePair<string,string>
     {
         
         private string _id;

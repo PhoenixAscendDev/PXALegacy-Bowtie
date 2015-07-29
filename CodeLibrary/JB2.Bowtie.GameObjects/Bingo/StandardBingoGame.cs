@@ -15,11 +15,29 @@ namespace JB2.Bowtie.GameObjects
         private string _name;
         private BingoPatternType _pattern;
 
-        public StandardBingoGame(Enum.BingoType type)
+        public StandardBingoGame(Enum.BingoType type):this(type,JB2.Bowtie.Utility.GenerateNewObjectID())
+        {
+
+        }
+
+        public StandardBingoGame(Enum.BingoType type,string id)
         {
             this._type = type;
             this._callOrder = JB2.Bowtie.GameObjects.BingoHelper.GenerateBingoCallList(type);
+            this._id = id;
+            this._name = string.Empty;
+            //this._callOrder = new List<BingoBall<byte>>().ToArray();
+            this._called = new List<BingoBall<byte>>().ToArray();
+            this._pattern = new BingoPatternType();
+
+            base.serializableProperties = new List<string>();
+
+            foreach (System.Reflection.PropertyInfo p in this.GetType().GetProperties())
+            {
+                base.serializableProperties.Add(p.Name);
+            }
         }
+
 
         public BingoBall<byte>[] CallOrder
         {
@@ -31,7 +49,7 @@ namespace JB2.Bowtie.GameObjects
             {
                 _callOrder = value;
             }
-            
+
         }
 
         public BingoBall<byte>[] PreviousCalls
@@ -50,7 +68,8 @@ namespace JB2.Bowtie.GameObjects
         {
             get
             {
-                return (byte)_called.Length;
+                return 0;
+                //return (byte)_called.Length;
             }
         }
 
