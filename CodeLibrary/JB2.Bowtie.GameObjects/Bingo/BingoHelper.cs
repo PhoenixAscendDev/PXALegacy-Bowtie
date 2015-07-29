@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using JB2.Common;
+
 namespace JB2.Bowtie.GameObjects
 {
     public static class BingoHelper
@@ -24,7 +26,13 @@ namespace JB2.Bowtie.GameObjects
             switch (type)
             {
                 case Enum.BingoType.Standard:
-                    var bingoBalls = JB2.Common.Utility.RandomSubsetOfRange(1, 75, 75);
+                    List<int> bingoBalls = new List<int>();
+                    for (int i = 1; i < 75;i++ )
+                    {
+                        bingoBalls.Add(i);
+                    }
+                    bingoBalls.Shuffle();
+                        //List<int> type = new List<int>().Shuffle();
                     foreach (var b in bingoBalls)
                     {
                         string label = string.Empty;
