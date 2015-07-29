@@ -9,8 +9,8 @@ namespace JB2.Bowtie.GameObjects
     public class StandardBingoGame : JB2.API.BaseObject,IBingoGame<byte>
     {
         private Enum.BingoType _type;
-        private List<byte> _callOrder;
-        private List<byte> _called;
+        private BingoCell<byte>[] _callOrder;
+        private BingoCell<byte>[] _called;
         private string _id;
         private string _name;
         private BingoPatternType _pattern;
@@ -18,31 +18,31 @@ namespace JB2.Bowtie.GameObjects
         public StandardBingoGame(Enum.BingoType type)
         {
             this._type = type;
-            this._callOrder = JB2.Bowtie.GameObjects.BingoHelper.GenerateBingoCallList(type).ToList();
+            this._callOrder = JB2.Bowtie.GameObjects.BingoHelper.GenerateBingoCallList(type);
         }
 
-        public byte[] CallOrder
+        public BingoCell<byte>[] CallOrder
         {
             get
             {
-                return _callOrder.ToArray();
+                return _callOrder;
             }
             set
             {
-                _callOrder = value.ToList();
+                _callOrder = value;
             }
             
         }
 
-        public byte[] PreviousCalls
+        public BingoCell<byte>[] PreviousCalls
         {
             get
             {
-                return _called.ToArray();
+                return _called;
             }
             set
             {
-                _called = value.ToList();
+                _called = value;
             }
         }
 
@@ -50,7 +50,7 @@ namespace JB2.Bowtie.GameObjects
         {
             get
             {
-                return (byte)_called.Count;
+                return (byte)_called.Length;
             }
         }
 

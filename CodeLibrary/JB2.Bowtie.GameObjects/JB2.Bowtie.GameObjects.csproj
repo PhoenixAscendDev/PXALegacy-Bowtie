@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bingo\BingoCardSize.cs" />
+    <Compile Include="Bingo\BingoCell.cs" />
     <Compile Include="Bingo\BingoHelper.cs" />
     <Compile Include="Bingo\BingoPattern.cs" />
     <Compile Include="Bingo\BingoType.cs" />

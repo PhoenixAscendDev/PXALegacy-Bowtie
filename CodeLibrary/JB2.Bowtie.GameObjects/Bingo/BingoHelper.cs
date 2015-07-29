@@ -13,18 +13,38 @@ namespace JB2.Bowtie.GameObjects
             return GenerateNewBingoCard(Enum.BingoType.Standard);
         }
 
-        public static byte[] GenerateBingoCallList()
+        public static BingoCell<byte>[] GenerateBingoCallList()
         {
             return GenerateBingoCallList(Enum.BingoType.Standard);
         }
-        public static byte[] GenerateBingoCallList(Enum.BingoType type)
+        public static BingoCell<byte>[] GenerateBingoCallList(Enum.BingoType type)
         {
-            List<byte> result = new List<byte>();
-            var bingoBalls = JB2.Common.Utility.RandomSubsetOfRange(1,75,75);
-            foreach(var b in bingoBalls)
+            List<BingoCell<byte>> result = new List<BingoCell<byte>>();
+
+            switch (type)
             {
-                result.Add( (byte)b);
+                case Enum.BingoType.Standard:
+                    var bingoBalls = JB2.Common.Utility.RandomSubsetOfRange(1, 75, 75);
+                    foreach (var b in bingoBalls)
+                    {
+                        string label = string.Empty;
+                        if (b <= 15)
+                            label = "B";
+                        else if (b <= 30)
+                            label = "I";
+                        else if (b <= 45)
+                            label = "N";
+                        else if (b <= 50)
+                            label = "G";
+                        else if (b <= 75)
+                            label = "O";
+
+                        label = label + '-' + b.ToString();
+                        result.Add(new BingoCell<byte>() { Label = label, Value = (byte)b });
+                    }
+                    break;
             }
+                    
             return result.ToArray();
         }
 
