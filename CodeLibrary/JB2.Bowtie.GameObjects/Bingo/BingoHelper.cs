@@ -13,13 +13,13 @@ namespace JB2.Bowtie.GameObjects
             return GenerateNewBingoCard(Enum.BingoType.Standard);
         }
 
-        public static BingoCell<byte>[] GenerateBingoCallList()
+        public static BingoBall<byte>[] GenerateBingoCallList()
         {
             return GenerateBingoCallList(Enum.BingoType.Standard);
         }
-        public static BingoCell<byte>[] GenerateBingoCallList(Enum.BingoType type)
+        public static BingoBall<byte>[] GenerateBingoCallList(Enum.BingoType type)
         {
-            List<BingoCell<byte>> result = new List<BingoCell<byte>>();
+            List<BingoBall<byte>> result = new List<BingoBall<byte>>();
 
             switch (type)
             {
@@ -40,7 +40,7 @@ namespace JB2.Bowtie.GameObjects
                             label = "O";
 
                         label = label + '-' + b.ToString();
-                        result.Add(new BingoCell<byte>() { Label = label, Value = (byte)b });
+                        result.Add(new BingoBall<byte>() { Label = label, Value = (byte)b });
                     }
                     break;
             }

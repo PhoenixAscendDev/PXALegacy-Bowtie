@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace JB2.Bowtie.GameObjects
 {
-    public class BingoCell<T>
+    public class BingoBall<T>
     {
         //private string _label
         //private T _value;
@@ -24,7 +24,7 @@ namespace JB2.Bowtie.GameObjects
             set;
         }
 
-        public static implicit operator KeyValuePair<string,T>(BingoCell<T> c)
+        public static implicit operator KeyValuePair<string,T>(BingoBall<T> c)
         {
             return new KeyValuePair<string, T>(c.Label, c.Value);
         }
