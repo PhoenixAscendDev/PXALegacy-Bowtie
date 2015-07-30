@@ -27,29 +27,30 @@ namespace JB2.Bowtie.GameObjects
             {
                 case Enum.BingoType.Standard:
                     List<int> bingoBalls = new List<int>();
-                    for (int i = 1; i < 75;i++ )
+                    for (int i = 1; i <= 75;i++ )
                     {
-                        bingoBalls.Add(i);
+                        result.Add((BingoBall)i);
                     }
-                    bingoBalls.Shuffle();
+                    result.Shuffle();
+                    //result.Shuffle();
                         //List<int> type = new List<int>().Shuffle();
-                    foreach (var b in bingoBalls)
-                    {
-                        string label = string.Empty;
-                        if (b <= 15)
-                            label = "B";
-                        else if (b <= 30)
-                            label = "I";
-                        else if (b <= 45)
-                            label = "N";
-                        else if (b <= 50)
-                            label = "G";
-                        else if (b <= 75)
-                            label = "O";
+                    //foreach (var b in bingoBalls)
+                    //{
+                    //    string label = string.Empty;
+                    //    if (b <= 15)
+                    //        label = "B";
+                    //    else if (b <= 30)
+                    //        label = "I";
+                    //    else if (b <= 45)
+                    //        label = "N";
+                    //    else if (b <= 50)
+                    //        label = "G";
+                    //    else if (b <= 75)
+                    //        label = "O";
 
-                        label = label + '-' + b.ToString();
-                        result.Add(new BingoBall<byte>() { Label = label, Value = (byte)b });
-                    }
+                    //    label = label + '-' + b.ToString();
+                    //    result.Add(new BingoBall<byte>() { Label = label, Value = (byte)b });
+                    //}
                     break;
             }
                     
