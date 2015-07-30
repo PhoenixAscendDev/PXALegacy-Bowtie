@@ -32,25 +32,7 @@ namespace JB2.Bowtie.GameObjects
                         result.Add((BingoBall)i);
                     }
                     result.Shuffle();
-                    //result.Shuffle();
-                        //List<int> type = new List<int>().Shuffle();
-                    //foreach (var b in bingoBalls)
-                    //{
-                    //    string label = string.Empty;
-                    //    if (b <= 15)
-                    //        label = "B";
-                    //    else if (b <= 30)
-                    //        label = "I";
-                    //    else if (b <= 45)
-                    //        label = "N";
-                    //    else if (b <= 50)
-                    //        label = "G";
-                    //    else if (b <= 75)
-                    //        label = "O";
-
-                    //    label = label + '-' + b.ToString();
-                    //    result.Add(new BingoBall<byte>() { Label = label, Value = (byte)b });
-                    //}
+                    
                     break;
             }
                     
