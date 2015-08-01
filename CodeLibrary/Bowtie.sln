@@ -28,6 +28,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.Jbean", "JB2.Bow
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.GameObjects", "JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj", "{878DA1E1-F733-4555-BB1D-B1C9188D287B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Lib", "Data Lib", "{4549DACC-67E2-4526-BBE4-69739DF49CD5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{3B3BDE7A-CEBE-48EA-885A-0B766FEEBF0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,5 +102,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A1701AB0-0670-4A88-A4D4-304CE4898699} = {4549DACC-67E2-4526-BBE4-69739DF49CD5}
+		{226CE497-A55F-4B8B-8178-9C9B41AB34DC} = {4549DACC-67E2-4526-BBE4-69739DF49CD5}
 	EndGlobalSection
 EndGlobal

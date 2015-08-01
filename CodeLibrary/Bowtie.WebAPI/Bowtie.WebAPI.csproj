@@ -39,8 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common">
-      <HintPath>..\..\..\..\..\scratch\Bowtie\CodeLibrary\Bowtie.Lib\DllReference\JB2.Common.dll</HintPath>
+    <Reference Include="JB2.Common, Version=1.0.0.33969, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\JB2-Nuget\JB2.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="JB2.Common.Data">
+      <HintPath>..\..\..\JB2-Nuget\JB2.Common.Data.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -239,6 +243,10 @@
     <ProjectReference Include="..\JB2.BowTie.GameObject.Currency\JB2.Bowtie.Jbean.csproj">
       <Project>{387bae94-cbd5-45fa-8e9d-f16ad1229e1c}</Project>
       <Name>JB2.Bowtie.Jbean</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj">
+      <Project>{878da1e1-f733-4555-bb1d-b1c9188d287b}</Project>
+      <Name>JB2.Bowtie.GameObjects</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

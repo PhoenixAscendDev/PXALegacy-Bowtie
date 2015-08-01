@@ -72,7 +72,8 @@ namespace JB2.Bowtie
 
         public bool Save(Tobject entity)
         {
-            throw new NotImplementedException();
+           _repo.Insert(entity);
+           return true;
         }
     }
 }

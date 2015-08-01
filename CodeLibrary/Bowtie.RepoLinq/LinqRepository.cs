@@ -117,7 +117,7 @@ namespace JB2.Bowtie.Data.Linq
                     SavePlayerAchievement( (IPlayerAchievement)entity,null);
                     break;
                 case Enum.BowtieObjectType.bowtie_command:
-                    SaveGameCommand((IGameCommand)entity, null);
+                    SaveGameCommand((IGameCommand)entity, string.Empty);
                     break;
                 case Enum.BowtieObjectType.bowtie_leaderboard:
                     SaveLeaderboard((ILeaderboard)entity, null);

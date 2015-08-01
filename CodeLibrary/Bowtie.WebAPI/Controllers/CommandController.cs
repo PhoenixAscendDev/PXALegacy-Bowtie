@@ -6,6 +6,9 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
 
+
+using JB2.Bowtie.Service;
+using JB2.Bowtie;
 using Bowtie.WebAPI.Filters;
 
 
@@ -43,10 +46,32 @@ namespace Bowtie.WebAPI.Controllers
         }
 
         [Route("")]
+        [HttpPost]
         public IHttpActionResult Post(JB2.Bowtie.GameCommand cmd)
         {
             //cmd.CommandCode = "test";
-            return Ok(1);
+            return Ok(cmd.ToPacket());
+        }
+
+        [HttpPost]
+        public IHttpActionResult Add(JB2.Bowtie.GameCommand cmd)
+        {
+            try
+            {
+
+                GameCommandService service = this.GameCommandService;
+
+                service.Save(cmd);
+
+                return Ok(cmd);
+            }
+            catch(Exception ex)
+            {
+                return this.InternalServerError(ex);
+
+            }
+
+
         }
 
         public IEnumerable<JB2.Bowtie.GameCommand> GetAllCommands()

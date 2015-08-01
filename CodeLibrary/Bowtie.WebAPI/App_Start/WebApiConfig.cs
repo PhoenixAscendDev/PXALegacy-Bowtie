@@ -15,10 +15,18 @@ namespace JB2.Bowtie.WebAPI
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+               name: "BowtieApi",
+               routeTemplate: "api/v1/{controller}/{action}/{id}",
+               defaults: new { id = RouteParameter.Optional }
+           );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/v1/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+           
         }
     }
 }

@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JB2.Bowtie.GameObjects")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Bowtie Game Objects")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("JBsquared")]
 [assembly: AssemblyProduct("JB2.Bowtie.GameObjects")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]

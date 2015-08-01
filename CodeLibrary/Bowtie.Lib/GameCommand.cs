@@ -22,6 +22,11 @@ namespace JB2.Bowtie
 
         public GameCommand(string id) : base(Enum.BowtieObjectType.bowtie_command,id)
         {
+            _issuedPlayer = string.Empty;
+            _affectedPlayer = string.Empty;
+            _commandCode = "102122929229222";
+            _applicationID = string.Empty;
+            _gameID = string.Empty;
 
         }
         public string IssuedPlayerID

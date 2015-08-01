@@ -43,8 +43,8 @@ namespace Bowtie.ConsoleTest
 
             Console.WriteLine("Calling the back-end API");
 
-            string apiBaseAddress = JB2.Bowtie.Settings.APIInfo.URL;
-            //string apiBaseAddress = "http://localhost:52151/";
+            //string apiBaseAddress = JB2.Bowtie.Settings.APIInfo.URL;
+            string apiBaseAddress = "http://localhost:59536/";
 
             BowtieDelegatingHandler customDelegatingHandler = new BowtieDelegatingHandler();
 
@@ -52,7 +52,7 @@ namespace Bowtie.ConsoleTest
 
             var command = new GameCommand();
 
-            HttpResponseMessage response = await client.PostAsJsonAsync(apiBaseAddress + "api/v1/commands", command);
+            HttpResponseMessage response = await client.PostAsJsonAsync(apiBaseAddress + "api/v1/command/add", command);
 
             if (response.IsSuccessStatusCode)
             {

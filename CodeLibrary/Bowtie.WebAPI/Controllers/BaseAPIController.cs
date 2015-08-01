@@ -86,6 +86,14 @@ namespace JB2.Bowtie.WebAPI.Controllers
             }
         }
 
+        protected JB2.Bowtie.Service.GameCommandService GameCommandService
+        {
+            get
+            {
+                return this.GetGameCommandService();
+            }
+        }
+
         private JB2.Bowtie.Service.ApplicationService GetApplicationService()
         {
             return this.GetApplicationService(null);
@@ -95,6 +103,18 @@ namespace JB2.Bowtie.WebAPI.Controllers
         {
             return new JB2.Bowtie.Service.ApplicationService(_unitOfWork);
         }
+
+        private JB2.Bowtie.Service.GameCommandService GetGameCommandService()
+        {
+            return this.GetGameCommandService(null);
+        }
+
+        private JB2.Bowtie.Service.GameCommandService GetGameCommandService(int? testCount)
+        {
+            return new JB2.Bowtie.Service.GameCommandService(_unitOfWork);
+        }
+
+
 
 
 

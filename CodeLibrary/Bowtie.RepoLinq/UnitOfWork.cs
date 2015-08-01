@@ -81,6 +81,16 @@ namespace JB2.Bowtie.Data.Linq
                             case RepositoryType.Application:
                                 _repos.Add(repository, new JB2.Bowtie.Data.Linq.ApplicationRepository(_dataContext));
                                 break;
+                            case RepositoryType.Achievement:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Linq.AchievementRepository(_dataContext));
+                                break;
+                            case RepositoryType.GameCommand:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Linq.GameCommandRepository(_dataContext));
+                                break;
+                            case RepositoryType.Leaderboard:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Linq.LeaderboardRepository(_dataContext));
+                                break;
+                            
                         
                         }
                     }
