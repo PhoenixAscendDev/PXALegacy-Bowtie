@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.Lib", "Bowtie.Lib\Bowtie.Lib.csproj", "{488D241B-CBA6-4096-B76F-A1FB03EA5F76}"
 EndProject
@@ -27,10 +27,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.Jbean", "JB2.BowTie.GameObject.Currency\JB2.Bowtie.Jbean.csproj", "{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.GameObjects", "JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj", "{878DA1E1-F733-4555-BB1D-B1C9188D287B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Lib", "Data Lib", "{4549DACC-67E2-4526-BBE4-69739DF49CD5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{3B3BDE7A-CEBE-48EA-885A-0B766FEEBF0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -102,9 +98,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{A1701AB0-0670-4A88-A4D4-304CE4898699} = {4549DACC-67E2-4526-BBE4-69739DF49CD5}
-		{226CE497-A55F-4B8B-8178-9C9B41AB34DC} = {4549DACC-67E2-4526-BBE4-69739DF49CD5}
 	EndGlobalSection
 EndGlobal

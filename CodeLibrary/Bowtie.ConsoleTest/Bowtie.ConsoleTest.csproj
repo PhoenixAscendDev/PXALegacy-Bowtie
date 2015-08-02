@@ -43,10 +43,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="JB2.Common">
-      <HintPath>..\..\..\JB2-Nuget\JB2.Common.dll</HintPath>
+      <HintPath>..\packages\JB2.Common.0.1.0\lib\JB2.Common.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Common.Data">
       <HintPath>..\..\..\JB2-Nuget\JB2.Common.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="JB2.Common.Date">
+      <HintPath>..\packages\JB2.Common.0.1.0\lib\JB2.Common.Date.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -67,6 +70,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="bowtieApp_v1.json" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bowtie.Lib\Bowtie.Lib.csproj">

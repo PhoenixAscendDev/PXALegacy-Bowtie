@@ -39,9 +39,11 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common, Version=1.0.0.39211, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\JB2-Nuget\JB2.Common.dll</HintPath>
+    <Reference Include="JB2.Common">
+      <HintPath>..\packages\JB2.Common.0.1.0\lib\JB2.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="JB2.Common.Date">
+      <HintPath>..\packages\JB2.Common.0.1.0\lib\JB2.Common.Date.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -115,6 +117,9 @@
     <Compile Include="Settings.cs" />
     <Compile Include="StandardAchievement.cs" />
     <Compile Include="Static\Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

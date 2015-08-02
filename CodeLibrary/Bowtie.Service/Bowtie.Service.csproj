@@ -40,10 +40,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="JB2.Common">
-      <HintPath>..\..\..\JB2-Nuget\JB2.Common.dll</HintPath>
+      <HintPath>..\packages\JB2.Common.Data.0.1.0\lib\JB2.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="JB2.Common.Data">
+      <HintPath>..\packages\JB2.Common.Data.0.1.0\lib\JB2.Common.Data.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Common.Date">
-      <HintPath>..\..\..\JB2-Nuget\JB2.Common.Date.dll</HintPath>
+      <HintPath>..\packages\JB2.Common.Data.0.1.0\lib\JB2.Common.Date.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -70,6 +73,9 @@
       <Project>{387bae94-cbd5-45fa-8e9d-f16ad1229e1c}</Project>
       <Name>JB2.Bowtie.Jbean</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
