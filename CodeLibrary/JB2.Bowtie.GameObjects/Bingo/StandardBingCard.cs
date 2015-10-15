@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JB2.Bowtie.Enum;
+using JB2.Common;
 
 namespace JB2.Bowtie.GameObjects
 {
-    public class StandardBingoCard : JB2.API.BaseObject,IBingoCard
+    public class StandardBingoCard : BowtieObject, IBingoCard
     {
         private Enum.BingoType _type;
         private byte[,] _cells;
@@ -44,12 +46,12 @@ namespace JB2.Bowtie.GameObjects
                     break;
             }
             initGrid();
-            base.serializableProperties = new List<string>();
+            //base.serializableProperties = new List<string>();
 
-            foreach (System.Reflection.PropertyInfo p in this.GetType().GetProperties())
-            {
-                base.serializableProperties.Add(p.Name);
-            }
+            //foreach (System.Reflection.PropertyInfo p in this.GetType().GetProperties())
+            //{
+            //    base.serializableProperties.Add(p.Name);
+            //}
         }
 
         public Enum.BingoType BingoType
@@ -171,9 +173,48 @@ namespace JB2.Bowtie.GameObjects
             }
         }
 
+        public string UniqueToken
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public BowtieObjectType Kind
+        {
+            get
+            {
+                return BowtieObjectType.bowtie_gameobject;
+            }
+        }
+
+        public ObjectTag[] Tags
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public System.Collections.BitArray GetMarks()
         {
             return this.ToBitArray();
+        }
+
+        public bool AddTag(ObjectTag tag)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveTag(ObjectTag tag)
+        {
+            throw new NotImplementedException();
         }
     }
 }

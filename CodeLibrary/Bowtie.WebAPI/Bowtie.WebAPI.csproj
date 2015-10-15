@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,9 +40,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common, Version=1.0.0.33969, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="JB2.Common, Version=0.1.6.24865, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\JB2-Nuget\JB2.Common.dll</HintPath>
+      <HintPath>..\..\..\API-JB2Common\CSharp\JB2Common\bin\Release\JB2.Common.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Common.Data">
       <HintPath>..\..\..\JB2-Nuget\JB2.Common.Data.dll</HintPath>

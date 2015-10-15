@@ -11,7 +11,7 @@ namespace JB2.Bowtie.GameObjects
 
     }
 
-    public interface IBingoCard<T> : JB2.Common.IIDNamePair<string,string>, JB2.API.IBaseObject
+    public interface IBingoCard<T> : JB2.Bowtie.IGameObject
     {
         Enum.BingoType BingoType { get;}
         T[,] Cells { get; set; }

@@ -39,8 +39,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common">
-      <HintPath>..\packages\JB2.Common.0.1.0\lib\JB2.Common.dll</HintPath>
+    <Reference Include="JB2.Common, Version=0.1.0.11302, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\API-JB2Common\CSharp\JB2Common\bin\Release\JB2.Common.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Common.Date">
       <HintPath>..\packages\JB2.Common.0.1.0\lib\JB2.Common.Date.dll</HintPath>
@@ -84,12 +85,15 @@
     <Compile Include="Enum\APIMode.cs" />
     <Compile Include="Enum\BowtieObjectType.cs" />
     <Compile Include="ClientAPI.cs" />
+    <Compile Include="Enum\GameObjectType.cs" />
     <Compile Include="Enum\LeaderboardScoreType.cs" />
     <Compile Include="Enum\LeaderboardType.cs" />
     <Compile Include="Enum\ScoreOrderType.cs" />
     <Compile Include="EventAchievement.cs" />
     <Compile Include="Exceptions\ApplicationNotInitialized.cs" />
     <Compile Include="GameCommand.cs" />
+    <Compile Include="Interfaces\IGameObject.cs" />
+    <Compile Include="Interfaces\IGameObjectRepository.cs" />
     <Compile Include="Interfaces\ILeaderboard.cs" />
     <Compile Include="Interfaces\IAchievement.cs" />
     <Compile Include="Interfaces\IAchievementRepository.cs" />
@@ -117,9 +121,6 @@
     <Compile Include="Settings.cs" />
     <Compile Include="StandardAchievement.cs" />
     <Compile Include="Static\Utility.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
