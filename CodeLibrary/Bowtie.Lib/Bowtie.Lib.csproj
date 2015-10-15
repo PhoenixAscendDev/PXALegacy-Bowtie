@@ -92,6 +92,9 @@
     <Compile Include="EventAchievement.cs" />
     <Compile Include="Exceptions\ApplicationNotInitialized.cs" />
     <Compile Include="GameCommand.cs" />
+    <Compile Include="GameObjects\BingoCardSize.cs" />
+    <Compile Include="GameObjects\BingoType.cs" />
+    <Compile Include="GameObjects\IBingoCard.cs" />
     <Compile Include="Interfaces\IGameObject.cs" />
     <Compile Include="Interfaces\IGameObjectRepository.cs" />
     <Compile Include="Interfaces\ILeaderboard.cs" />

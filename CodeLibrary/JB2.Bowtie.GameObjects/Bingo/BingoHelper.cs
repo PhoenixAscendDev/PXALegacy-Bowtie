@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using JB2.Common;
+
 using JB2.Common.Extensions;
 
 namespace JB2.Bowtie.GameObjects
@@ -63,6 +64,17 @@ namespace JB2.Bowtie.GameObjects
             return result;
 
         }
+
+        public static JB2Image GetBingoCardImage(IBingoCard cardData)
+        {
+            return new JB2Image();
+        }
+
+        public static JB2Image GetBingoCardImage(string cardID, string cardBGCode )
+        {
+            return new JB2Image();
+        }
+
 
     }
 }

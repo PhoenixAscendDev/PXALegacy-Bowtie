@@ -10,7 +10,7 @@ namespace JB2.Bowtie.GameObjects
 {
     public class StandardBingoCard : BowtieObject, IBingoCard
     {
-        private Enum.BingoType _type;
+        private BingoType _type;
         private byte[,] _cells;
         private byte[,] _marks;
         private string _id;
