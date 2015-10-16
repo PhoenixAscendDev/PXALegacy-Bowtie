@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using JB2.Bowtie;
+using JB2.Bowtie.GameObjects;
 
 namespace Bowtie.ConsoleTest
 {
@@ -33,16 +34,23 @@ namespace Bowtie.ConsoleTest
 
             JB2.Bowtie.Manager.Initialize(settingsFilePath);
 
-            char[,] ar2 = { { '1', '2', '3' }, { 'a', 'b', 'c' } };
+            IBingoCard card = BingoHelper.GenerateNewBingoCard(JB2.Bowtie.Enum.BingoType.Standard);
 
-            string str2 = JB2.Common.Utility.ObjectToString(ar2);
+            Console.WriteLine(BingoHelper.CalculateChecksum(card.Cells));
+            Console.ReadLine();
+            string str2 = JB2.Common.Utility.ObjectToString(card.Cells);
             Console.WriteLine(str2);
             Console.ReadLine();
+            //char[,] ar2 = { { '1', '2', '3' }, { 'a', 'b', 'c' } };
 
-            char[,] ar3 = JB2.Common.Utility.ObjectFromString(str2) as char[,];
+            //string str2 = JB2.Common.Utility.ObjectToString(ar2);
+            //Console.WriteLine(str2);
+            //Console.ReadLine();
 
-            Console.WriteLine(ar3);
-            Console.ReadLine();
+            //char[,] ar3 = JB2.Common.Utility.ObjectFromString(str2) as char[,];
+
+            //Console.WriteLine(ar3);
+            //Console.ReadLine();
             //RunAsync().Wait();
 
         }

@@ -60,6 +60,7 @@ namespace JB2.Bowtie.Data.Azure
             cardEntry.CardID = card.ID;
             cardEntry.BingoType = card.BingoType.ToString();
             cardEntry.Spaces = JB2.Common.Utility.ObjectToString(card.Cells);
+            cardEntry.CheckSum = BingoHelper.CalculateChecksum(card.Cells);
 
             _table.Insert<BingoCardEntry>(cardEntry);
 
