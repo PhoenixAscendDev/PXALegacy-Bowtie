@@ -38,7 +38,7 @@ namespace JB2.Bowtie.Data.Azure
         #region Bingo 
         public ServiceResult InsertBingoCard(IBingoCard card)
         {
-            string partitionKeyFormat = "bingcard:{0}";
+            string partitionKeyFormat = "bingocard:{0}";
             BingoCardEntry cardEntry = new BingoCardEntry();
 
             cardEntry.RowKey = card.ID;
@@ -78,7 +78,7 @@ namespace JB2.Bowtie.Data.Azure
             IBingoCard result;
             string typeCode = id.Split('-')[0];
             BingoCardEntry cardEntry = _table.GetEntity<BingoCardEntry>("bingocard:" + typeCode, id);
-
+          
             switch(typeCode)
             {
 
@@ -90,10 +90,7 @@ namespace JB2.Bowtie.Data.Azure
             return result;          
         }
 
-
         #endregion 
-
-
 
         public void Delete(IGameObject entity)
         {
@@ -104,8 +101,6 @@ namespace JB2.Bowtie.Data.Azure
         {
             throw new NotImplementedException();
         }
-
-
 
         public IGameObject GetById(string id)
         {

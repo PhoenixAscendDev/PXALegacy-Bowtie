@@ -39,7 +39,14 @@ namespace Bowtie.ConsoleTest
             Console.WriteLine(BingoHelper.CalculateChecksum(card.Cells));
             Console.ReadLine();
             string str2 = JB2.Common.Utility.ObjectToString(card.Cells);
-            Console.WriteLine(str2);
+
+            JB2.Bowtie.Data.Azure.GameObjectRepository repo = new JB2.Bowtie.Data.Azure.GameObjectRepository();
+
+            JB2.Bowtie.Service.GameObjectService service = new JB2.Bowtie.Service.GameObjectService(null,repo);
+
+            IBingoCard carddata = service.RetrieveBingoCardByID("STA-4925-282-2082-7-70-TMuk");
+
+            //Console.WriteLine(str2);
             Console.ReadLine();
             //char[,] ar2 = { { '1', '2', '3' }, { 'a', 'b', 'c' } };
 

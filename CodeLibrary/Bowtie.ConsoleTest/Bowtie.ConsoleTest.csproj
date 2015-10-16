@@ -72,9 +72,17 @@
     <None Include="bowtieApp_v1.json" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bowtie.AzureRepo\Bowtie.RepoAzure.csproj">
+      <Project>{6d362c4a-06d4-40c6-b314-aa559791e1f4}</Project>
+      <Name>Bowtie.RepoAzure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bowtie.Lib\Bowtie.Lib.csproj">
       <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
       <Name>Bowtie.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bowtie.Service\Bowtie.Service.csproj">
+      <Project>{e9f8abc3-957e-4ada-b7db-a61e16beaa1e}</Project>
+      <Name>Bowtie.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj">
       <Project>{878da1e1-f733-4555-bb1d-b1c9188d287b}</Project>
