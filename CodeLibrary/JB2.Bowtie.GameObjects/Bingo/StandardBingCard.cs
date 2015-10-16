@@ -72,6 +72,7 @@ namespace JB2.Bowtie.GameObjects
             set
             {
                 _cells = value;
+                _id = BingoHelper.GenerateID(this.BingoType, value);
             }
         }
 

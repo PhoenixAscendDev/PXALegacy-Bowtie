@@ -50,8 +50,10 @@ namespace JB2.Bowtie.GameObjects
 
             switch(result.CardSize)
             {
-                case Enum.BingoCardSize.s5:                   
-                    for(int i=0;i < 5;i++)
+                
+                case Enum.BingoCardSize.s5:
+                    byte[,] spaces = new byte[5, 5];
+                    for (int i=0;i < 5;i++)
                     {
                         IEnumerable<int> values = JB2.Common.Utility.RandomSubsetOfRange((15*i)+1, (15*i)+15, 5);
 
@@ -61,10 +63,11 @@ namespace JB2.Bowtie.GameObjects
                         int cindex = 0;
                         foreach (int v in list)
                         {
-                            result.Cells[i,cindex] = (byte)v;
+                            spaces[i,cindex] = (byte)v;
                             cindex++;
                         }
                     }
+                    result.Cells = spaces;
                     break;
             }
 
@@ -75,6 +78,33 @@ namespace JB2.Bowtie.GameObjects
         public static JB2Image GenerateBingoCardImage(IBingoCard cardData, JB2Image backgroundImage)
         {
             return GenerateBingoCardImage(cardData, "bingoforever", backgroundImage);
+        }
+
+
+        public static string GenerateID(IBingoCard card) 
+        {
+            return GenerateID(card.BingoType, card.Cells);
+
+        }
+        public static string GenerateID(Enum.BingoType type, byte[,] spaces)
+        {
+            string checksum = CalculateChecksum(spaces);
+            string id = string.Empty;
+
+            switch(type)
+            {
+                case Enum.BingoType.Standard:
+                    id = "STA-";
+                    break;
+                default:
+                    id = "BNG-";
+                    break;
+            }
+
+            id = id + checksum.Replace(">*<", "-");
+            id = id + "-" + JB2.Bowtie.Utility.GenerateNewObjectID().Substring(0, 4);
+
+            return id;
         }
 
 
