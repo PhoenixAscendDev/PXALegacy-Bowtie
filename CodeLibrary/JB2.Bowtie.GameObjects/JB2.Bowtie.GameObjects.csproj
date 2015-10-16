@@ -39,11 +39,15 @@
     <Reference Include="JB2.Common.Data.AzureStorage">
       <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Data.AzureStorage\bin\Release\JB2.Common.Data.AzureStorage.dll</HintPath>
     </Reference>
+    <Reference Include="JB2.Common.Font">
+      <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Font\bin\Release\JB2.Common.Font.dll</HintPath>
+    </Reference>
     <Reference Include="JB2.Common.Image">
       <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Image\bin\Release\JB2.Common.Image.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />

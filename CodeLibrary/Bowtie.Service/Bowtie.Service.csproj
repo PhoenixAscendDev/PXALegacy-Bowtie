@@ -49,6 +49,9 @@
     <Reference Include="JB2.Common.Date">
       <HintPath>..\packages\JB2.Common.Data.0.1.0\lib\JB2.Common.Date.dll</HintPath>
     </Reference>
+    <Reference Include="JB2.Common.Image">
+      <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Image\bin\Release\JB2.Common.Image.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -61,11 +64,16 @@
     <Compile Include="AchievementService.cs" />
     <Compile Include="ApplicationService.cs" />
     <Compile Include="GameCommandService.cs" />
+    <Compile Include="GameObjectsService.cs" />
     <Compile Include="GenericService.cs" />
     <Compile Include="LeaderboardService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bowtie.AzureRepo\Bowtie.RepoAzure.csproj">
+      <Project>{6d362c4a-06d4-40c6-b314-aa559791e1f4}</Project>
+      <Name>Bowtie.RepoAzure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bowtie.Lib\Bowtie.Lib.csproj">
       <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
       <Name>Bowtie.Lib</Name>
@@ -73,6 +81,10 @@
     <ProjectReference Include="..\JB2.BowTie.GameObject.Currency\JB2.Bowtie.Jbean.csproj">
       <Project>{387bae94-cbd5-45fa-8e9d-f16ad1229e1c}</Project>
       <Name>JB2.Bowtie.Jbean</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj">
+      <Project>{878da1e1-f733-4555-bb1d-b1c9188d287b}</Project>
+      <Name>JB2.Bowtie.GameObjects</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
