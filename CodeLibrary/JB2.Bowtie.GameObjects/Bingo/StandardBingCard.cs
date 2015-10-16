@@ -202,6 +202,14 @@ namespace JB2.Bowtie.GameObjects
             }
         }
 
+        public GameObjectType GameObjectType
+        {
+            get
+            {
+                return GameObjectType.BingoCard;
+            }
+        }
+
         public System.Collections.BitArray GetMarks()
         {
             return this.ToBitArray();

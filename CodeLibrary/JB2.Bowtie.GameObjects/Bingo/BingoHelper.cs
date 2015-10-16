@@ -75,6 +75,32 @@ namespace JB2.Bowtie.GameObjects
             return new JB2Image();
         }
 
+        public static string CalculateChecksum(byte[,] values)
+        {
+            string checksumFormat = "{0}>*<{1}>*<{2}>*<{3}>*<{4}";
+            int numberOfRows = values.GetLength(0);
+            int numberOfColumns = values.GetLength(1);
+
+            long totalSum = 0;
+            long topSum = 0;
+            long bottomSum = 0;
+
+            for(int i = 0; i < numberOfRows; i++)
+            {
+                for(int j = 0; j < numberOfColumns; j++)
+                {
+                    totalSum = totalSum + values[i, j];
+                    if (i == 0)
+                        topSum = topSum + values[i, j];
+                    if (i == numberOfRows)
+                        bottomSum  = bottomSum + values[i, j];
+                }
+            }
+
+            return string.Format(checksumFormat, (totalSum * 5).ToString(), (topSum * 6).ToString(), (bottomSum * 6).ToString(), values[0, 0], values[numberOfRows - 1, numberOfColumns - 1]);
+
+        }
+
 
     }
 }

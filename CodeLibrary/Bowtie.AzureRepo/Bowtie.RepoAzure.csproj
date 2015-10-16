@@ -85,6 +85,10 @@
       <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
       <Name>Bowtie.Lib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj">
+      <Project>{878da1e1-f733-4555-bb1d-b1c9188d287b}</Project>
+      <Name>JB2.Bowtie.GameObjects</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

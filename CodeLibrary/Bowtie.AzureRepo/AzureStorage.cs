@@ -36,6 +36,14 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public static AzureTableRepository GameObjectsTable
+        {
+            get
+            {
+                return new AzureTableRepository(_BowtieAccount, "gameobjects");
+            }
+        }
+
 
 
 

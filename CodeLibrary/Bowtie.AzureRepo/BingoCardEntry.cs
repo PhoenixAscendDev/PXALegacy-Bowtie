@@ -14,19 +14,24 @@ namespace JB2.Bowtie.Data.Azure
             this.RowKey = rowKey;
         }
 
+        public BingoCardEntry()
+        {
 
-        string CheckSum { get; set; }
-        string CardID { get; set; }
+        }
 
-        string Spaces { get; set; }
 
-        string BingoType { get; set; }
+        public string CheckSum { get; set; }
+        public string CardID { get; set; }
 
-        int Rows { get; set; }
-        int Columns { get; set; }
+        public string Spaces { get; set; }
 
-        string Size { get; set; }
+        public string BingoType { get; set; }
 
-        string DateCreated { get; set; }
+        public int Rows { get; set; }
+        public int Columns { get; set; }
+
+        public string Size { get; set; }
+
+        public string DateCreated { get; set; }
     }
 }

@@ -33,39 +33,48 @@ namespace Bowtie.ConsoleTest
 
             JB2.Bowtie.Manager.Initialize(settingsFilePath);
 
+            char[,] ar2 = { { '1', '2', '3' }, { 'a', 'b', 'c' } };
 
-            RunAsync().Wait();
-            
-        }
-
-        static async Task RunAsync()
-        {
-
-            Console.WriteLine("Calling the back-end API");
-
-            //string apiBaseAddress = JB2.Bowtie.Settings.APIInfo.URL;
-            string apiBaseAddress = "http://localhost:59536/";
-
-            BowtieDelegatingHandler customDelegatingHandler = new BowtieDelegatingHandler();
-
-            HttpClient client = HttpClientFactory.Create(customDelegatingHandler);
-
-            var command = new GameCommand();
-
-            HttpResponseMessage response = await client.PostAsJsonAsync(apiBaseAddress + "api/v1/command/add", command);
-
-            if (response.IsSuccessStatusCode)
-            {
-                string responseString = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(responseString);
-                Console.WriteLine("HTTP Status: {0}, Reason {1}. Press ENTER to exit", response.StatusCode, response.ReasonPhrase);
-            }
-            else
-            {
-                Console.WriteLine("Failed to call the API. HTTP Status: {0}, Reason {1}", response.StatusCode, response.ReasonPhrase);
-            }
-
+            string str2 = JB2.Common.Utility.ObjectToString(ar2);
+            Console.WriteLine(str2);
             Console.ReadLine();
+
+            char[,] ar3 = JB2.Common.Utility.ObjectFromString(str2) as char[,];
+
+            Console.WriteLine(ar3);
+            Console.ReadLine();
+            //RunAsync().Wait();
+
         }
+
+        //static async Task RunAsync()
+        //{
+
+        //    Console.WriteLine("Calling the back-end API");
+
+        //    //string apiBaseAddress = JB2.Bowtie.Settings.APIInfo.URL;
+        //    string apiBaseAddress = "http://localhost:59536/";
+
+        //    BowtieDelegatingHandler customDelegatingHandler = new BowtieDelegatingHandler();
+
+        //    HttpClient client = HttpClientFactory.Create(customDelegatingHandler);
+
+        //    var command = new GameCommand();
+
+        //    HttpResponseMessage response = await client.PostAsJsonAsync(apiBaseAddress + "api/v1/command/add", command);
+
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        string responseString = await response.Content.ReadAsStringAsync();
+        //        Console.WriteLine(responseString);
+        //        Console.WriteLine("HTTP Status: {0}, Reason {1}. Press ENTER to exit", response.StatusCode, response.ReasonPhrase);
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Failed to call the API. HTTP Status: {0}, Reason {1}", response.StatusCode, response.ReasonPhrase);
+        //    }
+
+        //    Console.ReadLine();
+        //}
     }
 }

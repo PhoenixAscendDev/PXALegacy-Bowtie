@@ -85,18 +85,12 @@
     <Compile Include="Enum\APIMode.cs" />
     <Compile Include="Enum\BowtieObjectType.cs" />
     <Compile Include="ClientAPI.cs" />
-    <Compile Include="Enum\GameObjectType.cs" />
     <Compile Include="Enum\LeaderboardScoreType.cs" />
     <Compile Include="Enum\LeaderboardType.cs" />
     <Compile Include="Enum\ScoreOrderType.cs" />
     <Compile Include="EventAchievement.cs" />
     <Compile Include="Exceptions\ApplicationNotInitialized.cs" />
     <Compile Include="GameCommand.cs" />
-    <Compile Include="GameObjects\BingoCardSize.cs" />
-    <Compile Include="GameObjects\BingoType.cs" />
-    <Compile Include="GameObjects\IBingoCard.cs" />
-    <Compile Include="Interfaces\IGameObject.cs" />
-    <Compile Include="Interfaces\IGameObjectRepository.cs" />
     <Compile Include="Interfaces\ILeaderboard.cs" />
     <Compile Include="Interfaces\IAchievement.cs" />
     <Compile Include="Interfaces\IAchievementRepository.cs" />
@@ -125,6 +119,7 @@
     <Compile Include="StandardAchievement.cs" />
     <Compile Include="Static\Utility.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
