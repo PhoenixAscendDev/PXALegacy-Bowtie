@@ -45,7 +45,7 @@ namespace JB2.Bowtie.Data.Azure
             switch(card.BingoType)
             {
                 case BingoType.Standard:
-                    cardEntry.PartitionKey = string.Format(partitionKeyFormat, "STA");
+                    cardEntry.PartitionKey = string.Format(partitionKeyFormat, "STA");                   
                     break;
             }
             switch (card.CardSize)
@@ -56,11 +56,15 @@ namespace JB2.Bowtie.Data.Azure
                     cardEntry.Columns = 5;
                     break;
             }
+
+            cardEntry.RowKey = card.ID;
+
             cardEntry.DateCreated = DateTime.Today.ToString();
             cardEntry.CardID = card.ID;
             cardEntry.BingoType = card.BingoType.ToString();
             cardEntry.Spaces = JB2.Common.Utility.ObjectToString(card.Cells);
             cardEntry.CheckSum = BingoHelper.CalculateChecksum(card.Cells);
+
 
             _table.Insert<BingoCardEntry>(cardEntry);
 

@@ -22,6 +22,27 @@ namespace JB2.Bowtie.Service
 
         #region Bingo Objects
 
+        public GameObjects.IBingoCard RetrieveRandomBingoCard()
+        {
+            GameObjects.IBingoCard card = GameObjects.BingoHelper.GenerateNewBingoCard();
+
+            //this needs to be improved
+            _repo.InsertBingoCard(card);
+
+            return card;
+        }
+
+        public GameObjects.IBingoCard RetrieveBingoCardByID(string id)
+        {
+            return _repo.GetBingoCardByID(id);
+        }
+
+        public Common.ServiceResult SaveBingoCard(GameObjects.IBingoCard card)
+        {
+            return _repo.InsertBingoCard(card);
+
+        }
+
         public JB2.Common.JB2Image RetrieveBingoCardImageByID(string id, string backgroundCode)
         {
 

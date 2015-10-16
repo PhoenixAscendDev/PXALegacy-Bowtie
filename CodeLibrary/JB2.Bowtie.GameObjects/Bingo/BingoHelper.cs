@@ -74,12 +74,31 @@ namespace JB2.Bowtie.GameObjects
 
         public static JB2Image GenerateBingoCardImage(IBingoCard cardData, JB2Image backgroundImage)
         {
+            return GenerateBingoCardImage(cardData, "bingoforever", backgroundImage);
+        }
 
-            int[] locationX = new int[] { 25, 100, 168, 243, 315 };
-            int[] locationY = new int[] { 90, 160, 228, 300, 369 };
+
+        public static JB2Image GenerateBingoCardImage(IBingoCard cardData, string formatCode, JB2Image backgroundImage)
+        {
+
+            int[] locationX = null;
+            int[] locationY = null;
+            string fontCode = string.Empty;
+            int fontSize = 18;
+
+            switch (formatCode.ToLower())
+            {
+                case "bingoforever":
+                    locationX = new int[] { 25, 100, 168, 243, 315 };
+                    locationY = new int[] { 90, 160, 228, 300, 369 };
+                    fontCode = "ffft1";
+                    fontSize = 40;
+                    break;
+            }
+
             using (Graphics graphics = Graphics.FromImage(backgroundImage))
             {
-                using (Font arialFont = JB2.Common.FontHelper.GetFont("ffft1", 40))
+                using (Font arialFont = JB2.Common.FontHelper.GetFont(fontCode, fontSize))
                 {
 
                     for (int colIndex = 0; colIndex < 5; colIndex++)

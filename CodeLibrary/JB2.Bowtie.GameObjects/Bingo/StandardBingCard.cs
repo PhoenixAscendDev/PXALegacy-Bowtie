@@ -26,7 +26,7 @@ namespace JB2.Bowtie.GameObjects
 
         }
 
-        public StandardBingoCard(Enum.BingoType type): this(type,true,JB2.Bowtie.Utility.GenerateNewObjectID())
+        public StandardBingoCard(Enum.BingoType type): this(type,true,"STA-" + JB2.Bowtie.Utility.GenerateNewObjectID())
         {
 
         }
