@@ -51,8 +51,12 @@ namespace JB2.Bowtie.GameObjects
                     for(int i=0;i < 5;i++)
                     {
                         IEnumerable<int> values = JB2.Common.Utility.RandomSubsetOfRange((15*i)+1, (15*i)+15, 5);
+
+                        IList<int> list = values.ToList();
+
+                        list.Shuffle();
                         int cindex = 0;
-                        foreach (int v in values)
+                        foreach (int v in list)
                         {
                             result.Cells[i,cindex] = (byte)v;
                             cindex++;
@@ -92,7 +96,7 @@ namespace JB2.Bowtie.GameObjects
                     totalSum = totalSum + values[i, j];
                     if (i == 0)
                         topSum = topSum + values[i, j];
-                    if (i == numberOfRows)
+                    if (i == numberOfRows -1 )
                         bottomSum  = bottomSum + values[i, j];
                 }
             }
