@@ -17,6 +17,8 @@ namespace JB2.Bowtie.Data.Azure
         private JB2.Common.Data.AzureTableRepository _table;
         private JB2.Common.Data.AzureBlobRepository _blob;
 
+        private readonly string BINGOCARDIMAGE_FILENAME = "bingocard/{0}/{1}.png";
+
 
         #region Constructors
 
@@ -42,10 +44,10 @@ namespace JB2.Bowtie.Data.Azure
             BingoCardEntry cardEntry = new BingoCardEntry();
 
             cardEntry.RowKey = card.ID;
-            switch(card.BingoType)
+            switch (card.BingoType)
             {
                 case BingoType.Standard:
-                    cardEntry.PartitionKey = string.Format(partitionKeyFormat, "STA");                   
+                    cardEntry.PartitionKey = string.Format(partitionKeyFormat, "STA");
                     break;
             }
             switch (card.CardSize)
@@ -74,25 +76,73 @@ namespace JB2.Bowtie.Data.Azure
 
         public IBingoCard GetBingoCardByID(string id)
         {
-
             IBingoCard result;
             string typeCode = id.Split('-')[0];
             BingoCardEntry cardEntry = _table.GetEntity<BingoCardEntry>("bingocard:" + typeCode, id);
-          
-            switch(typeCode)
+
+            switch (typeCode)
             {
 
-                default :
+                default:
                     result = new StandardBingoCard(Enum.BingoType.Standard, true, id);
                     break;
             }
             result.Cells = JB2.Common.Utility.ObjectFromString(cardEntry.Spaces) as byte[,];
-            return result;          
+            return result;
         }
 
-        #endregion 
+        public ServiceResult InsertBingoCardImage(string id, string styleCode, JB2Image image)
+        {
+            return _blob.Insert(image.FileContent, string.Format(BINGOCARDIMAGE_FILENAME, styleCode, id));
+        }
+
+        public ServiceResult InsertBingoCardImage(IBingoCard card, string styleCode)
+        {
+            // Get style base
+            string filename = "bingoCardStyle/" + styleCode + ".png";
+            byte[] imageBytes = _blob.GetByteArray(filename);
+
+            JB2Image imageToSave = BingoHelper.GenerateBingoCardImage(card, JB2Image.FromByteArray(imageBytes));
+
+            return _blob.Insert(imageToSave.FileContent, string.Format(BINGOCARDIMAGE_FILENAME, styleCode, card.ID));
+        }
+
+        public JB2Image GetBingoCardImage(IBingoCard card, string styleCode)
+        {
+            return GetBingoCardImage(card.ID, styleCode);
+        }
+        public JB2Image GetBingoCardImage(string id, string styleCode)
+        {
+            return JB2Image.FromByteArray(_blob.GetByteArray(string.Format(BINGOCARDIMAGE_FILENAME, styleCode, id)));
+        }
+
+        public JB2Image GetBingoCardStyle(string styleCode)
+        {
+            string filename = "bingoCardStyle/" + styleCode + ".png";
+            byte[] imageBytes = _blob.GetByteArray(filename);
+
+            return JB2Image.FromByteArray(imageBytes);
+        }
+
+        private bool DoesBingoCardImageExist(string id, string styleCode)
+        {
+            byte[] result = _blob.GetByteArray(string.Format(BINGOCARDIMAGE_FILENAME, styleCode, id));
+            return result != null;
+        }
+
+        #endregion
+
+        public void Insert(IGameObject entity)
+        {
+            throw new NotImplementedException();
+        }
 
         public void Delete(IGameObject entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IGameObject[] SearchFor()
         {
             throw new NotImplementedException();
         }
@@ -104,40 +154,11 @@ namespace JB2.Bowtie.Data.Azure
 
         public IGameObject GetById(string id)
         {
-            IGameObject result = null;
-            string[] stringSeparators = new string[] { ">*<" };
-            GameObjectType goType = (GameObjectType)System.Enum.Parse(typeof(GameObjectType), id.Split(new string[] { ">*<" }, StringSplitOptions.None)[0]);
-
-            switch(goType)
-            {
-                case GameObjectType.BingoCard:
-                    result = GetBingoCardByID(id.Split(new string[] { ">*<" }, StringSplitOptions.None)[1]);
-                    break;
-            }
-
-            return result;
-
-
-
-        }
-
-        public void Insert(IGameObject entity)
-        {
-            switch(entity.GameObjectType)
-            {
-                case GameObjectType.BingoCard:
-                    this.InsertBingoCard((IBingoCard)entity);
-                    break;
-            }
-        }
-
-
-        public IGameObject[] SearchFor()
-        {
             throw new NotImplementedException();
         }
-
-
-
     }
 }
+ 
+  
+
+

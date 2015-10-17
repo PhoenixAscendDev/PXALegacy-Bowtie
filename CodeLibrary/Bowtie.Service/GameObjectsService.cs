@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using JB2.Bowtie.GameObjects;
+
 namespace JB2.Bowtie.Service
 {
     public class GameObjectService : GenericService<IGameObject, IGameObjectRepository>
@@ -40,14 +42,53 @@ namespace JB2.Bowtie.Service
         public Common.ServiceResult SaveBingoCard(GameObjects.IBingoCard card)
         {
             return _repo.InsertBingoCard(card);
-
+            
         }
 
-        public JB2.Common.JB2Image RetrieveBingoCardImageByID(string id, string backgroundCode)
+        public JB2.Common.JB2Image RetrieveBingoCardImageByID(string id, string styleCode)
         {
+            Common.JB2Image result = null;
+            try
+            {
+                result = _repo.GetBingoCardImage(id, styleCode);
+            }
+            catch(Exception ex)
+            {
+                result = null;
+                
+            }           
+            if(result == null)
+            {
+                //ok the image was not found so lets try to generate one on the fly
+                IBingoCard card = _repo.GetBingoCardByID(id);
+                if (card == null)
+                    return null;
 
-            return new Common.JB2Image();
+                Common.JB2Image baseImage = _repo.GetBingoCardStyle(styleCode);
 
+                result = BingoHelper.GenerateBingoCardImage(card, baseImage);
+
+                //now that we have the image, let's save it
+                _repo.InsertBingoCardImage(card.ID, styleCode, result);
+            }
+
+            return result;  
+        }
+
+        public JB2.Common.ServiceResult IsValidBingoCard(string id)
+        {
+            IBingoCard card = null;
+            try
+            {
+                card = _repo.GetBingoCardByID(id);
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+
+            return card != null;
+            
         }
 
         #endregion Bingo Objects

@@ -14,5 +14,13 @@ namespace JB2.Bowtie
         IBingoCard GetBingoCardByID(string id);
 
         JB2.Common.ServiceResult InsertBingoCard(IBingoCard card);
+
+        JB2.Common.ServiceResult InsertBingoCardImage(IBingoCard card, string styleCode);
+
+        JB2.Common.ServiceResult InsertBingoCardImage(string id, string styleCode, JB2.Common.JB2Image image);
+        JB2.Common.JB2Image GetBingoCardImage(IBingoCard card, string styleCode);
+        JB2.Common.JB2Image GetBingoCardImage(string id, string styleCode);
+
+        JB2.Common.JB2Image GetBingoCardStyle(string styleCode);
     }
 }
