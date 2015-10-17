@@ -33,5 +33,7 @@ namespace JB2.Bowtie.Data.Azure
         public string Size { get; set; }
 
         public string DateCreated { get; set; }
+
+        public string UniqueToken { get; set; }
     }
 }

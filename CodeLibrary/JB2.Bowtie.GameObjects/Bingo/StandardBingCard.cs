@@ -17,6 +17,8 @@ namespace JB2.Bowtie.GameObjects
         private string _name;
         private Enum.BingoCardSize _gridsize;
         private bool _freeCenter;
+        private string _guid;
+        
 
         #region Public Properies
 
@@ -26,17 +28,17 @@ namespace JB2.Bowtie.GameObjects
 
         }
 
-        public StandardBingoCard(Enum.BingoType type): this(type,true,"STA-" + JB2.Bowtie.Utility.GenerateNewObjectID())
+        public StandardBingoCard(Enum.BingoType type): this(type,true,JB2.Bowtie.Utility.GenerateNewObjectID())
         {
 
         }
 
         
 
-        public StandardBingoCard(Enum.BingoType type,bool freeCenter,string id)
+        public StandardBingoCard(Enum.BingoType type,bool freeCenter,string guid)
         {
             _freeCenter = freeCenter;
-            _id = id;
+            _guid = guid;
             _type = type;
             _name = string.Empty;
             switch(_type)
@@ -72,7 +74,7 @@ namespace JB2.Bowtie.GameObjects
             set
             {
                 _cells = value;
-                _id = BingoHelper.GenerateID(this.BingoType, value);
+                _id = BingoHelper.GenerateID(this.BingoType, value,this._guid);
             }
         }
 
@@ -178,7 +180,12 @@ namespace JB2.Bowtie.GameObjects
         {
             get
             {
-                throw new NotImplementedException();
+                StringBuilder token = new StringBuilder(this._guid);
+
+                string tokenName = this._kind.GetAttributeOfType<Attributes.TokenName>().Name;
+                token.Append(">*<");
+                token.Append(tokenName);
+                return token.ToString();
             }
         }
 
@@ -190,18 +197,7 @@ namespace JB2.Bowtie.GameObjects
             }
         }
 
-        public ObjectTag[] Tags
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        
 
         public GameObjectType GameObjectType
         {
@@ -214,16 +210,6 @@ namespace JB2.Bowtie.GameObjects
         public System.Collections.BitArray GetMarks()
         {
             return this.ToBitArray();
-        }
-
-        public bool AddTag(ObjectTag tag)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool RemoveTag(ObjectTag tag)
-        {
-            throw new NotImplementedException();
         }
     }
 }

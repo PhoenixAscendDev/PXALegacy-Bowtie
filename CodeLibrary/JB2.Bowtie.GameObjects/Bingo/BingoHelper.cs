@@ -86,7 +86,12 @@ namespace JB2.Bowtie.GameObjects
             return GenerateID(card.BingoType, card.Cells);
 
         }
+
         public static string GenerateID(Enum.BingoType type, byte[,] spaces)
+        {
+            return GenerateID(type, spaces, JB2.Bowtie.Utility.GenerateNewObjectID());
+        }
+        public static string GenerateID(Enum.BingoType type, byte[,] spaces,string guid)
         {
             string checksum = CalculateChecksum(spaces);
             string id = string.Empty;
@@ -102,7 +107,7 @@ namespace JB2.Bowtie.GameObjects
             }
 
             id = id + checksum.Replace(">*<", "-");
-            id = id + "-" + JB2.Bowtie.Utility.GenerateNewObjectID().Substring(0, 4);
+            id = id + "-" + guid.Substring(0, 4);
 
             return id;
         }
@@ -152,6 +157,16 @@ namespace JB2.Bowtie.GameObjects
 
                         }
                     }
+                }
+
+                using (Font copyrightFont = new Font("Consolas",14))
+                {
+                    PointF idLocation = new PointF(25, 450);
+
+                    string words = "Card ID: " +cardData.ID;
+
+                    graphics.DrawString(words, copyrightFont, Brushes.Black, idLocation);
+
                 }
             }
             System.IO.MemoryStream imageStream = new System.IO.MemoryStream();

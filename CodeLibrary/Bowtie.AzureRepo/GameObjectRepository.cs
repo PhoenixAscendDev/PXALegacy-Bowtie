@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Text.RegularExpressions;
+
 using JB2.Bowtie.GameObjects;
 using JB2.Common;
 using JB2.Common.Data;
@@ -66,6 +68,7 @@ namespace JB2.Bowtie.Data.Azure
             cardEntry.BingoType = card.BingoType.ToString();
             cardEntry.Spaces = JB2.Common.Utility.ObjectToString(card.Cells);
             cardEntry.CheckSum = BingoHelper.CalculateChecksum(card.Cells);
+            cardEntry.UniqueToken = card.UniqueToken;
 
 
             _table.Insert<BingoCardEntry>(cardEntry);
@@ -79,12 +82,11 @@ namespace JB2.Bowtie.Data.Azure
             IBingoCard result;
             string typeCode = id.Split('-')[0];
             BingoCardEntry cardEntry = _table.GetEntity<BingoCardEntry>("bingocard:" + typeCode, id);
-
+            string guid = Regex.Split(cardEntry.UniqueToken, ">*<")[0]; //cardEntry.UniqueToken.Split(">*<")[0];
             switch (typeCode)
             {
-
                 default:
-                    result = new StandardBingoCard(Enum.BingoType.Standard, true, id);
+                    result = new StandardBingoCard(Enum.BingoType.Standard, true,guid);
                     break;
             }
             result.Cells = JB2.Common.Utility.ObjectFromString(cardEntry.Spaces) as byte[,];
