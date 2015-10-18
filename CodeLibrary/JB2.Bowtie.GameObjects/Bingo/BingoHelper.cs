@@ -165,7 +165,7 @@ namespace JB2.Bowtie.GameObjects
 
                     string words = "Card ID: " +cardData.ID;
 
-                    graphics.DrawString(words, copyrightFont, Brushes.Black, idLocation);
+                    graphics.DrawString(words, copyrightFont, Brushes.White, idLocation);
 
                 }
             }
