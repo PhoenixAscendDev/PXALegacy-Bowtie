@@ -36,6 +36,9 @@
     <Reference Include="JB2.Common">
       <HintPath>..\..\..\API-JB2Common\CSharp\JB2Common\bin\Release\JB2.Common.dll</HintPath>
     </Reference>
+    <Reference Include="JB2.Common.Color">
+      <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Color\bin\Release\JB2.Common.Color.dll</HintPath>
+    </Reference>
     <Reference Include="JB2.Common.Data.AzureStorage">
       <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Data.AzureStorage\bin\Release\JB2.Common.Data.AzureStorage.dll</HintPath>
     </Reference>
@@ -65,6 +68,9 @@
     <Compile Include="Bingo\IBingoGame.cs" />
     <Compile Include="Bingo\StandardBingCard.cs" />
     <Compile Include="Bingo\StandardBingoGame.cs" />
+    <Compile Include="Color\ColorSet.cs" />
+    <Compile Include="Color\IColor.cs" />
+    <Compile Include="Color\SolidColor.cs" />
     <Compile Include="GameObjectType.cs" />
     <Compile Include="IGameObject.cs" />
     <Compile Include="IGameObjectRepository.cs" />

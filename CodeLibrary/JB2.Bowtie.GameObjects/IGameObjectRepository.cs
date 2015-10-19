@@ -11,6 +11,7 @@ namespace JB2.Bowtie
     public interface IGameObjectRepository : JB2.Common.IRepository<JB2.Bowtie.IGameObject, string>
     {
 
+        #region Bingo Methods
         IBingoCard GetBingoCardByID(string id);
 
         JB2.Common.ServiceResult InsertBingoCard(IBingoCard card);
@@ -22,5 +23,16 @@ namespace JB2.Bowtie
         JB2.Common.JB2Image GetBingoCardImage(string id, string styleCode);
 
         JB2.Common.JB2Image GetBingoCardStyle(string styleCode);
+
+        #endregion Bingo Methods
+
+        #region Color Methods
+        JB2.Common.ServiceResult InsertColor(IColor c);
+        IColor GetColorByHex(string hexString);
+
+        IColor GetColorByID(string id);
+
+        #endregion Color Methods
+
     }
 }

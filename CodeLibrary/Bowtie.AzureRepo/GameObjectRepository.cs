@@ -132,7 +132,105 @@ namespace JB2.Bowtie.Data.Azure
             return result != null;
         }
 
-        #endregion
+        #endregion Bingo
+
+        #region Color
+
+        public ServiceResult InsertColor(IColor c)
+        {
+            ColorEntry cEntry = new ColorEntry("color", c.ID);
+
+            cEntry.HexString = c.Color.HexString;
+            cEntry.HexInt = c.Color.HexValue;
+
+            cEntry.HSV_Hue = c.Color.HSV.Hue;
+            cEntry.HSV_Saturation = c.Color.HSV.Saturation;
+            cEntry.HSV_Value = c.Color.HSV.Value;
+
+            cEntry.RGB_Red = c.Color.RGB.Red;
+            cEntry.RGB_Green = c.Color.RGB.Green;
+            cEntry.RGB_Blue = c.Color.RGB.Blue;
+
+            cEntry.UniqueToken = c.UniqueToken;
+            cEntry.Name = c.Name;
+            cEntry.ID = c.ID;
+            cEntry.ColorSetName = c.ColorSet.ToString();
+            cEntry.ColorType = "Solid";
+
+
+            //insert main partition
+            _table.Insert<ColorEntry>(cEntry);
+
+            //insert colorHex partition
+            cEntry.PartitionKey = "colorHex:" + c.Color.HexString[0];
+            cEntry.RowKey = "Hex:" + c.HexValue;
+            _table.Insert<ColorEntry>(cEntry);
+
+            //insert colorset partition
+            cEntry.PartitionKey = "colorSet:" + c.ColorSet.ToString();
+            cEntry.RowKey = "Hex:" + c.HexValue;
+            _table.Insert<ColorEntry>(cEntry);
+
+            cEntry.PartitionKey = "colorSet:" + c.ColorSet.ToString();
+            cEntry.RowKey = "ID:" + c.ID;
+            _table.Insert<ColorEntry>(cEntry);
+
+            //insert basic Bowtie object partition
+            cEntry.PartitionKey = "bowtieObject";
+            cEntry.RowKey = c.UniqueToken;
+            _table.Insert<ColorEntry>(cEntry);
+
+            return true;
+
+
+        }
+
+        public IColor GetColorByID(string id)
+        {
+            try
+            {
+                ColorEntry entry = _table.GetEntity<ColorEntry>("color", id);
+                return getColor(entry);
+
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public IColor GetColorByHex(string hexString)
+        {
+            try
+            {
+                ColorEntry entry = _table.GetEntity<ColorEntry>("colorHex:" + hexString[0], "Hex:" + hexString);
+                return getColor(entry);
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        private IColor getColor(ColorEntry entry)
+        {
+            IColor result = null;
+            switch (entry.ColorType.ToUpper())
+            {
+                case "SOLID":
+                    result = new SolidColor(entry.ID, entry.HexString, (ColorSetType)System.Enum.Parse(typeof(ColorSetType), entry.ColorSetName));
+                    break;
+            }
+
+            result.Name = entry.Name;
+
+            return result;
+
+        }
+
+
+        #endregion Color
 
         public void Insert(IGameObject entity)
         {
