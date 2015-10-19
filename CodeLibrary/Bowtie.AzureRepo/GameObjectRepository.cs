@@ -151,33 +151,33 @@ namespace JB2.Bowtie.Data.Azure
             cEntry.RGB_Green = c.Color.RGB.Green;
             cEntry.RGB_Blue = c.Color.RGB.Blue;
 
-            cEntry.UniqueToken = c.UniqueToken;
+            //cEntry.UniqueToken = c.UniqueToken;
             cEntry.Name = c.Name;
             cEntry.ID = c.ID;
             cEntry.ColorSetName = c.ColorSet.ToString();
             cEntry.ColorType = "Solid";
 
             //insert main partition
-            _table.Insert<ColorEntry>(cEntry);
+            _table.Insert<ColorEntry>(cEntry,true);
 
             //insert colorHex partition
             cEntry.PartitionKey = "colorHex:" + c.Color.HexString[0];
             cEntry.RowKey = "Hex:" + c.HexValue;
-            _table.Insert<ColorEntry>(cEntry);
+            _table.Insert<ColorEntry>(cEntry,true);
 
             //insert colorset partition
             cEntry.PartitionKey = "colorSet:" + c.ColorSet.ToString();
             cEntry.RowKey = "Hex:" + c.HexValue;
-            _table.Insert<ColorEntry>(cEntry);
+            _table.Insert<ColorEntry>(cEntry,true);
 
             cEntry.PartitionKey = "colorSet:" + c.ColorSet.ToString();
             cEntry.RowKey = "ID:" + c.ID;
-            _table.Insert<ColorEntry>(cEntry);
+            _table.Insert<ColorEntry>(cEntry,true);
 
             //insert basic Bowtie object partition
             cEntry.PartitionKey = "bowtieObject";
-            cEntry.RowKey = c.UniqueToken;
-            _table.Insert<ColorEntry>(cEntry);
+            //cEntry.RowKey = c.UniqueToken;
+            //_table.Insert<ColorEntry>(cEntry);
 
             return true;
 
@@ -226,6 +226,7 @@ namespace JB2.Bowtie.Data.Azure
             }
 
             result.Name = entry.Name;
+            result.ID = entry.ID;
 
             return result;
 

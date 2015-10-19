@@ -51,7 +51,7 @@ namespace JB2.Bowtie.GameObjects
 
         public SolidColor(JB2Color color) : base(BowtieObjectType.bowtie_gameobject, JB2.Bowtie.Utility.GenerateNewObjectID())
         {
-            _color = JB2Color.Empty;
+            _color = color;
             _settype = ColorSetType.None;
         }
 
