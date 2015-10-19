@@ -30,24 +30,32 @@ namespace Bowtie.ConsoleTest
 
             BowtieConfig settings = BowtieConfig.Load(settingsFilePath);
 
-
-
             JB2.Bowtie.Manager.Initialize(settingsFilePath);
 
-            IBingoCard card = BingoHelper.GenerateNewBingoCard(JB2.Bowtie.Enum.BingoType.Standard);
+            JB2.Bowtie.Service.GameObjectService service = new JB2.Bowtie.Service.GameObjectService(null, new JB2.Bowtie.Data.Azure.GameObjectRepository());
 
-            Console.WriteLine(BingoHelper.CalculateChecksum(card.Cells));
-            Console.ReadLine();
-            string str2 = JB2.Common.Utility.ObjectToString(card.Cells);
+            IColor color = service.RetrieveColorByHex("6B4106");
 
-            JB2.Bowtie.Data.Azure.GameObjectRepository repo = new JB2.Bowtie.Data.Azure.GameObjectRepository();
+            Console.WriteLine(color.HexValue);
+            
 
-            JB2.Bowtie.Service.GameObjectService service = new JB2.Bowtie.Service.GameObjectService(null,repo);
 
-            IBingoCard carddata = service.RetrieveBingoCardByID("STA-4925-282-2082-7-70-TMuk");
+
+
+            //IBingoCard card = BingoHelper.GenerateNewBingoCard(JB2.Bowtie.Enum.BingoType.Standard);
+
+            //Console.WriteLine(BingoHelper.CalculateChecksum(card.Cells));
+            //Console.ReadLine();
+            //string str2 = JB2.Common.Utility.ObjectToString(card.Cells);
+
+            //JB2.Bowtie.Data.Azure.GameObjectRepository repo = new JB2.Bowtie.Data.Azure.GameObjectRepository();
+
+            //JB2.Bowtie.Service.GameObjectService service = new JB2.Bowtie.Service.GameObjectService(null,repo);
+
+            //IBingoCard carddata = service.RetrieveBingoCardByID("STA-4925-282-2082-7-70-TMuk");
 
             //Console.WriteLine(str2);
-            Console.ReadLine();
+
             //char[,] ar2 = { { '1', '2', '3' }, { 'a', 'b', 'c' } };
 
             //string str2 = JB2.Common.Utility.ObjectToString(ar2);
@@ -59,7 +67,7 @@ namespace Bowtie.ConsoleTest
             //Console.WriteLine(ar3);
             //Console.ReadLine();
             //RunAsync().Wait();
-
+            Console.ReadLine();
         }
 
         //static async Task RunAsync()

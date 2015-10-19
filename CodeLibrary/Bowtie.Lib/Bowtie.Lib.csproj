@@ -44,7 +44,7 @@
       <HintPath>..\..\..\API-JB2Common\CSharp\JB2Common\bin\Release\JB2.Common.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Common.Date">
-      <HintPath>..\packages\JB2.Common.0.1.0\lib\JB2.Common.Date.dll</HintPath>
+      <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Date\bin\Release\JB2.Common.Date.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -92,5 +92,45 @@ namespace JB2.Bowtie.Service
         }
 
         #endregion Bingo Objects
+
+        #region Color Objects
+
+        public IColor RetrieveRandomColor()
+        {
+            IColor result = new SolidColor(JB2.Common.JB2Color.GetRandom());
+
+            _repo.InsertColor(result);
+
+            return result;
+        }
+
+        public IColor RetrieveColorByHex(string hex)
+        {
+            IColor result;
+
+            try
+            {
+                result = _repo.GetColorByHex(hex);
+            }
+            catch(Exception ex)
+            {
+                result = null;
+            }
+
+            if(result == null)
+            {
+                result = new SolidColor(Common.JB2Color.FromHex(hex));
+                _repo.InsertColor(result);
+            }
+
+            return result;
+        }
+
+        public IColor RetrieveColorByID(string id)
+        {
+            return _repo.GetColorByID(id);
+        }
+
+        #endregion Color Objects
     }
 }

@@ -45,6 +45,10 @@
     <Reference Include="JB2.Common">
       <HintPath>..\..\..\API-JB2Common\CSharp\JB2Common\bin\Release\JB2.Common.dll</HintPath>
     </Reference>
+    <Reference Include="JB2.Common.Color, Version=0.1.6.35586, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Color\bin\Release\JB2.Common.Color.dll</HintPath>
+    </Reference>
     <Reference Include="JB2.Common.Data">
       <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Data\bin\Release\JB2.Common.Data.dll</HintPath>
     </Reference>

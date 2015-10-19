@@ -157,7 +157,6 @@ namespace JB2.Bowtie.Data.Azure
             cEntry.ColorSetName = c.ColorSet.ToString();
             cEntry.ColorType = "Solid";
 
-
             //insert main partition
             _table.Insert<ColorEntry>(cEntry);
 
@@ -204,7 +203,10 @@ namespace JB2.Bowtie.Data.Azure
             try
             {
                 ColorEntry entry = _table.GetEntity<ColorEntry>("colorHex:" + hexString[0], "Hex:" + hexString);
-                return getColor(entry);
+                if (entry != null)
+                    return getColor(entry);
+                else
+                    return null;
 
             }
             catch (Exception ex)

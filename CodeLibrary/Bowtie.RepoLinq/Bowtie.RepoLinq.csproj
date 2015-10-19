@@ -44,10 +44,10 @@
       <HintPath>..\..\..\API-JB2Common\CSharp\JB2Common\bin\Release\JB2.Common.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Common.Data">
-      <HintPath>..\packages\JB2.Common.Data.0.1.0\lib\JB2.Common.Data.dll</HintPath>
+      <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Data\bin\Release\JB2.Common.Data.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Common.Date">
-      <HintPath>..\packages\JB2.Common.Data.0.1.0\lib\JB2.Common.Date.dll</HintPath>
+      <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Date\bin\Release\JB2.Common.Date.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -88,7 +88,6 @@
       <LastGenOutput>Bowtie.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

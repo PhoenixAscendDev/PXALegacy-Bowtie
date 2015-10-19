@@ -43,9 +43,16 @@ namespace JB2.Bowtie.GameObjects
             _settype = colorSet;
         }
 
-        public SolidColor() : base()
-        {
 
+        public SolidColor() : this(JB2Color.Empty)
+        {
+        }
+
+
+        public SolidColor(JB2Color color) : base(BowtieObjectType.bowtie_gameobject, JB2.Bowtie.Utility.GenerateNewObjectID())
+        {
+            _color = JB2Color.Empty;
+            _settype = ColorSetType.None;
         }
 
         #endregion Constructors
