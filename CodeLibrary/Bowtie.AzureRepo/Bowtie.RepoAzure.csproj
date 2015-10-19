@@ -86,6 +86,7 @@
     <Compile Include="AzureStorage.cs" />
     <Compile Include="BingoCardEntry.cs" />
     <Compile Include="ColorEntry.cs" />
+    <Compile Include="ColorSetEntry.cs" />
     <Compile Include="GameObjectRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

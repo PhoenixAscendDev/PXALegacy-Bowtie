@@ -69,7 +69,9 @@
     <Compile Include="Bingo\StandardBingCard.cs" />
     <Compile Include="Bingo\StandardBingoGame.cs" />
     <Compile Include="Color\ColorSet.cs" />
+    <Compile Include="Color\ColorSetType.cs" />
     <Compile Include="Color\IColor.cs" />
+    <Compile Include="Color\IColorSet.cs" />
     <Compile Include="Color\SolidColor.cs" />
     <Compile Include="GameObjectType.cs" />
     <Compile Include="IGameObject.cs" />

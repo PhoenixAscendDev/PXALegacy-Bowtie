@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.Enum
 {
-    public enum GameObjectType
+    public enum ColorSetType
     {
-        BingoCard,
-        Color,
-        ColorSet
+        None,
+        CrayolaStandard,
+        NetSystem,
+        Html
     }
 }

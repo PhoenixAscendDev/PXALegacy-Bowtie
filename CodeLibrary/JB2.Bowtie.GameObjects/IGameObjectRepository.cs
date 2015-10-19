@@ -32,6 +32,10 @@ namespace JB2.Bowtie
 
         IColor GetColorByID(string id);
 
+        JB2.Common.ServiceResult InsertColorSet(IColorSet c);
+
+        IColorSet GetColorSet(JB2.Bowtie.Enum.ColorSetType type);
+
         #endregion Color Methods
 
     }

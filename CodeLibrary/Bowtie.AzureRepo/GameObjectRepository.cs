@@ -232,6 +232,43 @@ namespace JB2.Bowtie.Data.Azure
 
         }
 
+        public ServiceResult InsertColorSet(IColorSet s)
+        {
+            ColorSetEntry entry = new ColorSetEntry("ColorSet", "ColorSetType:" + s.Type.ToString());
+            entry.ID = s.ID;
+            entry.Name = s.Name;
+            entry.ColorCount = s.Count;
+            entry.ColorSetType = s.Type.ToString();
+
+            //insert into Azure Table Repo
+            _table.Insert<ColorSetEntry>(entry, true);
+
+            return true;
+        }
+
+        public IColorSet GetColorSet(ColorSetType type)
+        {
+            try
+            {
+                ColorSetEntry entry = _table.GetEntity<ColorSetEntry>("ColorSet", "ColorSetType:" + type.ToString());
+
+                if (entry != null)
+                {
+                    ColorSet set = new ColorSet(entry.ID, (ColorSetType)System.Enum.Parse(typeof(ColorSetType), entry.ColorSetType), null);
+                    return set;
+                }
+                else
+                    return null;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+
+        }
+
 
         #endregion Color
 
@@ -259,6 +296,8 @@ namespace JB2.Bowtie.Data.Azure
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }
  
