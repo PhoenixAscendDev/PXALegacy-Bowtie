@@ -83,22 +83,39 @@ namespace JB2.Bowtie.GameObjects
 
         public ServiceResult AddColor(IColor c)
         {
-            throw new NotImplementedException();
+            _colors.Add(c);
+            return true;
         }
 
         public ServiceResult RemoveColor(IColor c)
         {
-            throw new NotImplementedException();
+            _colors.Remove(c);
+            return true;
         }
 
         public IColor FindColorByHex(string hexString)
         {
-            throw new NotImplementedException();
+            IColor result = null;
+            foreach (IColor c in _colors)
+            {
+                if (c.HexValue == hexString)
+                    result = c;
+
+            }
+            return result;
         }
 
         public IColor FindColorByName(string name)
         {
-            throw new NotImplementedException();
+            IColor result = null;
+            foreach(IColor c in _colors)
+            {
+                if (c.Name == name)
+                    result = c;
+
+            }
+            return result;
+
         }
 
 
