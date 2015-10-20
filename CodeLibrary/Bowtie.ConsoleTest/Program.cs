@@ -34,19 +34,20 @@ namespace Bowtie.ConsoleTest
 
             JB2.Bowtie.Service.GameObjectService service = new JB2.Bowtie.Service.GameObjectService(null, new JB2.Bowtie.Data.Azure.GameObjectRepository());
 
-            IColor color = service.RetrieveColorByHex("6B4106");
-            color.ColorSet = JB2.Bowtie.Enum.ColorSetType.CrayolaStandard;
+            IColorSet set = service.RetrieveColorSet(JB2.Bowtie.Enum.ColorSetType.CrayolaStandard);
+            //IColor color = service.RetrieveColorByHex("6B4106");
+            //color.ColorSet = JB2.Bowtie.Enum.ColorSetType.CrayolaStandard;
 
-            ColorSet set = new ColorSet();
+            //ColorSet set = new ColorSet();
 
-            set.Name = "Crayola Standard";
-            set.Type = JB2.Bowtie.Enum.ColorSetType.CrayolaStandard;
-            set.AddColor(color);
+            //set.Name = "Crayola Standard";
+            //set.Type = JB2.Bowtie.Enum.ColorSetType.CrayolaStandard;
+            //set.AddColor(color);
 
             service.SaveColorSet(set);
 
 
-            Console.WriteLine(color.HexValue);
+            Console.WriteLine(set.Count);
             
 
 

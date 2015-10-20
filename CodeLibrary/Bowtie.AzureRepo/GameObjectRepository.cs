@@ -215,6 +215,21 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public IColor[] GetColorsByColorSet(JB2.Bowtie.Enum.ColorSetType type)
+        {
+            var entries = _table.GetByRowKeyStartWith<ColorEntry>("colorSet:" + type.ToString(), "Hex:", 300);
+
+            List<IColor> colors = new List<IColor>(entries.Count());
+
+            foreach(ColorEntry e in entries)
+            {
+                colors.Add(getColor(e));
+            }
+
+            return colors.ToArray();
+
+        }
+
         private IColor getColor(ColorEntry entry)
         {
             IColor result = null;
@@ -231,6 +246,8 @@ namespace JB2.Bowtie.Data.Azure
             return result;
 
         }
+
+
 
         public ServiceResult InsertColorSet(IColorSet s)
         {
@@ -254,7 +271,10 @@ namespace JB2.Bowtie.Data.Azure
 
                 if (entry != null)
                 {
-                    ColorSet set = new ColorSet(entry.ID, (ColorSetType)System.Enum.Parse(typeof(ColorSetType), entry.ColorSetType), null);
+
+                    //get the colors in the set
+                    var colors = this.GetColorsByColorSet(type);
+                    ColorSet set = new ColorSet(entry.ID, (ColorSetType)System.Enum.Parse(typeof(ColorSetType), entry.ColorSetType),colors);
                     return set;
                 }
                 else
