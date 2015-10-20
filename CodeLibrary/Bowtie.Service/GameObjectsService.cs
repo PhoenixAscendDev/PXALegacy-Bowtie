@@ -131,6 +131,11 @@ namespace JB2.Bowtie.Service
             return _repo.GetColorByID(id);
         }
 
+        public JB2.Common.ServiceResult SaveColor(IColor color)
+        {
+            return _repo.InsertColor(color);
+        }
+
         public IColorSet RetrieveColorSet(JB2.Bowtie.Enum.ColorSetType type)
         {
             return _repo.GetColorSet(type);

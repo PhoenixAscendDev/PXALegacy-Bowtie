@@ -28,13 +28,8 @@ namespace JB2.Bowtie.GameObjects
 
         public ColorSet(string id, ColorSetType type, IColor[] colors) : base(BowtieObjectType.bowtie_gameobject,id)
         {
-            if(colors == null)
-            {
-                _colors = new List<IColor>();
-            }
-            _colors = colors.ToList();
+            _colors = colors == null ? new List<IColor>() : colors.ToList();
             _type = type;
-
         }
 
         #endregion Constructors
