@@ -165,14 +165,24 @@ namespace JB2.Bowtie.Data.Azure
             cEntry.RowKey = "Hex:" + c.HexValue;
             _table.Insert<ColorEntry>(cEntry,true);
 
-            //insert colorset partition
-            cEntry.PartitionKey = "colorSet:" + c.ColorSet.ToString();
-            cEntry.RowKey = "Hex:" + c.HexValue;
-            _table.Insert<ColorEntry>(cEntry,true);
 
-            cEntry.PartitionKey = "colorSet:" + c.ColorSet.ToString();
-            cEntry.RowKey = "ID:" + c.ID;
-            _table.Insert<ColorEntry>(cEntry,true);
+
+            //insert colorset partition
+            //don't bother if Set is None
+            if (c.ColorSet != ColorSetType.None)
+            {
+                cEntry.PartitionKey = "colorSet:" + c.ColorSet.ToString();
+                cEntry.RowKey = "Hex:" + c.HexValue;
+                _table.Insert<ColorEntry>(cEntry, true);
+
+                cEntry.PartitionKey = "colorSet:" + c.ColorSet.ToString();
+                cEntry.RowKey = "ID:" + c.ID;
+                _table.Insert<ColorEntry>(cEntry, true);
+
+                cEntry.PartitionKey = "colorSet:" + c.ColorSet.ToString();
+                cEntry.RowKey = "Name:" + c.Name;
+                _table.Insert<ColorEntry>(cEntry, true);
+            }
 
             //insert basic Bowtie object partition
             cEntry.PartitionKey = "bowtieObject";
@@ -193,6 +203,20 @@ namespace JB2.Bowtie.Data.Azure
 
             }
             catch(Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public IColor GetColorByName(string name, JB2.Bowtie.Enum.ColorSetType set)
+        {
+            try
+            {
+                ColorEntry entry = _table.GetEntity<ColorEntry>("colorSet:" + set.ToString(), "Name:" + name);
+                return getColor(entry);
+
+            }
+            catch (Exception ex)
             {
                 return null;
             }

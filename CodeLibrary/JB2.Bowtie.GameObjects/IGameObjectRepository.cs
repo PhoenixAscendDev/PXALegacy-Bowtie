@@ -32,7 +32,9 @@ namespace JB2.Bowtie
 
         IColor GetColorByID(string id);
 
-        IColor[] GetColorsByColorSet(JB2.Bowtie.Enum.ColorSetType type);
+        IColor GetColorByName(string name, JB2.Bowtie.Enum.ColorSetType set);
+
+        IColor[] GetColorsByColorSet(JB2.Bowtie.Enum.ColorSetType set);
         
 
         JB2.Common.ServiceResult InsertColorSet(IColorSet c);
