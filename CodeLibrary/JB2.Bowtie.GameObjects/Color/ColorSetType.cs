@@ -11,6 +11,7 @@ namespace JB2.Bowtie.Enum
         None,
         CrayolaStandard,
         NetSystem,
-        Html
+        Html,
+        Custom
     }
 }
