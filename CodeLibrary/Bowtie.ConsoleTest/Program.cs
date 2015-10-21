@@ -48,6 +48,15 @@ namespace Bowtie.ConsoleTest
 
             IColor color = service.RetrieveColorByName("Maroon", JB2.Bowtie.Enum.ColorSetType.CrayolaStandard);
 
+            JB2.Common.JB2Color cColor2 = JB2.Common.ColorHelper.GetComplementaryColor(color.Color);
+
+            JB2.Common.JB2Color[] colors = JB2.Common.ColorHelper.GetAdjacentColors(color.Color);
+
+            JB2.Common.JB2Color[] triad = JB2.Common.ColorHelper.GetTriadColors(color.Color);
+
+            JB2.Common.JB2Color[] split = JB2.Common.ColorHelper.GetSplitComplementaryColors(color.Color);
+
+            JB2.Common.JB2Color[] tetrad = JB2.Common.ColorHelper.GetTetradColors(color.Color);
 
             Console.WriteLine(color.HexValue);
             
