@@ -80,6 +80,36 @@ namespace JB2.Bowtie.GameObjects
             return GenerateBingoCardImage(cardData, "bingoforever", backgroundImage);
         }
 
+        public static System.Collections.BitArray ConvertBingoCardToBitArray(IBingoCard card)
+        {
+
+            List<bool> marks;
+            int maxRows = 0;
+            int maxColumns = 0;
+
+            switch (card.CardSize)
+            {
+                case JB2.Bowtie.Enum.BingoCardSize.s5:
+                default:
+                    marks = new List<bool>(25);
+                    maxRows = 5;
+                    maxColumns = 5;
+                    break;
+            }
+
+
+
+            for (int r = 0; r < maxRows; r++)
+            {
+                for (int c = 0; c < maxColumns; c++)
+                {
+                    marks.Add(card.CellMarks[r, c] >= 1 ? true : false);
+                }
+            }
+            return new System.Collections.BitArray(marks.ToArray());
+
+        }
+
 
         public static string GenerateID(IBingoCard card) 
         {
@@ -111,7 +141,6 @@ namespace JB2.Bowtie.GameObjects
 
             return id;
         }
-
 
         public static JB2Image GenerateBingoCardImage(IBingoCard cardData, string formatCode, JB2Image backgroundImage)
         {

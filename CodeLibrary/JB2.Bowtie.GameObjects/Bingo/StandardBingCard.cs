@@ -144,15 +144,7 @@ namespace JB2.Bowtie.GameObjects
 
         public static implicit operator System.Collections.BitArray(StandardBingoCard card)
         {
-            List<bool> marks = new List<bool>(25);
-            for(int r=0;r < 5;r++)
-            {
-                for(int c=0;c < 5;c++)
-                {
-                    marks.Add(card.CellMarks[r, c] >= 1 ? true : false);
-                }
-            }
-            return new System.Collections.BitArray(marks.ToArray());
+            return BingoHelper.ConvertBingoCardToBitArray(card);
         }
 
         public System.Collections.BitArray ToBitArray()
