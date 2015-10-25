@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Collections;
+
 using System.Drawing;
 
 
@@ -80,7 +82,7 @@ namespace JB2.Bowtie.GameObjects
             return GenerateBingoCardImage(cardData, "bingoforever", backgroundImage);
         }
 
-        public static System.Collections.BitArray ConvertBingoCardToBitArray(IBingoCard card)
+        public static System.Collections.BitArray ConvertToBitArray(IBingoCard card)
         {
 
             List<bool> marks;
@@ -207,6 +209,50 @@ namespace JB2.Bowtie.GameObjects
             return backgroundImage;
 
         }
+
+        public static JB2.Common.ServiceResult IsBingoWinner(byte[,] cardValues, byte[] calledBingoBalls, BingoPatternType  bingopattern )
+        {
+
+            bool isWinner = false;
+
+            int maxRows = cardValues.GetLength(0);
+            int maxColumns = cardValues.GetLength(1);
+
+            List<bool> marks = new List<bool>(maxRows * maxColumns);
+
+
+
+            for (int r = 0; r < maxRows; r++)
+            {
+                for (int c = 0; c < maxColumns; c++)
+                {
+                    marks.Add( calledBingoBalls.Contains( cardValues[r,c]) ? true : false);
+                }
+            }
+
+            return IsBingoWinner(new System.Collections.BitArray(marks.ToArray()), bingopattern.ToBitArray());
+        }
+
+        public static JB2.Common.ServiceResult IsBingoWinner(System.Collections.BitArray  marks, System.Collections.BitArray[] winningPatterns)
+        {
+            JB2.Common.ServiceResult isWinner = false;
+
+            foreach(BitArray pattern in winningPatterns)
+            {
+
+                if( marks.And(pattern) == pattern)
+                {
+                    isWinner.Validation.Add(new Validation("WinningPattern", pattern.ToString()));
+                }
+            }
+
+            return isWinner;
+
+        }
+
+
+
+
 
         public static string CalculateChecksum(byte[,] values)
         {

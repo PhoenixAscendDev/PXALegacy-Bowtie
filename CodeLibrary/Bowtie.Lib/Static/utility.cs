@@ -4,12 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Text.RegularExpressions;
 using System.Security.Cryptography;
+
+using JB2.Common.Extensions;
 
 namespace JB2.Bowtie
 {
     public static class Utility
     {
+
+
+        public static string[] BowtieSplit(string stringToSplit)
+        {
+            //return Regex.Split(value, ">*<")
+            return stringToSplit.Split(">*<");
+        }
 
         public static string GenerateNewObjectID()
         {

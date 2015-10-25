@@ -144,7 +144,7 @@ namespace JB2.Bowtie.GameObjects
 
         public static implicit operator System.Collections.BitArray(StandardBingoCard card)
         {
-            return BingoHelper.ConvertBingoCardToBitArray(card);
+            return BingoHelper.ConvertToBitArray(card);
         }
 
         public System.Collections.BitArray ToBitArray()
