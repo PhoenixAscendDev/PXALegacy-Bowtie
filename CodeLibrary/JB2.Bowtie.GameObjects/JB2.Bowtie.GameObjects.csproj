@@ -58,12 +58,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bingo\BingoBallQueue.cs" />
     <Compile Include="Bingo\BingoCardSize.cs" />
     <Compile Include="Bingo\BingoCardStyle.cs" />
     <Compile Include="Bingo\BingoCell.cs" />
     <Compile Include="Bingo\BingoHelper.cs" />
     <Compile Include="Bingo\BingoPattern.cs" />
     <Compile Include="Bingo\BingoType.cs" />
+    <Compile Include="Bingo\IBingoBallQueue.cs" />
     <Compile Include="Bingo\IBingoCard.cs" />
     <Compile Include="Bingo\IBingoGame.cs" />
     <Compile Include="Bingo\StandardBingCard.cs" />

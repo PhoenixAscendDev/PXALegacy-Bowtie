@@ -123,6 +123,7 @@ namespace JB2.Bowtie.GameObjects
         {
             return GenerateID(type, spaces, JB2.Bowtie.Utility.GenerateNewObjectID());
         }
+
         public static string GenerateID(Enum.BingoType type, byte[,] spaces,string guid)
         {
             string checksum = CalculateChecksum(spaces);
@@ -236,23 +237,16 @@ namespace JB2.Bowtie.GameObjects
         public static JB2.Common.ServiceResult IsBingoWinner(System.Collections.BitArray  marks, System.Collections.BitArray[] winningPatterns)
         {
             JB2.Common.ServiceResult isWinner = false;
-
             foreach(BitArray pattern in winningPatterns)
             {
-
                 if( marks.And(pattern) == pattern)
                 {
                     isWinner.Validation.Add(new Validation("WinningPattern", pattern.ToString()));
                 }
             }
-
             return isWinner;
 
         }
-
-
-
-
 
         public static string CalculateChecksum(byte[,] values)
         {
