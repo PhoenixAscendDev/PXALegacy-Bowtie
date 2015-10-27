@@ -34,32 +34,10 @@ namespace Bowtie.ConsoleTest
 
             JB2.Bowtie.Service.GameObjectService service = new JB2.Bowtie.Service.GameObjectService(null, new JB2.Bowtie.Data.Azure.GameObjectRepository());
 
-            //IColorSet set = service.RetrieveColorSet(JB2.Bowtie.Enum.ColorSetType.CrayolaStandard);
-            //IColor color = service.RetrieveColorByHex("6B4106");
-            //color.ColorSet = JB2.Bowtie.Enum.ColorSetType.CrayolaStandard;
+            IBingoBallQueue<byte> queue = service.RetrieveRandomBingoBallQueue(JB2.Bowtie.Enum.BingoType.Standard);
 
-            //ColorSet set = new ColorSet();
+            Console.WriteLine(queue.Peek().ToString());
 
-            //set.Name = "Crayola Standard";
-            //set.Type = JB2.Bowtie.Enum.ColorSetType.CrayolaStandard;
-            //set.AddColor(color);
-
-            // service.SaveColorSet(set);
-
-            IColor color = service.RetrieveColorByName("Maroon", JB2.Bowtie.Enum.ColorSetType.CrayolaStandard);
-
-            JB2.Common.JB2Color cColor2 = JB2.Common.ColorHelper.GetComplementaryColor(color.Color);
-
-            JB2.Common.JB2Color[] colors = JB2.Common.ColorHelper.GetAdjacentColors(color.Color);
-
-            JB2.Common.JB2Color[] triad = JB2.Common.ColorHelper.GetTriadColors(color.Color);
-
-            JB2.Common.JB2Color[] split = JB2.Common.ColorHelper.GetSplitComplementaryColors(color.Color);
-
-            JB2.Common.JB2Color[] tetrad = JB2.Common.ColorHelper.GetTetradColors(color.Color);
-
-            Console.WriteLine(color.HexValue);
-            
 
 
 

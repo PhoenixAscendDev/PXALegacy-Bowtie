@@ -9,7 +9,7 @@ using JB2.Common;
 using JB2.Bowtie.GameObjects;
 using JB2.Common.Extensions;
 
-namespace JB2.Bowtie.GameObjects.Bingo
+namespace JB2.Bowtie.GameObjects
 {
 
     public class BingoBallQueue :  BingoBallQueue<byte>
@@ -46,12 +46,10 @@ namespace JB2.Bowtie.GameObjects.Bingo
             _previous = new List<BingoBall<Tnum>>(balls.Length);
         }
 
-        private BingoBallQueue(BingoBall<Tnum>[] balls) : base(BowtieObjectType.bowtie_gameobject,null)
+        private BingoBallQueue(BingoBall<Tnum>[] balls) : this(null,balls)
         {
 
         }
-
-        
 
         #endregion Constructors
 
@@ -81,13 +79,23 @@ namespace JB2.Bowtie.GameObjects.Bingo
             }
         }
 
-        public bool isDone
+        public bool isEmpty
         {
             get
             {
                 return _queue.Count == 0;
             }
         }
+
+        public int Count
+        {
+            get
+            {
+                return _queue.Count;
+            }
+        }
+
+       
 
         public GameObjectType GameObjectType
         {
@@ -99,6 +107,11 @@ namespace JB2.Bowtie.GameObjects.Bingo
         #endregion Properties
 
         #region Methods
+
+        public BingoBall<Tnum> Peek()
+        {
+            return _queue.Last();
+        }
 
         public BingoBall<Tnum> CallNext()
         {
@@ -139,6 +152,18 @@ namespace JB2.Bowtie.GameObjects.Bingo
         }
 
         #endregion Methods
+
+
+        #region Static Methods
+
+        public static BingoBallQueue<byte> NewBingoBallQueue(Enum.BingoType bingoType)
+        {
+            BingoBall<byte>[] balls = BingoHelper.GenerateBingoCallList(bingoType);
+            return new BingoBallQueue<byte>(balls);
+        }
+
+
+        #endregion
 
     }
 }

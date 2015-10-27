@@ -75,6 +75,16 @@ namespace JB2.Bowtie.Service
             return result;  
         }
 
+        public GameObjects.IBingoBallQueue<byte> RetrieveRandomBingoBallQueue(Enum.BingoType bingoType)
+        {
+            return BingoBallQueue.NewBingoBallQueue(bingoType);
+        }
+
+        public GameObjects.IBingoBallQueue<byte> RetrieveBingoBallQueue(string id)
+        {
+            return null;
+        }
+
         public JB2.Common.ServiceResult IsValidBingoCard(string id)
         {
             IBingoCard card = null;
