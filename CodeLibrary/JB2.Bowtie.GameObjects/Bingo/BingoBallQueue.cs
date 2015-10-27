@@ -7,9 +7,21 @@ using JB2.Bowtie.Enum;
 using JB2.Common;
 
 using JB2.Bowtie.GameObjects;
+using JB2.Common.Extensions;
 
 namespace JB2.Bowtie.GameObjects.Bingo
 {
+
+    public class BingoBallQueue :  BingoBallQueue<byte>
+    {
+        public BingoBallQueue(string id, BingoBall<byte>[] balls) : base(id,balls)
+        {
+
+        }
+
+    }
+
+
     public class BingoBallQueue<Tnum> : BowtieObject, IBingoBallQueue<Tnum>
     {
 
@@ -21,8 +33,6 @@ namespace JB2.Bowtie.GameObjects.Bingo
 
         List<BingoBall<Tnum>> _previous;
 
-
-
         #endregion Fields
 
         #region Constructors
@@ -30,8 +40,9 @@ namespace JB2.Bowtie.GameObjects.Bingo
 
         public BingoBallQueue(string id, BingoBall<Tnum>[] balls) : base(BowtieObjectType.bowtie_gameobject,id)
         {
-            _startqueue = balls.ToList();
-            _queue = _startqueue; // new List<BingoBall<Tnum>>(balls.Length);
+            // due to List performance faster to add/remove at the bottom so lets reverse it so we pop the bottom
+            _startqueue = balls.Reverse().ToList();
+            _queue = _startqueue; 
             _previous = new List<BingoBall<Tnum>>(balls.Length);
         }
 
@@ -50,7 +61,7 @@ namespace JB2.Bowtie.GameObjects.Bingo
         {
             get
             {
-                throw new NotImplementedException();
+                return (BingoBall<Tnum>[])_queue.ToArray().Reverse();
             }
         }
 
@@ -58,7 +69,7 @@ namespace JB2.Bowtie.GameObjects.Bingo
         {
             get
             {
-                throw new NotImplementedException();
+                return _previous.ToArray();
             }
         }
 
@@ -66,7 +77,7 @@ namespace JB2.Bowtie.GameObjects.Bingo
         {
             get
             {
-                throw new NotImplementedException();
+                return _previous.Last();
             }
         }
 
@@ -74,7 +85,7 @@ namespace JB2.Bowtie.GameObjects.Bingo
         {
             get
             {
-                throw new NotImplementedException();
+                return _queue.Count == 0;
             }
         }
 
@@ -82,27 +93,52 @@ namespace JB2.Bowtie.GameObjects.Bingo
         {
             get
             {
-                throw new NotImplementedException();
+                return GameObjectType.BingoBallQueue;
             }
         }
-
-
         #endregion Properties
 
         #region Methods
 
         public BingoBall<Tnum> CallNext()
         {
-            throw new NotImplementedException();
+            BingoBall<Tnum> ball = _queue.Last();
+
+            //now remove that ball from the queue and add it to the previous
+            _previous.Add(ball);
+            _queue.RemoveAt(_queue.Count - 1);
+
+            return ball;
+        }
+
+        public JB2.Common.ServiceResult MoveBallUp(BingoBall<Tnum> ball, int positions)
+        {
+            JB2.Common.ServiceResult result = true;
+
+            int currentPosition = _queue.FindIndex(x => x == ball);
+
+            if (currentPosition >= 2)
+            {
+                _queue.Move(positions, Common.Enum.ElevatorDirection.Up);
+                int newPosition = _queue.FindIndex(x => x == ball);
+                if (newPosition != currentPosition)
+                    result.Validation.Add(new Validation("Position", newPosition.ToString()) { IsValid = true});
+                else
+                    result.Validation.Add(new Validation("InvalidPosition", "Bingo Ball is already in the top show") { IsValid = false });
+            }
+
+            return false;
         }
 
         public ServiceResult ResetQueue()
         {
-            throw new NotImplementedException();
+            _queue = _startqueue;
+            _previous = new List<BingoBall<Tnum>>();
+
+            return true;
         }
 
         #endregion Methods
-
 
     }
 }

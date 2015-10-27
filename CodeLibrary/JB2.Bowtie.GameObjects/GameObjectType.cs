@@ -9,7 +9,9 @@ namespace JB2.Bowtie.Enum
     public enum GameObjectType
     {
         BingoCard,
+        BingoBallQueue,
         Color,
-        ColorSet
+        ColorSet,
+        
     }
 }
