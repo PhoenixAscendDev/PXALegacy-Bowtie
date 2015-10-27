@@ -13,11 +13,17 @@ namespace JB2.Bowtie.GameObjects
 
     public class BingoBall : BingoBall<byte>
     {
+
+        #region Constructors
         public BingoBall(byte value,string label)
         {
             base.Value = value;
             base.Label = label;           
         }
+
+        #endregion Constructors
+
+        #region Implicit Operators
 
         public static implicit operator BingoBall(byte b)
         {
@@ -72,16 +78,36 @@ namespace JB2.Bowtie.GameObjects
 
             // return new BingoBall<T>(b, string.Empty);
         }
-        
+
+        public static implicit operator string(BingoBall ball)
+        {
+            return ball.Label;
+        }
+
+        #endregion Implicit Operators
+
+        #region Convertors
+
+
+        #endregion Convertors
+
 
     }
-     
+
 
 
 
     public class BingoBall<T>
     {
+        #region Fields
 
+        private T _value;
+        private string _label;
+        
+
+        #endregion Fields
+
+        #region Constructors
         public BingoBall()
         {
         }
@@ -91,20 +117,37 @@ namespace JB2.Bowtie.GameObjects
             this.Value = value;
             this.Label = label;
         }
+
+        #endregion Constructors
+
         //private string _label
         //private T _value;
 
+        #region Properties
+
         public string Label
         {
-            get;
-            set;
+            get { return _label; }
+            set { _label = value; }
         }
 
         public T Value
         {
-            get;
-            set;
+            get { return _value; }
+            set { _value = value; }
         }
+
+        internal string CompareString
+        {
+            get
+            {
+                return this._value.ToString() + ">*<" + this._label;
+            }
+        }
+
+        #endregion Properties
+
+        #region Implicit Operators
 
         public static implicit operator KeyValuePair<string,T>(BingoBall<T> c)
         {
@@ -114,10 +157,45 @@ namespace JB2.Bowtie.GameObjects
         public static implicit operator T (BingoBall<T> c)
         {
             return c.Value;
-
         }
 
-        
+        public static bool operator ==(BingoBall<T> x, BingoBall<T> y)
+        {
+            if ((object)x == null) return (object)y == null;
+            return x.CompareString == y.CompareString;
+        }
 
+        public static bool operator !=(BingoBall<T> x, BingoBall<T> y)
+        {
+            return !(x == y);
+        }
+
+
+
+
+        public static implicit operator string (BingoBall<T> ball)
+        {
+            return ball.Label;
+        }
+
+
+        #endregion Implicit Operators
+
+        #region ToString
+
+        public override string ToString()
+        {
+            return (string)this;
+        }
+
+        #endregion ToString
+
+        #region Equals
+
+
+        #endregion Equals
+
+
+
+        }
     }
-}

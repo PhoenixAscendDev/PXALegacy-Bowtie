@@ -153,6 +153,8 @@ namespace JB2.Bowtie.GameObjects
 
         #endregion Methods
 
+        
+
 
         #region Static Methods
 
@@ -161,7 +163,6 @@ namespace JB2.Bowtie.GameObjects
             BingoBall<byte>[] balls = BingoHelper.GenerateBingoCallList(bingoType);
             return new BingoBallQueue<byte>(balls);
         }
-
 
         #endregion
 
