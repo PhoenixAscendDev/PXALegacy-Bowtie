@@ -34,7 +34,7 @@ namespace Bowtie.ConsoleTest
 
             JB2.Bowtie.Service.GameObjectService service = new JB2.Bowtie.Service.GameObjectService(null, new JB2.Bowtie.Data.Azure.GameObjectRepository());
 
-            IBingoBallQueue<byte> queue = service.RetrieveRandomBingoBallQueue(JB2.Bowtie.Enum.BingoType.Standard);
+            IBingoBalDeck<byte> queue = service.RetrieveRandomBingoDeck(JB2.Bowtie.Enum.BingoType.Standard);
 
             Console.WriteLine(queue.Peek().ToString());
 

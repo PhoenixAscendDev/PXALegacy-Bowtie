@@ -31,7 +31,7 @@ namespace JB2.Bowtie.GameObjects
             _previous = new List<Titem>(items.Length);
         }
 
-        private Deck(Titem[] items) : this(null,items)
+        protected Deck(Titem[] items) : this(null,items)
         {
 
         }
@@ -91,6 +91,8 @@ namespace JB2.Bowtie.GameObjects
 
         #endregion Properties
 
+        #region Methods
+
         public Titem TakeTop()
         {
             Titem item = _queue.Last();
@@ -126,6 +128,42 @@ namespace JB2.Bowtie.GameObjects
 
             
         }
+
+        #endregion Methods
+
+        #region Implicit Operators
+
+        public static implicit operator string (Deck<Titem> queue)
+        {
+            List<string> list = new List<string>(queue.Count);
+
+            foreach (Titem ball in queue.Stack)
+            {
+                list.Add(ball.ToString());
+            }
+
+            return String.Join(",", list.ToArray());
+        }
+
+        public static implicit operator Queue<Titem>(Deck<Titem> queue)
+        {
+            List<Titem> list = queue._startqueue;
+            return new Queue<Titem>(list);
+
+        }
+
+        public static implicit operator List<Titem>(Deck<Titem> queue)
+        {
+            return queue.Stack.ToList();
+        }
+
+        //public static implicit operator IEnumerable<BingoBall<Tnum>>(BingoBallQueue<Tnum> queue)
+        //{
+        //    return queue.Queue;
+        //}
+
+        #endregion Implicit Operators
+
 
     }
 }

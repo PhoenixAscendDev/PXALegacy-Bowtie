@@ -75,12 +75,12 @@ namespace JB2.Bowtie.Service
             return result;  
         }
 
-        public GameObjects.IBingoBallQueue<byte> RetrieveRandomBingoBallQueue(Enum.BingoType bingoType)
+        public GameObjects.IBingoBalDeck<byte> RetrieveRandomBingoDeck(Enum.BingoType bingoType)
         {
-            return BingoBallQueue.NewBingoBallQueue(bingoType);
+            return BingoBallDeck.NewBingoBallDeck(bingoType);
         }
 
-        public GameObjects.IBingoBallQueue<byte> RetrieveBingoBallQueue(string id)
+        public GameObjects.IBingoBalDeck<byte> RetrieveBingoDeck(string id)
         {
             return null;
         }
@@ -188,5 +188,14 @@ namespace JB2.Bowtie.Service
         }
 
         #endregion Color Objects
+
+        #region Generic Objects
+
+        //public IDeck<TdeckItemType> RetrieveDeck(string id)
+        //{
+        //    return new Deck<TdeckItemType>
+        //}
+
+        #endregion Generic Objects
     }
 }
