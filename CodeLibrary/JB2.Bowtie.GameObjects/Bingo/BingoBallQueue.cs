@@ -27,11 +27,11 @@ namespace JB2.Bowtie.GameObjects
 
         #region Fields
 
-        List<BingoBall<Tnum>> _startqueue;
+        protected List<BingoBall<Tnum>> _startqueue;
 
-        List<BingoBall<Tnum>> _queue;
+        protected List<BingoBall<Tnum>> _queue;
 
-        List<BingoBall<Tnum>> _previous;
+        protected List<BingoBall<Tnum>> _previous;
 
         #endregion Fields
 
@@ -153,8 +153,38 @@ namespace JB2.Bowtie.GameObjects
 
         #endregion Methods
 
-        
+        #region Implicit Operators
 
+        public static implicit operator string (BingoBallQueue<Tnum> queue)
+        {
+            List<string> list = new List<string>(queue.Count);
+
+            foreach(BingoBall<Tnum> ball in queue.Queue)
+            {
+                list.Add(ball.ToString());
+            }
+
+            return String.Join(",", list.ToArray());
+        }
+
+        public static implicit operator Queue<BingoBall<Tnum>>(BingoBallQueue<Tnum> queue)
+        {
+            List<BingoBall<Tnum>> list = queue._startqueue;
+            return new Queue<BingoBall<Tnum>>(list);
+
+        }
+
+        public static implicit operator List<BingoBall<Tnum>>(BingoBallQueue<Tnum> queue)
+        {
+            return queue.Queue.ToList();
+        }
+
+        //public static implicit operator IEnumerable<BingoBall<Tnum>>(BingoBallQueue<Tnum> queue)
+        //{
+        //    return queue.Queue;
+        //}
+
+        #endregion Implicit Operators
 
         #region Static Methods
 
