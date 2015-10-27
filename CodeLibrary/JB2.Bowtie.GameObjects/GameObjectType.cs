@@ -12,7 +12,6 @@ namespace JB2.Bowtie.Enum
         BingoBallDeck,
         Color,
         ColorSet,
-        Deck
-        
+        Deck     
     }
 }

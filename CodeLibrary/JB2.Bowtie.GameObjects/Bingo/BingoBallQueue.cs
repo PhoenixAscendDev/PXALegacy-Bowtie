@@ -22,7 +22,8 @@ namespace JB2.Bowtie.GameObjects
     }
 
 
-    public class BingoBallDeck<Tnum> : Deck<BingoBall<Tnum>>, IBingoBalDeck<Tnum>
+    public class BingoBallDeck<Tnum> : Deck<BingoBall<Tnum>>, IBingoBalDeck<Tnum> 
+        where Tnum : IComparable
     {
 
 

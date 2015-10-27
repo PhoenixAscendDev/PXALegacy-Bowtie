@@ -97,8 +97,10 @@ namespace JB2.Bowtie.GameObjects
 
 
 
-    public class BingoBall<T>
+    public class BingoBall<T> : IDeckable<BingoBall<T>>
+        where T : IComparable
     {
+
         #region Fields
 
         private T _value;
@@ -195,7 +197,20 @@ namespace JB2.Bowtie.GameObjects
 
         #endregion Equals
 
+        #region IDeckable
 
+        public int CompareTo(BingoBall<T> ball)
+        {
+            if (ball == null) return 1;
 
+            return this.Value.CompareTo(ball.Value);
         }
+
+
+
+        #endregion IDeckable
+
+
+
+    }
     }

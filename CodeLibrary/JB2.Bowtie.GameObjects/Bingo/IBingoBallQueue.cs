@@ -13,6 +13,7 @@ namespace JB2.Bowtie.GameObjects
     }
 
     public interface IBingoBalDeck<Tnum> : IDeck<BingoBall<Tnum>>
+        where Tnum : IComparable
     {
         
     }

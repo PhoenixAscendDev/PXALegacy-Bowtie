@@ -78,6 +78,7 @@
     <Compile Include="Deck.cs" />
     <Compile Include="GameObjectType.cs" />
     <Compile Include="IDeck.cs" />
+    <Compile Include="IDeckable.cs" />
     <Compile Include="IGameObject.cs" />
     <Compile Include="IGameObjectRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

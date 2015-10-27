@@ -12,6 +12,7 @@ using JB2.Common.Extensions;
 namespace JB2.Bowtie.GameObjects
 {
     public class Deck<Titem> : BowtieObject, IDeck<Titem>
+        where Titem : IDeckable<Titem>
     {
 
         #region Fields
