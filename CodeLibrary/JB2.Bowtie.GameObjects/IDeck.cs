@@ -22,7 +22,10 @@ namespace JB2.Bowtie.GameObjects
 
         Tobject Peek();
 
-        JB2.Common.ServiceResult ResetQueue();
+        JB2.Common.ServiceResult Reshuffle();
+
+
+        JB2.Common.ServiceResult Reset();
 
     }
 }

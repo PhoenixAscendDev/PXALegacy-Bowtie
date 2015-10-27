@@ -107,12 +107,24 @@ namespace JB2.Bowtie.GameObjects
             return _queue.Last();
         }
 
-        public ServiceResult ResetQueue()
+        public ServiceResult Reset()
         {
             _queue = _startqueue;
             _previous = new List<Titem>();
 
             return true;
+        }
+
+        private ServiceResult Reset( Titem[] newstartpile)
+        {
+            return Reset();
+        }
+
+        public ServiceResult Reshuffle()
+        {
+            return Reset(this._queue.ToArray());
+
+            
         }
 
     }
