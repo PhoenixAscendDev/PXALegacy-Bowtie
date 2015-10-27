@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+
 using JB2.Bowtie.Enum;
 using JB2.Common;
+using JB2.Common.Extensions;
 
 namespace JB2.Bowtie.GameObjects
 {
@@ -85,7 +88,7 @@ namespace JB2.Bowtie.GameObjects
         {
             get
             {
-                return GameObjectType.BingoBallQueue;
+                return GameObjectType.BingoBallDeck;
             }
         }
 
@@ -119,14 +122,14 @@ namespace JB2.Bowtie.GameObjects
 
         private ServiceResult Reset( Titem[] newstartpile)
         {
+            _startqueue = newstartpile.ToList();
             return Reset();
         }
 
         public ServiceResult Reshuffle()
         {
-            return Reset(this._queue.ToArray());
-
-            
+            _startqueue.Shuffle();
+            return Reset();         
         }
 
         #endregion Methods
@@ -163,6 +166,15 @@ namespace JB2.Bowtie.GameObjects
         //}
 
         #endregion Implicit Operators
+
+        #region Static Methods
+
+        public override string ToString()
+        {
+            return (string)this;
+        }
+
+        #endregion Static Methods
 
 
     }
