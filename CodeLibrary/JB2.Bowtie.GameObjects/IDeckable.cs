@@ -8,6 +8,6 @@ namespace JB2.Bowtie.GameObjects
 {
     public interface  IDeckable<T> : IComparable<T>
     {
-       
+        string FromDeckId { get; set; }
     }
 }

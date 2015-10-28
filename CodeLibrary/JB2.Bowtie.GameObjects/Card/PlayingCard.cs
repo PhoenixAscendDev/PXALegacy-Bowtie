@@ -7,19 +7,20 @@ using JB2.Bowtie.Enum;
 
 namespace JB2.Bowtie.GameObjects
 {
-    public class StandardPlayingCard : IPlayingCard<Enum.PlayingCardValueType, PlayingCardSuit>
+    public class PlayingCard : ICard<string, PlayingCardSuit>
     {
 
         #region Fields
 
         protected Enum.PlayingCardValueType _value;
         protected PlayingCardSuit _suit;
+        protected string _deckID;
 
         #endregion Fields
 
         #region Constructors
 
-        public StandardPlayingCard(Enum.PlayingCardValueType valueType, Enum.PlayingCardSuitType suitType)
+        public PlayingCard(Enum.PlayingCardValueType valueType, Enum.PlayingCardSuitType suitType)
         {
             _value = valueType;
             _suit = suitType;
@@ -37,7 +38,7 @@ namespace JB2.Bowtie.GameObjects
             }
         }
 
-        public PlayingCardSuit Suit
+        public PlayingCardSuit Category
         {
             get
             {
@@ -45,17 +46,29 @@ namespace JB2.Bowtie.GameObjects
             }
         }
 
-        public PlayingCardValueType Value
+        public string Code
         {
             get
             {
-                return _value;
+                return _value.ToString() + " of " + _suit.ToString();
+            }
+        }
+
+        public string FromDeckId
+        {
+            get
+            {
+                return _deckID;
+            }
+            set
+            {
+                _deckID = value;
             }
         }
 
         #endregion Properties
 
-        public int CompareTo(IPlayingCard<PlayingCardValueType, PlayingCardSuit> other)
+        public int CompareTo(ICard<string, PlayingCardSuit> other)
         {
             return 1;
         }

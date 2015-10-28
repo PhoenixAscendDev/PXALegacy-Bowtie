@@ -81,11 +81,11 @@
     <Compile Include="IDeckable.cs" />
     <Compile Include="IGameObject.cs" />
     <Compile Include="IGameObjectRepository.cs" />
-    <Compile Include="PlayingCard\PlayingCardSuit.cs" />
-    <Compile Include="PlayingCard\PlayingCardSuitType.cs" />
-    <Compile Include="PlayingCard\IPlayingCard.cs" />
-    <Compile Include="PlayingCard\PlayingCardValueType.cs" />
-    <Compile Include="PlayingCard\StandardPlayingCard.cs" />
+    <Compile Include="Card\PlayingCardSuit.cs" />
+    <Compile Include="Card\PlayingCardSuitType.cs" />
+    <Compile Include="Card\ICard.cs" />
+    <Compile Include="Card\PlayingCardValueType.cs" />
+    <Compile Include="Card\StandardPlayingCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

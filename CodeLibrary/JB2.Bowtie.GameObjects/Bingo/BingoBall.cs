@@ -139,6 +139,12 @@ namespace JB2.Bowtie.GameObjects
             set { _value = value; }
         }
 
+        public string FromDeckId
+        {
+            get; set;
+            
+        }
+
         internal string CompareString
         {
             get

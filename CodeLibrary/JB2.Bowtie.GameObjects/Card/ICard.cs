@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.GameObjects
 {
-    public interface IPlayingCard<Tvalue,Tsuit> : IDeckable<IPlayingCard<Tvalue, Tsuit>>
+    public interface ICard<Tcode,TCategory> : IDeckable<ICard<Tcode, TCategory>>
     {
-        Tvalue Value { get; }
+        Tcode Code { get; }
         string Label { get; }
-        Tsuit Suit { get; }
+        TCategory Category { get; }
+        
     }
 }
