@@ -36,7 +36,9 @@ namespace Bowtie.ConsoleTest
 
             IBingoBalDeck<byte> queue = service.RetrieveRandomBingoDeck(JB2.Bowtie.Enum.BingoType.Standard);
 
-            Console.WriteLine(queue.Peek().ToString());
+            //Console.WriteLine(queue.Peek().ToString());
+
+            //Console.WriteLine(PlayingCardSuit.Club.isBlack);
 
 
 
