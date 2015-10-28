@@ -70,6 +70,8 @@
     <Compile Include="Bingo\IBingoGame.cs" />
     <Compile Include="Bingo\StandardBingCard.cs" />
     <Compile Include="Bingo\StandardBingoGame.cs" />
+    <Compile Include="Card\CardHelper.cs" />
+    <Compile Include="Card\PlayingCardDeck.cs" />
     <Compile Include="Color\ColorSet.cs" />
     <Compile Include="Color\ColorSetType.cs" />
     <Compile Include="Color\IColor.cs" />

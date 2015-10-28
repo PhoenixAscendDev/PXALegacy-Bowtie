@@ -21,7 +21,7 @@ namespace JB2.Bowtie.Enum
         Ten = 10,
         Jack = 11,
         Queen = 12,
-        King = 12
+        King = 13
 
     }
 }

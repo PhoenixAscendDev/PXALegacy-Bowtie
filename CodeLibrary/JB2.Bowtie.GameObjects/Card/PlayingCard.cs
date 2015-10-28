@@ -7,27 +7,51 @@ using JB2.Bowtie.Enum;
 
 namespace JB2.Bowtie.GameObjects
 {
-    public class PlayingCard : ICard<string, PlayingCardSuit>
+    public class PlayingCard : ICard<string, PlayingCardSuit>, IDeckable<PlayingCard>
     {
         #region Fields
 
-        protected Enum.PlayingCardFaceType _value;
+        protected Enum.PlayingCardFaceType _face;
         protected PlayingCardSuit _suit;
         protected string _deckID;
+        protected int _value;
 
         #endregion Fields
 
         #region Constructors
 
-        public PlayingCard(Enum.PlayingCardFaceType valueType, Enum.PlayingCardSuitType suitType)
+        public PlayingCard(Enum.PlayingCardFaceType faceType, Enum.PlayingCardSuitType suitType, bool isAceHigh)
         {
-            _value = valueType;
+            _face = faceType;
             _suit = suitType;
+            switch(faceType)
+            {
+                case PlayingCardFaceType.Ace:
+                    _value = isAceHigh ? 14 : (int)faceType;
+                    break;
+                default:
+                    _value = (int)faceType;
+                    break;     
+            }
         }
 
         #endregion Constructors
 
         #region Properties
+
+        public int Value
+        {
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                _value = value;
+            }
+
+        }
+
         public string Label
         {
             get
@@ -48,10 +72,10 @@ namespace JB2.Bowtie.GameObjects
         {
             get
             {
-                if (_value == PlayingCardFaceType.Joker)
+                if (_face == PlayingCardFaceType.Joker)
                     return PlayingCardFaceType.Joker.ToString();
                 else             
-                    return _value.ToString() + " of " + _suit.ToString();
+                    return _face.ToString() + " of " + _suit.ToString();
             }
         }
 
@@ -71,7 +95,7 @@ namespace JB2.Bowtie.GameObjects
 
         #region IComparable
 
-        public int CompareTo(ICard<string, PlayingCardSuit> other)
+        public int CompareTo(PlayingCard other)
         {
             if (other == null) return 1;
 
@@ -79,5 +103,14 @@ namespace JB2.Bowtie.GameObjects
         }
 
         #endregion IComparable
+
+        #region ToString()
+
+        public override string ToString()
+        {
+            return this.Code;
+        }
+
+        #endregion ToString()
     }
 }

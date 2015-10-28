@@ -40,6 +40,8 @@ namespace Bowtie.ConsoleTest
 
             //Console.WriteLine(PlayingCardSuit.Club.isBlack);
 
+            PlayingCard[] cards = CardHelper.GeneratePlayingCards(true, true);
+
 
 
 
