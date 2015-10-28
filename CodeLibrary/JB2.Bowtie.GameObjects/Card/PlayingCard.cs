@@ -9,10 +9,9 @@ namespace JB2.Bowtie.GameObjects
 {
     public class PlayingCard : ICard<string, PlayingCardSuit>
     {
-
         #region Fields
 
-        protected Enum.PlayingCardValueType _value;
+        protected Enum.PlayingCardFaceType _value;
         protected PlayingCardSuit _suit;
         protected string _deckID;
 
@@ -20,14 +19,13 @@ namespace JB2.Bowtie.GameObjects
 
         #region Constructors
 
-        public PlayingCard(Enum.PlayingCardValueType valueType, Enum.PlayingCardSuitType suitType)
+        public PlayingCard(Enum.PlayingCardFaceType valueType, Enum.PlayingCardSuitType suitType)
         {
             _value = valueType;
             _suit = suitType;
         }
 
         #endregion Constructors
-
 
         #region Properties
         public string Label
@@ -50,7 +48,10 @@ namespace JB2.Bowtie.GameObjects
         {
             get
             {
-                return _value.ToString() + " of " + _suit.ToString();
+                if (_value == PlayingCardFaceType.Joker)
+                    return PlayingCardFaceType.Joker.ToString();
+                else             
+                    return _value.ToString() + " of " + _suit.ToString();
             }
         }
 
@@ -68,9 +69,15 @@ namespace JB2.Bowtie.GameObjects
 
         #endregion Properties
 
+        #region IComparable
+
         public int CompareTo(ICard<string, PlayingCardSuit> other)
         {
-            return 1;
+            if (other == null) return 1;
+
+            return this.Code.CompareTo(other.Code);
         }
+
+        #endregion IComparable
     }
 }

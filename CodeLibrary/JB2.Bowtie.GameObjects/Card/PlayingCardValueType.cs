@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.Enum
 {
-    public enum PlayingCardValueType
+    public enum PlayingCardFaceType
     {
         Joker = 0,
         Ace = 1,
