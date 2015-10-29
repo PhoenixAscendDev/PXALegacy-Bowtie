@@ -33,20 +33,27 @@
     <Reference Include="JB2.API">
       <HintPath>..\..\..\Website-Jbsquared-API\Web-API.JBsquared\JB2.API\bin\Release\JB2.API.dll</HintPath>
     </Reference>
-    <Reference Include="JB2.Common">
-      <HintPath>..\..\..\API-JB2Common\CSharp\JB2Common\bin\Release\JB2.Common.dll</HintPath>
+    <Reference Include="JB2.Common, Version=0.1.6.28889, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Common.0.1.6\lib\JB2.Common.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Color">
-      <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Color\bin\Release\JB2.Common.Color.dll</HintPath>
+    <Reference Include="JB2.Common.Color, Version=0.1.6.28890, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Common.0.1.6\lib\JB2.Common.Color.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Data.AzureStorage">
       <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Data.AzureStorage\bin\Release\JB2.Common.Data.AzureStorage.dll</HintPath>
     </Reference>
+    <Reference Include="JB2.Common.Date, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Common.0.1.6\lib\JB2.Common.Date.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="JB2.Common.Font">
       <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Font\bin\Release\JB2.Common.Font.dll</HintPath>
     </Reference>
-    <Reference Include="JB2.Common.Image">
-      <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Image\bin\Release\JB2.Common.Image.dll</HintPath>
+    <Reference Include="JB2.Common.Image, Version=0.1.6.28890, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Common.0.1.6\lib\JB2.Common.Image.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -96,7 +103,9 @@
       <Name>Bowtie.Lib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
