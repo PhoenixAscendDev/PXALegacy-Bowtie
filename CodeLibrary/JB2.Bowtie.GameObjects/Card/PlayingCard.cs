@@ -7,7 +7,7 @@ using JB2.Bowtie.Enum;
 
 namespace JB2.Bowtie.GameObjects
 {
-    public class PlayingCard : ICard<string, PlayingCardSuit>, IDeckable<PlayingCard>
+    public class PlayingCard : BowtieObject,ICard<string, PlayingCardSuit>, IDeckable<PlayingCard>
     {
         #region Fields
 
@@ -20,7 +20,7 @@ namespace JB2.Bowtie.GameObjects
 
         #region Constructors
 
-        public PlayingCard(Enum.PlayingCardFaceType faceType, Enum.PlayingCardSuitType suitType, bool isAceHigh)
+        public PlayingCard(Enum.PlayingCardFaceType faceType, Enum.PlayingCardSuitType suitType, bool isAceHigh) : base(BowtieObjectType.bowtie_gameobject,null)
         {
             _face = faceType;
             _suit = suitType;
@@ -75,7 +75,7 @@ namespace JB2.Bowtie.GameObjects
                 if (_face == PlayingCardFaceType.Joker)
                     return PlayingCardFaceType.Joker.ToString();
                 else             
-                    return _face.ToString() + " of " + _suit.ToString();
+                    return _face.ToString() + "-" + _suit.ToString();
             }
         }
 
@@ -112,5 +112,27 @@ namespace JB2.Bowtie.GameObjects
         }
 
         #endregion ToString()
+
+        #region Equals()
+
+        public override bool Equals(object obj)
+        {
+            return obj is PlayingCard ? ((PlayingCard)obj).Code == Code : false;
+        }
+
+        #endregion Equals
+
+        #region GetHasCode()
+
+        public override int GetHashCode()
+        {
+            return Code.GetHashCode();
+        }
+
+        #endregion
+
+
+
+
     }
 }

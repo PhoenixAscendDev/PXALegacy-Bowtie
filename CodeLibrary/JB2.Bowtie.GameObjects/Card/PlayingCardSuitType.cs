@@ -14,13 +14,13 @@ namespace JB2.Bowtie.Enum
         [ColorHex("FFFFFF")]
         NoSuit = 0,
         [ColorHex("ff0000")]
-        Heart,
+        Heart =100,
         [ColorHex("ff0000")]
-        Diamond,
+        Diamond =200,
         [ColorHex("000000")]
-        Spade,
+        Spade = 300,
         [ColorHex("000000")]
-        Club,
+        Club =400,
         
 
     }
