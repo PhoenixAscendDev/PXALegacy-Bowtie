@@ -14,6 +14,7 @@ namespace JB2.Bowtie.Economy
     }
 
     public interface IDenomination<TType,TCurrencyKey,TMultiplier,TKey,TSerial> : JB2.Common.IIDNamePair<TKey,string>
+        where TKey : IComparable
     {
         TType DenominationType { get; set; }
         TCurrencyKey CurrencyID { get; set; }

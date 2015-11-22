@@ -22,6 +22,7 @@ namespace JB2.Bowtie.Economy
 
     public interface ICurrency<TKey, TUnit, TDenomination,TDenominationType, TMultiplier,TSerial> : JB2.Common.IIDNamePair<TKey, string>
         where TDenomination : IDenomination<TDenominationType,TKey, TMultiplier,TKey,TSerial>
+        where TKey : IComparable
     {
 
         TUnit BaseUnit { get; set; }

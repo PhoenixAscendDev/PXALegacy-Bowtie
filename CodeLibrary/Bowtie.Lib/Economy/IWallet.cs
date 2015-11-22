@@ -13,6 +13,7 @@ namespace JB2.Bowtie.Economy
     }
     public interface IWallet<TOwner,TAmount,TDenomination, TKey,TDenominationType> : JB2.Common.IIDNamePair<TKey, string>
         where TDenomination : IDenomination<TDenominationType, TKey, byte, TKey, string>
+        where TKey : IComparable
     {
         TOwner Owner { get; set; }
         TDenomination[] Denomination { get;}

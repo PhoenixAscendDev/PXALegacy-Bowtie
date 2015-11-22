@@ -20,6 +20,7 @@ namespace JB2.Bowtie.Economy
     public interface IBank<TCurrency,TCapital,TKey,TUnit,TDenomination,TMultiplier,TSerial>
         where TCurrency : ICurrency<TKey,TUnit,TDenomination,string,TMultiplier,TSerial>
         where TDenomination : IDenomination<string,TKey,TMultiplier,TKey,TSerial>
+        where TKey : IComparable
     {
         TCapital TotalCapital { get; set; }
         float InterestRate { get; set; }
