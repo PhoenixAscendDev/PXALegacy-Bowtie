@@ -59,6 +59,10 @@
       <HintPath>..\packages\JB2.Image.0.1.7\lib\JB2.Common.Image.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="JB2.Common.Player, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Player.0.1.1\lib\JB2.Common.Player.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="JB2.Common.Ultities, Version=0.1.1.13899, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JB2.Common.Utility.0.1.1\lib\JB2.Common.Ultities.dll</HintPath>
       <Private>True</Private>
