@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JB2.Bowtie</RootNamespace>
-    <AssemblyName>JB2.Bowtie</AssemblyName>
+    <AssemblyName>JB2.Bowtie.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -93,16 +93,6 @@
     <Compile Include="BowtieObject.cs" />
     <Compile Include="BowtieSettings.cs" />
     <Compile Include="Client.cs" />
-    <Compile Include="Economy\BasicCurrency.cs" />
-    <Compile Include="Economy\CurrencyType.cs" />
-    <Compile Include="Economy\IBank.cs" />
-    <Compile Include="Economy\ICurrency.cs" />
-    <Compile Include="Economy\IDenomination.cs" />
-    <Compile Include="Economy\ITreasuryLogEntry.cs" />
-    <Compile Include="Economy\ITreasuryService.cs" />
-    <Compile Include="Economy\IWallet.cs" />
-    <Compile Include="Economy\Token.cs" />
-    <Compile Include="Economy\TreasuryLogItem.cs" />
     <Compile Include="Enum\AchievementRarityType.cs" />
     <Compile Include="Enum\AchievementState.cs" />
     <Compile Include="Enum\AchievementType.cs" />
@@ -128,7 +118,6 @@
     <Compile Include="Interfaces\ILeaderboardRepository.cs" />
     <Compile Include="Interfaces\IMasterLeaderboard.cs" />
     <Compile Include="Interfaces\IPlayerAchievement.cs" />
-    <Compile Include="Economy\ITreasuryRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="LapelPin.cs" />
     <Compile Include="Leaderboard.cs" />
