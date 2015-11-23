@@ -4,61 +4,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using JB2.Common;
+
 namespace JB2.Bowtie.Economy.Settings
 {
-    public static class JBean
+    public static class Jbean
     {
-        private static readonly string  CURRENCYID = "111000";
-        private static JBeanTreasury _treasury;
+        #region Fields
 
-        public static byte GetMultiplier(Enum.JBeanTokenType type)
+        private static SettingCollection<string> _settings;
+        #endregion Fields
+
+
+        public static void Configure(IEnumerable<ISetting> settings)
         {
-            switch(type)
+            _settings = new SettingCollection<string>();
+            foreach(ISetting s in settings)
             {
-                case Enum.JBeanTokenType.Kidney:
-                    return 1;
-                case Enum.JBeanTokenType.Navy:
-                    return 50;
-                case Enum.JBeanTokenType.Pinto:
-                    return 200;
-                default:
-                    return 1;
+                _settings.Add(s);
             }
+           
         }
 
-        public static string GetFrontImage(Enum.JBeanTokenType type)
+        public static ISetting GetSetting(string settingName)
         {
-            return "#";
+            if (_settings == null)
+                return null;
+            else
+                return _settings[settingName];
         }
 
-        public static string GetBackImage(Enum.JBeanTokenType type)
-        {
-            return "#";
-        }
+        
 
-        public static string CurrencyID
-        {
-            get
-            {
-                return CURRENCYID;
-            }
-        }
-
-        public static JBeanTreasury Treasury
-        {
-            get
-            {
-                if (_treasury != null)
-                    _treasury = new JBeanTreasury();
-
-                return _treasury;
-            }
-            set
-            {
-                _treasury = value;
-            }
-            
-
-        }
     }
 }

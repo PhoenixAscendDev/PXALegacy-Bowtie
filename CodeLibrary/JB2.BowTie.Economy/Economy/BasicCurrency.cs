@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.Economy
 {
-    public class BasicCurrency : ICurrency<string,byte,Token,JB2.Common.IIDNamePair<string,string>,short,string>
+    public class BasicCurrency : ICurrency<string,byte,CurrencyToken,JB2.Common.IIDNamePair<string,string>,short,string>
     {
         public byte BaseUnit
         {
@@ -25,7 +25,7 @@ namespace JB2.Bowtie.Economy
             set;
         }
 
-        public Token[] Denominations
+        public CurrencyToken[] Denominations
         {
             get;
             set;
@@ -49,7 +49,7 @@ namespace JB2.Bowtie.Economy
             set;
         }
 
-        public Token[] GetDenomination(Common.IIDNamePair<string, string> dType)
+        public CurrencyToken[] GetDenomination(Common.IIDNamePair<string, string> dType)
         {
             throw new NotImplementedException();
         }

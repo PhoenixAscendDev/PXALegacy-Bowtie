@@ -10,6 +10,12 @@ namespace JB2.Bowtie.Economy
 {
     public interface ITreasury : IIDNamePair<string,string>
     {
+        ITreasuryNote IssueDeomination(ITreasuryRequest request);
 
+        long GetAmountIssued();
+
+        void Cancel(ITreasuryNote treasuryNote);
+
+        
     }
 }

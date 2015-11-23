@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.Economy
 {
-    public interface ITreasuryNote
+    public interface IBankTransactionReceipt
     {
-        string ID { get;}
-        long Amount { get;}
-        
-        string Requestor { get; }          
+        string TransactionNumber { get;}
+        string Message { get;}
+        bool WasSuccess { get; }
     }
 }

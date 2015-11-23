@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.Economy
 {
-    public class Token : IDenomination<JB2.Common.IIDNamePair<string,string>,string,short,string,string>
+    public class CurrencyToken : IDenomination<JB2.Common.IIDNamePair<string,string>,string,short,string,string>
     {
         public Common.IIDNamePair<string, string> DenominationType
         {

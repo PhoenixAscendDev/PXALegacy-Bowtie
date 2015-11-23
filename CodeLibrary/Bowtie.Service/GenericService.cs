@@ -33,7 +33,7 @@ namespace JB2.Bowtie
 
         protected JB2.Bowtie.Economy.JBeanToken[] retrieveJBeanTokens(Enum.JBeanTokenType type,int quantity)
         {
-            JB2.Bowtie.Economy.JBeanTreasury treasury = JB2.Bowtie.Economy.Settings.JBean.Treasury;
+            JB2.Bowtie.Economy.JbeanTreasury treasury = JB2.Bowtie.Economy.Settings.JBean.Treasury;
 
             return treasury.IssueDenomination(type, quantity);
         }

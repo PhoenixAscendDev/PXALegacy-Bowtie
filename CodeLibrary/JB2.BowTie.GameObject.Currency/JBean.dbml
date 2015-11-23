@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="JB2-Bowtie" Class="JBeanDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=cx8yl1ofvr.database.windows.net;Initial Catalog=JB2-Bowtie;User ID=polkadot;Connect Timeout=60" SettingsObjectName="JB2.Bowtie.Properties.Settings" SettingsPropertyName="JB2_BowtieConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=cx8yl1ofvr.database.windows.net;Initial Catalog=JB2-Bowtie;User ID=polkadot;Connect Timeout=60" SettingsObjectName="JB2.Bowtie.Economy.Economy.Properties.Settings" SettingsPropertyName="JB2_BowtieConnectionString" Provider="System.Data.SqlClient" />
   <Function Name="dbo.jb2bt_TreasuryLog_Add" Method="jb2bt_TreasuryLog_Add">
     <Parameter Name="appkey" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="denomType" Type="System.String" DbType="VarChar(50)" />

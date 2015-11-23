@@ -12,6 +12,7 @@ namespace JB2.Bowtie.Economy
     {
         string AccountNumber { get; set; }
         string RoutingNumber { get; set; }
+        string Name { get; set; }
 
     }
 }

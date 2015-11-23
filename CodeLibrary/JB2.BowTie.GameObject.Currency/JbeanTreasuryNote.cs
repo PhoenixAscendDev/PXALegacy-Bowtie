@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.Economy
 {
-    public interface ITreasuryNote
+    public class JbeanTreasuryNote : TreasuryNote
     {
-        string ID { get;}
-        long Amount { get;}
-        
-        string Requestor { get; }          
     }
 }

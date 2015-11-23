@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JB2.Bowtie.Economy
+{
+    public interface IBank :  JB2.Common.IIDNamePair<string,string>
+    {
+        long TotalCapital();
+        float GInterestRate(DateTime dt);
+        IBankTransactionReceipt Deposit(IBankAccount account, ITreasuryNote treasuryNote);
+        IBankTransactionReceipt Withdrawn(IBankAccount account, ITreasuryRequest request);
+
+    }
+}

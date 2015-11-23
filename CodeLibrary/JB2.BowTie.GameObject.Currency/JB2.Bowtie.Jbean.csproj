@@ -7,7 +7,7 @@
     <ProjectGuid>{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JB2.Bowtie</RootNamespace>
+    <RootNamespace>JB2.Bowtie.Economy</RootNamespace>
     <AssemblyName>JB2.Bowtie.Economy</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -30,39 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common, Version=0.1.6.28889, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.0.1.6\lib\JB2.Common.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.1.5.6414, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Common.Core.0.1.5\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Color, Version=0.1.6.28890, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.0.1.6\lib\JB2.Common.Color.dll</HintPath>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Core, Version=0.1.2.16771, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Core.0.1.2\lib\JB2.Common.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="JB2.Common.Date, Version=0.1.1.16771, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Date.0.1.1\lib\JB2.Common.Date.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="JB2.Common.Image, Version=0.1.6.28890, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.0.1.6\lib\JB2.Common.Image.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="JB2.Common.Map, Version=0.1.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Map.0.1.3\lib\JB2.Common.Map.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="JB2.Common.Player, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Player.0.1.2\lib\JB2.Common.Player.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="JB2.Common.Ultities, Version=0.1.1.13899, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Utility.0.1.1\lib\JB2.Common.Ultities.dll</HintPath>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
@@ -74,18 +55,10 @@
   <ItemGroup>
     <Compile Include="Enum\jBeanTokenType.cs" />
     <Compile Include="IssueJBeanProhibited.cs" />
-    <Compile Include="JBean.cs" />
-    <Compile Include="JBean.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>JBean.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="JBeanRespository.cs" />
-    <Compile Include="JBeanSettings.cs" />
-    <Compile Include="JBeanToken.cs" />
+    <Compile Include="JbeanSettingNames.cs" />
+    <Compile Include="JbeanSettings.cs" />
     <Compile Include="JbeanTreasurey.cs" />
-    <Compile Include="JBeanTreasuryLogEntry.cs" />
-    <Compile Include="jBeanWallet.cs" />
+    <Compile Include="JbeanTreasuryNote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -105,11 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="JBean.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>JBean.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -118,11 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="JBean.dbml.layout">
-      <DependentUpon>JBean.dbml</DependentUpon>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

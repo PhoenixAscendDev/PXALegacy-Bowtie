@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common.Core, Version=0.1.2.16771, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Core.0.1.2\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.1.5.6414, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Common.Core.0.1.5\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -47,19 +47,21 @@
   <ItemGroup>
     <Compile Include="Economy\BasicCurrency.cs" />
     <Compile Include="Economy\CurrencyType.cs" />
-    <Compile Include="Economy\IBank.cs" />
+    <Compile Include="IBankTransactionReceipt.cs" />
     <Compile Include="Economy\ICurrency.cs" />
     <Compile Include="Economy\IDenomination.cs" />
     <Compile Include="Economy\ITreasuryLogEntry.cs" />
     <Compile Include="Economy\ITreasuryRepository.cs" />
-    <Compile Include="Economy\ITreasury.cs" />
-    <Compile Include="Economy\ITreasuryRequest.cs" />
+    <Compile Include="ITreasuryRequest.cs" />
     <Compile Include="Economy\IWallet.cs" />
     <Compile Include="Economy\Token.cs" />
     <Compile Include="Economy\TreasuryLogItem.cs" />
+    <Compile Include="IBank.cs" />
     <Compile Include="IBankAccount.cs" />
+    <Compile Include="ITreasury.cs" />
     <Compile Include="ITreasurynote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TreasuryNote.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
