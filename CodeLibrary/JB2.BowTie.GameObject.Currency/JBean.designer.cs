@@ -33,7 +33,7 @@ namespace JB2.Bowtie.Economy
     #endregion
 		
 		public JBeanDataContext() : 
-				base(global::JB2.Bowtie.Economy.Economy.Properties.Settings.Default.JB2_BowtieConnectionString, mappingSource)
+				base(global::JB2.Bowtie.Economy.Properties.Settings.Default.JB2_BowtieConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

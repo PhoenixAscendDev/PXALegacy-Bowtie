@@ -13,8 +13,9 @@ namespace JB2.Bowtie.Economy
         private Enum.JBeanTokenType _type;
         private string _name;
         private string _serialNumber;
-        
-        
+
+
+        #region Constructor
 
         public JBeanToken(): this(Enum.JBeanTokenType.Kidney)
         {
@@ -32,14 +33,16 @@ namespace JB2.Bowtie.Economy
             _serialNumber = String.IsNullOrEmpty(serialNumber) ? string.Empty : serialNumber;
         }
 
+        #endregion Constructor
 
 
 
-        public string ImageFrontUrl
+
+        public string ImageFrontUri
         {
             get
             {
-                   return JB2.Bowtie.Economy.Settings.JBean.GetFrontImage(this._type);
+                return JB2.Bowtie.Economy.Settings.Jbean.GetTokenImageFront(this._type);
             }
             set
             {
@@ -47,11 +50,11 @@ namespace JB2.Bowtie.Economy
             }
         }
 
-        public string ImageBackUrl
+        public string ImageBackUri
         {
             get
             {
-                return JB2.Bowtie.Economy.Settings.JBean.GetBackImage(this._type);
+                return JB2.Bowtie.Economy.Settings.Jbean.GetTokenImageBack(this._type);
             }
             set
             {
@@ -63,7 +66,7 @@ namespace JB2.Bowtie.Economy
         {
             get
             {
-                return JB2.Bowtie.Economy.Settings.JBean.CurrencyID;
+                return JB2.Bowtie.Economy.Settings.Jbean.GetSetting(JbeanSettingName.CurrencyID).ToString();
             }
             set
             {
@@ -71,11 +74,11 @@ namespace JB2.Bowtie.Economy
             }
         }
 
-        public byte UnitMultiplier
+        public int UnitMultiplier
         {
             get
             {
-                return JB2.Bowtie.Economy.Settings.JBean.GetMultiplier(this._type);
+                return JB2.Bowtie.Economy.Settings.Jbean.GetTokenValue(this._type);
             }
             set
             {

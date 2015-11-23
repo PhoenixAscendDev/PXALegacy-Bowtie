@@ -9,6 +9,7 @@ namespace JB2.Bowtie.Enum
     public enum CurrencyType
     {
         Decimal,
-        NonDecimal     
+        NonDecimal,
+        NoSubUnit   
     }
 }

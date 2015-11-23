@@ -55,8 +55,17 @@
   <ItemGroup>
     <Compile Include="Enum\jBeanTokenType.cs" />
     <Compile Include="IssueJBeanProhibited.cs" />
+    <Compile Include="JBean.cs">
+      <DependentUpon>JBean.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="JBean.designer.cs">
+      <DependentUpon>JBean.dbml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="JbeanSettingNames.cs" />
     <Compile Include="JbeanSettings.cs" />
+    <Compile Include="JBeanToken.cs" />
     <Compile Include="JbeanTreasurey.cs" />
     <Compile Include="JbeanTreasuryNote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +87,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="JBean.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>JBean.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -86,6 +100,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="JBean.dbml.layout">
+      <DependentUpon>JBean.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

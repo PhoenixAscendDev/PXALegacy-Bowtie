@@ -22,6 +22,7 @@ namespace JB2.Bowtie.Economy.Settings
             foreach(ISetting s in settings)
             {
                 _settings.Add(s);
+                
             }
            
         }
@@ -33,6 +34,22 @@ namespace JB2.Bowtie.Economy.Settings
             else
                 return _settings[settingName];
         }
+
+        public static string GetTokenImageFront(Enum.JBeanTokenType type)
+        {
+            return string.Empty;
+        }
+
+        public static string GetTokenImageBack(Enum.JBeanTokenType type)
+        {
+            return string.Empty;
+        }
+
+        public static int GetTokenValue(Enum.JBeanTokenType type)
+        {
+            return 10;
+        }
+
 
         
 
