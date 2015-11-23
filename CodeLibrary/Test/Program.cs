@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Economy
+namespace Test
 {
-    public static class JBeanExtensions
+    class Program
     {
-
+        static void Main(string[] args)
+        {
+        }
     }
 }

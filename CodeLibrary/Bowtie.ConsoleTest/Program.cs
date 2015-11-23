@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using JB2.Bowtie;
-using JB2.Bowtie.GameObjects;
+
 
 namespace Bowtie.ConsoleTest
 {
@@ -17,30 +17,33 @@ namespace Bowtie.ConsoleTest
     {
         static void Main(string[] args)
         {
+            int test = 3503;
+
+            Console.WriteLine(test.ToJBean().ToString());
             //JB2.Bowtie.Manager.Initialize("4d53bce03ec34c0a911182d4c228ee6d", "A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=");
 
 
-            var debugPath = string.Empty;
-            #if (DEBUG)
-                debugPath = "..\\..\\";
-            #endif
+            //var debugPath = string.Empty;
+            //#if (DEBUG)
+            //    debugPath = "..\\..\\";
+            //#endif
 
 
-            string settingsFilePath =  System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, debugPath) + "bowtieApp_v1.json";
+            //string settingsFilePath =  System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, debugPath) + "bowtieApp_v1.json";
 
-            BowtieConfig settings = BowtieConfig.Load(settingsFilePath);
+            //BowtieConfig settings = BowtieConfig.Load(settingsFilePath);
 
-            JB2.Bowtie.Manager.Initialize(settingsFilePath);
+            //JB2.Bowtie.Manager.Initialize(settingsFilePath);
 
-            JB2.Bowtie.Service.GameObjectService service = new JB2.Bowtie.Service.GameObjectService(null, new JB2.Bowtie.Data.Azure.GameObjectRepository());
+            //JB2.Bowtie.Service.GameObjectService service = new JB2.Bowtie.Service.GameObjectService(null, new JB2.Bowtie.Data.Azure.GameObjectRepository());
 
-            IBingoBalDeck<byte> queue = service.RetrieveRandomBingoDeck(JB2.Bowtie.Enum.BingoType.Standard);
+            //IBingoBalDeck<byte> queue = service.RetrieveRandomBingoDeck(JB2.Bowtie.Enum.BingoType.Standard);
 
-            //Console.WriteLine(queue.Peek().ToString());
+            ////Console.WriteLine(queue.Peek().ToString());
 
             //Console.WriteLine(PlayingCardSuit.Club.isBlack);
 
-            PlayingCardDeck cards = CardHelper.GeneratePlayingCardDeck(true, true, 2);
+            //PlayingCardDeck cards = CardHelper.GeneratePlayingCardDeck(true, true, 2);
 
 
 

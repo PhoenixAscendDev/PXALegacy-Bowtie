@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.RepoAzure", "Bowtie.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.Economy", "JB2.BowTie.Economy\Bowtie.Economy.csproj", "{5FF36757-D424-40A8-8C3D-F87ADA26F067}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{A01B5F39-B496-42C7-8630-20F0A7D16CED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,12 @@ Global
 		{5FF36757-D424-40A8-8C3D-F87ADA26F067}.NoDB|Any CPU.Build.0 = Release|Any CPU
 		{5FF36757-D424-40A8-8C3D-F87ADA26F067}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FF36757-D424-40A8-8C3D-F87ADA26F067}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A01B5F39-B496-42C7-8630-20F0A7D16CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A01B5F39-B496-42C7-8630-20F0A7D16CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A01B5F39-B496-42C7-8630-20F0A7D16CED}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{A01B5F39-B496-42C7-8630-20F0A7D16CED}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{A01B5F39-B496-42C7-8630-20F0A7D16CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A01B5F39-B496-42C7-8630-20F0A7D16CED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

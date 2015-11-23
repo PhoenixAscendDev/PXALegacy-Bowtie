@@ -26,6 +26,9 @@ namespace JB2.Bowtie.Economy
         public int Navy { get { return _navy; } }
         public int Pinto { get { return _pinto; } }
 
+
+        #region Implicit Operator
+
         public static implicit operator JBeanBag(int num)
         {
             int kidneyValue = JB2.Bowtie.Jbean.GetTokenValue(Enum.JBeanTokenType.Kidney);
@@ -56,8 +59,22 @@ namespace JB2.Bowtie.Economy
             int result = (bag.Pinto * pintoValue) + (bag.Navy * navyValue) + (bag.Kidney & kidneyValue);
 
             return result;
-
-
         }
+
+        public static implicit operator string(JBeanBag bag)
+        {
+            return string.Format("Kidney: {0}; Navy: {1}; Pinto: {2}", bag.Kidney.ToString(), bag.Navy.ToString(), bag.Pinto.ToString());
+        }
+
+        #endregion Implicit Operator
+
+        #region ToString
+
+        public override string ToString()
+        {
+            return (string)this;
+        }
+
+        #endregion ToString
     }
 }

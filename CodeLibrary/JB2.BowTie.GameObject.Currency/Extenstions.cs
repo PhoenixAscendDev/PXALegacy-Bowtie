@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Economy
+using JB2.Bowtie.Economy;
+
+namespace JB2.Bowtie
 {
     public static class JBeanExtenstions
     {
@@ -18,6 +20,19 @@ namespace JB2.Bowtie.Economy
         public static JBeanBag ToJBean(this int value)
         {
             return (JBeanBag)value;
+        }
+
+        public static JBeanBag ToJBean(this float value)
+        {
+            int number;
+            int.TryParse(value.ToString(), out number);
+            return number.ToJBean();
+        }
+        public static JBeanBag ToJBean(this double value)
+        {
+            int number;
+            int.TryParse(value.ToString(), out number);
+            return number.ToJBean();
         }
 
         public static int ToInt(this JBeanBag b)
