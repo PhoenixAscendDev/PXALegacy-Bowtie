@@ -46,6 +46,14 @@ namespace JB2.Bowtie.Data.NoDB
             }
         }
 
+        public JB2.Common.IPlayerRepo PlayerRepository
+        {
+            get
+            {
+                return (JB2.Common.IPlayerRepo)GetRepository(Enum.RepositoryType.Player);
+            }
+        }
+
 
 
         public object GetRepository(Enum.RepositoryType respository)

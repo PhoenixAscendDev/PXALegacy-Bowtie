@@ -60,7 +60,14 @@ namespace JB2.Bowtie.Data.Linq
                 return (ILeaderboardRepository)GetRepository(RepositoryType.Leaderboard);
             }
         }
-      
+
+        public JB2.Common.IPlayerRepo PlayerRepository
+        {
+            get
+            {
+                return (JB2.Common.IPlayerRepo)GetRepository(Enum.RepositoryType.Player);
+            }
+        }
 
         public object GetRepository(JB2.Bowtie.Enum.RepositoryType repository)
         {
