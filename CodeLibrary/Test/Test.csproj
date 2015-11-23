@@ -63,6 +63,10 @@
       <Project>{5ff36757-d424-40a8-8c3d-f87ada26f067}</Project>
       <Name>Bowtie.Economy</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JB2.BowTie.GameObject.Currency\JB2.Bowtie.Jbean.csproj">
+      <Project>{387bae94-cbd5-45fa-8e9d-f16ad1229e1c}</Project>
+      <Name>JB2.Bowtie.Jbean</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

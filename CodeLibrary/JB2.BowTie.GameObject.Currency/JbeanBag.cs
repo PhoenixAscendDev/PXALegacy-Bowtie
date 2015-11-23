@@ -43,7 +43,7 @@ namespace JB2.Bowtie.Economy
 
             int kidneyCount = num % navyValue;
 
-            return new JBeanBag(kidneyCount, navyCount, kidneyCount);
+            return new JBeanBag(kidneyCount, navyCount, pintoCount);
             
 
 
@@ -63,7 +63,7 @@ namespace JB2.Bowtie.Economy
 
         public static implicit operator string(JBeanBag bag)
         {
-            return string.Format("Kidney: {0}; Navy: {1}; Pinto: {2}", bag.Kidney.ToString(), bag.Navy.ToString(), bag.Pinto.ToString());
+            return string.Format("Pinto:{2}: Navy:{1}; Kidney:{0}; ", bag.Kidney.ToString(), bag.Navy.ToString(), bag.Pinto.ToString());
         }
 
         #endregion Implicit Operator

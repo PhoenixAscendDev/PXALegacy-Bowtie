@@ -51,9 +51,12 @@ namespace JB2.Bowtie.Economy
             JBeanFactory factory = new JBeanFactory();
 
             JB2.Common.SettingCollection<string> sc = new SettingCollection<string>();
-            foreach (ISetting s in settings)
+            if (settings != null)
             {
-                sc.Add(s);
+                foreach (ISetting s in settings)
+                {
+                    sc.Add(s);
+                }
             }
             factory.Settings = sc;
             factory.Currencies = new ICurrency[1] { new JBean() };

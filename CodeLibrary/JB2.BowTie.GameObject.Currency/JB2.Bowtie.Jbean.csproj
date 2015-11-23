@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JB2.Bowtie.Economy</RootNamespace>
-    <AssemblyName>JB2.Bowtie.Economy</AssemblyName>
+    <AssemblyName>JB2.Bowtie.Economy.JBean</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
