@@ -8,8 +8,10 @@ namespace JB2.Bowtie.Economy
 {
     public interface IBankTransactionReceipt
     {
+        string BankID { get; set; }
         string TransactionNumber { get;}
         string Message { get;}
         bool WasSuccess { get; }
+
     }
 }

@@ -9,9 +9,9 @@ using JB2.Bowtie.Enum;
 namespace JB2.Bowtie.Economy
 {
 
-    public interface IDenomination<T> : JB2.Common.IIDNamePair<string,string>
+    public interface IDenomination : JB2.Common.IIDNamePair<string,string>
     {
-        T DenominationType { get; set; }     
+         
         int UnitMultiplier { get; set; }
         bool isSubUnit { get; set; }      
         string ImageFrontUri { get; set; }

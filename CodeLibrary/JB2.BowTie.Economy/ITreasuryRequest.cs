@@ -8,7 +8,7 @@ namespace JB2.Bowtie.Economy
 {
     public interface ITreasuryRequest
     {
-        string Requestor { get; set; }
+        object Requestor { get; set; }
         DateTime RequestDate { get; set; }
         long Amount { get; set; }
         string VerificationKey { get; set; }

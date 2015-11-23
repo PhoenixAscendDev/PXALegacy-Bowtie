@@ -65,7 +65,7 @@
     </Compile>
     <Compile Include="JbeanSettingNames.cs" />
     <Compile Include="JbeanSettings.cs" />
-    <Compile Include="JBeanToken.cs" />
+    <Compile Include="JBeanDenomination.cs" />
     <Compile Include="JbeanTreasurey.cs" />
     <Compile Include="JbeanTreasuryNote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -57,6 +57,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TokenCurrency.cs" />
     <Compile Include="TreasuryNote.cs" />
+    <Compile Include="TreasuryRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -11,6 +11,6 @@ namespace JB2.Bowtie.Economy
         string ID { get;}
         long Amount { get;}
         
-        string Requestor { get; }          
+        object Requestor { get; }          
     }
 }

@@ -9,14 +9,18 @@ using JB2.Bowtie.Enum;
 
 namespace JB2.Bowtie.Economy
 {
-    public interface ICurrency<TDenominationType> : JB2.Common.IIDNamePair<string,string>
+
+
+    public interface ICurrency : JB2.Common.IIDNamePair<string,string>
     {
         int BaseUnit { get; set; }
         string SymbolUrl { get; set; }
         string PluralName { get; set; }
         CurrencyType CurrencyType { get; set; }
         float[] SubUnits { get; set; }
-        IDenomination<TDenominationType>[] Denominations { get; set; }
+        IDenomination[] Denominations { get; set; }
+
+        
 
 
     }

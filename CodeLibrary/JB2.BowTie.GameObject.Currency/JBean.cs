@@ -8,7 +8,7 @@ using JB2.Bowtie;
 
 namespace JB2.Bowtie.Economy
 {
-    public class JBean : TokenCurrency<Enum.JBeanTokenType>
+    public class JBean : TokenCurrency
     {
         //Dictionary<Enum.JBeanTokenType, JBeanToken> _tokens;
 

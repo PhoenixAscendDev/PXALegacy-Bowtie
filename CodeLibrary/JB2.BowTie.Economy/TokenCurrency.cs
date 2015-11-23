@@ -7,11 +7,11 @@ using JB2.Bowtie.Enum;
 
 namespace JB2.Bowtie.Economy
 {
-    public class TokenCurrency<TDenominationType> : JB2.Common.IDNamePair, ICurrency<TDenominationType>,JB2.Common.IIDNamePair<string,string>
+    public class TokenCurrency : JB2.Common.IDNamePair, ICurrency
     {
 
         #region Fields
-        protected IDenomination<TDenominationType>[] _denominations;
+        protected IDenomination[] _denominations;
         protected string _puralname;
         protected string _symbolUri;
 
@@ -47,7 +47,7 @@ namespace JB2.Bowtie.Economy
             }
         }
 
-        public IDenomination<TDenominationType>[] Denominations
+        public IDenomination[] Denominations
         {
             get
             {
@@ -59,7 +59,6 @@ namespace JB2.Bowtie.Economy
                 _denominations = value;
             }
         }
-
 
         public string PluralName
         {
@@ -102,5 +101,7 @@ namespace JB2.Bowtie.Economy
                 _symbolUri = value;
             }
         }
+
+         
     }
 }

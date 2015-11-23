@@ -8,31 +8,23 @@ using JB2.Bowtie;
 
 namespace JB2.Bowtie.Economy
 {
-    public class JBeanToken : IDenomination<Enum.JBeanTokenType>
+    public class JBeanDenomination : IDenomination
     {
-        private Enum.JBeanTokenType _type;
-        private string _name;
-        private string _serialNumber;
-
+        protected Enum.JBeanTokenType _type;
+        protected string _name;
+        protected string _id;
 
         #region Constructor
 
-        public JBeanToken(): this(Enum.JBeanTokenType.Kidney)
+        public JBeanDenomination(): this(Enum.JBeanTokenType.Kidney)
         {
 
         }
 
-        public JBeanToken(Enum.JBeanTokenType type): this(null,type)
-        {
-
-        }
-
-        public JBeanToken(string serialNumber,Enum.JBeanTokenType type)
+        public JBeanDenomination(Enum.JBeanTokenType type)
         {
             _type = type;
-            _serialNumber = String.IsNullOrEmpty(serialNumber) ? string.Empty : serialNumber;
         }
-
         #endregion Constructor
 
 
@@ -98,27 +90,16 @@ namespace JB2.Bowtie.Economy
             }
         }
 
-        public string SerialNumber
-        {
-            get
-            {
-                return _serialNumber;
-            }
-            set
-            {
-                throw new NotSupportedException();
-            }
-        }
 
         public string ID
         {
             get
             {
-                return _serialNumber;
+                return _id;
             }
             set
             {
-                throw new NotImplementedException();
+                _id = value;
             }
         }
 
@@ -150,7 +131,7 @@ namespace JB2.Bowtie.Economy
         }
 
 
-        public static implicit operator int(JBeanToken r)
+        public static implicit operator int(JBeanDenomination r)
         {
             return (int)r.UnitMultiplier;
         }

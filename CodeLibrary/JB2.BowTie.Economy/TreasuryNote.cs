@@ -33,7 +33,7 @@ namespace JB2.Bowtie.Economy
             }
         }
 
-        public string Requestor
+        public object Requestor
         {
             get
             {
