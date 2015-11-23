@@ -32,7 +32,18 @@ namespace JB2.Bowtie.Economy
 
         public int GetTokenValue(Enum.JBeanTokenType type)
         {
-            return 10;
+            switch(type)
+            {
+                case Enum.JBeanTokenType.Kidney:
+                    return 1;
+                case Enum.JBeanTokenType.Navy:
+                    return 100;
+                case Enum.JBeanTokenType.Pinto:
+                    return 1000;
+                default:
+                    return 0;
+            }
+            
         }
 
         public static JBeanFactory Configure(IEnumerable<ISetting> settings)

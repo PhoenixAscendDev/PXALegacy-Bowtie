@@ -15,5 +15,14 @@ namespace JB2.Bowtie.Economy
             Int32.TryParse(c.ToString(), out result);
             return result;            
         }
+        public static JBeanBag ToJBean(this int value)
+        {
+            return (JBeanBag)value;
+        }
+
+        public static int ToInt(this JBeanBag b)
+        {
+            return (int)b;
+        }
     }
 }

@@ -54,9 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enum\jBeanTokenType.cs" />
+    <Compile Include="Extensitions.cs" />
     <Compile Include="Extenstions.cs" />
     <Compile Include="IssueJBeanProhibited.cs" />
     <Compile Include="Jbean.cs" />
+    <Compile Include="JbeanBag.cs" />
     <Compile Include="JBeanFactory.cs" />
     <Compile Include="JbeanSettingNames.cs" />
     <Compile Include="JbeanSettings.cs" />
