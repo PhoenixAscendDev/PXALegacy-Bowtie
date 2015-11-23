@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using JB2.Bowtie;
-
 namespace JB2.Bowtie.Economy
 {
     public class JBean : TokenCurrency
     {
+
         //Dictionary<Enum.JBeanTokenType, JBeanToken> _tokens;
 
         #region Properties
