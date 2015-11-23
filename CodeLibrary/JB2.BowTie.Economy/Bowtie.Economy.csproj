@@ -7,8 +7,8 @@
     <ProjectGuid>{5FF36757-D424-40A8-8C3D-F87ADA26F067}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JB2.BowTie.Economy</RootNamespace>
-    <AssemblyName>JB2.BowTie.Economy</AssemblyName>
+    <RootNamespace>JB2.Bowtie.Economy</RootNamespace>
+    <AssemblyName>JB2.Bowtie.Economy</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Economy\BasicCurrency.cs" />
     <Compile Include="Economy\CurrencyType.cs" />
     <Compile Include="Economy\IBank.cs" />
@@ -53,10 +52,13 @@
     <Compile Include="Economy\IDenomination.cs" />
     <Compile Include="Economy\ITreasuryLogEntry.cs" />
     <Compile Include="Economy\ITreasuryRepository.cs" />
-    <Compile Include="Economy\ITreasuryService.cs" />
+    <Compile Include="Economy\ITreasury.cs" />
+    <Compile Include="Economy\ITreasuryRequest.cs" />
     <Compile Include="Economy\IWallet.cs" />
     <Compile Include="Economy\Token.cs" />
     <Compile Include="Economy\TreasuryLogItem.cs" />
+    <Compile Include="IBankAccount.cs" />
+    <Compile Include="ITreasurynote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.BowTie.Economy
+using JB2.Common;
+
+namespace JB2.Bowtie.Economy
 {
-    public class Class1
+    public interface ITreasury : IIDNamePair<string,string>
     {
+
     }
 }

@@ -8,7 +8,7 @@ using JB2.Bowtie;
 
 namespace JB2.Bowtie.Economy
 {
-    public class JBeanTreasury : ITreasuryService<JBean,JBeanToken,Enum.JBeanTokenType,string,string>
+    public class JBeanTreasury : ITreasury<JBean,JBeanToken,Enum.JBeanTokenType,string,string>
     {
         private ITreasuryRepository<JB2.Bowtie.Economy.JBeanTreasuryLogEntry,Enum.JBeanTokenType,string> _repo;
         

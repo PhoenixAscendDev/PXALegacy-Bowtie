@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.Economy
 {
-    public interface ITreasuryService<TCurrency,TDenomination,TDenominationType,TCurrencyKey,TSerial>
+    public interface ITreasury<TCurrency,TDenomination,TDenominationType,TCurrencyKey,TSerial>
         where TCurrency : ICurrency<TCurrencyKey,byte,TDenomination,TDenominationType,byte,TSerial>
         where TDenomination : IDenomination<TDenominationType,TCurrencyKey,byte,TCurrencyKey,TSerial>
         where TCurrencyKey: IComparable
