@@ -34,7 +34,7 @@ namespace JB2.Bowtie.Economy
         {
             get
             {
-                return JB2.Bowtie.Economy.Settings.Jbean.GetTokenImageFront(this._type);
+                return JB2.Bowtie.Jbean.GetTokenImageFront(this._type);
             }
             set
             {
@@ -46,7 +46,7 @@ namespace JB2.Bowtie.Economy
         {
             get
             {
-                return JB2.Bowtie.Economy.Settings.Jbean.GetTokenImageBack(this._type);
+                return JB2.Bowtie.Jbean.GetTokenImageBack(this._type);
             }
             set
             {
@@ -58,7 +58,7 @@ namespace JB2.Bowtie.Economy
         {
             get
             {
-                return JB2.Bowtie.Economy.Settings.Jbean.GetSetting(JbeanSettingName.CurrencyID).ToString();
+                return JB2.Bowtie.Jbean.GetSetting(JbeanSettingName.CurrencyID).ToString();
             }
             set
             {
@@ -70,7 +70,7 @@ namespace JB2.Bowtie.Economy
         {
             get
             {
-                return JB2.Bowtie.Economy.Settings.Jbean.GetTokenValue(this._type);
+                return JB2.Bowtie.Jbean.GetTokenValue(this._type);
             }
             set
             {

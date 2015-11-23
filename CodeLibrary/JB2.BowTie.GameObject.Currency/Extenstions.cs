@@ -10,7 +10,10 @@ namespace JB2.Bowtie.Economy
     {
         public static int JBeanAmount(this IWallet wallet)
         {
+            int result = 0;
             var c = wallet.CurrencyTotal(new JBean());
+            Int32.TryParse(c.ToString(), out result);
+            return result;            
         }
     }
 }

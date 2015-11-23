@@ -13,5 +13,7 @@ namespace JB2.Bowtie.Economy
         public IDenomination[] Denominations { get; set; }
         public JB2.Common.SettingCollection<string> Settings {get;set;}
         public IBank CentralBank { get; set; }
+
+
     }
 }
