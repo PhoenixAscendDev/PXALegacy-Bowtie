@@ -14,7 +14,7 @@ namespace JB2.Bowtie.Economy
         string ID { get; }
 
         long CurrencyTotal(ICurrency currency);
-        void AddAmount(ICurrency currency, int quantity);
-        void RemoveAmount(ICurrency currency, int quantity);     
+        void AddAmount(ICurrency currency, double quantity);
+        void RemoveAmount(ICurrency currency, double quantity);     
     }
 }
