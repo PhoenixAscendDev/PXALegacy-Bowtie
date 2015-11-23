@@ -33,19 +33,27 @@ namespace JB2.Bowtie.Economy
 
         public void AddAmount(ICurrency currency, double quantity)
         {
-            var ca = _amounts[currency.ID];
-            ca.IncreaseAmount(quantity);
-            
+            if (_amounts.ContainsKey(currency.ID))
+                _amounts[currency.ID].DecreaseAmount(quantity);
+            else
+                _amounts.Add(currency.ID, new CurrencyAmountPair(currency, quantity));
+
         }
 
-        public long CurrencyTotal(ICurrency currency)
+        public void RemoveAmount(ICurrency currency, double quantity)
         {
-            throw new NotImplementedException();
+            if (_amounts.ContainsKey(currency.ID))
+                _amounts[currency.ID].DecreaseAmount(quantity);           
         }
 
-        public void RemoveAmount(ICurrency currency, int quantity)
+        public double CurrencyTotal(ICurrency currency)
         {
-            throw new NotImplementedException();
+            if (_amounts.ContainsKey(currency.ID))
+                return (double)_amounts[currency.ID];
+            else
+                return 0;
         }
+
+        
     }
 }

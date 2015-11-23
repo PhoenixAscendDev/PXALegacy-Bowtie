@@ -13,7 +13,7 @@ namespace JB2.Bowtie.Economy
         string PlayerID { get; }
         string ID { get; }
 
-        long CurrencyTotal(ICurrency currency);
+        double CurrencyTotal(ICurrency currency);
         void AddAmount(ICurrency currency, double quantity);
         void RemoveAmount(ICurrency currency, double quantity);     
     }

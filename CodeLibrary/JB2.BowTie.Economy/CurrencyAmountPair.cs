@@ -11,14 +11,21 @@ namespace JB2.Bowtie.Economy
         #region Fields
         private ICurrency _currency;
         private double _amount;
+        private JB2.Common.DoubleRange _range;
         #endregion Fields
 
         #region Constructors
-        public CurrencyAmountPair(ICurrency currency, double amount)
+        public CurrencyAmountPair(ICurrency currency, double amount): this(currency,amount,0.00,double.MaxValue)
+        {
+            
+        }
+        public CurrencyAmountPair(ICurrency currency, double amount, double minAllowed, double maxAllowed)
         {
             _currency = currency;
             _amount = amount;
+            _range = new Common.DoubleRange(minAllowed, maxAllowed);
         }
+
         #endregion Constructors
 
         #region Properties
@@ -46,6 +53,10 @@ namespace JB2.Bowtie.Economy
         public void IncreaseAmount(double amount)
         {
             _amount = _amount + Amount;
+            if (_amount < _range.Min)
+                _amount = _range.Min;
+            if (_amount > _range.Max)
+                _amount = _range.Max;
         }
 
         public void IncreaseAmount(int amount)
