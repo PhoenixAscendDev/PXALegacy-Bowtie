@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using JB2.Bowtie;
+using JB2.Bowtie.Enum;
+
 namespace JB2.Bowtie.Economy
 {
     public struct JBeanBag
@@ -31,9 +34,9 @@ namespace JB2.Bowtie.Economy
 
         public static implicit operator JBeanBag(int num)
         {
-            int kidneyValue = JB2.Bowtie.Jbean.GetTokenValue(Enum.JBeanTokenType.Kidney);
-            int navyValue = JB2.Bowtie.Jbean.GetTokenValue(Enum.JBeanTokenType.Navy);
-            int pintoValue = JB2.Bowtie.Jbean.GetTokenValue(Enum.JBeanTokenType.Pinto);
+            int kidneyValue = JB2.Settings.Jbean.GetTokenValue(JB2.Bowtie.Enum.JBeanTokenType.Kidney);
+            int navyValue = JB2.Settings.Jbean.GetTokenValue(JBeanTokenType.Navy);
+            int pintoValue = JB2.Settings.Jbean.GetTokenValue(JBeanTokenType.Pinto);
 
             int pintoCount = num / pintoValue;
 
@@ -48,9 +51,9 @@ namespace JB2.Bowtie.Economy
 
         public static implicit operator int(JBeanBag bag)
         {
-            int kidneyValue = JB2.Bowtie.Jbean.GetTokenValue(Enum.JBeanTokenType.Kidney);
-            int navyValue = JB2.Bowtie.Jbean.GetTokenValue(Enum.JBeanTokenType.Navy);
-            int pintoValue = JB2.Bowtie.Jbean.GetTokenValue(Enum.JBeanTokenType.Pinto);
+            int kidneyValue = JB2.Settings.Jbean.GetTokenValue(JBeanTokenType.Kidney);
+            int navyValue = JB2.Settings.Jbean.GetTokenValue(JBeanTokenType.Navy);
+            int pintoValue = JB2.Settings.Jbean.GetTokenValue(JBeanTokenType.Pinto);
 
             int result = (bag.Pinto * pintoValue) + (bag.Navy * navyValue) + (bag.Kidney & kidneyValue);
 

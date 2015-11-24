@@ -21,7 +21,7 @@ namespace JB2.Bowtie
                 Value = "jbeanID123456789"
             };
             //JB2.Bowtie.Settings._application = app;
-            JB2.Bowtie.Jbean.Configure( new BaseSetting[1]{ s });
+            JB2.Settings.Jbean.Configure( new BaseSetting[1]{ s });
             return true;
         }
 

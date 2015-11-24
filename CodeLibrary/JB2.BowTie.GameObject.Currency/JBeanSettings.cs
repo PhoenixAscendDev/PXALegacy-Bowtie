@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 using JB2.Common;
 
-namespace JB2.Bowtie
+using JB2.Bowtie.Enum;
+
+namespace JB2.Settings
 {
     public static class Jbean
     {
@@ -31,17 +33,17 @@ namespace JB2.Bowtie
             //    return _settings[settingName];
         }
 
-        public static string GetTokenImageFront(Enum.JBeanTokenType type)
+        public static string GetTokenImageFront(JBeanTokenType type)
         {
             return _factory.GetTokenImageFront(type);
         }
 
-        public static string GetTokenImageBack(Enum.JBeanTokenType type)
+        public static string GetTokenImageBack(JBeanTokenType type)
         {
             return _factory.GetTokenImageBack(type);
         }
 
-        public static int GetTokenValue(Enum.JBeanTokenType type)
+        public static int GetTokenValue(JBeanTokenType type)
         {
             return _factory.GetTokenValue(type);
         }

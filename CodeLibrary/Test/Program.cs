@@ -12,7 +12,7 @@ namespace Test
         static void Main(string[] args)
         {
             int v = 5436;
-            JB2.Bowtie.Jbean.Configure(null);
+            JB2.Settings.Jbean.Configure(null);
             Console.WriteLine(v.ToJBean().ToString());
 
             Console.ReadLine();

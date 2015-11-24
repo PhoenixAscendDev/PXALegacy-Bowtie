@@ -24,7 +24,7 @@ namespace Bowtie.ConsoleTest
 
             Console.WriteLine(test.ToJBean().ToString());
 
-            Console.WriteLine(JB2.Bowtie.Jbean.GetSetting(JB2.Bowtie.Economy.JbeanSettingName.CurrencyID).Value.ToString());
+            Console.WriteLine(JB2.Settings.Jbean.GetSetting(JB2.Bowtie.Economy.JbeanSettingName.CurrencyID).Value.ToString());
             //var debugPath = string.Empty;
             //#if (DEBUG)
             //    debugPath = "..\\..\\";
