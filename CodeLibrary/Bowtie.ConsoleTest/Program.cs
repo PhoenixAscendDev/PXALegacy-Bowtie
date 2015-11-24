@@ -33,7 +33,7 @@ namespace Bowtie.ConsoleTest
 
             //string settingsFilePath =  System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, debugPath) + "bowtieApp_v1.json";
 
-            //BowtieConfig settings = BowtieConfig.Load(settingsFilePath);
+            BowtieConfig settings = BowtieConfig.Load(settingsFilePath);
 
             //JB2.Bowtie.Manager.Initialize(settingsFilePath);
 

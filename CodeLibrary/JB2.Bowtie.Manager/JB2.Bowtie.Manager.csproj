@@ -35,12 +35,32 @@
       <HintPath>..\packages\Hyak.Common.1.0.2\lib\net45\Hyak.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="JB2.Common, Version=0.1.14.18302, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Common.0.1.14\lib\JB2.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Common.Color, Version=0.1.7.16772, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Color.0.1.7\lib\JB2.Common.Color.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="JB2.Common.Core, Version=0.1.9.5571, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JB2.Common.Core.0.1.9\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Data.AzureStorage, Version=0.1.11.14401, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JB2.Data.Azure.0.1.11\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Common.Date, Version=0.1.1.16771, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Date.0.1.1\lib\JB2.Common.Date.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Common.Image, Version=0.1.7.16772, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Image.0.1.7\lib\JB2.Common.Image.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Common.Ultities, Version=0.1.1.13899, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Common.Utility.0.1.1\lib\JB2.Common.Ultities.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Infrastructure, Version=0.1.5.38803, Culture=neutral, processorArchitecture=MSIL">
@@ -123,6 +143,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BowtieSettings.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

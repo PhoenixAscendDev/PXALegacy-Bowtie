@@ -91,7 +91,6 @@
     <Compile Include="BaseAchievement.cs" />
     <Compile Include="BowtieDelegatingHandler.cs" />
     <Compile Include="BowtieObject.cs" />
-    <Compile Include="BowtieSettings.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Enum\AchievementRarityType.cs" />
     <Compile Include="Enum\AchievementState.cs" />

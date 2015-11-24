@@ -117,19 +117,5 @@ namespace JB2.Bowtie
 
 
         }
-
-        private static BowtieConfig getSettingsFromFile()
-        {
-            BowtieConfig settings = BowtieConfig.Load(_configFile);
-            LoadByConfig(settings);
-            return settings;
-        }
-
-        public static void LoadByConfig(BowtieConfig config)
-        {
-            _application = new Application(config.AppKey, config.SecretKey);
-            _sigFormat = config.Signature;
-            _authCheckInterval = config.AuthCheckInterval;
-        }  
     }
 }
