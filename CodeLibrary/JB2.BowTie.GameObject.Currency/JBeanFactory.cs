@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using JB2.Common;
 
-namespace JB2.Bowtie.Economy
+namespace JB2.Economy
 {
-    //private static JB2.Bowtie.Economy.EconomicFactory;
+    //private static JB2.Economy.EconomicFactory;
     public class JBeanFactory : Economy.EconomicFactory
     {
 

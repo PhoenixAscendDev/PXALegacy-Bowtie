@@ -7,8 +7,8 @@
     <ProjectGuid>{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JB2.Bowtie.Economy</RootNamespace>
-    <AssemblyName>JB2.Bowtie.Economy.JBean</AssemblyName>
+    <RootNamespace>JB2.Economy</RootNamespace>
+    <AssemblyName>JB2.Economy.JBean</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -80,9 +80,9 @@
       <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
       <Name>Bowtie.Lib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JB2.BowTie.Economy\Bowtie.Economy.csproj">
+    <ProjectReference Include="..\JB2.BowTie.Economy\JB2.Economy.csproj">
       <Project>{5ff36757-d424-40a8-8c3d-f87ada26f067}</Project>
-      <Name>Bowtie.Economy</Name>
+      <Name>JB2.Economy</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

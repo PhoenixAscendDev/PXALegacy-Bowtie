@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using JB2.Common;
 
-using JB2.Bowtie.Enum;
+using JB2.Economy.Enum;
 
 namespace JB2.Settings
 {
@@ -14,14 +14,14 @@ namespace JB2.Settings
     {
         #region Fields
 
-        private static JB2.Bowtie.Economy.JBeanFactory _factory;
+        private static JB2.Economy.JBeanFactory _factory;
         //private static SettingCollection<string> _settings;
         #endregion Fields
 
 
         public static void Configure(IEnumerable<ISetting> settings)
         {
-            _factory = JB2.Bowtie.Economy.JBeanFactory.Configure(settings);
+            _factory = JB2.Economy.JBeanFactory.Configure(settings);
         }
 
         public static ISetting GetSetting(string settingName)
@@ -48,7 +48,7 @@ namespace JB2.Settings
             return _factory.GetTokenValue(type);
         }
 
-        public static JB2.Bowtie.Economy.JBeanFactory Factory
+        public static JB2.Economy.JBeanFactory Factory
         {
             get
             {

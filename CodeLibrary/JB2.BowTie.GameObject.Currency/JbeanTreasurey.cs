@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using JB2.Bowtie;
 
-namespace JB2.Bowtie.Economy
+namespace JB2.Economy
 {
     public class JbeanTreasury : JB2.Common.IDNamePair, ITreasury
     {
@@ -47,10 +47,10 @@ namespace JB2.Bowtie.Economy
 
     //    ITreasury<JBean,JBeanToken,Enum.JBeanTokenType,string,string>
     //{
-    //    private ITreasuryRepository<JB2.Bowtie.Economy.JBeanTreasuryLogEntry,Enum.JBeanTokenType,string> _repo;
+    //    private ITreasuryRepository<JB2.Economy.JBeanTreasuryLogEntry,Enum.JBeanTokenType,string> _repo;
 
 
-    //    public JBeanTreasury(ITreasuryRepository<JB2.Bowtie.Economy.JBeanTreasuryLogEntry,Enum.JBeanTokenType,string> repo)
+    //    public JBeanTreasury(ITreasuryRepository<JB2.Economy.JBeanTreasuryLogEntry,Enum.JBeanTokenType,string> repo)
     //    {
     //        _repo = repo;
     //    }

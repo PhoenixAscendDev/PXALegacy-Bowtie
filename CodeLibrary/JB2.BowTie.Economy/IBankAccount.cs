@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using JB2.Common;
 
-namespace JB2.Bowtie.Economy
+namespace JB2.Economy
 {
     public class IBankAccount
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JB2.Bowtie.Enum;
 
-namespace JB2.Bowtie.Economy
+namespace JB2.Economy
 {
     public class TokenCurrency : JB2.Common.IDNamePair, ICurrency
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Economy
+namespace JB2.Economy
 {
     public struct CurrencyAmountPair
     {

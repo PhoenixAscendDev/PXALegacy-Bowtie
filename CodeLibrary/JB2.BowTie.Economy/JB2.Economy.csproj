@@ -7,8 +7,8 @@
     <ProjectGuid>{5FF36757-D424-40A8-8C3D-F87ADA26F067}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JB2.Bowtie.Economy</RootNamespace>
-    <AssemblyName>JB2.Bowtie.Economy</AssemblyName>
+    <RootNamespace>JB2.Economy</RootNamespace>
+    <AssemblyName>JB2.Economy</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

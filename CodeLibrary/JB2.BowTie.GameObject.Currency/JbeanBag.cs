@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using JB2.Bowtie;
-using JB2.Bowtie.Enum;
 
-namespace JB2.Bowtie.Economy
+using JB2.Economy.Enum;
+
+namespace JB2.Economy
 {
     public struct JBeanBag
     {
@@ -34,7 +34,7 @@ namespace JB2.Bowtie.Economy
 
         public static implicit operator JBeanBag(int num)
         {
-            int kidneyValue = JB2.Settings.Jbean.GetTokenValue(JB2.Bowtie.Enum.JBeanTokenType.Kidney);
+            int kidneyValue = JB2.Settings.Jbean.GetTokenValue(JBeanTokenType.Kidney);
             int navyValue = JB2.Settings.Jbean.GetTokenValue(JBeanTokenType.Navy);
             int pintoValue = JB2.Settings.Jbean.GetTokenValue(JBeanTokenType.Pinto);
 
