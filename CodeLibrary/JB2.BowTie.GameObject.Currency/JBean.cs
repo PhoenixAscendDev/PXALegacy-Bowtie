@@ -11,6 +11,9 @@ namespace JB2.Bowtie.Economy
 
         //Dictionary<Enum.JBeanTokenType, JBeanToken> _tokens;
 
+       
+
+
         #region Properties
 
         #endregion Properties

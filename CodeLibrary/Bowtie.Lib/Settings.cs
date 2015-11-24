@@ -20,11 +20,6 @@ namespace JB2.Bowtie
 
         internal static int _authCheckInterval = 5;
 
-
-
-
-
-
         public static string SettingsFilename
         {
             get
@@ -135,14 +130,6 @@ namespace JB2.Bowtie
             _application = new Application(config.AppKey, config.SecretKey);
             _sigFormat = config.Signature;
             _authCheckInterval = config.AuthCheckInterval;
-
-
-        }
-
-
-
-        
-
-        
+        }  
     }
 }

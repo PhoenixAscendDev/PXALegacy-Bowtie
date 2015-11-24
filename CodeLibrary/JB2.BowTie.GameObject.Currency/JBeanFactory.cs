@@ -50,16 +50,32 @@ namespace JB2.Bowtie.Economy
         {
             JBeanFactory factory = new JBeanFactory();
 
-            JB2.Common.SettingCollection<string> sc = new SettingCollection<string>();
-            if (settings != null)
-            {
-                foreach (ISetting s in settings)
-                {
-                    sc.Add(s);
-                }
-            }
+            JB2.Common.SettingCollection<string> sc = new SettingCollection<string>(settings);
+            //if (settings != null)
+            //{
+            //    foreach (ISetting s in settings)
+            //    {
+            //        var test = sc.Add(s);
+            //    }
+            //}
             factory.Settings = sc;
-            factory.Currencies = new ICurrency[1] { new JBean() };
+            factory.Denominations = new IDenomination[3] {  new JBeanDenomination(Enum.JBeanTokenType.Kidney),
+                                                            new JBeanDenomination(Enum.JBeanTokenType.Navy),
+                                                            new JBeanDenomination(Enum.JBeanTokenType.Pinto)
+                                                          };
+
+
+
+            ICurrency jBeanCurrency = new JBean()
+            {
+                ID = sc[JbeanSettingName.CurrencyID].ToString(),
+                Denominations = factory.Denominations,
+                Name = "jBean",
+                PluralName = "jBeans"
+            };
+
+            
+            factory.Currencies = new ICurrency[1] { jBeanCurrency };
 
             factory.Denominations = new IDenomination[3] {  new JBeanDenomination(Enum.JBeanTokenType.Kidney),
                                                             new JBeanDenomination(Enum.JBeanTokenType.Navy),

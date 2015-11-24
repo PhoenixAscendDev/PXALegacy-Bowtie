@@ -17,12 +17,14 @@ namespace Bowtie.ConsoleTest
     {
         static void Main(string[] args)
         {
+            
+            JB2.Bowtie.Manager.Initialize("4d53bce03ec34c0a911182d4c228ee6d", "A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=");
+
             int test = 3503;
 
             Console.WriteLine(test.ToJBean().ToString());
-            //JB2.Bowtie.Manager.Initialize("4d53bce03ec34c0a911182d4c228ee6d", "A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=");
 
-
+            Console.WriteLine(JB2.Bowtie.Jbean.GetSetting(JB2.Bowtie.Economy.JbeanSettingName.CurrencyID).Value.ToString());
             //var debugPath = string.Empty;
             //#if (DEBUG)
             //    debugPath = "..\\..\\";

@@ -42,8 +42,12 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common.Core, Version=0.1.6.15342, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Core.0.1.6\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.1.9.5571, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Common.Core.0.1.9\lib\JB2.Common.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Common.Extensions, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Common.Extensions.0.1.2\lib\JB2.Common.Extensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -106,6 +110,10 @@
     <ProjectReference Include="..\JB2.BowTie.GameObject.Currency\JB2.Bowtie.Jbean.csproj">
       <Project>{387bae94-cbd5-45fa-8e9d-f16ad1229e1c}</Project>
       <Name>JB2.Bowtie.Jbean</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JB2.Bowtie.Manager\JB2.Bowtie.Manager.csproj">
+      <Project>{2ac23884-2527-4b50-b2c4-bab99c96d9b4}</Project>
+      <Name>JB2.Bowtie.Manager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
