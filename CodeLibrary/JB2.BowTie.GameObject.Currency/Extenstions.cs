@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using JB2.Economy;
 
-namespace JB2.Bowtie
+namespace JB2.Economy
 {
     public static class JBeanExtenstions
     {

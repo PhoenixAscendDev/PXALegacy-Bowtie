@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 using JB2.Bowtie;
 
-
+using JB2.Economy;
 namespace Bowtie.ConsoleTest
 {
     class Program
