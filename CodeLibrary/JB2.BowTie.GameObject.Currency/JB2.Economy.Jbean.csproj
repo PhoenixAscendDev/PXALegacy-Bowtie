@@ -76,10 +76,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bowtie.Lib\Bowtie.Lib.csproj">
-      <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
-      <Name>Bowtie.Lib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JB2.BowTie.Economy\JB2.Economy.csproj">
       <Project>{5ff36757-d424-40a8-8c3d-f87ada26f067}</Project>
       <Name>JB2.Economy</Name>

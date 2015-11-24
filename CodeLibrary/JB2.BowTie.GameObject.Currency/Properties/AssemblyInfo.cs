@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JB2.BowTie.GameObject.Currency")]
-[assembly: AssemblyDescription("Bowtie jBean Game Currency")]
+[assembly: AssemblyTitle("JB2.Economy.jBean")]
+[assembly: AssemblyDescription("JB2.Economy.jBean")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("JBsquared")]
-[assembly: AssemblyProduct("JB2.BowTie.GameObject.Currency")]
+[assembly: AssemblyProduct("JB2.Economy.jBean")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
