@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie
+using JB2.Bowtie;
+using JB2.Bowtie.Enum;
+
+namespace JB2.Settings
 {
-    public static class Settings
+    public static class Bowtie
     {
         internal static Application _application = null;
 
@@ -32,13 +35,13 @@ namespace JB2.Bowtie
             }
         }
 
-        public static Enum.APIMode Mode
+        public static APIMode Mode
         {
             get 
             {
-                   Enum.APIMode result = Enum.APIMode.Debug;
+                APIMode result = APIMode.Debug;
                     #if DEBUG
-                        result =  Enum.APIMode.Debug;    
+                        result =  APIMode.Debug;    
                     #endif
                     #if NODB
                         result = Enum.APIMode.UnitTest;
@@ -54,11 +57,11 @@ namespace JB2.Bowtie
         {
             get
             {
-                if(_application == null)
-                {
-                    BowtieConfig settings = getSettingsFromFile();
-                    _application = new Application(settings.AppKey, settings.SecretKey);
-                }
+                //if(_application == null)
+                //{
+                //    BowtieConfig settings = getSettingsFromFile();
+                //    _application = new Application(settings.AppKey, settings.SecretKey);
+                //}
 
                 return _application;
             }
@@ -68,7 +71,7 @@ namespace JB2.Bowtie
         {
             get
             {
-                return getSettingsFromFile().API;
+                return null; //getSettingsFromFile().API;
             }
         }
 

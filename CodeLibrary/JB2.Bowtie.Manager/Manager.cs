@@ -27,14 +27,14 @@ namespace JB2.Bowtie
 
         public static bool Initialize(BowtieConfig config)
         {
-            JB2.Bowtie.Settings.LoadByConfig(config);
+            //JB2.Bowtie.Settings.LoadByConfig(config);
 
             return true;
         }
 
         public static bool Initialize(string bowtieConfigFile)
         {
-            JB2.Bowtie.Settings.SettingsFilename = bowtieConfigFile;
+            //JB2.Bowtie.Settings.SettingsFilename = bowtieConfigFile;
 
             return true;
         }

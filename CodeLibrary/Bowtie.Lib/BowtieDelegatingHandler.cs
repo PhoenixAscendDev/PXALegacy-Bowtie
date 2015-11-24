@@ -21,7 +21,9 @@ namespace JB2.Bowtie
         private string SignatureFormat = "{0}>*<{1}{2}{3}{4}";
         private string HeaderDelimiter = ":";
 
-        public BowtieDelegatingHandler() : this(JB2.Bowtie.Settings.CurrentApplication.ID, JB2.Bowtie.Settings.CurrentApplication.Secret,JB2.Bowtie.Settings.SignatureFormat,":")
+        public BowtieDelegatingHandler() : this(JB2.Settings.Bowtie.CurrentApplication.ID, 
+                                                JB2.Settings.Bowtie.CurrentApplication.Secret,
+                                                JB2.Settings.Bowtie.SignatureFormat,":")
         {
 
         }
