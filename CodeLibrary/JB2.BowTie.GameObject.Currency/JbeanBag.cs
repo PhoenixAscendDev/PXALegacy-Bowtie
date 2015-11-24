@@ -44,10 +44,6 @@ namespace JB2.Bowtie.Economy
             int kidneyCount = num % navyValue;
 
             return new JBeanBag(kidneyCount, navyCount, pintoCount);
-            
-
-
-
         }
 
         public static implicit operator int(JBeanBag bag)
