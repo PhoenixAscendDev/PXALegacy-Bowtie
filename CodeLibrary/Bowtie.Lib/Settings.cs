@@ -124,7 +124,7 @@ namespace JB2.Settings
         private static void checkIfConfigured()
         {
             if (!_isConfigured)
-                throw new NotImplementedException();
+                throw new JB2.Common.Exceptions.NotConfiguredException();
                 
                 
         }

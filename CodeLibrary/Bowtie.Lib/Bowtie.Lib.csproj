@@ -47,8 +47,8 @@
       <HintPath>..\packages\JB2.Color.0.1.7\lib\JB2.Common.Color.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Core, Version=0.1.9.5571, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Core.0.1.9\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.1.10.10304, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Common.Core.0.1.10\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Date, Version=0.1.1.16771, Culture=neutral, processorArchitecture=MSIL">

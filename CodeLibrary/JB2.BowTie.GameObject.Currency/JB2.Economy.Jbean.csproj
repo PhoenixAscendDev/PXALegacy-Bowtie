@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common.Core, Version=0.1.9.5571, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Core.0.1.9\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.1.10.10304, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Common.Core.0.1.10\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Extensions, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
