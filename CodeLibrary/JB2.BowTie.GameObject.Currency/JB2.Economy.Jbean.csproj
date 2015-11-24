@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JB2.Economy</RootNamespace>
-    <AssemblyName>JB2.Economy.JBean</AssemblyName>
+    <AssemblyName>JB2.Economy.jBean</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

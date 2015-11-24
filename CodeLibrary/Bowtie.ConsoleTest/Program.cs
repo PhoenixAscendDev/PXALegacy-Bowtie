@@ -20,9 +20,13 @@ namespace Bowtie.ConsoleTest
             
             JB2.Bowtie.Manager.Initialize("4d53bce03ec34c0a911182d4c228ee6d", "A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=");
 
+
+
+
             int test = 3503;
 
             Console.WriteLine(test.ToJBean().ToString());
+            Console.WriteLine(JB2.Settings.Bowtie.CurrentApplication.ToString());
 
             Console.WriteLine(JB2.Settings.Jbean.GetSetting(JB2.Economy.JbeanSettingName.CurrencyID).Value.ToString());
             //var debugPath = string.Empty;

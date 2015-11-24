@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using JB2.Bowtie;
 using JB2.Bowtie.Enum;
+using JB2.Common;
 
 namespace JB2.Settings
 {
@@ -19,22 +20,9 @@ namespace JB2.Settings
 
         internal const string _headerDelimiter = ":";
 
-        internal static string _configFile;
-
         internal static int _authCheckInterval = 5;
-
-        public static string SettingsFilename
-        {
-            get
-            {
-                return _configFile;
-            }
-            set
-            {
-                _configFile = value;
-            }
-        }
-
+        private static JB2.Common.SettingCollection<string> _settings;
+        private static bool _isConfigured = false;
         public static APIMode Mode
         {
             get 
@@ -57,12 +45,7 @@ namespace JB2.Settings
         {
             get
             {
-                //if(_application == null)
-                //{
-                //    BowtieConfig settings = getSettingsFromFile();
-                //    _application = new Application(settings.AppKey, settings.SecretKey);
-                //}
-
+                checkIfConfigured();
                 return _application;
             }
         }
@@ -79,8 +62,9 @@ namespace JB2.Settings
         {
             get
             {
+                checkIfConfigured();
                 //StringBuilder result = new StringBuilder(JB2.Bowtie.Settings.CurrentApplication.ID);
-               //result.Append(">*<");
+                //result.Append(">*<");
                 StringBuilder result = new StringBuilder(_sigFormat);
                 //result.Append(_sigFormat);
                 return result.ToString();
@@ -91,6 +75,7 @@ namespace JB2.Settings
         {
             get
             {
+                checkIfConfigured();
                 return _headerDelimiter;
             }
         }
@@ -99,10 +84,12 @@ namespace JB2.Settings
         {
             get
             {
+                checkIfConfigured();
                 return _lastAPIAuthCheck;
             }
             set
             {
+                checkIfConfigured();
                 _lastAPIAuthCheck = value;
             }
         }
@@ -111,6 +98,7 @@ namespace JB2.Settings
         {
             get
             {
+                checkIfConfigured();
                 if (_authCheckInterval > 60)
                     return 60;
                 if (_authCheckInterval < 5)
@@ -120,5 +108,26 @@ namespace JB2.Settings
 
 
         }
+
+        public static void Configure( IEnumerable<ISetting> settings)
+        {
+            _isConfigured = true;
+            _settings = new SettingCollection<string>(settings);
+
+        }
+
+        public static ISetting GetSetting(string settingName)
+        {
+            return _settings[settingName];
+        }
+
+        private static void checkIfConfigured()
+        {
+            if (!_isConfigured)
+                throw new NotImplementedException();
+                
+                
+        }
+
     }
 }
