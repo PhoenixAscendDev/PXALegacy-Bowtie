@@ -13,7 +13,7 @@ namespace JB2.Bowtie
         private string _secret;       
         private Enum.APIAuthorizeState _APIstate;
 
-        private string _jb2idClientID;
+        
         #endregion Fields
 
 
@@ -34,13 +34,6 @@ namespace JB2.Bowtie
             }
         }
 
-        public string JBsquaredIDClientID
-        {
-            get
-            {
-                return _jb2idClientID;
-            }
-        }
 
         public bool isAuthorized
         {
@@ -75,5 +68,30 @@ namespace JB2.Bowtie
             get;set;
             
         }
+
+
+        #region IApplication
+        public IEnumerable<JB2.Identity.IPlayer> GetAdmins()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<JB2.Identity.IApplicationVersion>  GetVersions()
+        {
+            throw new NotImplementedException();
+        }
+
+        public JB2.Identity.IAuthClient GetAuthClient()
+        {
+            throw new NotImplementedException();
+        }
+
+        public JB2.Common.IMetaData GetMetaData(string propertyName)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion IApplication
+
+
     }
 }

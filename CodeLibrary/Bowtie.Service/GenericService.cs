@@ -40,7 +40,6 @@ namespace JB2.Bowtie
             return treasuryNote;        
         }
 
-
         public bool Remove(Tobject entity)
         {
             _repo.Delete(entity);

@@ -9,15 +9,16 @@ using JB2.Common;
 
 namespace JB2.Bowtie
 {
-    public class Player : JB2.Common.Player, JB2.Common.IPlayer
+    public class Player
     {
         #region Fields
-        private MetaDataCollection _metadata;
+        private JB2.Identity.IPlayer _player;
+                         
         #endregion Fields
 
-        public override IMetaData MetaData(string propertyName)
+        public Player(JB2.Identity.IPlayer identityPlayer)
         {
-            return _metadata[propertyName];
+            _player = identityPlayer;
         }
     }
 }

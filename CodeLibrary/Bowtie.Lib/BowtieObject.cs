@@ -10,12 +10,11 @@ using JB2.Bowtie.Enum;
 
 namespace JB2.Bowtie
 {
-    public class BowtieObject : IBowtieObject
+    public class BowtieObject : IDNamePair, IBowtieObject
     {
         protected List<ObjectTag> _tags;
         protected BowtieObjectType _kind;
-        protected string _id;
-        protected string _name;
+       
 
         public BowtieObject(BowtieObjectType kind,string id): this(id)
         {
@@ -81,30 +80,6 @@ namespace JB2.Bowtie
             set
             {
                 _tags = value.ToList();
-            }
-        }
-
-        public string ID
-        {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                _id = value;
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
             }
         }
     }
