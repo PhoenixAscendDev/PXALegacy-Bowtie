@@ -23,6 +23,8 @@ namespace JB2.Settings
         internal static int _authCheckInterval = 5;
         private static JB2.Common.SettingCollection<string> _settings;
         private static bool _isConfigured = false;
+        private static IUnitOfWork _unitofWork;
+        
         public static APIMode Mode
         {
             get 
@@ -55,6 +57,14 @@ namespace JB2.Settings
             get
             {
                 return null; //getSettingsFromFile().API;
+            }
+        }
+
+        public static IUnitOfWork UnitOfWork
+        {
+            get
+            {
+                return _unitofWork;
             }
         }
 

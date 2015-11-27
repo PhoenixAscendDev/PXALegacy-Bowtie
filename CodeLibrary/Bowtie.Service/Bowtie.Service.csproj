@@ -84,7 +84,7 @@
       <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
       <Name>Bowtie.Lib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JB2.BowTie.GameObject.Currency\JB2.Bowtie.Jbean.csproj">
+    <ProjectReference Include="..\JB2.BowTie.GameObject.Currency\JB2.Economy.Jbean.csproj">
       <Project>{387bae94-cbd5-45fa-8e9d-f16ad1229e1c}</Project>
       <Name>JB2.Bowtie.Jbean</Name>
     </ProjectReference>

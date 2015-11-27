@@ -22,6 +22,18 @@ namespace JB2.Bowtie
             };
             //JB2.Bowtie.Settings._application = app;
             JB2.Settings.Jbean.Configure( new BaseSetting[1]{ s });
+
+            //genera bowtie settings
+            List<ISetting> bowtieSettings = new List<ISetting>();
+            bowtieSettings.Add(new BaseSetting()
+            {
+                ID = "CurrentApplication".ToUpper(),
+                Name = "CurrentApplication".ToUpper(),
+                Value = app
+            });
+
+            JB2.Settings.Bowtie.Configure(bowtieSettings);
+
             return true;
         }
 
