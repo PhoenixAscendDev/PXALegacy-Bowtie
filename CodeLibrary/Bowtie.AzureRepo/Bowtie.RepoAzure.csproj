@@ -143,7 +143,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AzureStorage.cs" />
     <Compile Include="BingoCardEntry.cs" />
     <Compile Include="BingPatternEntry.cs" />
     <Compile Include="ColorEntry.cs" />

@@ -24,11 +24,11 @@ namespace JB2.Bowtie.Data.Azure
 
         #region Constructors
 
-        public GameObjectRepository()
-        {
-            _table = AzureStorage.GameObjectsTable;
-            _blob = AzureStorage.GameObjectsBlob;
-        }
+        //public GameObjectRepository()
+        //{
+        //    _table = AzureStorage.GameObjectsTable;
+        //    _blob = AzureStorage.GameObjectsBlob;
+        //}
 
         public GameObjectRepository(AzureTableRepository azureTable, AzureBlobRepository azureBlob)
         {
