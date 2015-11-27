@@ -6,18 +6,9 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.GameObjects
 {
-    public class BingoCardStyle : JB2.Common.IIDNamePair<string,string>
+    public class BingoCardStyle : JB2.Common.IDNamePair
     {
 
-        public string ID
-        {
-            get; set;
-        }
-
-        public string Name
-        {
-            get; set;
-        }
         public Enum.BingoCardSize CardSize
         {
             get; set;

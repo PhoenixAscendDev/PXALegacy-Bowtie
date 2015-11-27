@@ -121,5 +121,24 @@ namespace JB2.Bowtie.GameObjects
                 _name = value;
             }
         }
+
+
+        #region INameProp
+        public string GetName()
+        {
+            return _name;
+
+        }
+
+        #endregion INameProp
+
+        #region IIDProp
+
+        public string GetID()
+        {
+            return _id;
+        }
+
+        #endregion IIDProp
     }
 }

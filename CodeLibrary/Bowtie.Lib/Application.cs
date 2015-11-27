@@ -8,22 +8,37 @@ namespace JB2.Bowtie
 {
     public class Application : BowtieObject,IApplication
     {
-        private string _secret;
-        
+
+        #region Fields
+        private string _secret;       
         private Enum.APIAuthorizeState _APIstate;
 
+        private string _jb2idClientID;
+        #endregion Fields
+
+
+        #region Constructors
         public Application(string publickey, string secretKey ) : base(Enum.BowtieObjectType.bowtie_application,publickey)
         {
             this._secret = secretKey;           
         }
+        #endregion Constructors
 
         #region Public Properies
-    
+
         public string Secret
         {
             get
             {
                 return _secret;
+            }
+        }
+
+        public string JBsquaredIDClientID
+        {
+            get
+            {
+                return _jb2idClientID;
             }
         }
 

@@ -8,12 +8,11 @@ using JB2.Common.Extensions;
 
 namespace JB2.Bowtie.GameObjects
 {
-    public class BingoPatternType : JB2.Common.IIDNamePair<string,string>
+    public class BingoPatternType : JB2.Common.IDNamePair
     {
         #region Fields
 
-        private string _id;
-        private string _name;
+        
         private Enum.BingoType _type;
         private string[] _victorys;
 
@@ -28,29 +27,6 @@ namespace JB2.Bowtie.GameObjects
             }
         }
 
-        public string ID
-        {
-            get
-            {
-                return this._id;
-            }
-            set
-            {
-                this._id = value;
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
-        }
 
         public string[] WinningPatterns
         {
