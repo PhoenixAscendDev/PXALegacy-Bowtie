@@ -142,6 +142,16 @@
   <ItemGroup>
     <Folder Include="Kenshin\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JB2.Bowtie.Core\JB2.Bowtie.Core.csproj">
+      <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
+      <Name>JB2.Bowtie.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JB2.BowTie.Economy\JB2.Economy.csproj">
+      <Project>{5ff36757-d424-40a8-8c3d-f87ada26f067}</Project>
+      <Name>JB2.Economy</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
