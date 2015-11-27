@@ -34,7 +34,6 @@ namespace JB2.Bowtie.Service
                 JB2.Settings.Bowtie.LastAPIAuthCheck = DateTime.Now;
 
             return app == null ? JB2.Bowtie.Enum.APIAuthorizeState.Unknown : app.AuthorizedState;
-
         }
 
         public bool isApplicationAuthorized(string applicationID)

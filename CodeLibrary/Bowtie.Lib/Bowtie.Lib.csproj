@@ -125,7 +125,6 @@
     <Compile Include="LapelPin.cs" />
     <Compile Include="Leaderboard.cs" />
     <Compile Include="MasterLeaderboard.cs" />
-    <Compile Include="Player.cs" />
     <Compile Include="PlayerAchievement.cs" />
     <Compile Include="RepoDataSource.cs" />
     <Compile Include="Enum\RepositoryType.cs" />
