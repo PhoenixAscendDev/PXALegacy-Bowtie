@@ -165,7 +165,7 @@ namespace JB2.Bowtie.GameObjects
 
             using (Graphics graphics = Graphics.FromImage(backgroundImage))
             {
-                using (Font arialFont = JB2.Common.FontHelper.GetFont(fontCode, fontSize))
+                using (Font arialFont = JB2.Helpers.FontHelper.GetFont(fontCode, fontSize))
                 {
 
                     for (int colIndex = 0; colIndex < 5; colIndex++)

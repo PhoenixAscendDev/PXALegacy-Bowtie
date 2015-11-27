@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.GameObjects
 {
-    public class StandardBingoGame : JB2.API.BaseObject,IBingoGame<byte>
+    public class StandardBingoGame : IBingoGame<byte>
     {
         private Enum.BingoType _type;
         private BingoBall<byte>[] _callOrder;
@@ -30,12 +30,12 @@ namespace JB2.Bowtie.GameObjects
             this._called = new List<BingoBall<byte>>().ToArray();
             this._pattern = new BingoPatternType();
 
-            base.serializableProperties = new List<string>();
+            //base.serializableProperties = new List<string>();
 
-            foreach (System.Reflection.PropertyInfo p in this.GetType().GetProperties())
-            {
-                base.serializableProperties.Add(p.Name);
-            }
+            //foreach (System.Reflection.PropertyInfo p in this.GetType().GetProperties())
+            //{
+            //    base.serializableProperties.Add(p.Name);
+            //}
         }
 
 

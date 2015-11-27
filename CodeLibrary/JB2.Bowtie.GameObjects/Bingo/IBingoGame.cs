@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.GameObjects
 {
-    public interface IBingoGame<T> : JB2.API.IBaseObject, JB2.Common.IIDNamePair<string, string>
+    public interface IBingoGame<T> : JB2.Common.IIDNamePair<string, string>
         where T : IComparable
     {
         BingoBall<T>[] CallOrder { get; set; }
