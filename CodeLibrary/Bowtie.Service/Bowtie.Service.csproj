@@ -43,8 +43,8 @@
       <HintPath>..\packages\JB2.Common.0.1.6\lib\JB2.Common.Color.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Core, Version=0.1.2.16771, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Core.0.1.2\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.2.6.23895, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Common.Core.0.2.6\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Data">
@@ -83,6 +83,10 @@
     <ProjectReference Include="..\Bowtie.Lib\Bowtie.Lib.csproj">
       <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
       <Name>Bowtie.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JB2.BowTie.Economy\JB2.Economy.csproj">
+      <Project>{5ff36757-d424-40a8-8c3d-f87ada26f067}</Project>
+      <Name>JB2.Economy</Name>
     </ProjectReference>
     <ProjectReference Include="..\JB2.BowTie.GameObject.Currency\JB2.Economy.Jbean.csproj">
       <Project>{387bae94-cbd5-45fa-8e9d-f16ad1229e1c}</Project>

@@ -121,8 +121,25 @@ namespace JB2.Settings
 
         public static void Configure( IEnumerable<ISetting> settings)
         {
-            _isConfigured = true;
+           
             _settings = new SettingCollection<string>(settings);
+            _isConfigured = true;
+
+            try
+            {
+                var application = (Application)_settings["CURRENTAPPLICATION"];
+
+                if (isApplicationLegit(application))
+                    _application = application;
+                else
+                    throw new Exception("Application is not valid");
+            }
+            catch(Exception ex)
+            {
+                _isConfigured = false;
+                ///Do something with the exceptions
+            }
+            
 
         }
 
@@ -134,9 +151,12 @@ namespace JB2.Settings
         private static void checkIfConfigured()
         {
             if (!_isConfigured)
-                throw new JB2.Common.Exceptions.NotConfiguredException();
-                
-                
+                throw new JB2.Common.Exceptions.NotConfiguredException();                             
+        }
+
+        private static ServiceResult isApplicationLegit(Application app)
+        {
+            return true;
         }
 
     }

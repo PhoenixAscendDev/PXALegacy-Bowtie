@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using JB2.Economy;
+
 namespace JB2.Bowtie
 {
     public class GenericService<Tobject,Trepo> : JB2.Common.IObjectService<Tobject, bool, string> 
@@ -12,12 +14,7 @@ namespace JB2.Bowtie
     {
         protected Trepo _repo;
         protected IUnitOfWork _uofw;
-        
-
-
-
        
-
 
        
         public GenericService()
@@ -31,11 +28,16 @@ namespace JB2.Bowtie
         }
 
 
-        protected JB2.Bowtie.Economy.JBeanToken[] retrieveJBeanTokens(Enum.JBeanTokenType type,int quantity)
+        protected ITreasuryNote retrieveJBeanTokens(JB2.Economy.Enum.JBeanTokenType type,int quantity)
         {
-            JB2.Bowtie.Economy.JbeanTreasury treasury = JB2.Bowtie.Economy.Settings.JBean.Treasury;
+            JB2.Economy.ITreasury treasury = JB2.Settings.Jbean.Factory.Treasury;
 
-            return treasury.IssueDenomination(type, quantity);
+            JBeanBag beanbag = new JBeanBag(type, quantity);
+            var requestor = JB2.Settings.Bowtie.CurrentApplication;
+
+            TreasuryRequest request = new TreasuryRequest() { Amount = beanbag, Requestor = requestor, RequestDate = DateTime.Now, VerificationKey = "verifyit" };
+            ITreasuryNote treasuryNote = treasury.IssueDeomination(request);
+            return treasuryNote;        
         }
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy
 {
-    public class TreasuryRequest
+    public class TreasuryRequest : ITreasuryRequest
     {
         public object Requestor { get; set; }
         public DateTime RequestDate { get; set; }

@@ -30,8 +30,8 @@ namespace JB2.Bowtie.Service
         {
             IApplication app = _repo.GetById(applicationID);
 
-            if (app.ID == JB2.Bowtie.Settings.CurrentApplication.ID)
-                JB2.Bowtie.Settings.LastAPIAuthCheck = DateTime.Now;
+            if (app.ID == JB2.Settings.Bowtie.CurrentApplication.ID)
+                JB2.Settings.Bowtie.LastAPIAuthCheck = DateTime.Now;
 
             return app == null ? JB2.Bowtie.Enum.APIAuthorizeState.Unknown : app.AuthorizedState;
 

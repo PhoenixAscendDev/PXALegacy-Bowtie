@@ -27,9 +27,16 @@ namespace JB2.Bowtie
             List<ISetting> bowtieSettings = new List<ISetting>();
             bowtieSettings.Add(new BaseSetting()
             {
-                ID = "CurrentApplication".ToUpper(),
-                Name = "CurrentApplication".ToUpper(),
+                ID = "CURRENTAPPLICATION",
+                Name = "CurrentApplication",
                 Value = app
+            });
+
+            bowtieSettings.Add(new BaseSetting()
+            {
+                ID = "REPOSITORYTYPE",
+                Name = "Repository Type",
+                Value = "azurestorage"
             });
 
             JB2.Settings.Bowtie.Configure(bowtieSettings);

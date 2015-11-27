@@ -18,6 +18,26 @@ namespace JB2.Economy
 
         #endregion Fields
 
+        public JBeanBag(Enum.JBeanTokenType type, int quantity)
+        {
+            _kidney = 0;
+            _navy = 0;
+            _pinto = 0;
+
+            switch(type)
+            {
+                case JBeanTokenType.Kidney:
+                    _kidney = quantity;
+                    break;
+                case JBeanTokenType.Navy:
+                    _navy = quantity;
+                    break;
+                case JBeanTokenType.Pinto:
+                    _pinto = quantity;
+                    break;
+            }
+        }
+
         public JBeanBag(int kidney, int navy, int pinto)
         {
             _kidney = kidney;
