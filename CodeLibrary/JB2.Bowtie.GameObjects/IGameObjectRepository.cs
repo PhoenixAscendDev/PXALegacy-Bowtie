@@ -24,6 +24,8 @@ namespace JB2.Bowtie
 
         JB2.Common.JB2Image GetBingoCardStyle(string styleCode);
 
+        JB2.Bowtie.GameObjects.BingoCardConfig GetBingoCardConfig(string formatcode);
+
         #endregion Bingo Methods
 
         #region Color Methods

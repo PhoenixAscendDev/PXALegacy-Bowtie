@@ -77,10 +77,7 @@ namespace JB2.Bowtie.GameObjects
 
         }
 
-        public static JB2Image GenerateBingoCardImage(IBingoCard cardData, JB2Image backgroundImage)
-        {
-            return GenerateBingoCardImage(cardData, "bingoforever", backgroundImage);
-        }
+        
 
         public static System.Collections.BitArray ConvertToBitArray(IBingoCard card)
         {
@@ -145,27 +142,29 @@ namespace JB2.Bowtie.GameObjects
             return id;
         }
 
-        public static JB2Image GenerateBingoCardImage(IBingoCard cardData, string formatCode, JB2Image backgroundImage)
+        public static JB2Image GenerateBingoCardImage(IBingoCard cardData, BingoCardConfig config)
         {
 
-            int[] locationX = null;
-            int[] locationY = null;
-            string fontCode = string.Empty;
-            int fontSize = 18;
+            int[] locationX = config.LocationX;
+            int[] locationY = config.LocationX;
+            Font font = config.Font;
+            JB2Image backgroundImage = config.BackgroundImage;
+            //string fontCode = string.Empty;
+            //int fontSize = config.FontSize;
 
-            switch (formatCode.ToLower())
-            {
-                case "bingoforever":
-                    locationX = new int[] { 25, 100, 168, 243, 315 };
-                    locationY = new int[] { 90, 160, 228, 300, 369 };
-                    fontCode = "ffft1";
-                    fontSize = 40;
-                    break;
-            }
+            //switch (formatCode.ToLower())
+            //{
+            //    case "bingoforever":
+            //        locationX = new int[] { 25, 100, 168, 243, 315 };
+            //        locationY = new int[] { 90, 160, 228, 300, 369 };
+            //        fontCode = "ffft1";
+            //        fontSize = 40;
+            //        break;
+            //}
 
             using (Graphics graphics = Graphics.FromImage(backgroundImage))
             {
-                using (Font arialFont = JB2.Helpers.FontHelper.GetFont(fontCode, fontSize))
+                using (Font arialFont = font)
                 {
 
                     for (int colIndex = 0; colIndex < 5; colIndex++)

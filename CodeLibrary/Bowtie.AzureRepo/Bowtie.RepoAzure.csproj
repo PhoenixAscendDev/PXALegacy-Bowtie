@@ -59,8 +59,12 @@
       <HintPath>..\packages\JB2.Image.0.1.7\lib\JB2.Common.Image.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Ultities, Version=0.1.1.13899, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Utility.0.1.1\lib\JB2.Common.Ultities.dll</HintPath>
+    <Reference Include="JB2.Common.Ultities, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Helpers.Font, Version=0.2.1.17724, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Helpers.Font.0.2.1\lib\JB2.Helpers.Font.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Infrastructure, Version=0.2.0.237, Culture=neutral, processorArchitecture=MSIL">
@@ -121,6 +125,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http.Extensions, Version=2.2.22.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.22\lib\net45\System.Net.Http.Extensions.dll</HintPath>
@@ -154,6 +159,10 @@
     <ProjectReference Include="..\Bowtie.Lib\Bowtie.Lib.csproj">
       <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
       <Name>Bowtie.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JB2.Bowtie.Core\JB2.Bowtie.Core.csproj">
+      <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
+      <Name>JB2.Bowtie.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj">
       <Project>{878da1e1-f733-4555-bb1d-b1c9188d287b}</Project>

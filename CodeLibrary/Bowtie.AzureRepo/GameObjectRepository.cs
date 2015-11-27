@@ -98,13 +98,50 @@ namespace JB2.Bowtie.Data.Azure
             return _blob.Insert(image.FileContent, string.Format(BINGOCARDIMAGE_FILENAME, styleCode, id));
         }
 
+        public JB2.Bowtie.GameObjects.BingoCardConfig GetBingoCardConfig(string styleCode)
+        {
+            string filename = "bingoCardStyle/" + styleCode + ".png";
+            byte[] imageBytes = _blob.GetByteArray(filename);
+
+            JB2.Bowtie.GameObjects.BingoCardConfig config = new BingoCardConfig()
+            {
+                BackgroundImage = JB2Image.FromByteArray(imageBytes),
+                LocationX = new int[] { 25, 100, 168, 243, 315 },
+                LocationY = new int[] { 90, 160, 228, 300, 369 },
+                Font = JB2.Helpers.FontHelper.GetFont("ffft1", 40)
+            };
+
+            return config;
+
+        }
         public ServiceResult InsertBingoCardImage(IBingoCard card, string styleCode)
         {
             // Get style base
             string filename = "bingoCardStyle/" + styleCode + ".png";
             byte[] imageBytes = _blob.GetByteArray(filename);
 
-            JB2Image imageToSave = BingoHelper.GenerateBingoCardImage(card, JB2Image.FromByteArray(imageBytes));
+
+            JB2.Bowtie.GameObjects.BingoCardConfig config = new BingoCardConfig()
+            {
+                BackgroundImage = JB2Image.FromByteArray(imageBytes),
+                LocationX = new int[] { 25, 100, 168, 243, 315 },
+                LocationY = new int[] { 90, 160, 228, 300, 369 },
+                Font = JB2.Helpers.FontHelper.GetFont("ffft1", 40)
+            };
+
+           
+            //switch (styleCode.ToLower())
+            //{
+            //    case "bingoforever":
+            //        locationX = new int[] { 25, 100, 168, 243, 315 };
+            //        locationY = new int[] { 90, 160, 228, 300, 369 };
+            //        fontCode = "ffft1";
+            //        fontSize = 40;
+            //        break;
+            //}
+
+
+            JB2Image imageToSave = BingoHelper.GenerateBingoCardImage(card, config);
 
             return _blob.Insert(imageToSave.FileContent, string.Format(BINGOCARDIMAGE_FILENAME, styleCode, card.ID));
         }

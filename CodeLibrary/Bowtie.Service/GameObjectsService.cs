@@ -64,9 +64,11 @@ namespace JB2.Bowtie.Service
                 if (card == null)
                     return null;
 
-                Common.JB2Image baseImage = _repo.GetBingoCardStyle(styleCode);
+                //Common.JB2Image baseImage = _repo.GetBingoCardStyle(styleCode);
 
-                result = BingoHelper.GenerateBingoCardImage(card, baseImage);
+                BingoCardConfig config = _repo.GetBingoCardConfig(styleCode);
+
+                result = BingoHelper.GenerateBingoCardImage(card, config);
 
                 //now that we have the image, let's save it
                 _repo.InsertBingoCardImage(card.ID, styleCode, result);
