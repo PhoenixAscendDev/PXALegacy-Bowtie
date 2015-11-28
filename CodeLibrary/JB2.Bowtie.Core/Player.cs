@@ -16,7 +16,8 @@ namespace JB2.Bowtie
         protected Name _name;
         protected JB2.Economy.IWallet _wallet;
         protected MetaDataCollection _metadata;
-        protected Dictionary<string, MetaDataCollection> _modules;                
+        
+        protected Dictionary<string, MetaDataCollection> _modules;              
         #endregion Fields
 
 

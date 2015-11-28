@@ -61,10 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BowtieMetaDataCollection.cs" />
     <Compile Include="BowtieObject.cs" />
     <Compile Include="BowtieObjectType.cs" />
     <Compile Include="IBowtieObject.cs" />
     <Compile Include="IBowtiePlayer.cs" />
+    <Compile Include="Kenshin.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TokenName.cs" />
