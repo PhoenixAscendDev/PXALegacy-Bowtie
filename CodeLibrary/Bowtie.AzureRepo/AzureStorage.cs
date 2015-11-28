@@ -31,6 +31,14 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public static AzureTableRepository PlayersTable
+        {
+            get
+            {
+                return JB2.Infrastructure.Storage.BowtieAccount.GetTable("players");
+            }
+        }
+
 
 
 

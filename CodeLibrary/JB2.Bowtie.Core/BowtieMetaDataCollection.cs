@@ -80,22 +80,7 @@ namespace JB2.Bowtie
                 _metadata["bitscore"] = md;
             }
         }
-        public string FamilyId
-        {
-            get
-            {
-                if (_metadata.ContainsKey("familyid"))
-                    return (string)_metadata["familyid"].GetValue();
-                else
-                    return string.Empty;
-            }
-
-            set
-            {
-                StringMetaData md = new StringMetaData("familyid", value);
-                _metadata["familyid"] = md;
-            }
-        }
+        
 
         public Kenshin Kenshin
         {
