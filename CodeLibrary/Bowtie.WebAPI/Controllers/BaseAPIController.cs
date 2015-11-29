@@ -16,7 +16,7 @@ namespace JB2.Bowtie.WebAPI.Controllers
 
         public BaseAPIController()
         {
-            switch(JB2.Bowtie.Settings.Mode)
+            switch(JB2.Settings.Bowtie.Mode)
             {
                 case Enum.APIMode.Debug:
                     ChangeDataSource(Enum.RepoDataSource.Standard);

@@ -123,7 +123,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AzureStorage.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="PlayerEntry.cs" />
     <Compile Include="PlayerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

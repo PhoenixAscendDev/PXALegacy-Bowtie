@@ -13,7 +13,7 @@ namespace JB2.Bowtie.Web
         {
             get
             {
-                switch (JB2.Bowtie.Settings.Mode)
+                switch (JB2.Settings.Bowtie.Mode)
                 {
                     case Enum.APIMode.Debug:
                     case Enum.APIMode.Production:
@@ -29,7 +29,8 @@ namespace JB2.Bowtie.Web
             switch(source)
             {
                 case Enum.RepoDataSource.Standard:
-                    return new JB2.Bowtie.Data.Linq.UnitOfWork();
+                    return new JB2.Bowtie.Data.Azure.UnitOfWork();
+                   // return new JB2.Bowtie.Data.Linq.UnitOfWork();
                 default:
                    return new JB2.Bowtie.Data.NoDB.UnitofWork();
             }

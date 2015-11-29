@@ -157,6 +157,7 @@
     <Compile Include="ColorSetEntry.cs" />
     <Compile Include="GameObjectRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitofWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JB2.Bowtie.Core\JB2.Bowtie.Core.csproj">

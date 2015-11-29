@@ -14,7 +14,7 @@ namespace JB2.Bowtie
         IAchievementRepository AchievementRepository { get; }
         IGameCommandRepository GameCommandRepository { get; }
         ILeaderboardRepository LeaderboardRepository { get; }
-        IPlayerRepo PlayerRepository { get; }
+        //IPlayerRepo PlayerRepository { get; }
         object GetRepository(Enum.RepositoryType respository);
 
       
