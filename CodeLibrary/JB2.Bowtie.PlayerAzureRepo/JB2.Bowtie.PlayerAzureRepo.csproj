@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6D362C4A-06D4-40C6-B314-AA559791E1F4}</ProjectGuid>
+    <ProjectGuid>{1D0D9310-9366-4829-8CF2-1CD26A8DB33E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JB2.Bowtie.Data.Azure</RootNamespace>
-    <AssemblyName>JB2.Bowtie.Data.Azure</AssemblyName>
+    <AssemblyName>JB2.Bowtie.Data.PlayerAzureRepo</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -35,39 +35,12 @@
       <HintPath>..\packages\Hyak.Common.1.0.2\lib\net45\Hyak.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Bowtie">
-      <HintPath>..\Bowtie.Lib\bin\Release\JB2.Bowtie.dll</HintPath>
-    </Reference>
-    <Reference Include="JB2.Common, Version=0.1.14.18302, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.0.1.14\lib\JB2.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="JB2.Common.Color, Version=0.1.7.16772, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Color.0.1.7\lib\JB2.Common.Color.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="JB2.Common.Core, Version=0.2.6.23895, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JB2.Common.Core.0.2.6\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Data.AzureStorage">
       <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Data.AzureStorage\bin\Release\JB2.Common.Data.AzureStorage.dll</HintPath>
-    </Reference>
-    <Reference Include="JB2.Common.Date, Version=0.1.1.16771, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Date.0.1.1\lib\JB2.Common.Date.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="JB2.Common.Image, Version=0.1.7.16772, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Image.0.1.7\lib\JB2.Common.Image.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="JB2.Common.Ultities, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="JB2.Helpers.Font, Version=0.2.1.17724, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Helpers.Font.0.2.1\lib\JB2.Helpers.Font.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Infrastructure, Version=0.2.0.237, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JB2.Infrastructure.0.2.0\lib\JB2.Infrastructure.dll</HintPath>
@@ -127,7 +100,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http.Extensions, Version=2.2.22.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.22\lib\net45\System.Net.Http.Extensions.dll</HintPath>
@@ -151,28 +123,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AzureStorage.cs" />
-    <Compile Include="BingoCardEntry.cs" />
-    <Compile Include="BingPatternEntry.cs" />
-    <Compile Include="ColorEntry.cs" />
-    <Compile Include="ColorSetEntry.cs" />
-    <Compile Include="GameObjectRepository.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="PlayerEntry.cs" />
+    <Compile Include="PlayerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JB2.Bowtie.Core\JB2.Bowtie.Core.csproj">
       <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
       <Name>JB2.Bowtie.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj">
-      <Project>{878da1e1-f733-4555-bb1d-b1c9188d287b}</Project>
-      <Name>JB2.Bowtie.GameObjects</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

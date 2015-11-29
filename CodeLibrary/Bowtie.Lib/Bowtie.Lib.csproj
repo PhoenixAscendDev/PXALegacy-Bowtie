@@ -117,7 +117,6 @@
     <Compile Include="Interfaces\ILeaderboardRepository.cs" />
     <Compile Include="Interfaces\IMasterLeaderboard.cs" />
     <Compile Include="Interfaces\IPlayerAchievement.cs" />
-    <Compile Include="Interfaces\IPlayerRespository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="LapelPin.cs" />
     <Compile Include="Leaderboard.cs" />

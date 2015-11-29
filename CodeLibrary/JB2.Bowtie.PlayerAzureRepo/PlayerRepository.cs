@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using JB2.Common.Data.Azure;
+using JB2.Common.Data;
 
 namespace JB2.Bowtie.Data.Azure
 {
     public class PlayerRepository : JB2.Common.Data.AzureRepository, IBowtiePlayerRespository
     {
-
-
         public PlayerRepository()
         {
             _table = AzureStorage.PlayersTable;
@@ -40,11 +38,8 @@ namespace JB2.Bowtie.Data.Azure
 
         public BowtieMetadata GetMetaDataByPlayerID(string playerID)
         {
-
             var entry = _table.GetEntity<PlayerEntry>("player", "id:" + playerID);
-
-            return BowtieMetadataFromEntry(entry);       
-
+            return BowtieMetadataFromEntry(entry); 
         }
 
         public void Insert(IBowtiePlayer entity)

@@ -66,6 +66,7 @@
     <Compile Include="BowtieObjectType.cs" />
     <Compile Include="IBowtieObject.cs" />
     <Compile Include="IBowtiePlayer.cs" />
+    <Compile Include="IPlayerRespository.cs" />
     <Compile Include="Kenshin.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
