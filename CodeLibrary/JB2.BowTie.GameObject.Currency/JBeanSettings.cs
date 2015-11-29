@@ -21,8 +21,7 @@ namespace JB2.Settings
 
 
         public static void Configure(IEnumerable<ISetting> settings)
-        {
-            
+        {          
             _factory = JB2.Economy.JBeanFactory.Configure(settings);
             _isConfigured = true;
         }
@@ -69,8 +68,6 @@ namespace JB2.Settings
         {
             if (!_isConfigured)
                 throw new JB2.Common.Exceptions.NotConfiguredException();
-
-
         }
 
 

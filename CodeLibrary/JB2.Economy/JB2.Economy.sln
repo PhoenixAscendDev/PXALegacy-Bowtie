@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Economy", "..\JB2.BowTi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Economy.Jbean", "..\JB2.BowTie.GameObject.Currency\JB2.Economy.Jbean.csproj", "{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Economy.AzureRepo", "..\JB2.Economy.AzureRepo\JB2.Economy.AzureRepo.csproj", "{EB0BBA4B-AA18-44E2-953C-B3EC0A110FFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{387BAE94-CBD5-45FA-8E9D-F16AD1229E1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB0BBA4B-AA18-44E2-953C-B3EC0A110FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB0BBA4B-AA18-44E2-953C-B3EC0A110FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB0BBA4B-AA18-44E2-953C-B3EC0A110FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB0BBA4B-AA18-44E2-953C-B3EC0A110FFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

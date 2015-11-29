@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy
 {
-    public class JBeanDenomination : IDenomination
+    public class JBeanDenomination : JB2.Common.IDNamePair, IDenomination
     {
         protected Enum.JBeanTokenType _type;
-        protected string _name;
-        protected string _id;
+        
 
         #region Constructor
 
@@ -91,19 +90,7 @@ namespace JB2.Economy
         }
 
 
-        public string ID
-        {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                _id = value;
-            }
-        }
-
-        public string Name
+        public override string Name
         {
             get
             {

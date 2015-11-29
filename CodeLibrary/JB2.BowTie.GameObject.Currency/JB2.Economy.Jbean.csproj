@@ -30,12 +30,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common.Core, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Core.0.2.0\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.2.6.23895, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\JB2.Economy\packages\JB2.Common.Core.0.2.6\lib\JB2.Common.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Common.Date, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\JB2.Economy\packages\JB2.Date.0.2.0\lib\JB2.Common.Date.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Extensions, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JB2.Common.Extensions.0.1.2\lib\JB2.Common.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Common.Map, Version=0.2.1.23896, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\JB2.Economy\packages\JB2.Common.Map.0.2.1\lib\JB2.Common.Map.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Common.Ultities, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\JB2.Economy\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Identity.Core, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\JB2.Economy\packages\JB2.Identity.Core.0.1.1\lib\JB2.Identity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -59,13 +75,17 @@
   <ItemGroup>
     <Compile Include="Enum\jBeanTokenType.cs" />
     <Compile Include="Extenstions.cs" />
+    <Compile Include="IjBeanRepository.cs" />
     <Compile Include="IssueJBeanProhibited.cs" />
     <Compile Include="Jbean.cs" />
+    <Compile Include="jBeanAppSettings.cs" />
     <Compile Include="JbeanBag.cs" />
     <Compile Include="JBeanFactory.cs" />
     <Compile Include="JbeanSettingNames.cs" />
     <Compile Include="JbeanSettings.cs" />
     <Compile Include="JBeanDenomination.cs" />
+    <Compile Include="jBeanTotals.cs" />
+    <Compile Include="jBeanTreasureNoteStatus.cs" />
     <Compile Include="JbeanTreasurey.cs" />
     <Compile Include="JbeanTreasuryNote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
