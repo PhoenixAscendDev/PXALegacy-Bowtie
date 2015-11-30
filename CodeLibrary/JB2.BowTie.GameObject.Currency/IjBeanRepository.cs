@@ -18,14 +18,16 @@ namespace JB2.Economy
 
         ServiceResult SaveRequest(ITreasuryRequest request);
 
-        ITreasuryNote CreateTreasuryNote(long amount, object requestor);
+        ServiceResult SaveTreasuryNote(ITreasuryNote note, Enum.jBeanTreasureNoteStatus statu);
 
-        ServiceResult SaveTreasuryNote(ITreasuryNote note, string status);
+        //ServiceResult UpdateTreasuryNoteStatus(ITreasuryNote note, Enum.jBeanTreasureNoteStatus status);
         Enum.jBeanTreasureNoteStatus GetTreasuryNoteStatus(ITreasuryNote note);
 
         ServiceResult CancelTreasureNote(ITreasuryNote note);
         IEnumerable<ITreasuryNote> GetTreasuryNotes();
         IEnumerable<ITreasuryNote> GetTreasuryNotesByStatus(Enum.jBeanTreasureNoteStatus status);
+        ITreasuryNote GetTreasuryNoteById(string id);
+
 
         jBeanTotals GetStats();
 

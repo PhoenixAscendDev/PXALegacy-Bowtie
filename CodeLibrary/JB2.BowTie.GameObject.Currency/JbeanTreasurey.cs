@@ -12,6 +12,7 @@ namespace JB2.Economy
     {
         #region Fields
         private IJBeanRepository _repo;
+        
 
 
         #endregion Fields
@@ -30,7 +31,7 @@ namespace JB2.Economy
 
         #endregion Constructor
 
-        public void Cancel(ITreasuryNote treasuryNote)
+        public void CancelNote(ITreasuryNote treasuryNote)
         {
             var code = _repo.GetTreasuryNoteStatus(treasuryNote);
             switch(code)
@@ -48,39 +49,58 @@ namespace JB2.Economy
             return totals.AmountIssued;
         }
 
-        public ITreasuryNote IssueDeomination(ITreasuryRequest request)
+        public ITreasuryNote IssueNote(ITreasuryRequest request)
         {
-            throw new NotImplementedException();
+            ITreasuryNote result = null;
+
+            _repo.SaveRequest(request);
+
+            if (IsRequestApproved(request))
+            {
+                //JbeanTreasuryNote.NewNote(request.Amount, request.Requestor as JB2.Identity.IApplication);
+                //marks the note status as "Issued"
+                result = JbeanTreasuryNote.NewNote(request.Amount, request.Requestor as Identity.IApplication);
+                _repo.SaveTreasuryNote(result, Enum.jBeanTreasureNoteStatus.Issued);               
+            }
+            else
+            {
+                result = JbeanTreasuryNote.NewNote(0, request.Requestor as Identity.IApplication);
+            }
+
+            return result;
         }
 
         private bool IsRequestApproved(ITreasuryRequest request)
         {
-            bool result = true;
 
             //Make sure the requestor is a JB2 Identity Application
             if (request.Requestor.GetType() != typeof(JB2.Identity.IApplication))
                 return false;
-
             try
             {
+                //Now make sure the request's validation key matches that of the application and can request
                 var app = request.Requestor as JB2.Identity.IApplication;
                 var appSettings = _repo.GetApplicationSettings(app);
-                return appSettings.canRequest;
+                return ((appSettings.CanRequest) && (appSettings.RequestValidationKey == request.VerificationKey));
             }
             catch(Exception ex)
             {
-                return true;
+                return false;
             }
+        }
 
-            
+        public bool IsValidNote(ITreasuryNote note)
+        {
+            //get note from repository to verify
+            var verifyNote = _repo.GetTreasuryNoteById(note.ID);
 
+            if (verifyNote == null)
+                return false;
 
-
-
-
-
-
-
+            if ((note.ID == verifyNote.ID) && (note.Amount == verifyNote.Amount))
+                return true;
+            else
+                return false;
 
         }
     }

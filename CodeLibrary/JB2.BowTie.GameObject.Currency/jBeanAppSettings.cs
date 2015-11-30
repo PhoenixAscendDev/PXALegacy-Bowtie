@@ -8,6 +8,7 @@ namespace JB2.Economy
 {
     public class jBeanAppSettings
     {
-        public bool canRequest { get; set; }
+        public bool CanRequest { get; set; }
+        public string RequestValidationKey { get; set; }
     }
 }

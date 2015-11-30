@@ -11,11 +11,14 @@ namespace JB2.Economy
     public interface ITreasury : IIDNamePair<string,string>
     {
               
-        ITreasuryNote IssueDeomination(ITreasuryRequest request);
+        ITreasuryNote IssueNote(ITreasuryRequest request);
 
         long GetAmountIssued();
 
-        void Cancel(ITreasuryNote treasuryNote);
+        void CancelNote(ITreasuryNote treasuryNote);
+
+        bool IsValidNote(ITreasuryNote treasuryNote);
+
 
         
 

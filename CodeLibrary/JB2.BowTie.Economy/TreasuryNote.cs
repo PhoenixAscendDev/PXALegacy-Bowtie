@@ -9,9 +9,9 @@ namespace JB2.Economy
     public abstract class TreasuryNote : ITreasuryNote
     {
         #region Fields
-        private long _amount;
-        private string _id;
-        private string _requestor;
+        protected long _amount;
+        protected string _id;
+        protected object _requestor;
 
         #endregion Fields
 

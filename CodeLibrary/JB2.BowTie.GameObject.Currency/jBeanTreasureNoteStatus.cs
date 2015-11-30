@@ -12,6 +12,6 @@ namespace JB2.Economy.Enum
         Deposited,
         Issued,
         Unknown,
-        NotApproved,
+        NotApproved
     }
 }
