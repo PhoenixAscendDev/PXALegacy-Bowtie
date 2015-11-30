@@ -33,12 +33,10 @@ namespace JB2.Economy.WebAPI.Controllers
             var user = User as ClaimsPrincipal;
             var claims = user.Claims.ToList();
 
-
             var playerid = claims.Find(x => x.Type == ClaimType.PlayerID);
             var clientid = claims.Find(x => x.Type == ClaimType.ClientId);
 
             return JB2.Identity.PlayerStore.GetPlayerByAppPlayerID(playerid.Value, clientid.Value);
-
         }
 
         protected bool isPermitted(string scopeName)

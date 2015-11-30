@@ -80,8 +80,16 @@
       <HintPath>..\packages\JB2.Common.WebAPI.0.1.0\lib\JB2.Gravatar.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Identity.Core, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Identity.Core.0.1.1\lib\JB2.Identity.Core.dll</HintPath>
+    <Reference Include="JB2.Identity, Version=0.1.3.27936, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Identity.0.1.3\lib\JB2.Identity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Identity.Core, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Identity.Core.0.1.2\lib\JB2.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Identity.Repo, Version=0.1.3.27936, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Identity.0.1.3\lib\JB2.Identity.Repo.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Infrastructure, Version=0.2.1.17327, Culture=neutral, processorArchitecture=MSIL">
