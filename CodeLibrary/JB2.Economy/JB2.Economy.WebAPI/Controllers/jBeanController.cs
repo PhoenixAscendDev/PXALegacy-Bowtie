@@ -15,12 +15,17 @@ namespace JB2.Economy.WebAPI.Controllers
     {
         [HttpGet]
         [Authorize]
-        public HttpResponseMessage BankAccount()
+        public IHttpActionResult BankAccount()
         {
-            var player = getPlayerFromClaims();
+            if (isPermitted("bowtie"))
+            {
+                var player = getPlayerFromClaims();
 
-            jBeanAccount account = new jBeanAccount(player.GetjBeanAccountNumber());
-            return Request.CreateResponse(HttpStatusCode.OK, account);
+                jBeanAccount account = new jBeanAccount(player.GetjBeanAccountNumber());
+                return Json(account);
+            }
+            else
+                return Json(string.Empty);
         }
 
         protected IPlayer getPlayerFromClaims()
@@ -33,6 +38,19 @@ namespace JB2.Economy.WebAPI.Controllers
             var clientid = claims.Find(x => x.Type == ClaimType.ClientId);
 
             return JB2.Identity.PlayerStore.GetPlayerByAppPlayerID(playerid.Value, clientid.Value);
+
+        }
+
+        protected bool isPermitted(string scopeName)
+        {
+
+            var user = User as ClaimsPrincipal;
+            var claims = user.Claims.ToList();
+
+            var claim = claims.Find(x => x.Type == "scope:" + scopeName);
+
+            return claim != null;
+
 
         }
     }

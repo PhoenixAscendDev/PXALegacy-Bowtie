@@ -22,5 +22,6 @@ namespace JB2.Economy.WebAPI
             var jBeanRepo = new JB2.Economy.Data.jBeanRespostory(JB2.Infrastructure.Storage.BowtieAccount);
 
             JB2.Settings.Jbean.Configure(null, jBeanRepo);
+        }
     }
 }
