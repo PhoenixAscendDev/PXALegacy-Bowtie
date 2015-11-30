@@ -20,9 +20,9 @@ namespace JB2.Settings
         #endregion Fields
 
 
-        public static void Configure(IEnumerable<ISetting> settings)
+        public static void Configure(IEnumerable<ISetting> settings,JB2.Economy.IJBeanRepository repo)
         {          
-            _factory = JB2.Economy.JBeanFactory.Configure(settings);
+            _factory = JB2.Economy.JBeanFactory.Configure(settings,repo);
             _isConfigured = true;
         }
 
@@ -30,10 +30,6 @@ namespace JB2.Settings
         {
             checkIfConfigured();
             return _factory.GetSetting(settingName);
-            //if (_settings == null)
-            //    return null;
-            //else
-            //    return _settings[settingName];
         }
 
         public static string GetTokenImageFront(JBeanTokenType type)

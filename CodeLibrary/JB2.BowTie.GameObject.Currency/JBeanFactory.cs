@@ -46,26 +46,17 @@ namespace JB2.Economy
             
         }
 
-        public static JBeanFactory Configure(IEnumerable<ISetting> settings)
+        public static JBeanFactory Configure(IEnumerable<ISetting> settings, IJBeanRepository repo)
         {
             JBeanFactory factory = new JBeanFactory();
 
             JB2.Common.SettingCollection<string> sc = new SettingCollection<string>(settings);
-            //if (settings != null)
-            //{
-            //    foreach (ISetting s in settings)
-            //    {
-            //        var test = sc.Add(s);
-            //    }
-            //}
+
             factory.Settings = sc;
             factory.Denominations = new IDenomination[3] {  new JBeanDenomination(Enum.JBeanTokenType.Kidney),
                                                             new JBeanDenomination(Enum.JBeanTokenType.Navy),
                                                             new JBeanDenomination(Enum.JBeanTokenType.Pinto)
                                                           };
-
-
-
             ICurrency jBeanCurrency = new JBean()
             {
                 ID = sc[JbeanSettingName.CurrencyID].ToString(),
@@ -81,7 +72,9 @@ namespace JB2.Economy
                                                             new JBeanDenomination(Enum.JBeanTokenType.Navy),
                                                             new JBeanDenomination(Enum.JBeanTokenType.Pinto)
                                                           };
-            factory.Treasury = new JbeanTreasury();
+            factory.Treasury = new JbeanTreasury(repo);
+
+            //factory.CentralBank = new Jb
 
             return factory;
         }

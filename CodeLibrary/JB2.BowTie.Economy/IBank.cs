@@ -9,7 +9,7 @@ namespace JB2.Economy
     public interface IBank :  JB2.Common.IIDNamePair<string,string>
     {
         long TotalCapital();
-        float GInterestRate(DateTime dt);
+        float InterestRate(DateTime dt);
         IBankTransactionReceipt Deposit(IBankAccount account, ITreasuryNote treasuryNote);
         IBankTransactionReceipt Withdrawn(IBankAccount account, ITreasuryRequest request);
 
