@@ -8,7 +8,7 @@ using JB2.Common;
 
 namespace JB2.Economy
 {
-    public class IBankAccount
+    public interface IBankAccount
     {
         string AccountNumber { get; set; }
         string RoutingNumber { get; set; }

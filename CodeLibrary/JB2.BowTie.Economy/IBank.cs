@@ -8,6 +8,7 @@ namespace JB2.Economy
 {
     public interface IBank :  JB2.Common.IIDNamePair<string,string>
     {
+        IBankAccount GetBankAccount(object accountHolder);
         long TotalCapital();
         float InterestRate(DateTime dt);
         IBankTransactionReceipt Deposit(IBankAccount account, ITreasuryNote treasuryNote);

@@ -78,10 +78,12 @@
     <Compile Include="IjBeanRepository.cs" />
     <Compile Include="IssueJBeanProhibited.cs" />
     <Compile Include="Jbean.cs" />
+    <Compile Include="jBeanAccount.cs" />
     <Compile Include="jBeanAppSettings.cs" />
     <Compile Include="JbeanBag.cs" />
     <Compile Include="jBeanCentralBank.cs" />
     <Compile Include="JBeanFactory.cs" />
+    <Compile Include="jBeanReceipt.cs" />
     <Compile Include="JbeanSettingNames.cs" />
     <Compile Include="JbeanSettings.cs" />
     <Compile Include="JBeanDenomination.cs" />

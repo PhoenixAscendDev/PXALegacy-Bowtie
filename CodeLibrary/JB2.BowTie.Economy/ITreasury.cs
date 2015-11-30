@@ -19,6 +19,8 @@ namespace JB2.Economy
 
         bool IsValidNote(ITreasuryNote treasuryNote);
 
+        bool IsValidRequest(ITreasuryRequest request);
+
 
         
 

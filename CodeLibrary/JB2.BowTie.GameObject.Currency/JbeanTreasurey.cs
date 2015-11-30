@@ -12,9 +12,6 @@ namespace JB2.Economy
     {
         #region Fields
         private IJBeanRepository _repo;
-        
-
-
         #endregion Fields
 
         #region Constructor
@@ -55,7 +52,7 @@ namespace JB2.Economy
 
             _repo.SaveRequest(request);
 
-            if (IsRequestApproved(request))
+            if (IsValidRequest(request))
             {
                 //JbeanTreasuryNote.NewNote(request.Amount, request.Requestor as JB2.Identity.IApplication);
                 //marks the note status as "Issued"
@@ -70,7 +67,7 @@ namespace JB2.Economy
             return result;
         }
 
-        private bool IsRequestApproved(ITreasuryRequest request)
+        public bool IsValidRequest(ITreasuryRequest request)
         {
 
             //Make sure the requestor is a JB2 Identity Application
@@ -103,6 +100,7 @@ namespace JB2.Economy
                 return false;
 
         }
+
     }
 
 

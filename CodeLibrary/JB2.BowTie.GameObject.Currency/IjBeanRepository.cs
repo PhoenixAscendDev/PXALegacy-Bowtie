@@ -10,14 +10,19 @@ namespace JB2.Economy
 {
     public interface IJBeanRepository
     {
+
+        #region Bank
         string GetAccountNumberByPlayerID(string playerid);
 
-        ServiceResult AddFundsToAccount(ITreasuryNote note, string accountNumber);
+        ServiceResult AddFundsToAccount(ITreasuryNote note, IBankAccount account);
 
-        ITreasuryNote RemoveFundsFromAccount(ITreasuryRequest request, string accountNumber);
+        ITreasuryNote RemoveFundsFromAccount(ITreasuryRequest request, IBankAccount account);
 
-        ServiceResult SaveRequest(ITreasuryRequest request);
+        ServiceResult SaveBankReceipt(IBankTransactionReceipt receipt);
 
+        #endregion Bank
+
+        #region TreasuryNote
         ServiceResult SaveTreasuryNote(ITreasuryNote note, Enum.jBeanTreasureNoteStatus statu);
 
         //ServiceResult UpdateTreasuryNoteStatus(ITreasuryNote note, Enum.jBeanTreasureNoteStatus status);
@@ -27,11 +32,15 @@ namespace JB2.Economy
         IEnumerable<ITreasuryNote> GetTreasuryNotes();
         IEnumerable<ITreasuryNote> GetTreasuryNotesByStatus(Enum.jBeanTreasureNoteStatus status);
         ITreasuryNote GetTreasuryNoteById(string id);
+        #endregion TeasuryNote
+
 
 
         jBeanTotals GetStats();
 
         jBeanAppSettings GetApplicationSettings(Identity.IApplication app);
+
+        ServiceResult SaveRequest(ITreasuryRequest request);
     }
 }
     
