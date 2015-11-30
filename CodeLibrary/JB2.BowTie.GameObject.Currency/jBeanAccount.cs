@@ -60,5 +60,10 @@ namespace JB2.Economy
                 throw new NotImplementedException();
             }
         }
+
+        public static jBeanAccount FromAccountNumber(string accountNumber)
+        {
+            return new jBeanAccount(accountNumber);
+        }
     }
 }

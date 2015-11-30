@@ -39,5 +39,10 @@ namespace JB2.Economy
         {
             return (int)b;
         }
+
+        public static jBeanAccount jBeanAccount(this JB2.Identity.IPlayer player)
+        {
+            return new jBeanAccount(player.GetjBeanAccountNumber());
+        }
     }
 }

@@ -19,21 +19,40 @@ namespace JB2.Economy.WebAPI.Controllers
         {
             if (isPermitted("bowtie"))
             {
-                var player = getPlayerFromClaims();
-
-                jBeanAccount account = new jBeanAccount(player.GetjBeanAccountNumber());
-                return Json(account);
+                return Json(getAccountFromClaims);
             }
             else
                 return Json(string.Empty);
         }
 
-        public IHttpActionResult TotalInAccount()
+        [HttpGet]
+        [Authorize]
+        public IHttpActionResult Balance()
         {
             var player = getPlayerFromClaims();
-            return JB2.Settings.Jbean.Factory.CentralBank.
+            var account = player.jBeanAccount();
+            return Json(getCentralBank().CheckBalance(getAccountFromClaims));
         }
 
+        [HttpPost]
+        [Authorize]
+        public IHttpActionResult Withdraw() 
+
+        protected jBeanCentralBank getCentralBank()
+        {
+            return JB2.Settings.Jbean.Factory.CentralBank as jBeanCentralBank;
+        }
+
+        protected JbeanTreasury getTreasury()
+        {
+            return JB2.Settings.Jbean.Factory.Treasury as JbeanTreasury;
+        }
+        protected jBeanAccount getAccountFromClaims()
+        {
+            var player = getPlayerFromClaims();
+            var account = player.jBeanAccount();
+            return account;
+        }
         protected IPlayer getPlayerFromClaims()
         {
             var user = User as ClaimsPrincipal;
@@ -57,6 +76,17 @@ namespace JB2.Economy.WebAPI.Controllers
 
 
         }
+
+        protected JB2.Identity.IApplication getApplicationFromClaims()
+        {
+            var user = User as ClaimsPrincipal;
+            var claims = user.Claims.ToList();
+            var clientid = claims.Find(x => x.Type == ClaimType.ClientId);
+
+            //JB2.Identity.
+        }
+
+
 
 
 
