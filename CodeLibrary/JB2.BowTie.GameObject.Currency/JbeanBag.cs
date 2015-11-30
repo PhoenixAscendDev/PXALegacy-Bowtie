@@ -69,6 +69,16 @@ namespace JB2.Economy
             return new JBeanBag(kidneyCount, navyCount, pintoCount);
         }
 
+        public static implicit operator JBeanBag(float num)
+        {
+            return (JBeanBag)Convert.ToInt32(Math.Round(num));
+        }
+
+        public static implicit operator JBeanBag(decimal num)
+        {
+            return (JBeanBag)Convert.ToInt32(Math.Round(num));
+        }
+
         public static implicit operator int(JBeanBag bag)
         {
             int kidneyValue = JB2.Settings.Jbean.GetTokenValue(JBeanTokenType.Kidney);
@@ -80,10 +90,17 @@ namespace JB2.Economy
             return result;
         }
 
+        public static implicit operator float(JBeanBag bag)
+        {
+            int intValue = (int)bag;
+            return (float)intValue;
+        }
+
         public static implicit operator string(JBeanBag bag)
         {
             return string.Format("Pinto:{2}: Navy:{1}; Kidney:{0}; ", bag.Kidney.ToString(), bag.Navy.ToString(), bag.Pinto.ToString());
         }
+
 
         #endregion Implicit Operator
 

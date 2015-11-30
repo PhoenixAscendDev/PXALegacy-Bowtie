@@ -28,6 +28,12 @@ namespace JB2.Economy.WebAPI.Controllers
                 return Json(string.Empty);
         }
 
+        public IHttpActionResult TotalInAccount()
+        {
+            var player = getPlayerFromClaims();
+            return JB2.Settings.Jbean.Factory.CentralBank.
+        }
+
         protected IPlayer getPlayerFromClaims()
         {
             var user = User as ClaimsPrincipal;
@@ -51,5 +57,8 @@ namespace JB2.Economy.WebAPI.Controllers
 
 
         }
+
+
+
     }
 }

@@ -14,5 +14,7 @@ namespace JB2.Economy
         IBankTransactionReceipt Deposit(IBankAccount account, ITreasuryNote treasuryNote);
         IBankTransactionReceipt Withdrawn(IBankAccount account, ITreasuryRequest request);
 
+        float CheckBalance(IBankAccount account);
+
     }
 }

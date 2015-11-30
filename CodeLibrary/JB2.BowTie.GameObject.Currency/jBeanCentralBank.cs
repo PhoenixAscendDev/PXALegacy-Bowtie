@@ -24,6 +24,11 @@ namespace JB2.Economy
             return new jBeanAccount(_repo.GetAccountNumberByPlayerID(playerID));          
         }
 
+        public float CheckBalance(IBankAccount account)
+        {
+            return new JBeanBag(50, 0, 0);
+        }
+
         public jBeanCentralBank(ITreasury treasury, IJBeanRepository repo)
         {
             _repo = repo;
