@@ -16,7 +16,6 @@ namespace JB2.Bowtie
         
         #endregion Fields
 
-
         #region Constructors
         public Application(string publickey, string secretKey ) : base(Enum.BowtieObjectType.bowtie_application,publickey)
         {
@@ -69,7 +68,6 @@ namespace JB2.Bowtie
             
         }
 
-
         #region IApplication
         public IEnumerable<JB2.Identity.IPlayer> GetAdmins()
         {
@@ -91,7 +89,5 @@ namespace JB2.Bowtie
             throw new NotImplementedException();
         }
         #endregion IApplication
-
-
     }
 }

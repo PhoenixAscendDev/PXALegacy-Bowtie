@@ -10,10 +10,11 @@ namespace JB2.Bowtie
 {
     public class Manager
     {
+
         public static bool Initialize(string publicKey, string secretKey)
         {
-
             Application app = new Application(publicKey, secretKey);
+
             BaseSetting s = new BaseSetting()
             {
                 ID = Economy.JbeanSettingName.CurrencyID,
@@ -21,7 +22,8 @@ namespace JB2.Bowtie
                 Value = "jbeanID123456789"
             };
             //JB2.Bowtie.Settings._application = app;
-            JB2.Settings.Jbean.Configure( new BaseSetting[1]{ s });
+            var jbeanStorage = JB2.Infrastructure.Storage.BowtieAccount;
+            JB2.Settings.Jbean.Configure( new BaseSetting[1]{ s }, new JB2.Economy.Data.jBeanRespostory(jbeanStorage));
 
             //genera bowtie settings
             List<ISetting> bowtieSettings = new List<ISetting>();
@@ -47,7 +49,6 @@ namespace JB2.Bowtie
         public static bool Initialize(BowtieConfig config)
         {
             //JB2.Bowtie.Settings.LoadByConfig(config);
-
             return true;
         }
 

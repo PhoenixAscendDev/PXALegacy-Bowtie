@@ -36,7 +36,7 @@ namespace JB2.Bowtie
             var requestor = JB2.Settings.Bowtie.CurrentApplication;
 
             TreasuryRequest request = new TreasuryRequest() { Amount = beanbag, Requestor = requestor, RequestDate = DateTime.Now, VerificationKey = "verifyit" };
-            ITreasuryNote treasuryNote = treasury.IssueDeomination(request);
+            ITreasuryNote treasuryNote = treasury.IssueNote(request);
             return treasuryNote;        
         }
 

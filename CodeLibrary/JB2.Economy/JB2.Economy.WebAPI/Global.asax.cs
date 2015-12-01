@@ -20,8 +20,14 @@ namespace JB2.Economy.WebAPI
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             var jBeanRepo = new JB2.Economy.Data.jBeanRespostory(JB2.Infrastructure.Storage.BowtieAccount);
+            JB2.Common.BaseSetting s = new JB2.Common.BaseSetting()
+            {
+                ID = Economy.JbeanSettingName.CurrencyID,
+                Name = "CurrencyID",
+                Value = "jbeanID123456789"
+            };
 
-            JB2.Settings.Jbean.Configure(null, jBeanRepo);
+            JB2.Settings.Jbean.Configure(new JB2.Common.BaseSetting[1] { s }, jBeanRepo);
         }
     }
 }
