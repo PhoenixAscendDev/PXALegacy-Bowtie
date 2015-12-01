@@ -38,25 +38,18 @@ namespace JB2.Economy.WebAPI.Controllers
         [Authorize]
         public IHttpActionResult Withdraw(ITreasuryRequest request)
         {
+            var bank = getCentralBank();
+            var account = getAccountFromClaims();
             IBankTransactionReceipt receipt = null;
+
             if (request.Requestor.GetType() == typeof(Identity.IApplication))
             {
                 var requestApp = JB2.Identity.ApplicatonStore.GetApplicationByID(request.Requestor.ToString());
                 request.Requestor = requestApp;
             }
-
-            //withdraw only if request is valid
-            if( getTreasury().IsValidRequest(request))
-            {
-                var bank = getCentralBank();
-                var account = getAccountFromClaims();
-                receipt = bank.Withdrawn(account, request);
-            }
-
+            receipt = bank.Withdrawn(account, request);
             return Json(receipt);              
         }
-
-
 
         [HttpPost]
         [Authorize]
@@ -66,10 +59,7 @@ namespace JB2.Economy.WebAPI.Controllers
             var account = getAccountFromClaims();
             var bank = getCentralBank();
 
-            if(getTreasury().IsValidNote(note))
-            {
-                receipt = bank.Deposit(account, note);
-            }
+            receipt = bank.Deposit(account, note);
 
             return Json(receipt);
         }
