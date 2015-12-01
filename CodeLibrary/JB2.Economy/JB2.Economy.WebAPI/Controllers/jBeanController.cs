@@ -19,7 +19,7 @@ namespace JB2.Economy.WebAPI.Controllers
         {
             if (isPermitted("bowtie"))
             {
-                return Json(getAccountFromClaims);
+                return Json(getAccountFromClaims());
             }
             else
                 return Json(string.Empty);
@@ -31,12 +31,49 @@ namespace JB2.Economy.WebAPI.Controllers
         {
             var player = getPlayerFromClaims();
             var account = player.jBeanAccount();
-            return Json(getCentralBank().CheckBalance(getAccountFromClaims));
+            return Json(getCentralBank().CheckBalance(getAccountFromClaims()));
         }
 
         [HttpPost]
         [Authorize]
-        public IHttpActionResult Withdraw() 
+        public IHttpActionResult Withdraw(ITreasuryRequest request)
+        {
+            IBankTransactionReceipt receipt = null;
+            if (request.Requestor.GetType() == typeof(Identity.IApplication))
+            {
+                var requestApp = JB2.Identity.ApplicatonStore.GetApplicationByID(request.Requestor.ToString());
+                request.Requestor = requestApp;
+            }
+
+            //withdraw only if request is valid
+            if( getTreasury().IsValidRequest(request))
+            {
+                var bank = getCentralBank();
+                var account = getAccountFromClaims();
+                receipt = bank.Withdrawn(account, request);
+            }
+
+            return Json(receipt);              
+        }
+
+
+
+        [HttpPost]
+        [Authorize]
+        public IHttpActionResult Deposit(ITreasuryNote note)
+        {
+            IBankTransactionReceipt receipt = null;
+            var account = getAccountFromClaims();
+            var bank = getCentralBank();
+
+            if(getTreasury().IsValidNote(note))
+            {
+                receipt = bank.Deposit(account, note);
+            }
+
+            return Json(receipt);
+        }
+
 
         protected jBeanCentralBank getCentralBank()
         {
@@ -83,6 +120,7 @@ namespace JB2.Economy.WebAPI.Controllers
             var claims = user.Claims.ToList();
             var clientid = claims.Find(x => x.Type == ClaimType.ClientId);
 
+            return JB2.Identity.ApplicatonStore.GetApplicationByClientID(clientid.Value);
             //JB2.Identity.
         }
 

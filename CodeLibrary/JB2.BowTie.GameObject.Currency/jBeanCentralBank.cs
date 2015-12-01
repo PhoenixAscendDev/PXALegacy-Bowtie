@@ -40,8 +40,16 @@ namespace JB2.Economy
 
             IBankTransactionReceipt receipt = null;
             string transNumber = JB2.Common.NewID.Guid();
-            //make sure the note is valid and hasn't already been deposited
+            //make sure the note is valid and hasn't already been deposite
             bool isValid  = _treasury.IsValidNote(treasuryNote);
+
+            if(!isValid)
+            {
+                receipt = new jBeanReceipt(transNumber, string.Format("Treasury Note {0} is not valid", treasuryNote.ID), false);
+                _repo.SaveBankReceipt(receipt);
+                return receipt;
+            }
+
             Enum.jBeanTreasureNoteStatus noteStatus = _repo.GetTreasuryNoteStatus(treasuryNote);
             switch(noteStatus)
             {
