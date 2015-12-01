@@ -27,7 +27,7 @@ namespace JB2.Economy.WebAPI.Controllers
 
         [HttpGet]
         [Authorize]
-        public IHttpActionResult Balance()
+        public IHttpActionResult AccountBalance()
         {
             var player = getPlayerFromClaims();
             var account = player.jBeanAccount();
@@ -36,13 +36,13 @@ namespace JB2.Economy.WebAPI.Controllers
 
         [HttpPost]
         [Authorize]
-        public IHttpActionResult Withdraw(ITreasuryRequest request)
+        public IHttpActionResult WithdrawFromAccount(ITreasuryRequest request)
         {
             var bank = getCentralBank();
             var account = getAccountFromClaims();
             IBankTransactionReceipt receipt = null;
 
-            if (request.Requestor.GetType() == typeof(Identity.IApplication))
+            if (request.Requestor.GetType() != typeof(Identity.IApplication))
             {
                 var requestApp = JB2.Identity.ApplicatonStore.GetApplicationByID(request.Requestor.ToString());
                 request.Requestor = requestApp;
@@ -50,10 +50,9 @@ namespace JB2.Economy.WebAPI.Controllers
             receipt = bank.Withdrawn(account, request);
             return Json(receipt);              
         }
-
         [HttpPost]
         [Authorize]
-        public IHttpActionResult Deposit(ITreasuryNote note)
+        public IHttpActionResult DepositToAccount(ITreasuryNote note)
         {
             IBankTransactionReceipt receipt = null;
             var account = getAccountFromClaims();
@@ -64,6 +63,22 @@ namespace JB2.Economy.WebAPI.Controllers
             return Json(receipt);
         }
 
+        public IHttpActionResult RequestAmountFromTreasury(ITreasuryRequest request)
+        {
+            var treasury = getTreasury();
+
+            if (request.Requestor.GetType() != typeof(Identity.IApplication))
+            {
+                var requestApp = JB2.Identity.ApplicatonStore.GetApplicationByID(request.Requestor.ToString());
+                request.Requestor = requestApp;
+            }
+
+            var note = treasury.IssueNote(request);
+
+            return Json(note);
+        }
+
+        #region Helpers
 
         protected jBeanCentralBank getCentralBank()
         {
@@ -113,6 +128,8 @@ namespace JB2.Economy.WebAPI.Controllers
             return JB2.Identity.ApplicatonStore.GetApplicationByClientID(clientid.Value);
             //JB2.Identity.
         }
+
+        #endregion Helpers
 
 
 
