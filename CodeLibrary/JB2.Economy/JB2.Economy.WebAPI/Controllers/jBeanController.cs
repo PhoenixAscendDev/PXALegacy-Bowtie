@@ -50,6 +50,7 @@ namespace JB2.Economy.WebAPI.Controllers
             receipt = bank.Withdrawn(account, request);
             return Json(receipt);              
         }
+
         [HttpPost]
         [Authorize]
         public IHttpActionResult DepositToAccount(ITreasuryNote note)
