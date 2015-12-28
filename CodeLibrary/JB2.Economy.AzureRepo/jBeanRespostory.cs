@@ -73,7 +73,19 @@ namespace JB2.Economy.Data
 
         public jBeanTotals GetStats()
         {
-            throw new NotImplementedException();
+            var e = _jbeanRepo.GetEntity<TreasuryStats>("treasury", "jbean");
+
+            if (e != null)
+            {
+                return new jBeanTotals()
+                {
+                    AmountIssued = e.AmountIssued
+                };
+            }
+            else
+            {
+                return new jBeanTotals() { AmountIssued = 0 };
+            }
         }
 
         public ITreasuryNote GetTreasuryNoteById(string id)
@@ -192,6 +204,24 @@ namespace JB2.Economy.Data
             return result;
 
         }
+
+        private JB2.Common.ServiceResult increaseAmountIssued(long amount)
+        {
+            var e = _jbeanRepo.GetEntity<TreasuryStats>("treasury", "jbean");
+
+            if(e == null)
+            {
+                e = new TreasuryStats("treasury", "jbean");
+                e.AmountIssued = 0;
+            }
+
+            e.DateUpdated = DateTime.Now;
+            e.AmountIssued = e.AmountIssued + amount;
+
+            _jbeanRepo.Insert<TreasuryStats>(e, true);
+
+            return true;
+        }  
 
 
 
