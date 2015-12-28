@@ -107,6 +107,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransLogEntry.cs" />
     <Compile Include="TreasuryNote.cs" />
+    <Compile Include="TreasuryRequestEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JB2.BowTie.Economy\JB2.Economy.csproj">

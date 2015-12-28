@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy.Data
 {
-    public class TransLogEntry : JB2.Common.Log.LogTableEntry
+    public class TransLogEntry //: JB2.Common.Log.LogTableEntry
     {
-        public TransLogEntry(string partitionKey, string rowKey) : base(partitionKey, rowKey)
-        {
+        //public TransLogEntry(string partitionKey, string rowKey) : base(partitionKey, rowKey)
+        //{
 
-        }
+        //}
 
-        public TransLogEntry() : base()
-        {
+        //public TransLogEntry() : base()
+        //{
 
-        }
+        //}
         public string Treasury { get; set; }
         public string TransType { get; set; }
         public string AccountNumber { get; set; }

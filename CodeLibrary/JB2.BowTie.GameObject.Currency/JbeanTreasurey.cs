@@ -56,12 +56,12 @@ namespace JB2.Economy
             {
                 //JbeanTreasuryNote.NewNote(request.Amount, request.Requestor as JB2.Identity.IApplication);
                 //marks the note status as "Issued"
-                result = JbeanTreasuryNote.NewNote(request.Amount, request.Requestor as Identity.IApplication);
+                result = JbeanTreasuryNote.NewNote(request.Amount, request.Requestor as IIDNamePair<string,string>);
                 _repo.SaveTreasuryNote(result, Enum.jBeanTreasureNoteStatus.Issued);               
             }
             else
             {
-                result = JbeanTreasuryNote.NewNote(0, request.Requestor as Identity.IApplication);
+                result = JbeanTreasuryNote.NewNote(0, request.Requestor as IIDNamePair<string,string>);
             }
 
             return result;

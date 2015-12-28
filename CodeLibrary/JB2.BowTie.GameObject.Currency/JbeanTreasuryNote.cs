@@ -8,7 +8,7 @@ namespace JB2.Economy
 {
     public class JbeanTreasuryNote : TreasuryNote
     {
-        public JbeanTreasuryNote(string id,long amount, JB2.Identity.IApplication app)
+        public JbeanTreasuryNote(string id,long amount, JB2.Common.IIDNamePair<string,string> app)
         {
             _id = id;
             _amount = amount;
@@ -16,7 +16,7 @@ namespace JB2.Economy
         }
 
 
-        public static JbeanTreasuryNote NewNote(long amount, JB2.Identity.IApplication requestor)
+        public static JbeanTreasuryNote NewNote(long amount, JB2.Common.IIDNamePair<string, string> requestor)
         {
             var note = new JbeanTreasuryNote(JB2.Common.NewID.Guid(), amount, requestor);
             return note;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JB2.Economy.Enum;
+using Microsoft.WindowsAzure.Storage.Table;
 
 namespace JB2.Economy.Data
 {
@@ -68,7 +69,8 @@ namespace JB2.Economy.Data
 
         public ITreasuryNote GetTreasuryNoteById(string id)
         {
-            throw new NotImplementedException();
+            return _jbeanRepo.GetEntity<TreasuryNoteEntity>("treasuryNote:jbean", "id:" + id);
+                      
         }
 
         public IEnumerable<ITreasuryNote> GetTreasuryNotes()
@@ -79,12 +81,27 @@ namespace JB2.Economy.Data
 
         public IEnumerable<ITreasuryNote> GetTreasuryNotesByStatus(jBeanTreasureNoteStatus status)
         {
-            throw new NotImplementedException();
+            var query = new TableQuery<TreasuryNoteEntity>();
+            query.Where(
+                TableQuery.CombineFilters(
+                    TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "treasuryNote:jbean"),
+                    TableOperators.And,
+                    TableQuery.GenerateFilterCondition("Status", QueryComparisons.Equal, status.ToString())
+                )
+            );
+            return _jbeanRepo.ExecuteQuery<TreasuryNoteEntity>(query);
         }
 
         public jBeanTreasureNoteStatus GetTreasuryNoteStatus(ITreasuryNote note)
         {
-            throw new NotImplementedException();
+            var e = _jbeanRepo.GetEntity<TreasuryNoteEntity>("treasuryNote:jbean", "id:" + note.ID);
+
+            if (e != null)
+            {
+                return (jBeanTreasureNoteStatus)System.Enum.Parse(typeof(jBeanTreasureNoteStatus), e.Status);
+            }
+            else
+                return jBeanTreasureNoteStatus.Unknown;
         }
 
 
@@ -95,7 +112,16 @@ namespace JB2.Economy.Data
 
         public JB2.Common.ServiceResult SaveRequest(ITreasuryRequest request)
         {
-            throw new NotImplementedException();
+            var e = new TreasuryRequestEntity();
+            e.ID = JB2.Common.NewID.Guid();
+            e.Name = "jBean Treasury Request";
+            e.RequestDate = request.RequestDate;
+            e.RequestorID = request.Requestor.ToString();
+            e.Treasury = "jBean";
+            e.VerificationKey = string.Empty;
+            saveTreasuryRequest(e);
+
+            return true;
         }
 
         public JB2.Common.ServiceResult SaveTreasuryNote(ITreasuryNote note, jBeanTreasureNoteStatus status)
@@ -108,6 +134,7 @@ namespace JB2.Economy.Data
             e.ID = note.ID;
             e.Name = "jBean Treasury Note";
             e.IssuedBy = note.GetRequestor().GetID();
+            
 
             var result = saveTreasuryNote(e);
 
@@ -139,6 +166,23 @@ namespace JB2.Economy.Data
             _jbeanRepo.Insert<TreasuryNoteEntity>(e, true);
 
             return e;
+        }
+
+        private ITreasuryRequest saveTreasuryRequest(TreasuryRequestEntity e)
+        {
+            e.PartitionKey = "treasuryRequest:jbean";
+            e.RowKey = "id:" + e.ID;
+            _jbeanRepo.Insert<TreasuryRequestEntity>(e, true);
+
+            return e;
+        }
+
+        private JbeanTreasuryNote convertNoteFromEntity(TreasuryNoteEntity e)
+        {
+            var result = new JbeanTreasuryNote(e.ID, e.Amount, new JB2.Common.IDNamePair<string,string>(e.IssuedBy,string.Empty));
+
+            return result;
+
         }
 
 
