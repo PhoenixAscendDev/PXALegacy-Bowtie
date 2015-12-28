@@ -8,16 +8,15 @@ using JB2.Common.Data;
 
 namespace JB2.Economy.Data
 {
-    public class TreasuryNote: AzureTableEntity, ITreasuryNote
+    public class TreasuryNoteEntity: AzureTableEntity, ITreasuryNote
     {
-        public TreasuryNote(string partitionKey, string rowKey) : base(partitionKey, rowKey)
+        public TreasuryNoteEntity(string partitionKey, string rowKey) : base(partitionKey, rowKey)
         {
 
         }
 
-        public TreasuryNote()
+        public TreasuryNoteEntity()
         {
-
         }
 
         public long Amount { get; set; }

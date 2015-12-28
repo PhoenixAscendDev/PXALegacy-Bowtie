@@ -15,7 +15,7 @@ namespace JB2.Economy
 
         ServiceResult AddFundsToAccount(long amount, string accountNumber);
 
-        ITreasuryNote RemoveFundsFromAccount(long amount, string accountNumber);
+        ServiceResult RemoveFundsFromAccount(long amount, string accountNumber);
 
         ServiceResult SaveBankReceipt(IBankTransactionReceipt receipt);
 

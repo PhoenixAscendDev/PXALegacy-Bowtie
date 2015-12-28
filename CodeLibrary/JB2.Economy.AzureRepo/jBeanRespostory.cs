@@ -38,11 +38,12 @@ namespace JB2.Economy.Data
             return true;
         }
 
-        public ITreasuryNote RemoveFundsFromAccount(long amount, string accountNumber)
+        public JB2.Common.ServiceResult RemoveFundsFromAccount(long amount, string accountNumber)
         {
-            throw new NotImplementedException();
+            if (amount > 0)
+                amount = amount * -1;
+            return AddFundsToAccount(amount, accountNumber);
         }
-
 
         public JB2.Common.ServiceResult CancelTreasureNote(ITreasuryNote note)
         {
@@ -72,7 +73,7 @@ namespace JB2.Economy.Data
 
         public IEnumerable<ITreasuryNote> GetTreasuryNotes()
         {
-            var entity = _jbeanRepo.GetByPartitionKey<TreasuryNote>("treasuryNote:jbean",1000);
+            var entity = _jbeanRepo.GetByPartitionKey<TreasuryNoteEntity>("treasuryNote:jbean",1000);
             return entity;
         }
 
@@ -89,7 +90,7 @@ namespace JB2.Economy.Data
 
         public JB2.Common.ServiceResult SaveBankReceipt(IBankTransactionReceipt receipt)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public JB2.Common.ServiceResult SaveRequest(ITreasuryRequest request)
@@ -97,9 +98,20 @@ namespace JB2.Economy.Data
             throw new NotImplementedException();
         }
 
-        public JB2.Common.ServiceResult SaveTreasuryNote(ITreasuryNote note, jBeanTreasureNoteStatus statu)
+        public JB2.Common.ServiceResult SaveTreasuryNote(ITreasuryNote note, jBeanTreasureNoteStatus status)
         {
-            throw new NotImplementedException();
+            var e = new TreasuryNoteEntity();
+            e.Treasury = "jBean";
+            e.Status = status.ToString();
+            e.DateCreated = DateTime.Now;
+            e.Amount = note.Amount;
+            e.ID = note.ID;
+            e.Name = "jBean Treasury Note";
+            e.IssuedBy = note.GetRequestor().GetID();
+
+            var result = saveTreasuryNote(e);
+
+            return true;
         }
 
 
@@ -116,6 +128,15 @@ namespace JB2.Economy.Data
             e.PartitionKey = "account:jbean_" + e.AccountNumber.Substring(0, 2); ;
             e.RowKey = "player:" + e.PlayerID;
             _jbeanRepo.Insert<BankAccountEntity>(e, true);
+
+            return e;
+        }
+
+        private TreasuryNoteEntity saveTreasuryNote(TreasuryNoteEntity e)
+        {
+            e.PartitionKey = "treasuryNote:jbean";
+            e.RowKey = "id:" + e.ID;
+            _jbeanRepo.Insert<TreasuryNoteEntity>(e, true);
 
             return e;
         }
