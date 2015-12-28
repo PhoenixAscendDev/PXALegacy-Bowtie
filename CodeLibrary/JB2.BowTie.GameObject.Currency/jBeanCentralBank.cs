@@ -31,13 +31,12 @@ namespace JB2.Economy
         }
         public IBankAccount<IIDProp<string>,jBeanAccountStatus> GetBankAccount(IIDProp<string> accountHolder)
         {
-            string playerID = "0";
-            Type type = accountHolder.GetType();
 
-            if (type == typeof(string))
-                playerID = accountHolder.ToString();
+            var playerID = accountHolder.GetID();
 
-            return new jBeanAccount(_repo.GetAccountNumberByPlayerID(playerID));
+            return _repo.GetBankAccountByPlayerID(accountHolder.GetID());
+
+            //return new jBeanAccount(_repo.GetAccountNumberByPlayerID(playerID));
         }
 
         public IBankAccount<IIDProp<string>, jBeanAccountStatus> ChangeAccountStatus(IBankAccount<IIDProp<string>, jBeanAccountStatus> account,jBeanAccountStatus status)
@@ -55,8 +54,6 @@ namespace JB2.Economy
                 _repo.SaveBankAccount(newAccount, accountHolder.ToString());
             }
             return null;
-
-
         }
 
         public float CheckBalance(IBankAccount<IIDProp<string>, jBeanAccountStatus> account)

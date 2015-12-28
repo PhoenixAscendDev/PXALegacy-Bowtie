@@ -16,6 +16,21 @@ namespace JB2.Economy.Data
         private JB2.Common.Data.AzureTableRepository _tranlogRepo;
         #endregion Fields
 
+        public jBeanAccount GetBankAccountByPlayerID(string playerid)
+        {
+            var accountNumber = this.GetAccountNumberByPlayerID(playerid);
+            var e = _jbeanRepo.GetEntity<BankAccountEntity>("account:jbean", "accountNumber:" + accountNumber);
+
+            var result = new jBeanAccount(accountNumber);
+            result.AccountHolder = new JB2.Common.IDNamePair(e.PlayerID, string.Empty);
+            result.AccountNumber = e.AccountNumber;
+            result.Name = e.Name;
+            result.RoutingNumber = e.RoutingNumber;
+            result.Status = (Enum.jBeanAccountStatus)System.Enum.Parse(typeof(Enum.jBeanAccountStatus), e.AccountStatus);
+
+            return result;
+        }
+
         public jBeanRespostory(JB2.Common.Data.StorageAccount storageAccount)
         {
             _storage = storageAccount;
@@ -72,6 +87,7 @@ namespace JB2.Economy.Data
             return AddFundsToAccount(amount, accountNumber);
         }
 
+        
         public string GetAccountNumberByPlayerID(string playerid)
         {
             var entity = _jbeanRepo.GetEntity<PlayerjBeanAccount>("account:jbean", "player:" + playerid);
@@ -96,7 +112,6 @@ namespace JB2.Economy.Data
             }
             
         }
-
 
         public JB2.Common.ServiceResult SaveApplicationSettings(string appId, jBeanAppSettings settings)
         {
@@ -137,7 +152,6 @@ namespace JB2.Economy.Data
                 return new jBeanTotals() { AmountIssued = 0 };
             }
         }
-
         public JB2.Common.ServiceResult  SaveStats(jBeanTotals totals)
         {
             //var e = _jbeanRepo.GetEntity<TreasuryStats>("treasury","jbean")

@@ -11,6 +11,8 @@ namespace JB2.Economy
     public interface IJBeanRepository
     {
         #region Bank
+
+        jBeanAccount GetBankAccountByPlayerID(string id);
         string GetAccountNumberByPlayerID(string playerid);
 
         ServiceResult AddFundsToAccount(long amount, string accountNumber);
