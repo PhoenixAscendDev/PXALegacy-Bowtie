@@ -10,7 +10,8 @@ namespace JB2.Economy
     {
         string ID { get;}
         long Amount { get;}
-        
-        object Requestor { get; }          
+
+        JB2.Common.IIDNamePair<string,string> GetRequestor();
+             
     }
 }

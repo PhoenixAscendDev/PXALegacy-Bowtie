@@ -55,11 +55,12 @@ namespace JB2.Economy
             {
                 case Enum.jBeanTreasureNoteStatus.Issued:
                     //do the deposit
-                    JB2.Common.ServiceResult bankTransaction = _repo.AddFundsToAccount(treasuryNote, account);
+                    JB2.Common.ServiceResult bankTransaction = _repo.AddFundsToAccount(treasuryNote.Amount, account.AccountNumber);
                     //print receipt
                     string message = (bankTransaction == true) ? string.Format("jBeans have successfully been deposited for the amount of {0}", treasuryNote.Amount.ToString())
                                                                : string.Format("jBeans were not desposited for the amount of {0}", treasuryNote.Amount.ToString());
                     receipt = new jBeanReceipt(transNumber, message, bankTransaction);
+
                     //mark note as deposited
                     _repo.SaveTreasuryNote(treasuryNote, Enum.jBeanTreasureNoteStatus.Deposited);
                     break;
@@ -99,7 +100,7 @@ namespace JB2.Economy
                 receipt = new jBeanReceipt(transNumber, "Withdraw request is not valid", false);
             else
             {
-                _repo.RemoveFundsFromAccount(request, account);
+                _repo.RemoveFundsFromAccount(request.Amount, account.AccountNumber);
                 receipt = new jBeanReceipt(transNumber, "Withdraw from account has been successful", true);
             }
 

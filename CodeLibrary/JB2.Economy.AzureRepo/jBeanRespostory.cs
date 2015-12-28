@@ -11,17 +11,38 @@ namespace JB2.Economy.Data
     {
         #region Fields
         private JB2.Common.Data.StorageAccount _storage;
+        private JB2.Common.Data.AzureTableRepository _jbeanRepo;
+        private JB2.Common.Data.AzureTableRepository _tranlogRepo;
         #endregion Fields
 
         public jBeanRespostory(JB2.Common.Data.StorageAccount storageAccount)
         {
             _storage = storageAccount;
+            _jbeanRepo = _storage.GetTable("bankAccounts");
+            _tranlogRepo = _storage.GetTable("transLog");
         }
    
-        public JB2.Common.ServiceResult AddFundsToAccount(ITreasuryNote note, IBankAccount account)
+        public JB2.Common.ServiceResult AddFundsToAccount(long amount, string accountNumber)
+        {
+            var e = _jbeanRepo.GetEntity<BankAccountEntity>("account:jbean", "accountnumber:" + accountNumber);
+
+            if(e != null && string.IsNullOrEmpty(e.AccountNumber))
+            {
+                e.Balance = e.Balance + amount;
+                this.saveBankAccount(e);
+            }
+            else
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public ITreasuryNote RemoveFundsFromAccount(long amount, string accountNumber)
         {
             throw new NotImplementedException();
         }
+
 
         public JB2.Common.ServiceResult CancelTreasureNote(ITreasuryNote note)
         {
@@ -30,7 +51,8 @@ namespace JB2.Economy.Data
 
         public string GetAccountNumberByPlayerID(string playerid)
         {
-            throw new NotImplementedException();
+            var entity = _jbeanRepo.GetEntity<PlayerjBeanAccount>("account:jbean", "player:" + playerid);
+            return entity.AccountNumber;
         }
 
         public jBeanAppSettings GetApplicationSettings(JB2.Identity.IApplication app)
@@ -50,7 +72,8 @@ namespace JB2.Economy.Data
 
         public IEnumerable<ITreasuryNote> GetTreasuryNotes()
         {
-            throw new NotImplementedException();
+            var entity = _jbeanRepo.GetByPartitionKey<TreasuryNote>("treasuryNote:jbean",1000);
+            return entity;
         }
 
         public IEnumerable<ITreasuryNote> GetTreasuryNotesByStatus(jBeanTreasureNoteStatus status)
@@ -63,10 +86,6 @@ namespace JB2.Economy.Data
             throw new NotImplementedException();
         }
 
-        public ITreasuryNote RemoveFundsFromAccount(ITreasuryRequest request, IBankAccount account)
-        {
-            throw new NotImplementedException();
-        }
 
         public JB2.Common.ServiceResult SaveBankReceipt(IBankTransactionReceipt receipt)
         {
@@ -82,5 +101,28 @@ namespace JB2.Economy.Data
         {
             throw new NotImplementedException();
         }
+
+
+        private BankAccountEntity saveBankAccount(BankAccountEntity e)
+        {
+            e.PartitionKey = "account:jbean";
+            e.RowKey = "accountNumber:" + e.AccountNumber;
+            _jbeanRepo.Insert<BankAccountEntity>(e, true);
+
+            e.PartitionKey = "account:jbean_" + e.AccountNumber.Substring(0, 2);
+            e.RowKey = "accountNumber:" + e.AccountNumber;
+            _jbeanRepo.Insert<BankAccountEntity>(e, true);
+
+            e.PartitionKey = "account:jbean_" + e.AccountNumber.Substring(0, 2); ;
+            e.RowKey = "player:" + e.PlayerID;
+            _jbeanRepo.Insert<BankAccountEntity>(e, true);
+
+            return e;
+        }
+
+
+
+
+
     }
 }

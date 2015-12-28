@@ -10,13 +10,12 @@ namespace JB2.Economy
 {
     public interface IJBeanRepository
     {
-
         #region Bank
         string GetAccountNumberByPlayerID(string playerid);
 
-        ServiceResult AddFundsToAccount(ITreasuryNote note, IBankAccount account);
+        ServiceResult AddFundsToAccount(long amount, string accountNumber);
 
-        ITreasuryNote RemoveFundsFromAccount(ITreasuryRequest request, IBankAccount account);
+        ITreasuryNote RemoveFundsFromAccount(long amount, string accountNumber);
 
         ServiceResult SaveBankReceipt(IBankTransactionReceipt receipt);
 

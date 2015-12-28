@@ -21,5 +21,10 @@ namespace JB2.Economy
             var note = new JbeanTreasuryNote(JB2.Common.NewID.Guid(), amount, requestor);
             return note;
         }
+
+        public override JB2.Common.IIDNamePair<string,string> GetRequestor()
+        {
+            return _requestor;
+        }
     }
 }

@@ -95,7 +95,9 @@
   <ItemGroup>
     <Compile Include="BankAccount.cs" />
     <Compile Include="jBeanRespostory.cs" />
+    <Compile Include="PlayerAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TreasuryNote.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JB2.BowTie.Economy\JB2.Economy.csproj">

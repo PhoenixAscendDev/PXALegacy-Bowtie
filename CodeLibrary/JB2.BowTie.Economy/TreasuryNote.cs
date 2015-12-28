@@ -11,7 +11,7 @@ namespace JB2.Economy
         #region Fields
         protected long _amount;
         protected string _id;
-        protected object _requestor;
+        protected JB2.Common.IIDNamePair<string,string> _requestor;
 
         #endregion Fields
 
@@ -33,13 +33,7 @@ namespace JB2.Economy
             }
         }
 
-        public object Requestor
-        {
-            get
-            {
-                return _requestor;
-            }
-        }
+        public abstract JB2.Common.IIDNamePair<string,string> GetRequestor();
 
         #endregion Properties
     }
