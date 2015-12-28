@@ -8,7 +8,7 @@ using JB2.Common.Data;
 
 namespace JB2.Economy.Data
 {
-    public class BankAccountEntity : JB2.Common.Data.AzureTableEntity, IBankAccount
+    public class BankAccountEntity : JB2.Common.Data.AzureTableEntity
     {
         public BankAccountEntity(string partitionKey, string rowKey) : base(partitionKey,rowKey)
         {

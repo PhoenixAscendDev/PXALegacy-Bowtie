@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy
 {
-    public class jBeanAccount : IBankAccount
+    public class jBeanAccount : IBankAccount<JB2.Common.IIDProp<string>,JB2.Economy.Enum.jBeanAccountStatus>
     {
         #region Fields
         private string _accountNumber;
@@ -15,12 +15,17 @@ namespace JB2.Economy
 
         #endregion Fields
 
+        #region Constructors
+
         public jBeanAccount(string accountNumber)
         {
             _accountNumber = accountNumber;
             _name = "Jbean Account";
             _routingNumber = "0";
         }
+
+        #endregion Constructors
+
 
         public string AccountNumber
         {
@@ -60,6 +65,10 @@ namespace JB2.Economy
                 throw new NotImplementedException();
             }
         }
+
+        public JB2.Common.IIDProp<string> AccountHolder { get; set; }
+
+        public JB2.Economy.Enum.jBeanAccountStatus Status { get; set; }
 
         public static jBeanAccount FromAccountNumber(string accountNumber)
         {

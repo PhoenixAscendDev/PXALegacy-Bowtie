@@ -8,11 +8,13 @@ using JB2.Common;
 
 namespace JB2.Economy
 {
-    public interface IBankAccount
+    
+    public interface IBankAccount<THolder,TStatus>
     {
         string AccountNumber { get; set; }
         string RoutingNumber { get; set; }
         string Name { get; set; }
-
+        TStatus Status { get; set; }
+        THolder AccountHolder { get; set; }
     }
 }

@@ -4,16 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using JB2.Common;
+using JB2.Economy.Enum;
+
 namespace JB2.Economy
 {
-    public class jBeanCentralBank : JB2.Common.IDNamePair, IBank
+    public class jBeanCentralBank : JB2.Common.IDNamePair, IBank<JB2.Common.IIDProp<string>,JB2.Economy.Enum.jBeanAccountStatus>
     {
         #region Fields
         private IJBeanRepository _repo;
         private ITreasury _treasury;
         #endregion Fields
 
-        public IBankAccount GetBankAccount(object accountHolder)
+        #region Constructors
+        public jBeanCentralBank(ITreasury treasury, IJBeanRepository repo)
+        {
+            _repo = repo;
+            _treasury = treasury;          
+        }
+
+        #endregion Constructors
+
+        public string GenerateNewAccountNumber()
+        {
+            return JB2.Common.NewID.Guid();
+        }
+        public IBankAccount<IIDProp<string>,jBeanAccountStatus> GetBankAccount(IIDProp<string> accountHolder)
         {
             string playerID = "0";
             Type type = accountHolder.GetType();
@@ -21,21 +37,34 @@ namespace JB2.Economy
             if (type == typeof(string))
                 playerID = accountHolder.ToString();
 
-            return new jBeanAccount(_repo.GetAccountNumberByPlayerID(playerID));          
+            return new jBeanAccount(_repo.GetAccountNumberByPlayerID(playerID));
         }
 
-        public float CheckBalance(IBankAccount account)
+        public IBankAccount<IIDProp<string>, jBeanAccountStatus> ChangeAccountStatus(IBankAccount<IIDProp<string>, jBeanAccountStatus> account,jBeanAccountStatus status)
+        {
+            return account;
+        }
+
+        public IBankAccount<IIDProp<string>, jBeanAccountStatus> OpenNewBankAccount(IIDProp<string> accountHolder)
+        {
+            //check to make sure player doesn't already have account
+            if( string.IsNullOrEmpty(this.GetBankAccount(accountHolder).AccountNumber))
+            {
+                string accountNumber = this.GenerateNewAccountNumber();
+                var newAccount = new jBeanAccount(accountNumber);
+                _repo.SaveBankAccount(newAccount, accountHolder.ToString());
+            }
+            return null;
+
+
+        }
+
+        public float CheckBalance(IBankAccount<IIDProp<string>, jBeanAccountStatus> account)
         {
             return new JBeanBag(50, 0, 0);
         }
 
-        public jBeanCentralBank(ITreasury treasury, IJBeanRepository repo)
-        {
-            _repo = repo;
-            _treasury = treasury;          
-        }
-
-        public IBankTransactionReceipt Deposit(IBankAccount account, ITreasuryNote treasuryNote)
+        public IBankTransactionReceipt Deposit(IBankAccount<IIDProp<string>, jBeanAccountStatus> account, ITreasuryNote treasuryNote)
         {
 
             IBankTransactionReceipt receipt = null;
@@ -91,7 +120,7 @@ namespace JB2.Economy
             throw new NotImplementedException();
         }
 
-        public IBankTransactionReceipt Withdrawn(IBankAccount account, ITreasuryRequest request)
+        public IBankTransactionReceipt Withdrawn(IBankAccount<IIDProp<string>, jBeanAccountStatus> account, ITreasuryRequest request)
         {
             IBankTransactionReceipt receipt = null;
             string transNumber = JB2.Common.NewID.Guid();

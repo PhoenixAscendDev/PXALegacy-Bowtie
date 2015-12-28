@@ -17,6 +17,8 @@ namespace JB2.Economy
 
         ServiceResult RemoveFundsFromAccount(long amount, string accountNumber);
 
+        ServiceResult SaveBankAccount(jBeanAccount account, string playerID);
+
         ServiceResult SaveBankReceipt(IBankTransactionReceipt receipt);
 
         #endregion Bank

@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enum\jBeanAccountStatus.cs" />
     <Compile Include="Enum\jBeanTokenType.cs" />
     <Compile Include="Extenstions.cs" />
     <Compile Include="IjBeanRepository.cs" />

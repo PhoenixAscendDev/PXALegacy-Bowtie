@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 using JB2.Common;
+using JB2.Economy.Enum;
 
 namespace JB2.Economy
 {
     //private static JB2.Economy.EconomicFactory;
-    public class JBeanFactory : Economy.EconomicFactory
+    public class JBeanFactory : Economy.EconomicFactory<IIDProp<string>,jBeanAccountStatus>
     {
-
         public ISetting GetSetting(string settingName)
         {
             if (Settings == null)

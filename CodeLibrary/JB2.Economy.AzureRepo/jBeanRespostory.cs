@@ -39,6 +39,32 @@ namespace JB2.Economy.Data
             return true;
         }
 
+        public JB2.Common.ServiceResult SaveBankAccount(jBeanAccount account, string playerid)
+        {
+            var e = _jbeanRepo.GetEntity<BankAccountEntity>("account:jbean", "accountnumber:" + account.AccountNumber);
+
+            if(e == null)
+            {
+                e = new BankAccountEntity("account:jbean", "accountnumber:" + account.AccountNumber);
+                e.AccountStatus = "Active";
+                e.Balance = 0;
+                e.DateCreated = DateTime.Now;
+                e.ID = account.AccountNumber;
+                e.PlayerID = playerid;
+                e.RoutingNumber = account.RoutingNumber;
+                e.Treasury = "jBean";
+            }
+            else
+            {
+                e.AccountNumber = account.AccountNumber;
+                e.RoutingNumber = account.RoutingNumber;
+            }
+
+            var result = saveBankAccount(e);
+            return true;
+
+        }
+
         public JB2.Common.ServiceResult RemoveFundsFromAccount(long amount, string accountNumber)
         {
             if (amount > 0)
@@ -71,6 +97,30 @@ namespace JB2.Economy.Data
             
         }
 
+
+        public JB2.Common.ServiceResult SaveApplicationSettings(string appId, jBeanAppSettings settings)
+        {
+            var e = _jbeanRepo.GetEntity<AppSettingEntity>("applicationSetting:jbean", "id:" + appId);
+
+            if(e == null)
+            {
+                e = new AppSettingEntity("applicationSetting:jbean", "id:" + appId);
+                var d = jBeanAppSettings.Default();
+                e.CanRequest = d.CanRequest;
+                e.ID = appId;
+                e.Name = "jBean Application Setting";
+                e.ApplicationID = appId;
+                e.RequestValidationKey = JB2.Common.NewID.Guid();
+
+            }
+
+            e.CanRequest = settings.CanRequest;
+            e.RequestValidationKey = settings.RequestValidationKey;
+
+            _jbeanRepo.Insert<AppSettingEntity>(e, true);
+
+            return true;
+        }
         public jBeanTotals GetStats()
         {
             var e = _jbeanRepo.GetEntity<TreasuryStats>("treasury", "jbean");
@@ -86,6 +136,12 @@ namespace JB2.Economy.Data
             {
                 return new jBeanTotals() { AmountIssued = 0 };
             }
+        }
+
+        public JB2.Common.ServiceResult  SaveStats(jBeanTotals totals)
+        {
+            //var e = _jbeanRepo.GetEntity<TreasuryStats>("treasury","jbean")
+            return true;
         }
 
         public ITreasuryNote GetTreasuryNoteById(string id)
@@ -205,7 +261,7 @@ namespace JB2.Economy.Data
 
         }
 
-        private JB2.Common.ServiceResult increaseAmountIssued(long amount)
+        private JB2.Common.ServiceResult IncreaseAmountIssuedStat(long amount)
         {
             var e = _jbeanRepo.GetEntity<TreasuryStats>("treasury", "jbean");
 
