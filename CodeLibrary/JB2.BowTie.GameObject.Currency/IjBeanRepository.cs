@@ -27,7 +27,6 @@ namespace JB2.Economy
         //ServiceResult UpdateTreasuryNoteStatus(ITreasuryNote note, Enum.jBeanTreasureNoteStatus status);
         Enum.jBeanTreasureNoteStatus GetTreasuryNoteStatus(ITreasuryNote note);
 
-        ServiceResult CancelTreasureNote(ITreasuryNote note);
         IEnumerable<ITreasuryNote> GetTreasuryNotes();
         IEnumerable<ITreasuryNote> GetTreasuryNotesByStatus(Enum.jBeanTreasureNoteStatus status);
         ITreasuryNote GetTreasuryNoteById(string id);

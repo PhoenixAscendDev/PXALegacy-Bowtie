@@ -101,6 +101,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSettingEntity.cs" />
     <Compile Include="BankAccount.cs" />
     <Compile Include="jBeanRespostory.cs" />
     <Compile Include="PlayerAccount.cs" />

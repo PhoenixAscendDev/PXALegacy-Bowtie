@@ -35,7 +35,7 @@ namespace JB2.Economy
             {
                 case Enum.jBeanTreasureNoteStatus.Issued:
                 case Enum.jBeanTreasureNoteStatus.Unknown:
-                    _repo.CancelTreasureNote(treasuryNote);
+                    _repo.SaveTreasuryNote(treasuryNote, Enum.jBeanTreasureNoteStatus.Cancelled);
                     break;
             }          
         }

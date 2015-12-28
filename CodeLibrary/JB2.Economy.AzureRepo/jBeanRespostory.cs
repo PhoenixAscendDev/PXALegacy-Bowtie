@@ -46,11 +46,6 @@ namespace JB2.Economy.Data
             return AddFundsToAccount(amount, accountNumber);
         }
 
-        public JB2.Common.ServiceResult CancelTreasureNote(ITreasuryNote note)
-        {
-            throw new NotImplementedException();
-        }
-
         public string GetAccountNumberByPlayerID(string playerid)
         {
             var entity = _jbeanRepo.GetEntity<PlayerjBeanAccount>("account:jbean", "player:" + playerid);
@@ -59,7 +54,21 @@ namespace JB2.Economy.Data
 
         public jBeanAppSettings GetApplicationSettings(JB2.Identity.IApplication app)
         {
-            throw new NotImplementedException();
+            var e = _jbeanRepo.GetEntity<AppSettingEntity>("applicationSetting:jbean", "id:" + app.ID);
+
+            if(e != null)
+            {
+                return new jBeanAppSettings()
+                {
+                    CanRequest = e.CanRequest,
+                    RequestValidationKey = e.RequestValidationKey
+                };
+            }
+            else
+            {
+                return jBeanAppSettings.Default();
+            }
+            
         }
 
         public jBeanTotals GetStats()
@@ -140,7 +149,6 @@ namespace JB2.Economy.Data
 
             return true;
         }
-
 
         private BankAccountEntity saveBankAccount(BankAccountEntity e)
         {

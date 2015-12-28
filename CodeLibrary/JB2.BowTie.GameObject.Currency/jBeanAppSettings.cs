@@ -10,5 +10,10 @@ namespace JB2.Economy
     {
         public bool CanRequest { get; set; }
         public string RequestValidationKey { get; set; }
+
+        public static jBeanAppSettings Default()
+        {
+            return new jBeanAppSettings() { CanRequest = false, RequestValidationKey = string.Empty };
+        }
     }
 }
