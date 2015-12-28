@@ -45,6 +45,8 @@ namespace JB2.Economy
 
         jBeanTotals GetStats();
 
+        ServiceResult SaveStats();
+
         jBeanAppSettings GetApplicationSettings(Identity.IApplication app);
 
         ServiceResult SaveRequest(ITreasuryRequest request);
