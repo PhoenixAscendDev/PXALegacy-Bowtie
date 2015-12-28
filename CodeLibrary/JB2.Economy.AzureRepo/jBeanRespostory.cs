@@ -19,6 +19,12 @@ namespace JB2.Economy.Data
         public jBeanAccount GetBankAccountByPlayerID(string playerid)
         {
             var accountNumber = this.GetAccountNumberByPlayerID(playerid);
+
+            return GetBankAccount(accountNumber);
+        }
+
+        public jBeanAccount GetBankAccount(string accountNumber)
+        {
             var e = _jbeanRepo.GetEntity<BankAccountEntity>("account:jbean", "accountNumber:" + accountNumber);
 
             var result = new jBeanAccount(accountNumber);
@@ -29,6 +35,13 @@ namespace JB2.Economy.Data
             result.Status = (Enum.jBeanAccountStatus)System.Enum.Parse(typeof(Enum.jBeanAccountStatus), e.AccountStatus);
 
             return result;
+        }
+
+        public JBeanBag GetBalance(string accountNumber)
+        {
+            var e = _jbeanRepo.GetEntity<BankAccountEntity>("account:jbean", "accountNumber:" + accountNumber);
+            return e.Balance;
+
         }
 
         public jBeanRespostory(JB2.Common.Data.StorageAccount storageAccount)

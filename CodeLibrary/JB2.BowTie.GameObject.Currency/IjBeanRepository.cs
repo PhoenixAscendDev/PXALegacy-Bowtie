@@ -13,7 +13,12 @@ namespace JB2.Economy
         #region Bank
 
         jBeanAccount GetBankAccountByPlayerID(string id);
+
+        jBeanAccount GetBankAccount(string accountNumber);
         string GetAccountNumberByPlayerID(string playerid);
+
+        JBeanBag GetBalance(string accountNumber);
+       
 
         ServiceResult AddFundsToAccount(long amount, string accountNumber);
 

@@ -15,6 +15,6 @@ namespace JB2.Economy
         string RoutingNumber { get; set; }
         string Name { get; set; }
         TStatus Status { get; set; }
-        THolder AccountHolder { get; set; }
+        THolder AccountHolder { get; set; }       
     }
 }

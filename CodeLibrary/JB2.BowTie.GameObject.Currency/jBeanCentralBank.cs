@@ -31,17 +31,18 @@ namespace JB2.Economy
         }
         public IBankAccount<IIDProp<string>,jBeanAccountStatus> GetBankAccount(IIDProp<string> accountHolder)
         {
-
             var playerID = accountHolder.GetID();
-
             return _repo.GetBankAccountByPlayerID(accountHolder.GetID());
-
-            //return new jBeanAccount(_repo.GetAccountNumberByPlayerID(playerID));
         }
 
-        public IBankAccount<IIDProp<string>, jBeanAccountStatus> ChangeAccountStatus(IBankAccount<IIDProp<string>, jBeanAccountStatus> account,jBeanAccountStatus status)
+        public IBankAccount<IIDProp<string>, jBeanAccountStatus> ChangeAccountStatus(IBankAccount<IIDProp<string>, jBeanAccountStatus> account,jBeanAccountStatus newStatus)
         {
-            return account;
+            var e = _repo.GetBankAccount(account.AccountNumber);
+            e.Status = newStatus;
+
+            _repo.SaveBankAccount(e, e.AccountHolder.GetID());
+
+            return e;
         }
 
         public IBankAccount<IIDProp<string>, jBeanAccountStatus> OpenNewBankAccount(IIDProp<string> accountHolder)
@@ -52,13 +53,17 @@ namespace JB2.Economy
                 string accountNumber = this.GenerateNewAccountNumber();
                 var newAccount = new jBeanAccount(accountNumber);
                 _repo.SaveBankAccount(newAccount, accountHolder.ToString());
+
+                return _repo.GetBankAccount(accountNumber);
             }
-            return null;
+
+            return _repo.GetBankAccountByPlayerID(accountHolder.GetID());
+           
         }
 
         public float CheckBalance(IBankAccount<IIDProp<string>, jBeanAccountStatus> account)
         {
-            return new JBeanBag(50, 0, 0);
+            return _repo.GetBalance(account.AccountNumber);
         }
 
         public IBankTransactionReceipt Deposit(IBankAccount<IIDProp<string>, jBeanAccountStatus> account, ITreasuryNote treasuryNote)
