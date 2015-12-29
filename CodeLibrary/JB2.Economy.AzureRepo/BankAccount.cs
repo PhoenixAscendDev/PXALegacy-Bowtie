@@ -24,7 +24,7 @@ namespace JB2.Economy.Data
         public string RoutingNumber { get; set; }
         public DateTime DateCreated { get; set; }
         public string AccountStatus { get; set; }
-        public float Balance { get; set; }
+        public int Balance { get; set; }
         public string PlayerID { get; set; }
         public DateTime LastTransactionDate { get; set; }
     }

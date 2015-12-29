@@ -124,10 +124,10 @@ namespace JB2.Economy.Data
             }
 
             //modify the balance
-            var e = _jbeanRepo.GetEntity<BankAccountEntity>("account:jbean", "accountnumber:" + accountNumber);
+            var e = _jbeanRepo.GetEntity<BankAccountEntity>("account:jbean", "accountNumber:" + accountNumber);
             if (e != null && !string.IsNullOrEmpty(e.AccountNumber))
             {
-                e.Balance = e.Balance + note.Amount;
+                e.Balance = e.Balance + (int)note.Amount;
                 e.LastTransactionDate = DateTime.Now;
                 this.saveBankAccount(e);
             }
@@ -188,8 +188,8 @@ namespace JB2.Economy.Data
             //update the balance
             var accountEntity = new BankAccountEntity("account:jbean", "accountnumber:" + accountNumber);
             
-             var newBalance = (float)(accountEntity.Balance - request.Amount);
-            accountEntity.Balance = newBalance < 0 ? 0 : newBalance;
+             var newBalance = (accountEntity.Balance - request.Amount);
+            accountEntity.Balance = newBalance < 0 ? 0 : (int)newBalance;
             accountEntity.LastTransactionDate = DateTime.Now;
             saveBankAccount(accountEntity);
             return true;
