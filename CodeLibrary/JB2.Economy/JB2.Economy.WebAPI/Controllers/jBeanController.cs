@@ -9,14 +9,24 @@ using System.Security.Claims;
 using JB2.Common.WebAPI;
 using JB2.Identity;
 
+using JB2.Common;
+
 namespace JB2.Economy.WebAPI.Controllers
 {
     public class jBeanController : BaseApiController
     {
         [HttpGet]
-        public IHttpActionResult OpenBankAccount(string id)
+        public IHttpActionResult NewBankAccount(string id)
         {
             var account = getCentralBank().OpenNewBankAccount(new JB2.Common.IDNamePair(id, string.Empty));
+            return Json(account);
+        }
+
+        [HttpGet]
+        public IHttpActionResult BankAccount(string id)
+        {
+            var account = getCentralBank().GetBankAccount(new JB2.Common.IDNamePair<string, string>(id, string.Empty));
+
             return Json(account);
         }
 
@@ -58,6 +68,17 @@ namespace JB2.Economy.WebAPI.Controllers
             return Json(receipt);              
         }
 
+        [HttpGet]
+        public IHttpActionResult  DepositTreasuryNote([FromUri] string note, [FromUri] string accountnumber)
+        {
+            var n = new JbeanTreasuryNote(note, 3,new JB2.Common.IDNamePair<string,string>("apptest",string.Empty));
+            var account = getCentralBank().GetBankAccount(new JB2.Common.IDNamePair<string, string>("jbtest566", string.Empty));
+
+            var result = getCentralBank().Deposit(account, n);
+
+            return Json(result);
+        }
+
         [HttpPost]
         [Authorize]
         public IHttpActionResult DepositToAccount(ITreasuryNote note)
@@ -70,16 +91,30 @@ namespace JB2.Economy.WebAPI.Controllers
 
             return Json(receipt);
         }
+        
+        [HttpGet]
+        public IHttpActionResult RequestTokens([FromUri] string amount, [FromUri] string appid)
+        {
+            TreasuryRequest request = new TreasuryRequest();
+            long a = 0;
+            long.TryParse(amount, out a);
+            request.Amount = a;
+            request.RequestDate = DateTime.Now;
+            request.Requestor = new JB2.Common.IDNamePair<string, string>(appid,string.Empty);
+
+            return RequestAmountFromTreasury(request);
+
+        }
 
         public IHttpActionResult RequestAmountFromTreasury(ITreasuryRequest request)
         {
             var treasury = getTreasury();
 
-            if (request.Requestor.GetType() != typeof(Identity.IApplication))
-            {
-                var requestApp = JB2.Identity.ApplicatonStore.GetApplicationByID(request.Requestor.ToString());
-                request.Requestor = requestApp;
-            }
+            //if (request.Requestor.GetType() != typeof(Identity.IApplication))
+            //{
+            //    var requestApp = JB2.Identity.ApplicatonStore.GetApplicationByID(request.Requestor.ToString());
+            //    request.Requestor = requestApp;
+            //}
 
             var note = treasury.IssueNote(request);
 

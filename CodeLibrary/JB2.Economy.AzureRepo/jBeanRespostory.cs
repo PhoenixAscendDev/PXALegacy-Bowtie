@@ -125,7 +125,7 @@ namespace JB2.Economy.Data
 
             //modify the balance
             var e = _jbeanRepo.GetEntity<BankAccountEntity>("account:jbean", "accountnumber:" + accountNumber);
-            if (e != null && string.IsNullOrEmpty(e.AccountNumber))
+            if (e != null && !string.IsNullOrEmpty(e.AccountNumber))
             {
                 e.Balance = e.Balance + note.Amount;
                 e.LastTransactionDate = DateTime.Now;
