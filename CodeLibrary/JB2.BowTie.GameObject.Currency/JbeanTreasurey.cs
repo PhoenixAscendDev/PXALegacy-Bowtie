@@ -52,7 +52,6 @@ namespace JB2.Economy
         public ITreasuryNote IssueNote(ITreasuryRequest request)
         {
             ITreasuryNote result = null;
-
             _repo.SaveRequest(request);
 
             if (IsValidRequest(request))

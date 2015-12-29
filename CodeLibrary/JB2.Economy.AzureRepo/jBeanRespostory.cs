@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using JB2.Economy.Enum;
 using Microsoft.WindowsAzure.Storage.Table;
 
@@ -12,21 +13,33 @@ namespace JB2.Economy.Data
     {
         #region Fields
         private JB2.Common.Data.StorageAccount _storage;
-        private JB2.Common.Data.AzureTableRepository _jbeanRepo;
-        private JB2.Common.Data.AzureTableRepository _tranlogRepo;
+        private JB2.Common.Data.AzureTableRepository _jbeanTable;
+        private JB2.Common.Data.AzureTableRepository _tranlogTable;
+        private JB2.Common.Data.AzureTableRepository _tokenTable;
         #endregion Fields
+
+        #region Constructor
+        public jBeanRespostory(JB2.Common.Data.StorageAccount storageAccount)
+        {
+            _storage = storageAccount;
+            _jbeanTable = _storage.GetTable("economy");
+            _tranlogTable = _storage.GetTable("economyLog");
+            _tokenTable = _storage.GetTable("economyTokens");
+        }
+        #endregion Constructor
+
 
         #region Token
 
         public jBeanToken GetTokenById(string id)
         {
-            var e = _jbeanRepo.GetEntity<TokenEntity>("token:jbean", "id:" + id);
+            var e = _tokenTable.GetEntity<TokenEntity>("token:jbean", "id:" + id);
             return convertTokenFromentity(e);
         }
 
         public IEnumerable<jBeanToken> GetTokensByTreasuryNote(ITreasuryNote note)
         {
-            var e = _jbeanRepo.GetByRowKeyStartWith<TokenEntity>("token:jbean_" + note.ID, "id:", 1000);
+            var e = _tokenTable.GetByRowKeyStartWith<TokenEntity>("token:jbean_" + note.ID, "id:", 1000);
 
             var result = new List<jBeanToken>(e.Count());
             foreach(TokenEntity token in e )
@@ -38,7 +51,7 @@ namespace JB2.Economy.Data
 
         public JB2.Common.ServiceResult SaveToken(jBeanToken token)
         {
-            var e = _jbeanRepo.GetEntity<TokenEntity>("token:jbean", "id:" + token.GetID());
+            var e = _tokenTable.GetEntity<TokenEntity>("token:jbean", "id:" + token.GetID());
             if(string.IsNullOrEmpty(e.GetID()) )
             {
                 e = new TokenEntity();
@@ -76,7 +89,7 @@ namespace JB2.Economy.Data
 
         public jBeanAccount GetBankAccount(string accountNumber)
         {
-            var e = _jbeanRepo.GetEntity<BankAccountEntity>("account:jbean", "accountNumber:" + accountNumber);
+            var e = _jbeanTable.GetEntity<BankAccountEntity>("account:jbean", "accountNumber:" + accountNumber);
 
             if (e != null)
             {
@@ -95,21 +108,14 @@ namespace JB2.Economy.Data
 
         public JBeanBag GetBalance(string accountNumber)
         {
-            var e = _jbeanRepo.GetEntity<BankAccountEntity>("account:jbean", "accountNumber:" + accountNumber);
+            var e = _jbeanTable.GetEntity<BankAccountEntity>("account:jbean", "accountNumber:" + accountNumber);
             return e.Balance;
 
         }
 
-        public jBeanRespostory(JB2.Common.Data.StorageAccount storageAccount)
+
+        private bool createTokensAsync(ITreasuryNote note,string accountNumber)
         {
-            _storage = storageAccount;
-            _jbeanRepo = _storage.GetTable("economy");
-            _tranlogRepo = _storage.GetTable("economyLog");
-        }
-   
-        public JB2.Common.ServiceResult AddFundsToAccount(ITreasuryNote note, string accountNumber)
-        {
-            //create jBeanTokens and associate them with the account
             for (int i = 1; i <= note.Amount; i++)
             {
                 TokenEntity t = new TokenEntity();
@@ -123,8 +129,31 @@ namespace JB2.Economy.Data
                 saveTokenEntity(t);
             }
 
+            return true;
+        }
+        public JB2.Common.ServiceResult AddFundsToAccount(ITreasuryNote note, string accountNumber)
+        {
+
+            Task.Factory.StartNew(() => createTokensAsync(note, accountNumber));
+            //Thread thread = new Thread(createTokensAsync(note, accountNumber));
+            //thread.Start();
+            //Task<bool> tokensCreated = createTokensAsync(note, accountNumber);
+            //create jBeanTokens and associate them with the account
+            //for (int i = 1; i <= note.Amount; i++)
+            //{
+            //    TokenEntity t = new TokenEntity();
+            //    t.Value = 1;
+            //    t.Treasury = "jBean";
+            //    t.TreasuryNoteID = note.ID;
+            //    t.ID = GenerateTokenID();
+            //    t.Name = "Kidney jBean";
+            //    t.BankAccountNumber = accountNumber;
+            //    t.DateCreated = DateTime.Now;
+            //    saveTokenEntity(t);
+            //}
+
             //modify the balance
-            var e = _jbeanRepo.GetEntity<BankAccountEntity>("account:jbean", "accountNumber:" + accountNumber);
+            var e = _jbeanTable.GetEntity<BankAccountEntity>("account:jbean", "accountNumber:" + accountNumber);
             if (e != null && !string.IsNullOrEmpty(e.AccountNumber))
             {
                 e.Balance = e.Balance + (int)note.Amount;
@@ -140,7 +169,7 @@ namespace JB2.Economy.Data
 
         public JB2.Common.ServiceResult SaveBankAccount(jBeanAccount account, string playerid)
         {
-            var e = _jbeanRepo.GetEntity<BankAccountEntity>("account:jbean", "accountnumber:" + account.AccountNumber);
+            var e = _jbeanTable.GetEntity<BankAccountEntity>("account:jbean", "accountnumber:" + account.AccountNumber);
 
             if(e == null)
             {
@@ -175,7 +204,7 @@ namespace JB2.Economy.Data
             {
                 try
                 {
-                    _jbeanRepo.Delete<TokenEntity>("token: jbean:bankaccount_" + accountNumber, "id:" + e.ID);
+                    _tokenTable.Delete<TokenEntity>("token:jbean:bankaccount_" + accountNumber, "id:" + e.ID);
                 }
                 catch(Exception ex)
                 {
@@ -197,13 +226,13 @@ namespace JB2.Economy.Data
         }      
         public string GetAccountNumberByPlayerID(string playerid)
         {
-            var entity = _jbeanRepo.GetEntity<PlayerjBeanAccount>("account:jbean", "player:" + playerid);
+            var entity = _jbeanTable.GetEntity<PlayerjBeanAccount>("account:jbean", "player:" + playerid);
             return entity != null ? entity.AccountNumber : string.Empty;
         }
 
         public jBeanAppSettings GetApplicationSettings(JB2.Identity.IApplication app)
         {
-            var e = _jbeanRepo.GetEntity<AppSettingEntity>("applicationSetting:jbean", "id:" + app.ID);
+            var e = _jbeanTable.GetEntity<AppSettingEntity>("applicationSetting:jbean", "id:" + app.ID);
 
             if(e != null)
             {
@@ -222,7 +251,7 @@ namespace JB2.Economy.Data
 
         public JB2.Common.ServiceResult SaveApplicationSettings(string appId, jBeanAppSettings settings)
         {
-            var e = _jbeanRepo.GetEntity<AppSettingEntity>("applicationSetting:jbean", "id:" + appId);
+            var e = _jbeanTable.GetEntity<AppSettingEntity>("applicationSetting:jbean", "id:" + appId);
 
             if(e == null)
             {
@@ -239,13 +268,13 @@ namespace JB2.Economy.Data
             e.CanRequest = settings.CanRequest;
             e.RequestValidationKey = settings.RequestValidationKey;
 
-            _jbeanRepo.Insert<AppSettingEntity>(e, true);
+            _jbeanTable.Insert<AppSettingEntity>(e, true);
 
             return true;
         }
         public jBeanTotals GetStats()
         {
-            var e = _jbeanRepo.GetEntity<TreasuryStats>("treasury", "jbean");
+            var e = _jbeanTable.GetEntity<TreasuryStats>("treasury", "jbean");
 
             if (e != null)
             {
@@ -267,13 +296,13 @@ namespace JB2.Economy.Data
 
         public ITreasuryNote GetTreasuryNoteById(string id)
         {
-            return _jbeanRepo.GetEntity<TreasuryNoteEntity>("treasuryNote:jbean", "id:" + id);
+            return _jbeanTable.GetEntity<TreasuryNoteEntity>("treasuryNote:jbean", "id:" + id);
                       
         }
 
         public IEnumerable<ITreasuryNote> GetTreasuryNotes()
         {
-            var entity = _jbeanRepo.GetByPartitionKey<TreasuryNoteEntity>("treasuryNote:jbean",1000);
+            var entity = _jbeanTable.GetByPartitionKey<TreasuryNoteEntity>("treasuryNote:jbean",1000);
             return entity;
         }
 
@@ -287,12 +316,12 @@ namespace JB2.Economy.Data
                     TableQuery.GenerateFilterCondition("Status", QueryComparisons.Equal, status.ToString())
                 )
             );
-            return _jbeanRepo.ExecuteQuery<TreasuryNoteEntity>(query);
+            return _jbeanTable.ExecuteQuery<TreasuryNoteEntity>(query);
         }
 
         public jBeanTreasureNoteStatus GetTreasuryNoteStatus(ITreasuryNote note)
         {
-            var e = _jbeanRepo.GetEntity<TreasuryNoteEntity>("treasuryNote:jbean", "id:" + note.ID);
+            var e = _jbeanTable.GetEntity<TreasuryNoteEntity>("treasuryNote:jbean", "id:" + note.ID);
 
             if (e != null)
             {
@@ -342,15 +371,15 @@ namespace JB2.Economy.Data
         {
             e.PartitionKey = "account:jbean";
             e.RowKey = "accountNumber:" + e.AccountNumber;
-            _jbeanRepo.Insert<BankAccountEntity>(e, true);
+            _jbeanTable.Insert<BankAccountEntity>(e, true);
 
             e.PartitionKey = "account:jbean_" + e.AccountNumber.Substring(0, 2);
             e.RowKey = "accountNumber:" + e.AccountNumber;
-            _jbeanRepo.Insert<BankAccountEntity>(e, true);
+            _jbeanTable.Insert<BankAccountEntity>(e, true);
 
             e.PartitionKey = "account:jbean";
             e.RowKey = "player:" + e.PlayerID;
-            _jbeanRepo.Insert<BankAccountEntity>(e, true);
+            _jbeanTable.Insert<BankAccountEntity>(e, true);
 
             return e;
         }
@@ -359,7 +388,7 @@ namespace JB2.Economy.Data
         {
             e.PartitionKey = "treasuryNote:jbean";
             e.RowKey = "id:" + e.ID;
-            _jbeanRepo.Insert<TreasuryNoteEntity>(e, true);
+            _jbeanTable.Insert<TreasuryNoteEntity>(e, true);
 
             return e;
         }
@@ -368,7 +397,7 @@ namespace JB2.Economy.Data
         {
             e.PartitionKey = "treasuryRequest:jbean";
             e.RowKey = "id:" + e.ID;
-            _jbeanRepo.Insert<TreasuryRequestEntity>(e, true);
+            _jbeanTable.Insert<TreasuryRequestEntity>(e, true);
 
             return e;
         }
@@ -377,23 +406,23 @@ namespace JB2.Economy.Data
         {
             e.PartitionKey = "token:jbean";
             e.RowKey = "id:" + e.ID;
-            _jbeanRepo.Insert<TokenEntity>(e, true);
+            _tokenTable.Insert<TokenEntity>(e, true);
 
             e.PartitionKey = "token:jbean_" + e.TreasuryNoteID;
             e.RowKey = "id:" + e.ID;
-            _jbeanRepo.Insert<TokenEntity>(e, true);
+            _tokenTable.Insert<TokenEntity>(e, true);
 
            
 
             e.PartitionKey = "token:jbean:bankaccount_" + e.BankAccountNumber;
             e.RowKey = "id:" + e.ID;
-            _jbeanRepo.Insert<TokenEntity>(e, true);
+            _tokenTable.Insert<TokenEntity>(e, true);
             return e;
         }
 
         private IEnumerable<TokenEntity> getTokensbyAccountNumber(string accountNumber,int numOfRecords)
         {
-            return _jbeanRepo.GetByRowKeyStartWith<TokenEntity>("token:jbean:bankaccount_" + accountNumber, "id:", numOfRecords);
+            return _jbeanTable.GetByRowKeyStartWith<TokenEntity>("token:jbean:bankaccount_" + accountNumber, "id:", numOfRecords);
         }
 
         private JbeanTreasuryNote convertNoteFromEntity(TreasuryNoteEntity e)
@@ -419,7 +448,7 @@ namespace JB2.Economy.Data
 
         private JB2.Common.ServiceResult IncreaseAmountIssuedStat(long amount)
         {
-            var e = _jbeanRepo.GetEntity<TreasuryStats>("treasury", "jbean");
+            var e = _jbeanTable.GetEntity<TreasuryStats>("treasury", "jbean");
 
             if(e == null)
             {
@@ -430,7 +459,7 @@ namespace JB2.Economy.Data
             e.DateUpdated = DateTime.Now;
             e.AmountIssued = e.AmountIssued + amount;
 
-            _jbeanRepo.Insert<TreasuryStats>(e, true);
+            _jbeanTable.Insert<TreasuryStats>(e, true);
 
             return true;
         }  

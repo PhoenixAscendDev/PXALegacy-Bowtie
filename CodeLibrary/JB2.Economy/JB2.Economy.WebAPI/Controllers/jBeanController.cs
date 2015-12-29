@@ -71,7 +71,7 @@ namespace JB2.Economy.WebAPI.Controllers
         [HttpGet]
         public IHttpActionResult  DepositTreasuryNote([FromUri] string note, [FromUri] string accountnumber)
         {
-            var n = new JbeanTreasuryNote(note, 3,new JB2.Common.IDNamePair<string,string>("apptest",string.Empty));
+            var n = new JbeanTreasuryNote(note, 100,new JB2.Common.IDNamePair<string,string>("apptest",string.Empty));
             var account = getCentralBank().GetBankAccount(new JB2.Common.IDNamePair<string, string>("jbtest566", string.Empty));
 
             var result = getCentralBank().Deposit(account, n);
