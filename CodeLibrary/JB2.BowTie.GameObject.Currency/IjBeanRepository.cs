@@ -31,6 +31,8 @@ namespace JB2.Economy
         #endregion Bank
 
         #region TreasuryNote
+
+        ServiceResult SaveRequest(ITreasuryRequest request);
         ServiceResult SaveTreasuryNote(ITreasuryNote note, Enum.jBeanTreasureNoteStatus statu);
 
         //ServiceResult UpdateTreasuryNoteStatus(ITreasuryNote note, Enum.jBeanTreasureNoteStatus status);
@@ -41,15 +43,23 @@ namespace JB2.Economy
         ITreasuryNote GetTreasuryNoteById(string id);
         #endregion TeasuryNote
 
+        #region Token
+
+        ServiceResult SaveToken(jBeanToken token);
+        jBeanToken GetTokenById(string id);
+        IEnumerable<jBeanToken> GetTokensByTreasuryNote(ITreasuryNote note);
+
+        #endregion Token
+
 
 
         jBeanTotals GetStats();
 
-        ServiceResult SaveStats();
+        ServiceResult SaveStats(jBeanTotals totals);
 
         jBeanAppSettings GetApplicationSettings(Identity.IApplication app);
 
-        ServiceResult SaveRequest(ITreasuryRequest request);
+
     }
 }
     

@@ -88,6 +88,7 @@
     <Compile Include="JbeanSettingNames.cs" />
     <Compile Include="JbeanSettings.cs" />
     <Compile Include="JBeanDenomination.cs" />
+    <Compile Include="jBeanToken.cs" />
     <Compile Include="jBeanTotals.cs" />
     <Compile Include="jBeanTreasureNoteStatus.cs" />
     <Compile Include="JbeanTreasurey.cs" />

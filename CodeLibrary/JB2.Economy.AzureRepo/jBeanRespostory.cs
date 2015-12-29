@@ -16,6 +16,53 @@ namespace JB2.Economy.Data
         private JB2.Common.Data.AzureTableRepository _tranlogRepo;
         #endregion Fields
 
+
+        #region Token
+
+        public jBeanToken GetTokenById(string id)
+        {
+            var e = _jbeanRepo.GetEntity<TokenEntity>("token:jbean", "id:" + id);
+            return convertTokenFromentity(e);
+        }
+
+        public IEnumerable<jBeanToken> GetTokensByTreasuryNote(ITreasuryNote note)
+        {
+            var e = _jbeanRepo.GetByRowKeyStartWith<TokenEntity>("token:jbean_" + note.ID, "id:", 1000);
+
+            var result = new List<jBeanToken>(e.Count());
+            foreach(TokenEntity token in e )
+            {
+                result.Add(convertTokenFromentity(token));
+            }
+            return result;
+        }
+
+        public JB2.Common.ServiceResult SaveToken(jBeanToken token)
+        {
+            var e = _jbeanRepo.GetEntity<TokenEntity>("token:jbean", "id:" + token.GetID());
+            if(string.IsNullOrEmpty(e.GetID()) )
+            {
+                e = new TokenEntity();
+                e.DateCreated = DateTime.Now;              
+                e.Treasury = "jBean";
+                
+            }
+            e.ID = token.ID;
+            e.Name = token.Name;           
+            e.TreasuryNoteID = token.TreasuryNoteId;
+            e.Value = Convert.ToInt32(token.Value);
+
+            saveTokenEntity(e);
+
+            return true;
+
+
+
+
+        }
+
+        #endregion Token
+
         public jBeanAccount GetBankAccountByPlayerID(string playerid)
         {
             var accountNumber = this.GetAccountNumberByPlayerID(playerid);
@@ -228,6 +275,8 @@ namespace JB2.Economy.Data
             return true;
         }
 
+
+
         public JB2.Common.ServiceResult SaveTreasuryNote(ITreasuryNote note, jBeanTreasureNoteStatus status)
         {
             var e = new TreasuryNoteEntity();
@@ -280,9 +329,34 @@ namespace JB2.Economy.Data
             return e;
         }
 
+        private TokenEntity saveTokenEntity(TokenEntity e)
+        {
+            e.PartitionKey = "token:jbean";
+            e.RowKey = "id:" + e.ID;
+            _jbeanRepo.Insert<TokenEntity>(e, true);
+
+            e.PartitionKey = "token:jbean_" + e.TreasuryNoteID;
+            e.RowKey = "id:" + e.ID;
+            _jbeanRepo.Insert<TokenEntity>(e, true);
+            return e;
+        }
+
         private JbeanTreasuryNote convertNoteFromEntity(TreasuryNoteEntity e)
         {
             var result = new JbeanTreasuryNote(e.ID, e.Amount, new JB2.Common.IDNamePair<string,string>(e.IssuedBy,string.Empty));
+
+            return result;
+
+        }
+
+        private jBeanToken convertTokenFromentity(TokenEntity e)
+        {
+            var result = new jBeanToken();
+            result.Value = e.Value;
+            result.ID = e.ID;
+            result.Name = e.Name;
+            result.TokenType = Enum.JBeanTokenType.Kidney;
+            result.TreasuryNoteId = e.TreasuryNoteID;
 
             return result;
 

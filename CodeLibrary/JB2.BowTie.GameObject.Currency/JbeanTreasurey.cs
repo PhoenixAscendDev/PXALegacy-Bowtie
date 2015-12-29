@@ -28,6 +28,9 @@ namespace JB2.Economy
 
         #endregion Constructor
 
+
+
+
         public void CancelNote(ITreasuryNote treasuryNote)
         {
             var code = _repo.GetTreasuryNoteStatus(treasuryNote);
@@ -61,7 +64,7 @@ namespace JB2.Economy
 
                 jBeanTotals stats = _repo.GetStats();
                 stats.AmountIssued = stats.AmountIssued + request.Amount;
-                _repo.SaveStats();        
+                _repo.SaveStats(stats);        
             }
             else
             {
@@ -70,7 +73,6 @@ namespace JB2.Economy
 
             return result;
         }
-
         public bool IsValidRequest(ITreasuryRequest request)
         {
 
@@ -89,7 +91,6 @@ namespace JB2.Economy
                 return false;
             }
         }
-
         public bool IsValidNote(ITreasuryNote note)
         {
             //get note from repository to verify
@@ -105,9 +106,5 @@ namespace JB2.Economy
 
         }
 
-    }
-
-
-
-   
+    }  
 }
