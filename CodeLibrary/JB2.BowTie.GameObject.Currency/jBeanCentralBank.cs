@@ -132,8 +132,16 @@ namespace JB2.Economy
                 receipt = new jBeanReceipt(transNumber, "Withdraw request is not valid", false);
             else
             {
-                _repo.RemoveFundsFromAccount(request, account.AccountNumber);
-                receipt = new jBeanReceipt(transNumber, "Withdraw from account has been successful", true);
+                var balance = _repo.GetBalance(account.AccountNumber);
+                if (balance >= request.Amount)
+                {
+                    _repo.RemoveFundsFromAccount(request, account.AccountNumber);
+                    receipt = new jBeanReceipt(transNumber, "Withdraw from account has been successful", true);
+                }
+                else
+                {
+                    receipt = new jBeanReceipt(transNumber, "Withdraw from account cancelled: Insufficient Funds", false);
+                }
             }
 
             _repo.SaveBankReceipt(receipt);

@@ -79,6 +79,21 @@ namespace JB2.Economy.WebAPI.Controllers
             return Json(result);
         }
 
+        [HttpGet]
+        public IHttpActionResult WithdrawTokens([FromUri] int amount, [FromUri] string accountNumber)
+        {
+            var account = getCentralBank().GetBankAccount(new JB2.Common.IDNamePair<string, string>("jbtest566", string.Empty));
+            var request = new TreasuryRequest();
+            request.Amount = 50;
+            request.RequestDate = DateTime.Now;
+            request.Requestor = new JB2.Common.IDNamePair<string, string>("apptest", string.Empty);
+            request.VerificationKey = "not being used";
+
+            var result = getCentralBank().Withdrawn(account, request);
+
+            return Json(result);
+        }
+
         [HttpPost]
         [Authorize]
         public IHttpActionResult DepositToAccount(ITreasuryNote note)
