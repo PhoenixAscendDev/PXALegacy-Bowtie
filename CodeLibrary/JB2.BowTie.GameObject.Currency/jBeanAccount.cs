@@ -36,7 +36,7 @@ namespace JB2.Economy
 
             set
             {
-                throw new NotImplementedException();
+                _accountNumber = value;
             }
         }
 
@@ -49,7 +49,7 @@ namespace JB2.Economy
 
             set
             {
-                throw new NotImplementedException();
+                _name = value;
             }
         }
 
@@ -62,7 +62,7 @@ namespace JB2.Economy
 
             set
             {
-                throw new NotImplementedException();
+                _name = value;
             }
         }
 

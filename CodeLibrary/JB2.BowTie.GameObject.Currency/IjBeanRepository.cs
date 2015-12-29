@@ -20,9 +20,9 @@ namespace JB2.Economy
         JBeanBag GetBalance(string accountNumber);
        
 
-        ServiceResult AddFundsToAccount(long amount, string accountNumber);
+        ServiceResult AddFundsToAccount(ITreasuryNote treasuryNote, string accountNumber);
 
-        ServiceResult RemoveFundsFromAccount(long amount, string accountNumber);
+        ServiceResult RemoveFundsFromAccount(ITreasuryRequest treasuryNote, string accountNumber);
 
         ServiceResult SaveBankAccount(jBeanAccount account, string playerID);
 

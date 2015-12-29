@@ -11,7 +11,7 @@ namespace JB2.Economy
         #region Fields
         protected Enum.JBeanTokenType _tokenType;
         protected long _value { get; set; }
-        protected string _note { get; set; }
+        protected string _treasuryNote { get; set; }
         protected string _owner { get; set; }
         #endregion Fields
 
@@ -30,8 +30,8 @@ namespace JB2.Economy
 
         public string TreasuryNoteId
         {
-            get { return _note; }
-            set { _note = value; }
+            get { return _treasuryNote; }
+            set { _treasuryNote = value; }
         }
 
         

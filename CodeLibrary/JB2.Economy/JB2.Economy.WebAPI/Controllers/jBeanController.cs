@@ -14,6 +14,13 @@ namespace JB2.Economy.WebAPI.Controllers
     public class jBeanController : BaseApiController
     {
         [HttpGet]
+        public IHttpActionResult OpenBankAccount(string id)
+        {
+            var account = getCentralBank().OpenNewBankAccount(new JB2.Common.IDNamePair(id, string.Empty));
+            return Json(account);
+        }
+
+        [HttpGet]
         [Authorize]
         public IHttpActionResult BankAccount()
         {

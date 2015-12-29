@@ -74,7 +74,7 @@ namespace JB2.Economy
                                                           };
             factory.Treasury = new JbeanTreasury(repo);
 
-            //factory.CentralBank = new Jb
+            factory.CentralBank = new jBeanCentralBank(factory.Treasury, repo);
 
             return factory;
         }

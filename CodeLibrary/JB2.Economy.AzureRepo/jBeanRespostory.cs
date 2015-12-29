@@ -16,7 +16,6 @@ namespace JB2.Economy.Data
         private JB2.Common.Data.AzureTableRepository _tranlogRepo;
         #endregion Fields
 
-
         #region Token
 
         public jBeanToken GetTokenById(string id)
@@ -63,6 +62,11 @@ namespace JB2.Economy.Data
 
         #endregion Token
 
+        public string GenerateTokenID()
+        {
+            return JB2.Common.NewID.Guid();
+        }
+
         public jBeanAccount GetBankAccountByPlayerID(string playerid)
         {
             var accountNumber = this.GetAccountNumberByPlayerID(playerid);
@@ -74,14 +78,19 @@ namespace JB2.Economy.Data
         {
             var e = _jbeanRepo.GetEntity<BankAccountEntity>("account:jbean", "accountNumber:" + accountNumber);
 
-            var result = new jBeanAccount(accountNumber);
-            result.AccountHolder = new JB2.Common.IDNamePair(e.PlayerID, string.Empty);
-            result.AccountNumber = e.AccountNumber;
-            result.Name = e.Name;
-            result.RoutingNumber = e.RoutingNumber;
-            result.Status = (Enum.jBeanAccountStatus)System.Enum.Parse(typeof(Enum.jBeanAccountStatus), e.AccountStatus);
+            if (e != null)
+            {
+                var result = new jBeanAccount(accountNumber);
+                result.AccountHolder = new JB2.Common.IDNamePair(e.PlayerID, string.Empty);
+                result.AccountNumber = e.AccountNumber;
+                result.Name = e.Name;
+                result.RoutingNumber = e.RoutingNumber;
+                result.Status = (Enum.jBeanAccountStatus)System.Enum.Parse(typeof(Enum.jBeanAccountStatus), e.AccountStatus);
+                return result;
+            }
+            return new jBeanAccount(string.Empty);
 
-            return result;
+            
         }
 
         public JBeanBag GetBalance(string accountNumber)
@@ -94,17 +103,32 @@ namespace JB2.Economy.Data
         public jBeanRespostory(JB2.Common.Data.StorageAccount storageAccount)
         {
             _storage = storageAccount;
-            _jbeanRepo = _storage.GetTable("bankAccounts");
-            _tranlogRepo = _storage.GetTable("transLog");
+            _jbeanRepo = _storage.GetTable("economy");
+            _tranlogRepo = _storage.GetTable("economyLog");
         }
    
-        public JB2.Common.ServiceResult AddFundsToAccount(long amount, string accountNumber)
+        public JB2.Common.ServiceResult AddFundsToAccount(ITreasuryNote note, string accountNumber)
         {
-            var e = _jbeanRepo.GetEntity<BankAccountEntity>("account:jbean", "accountnumber:" + accountNumber);
-
-            if(e != null && string.IsNullOrEmpty(e.AccountNumber))
+            //create jBeanTokens and associate them with the account
+            for (int i = 1; i <= note.Amount; i++)
             {
-                e.Balance = e.Balance + amount;
+                TokenEntity t = new TokenEntity();
+                t.Value = 1;
+                t.Treasury = "jBean";
+                t.TreasuryNoteID = note.ID;
+                t.ID = GenerateTokenID();
+                t.Name = "Kidney jBean";
+                t.BankAccountNumber = accountNumber;
+                t.DateCreated = DateTime.Now;
+                saveTokenEntity(t);
+            }
+
+            //modify the balance
+            var e = _jbeanRepo.GetEntity<BankAccountEntity>("account:jbean", "accountnumber:" + accountNumber);
+            if (e != null && string.IsNullOrEmpty(e.AccountNumber))
+            {
+                e.Balance = e.Balance + note.Amount;
+                e.LastTransactionDate = DateTime.Now;
                 this.saveBankAccount(e);
             }
             else
@@ -121,13 +145,16 @@ namespace JB2.Economy.Data
             if(e == null)
             {
                 e = new BankAccountEntity("account:jbean", "accountnumber:" + account.AccountNumber);
-                e.AccountStatus = "Active";
+                e.AccountStatus = Enum.jBeanAccountStatus.Open.ToString();
                 e.Balance = 0;
                 e.DateCreated = DateTime.Now;
                 e.ID = account.AccountNumber;
+                e.AccountNumber = account.AccountNumber;
                 e.PlayerID = playerid;
                 e.RoutingNumber = account.RoutingNumber;
                 e.Treasury = "jBean";
+                e.Name = "jBean Bank Account";
+                e.LastTransactionDate = DateTime.Now;
             }
             else
             {
@@ -140,18 +167,38 @@ namespace JB2.Economy.Data
 
         }
 
-        public JB2.Common.ServiceResult RemoveFundsFromAccount(long amount, string accountNumber)
+        public JB2.Common.ServiceResult RemoveFundsFromAccount(ITreasuryRequest request, string accountNumber)
         {
-            if (amount > 0)
-                amount = amount * -1;
-            return AddFundsToAccount(amount, accountNumber);
-        }
+            //first get the jBean Tokens and remove them from the account
+            var tokens = getTokensbyAccountNumber(accountNumber, (int)request.Amount);
+            foreach(TokenEntity e in tokens)
+            {
+                try
+                {
+                    _jbeanRepo.Delete<TokenEntity>("token: jbean:bankaccount_" + accountNumber, "id:" + e.ID);
+                }
+                catch(Exception ex)
+                {
+                    ///TODO: 
+                }
+                e.BankAccountNumber = string.Empty;
 
-        
+                this.saveTokenEntity(e);
+            }
+            //update the balance
+            var accountEntity = new BankAccountEntity("account:jbean", "accountnumber:" + accountNumber);
+            
+             var newBalance = (float)(accountEntity.Balance - request.Amount);
+            accountEntity.Balance = newBalance < 0 ? 0 : newBalance;
+            accountEntity.LastTransactionDate = DateTime.Now;
+            saveBankAccount(accountEntity);
+            return true;
+           
+        }      
         public string GetAccountNumberByPlayerID(string playerid)
         {
             var entity = _jbeanRepo.GetEntity<PlayerjBeanAccount>("account:jbean", "player:" + playerid);
-            return entity.AccountNumber;
+            return entity != null ? entity.AccountNumber : string.Empty;
         }
 
         public jBeanAppSettings GetApplicationSettings(JB2.Identity.IApplication app)
@@ -260,7 +307,6 @@ namespace JB2.Economy.Data
         {
             return true;
         }
-
         public JB2.Common.ServiceResult SaveRequest(ITreasuryRequest request)
         {
             var e = new TreasuryRequestEntity();
@@ -274,8 +320,6 @@ namespace JB2.Economy.Data
 
             return true;
         }
-
-
 
         public JB2.Common.ServiceResult SaveTreasuryNote(ITreasuryNote note, jBeanTreasureNoteStatus status)
         {
@@ -304,7 +348,7 @@ namespace JB2.Economy.Data
             e.RowKey = "accountNumber:" + e.AccountNumber;
             _jbeanRepo.Insert<BankAccountEntity>(e, true);
 
-            e.PartitionKey = "account:jbean_" + e.AccountNumber.Substring(0, 2); ;
+            e.PartitionKey = "account:jbean";
             e.RowKey = "player:" + e.PlayerID;
             _jbeanRepo.Insert<BankAccountEntity>(e, true);
 
@@ -338,7 +382,18 @@ namespace JB2.Economy.Data
             e.PartitionKey = "token:jbean_" + e.TreasuryNoteID;
             e.RowKey = "id:" + e.ID;
             _jbeanRepo.Insert<TokenEntity>(e, true);
+
+           
+
+            e.PartitionKey = "token:jbean:bankaccount_" + e.BankAccountNumber;
+            e.RowKey = "id:" + e.ID;
+            _jbeanRepo.Insert<TokenEntity>(e, true);
             return e;
+        }
+
+        private IEnumerable<TokenEntity> getTokensbyAccountNumber(string accountNumber,int numOfRecords)
+        {
+            return _jbeanRepo.GetByRowKeyStartWith<TokenEntity>("token:jbean:bankaccount_" + accountNumber, "id:", numOfRecords);
         }
 
         private JbeanTreasuryNote convertNoteFromEntity(TreasuryNoteEntity e)
