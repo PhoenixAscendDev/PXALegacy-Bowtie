@@ -13,5 +13,7 @@ namespace JB2.Bowtie
 
         GraphElementType ElementType { get; set; }
 
+        string ToHtmlMetaTag();
+
     }
 }
