@@ -11,11 +11,11 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            int v = 5436;
-            JB2.Settings.Jbean.Configure(null);
-            Console.WriteLine(v.ToJBean().ToString());
+            //int v = 5436;
+            //JB2.Settings.Jbean.Configure(null);
+            //Console.WriteLine(v.ToJBean().ToString());
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
     }
 }
