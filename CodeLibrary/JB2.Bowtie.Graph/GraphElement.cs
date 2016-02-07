@@ -21,9 +21,9 @@ namespace JB2.Bowtie
             get; set;
         }
 
-        public GraphElementType ElementType
+        public virtual Enum.GraphElementType ElementType
         {
-            get; set;
+            get;
         }
 
         public string ID

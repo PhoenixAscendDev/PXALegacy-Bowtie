@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Enum
+namespace JB2.Bowtie
 {
-    public enum GraphElementType
+    public class GraphStory: GraphElement
     {
-        Property,
-        Object,
-        Action,
-        Story
+
     }
 }

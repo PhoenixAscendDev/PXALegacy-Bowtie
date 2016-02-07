@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="GraphElement.cs" />
     <Compile Include="GraphElementType.cs" />
+    <Compile Include="GraphPrefix.cs" />
     <Compile Include="IGraphElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
