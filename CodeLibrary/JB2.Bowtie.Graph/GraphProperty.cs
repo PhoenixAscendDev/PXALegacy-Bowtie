@@ -9,8 +9,8 @@ namespace JB2.Bowtie
 {
     public class GraphProperty : GraphElement,IGraphElement
     {
-        Enum.GraphPropertyType GraphPropertyType { get; set; }
-        bool isMultiValued { get; set; }
+        public Enum.GraphPropertyType GraphPropertyType { get; set; }
+        public bool isMultiValued { get; set; }
         public override GraphElementType ElementType
         {
             get

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JB2.Bowtie.Data.Azure</RootNamespace>
     <AssemblyName>JB2.Bowtie.Data.Azure</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -156,6 +156,8 @@
     <Compile Include="ColorEntry.cs" />
     <Compile Include="ColorSetEntry.cs" />
     <Compile Include="GameObjectRepository.cs" />
+    <Compile Include="GraphElementEntity.cs" />
+    <Compile Include="GraphRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitofWork.cs" />
   </ItemGroup>

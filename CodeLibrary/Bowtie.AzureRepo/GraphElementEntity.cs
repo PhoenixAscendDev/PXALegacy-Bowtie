@@ -13,13 +13,13 @@ namespace JB2.Bowtie.Data.Azure
 
         #region Constructors
 
-        public GraphElementEntity(): base()
+        public GraphElementEntity() : base()
         {
 
         }
 
 
-        public GraphElementEntity(string partitionKey, string rowKey) : base(partitionKey,rowKey)
+        public GraphElementEntity(string partitionKey, string rowKey) : base(partitionKey, rowKey)
         {
 
         }
@@ -49,6 +49,19 @@ namespace JB2.Bowtie.Data.Azure
         {
             get; set;
         }
+        public string GraphPropertyType
+        {
+            get; set;
+        }
 
+        public bool IsMultiValued
+        {
+            get; set;
+        }
+
+        public string  PropertiesCSV
+        {
+            get; set;
+        }
     }
 }

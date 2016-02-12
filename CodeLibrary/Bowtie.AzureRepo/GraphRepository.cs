@@ -59,6 +59,22 @@ namespace JB2.Bowtie.Data.Azure
             e.ID = element.ID;
             e.Name = element.Name;
 
+            switch (element.ElementType)
+            {
+                case GraphElementType.Property:
+                    e.IsMultiValued = ((GraphProperty)element).isMultiValued;
+                    e.GraphPropertyType = ((GraphProperty)element).GraphPropertyType.ToString();
+                    break;
+                case GraphElementType.Object:
+                    GraphObject obj = (GraphObject)element;
+                    List<string> props = new List<string>(obj.GetProperties().Count());
+                    foreach (GraphProperty prop in obj.GetProperties())
+                    {
+                        props.Add(graphpropertyToString(prop));
+                    }
+                    e.PropertiesCSV = string.Join(",", props.ToArray());
+                    break;
+            }
             return saveEntity(e);
         }
 
@@ -77,9 +93,17 @@ namespace JB2.Bowtie.Data.Azure
             {
                 case GraphElementType.Property:
                     result = new JB2.Bowtie.GraphProperty();
+                    ((GraphProperty)result).GraphPropertyType = (Enum.GraphPropertyType)System.Enum.Parse(typeof(Enum.GraphPropertyType), e.GraphPropertyType);
+                    ((GraphProperty)result).isMultiValued = e.IsMultiValued;
                     break;
+
                 case GraphElementType.Object:
                     result = new JB2.Bowtie.GraphObject();
+                    string[] props = e.PropertiesCSV.Split(',');
+                    foreach (string prop in props)
+                    {
+                        ((JB2.Bowtie.GraphObject)result).AddProperty(stringToGraphProperty(prop));
+                    }
                     break;
                 case GraphElementType.Action:
                     result = new JB2.Bowtie.GraphAction();
@@ -102,9 +126,9 @@ namespace JB2.Bowtie.Data.Azure
             e.RowKey = "id:" + e.ID;
             _table.Insert<GraphElementEntity>(e, true);
 
-            e.PartitionKey = "graph";
-            e.RowKey = "name:" + e.Name;
-            _table.Insert<GraphElementEntity>(e, true);
+            //e.PartitionKey = "graph";
+            //e.RowKey = "name:" + e.Name;
+            //_table.Insert<GraphElementEntity>(e, true);
 
             //app partition
             e.PartitionKey = "app:" + e.ApplicationID;
@@ -113,14 +137,43 @@ namespace JB2.Bowtie.Data.Azure
 
             //app partition
             e.PartitionKey = "app:" + e.ApplicationID;
-            e.RowKey = e.ElementType.ToString().ToLower() + ":" + e.Name;
+            e.RowKey = e.ElementType.ToString().ToLower() + ":" + e.PropertyName;
             _table.Insert<GraphElementEntity>(e, true);
 
             return true;
         }
 
+        private string graphpropertyToString(GraphProperty prop)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(prop.ID);
+            sb.Append(":");
+            sb.Append(prop.Name);
+            sb.Append(":");
+            sb.Append(prop.GraphPropertyType.ToString());
+            sb.Append(":");
+            sb.Append(prop.isMultiValued.ToString());
+            sb.Append(":");
+            sb.Append(prop.ApplicationID);
+
+            return sb.ToString();
+        }
+
+        private GraphProperty stringToGraphProperty(string str)
+        {
+            GraphProperty p = new GraphProperty();
+
+            string[] propSplits = str.Split(':');
+            p.ID = propSplits[0];
+            p.Name = propSplits[1];
+            p.GraphPropertyType = (Enum.GraphPropertyType)System.Enum.Parse(typeof(GraphPropertyType), propSplits[2]);
+            p.isMultiValued = Convert.ToBoolean(propSplits[3]);
+            p.ApplicationID = propSplits[4];
+
+            return p;
+
+        }
+
         #endregion helpers
-
-
     }
 }
