@@ -10,7 +10,6 @@ namespace JB2.Bowtie
     {
         string GetIdentityAuthID();
 
-        JB2.Economy.IWallet GetWallet();
-        
+        JB2.Economy.IWallet GetWallet();   
     }
 }

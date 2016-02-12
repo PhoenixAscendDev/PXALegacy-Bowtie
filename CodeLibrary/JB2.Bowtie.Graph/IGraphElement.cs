@@ -10,7 +10,7 @@ namespace JB2.Bowtie
     {
         string ParentID { get; set; }
         string ApplicationID { get; set; }
-
+    
         Enum.GraphElementType ElementType { get;}
 
         string ToHtmlMetaTag();

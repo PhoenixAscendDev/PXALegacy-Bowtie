@@ -44,10 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GraphAction.cs" />
     <Compile Include="GraphElement.cs" />
     <Compile Include="GraphElementType.cs" />
+    <Compile Include="GraphObject.cs" />
     <Compile Include="GraphPrefix.cs" />
+    <Compile Include="GraphProperty.cs" />
+    <Compile Include="GraphPropertyType.cs" />
+    <Compile Include="GraphStory.cs" />
     <Compile Include="IGraphElement.cs" />
+    <Compile Include="IGraphRepository.cs" />
+    <Compile Include="LanguageTense.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -22,11 +22,29 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public static AzureBlobRepository GeneralBlob
+        {
+            get
+            {
+                return JB2.Infrastructure.Storage.BowtieAccount.GetBlog("general");
+                //return new AzureBlobRepository(_BowtieAccount, "gameobjects");
+            }
+        }
+
         public static AzureTableRepository GameObjectsTable
         {
             get
             {
                 return JB2.Infrastructure.Storage.BowtieAccount.GetTable("gameobjects");
+                //return new AzureTableRepository(_BowtieAccount, "gameobjects");
+            }
+        }
+
+        public static AzureTableRepository GraphTable
+        {
+            get
+            {
+                return JB2.Infrastructure.Storage.BowtieAccount.GetTable("graphdata");
                 //return new AzureTableRepository(_BowtieAccount, "gameobjects");
             }
         }

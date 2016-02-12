@@ -168,6 +168,10 @@
       <Project>{878da1e1-f733-4555-bb1d-b1c9188d287b}</Project>
       <Name>JB2.Bowtie.GameObjects</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JB2.Bowtie.Graph\JB2.Bowtie.Graph.csproj">
+      <Project>{7c28a0e8-2266-4e96-bab5-ece5e7bf9ce9}</Project>
+      <Name>JB2.Bowtie.Graph</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -57,8 +57,7 @@ namespace JB2.Bowtie.Data.Azure
             BowtieMetadata md = new BowtieMetadata(e.ID)
             {
                 BitScore = Convert.ToInt64(e.BitScore),
-                jBeanAccountNumber = e.jBeanAccountNumber,
-                Kenshin = new Kenshin() { ID = e.KenshinID, Name = e.KenshinName },
+                jBeanAccountNumber = e.jBeanAccountNumber,               
                 Title = e.Title
             };
             return md;

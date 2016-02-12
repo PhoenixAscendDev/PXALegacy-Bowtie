@@ -38,7 +38,7 @@ namespace JB2.Bowtie
 
         public IEnumerable<GraphObject> GetAssociatedObject()
         {
-            return NotImplementedException();
+            throw new NotImplementedException();
         }
 
     }

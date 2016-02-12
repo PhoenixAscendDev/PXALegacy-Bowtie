@@ -21,10 +21,16 @@ namespace JB2.Bowtie.Data.Azure
 
         }
 
+        public JB2.Bowtie.IGraphRepository GraphRepository
+        {
+            get
+            {
+                return (JB2.Bowtie.IGraphRepository)GetRepository(RepositoryType.Graph);
+            }
+        }
 
 
 
-        
         public JB2.Bowtie.IApplicationRepository ApplicationRepository
         {
             get

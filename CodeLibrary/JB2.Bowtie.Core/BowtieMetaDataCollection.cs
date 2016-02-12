@@ -82,23 +82,23 @@ namespace JB2.Bowtie
         }
         
 
-        public Kenshin Kenshin
-        {
-            get
-            {
-                if (_metadata.ContainsKey("kenshin"))
-                    return (Kenshin)_metadata["kenshin"].GetValue();
-                else
-                    return new Kenshin();
-            }
+        //public Kenshin Kenshin
+        //{
+        //    get
+        //    {
+        //        if (_metadata.ContainsKey("kenshin"))
+        //            return (Kenshin)_metadata["kenshin"].GetValue();
+        //        else
+        //            return new Kenshin();
+        //    }
 
-            set
-            {
-                MetaData<Kenshin> md = new MetaData<Kenshin>("kenshin", value);
-                _metadata["kenshin"] = md;
-            }
+        //    set
+        //    {
+        //        MetaData<Kenshin> md = new MetaData<Kenshin>("kenshin", value);
+        //        _metadata["kenshin"] = md;
+        //    }
 
-        }
+        //}
 
 
 

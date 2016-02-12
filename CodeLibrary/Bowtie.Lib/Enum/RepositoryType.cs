@@ -13,6 +13,7 @@ namespace JB2.Bowtie.Enum
         Game,
         Achievement,
         GameCommand,
-        Leaderboard
+        Leaderboard,
+        Graph
     }
 }
