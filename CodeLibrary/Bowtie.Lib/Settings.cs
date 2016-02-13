@@ -127,12 +127,18 @@ namespace JB2.Settings
 
             try
             {
-                var application = (Application)_settings["CURRENTAPPLICATION"];
+                var application = (Application)_settings["CURRENTAPPLICATION"].Value;
 
                 if (isApplicationLegit(application))
                     _application = application;
                 else
                     throw new Exception("Application is not valid");
+
+                var unitofWork = (IUnitOfWork)_settings["UNITOFWORK"].Value;
+                if (unitofWork == null)
+                    throw new Exception("Unit of work is not set");
+                _unitofWork = unitofWork;
+
             }
             catch(Exception ex)
             {

@@ -9,6 +9,12 @@ namespace JB2.Bowtie
 {
     public class GraphProperty : GraphElement,IGraphElement
     {
+
+        public GraphProperty() : base()
+        {
+
+        }
+
         public Enum.GraphPropertyType GraphPropertyType { get; set; }
         public bool isMultiValued { get; set; }
         public override GraphElementType ElementType
@@ -17,6 +23,17 @@ namespace JB2.Bowtie
             {
                 return GraphElementType.Property;
             }
+        }
+
+        public static GraphProperty NewProperty(string name, GraphPropertyType type,string applicationid,bool isMultivalued)
+        {
+            GraphProperty p = new GraphProperty();
+            p.ID = JB2.Common.NewID.ShortGuid();
+            p.Name = name;
+            p.GraphPropertyType = type;
+            p.ApplicationID = applicationid;
+            p.isMultiValued = isMultivalued;
+            return p;
         }
     }
 }

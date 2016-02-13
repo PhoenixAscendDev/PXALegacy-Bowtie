@@ -41,6 +41,13 @@ namespace JB2.Bowtie
                 Value = "azurestorage"
             });
 
+            bowtieSettings.Add(new BaseSetting()
+            {
+                ID = "UNITOFWORK",
+                Name = "Unit Of Work",
+                Value = new JB2.Bowtie.Data.Azure.UnitOfWork()            
+            });
+
             JB2.Settings.Bowtie.Configure(bowtieSettings);
 
             return true;

@@ -17,8 +17,7 @@ namespace JB2.Bowtie.Data.Azure
 
         public UnitOfWork()
         {
-
-
+            _repos = new Dictionary<RepositoryType, object>();
         }
 
         public JB2.Bowtie.IGraphRepository GraphRepository
@@ -62,6 +61,7 @@ namespace JB2.Bowtie.Data.Azure
                 return (ILeaderboardRepository)GetRepository(RepositoryType.Leaderboard);
             }
         }
+        
 
         //public JB2.Common.IPlayerRepo PlayerRepository
         //{
@@ -83,24 +83,16 @@ namespace JB2.Bowtie.Data.Azure
             switch (datasource)
             {
                 case RepoDataSource.Standard:
-                    //if (!_repos.ContainsKey(repository))
-                    //{
-                    //    switch (repository)
-                    //    {
-                    //        case RepositoryType.Application:
-                    //            _repos.Add(repository, new JB2.Bowtie.Data.Linq.ApplicationRepository(_dataContext));
-                    //            break;
-                    //        case RepositoryType.Achievement:
-                    //            _repos.Add(repository, new JB2.Bowtie.Data.Linq.AchievementRepository(_dataContext));
-                    //            break;
-                    //        case RepositoryType.GameCommand:
-                    //            _repos.Add(repository, new JB2.Bowtie.Data.Linq.GameCommandRepository(_dataContext));
-                    //            break;
-                    //        case RepositoryType.Leaderboard:
-                    //            _repos.Add(repository, new JB2.Bowtie.Data.Linq.LeaderboardRepository(_dataContext));
-                    //            break;
-                    //    }
-                    //}
+
+                    if (!_repos.ContainsKey(repository))
+                    {
+                        switch (repository)
+                        {
+                            case RepositoryType.Graph:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.GraphRepository());
+                                break;              
+                        }
+                    }
                     return _repos[repository];
             }
             return null;
