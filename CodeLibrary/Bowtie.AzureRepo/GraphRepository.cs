@@ -37,18 +37,27 @@ namespace JB2.Bowtie.Data.Azure
 
         public IEnumerable<IGraphElement> GetGraphElementsByType(GraphElementType type)
         {
-            throw new NotImplementedException();
+            
+            var elements = _table.GetByRowKeyStartWith<GraphElementEntity>("graph", "type:" + type.ToString().ToLower(),1000);
+
+            return convertfromEntity(elements); 
         }
 
         public IEnumerable<IGraphElement> GetGraphElementsByApplication(string applicationID)
         {
-            throw new NotImplementedException();
+            var elements = _table.GetByRowKeyStartWith<GraphElementEntity>("app:" + applicationID, "id:", 1000);
+
+            return convertfromEntity(elements);
         }
 
         public IEnumerable<IGraphElement> GetAll()
         {
-            throw new NotImplementedException();
+            var elements = _table.GetByRowKeyStartWith<GraphElementEntity>("graph", "id:", 1000);
+
+            return convertfromEntity(elements);
         }
+
+
 
         public ServiceResult InsertGraphElement(IGraphElement element)
         {
@@ -81,6 +90,16 @@ namespace JB2.Bowtie.Data.Azure
         #endregion Methods
 
         #region helpers
+
+        private IEnumerable<IGraphElement> convertfromEntity(IEnumerable<GraphElementEntity> elements)
+        {
+            List<IGraphElement> list = new List<IGraphElement>(elements.Count());
+            foreach (GraphElementEntity g in elements)
+            {
+                list.Add(convertfromEntity(g));
+            }
+            return list;
+        }
 
         private IGraphElement convertfromEntity(GraphElementEntity e)
         {
@@ -124,6 +143,10 @@ namespace JB2.Bowtie.Data.Azure
             //general partition
             e.PartitionKey = "graph";
             e.RowKey = "id:" + e.ID;
+            _table.Insert<GraphElementEntity>(e, true);
+
+            e.PartitionKey = "graph";
+            e.RowKey = "type:" + e.ElementType.ToString().ToLower() + "_" + e.ID;
             _table.Insert<GraphElementEntity>(e, true);
 
             //e.PartitionKey = "graph";
