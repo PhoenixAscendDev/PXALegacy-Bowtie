@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using JB2.Bowtie;
+using JB2.Bowtie.Enum;
 
 using JB2.Economy;
 namespace Bowtie.ConsoleTest
@@ -20,9 +21,13 @@ namespace Bowtie.ConsoleTest
             
             JB2.Bowtie.Manager.Initialize("4d53bce03ec34c0a911182d4c228ee6d", "A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=");
 
+            var graphService = new JB2.Bowtie.Service.GraphService();
+            //var uofw = JB2.Settings.Bowtie.UnitOfWork;
 
-            var uofw = JB2.Settings.Bowtie.UnitOfWork;
-            Console.WriteLine(uofw.GraphRepository);
+            var prop1 = GraphProperty.NewProperty("og:url", GraphPropertyType.Uri,string.Empty, false);
+
+            graphService.SaveProperty(prop1);
+            Console.WriteLine(graphService.RetreiveProperties().Count());
             
 
             //int test = 3503;

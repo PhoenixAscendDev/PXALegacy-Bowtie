@@ -14,6 +14,11 @@ namespace JB2.Bowtie.Service
         #endregion Fields
 
         #region Constructors
+
+        public GraphService() : this(JB2.Settings.Bowtie.UnitOfWork)
+        {
+
+        }
         public GraphService(IUnitOfWork uofw)
         {
             _uofw = uofw;
