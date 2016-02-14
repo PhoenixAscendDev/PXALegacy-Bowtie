@@ -106,7 +106,7 @@ namespace JB2.Bowtie.Data.Azure
             IGraphElement result = null;
 
             Enum.GraphElementType entityType = GraphElementType.Unknown;
-            System.Enum.TryParse<Enum.GraphElementType>(e.ElementType, out entityType);
+            System.Enum.TryParse<Enum.GraphElementType>(char.ToUpper(e.ElementType[0]) + e.ElementType.Substring(1), out entityType);
 
             switch (entityType)
             {
@@ -160,7 +160,7 @@ namespace JB2.Bowtie.Data.Azure
 
             //app partition
             e.PartitionKey = "app:" + e.ApplicationID;
-            e.RowKey = e.ElementType.ToString().ToLower() + ":" + e.PropertyName;
+            e.RowKey = e.ElementType.ToString().ToLower() + ":" + e.Name;
             _table.Insert<GraphElementEntity>(e, true);
 
             return true;

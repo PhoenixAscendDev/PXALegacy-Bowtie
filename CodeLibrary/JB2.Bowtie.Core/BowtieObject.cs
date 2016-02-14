@@ -82,5 +82,20 @@ namespace JB2.Bowtie
                 _tags = value.ToList();
             }
         }
+
+        public BowtieObjectType GetKind()
+        {
+            return _kind;
+        }
+
+        public DateTime GetLastUpdate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<ObjectTag> GetTags()
+        {
+            return _tags;
+        }
     }
 }
