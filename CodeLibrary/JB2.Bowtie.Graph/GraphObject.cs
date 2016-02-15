@@ -59,7 +59,7 @@ namespace JB2.Bowtie
             result.Name = name;
             result.ID = "o_" + JB2.Common.NewID.ShortGuid();
             result.ApplicationID = applicationid;
-            result.Singular = name;
+            result.Singular = name.ToLower();
             result.Plural = pural;
 
             return result;

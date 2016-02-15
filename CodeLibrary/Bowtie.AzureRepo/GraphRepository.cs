@@ -185,13 +185,13 @@ namespace JB2.Bowtie.Data.Azure
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(prop.ID);
-            sb.Append(":");
+            sb.Append("|");
             sb.Append(prop.Name);
-            sb.Append(":");
+            sb.Append("|");
             sb.Append(prop.GraphPropertyType.ToString());
-            sb.Append(":");
+            sb.Append("|");
             sb.Append(prop.isMultiValued.ToString());
-            sb.Append(":");
+            sb.Append("|");
             sb.Append(prop.ApplicationID);
 
             return sb.ToString();
@@ -201,7 +201,7 @@ namespace JB2.Bowtie.Data.Azure
         {
             GraphProperty p = new GraphProperty();
 
-            string[] propSplits = str.Split(':');
+            string[] propSplits = str.Split('|');
             p.ID = propSplits[0];
             p.Name = propSplits[1];
             p.GraphPropertyType = (Enum.GraphPropertyType)System.Enum.Parse(typeof(GraphPropertyType), propSplits[2]);

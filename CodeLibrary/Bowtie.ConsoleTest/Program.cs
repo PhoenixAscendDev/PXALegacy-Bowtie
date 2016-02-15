@@ -53,27 +53,29 @@ namespace Bowtie.ConsoleTest
             o1.AddProperty(p19);
             o1.AddProperty(p20);
 
-            graphService.SaveProperty(p1);
-            graphService.SaveProperty(p2);
-            graphService.SaveProperty(p3);
-            graphService.SaveProperty(p4);
-            graphService.SaveProperty(p5);
-            graphService.SaveProperty(p6);
-            graphService.SaveProperty(p7);
-            graphService.SaveProperty(p8);
-            graphService.SaveProperty(p9);
-            graphService.SaveProperty(p10);
-            graphService.SaveProperty(p11);
-            graphService.SaveProperty(p12);
-            graphService.SaveProperty(p13);
-            graphService.SaveProperty(p14);
-            graphService.SaveProperty(p15);
-            graphService.SaveProperty(p16);
-            graphService.SaveProperty(p17);
-            graphService.SaveProperty(p18);
-            graphService.SaveProperty(p19);
-            graphService.SaveProperty(p20);
-            graphService.SaveObject(o1);
+            //graphService.SaveProperty(p1);
+            //graphService.SaveProperty(p2);
+            //graphService.SaveProperty(p3);
+            //graphService.SaveProperty(p4);
+            //graphService.SaveProperty(p5);
+            //graphService.SaveProperty(p6);
+            //graphService.SaveProperty(p7);
+            //graphService.SaveProperty(p8);
+            //graphService.SaveProperty(p9);
+            //graphService.SaveProperty(p10);
+            //graphService.SaveProperty(p11);
+            //graphService.SaveProperty(p12);
+            //graphService.SaveProperty(p13);
+            //graphService.SaveProperty(p14);
+            //graphService.SaveProperty(p15);
+            //graphService.SaveProperty(p16);
+            //graphService.SaveProperty(p17);
+            //graphService.SaveProperty(p18);
+            //graphService.SaveProperty(p19);
+            //graphService.SaveProperty(p20);
+            //graphService.SaveObject(o1);
+
+            var g = graphService.RetrieveObjectByName("Picket");
             Console.WriteLine(graphService.RetreiveProperties().Count());
 
             
