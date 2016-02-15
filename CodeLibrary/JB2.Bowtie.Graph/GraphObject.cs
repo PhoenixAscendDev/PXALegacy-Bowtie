@@ -36,8 +36,8 @@ namespace JB2.Bowtie
             return _properties.Remove(p);
         }
 
-        string Singular { get; set; }
-        string Plural { get; set; }
+        public string Singular { get; set; }
+        public string Plural { get; set; }
 
         public Enum.GraphDeterminer Determiner
         {

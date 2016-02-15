@@ -47,38 +47,56 @@ namespace Bowtie.ConsoleTest
             var p18 = GraphProperty.NewProperty("picket:redirect_url", GraphPropertyType.Uri, "LF-001", false);
             var p19 = GraphProperty.NewProperty("picket:picket_style", GraphPropertyType.Text, "LF-001", false);
             var p20 = GraphProperty.NewProperty("picket:code", GraphPropertyType.Text, "LF-001", false);
+            var p21 = GraphProperty.NewProperty("picket:domain", GraphPropertyType.Domain, "LF-001", false);
 
             var o1 = GraphObject.NewObject("Picket", "LF-001", "A", "pickets");
+            o1.AddProperty(p1);
+            o1.AddProperty(p2);
+            o1.AddProperty(p3);
+            o1.AddProperty(p4);
+            o1.AddProperty(p5);
+            o1.AddProperty(p6);
+            o1.AddProperty(p7);
+            o1.AddProperty(p8);
+            o1.AddProperty(p9);
+            o1.AddProperty(p10);
+            o1.AddProperty(p11);
+            o1.AddProperty(p12);
+            o1.AddProperty(p13);           
+            o1.AddProperty(p14);
+            o1.AddProperty(p15);
+            o1.AddProperty(p16);
+            o1.AddProperty(p17);
             o1.AddProperty(p18);
             o1.AddProperty(p19);
             o1.AddProperty(p20);
+            o1.AddProperty(p21);
 
-            //graphService.SaveProperty(p1);
-            //graphService.SaveProperty(p2);
-            //graphService.SaveProperty(p3);
-            //graphService.SaveProperty(p4);
-            //graphService.SaveProperty(p5);
-            //graphService.SaveProperty(p6);
-            //graphService.SaveProperty(p7);
-            //graphService.SaveProperty(p8);
-            //graphService.SaveProperty(p9);
-            //graphService.SaveProperty(p10);
-            //graphService.SaveProperty(p11);
-            //graphService.SaveProperty(p12);
-            //graphService.SaveProperty(p13);
-            //graphService.SaveProperty(p14);
-            //graphService.SaveProperty(p15);
-            //graphService.SaveProperty(p16);
-            //graphService.SaveProperty(p17);
-            //graphService.SaveProperty(p18);
-            //graphService.SaveProperty(p19);
-            //graphService.SaveProperty(p20);
-            //graphService.SaveObject(o1);
+            graphService.SaveProperty(p1);
+            graphService.SaveProperty(p2);
+            graphService.SaveProperty(p3);
+            graphService.SaveProperty(p4);
+            graphService.SaveProperty(p5);
+            graphService.SaveProperty(p6);
+            graphService.SaveProperty(p7);
+            graphService.SaveProperty(p8);
+            graphService.SaveProperty(p9);
+            graphService.SaveProperty(p10);
+            graphService.SaveProperty(p11);
+            graphService.SaveProperty(p12);
+            graphService.SaveProperty(p13);
+            graphService.SaveProperty(p14);
+            graphService.SaveProperty(p15);
+            graphService.SaveProperty(p16);
+            graphService.SaveProperty(p17);
+            graphService.SaveProperty(p18);
+            graphService.SaveProperty(p19);
+            graphService.SaveProperty(p20);
+            graphService.SaveProperty(p21);
+            graphService.SaveObject(o1);
 
             var g = graphService.RetrieveObjectByName("Picket");
             Console.WriteLine(graphService.RetreiveProperties().Count());
-
-            
 
             //int test = 3503;
 

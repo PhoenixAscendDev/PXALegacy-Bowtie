@@ -7,11 +7,12 @@ using JB2.Common;
 
 namespace JB2.Bowtie
 {
-    public abstract class GraphElement : IGraphElement
+    public abstract class GraphElement : JB2.Common.IDNamePair<string,string>,IGraphElement
     {
 
         #region Fields
         protected object _value;
+
         protected JB2.Common.MetaDataCollection _metadata;
 
         #endregion Fields
@@ -26,16 +27,6 @@ namespace JB2.Bowtie
             get;
         }
 
-        public string ID
-        {
-            get; set;
-        }
-
-        public string Name
-        {
-            get; set;
-        }
-
         public string ParentID
         {
             get; set;
@@ -43,25 +34,18 @@ namespace JB2.Bowtie
 
         public string PropertyName
         {
-            get;
+            get
+            {
+                return _name;
+            }
         }
 
         public Type PropertyType
         {
             get
-            {
-                return _value.GetType();
+            {             
+                return _value != null ? _value.GetType() : typeof(string).GetType();
             }
-        }
-
-        public string GetID()
-        {
-            return ID;
-        }
-
-        public string GetName()
-        {
-            return Name;
         }
 
         public object GetValue()

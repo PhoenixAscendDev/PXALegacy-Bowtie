@@ -88,6 +88,8 @@ namespace JB2.Bowtie.Data.Azure
                     }
                     e.PropertiesCSV = string.Join(",", props.ToArray());
                     e.Determiner = obj.Determiner.ToString();
+                    e.Singular = obj.Singular;
+                    e.Plural = obj.Plural;
                     break;
             }
             return saveEntity(e);
@@ -130,6 +132,8 @@ namespace JB2.Bowtie.Data.Azure
                         ((JB2.Bowtie.GraphObject)result).AddProperty(stringToGraphProperty(prop));
                     }
                     ((GraphObject)result).Determiner = (Enum.GraphDeterminer)System.Enum.Parse(typeof(Enum.GraphDeterminer), e.Determiner);
+                    ((GraphObject)result).Singular = e.Singular;
+                    ((GraphObject)result).Plural = e.Plural;
                     break;
                 case GraphElementType.Action:
                     result = new JB2.Bowtie.GraphAction();

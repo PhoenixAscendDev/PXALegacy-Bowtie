@@ -68,5 +68,15 @@ namespace JB2.Bowtie.Data.Azure
         {
             get; set;
         }
+
+        public string Singular
+        {
+            get; set;
+        }
+
+        public string Plural
+        {
+            get; set;
+        }
     }
 }

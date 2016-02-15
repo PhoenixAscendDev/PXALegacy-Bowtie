@@ -23,6 +23,7 @@ namespace JB2.Bowtie.Enum
         Video,
         Audio,
         Locale,
-        Color
+        Color,
+        Domain
     }
 }
