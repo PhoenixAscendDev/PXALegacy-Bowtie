@@ -9,6 +9,8 @@ namespace JB2.Bowtie
     public interface IGraphRepository
     {
         IGraphElement GetGraphElement(string id);
+        IGraphElement GetGraphElementByName(string name);
+
         IEnumerable<IGraphElement> GetGraphElementsByType(Enum.GraphElementType type);
         IEnumerable<IGraphElement> GetGraphElementsByApplication(string applicationID);
         IEnumerable<IGraphElement> GetAll();

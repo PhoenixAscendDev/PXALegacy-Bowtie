@@ -35,6 +35,11 @@ namespace JB2.Bowtie.Data.Azure
             return convertfromEntity(_table.GetEntity<GraphElementEntity>("graph", "id:" + id));
         }
 
+        public IGraphElement GetGraphElementByName(string name)
+        {
+            return convertfromEntity(_table.GetByRowKeyStartWith<GraphElementEntity>("graph", "name:" + name + ">*<",1).FirstOrDefault());
+        }
+
         public IEnumerable<IGraphElement> GetGraphElementsByType(GraphElementType type)
         {
             
@@ -148,6 +153,10 @@ namespace JB2.Bowtie.Data.Azure
             _table.Insert<GraphElementEntity>(e, true);
 
             e.PartitionKey = "graph";
+            e.RowKey = "name:" + e.Name + ">*<" + e.ID;     
+            _table.Insert<GraphElementEntity>(e, true);
+
+            e.PartitionKey = "graph";
             e.RowKey = "type:" + e.ElementType.ToString().ToLower() + "_" + e.ID;
             _table.Insert<GraphElementEntity>(e, true);
 
@@ -158,6 +167,10 @@ namespace JB2.Bowtie.Data.Azure
             //app partition
             e.PartitionKey = "app:" + e.ApplicationID;
             e.RowKey = "id:" + e.ID;
+            _table.Insert<GraphElementEntity>(e, true);
+
+            e.PartitionKey = "app:" + e.ApplicationID;
+            e.RowKey = "name:" + e.Name + ">*<" + e.ID;
             _table.Insert<GraphElementEntity>(e, true);
 
             //app partition

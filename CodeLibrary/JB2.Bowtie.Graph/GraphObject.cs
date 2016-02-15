@@ -13,6 +13,14 @@ namespace JB2.Bowtie
         #region Fields
         protected JB2.Common.BaseCollection<GraphProperty> _properties;
         #endregion Fields
+
+        #region Constructor
+        public GraphObject()
+        {
+            _properties = new Common.BaseCollection<GraphProperty>();
+        }
+
+        #endregion Constructor
         public IEnumerable<GraphProperty> GetProperties()
         {
             return _properties;

@@ -44,10 +44,15 @@ namespace Bowtie.ConsoleTest
             var p12 = GraphProperty.NewProperty("bt:message", GraphPropertyType.Number, string.Empty, false);
 
             var p17 = GraphProperty.NewProperty("bt:color", GraphPropertyType.Color, string.Empty, false);
-            var p18 = GraphProperty.NewProperty("picket:redirect_url", GraphPropertyType.Uri, string.Empty, false);
-            var p19 = GraphProperty.NewProperty("picket:picket_style", GraphPropertyType.Text, string.Empty, false);
+            var p18 = GraphProperty.NewProperty("picket:redirect_url", GraphPropertyType.Uri, "LF-001", false);
+            var p19 = GraphProperty.NewProperty("picket:picket_style", GraphPropertyType.Text, "LF-001", false);
+            var p20 = GraphProperty.NewProperty("picket:code", GraphPropertyType.Text, "LF-001", false);
 
-            
+            var o1 = GraphObject.NewObject("Picket", "LF-001", "A", "pickets");
+            o1.AddProperty(p18);
+            o1.AddProperty(p19);
+            o1.AddProperty(p20);
+
             graphService.SaveProperty(p1);
             graphService.SaveProperty(p2);
             graphService.SaveProperty(p3);
@@ -67,7 +72,10 @@ namespace Bowtie.ConsoleTest
             graphService.SaveProperty(p17);
             graphService.SaveProperty(p18);
             graphService.SaveProperty(p19);
+            graphService.SaveProperty(p20);
+            graphService.SaveObject(o1);
             Console.WriteLine(graphService.RetreiveProperties().Count());
+
             
 
             //int test = 3503;

@@ -69,6 +69,16 @@ namespace JB2.Bowtie.Service
             return filterByType<GraphObject>(elements, Enum.GraphElementType.Object);
         }
 
+        public GraphObject RetrieveObjectByID(string id)
+        {
+            return (GraphObject)_repo.GetGraphElement(id);
+        }
+
+        public GraphObject RetrieveObjectByName(string name)
+        {
+            return (GraphObject)_repo.GetGraphElementByName(name);
+        }
+
         public IEnumerable<GraphObject> RetrieveObjectsByApplication(Application app)
         {
             var elements = _repo.GetGraphElementsByApplication(app.ID);
