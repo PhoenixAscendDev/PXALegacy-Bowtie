@@ -60,5 +60,15 @@ namespace JB2.Bowtie
             return _objects;
         }
 
+        public static GraphAction NewAction(string name, string applicationid)
+        {
+            GraphAction act = new GraphAction();
+            act.ID = "a_" + JB2.Common.NewID.ShortGuid();
+            act.Name = name;
+            act.ApplicationID = applicationid;
+
+            return act;
+        }
+
     }
 }

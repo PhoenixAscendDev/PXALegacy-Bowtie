@@ -48,8 +48,21 @@ namespace Bowtie.ConsoleTest
             var p19 = GraphProperty.NewProperty("picket:picket_style", GraphPropertyType.Text, "LF-001", false);
             var p20 = GraphProperty.NewProperty("picket:code", GraphPropertyType.Text, "LF-001", false);
             var p21 = GraphProperty.NewProperty("picket:domain", GraphPropertyType.Domain, "LF-001", false);
+            var p22 = GraphProperty.NewProperty("bt:created_time", GraphPropertyType.Datetime, "LF-001", false);
 
+            
             var o1 = GraphObject.NewObject("Picket", "LF-001", "A", "pickets");
+            var a1 = GraphAction.NewAction("Build", "LF-001");
+            a1.AddObject(o1);
+            a1.AddProperty(p8);
+            a1.AddProperty(p9);
+            a1.AddProperty(p10);
+            a1.AddProperty(p11);
+            a1.AddProperty(p12);
+
+            a1.AddProperty(p22);
+
+
             o1.AddProperty(p1);
             o1.AddProperty(p2);
             o1.AddProperty(p3);
@@ -71,6 +84,7 @@ namespace Bowtie.ConsoleTest
             o1.AddProperty(p19);
             o1.AddProperty(p20);
             o1.AddProperty(p21);
+            o1.AddProperty(p22);
 
             graphService.SaveProperty(p1);
             graphService.SaveProperty(p2);
@@ -93,7 +107,9 @@ namespace Bowtie.ConsoleTest
             graphService.SaveProperty(p19);
             graphService.SaveProperty(p20);
             graphService.SaveProperty(p21);
+            graphService.SaveProperty(p22);
             graphService.SaveObject(o1);
+            graphService.SaveAction(a1);
 
             var g = graphService.RetrieveObjectByName("Picket");
             Console.WriteLine(graphService.RetreiveProperties().Count());

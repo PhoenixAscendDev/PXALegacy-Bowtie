@@ -83,5 +83,16 @@ namespace JB2.Bowtie.Data.Azure
         {
             get; set;
         }
+
+        public string AssociateActionCSV
+        {
+            get; set;
+        }
+
+        public string WordTense_Past { get; set; }
+        public string WordTense_PluralPast { get; set; }
+        public string WordTense_Present { get; set; }
+        public string WordTense_PluralPresent { get; set; }
+        public string WordTense_ImperativeTense { get; set; }
     }
 }

@@ -107,6 +107,17 @@ namespace JB2.Bowtie.Data.Azure
                     e.PropertiesCSV = string.Join(",", props2.ToArray());
                     e.AssociateObjectCSV = string.Join(",", objlist.ToArray());
                     break;
+                case GraphElementType.Story:
+                    GraphStory story = (GraphStory)element;
+                    e.AssociateObjectCSV = story.AssociatedObject.ID;
+                    e.AssociateActionCSV = story.AssociatedAction.ID;
+                    var tense = story.ActionTense;
+                    e.WordTense_ImperativeTense = tense.ImperativeTense;
+                    e.WordTense_Past = tense.Past;
+                    e.WordTense_PluralPast = tense.PluralPast;
+                    e.WordTense_Present = tense.PluralPresent;
+                    e.WordTense_Present = tense.Present;                   
+                    break;
             }
             return saveEntity(e);
         }
@@ -153,14 +164,26 @@ namespace JB2.Bowtie.Data.Azure
                     break;
                 case GraphElementType.Action:
                     result = new JB2.Bowtie.GraphAction();
-                    string[] props2 = e.PropertiesCSV.Split(',');
-                    foreach (string prop in props2)
+                    foreach (string prop in e.PropertiesCSV.Split(','))
                     {
-                        ((JB2.Bowtie.GraphObject)result).AddProperty(stringToGraphProperty(prop));
+                        ((JB2.Bowtie.GraphAction)result).AddProperty(stringToGraphProperty(prop));
+                    }
+                    foreach (string obj in e.AssociateObjectCSV.Split(','))
+                    {
+                        ((JB2.Bowtie.GraphAction)result).AddObject((GraphObject)this.GetGraphElement(obj));
                     }
                     break;
                 case GraphElementType.Story:
                     result = new JB2.Bowtie.GraphStory();
+                    ((JB2.Bowtie.GraphStory)result).AssociatedObject = (GraphObject)this.GetGraphElement(e.AssociateObjectCSV);
+                    ((JB2.Bowtie.GraphStory)result).AssociatedAction = (GraphAction)this.GetGraphElement(e.AssociateActionCSV); 
+                    var tense = new WordTense();
+                    tense.ImperativeTense = e.WordTense_ImperativeTense;
+                    tense.Past = e.WordTense_Past;
+                    tense.PluralPast = e.WordTense_PluralPast;
+                    tense.PluralPresent = e.WordTense_Present;
+                    tense.Present = e.WordTense_Present;
+                    ((JB2.Bowtie.GraphStory)result).ActionTense = tense;
                     break;
             }
             result.ID = e.ID;
