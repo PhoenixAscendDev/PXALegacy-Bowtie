@@ -61,6 +61,28 @@ namespace JB2.Bowtie.Service
         }
         #endregion Graph Properties
 
+        #region Graph Objects
+
+        public IEnumerable<GraphObject> RetrieveObjects()
+        {
+            var elements = _repo.GetGraphElementsByType(Enum.GraphElementType.Object);
+            return filterByType<GraphObject>(elements, Enum.GraphElementType.Object);
+        }
+
+        public IEnumerable<GraphObject> RetrieveObjectsByApplication(Application app)
+        {
+            var elements = _repo.GetGraphElementsByApplication(app.ID);
+            return filterByType<GraphObject>(elements, Enum.GraphElementType.Object);
+        }
+
+        public void SaveObject(GraphObject obj)
+        {
+            _repo.InsertGraphElement(obj);
+        }
+
+
+        #endregion Graph Objects
+
         #region internal helpers
         protected IEnumerable<T> filterByType<T>(IEnumerable<IGraphElement> list,Enum.GraphElementType type)
             where T : IGraphElement
