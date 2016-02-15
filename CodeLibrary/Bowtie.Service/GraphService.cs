@@ -93,6 +93,29 @@ namespace JB2.Bowtie.Service
 
         #endregion Graph Objects
 
+        #region Graph Action
+
+        public IEnumerable<GraphAction> RetrieveActions()
+        {
+            var elements = _repo.GetGraphElementsByType(Enum.GraphElementType.Action);
+
+            return filterByType<GraphAction>(elements, Enum.GraphElementType.Action);
+        }
+
+        public IEnumerable<GraphAction> RetrieveActionsByApplication(Application app)
+        {
+            var elements = _repo.GetGraphElementsByApplication(app.ID);
+            return filterByType<GraphAction>(elements, Enum.GraphElementType.Action);
+        }
+
+        public void SaveAction(GraphAction act)
+        {
+            _repo.InsertGraphElement(act);
+        }
+
+
+        #endregion Graph Action
+
         #region internal helpers
         protected IEnumerable<T> filterByType<T>(IEnumerable<IGraphElement> list,Enum.GraphElementType type)
             where T : IGraphElement

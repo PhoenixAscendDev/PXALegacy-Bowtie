@@ -12,8 +12,14 @@ namespace JB2.Bowtie
     {
         #region Fields
         protected JB2.Common.BaseCollection<GraphProperty> _properties;
-        
+        protected JB2.Common.BaseCollection<GraphObject> _objects;
         #endregion Fields
+
+        public GraphAction()
+        {
+            _properties = new Common.BaseCollection<GraphProperty>();
+            _objects = new Common.BaseCollection<GraphObject>();
+        }
         public IEnumerable<GraphProperty> GetProperties()
         {
             return _properties;
@@ -37,9 +43,21 @@ namespace JB2.Bowtie
             }
         }
 
-        public IEnumerable<GraphObject> GetAssociatedObject()
+        public JB2.Common.ServiceResult AddObject(GraphObject obj)
         {
-            throw new NotImplementedException();
+            return _objects.Add(obj);
+        }
+
+        public JB2.Common.ServiceResult RemoveObject(GraphObject obj)
+        {
+            return _objects.Remove(obj);
+        }
+
+
+
+        public IEnumerable<GraphObject> GetAssociatedObjects()
+        {
+            return _objects;
         }
 
     }

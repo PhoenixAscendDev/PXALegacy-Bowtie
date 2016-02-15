@@ -91,6 +91,22 @@ namespace JB2.Bowtie.Data.Azure
                     e.Singular = obj.Singular;
                     e.Plural = obj.Plural;
                     break;
+                case GraphElementType.Action:
+                    GraphAction act = (GraphAction)element;
+                    List<string> props2 = new List<string>(act.GetProperties().Count());
+                    List<string> objlist = new List<string>();
+                    foreach (GraphProperty prop in act.GetProperties())
+                    {
+                        props2.Add(graphpropertyToString(prop));
+                    }
+
+                    foreach(GraphObject o in act.GetAssociatedObjects())
+                    {
+                        objlist.Add(o.GetID());
+                    }
+                    e.PropertiesCSV = string.Join(",", props2.ToArray());
+                    e.AssociateObjectCSV = string.Join(",", objlist.ToArray());
+                    break;
             }
             return saveEntity(e);
         }
@@ -137,6 +153,11 @@ namespace JB2.Bowtie.Data.Azure
                     break;
                 case GraphElementType.Action:
                     result = new JB2.Bowtie.GraphAction();
+                    string[] props2 = e.PropertiesCSV.Split(',');
+                    foreach (string prop in props2)
+                    {
+                        ((JB2.Bowtie.GraphObject)result).AddProperty(stringToGraphProperty(prop));
+                    }
                     break;
                 case GraphElementType.Story:
                     result = new JB2.Bowtie.GraphStory();

@@ -78,5 +78,10 @@ namespace JB2.Bowtie.Data.Azure
         {
             get; set;
         }
+
+        public string AssociateObjectCSV
+        {
+            get; set;
+        }
     }
 }
