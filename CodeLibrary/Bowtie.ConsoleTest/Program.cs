@@ -24,9 +24,43 @@ namespace Bowtie.ConsoleTest
             var graphService = new JB2.Bowtie.Service.GraphService();
             //var uofw = JB2.Settings.Bowtie.UnitOfWork;
 
-            var prop1 = GraphProperty.NewProperty("og:url", GraphPropertyType.Uri,string.Empty, false);
+            var p1 = GraphProperty.NewProperty("og:url", GraphPropertyType.Uri,string.Empty, false);
+            var p2 = GraphProperty.NewProperty("og:type", GraphPropertyType.Text, string.Empty, false);
+            var p3 = GraphProperty.NewProperty("og:title", GraphPropertyType.Text, string.Empty, false);
+            var p4 = GraphProperty.NewProperty("og:image", GraphPropertyType.Image, string.Empty, false);
+            var p5 = GraphProperty.NewProperty("og:locale", GraphPropertyType.Locale, string.Empty, false);
+            var p13 = GraphProperty.NewProperty("og:description", GraphPropertyType.Text, string.Empty, false);
+            var p14 = GraphProperty.NewProperty("og:updated_time", GraphPropertyType.Datetime, string.Empty, false);
+            var p15 = GraphProperty.NewProperty("og:video", GraphPropertyType.Video, string.Empty, false);
+            var p16 = GraphProperty.NewProperty("og:audio", GraphPropertyType.Audio, string.Empty, false);
+            //var p17 = GraphProperty.NewProperty("og:locale", GraphPropertyType.Locale, string.Empty, false);
 
-            graphService.SaveProperty(prop1);
+            var p6 = GraphProperty.NewProperty("jb2:app_id", GraphPropertyType.Text, string.Empty, false);
+            var p7 = GraphProperty.NewProperty("jb2:profile_id", GraphPropertyType.Profile, string.Empty, false);
+            var p8 = GraphProperty.NewProperty("bt:start_time", GraphPropertyType.Datetime, string.Empty, false);
+            var p9 = GraphProperty.NewProperty("bt:end_time", GraphPropertyType.Datetime, string.Empty, false);
+            var p10 = GraphProperty.NewProperty("bt:expires_time", GraphPropertyType.Datetime, string.Empty, false);
+            var p11 = GraphProperty.NewProperty("bt:expires_in", GraphPropertyType.Number, string.Empty, false);
+            var p12 = GraphProperty.NewProperty("bt:message", GraphPropertyType.Number, string.Empty, false);
+           
+            
+            graphService.SaveProperty(p1);
+            graphService.SaveProperty(p2);
+            graphService.SaveProperty(p3);
+            graphService.SaveProperty(p4);
+            graphService.SaveProperty(p5);
+            graphService.SaveProperty(p6);
+            graphService.SaveProperty(p7);
+            graphService.SaveProperty(p8);
+            graphService.SaveProperty(p9);
+            graphService.SaveProperty(p10);
+            graphService.SaveProperty(p11);
+            graphService.SaveProperty(p12);
+            graphService.SaveProperty(p13);
+            graphService.SaveProperty(p14);
+            graphService.SaveProperty(p15);
+            graphService.SaveProperty(p16);
+            //graphService.SaveProperty(p17);
             Console.WriteLine(graphService.RetreiveProperties().Count());
             
 

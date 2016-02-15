@@ -18,6 +18,10 @@ namespace JB2.Bowtie.Enum
         Date,
         Time,
         Decimal,
-        Boolean
+        Boolean,
+        Profile,
+        Video,
+        Audio,
+        Locale
     }
 }
