@@ -63,5 +63,10 @@ namespace JB2.Bowtie.Data.Azure
         {
             get; set;
         }
+
+        public string Determiner
+        {
+            get; set;
+        }
     }
 }

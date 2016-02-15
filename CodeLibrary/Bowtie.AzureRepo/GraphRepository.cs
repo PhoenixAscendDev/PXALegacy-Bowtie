@@ -82,6 +82,7 @@ namespace JB2.Bowtie.Data.Azure
                         props.Add(graphpropertyToString(prop));
                     }
                     e.PropertiesCSV = string.Join(",", props.ToArray());
+                    e.Determiner = obj.Determiner.ToString();
                     break;
             }
             return saveEntity(e);
@@ -123,6 +124,7 @@ namespace JB2.Bowtie.Data.Azure
                     {
                         ((JB2.Bowtie.GraphObject)result).AddProperty(stringToGraphProperty(prop));
                     }
+                    ((GraphObject)result).Determiner = (Enum.GraphDeterminer)System.Enum.Parse(typeof(Enum.GraphDeterminer), e.Determiner);
                     break;
                 case GraphElementType.Action:
                     result = new JB2.Bowtie.GraphAction();

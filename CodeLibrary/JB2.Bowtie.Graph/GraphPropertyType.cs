@@ -22,6 +22,7 @@ namespace JB2.Bowtie.Enum
         Profile,
         Video,
         Audio,
-        Locale
+        Locale,
+        Color
     }
 }

@@ -33,8 +33,8 @@ namespace Bowtie.ConsoleTest
             var p14 = GraphProperty.NewProperty("og:updated_time", GraphPropertyType.Datetime, string.Empty, false);
             var p15 = GraphProperty.NewProperty("og:video", GraphPropertyType.Video, string.Empty, false);
             var p16 = GraphProperty.NewProperty("og:audio", GraphPropertyType.Audio, string.Empty, false);
-            //var p17 = GraphProperty.NewProperty("og:locale", GraphPropertyType.Locale, string.Empty, false);
 
+            
             var p6 = GraphProperty.NewProperty("jb2:app_id", GraphPropertyType.Text, string.Empty, false);
             var p7 = GraphProperty.NewProperty("jb2:profile_id", GraphPropertyType.Profile, string.Empty, false);
             var p8 = GraphProperty.NewProperty("bt:start_time", GraphPropertyType.Datetime, string.Empty, false);
@@ -42,7 +42,11 @@ namespace Bowtie.ConsoleTest
             var p10 = GraphProperty.NewProperty("bt:expires_time", GraphPropertyType.Datetime, string.Empty, false);
             var p11 = GraphProperty.NewProperty("bt:expires_in", GraphPropertyType.Number, string.Empty, false);
             var p12 = GraphProperty.NewProperty("bt:message", GraphPropertyType.Number, string.Empty, false);
-           
+
+            var p17 = GraphProperty.NewProperty("bt:color", GraphPropertyType.Color, string.Empty, false);
+            var p18 = GraphProperty.NewProperty("picket:redirect_url", GraphPropertyType.Uri, string.Empty, false);
+            var p19 = GraphProperty.NewProperty("picket:picket_style", GraphPropertyType.Text, string.Empty, false);
+
             
             graphService.SaveProperty(p1);
             graphService.SaveProperty(p2);
@@ -60,7 +64,9 @@ namespace Bowtie.ConsoleTest
             graphService.SaveProperty(p14);
             graphService.SaveProperty(p15);
             graphService.SaveProperty(p16);
-            //graphService.SaveProperty(p17);
+            graphService.SaveProperty(p17);
+            graphService.SaveProperty(p18);
+            graphService.SaveProperty(p19);
             Console.WriteLine(graphService.RetreiveProperties().Count());
             
 

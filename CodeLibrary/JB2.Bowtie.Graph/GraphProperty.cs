@@ -28,7 +28,7 @@ namespace JB2.Bowtie
         public static GraphProperty NewProperty(string name, GraphPropertyType type,string applicationid,bool isMultivalued)
         {
             GraphProperty p = new GraphProperty();
-            p.ID = JB2.Common.NewID.ShortGuid();
+            p.ID = "p_" + JB2.Common.NewID.ShortGuid();
             p.Name = name;
             p.GraphPropertyType = type;
             p.ApplicationID = applicationid;
