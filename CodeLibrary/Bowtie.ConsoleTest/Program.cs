@@ -27,9 +27,12 @@ namespace Bowtie.ConsoleTest
             //var uofw = JB2.Settings.Bowtie.UnitOfWork;
 
 
-            var d1 = Dewdrop.NewDewdrop("frontpageBuild", "LF-001", "a_IyyHo5-rbECK1ywJxB0sDQ");
-
+            var d1 = Dewdrop.NewDewdrop("buildquickWebpage", "Create a picket by using the text box on the front page" ,"LF-001", "a_IyyHo5-rbECK1ywJxB0sDQ");
+            var d2 = Dewdrop.NewDewdrop("buildBasicWebpage", "Create a picket by using the form on the basic picket form","LF-001", "a_IyyHo5 - rbECK1ywJxB0sDQ");
+            var d3 = Dewdrop.NewDewdrop("buildVanityWebpage", "Create a picket by using the form on the vanity picket form", "LF-001", "a_IyyHo5 - rbECK1ywJxB0sDQ");
             dewdropService.Save(d1);
+            dewdropService.Save(d2);
+            dewdropService.Save(d3);
 
 
             var p1 = GraphProperty.NewProperty("og:url", GraphPropertyType.Uri,string.Empty, false);

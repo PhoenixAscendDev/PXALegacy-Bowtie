@@ -11,6 +11,7 @@ namespace JB2.Bowtie
         #region Fields
         protected string _appid;
         protected string _graphID;
+        protected string _description;
         #endregion Fields
 
         public Dewdrop()
@@ -18,12 +19,13 @@ namespace JB2.Bowtie
 
         }
 
-        public Dewdrop(string id, string name, string applicationID, string graphID)
+        public Dewdrop(string id, string name, string description, string applicationID, string graphID)
         {
             _id = id;
             _name = name;
             _appid = applicationID;
             _graphID = graphID;
+            _description = description;
         }
 
         protected string ApplicationID
@@ -41,13 +43,19 @@ namespace JB2.Bowtie
             return _graphID;
         }
 
-        public static Dewdrop NewDewdrop(string name, string applicationID,string graphID)
+        public string GetDescription()
+        {
+            return _description;
+        }
+
+        public static Dewdrop NewDewdrop(string name, string description, string applicationID,string graphID)
         {
             Dewdrop newDew = new Dewdrop();
             newDew.ID = "dew_" + JB2.Common.NewID.Base62();
             newDew.Name = name;
             newDew.ApplicationID = applicationID;
             newDew._graphID = graphID;
+            newDew._description = description;
             return newDew;
         }
     }

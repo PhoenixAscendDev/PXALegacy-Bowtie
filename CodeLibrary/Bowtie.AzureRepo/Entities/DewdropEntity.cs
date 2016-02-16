@@ -25,6 +25,8 @@ namespace JB2.Bowtie.Data.Azure
         public string ApplicationID { get; set; }
         public string GraphID { get; set; }
 
+        public string Description { get; set; }
+
         #endregion Properties
     }
 }

@@ -46,12 +46,13 @@ namespace JB2.Bowtie.Data.Azure
             e.GraphID = o.GetGraphID();
             e.ID = o.GetID();
             e.Name = o.GetName();
+            e.Description = o.GetDescription();
             return e;
         }
 
         protected override Dewdrop convertToObject(DewdropEntity e)
         {
-            var result = new Dewdrop(e.ID, e.Name, e.ApplicationID, e.GraphID);
+            var result = new Dewdrop(e.ID, e.Name,e.Description,e.ApplicationID, e.GraphID);
             return result;
         }
 
