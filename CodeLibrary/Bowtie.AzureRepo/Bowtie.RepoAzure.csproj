@@ -35,9 +35,6 @@
       <HintPath>..\packages\Hyak.Common.1.0.2\lib\net45\Hyak.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Bowtie">
-      <HintPath>..\Bowtie.Lib\bin\Release\JB2.Bowtie.dll</HintPath>
-    </Reference>
     <Reference Include="JB2.Common, Version=0.1.14.18302, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JB2.Common.0.1.14\lib\JB2.Common.dll</HintPath>
       <Private>True</Private>
@@ -151,10 +148,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AzureStorage.cs" />
+    <Compile Include="BaseRepository.cs" />
     <Compile Include="BingoCardEntry.cs" />
     <Compile Include="BingPatternEntry.cs" />
     <Compile Include="ColorEntry.cs" />
     <Compile Include="ColorSetEntry.cs" />
+    <Compile Include="DewdropEntity.cs" />
+    <Compile Include="DewdropRepository.cs" />
     <Compile Include="GameObjectRepository.cs" />
     <Compile Include="GraphElementEntity.cs" />
     <Compile Include="GraphRepository.cs" />
@@ -162,6 +162,10 @@
     <Compile Include="UnitofWork.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bowtie.Lib\Bowtie.Lib.csproj">
+      <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
+      <Name>Bowtie.Lib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JB2.Bowtie.Core\JB2.Bowtie.Core.csproj">
       <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
       <Name>JB2.Bowtie.Core</Name>
@@ -180,6 +184,9 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

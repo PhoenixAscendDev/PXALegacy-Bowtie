@@ -14,8 +14,7 @@ namespace JB2.Bowtie
     {
         protected List<ObjectTag> _tags;
         protected BowtieObjectType _kind;
-       
-
+              
         public BowtieObject(BowtieObjectType kind,string id): this(id)
         {
             this._kind = kind;

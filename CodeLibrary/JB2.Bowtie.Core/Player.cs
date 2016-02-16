@@ -73,6 +73,21 @@ namespace JB2.Bowtie
 
         public abstract string GetIdentityAuthID();
 
+        public IMetaData GetModuleAttribute(string module, string propertyName)
+        {
+            return _player.GetModuleAttribute(module, propertyName);
+        }
+
+        public void SetModuleAttribute(string module, IMetaData metadata)
+        {
+            _player.SetModuleAttribute(module, metadata);
+        }
+
+        public string GetPlayerID()
+        {
+            return _player.GetPlayerID();
+        }
+
         #endregion IBowtiePlayer
 
 

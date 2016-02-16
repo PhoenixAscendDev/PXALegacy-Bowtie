@@ -49,11 +49,45 @@ namespace Bowtie.ConsoleTest
             var p20 = GraphProperty.NewProperty("picket:code", GraphPropertyType.Text, "LF-001", false);
             var p21 = GraphProperty.NewProperty("picket:domain", GraphPropertyType.Domain, "LF-001", false);
             var p22 = GraphProperty.NewProperty("bt:created_time", GraphPropertyType.Datetime, "LF-001", false);
+            var p23 = GraphProperty.NewProperty("bt:playerdew", GraphPropertyType.PlayerDew, string.Empty, false);
+            var p24 = GraphProperty.NewProperty("jb2:jbean", GraphPropertyType.jBeanTreasoryNote, string.Empty, false);
 
-            
+
+
             var o1 = GraphObject.NewObject("Picket", "LF-001", "A", "pickets");
+            var o2 = GraphObject.NewObject("PlayerDew", string.Empty, "A", "playerdews");
+
+            o2.AddProperty(p1);
+            o2.AddProperty(p2);
+            o2.AddProperty(p3);
+            o2.AddProperty(p4);
+            o2.AddProperty(p5);
+            o2.AddProperty(p6);
+            o2.AddProperty(p7);
+            o2.AddProperty(p8);
+            o2.AddProperty(p9);
+            o2.AddProperty(p10);
+            o2.AddProperty(p11);
+            o2.AddProperty(p12);
+            o2.AddProperty(p13);
+            o2.AddProperty(p14);
+            o2.AddProperty(p15);
+            o2.AddProperty(p16);
+
+
             var a1 = GraphAction.NewAction("Build", "LF-001");
+            var a2 = GraphAction.NewAction("Do", string.Empty);
             a1.AddObject(o1);
+            a2.AddObject(o2);
+
+            a2.AddProperty(p8);
+            a2.AddProperty(p9);
+            a2.AddProperty(p10);
+            a2.AddProperty(p11);
+            a2.AddProperty(p12);
+            a2.AddProperty(p22);
+            a2.AddProperty(p24);
+
             a1.AddProperty(p8);
             a1.AddProperty(p9);
             a1.AddProperty(p10);
@@ -61,7 +95,8 @@ namespace Bowtie.ConsoleTest
             a1.AddProperty(p12);
 
             a1.AddProperty(p22);
-
+            a1.AddProperty(p23);
+            a1.AddProperty(p24);
 
             o1.AddProperty(p1);
             o1.AddProperty(p2);
@@ -108,6 +143,8 @@ namespace Bowtie.ConsoleTest
             graphService.SaveProperty(p20);
             graphService.SaveProperty(p21);
             graphService.SaveProperty(p22);
+            graphService.SaveProperty(p23);
+            graphService.SaveProperty(p24);
             graphService.SaveObject(o1);
             graphService.SaveAction(a1);
 

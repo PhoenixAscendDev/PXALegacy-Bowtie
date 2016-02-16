@@ -14,6 +14,7 @@ namespace JB2.Bowtie.Enum
         Achievement,
         GameCommand,
         Leaderboard,
-        Graph
+        Graph,
+        Dewdrop
     }
 }

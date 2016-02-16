@@ -61,6 +61,14 @@ namespace JB2.Bowtie.Data.Azure
                 return (ILeaderboardRepository)GetRepository(RepositoryType.Leaderboard);
             }
         }
+
+        public JB2.Bowtie.IDewdropRepository DewdropRepository
+        {
+            get
+            {
+                return (IDewdropRepository)GetRepository(RepositoryType.Dewdrop);
+            }
+        }
         
 
         //public JB2.Common.IPlayerRepo PlayerRepository

@@ -67,8 +67,8 @@
       <HintPath>..\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Identity.Core, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Identity.Core.0.1.1\lib\JB2.Identity.Core.dll</HintPath>
+    <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Identity.Core.0.1.4\lib\JB2.Identity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="AchievementService.cs" />
     <Compile Include="ApplicationService.cs" />
+    <Compile Include="DewdropService.cs" />
     <Compile Include="GameCommandService.cs" />
     <Compile Include="GameObjectsService.cs" />
     <Compile Include="GenericService.cs" />

@@ -24,6 +24,9 @@ namespace JB2.Bowtie.Enum
         Audio,
         Locale,
         Color,
-        Domain
+        Domain,
+        PlayerDew,
+        jBeanTreasoryNote,
+
     }
 }

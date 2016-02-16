@@ -47,8 +47,8 @@
       <HintPath>..\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Identity.Core, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Identity.Core.0.1.1\lib\JB2.Identity.Core.dll</HintPath>
+    <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Identity.Core.0.1.4\lib\JB2.Identity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -66,8 +66,10 @@
     <Compile Include="BowtieObjectType.cs" />
     <Compile Include="IBowtieObject.cs" />
     <Compile Include="IBowtiePlayer.cs" />
+    <Compile Include="IDewdropRepository.cs" />
     <Compile Include="IPlayerRespository.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="Dewdrop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TokenName.cs" />
     <Compile Include="Utility.cs" />

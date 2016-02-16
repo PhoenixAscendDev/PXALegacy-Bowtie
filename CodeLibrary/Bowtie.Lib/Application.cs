@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JB2.Common;
 
 namespace JB2.Bowtie
 {
@@ -32,7 +33,6 @@ namespace JB2.Bowtie
                 return _secret;
             }
         }
-
 
         public bool isAuthorized
         {
@@ -88,6 +88,21 @@ namespace JB2.Bowtie
         {
             throw new NotImplementedException();
         }
+
         #endregion IApplication
+
+        #region Idenitity IApplication
+        public string GetjBeanSecret()
+        {
+            throw new NotImplementedException();
+        }
+
+        public JB2Image GetIcon()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion Idenitity IApplication
+
     }
 }
