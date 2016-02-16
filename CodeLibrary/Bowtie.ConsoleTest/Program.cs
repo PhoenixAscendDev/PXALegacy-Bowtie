@@ -21,8 +21,16 @@ namespace Bowtie.ConsoleTest
             
             JB2.Bowtie.Manager.Initialize("4d53bce03ec34c0a911182d4c228ee6d", "A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=");
 
+
+            var dewdropService = new JB2.Bowtie.Service.DewdropService();
             var graphService = new JB2.Bowtie.Service.GraphService();
             //var uofw = JB2.Settings.Bowtie.UnitOfWork;
+
+
+            var d1 = Dewdrop.NewDewdrop("frontpageBuild", "LF-001", "a_IyyHo5-rbECK1ywJxB0sDQ");
+
+            dewdropService.Save(d1);
+
 
             var p1 = GraphProperty.NewProperty("og:url", GraphPropertyType.Uri,string.Empty, false);
             var p2 = GraphProperty.NewProperty("og:type", GraphPropertyType.Text, string.Empty, false);
@@ -121,32 +129,32 @@ namespace Bowtie.ConsoleTest
             o1.AddProperty(p21);
             o1.AddProperty(p22);
 
-            graphService.SaveProperty(p1);
-            graphService.SaveProperty(p2);
-            graphService.SaveProperty(p3);
-            graphService.SaveProperty(p4);
-            graphService.SaveProperty(p5);
-            graphService.SaveProperty(p6);
-            graphService.SaveProperty(p7);
-            graphService.SaveProperty(p8);
-            graphService.SaveProperty(p9);
-            graphService.SaveProperty(p10);
-            graphService.SaveProperty(p11);
-            graphService.SaveProperty(p12);
-            graphService.SaveProperty(p13);
-            graphService.SaveProperty(p14);
-            graphService.SaveProperty(p15);
-            graphService.SaveProperty(p16);
-            graphService.SaveProperty(p17);
-            graphService.SaveProperty(p18);
-            graphService.SaveProperty(p19);
-            graphService.SaveProperty(p20);
-            graphService.SaveProperty(p21);
-            graphService.SaveProperty(p22);
-            graphService.SaveProperty(p23);
-            graphService.SaveProperty(p24);
-            graphService.SaveObject(o1);
-            graphService.SaveAction(a1);
+            //graphService.SaveProperty(p1);
+            //graphService.SaveProperty(p2);
+            //graphService.SaveProperty(p3);
+            //graphService.SaveProperty(p4);
+            //graphService.SaveProperty(p5);
+            //graphService.SaveProperty(p6);
+            //graphService.SaveProperty(p7);
+            //graphService.SaveProperty(p8);
+            //graphService.SaveProperty(p9);
+            //graphService.SaveProperty(p10);
+            //graphService.SaveProperty(p11);
+            //graphService.SaveProperty(p12);
+            //graphService.SaveProperty(p13);
+            //graphService.SaveProperty(p14);
+            //graphService.SaveProperty(p15);
+            //graphService.SaveProperty(p16);
+            //graphService.SaveProperty(p17);
+            //graphService.SaveProperty(p18);
+            //graphService.SaveProperty(p19);
+            //graphService.SaveProperty(p20);
+            //graphService.SaveProperty(p21);
+            //graphService.SaveProperty(p22);
+            //graphService.SaveProperty(p23);
+            //graphService.SaveProperty(p24);
+            //graphService.SaveObject(o1);
+            //graphService.SaveAction(a1);
 
             var g = graphService.RetrieveObjectByName("Picket");
             Console.WriteLine(graphService.RetreiveProperties().Count());

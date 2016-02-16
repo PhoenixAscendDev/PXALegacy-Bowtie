@@ -98,9 +98,13 @@ namespace JB2.Bowtie.Data.Azure
                         {
                             case RepositoryType.Graph:
                                 _repos.Add(repository, new JB2.Bowtie.Data.Azure.GraphRepository());
-                                break;              
+                                break;
+                            case RepositoryType.Dewdrop:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.DewdropRepository());
+                                break;       
                         }
                     }
+
                     return _repos[repository];
             }
             return null;

@@ -41,12 +41,13 @@ namespace JB2.Bowtie
             return _graphID;
         }
 
-        public static Dewdrop NewPlayerDew(string name, string applicationID)
+        public static Dewdrop NewDewdrop(string name, string applicationID,string graphID)
         {
             Dewdrop newDew = new Dewdrop();
-            newDew.ID = "dew" + JB2.Common.NewID.ShortGuid();
+            newDew.ID = "dew_" + JB2.Common.NewID.Base62();
             newDew.Name = name;
             newDew.ApplicationID = applicationID;
+            newDew._graphID = graphID;
             return newDew;
         }
     }

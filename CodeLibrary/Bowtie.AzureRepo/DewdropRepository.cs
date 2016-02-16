@@ -44,6 +44,8 @@ namespace JB2.Bowtie.Data.Azure
             var e = new DewdropEntity(_defaultPartitionKey, "id:" + o.GetID());
             e.ApplicationID = o.GetApplicationID();
             e.GraphID = o.GetGraphID();
+            e.ID = o.GetID();
+            e.Name = o.GetName();
             return e;
         }
 
