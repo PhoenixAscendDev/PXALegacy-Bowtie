@@ -50,6 +50,22 @@ namespace JB2.Bowtie.Data.Azure
             return e;
         }
 
+
+        public IEnumerable<IPlayerDewdrop> GetPlayerDewsByPlayerID(string playerID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<IPlayerDewdrop> GetPlayerDews(string playerID, string dewdropID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<IPlayerDewdrop> GetPlayerDewsBySearch(object search)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override Dewdrop convertToObject(DewdropEntity e)
         {
             if (e == null)
@@ -116,8 +132,6 @@ namespace JB2.Bowtie.Data.Azure
             _table.Delete<DewdropEntity>(e.PartitionKey, e.RowKey);
         }
 
-
-
-
+        
     }
 }

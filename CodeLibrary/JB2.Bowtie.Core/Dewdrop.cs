@@ -58,7 +58,8 @@ namespace JB2.Bowtie
         public static Dewdrop NewDewdrop(string name, string description, string applicationID,string graphID)
         {
             Dewdrop newDew = new Dewdrop();
-            newDew.ID = "dew_" + JB2.Common.NewID.Base62();
+            var idvalue = JB2.Infrastructure.Counter.GetNext("dewdrop",defaultStart: 1000000);      
+            newDew.ID = JB2.Common.NewID.Base62("dew_{0}",(long)idvalue);
             newDew.Name = name;
             newDew.ApplicationID = applicationID;
             newDew._graphID = graphID;
