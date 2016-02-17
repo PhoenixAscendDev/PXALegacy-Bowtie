@@ -159,8 +159,8 @@ namespace Bowtie.ConsoleTest
             //graphService.SaveObject(o1);
             //graphService.SaveAction(a1);
 
-            var g = graphService.RetrieveObjectByName("Picket");
-            Console.WriteLine(graphService.RetreiveProperties().Count());
+           // var g = graphService.RetrieveObjectByName("Picket");
+            Console.WriteLine(dewdropService.RetrieveById("1RIJbc"));
 
             //int test = 3503;
 

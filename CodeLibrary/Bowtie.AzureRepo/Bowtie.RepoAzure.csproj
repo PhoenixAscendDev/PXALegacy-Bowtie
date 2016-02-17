@@ -155,6 +155,7 @@
     <Compile Include="ColorSetEntry.cs" />
     <Compile Include="Entities\DewdropEntity.cs" />
     <Compile Include="DewdropRepository.cs" />
+    <Compile Include="EntityNotFoundException.cs" />
     <Compile Include="GameObjectRepository.cs" />
     <Compile Include="Entities\GraphElementEntity.cs" />
     <Compile Include="GraphRepository.cs" />

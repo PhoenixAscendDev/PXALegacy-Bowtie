@@ -30,7 +30,14 @@ namespace JB2.Bowtie
 
         protected string ApplicationID
         {
-            get;set;
+            get
+            {
+                return _appid;
+            }
+            set
+            {
+                _appid = value;
+            }
         } 
 
         public string GetApplicationID()
@@ -56,6 +63,18 @@ namespace JB2.Bowtie
             newDew.ApplicationID = applicationID;
             newDew._graphID = graphID;
             newDew._description = description;
+            return newDew;
+        }
+
+        public static Dewdrop Empty()
+        {
+            Dewdrop newDew = new Dewdrop();
+            newDew.ID = string.Empty;
+            newDew.Name = string.Empty;
+            newDew.ApplicationID = string.Empty;
+            newDew._graphID = string.Empty;
+            newDew._description = string.Empty;
+
             return newDew;
         }
     }

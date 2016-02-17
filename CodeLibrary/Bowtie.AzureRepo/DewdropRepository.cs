@@ -10,7 +10,7 @@ namespace JB2.Bowtie.Data.Azure
 {
     public class DewdropRepository : BaseRepository<Dewdrop,DewdropEntity>,  IDewdropRepository
     {
-     
+  
         #region Constructors
         public DewdropRepository() : this("dewdrops","general")
         {
@@ -52,6 +52,8 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override Dewdrop convertToObject(DewdropEntity e)
         {
+            if (e == null)
+                throw new NullReferenceException();
             var result = new Dewdrop(e.ID, e.Name,e.Description,e.ApplicationID, e.GraphID);
             return result;
         }
@@ -62,7 +64,7 @@ namespace JB2.Bowtie.Data.Azure
 
             foreach(DewdropEntity e in list)
             {
-                result.Add(convertToObject(e));
+                    result.Add(convertToObject(e));
             }
 
             return result;
