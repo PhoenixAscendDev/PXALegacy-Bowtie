@@ -163,6 +163,7 @@
     <Compile Include="GameObjectRepository.cs" />
     <Compile Include="Entities\GraphElementEntity.cs" />
     <Compile Include="GraphRepository.cs" />
+    <Compile Include="OnErrorReturnType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitofWork.cs" />
   </ItemGroup>

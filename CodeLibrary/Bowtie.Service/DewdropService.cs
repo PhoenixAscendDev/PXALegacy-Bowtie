@@ -35,27 +35,27 @@ namespace JB2.Bowtie.Service
         #endregion Constructors
 
         #region Retrieve 
-        public IEnumerable<Dewdrop> Retrieve(string request, bool returnNullOrEmptyOnError = false)
+        public IEnumerable<Dewdrop> Retrieve(string request, OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
         {
             return _repo.GetAll();
         }
 
-        public IEnumerable<Dewdrop> Retrieve(bool isActive, bool returnNullOrEmptyOnError = false)
+        public IEnumerable<Dewdrop> Retrieve(bool isActive, OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
         {
             return _repo.GetAll();
         }
 
-        public IEnumerable<Dewdrop> Retrieve( bool returnNullOrEmptyOnError = false)
+        public IEnumerable<Dewdrop> Retrieve(OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
         {
             return _repo.GetAll();
         }
 
-        public IEnumerable<Dewdrop> RetrieveByApplication(Application app, bool returnNullOrEmptyOnError = false)
+        public IEnumerable<Dewdrop> RetrieveByApplication(Application app, OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
         {
             return _repo.GetByApplicationID(app.GetID());
         }
 
-        public Dewdrop RetrieveById(string id, bool returnNullOrEmptyOnError = false)
+        public Dewdrop RetrieveById(string id, OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
         {
             Regex regex = new Regex(@"\d+");
             Match match = regex.Match("^dew_?");
@@ -69,10 +69,16 @@ namespace JB2.Bowtie.Service
             }
             catch(NullReferenceException nullEx)
             {
-                if (!returnNullOrEmptyOnError)
-                    throw new ObjectNotFoundInRepositoryException(nullEx, entityId: id, respository: _repo);
-                else
-                    return Dewdrop.Empty();
+                switch(errorReturntype)
+                {
+                    case OnErrorReturnType.ThrowException:
+                        throw new ObjectNotFoundInRepositoryException(nullEx, entityId: id, respository: _repo);
+                    case OnErrorReturnType.Null:
+                        return null;
+                    case OnErrorReturnType.EmptyObject:
+                    default:
+                        return Dewdrop.Empty();
+                }                                
             }
         }
 
