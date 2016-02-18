@@ -50,8 +50,8 @@
     <Reference Include="JB2.Common.Data.AzureStorage">
       <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Data.AzureStorage\bin\Release\JB2.Common.Data.AzureStorage.dll</HintPath>
     </Reference>
-    <Reference Include="JB2.Common.Date, Version=0.1.1.16771, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Date.0.1.1\lib\JB2.Common.Date.dll</HintPath>
+    <Reference Include="JB2.Common.Date, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Date.0.2.0\lib\JB2.Common.Date.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Image, Version=0.1.7.16772, Culture=neutral, processorArchitecture=MSIL">
@@ -68,6 +68,10 @@
     </Reference>
     <Reference Include="JB2.Helpers.Font, Version=0.2.1.17724, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JB2.Helpers.Font.0.2.1\lib\JB2.Helpers.Font.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Identity.Core.0.1.4\lib\JB2.Identity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Infrastructure, Version=0.2.8.4181, Culture=neutral, processorArchitecture=MSIL">

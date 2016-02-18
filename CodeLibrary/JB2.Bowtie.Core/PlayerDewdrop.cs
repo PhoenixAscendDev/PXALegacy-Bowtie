@@ -16,9 +16,10 @@ namespace JB2.Bowtie
 
         public PlayerDewdrop()
         {
+            _id = JB2.Common.NewID.ShortGuid();
 
         }
-        public PlayerDewdrop( IEnumerable<IMetaData> metadataList )
+        public PlayerDewdrop( IEnumerable<IMetaData> metadataList, string value)
         {
             _metadata = new MetaDataCollection(metadataList);           
         }

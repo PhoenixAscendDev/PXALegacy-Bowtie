@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IPlayerDewdrop :  JB2.Identity.IPlayerable
+    public interface IPlayerDewdrop :  JB2.Identity.IPlayerable,JB2.Common.IIDNamePair<string,string>
     {
         DateTime GetDewDate();
         string GetDewdropID();

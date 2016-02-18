@@ -13,6 +13,6 @@ namespace JB2.Bowtie
         IEnumerable<IPlayerDewdrop> GetPlayerDews(string playerID, string dewdropID);
         IEnumerable<IPlayerDewdrop> GetPlayerDewsBySearch(object search);
 
-        void SavePlayerDew(IPlayerDewdrop playerdew);
+        void InsertPlayerDew(IPlayerDewdrop playerdew);
     }
 }

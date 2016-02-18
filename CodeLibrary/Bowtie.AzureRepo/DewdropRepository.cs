@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Microsoft.WindowsAzure.Storage.Table;
+using JB2.Common;
 using JB2.Common.Data;
 
 namespace JB2.Bowtie.Data.Azure
@@ -50,10 +52,22 @@ namespace JB2.Bowtie.Data.Azure
             return e;
         }
 
+        protected DynamicTableEntity convertToEntity(IPlayerDewdrop o)
+        {
+            var e = new DynamicTableEntity("log", "id:" + o.GetID());
+            e.Properties.Add("ID", EntityProperty.GeneratePropertyForString(o.GetID()));
+            e.Properties.Add("Name", EntityProperty.GeneratePropertyForString(o.GetName()));
+            e.Properties.Add("ApplicationID", EntityProperty.GeneratePropertyForString(o.GetApplicationID()));
+            e.Properties.Add("DewdropID", EntityProperty.GeneratePropertyForString(o.GetDewdropID()));
+            e.Properties.Add("PlayerID", EntityProperty.GeneratePropertyForString(o.GetPlayerID()));
+            e.Properties.Add("DewDate", EntityProperty.CreateEntityPropertyFromObject(o.GetDewDate()));
+            return e;
+        }
+
 
         public IEnumerable<IPlayerDewdrop> GetPlayerDewsByPlayerID(string playerID)
         {
-            throw new NotImplementedException();
+            var elements = _table.GetByRowKeyStartWith<DynamicTableEntity>("player:" + playerID, "dewlog:",1000);
         }
 
         public IEnumerable<IPlayerDewdrop> GetPlayerDews(string playerID, string dewdropID)
@@ -66,11 +80,32 @@ namespace JB2.Bowtie.Data.Azure
             throw new NotImplementedException();
         }
 
+        public void InsertPlayerDew(IPlayerDewdrop playerdew)
+        {
+            savePlayerDew(convertToEntity(playerdew), true);
+        }
+
         protected override Dewdrop convertToObject(DewdropEntity e)
         {
             if (e == null)
                 throw new NullReferenceException();
             var result = new Dewdrop(e.ID, e.Name,e.Description,e.ApplicationID, e.GraphID);
+            return result;
+        }
+
+        protected IPlayerDewdrop convertToPlayerDewdrop(DynamicTableEntity e)
+        {
+            List<IMetaData> metadata = new List<IMetaData>();
+
+            metadata.Add(new MetaData<string>("ApplicationID", e.Properties["ApplicationID"].StringValue));
+            metadata.Add(new MetaData<DateTime>("DewDate", (DateTime)e.Properties["DewDate"].DateTime));
+            metadata.Add(new MetaData<string>("DewdropID", e.Properties["DewdropID"].StringValue));
+            metadata.Add(new MetaData<string>("PlayerID", e.Properties["PlayerID"].StringValue));
+            
+            var result = new PlayerDewdrop(metadata, e.Properties["Value"].StringValue);
+            result.ID = e.Properties["ID"].StringValue;
+            result.Name = e.Properties["Name"].StringValue;
+
             return result;
         }
 
@@ -84,6 +119,38 @@ namespace JB2.Bowtie.Data.Azure
             }
 
             return result;
+        }
+
+        protected  IEnumerable<IPlayerDewdrop> convertToPlayerDewdrop(IEnumerable<DynamicTableEntity> list)
+        {
+            List<IPlayerDewdrop> result = new List<IPlayerDewdrop>(list.Count());
+
+            foreach (DynamicTableEntity e in list)
+            {
+                result.Add(convertToPlayerDewdrop(e));
+            }
+
+            return result;
+        }
+
+        protected void savePlayerDew(DynamicTableEntity e, bool replace)
+        {
+            e.PartitionKey = "log";
+            e.RowKey = "id:" + e.Properties["ID"].StringValue;
+            _table.Insert<DynamicTableEntity>(e, replace);
+
+            e.PartitionKey = "app:" + e.Properties["ApplicationID"].StringValue;
+            e.RowKey = "dewlog:" + e.Properties["DewdropID"].StringValue + ">*<" + e.Properties["ID"].StringValue;
+            _table.Insert<DynamicTableEntity>(e, replace);
+
+            e.PartitionKey = "player";
+            e.RowKey = "dewlog:" + e.Properties["DewdropID"].StringValue + ">*<" + e.Properties["ID"].StringValue;
+            _table.Insert<DynamicTableEntity>(e, replace);
+
+            e.PartitionKey = "player:" + e.Properties["PlayerID"].StringValue;
+            e.RowKey = "dewlog:" + e.Properties["DewdropID"].StringValue + ">*<" + e.Properties["ID"].StringValue;
+            _table.Insert<DynamicTableEntity>(e, replace);
+
         }
 
         protected override void saveEntity(DewdropEntity e, bool replace)
@@ -132,9 +199,6 @@ namespace JB2.Bowtie.Data.Azure
             _table.Delete<DewdropEntity>(e.PartitionKey, e.RowKey);
         }
 
-        public void SavePlayerDew(IPlayerDewdrop playerdew)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
