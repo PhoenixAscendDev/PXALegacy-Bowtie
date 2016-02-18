@@ -69,7 +69,7 @@ namespace JB2.Bowtie
             get
             {
                 if (_metadata.ContainsKey("bitscore"))
-                    return (long)_metadata["bitscore"].GetValue();
+                    return _metadata["bitscore"].GetValue().LongValue;
                 else
                     return 0;
             }

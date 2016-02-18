@@ -132,6 +132,9 @@ namespace JB2.Bowtie.Data.Azure
             _table.Delete<DewdropEntity>(e.PartitionKey, e.RowKey);
         }
 
-        
+        public void SavePlayerDew(IPlayerDewdrop playerdew)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

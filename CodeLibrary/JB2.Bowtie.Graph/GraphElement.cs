@@ -11,7 +11,7 @@ namespace JB2.Bowtie
     {
 
         #region Fields
-        protected object _value;
+        protected IMetaDataValue _value;
 
         protected JB2.Common.MetaDataCollection _metadata;
 
@@ -48,7 +48,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public object GetValue()
+        public IMetaDataValue GetValue()
         {
             return _value;
         }

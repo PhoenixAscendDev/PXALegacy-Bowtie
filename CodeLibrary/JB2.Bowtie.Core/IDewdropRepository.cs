@@ -11,6 +11,8 @@ namespace JB2.Bowtie
         IEnumerable<Dewdrop> GetByApplicationID(string appID);
         IEnumerable<IPlayerDewdrop> GetPlayerDewsByPlayerID(string playerID);
         IEnumerable<IPlayerDewdrop> GetPlayerDews(string playerID, string dewdropID);
-        IEnumerable<IPlayerDewdrop> GetPlayerDewsBySearch(object search);     
+        IEnumerable<IPlayerDewdrop> GetPlayerDewsBySearch(object search);
+
+        void SavePlayerDew(IPlayerDewdrop playerdew);
     }
 }
