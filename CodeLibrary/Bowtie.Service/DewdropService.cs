@@ -94,5 +94,21 @@ namespace JB2.Bowtie.Service
             _repo.Insert(entity);
             return true;
         }
+
+        #region PlayerDewdrop
+
+        public IEnumerable<IPlayerDewdrop> RetrievePlayerDewdropByPlayerID(string id)
+        {
+            return _repo.GetPlayerDewsByPlayerID(id);
+        }
+
+        
+        public bool Save(IPlayerDewdrop playerdewdrop)
+        {
+            _repo.InsertPlayerDew(playerdewdrop);
+            return true;
+        }
+
+        #endregion PlayerDewdrop
     }
 }

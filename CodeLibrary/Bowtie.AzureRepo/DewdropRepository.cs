@@ -68,11 +68,13 @@ namespace JB2.Bowtie.Data.Azure
         public IEnumerable<IPlayerDewdrop> GetPlayerDewsByPlayerID(string playerID)
         {
             var elements = _table.GetByRowKeyStartWith<DynamicTableEntity>("player:" + playerID, "dewlog:",1000);
+            return convertToPlayerDewdrop(elements);
         }
 
         public IEnumerable<IPlayerDewdrop> GetPlayerDews(string playerID, string dewdropID)
         {
-            throw new NotImplementedException();
+            var elements = _table.GetByRowKeyStartWith<DynamicTableEntity>("player:" + playerID, "dewlog:" + dewdropID, 1000);
+            return convertToPlayerDewdrop(elements);
         }
 
         public IEnumerable<IPlayerDewdrop> GetPlayerDewsBySearch(object search)
