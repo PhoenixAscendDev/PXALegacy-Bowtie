@@ -8,8 +8,6 @@ namespace JB2.Bowtie.Data.NoDB
 {
     public class UnitofWork : JB2.Bowtie.IUnitOfWork
     {
-
-
         public IApplicationRepository ApplicationRepository
         {
             get 
@@ -54,7 +52,21 @@ namespace JB2.Bowtie.Data.NoDB
             }
         }
 
+        public Bowtie.IGraphRepository GraphRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
+        public IDewdropRepository DewdropRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         public object GetRepository(Enum.RepositoryType respository)
         {

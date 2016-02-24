@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using Bowtie.WebAPI.Areas.HelpPage.ModelDescriptions;
-using Bowtie.WebAPI.Areas.HelpPage.Models;
+using JB2.Bowtie.WebAPI.Areas.HelpPage.ModelDescriptions;
+using JB2.Bowtie.WebAPI.Areas.HelpPage.Models;
 
-namespace Bowtie.WebAPI.Areas.HelpPage.Controllers
+namespace JB2.Bowtie.WebAPI.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

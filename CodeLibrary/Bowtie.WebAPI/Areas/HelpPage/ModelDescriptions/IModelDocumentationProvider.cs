@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace Bowtie.WebAPI.Areas.HelpPage.ModelDescriptions
+namespace JB2.Bowtie.WebAPI.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

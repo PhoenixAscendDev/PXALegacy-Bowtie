@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Bowtie.WebAPI.Areas.HelpPage.ModelDescriptions
+namespace JB2.Bowtie.WebAPI.Areas.HelpPage.ModelDescriptions
 {
     public class ParameterDescription
     {

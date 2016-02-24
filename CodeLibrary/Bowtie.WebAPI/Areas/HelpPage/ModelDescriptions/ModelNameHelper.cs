@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace Bowtie.WebAPI.Areas.HelpPage.ModelDescriptions
+namespace JB2.Bowtie.WebAPI.Areas.HelpPage.ModelDescriptions
 {
     internal static class ModelNameHelper
     {

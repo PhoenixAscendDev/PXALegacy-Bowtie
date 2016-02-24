@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Net.Http.Headers;
 
-namespace Bowtie.WebAPI.Areas.HelpPage
+namespace JB2.Bowtie.WebAPI.Areas.HelpPage
 {
     /// <summary>
     /// This is used to identify the place where the sample should be applied.
@@ -52,7 +52,7 @@ namespace Bowtie.WebAPI.Areas.HelpPage
         /// <param name="parameterNames">The parameter names.</param>
         public HelpPageSampleKey(SampleDirection sampleDirection, string controllerName, string actionName, IEnumerable<string> parameterNames)
         {
-            if (!Enum.IsDefined(typeof(SampleDirection), sampleDirection))
+            if (!System.Enum.IsDefined(typeof(SampleDirection), sampleDirection))
             {
                 throw new InvalidEnumArgumentException("sampleDirection", (int)sampleDirection, typeof(SampleDirection));
             }

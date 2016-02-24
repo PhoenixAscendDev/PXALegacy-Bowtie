@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace Bowtie.WebAPI.Areas.HelpPage
+namespace JB2.Bowtie.WebAPI.Areas.HelpPage
 {
     /// <summary>
     /// This class will create an object of a given type and populate it with sample data.
@@ -271,7 +271,7 @@ namespace Bowtie.WebAPI.Areas.HelpPage
 
         private static object GenerateEnum(Type enumType)
         {
-            Array possibleValues = Enum.GetValues(enumType);
+            Array possibleValues = System.Enum.GetValues(enumType);
             if (possibleValues.Length > 0)
             {
                 return possibleValues.GetValue(0);

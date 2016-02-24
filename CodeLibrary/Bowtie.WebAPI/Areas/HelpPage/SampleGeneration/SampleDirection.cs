@@ -1,4 +1,4 @@
-namespace Bowtie.WebAPI.Areas.HelpPage
+namespace JB2.Bowtie.WebAPI.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -10,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using Bowtie.WebAPI.Areas.HelpPage.ModelDescriptions;
-using Bowtie.WebAPI.Areas.HelpPage.Models;
+using JB2.Bowtie.WebAPI.Areas.HelpPage.ModelDescriptions;
+using JB2.Bowtie.WebAPI.Areas.HelpPage.Models;
 
-namespace Bowtie.WebAPI.Areas.HelpPage
+namespace JB2.Bowtie.WebAPI.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {
@@ -268,7 +269,28 @@ namespace Bowtie.WebAPI.Areas.HelpPage
                         complexTypeDescription = typeDescription as ComplexTypeModelDescription;
                     }
 
-                    if (complexTypeDescription != null)
+                    // Example:
+                    // [TypeConverter(typeof(PointConverter))]
+                    // public class Point
+                    // {
+                    //     public Point(int x, int y)
+                    //     {
+                    //         X = x;
+                    //         Y = y;
+                    //     }
+                    //     public int X { get; set; }
+                    //     public int Y { get; set; }
+                    // }
+                    // Class Point is bindable with a TypeConverter, so Point will be added to UriParameters collection.
+                    // 
+                    // public class Point
+                    // {
+                    //     public int X { get; set; }
+                    //     public int Y { get; set; }
+                    // }
+                    // Regular complex class Point will have properties X and Y added to UriParameters collection.
+                    if (complexTypeDescription != null
+                        && !IsBindableWithTypeConverter(parameterType))
                     {
                         foreach (ParameterDescription uriParameter in complexTypeDescription.Properties)
                         {
@@ -303,6 +325,16 @@ namespace Bowtie.WebAPI.Areas.HelpPage
                     }
                 }
             }
+        }
+
+        private static bool IsBindableWithTypeConverter(Type parameterType)
+        {
+            if (parameterType == null)
+            {
+                return false;
+            }
+
+            return TypeDescriptor.GetConverter(parameterType).CanConvertFrom(typeof(string));
         }
 
         private static ParameterDescription AddParameterDescription(HelpPageApiModel apiModel,

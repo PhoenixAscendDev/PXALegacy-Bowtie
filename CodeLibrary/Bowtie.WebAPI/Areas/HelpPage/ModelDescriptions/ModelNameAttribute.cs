@@ -1,6 +1,6 @@
 using System;
 
-namespace Bowtie.WebAPI.Areas.HelpPage.ModelDescriptions
+namespace JB2.Bowtie.WebAPI.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Use this attribute to change the name of the <see cref="ModelDescription"/> generated for a type.
