@@ -155,7 +155,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
@@ -200,6 +199,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DewdropModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultWithChallenge.cs" />
   </ItemGroup>
@@ -280,6 +280,10 @@
     <ProjectReference Include="..\JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj">
       <Project>{878da1e1-f733-4555-bb1d-b1c9188d287b}</Project>
       <Name>JB2.Bowtie.GameObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JB2.Economy.AzureRepo\JB2.Economy.AzureRepo.csproj">
+      <Project>{eb0bba4b-aa18-44e2-953c-b3ec0a110fff}</Project>
+      <Name>JB2.Economy.AzureRepo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -6,12 +6,22 @@ using System.Net.Http;
 using System.Web.Http;
 
 using JB2.Bowtie.Service;
+using JB2.Bowtie.WebAPI.Models;
 
 namespace JB2.Bowtie.WebAPI.Controllers
 {
     [RoutePrefix("api/v1/dewdrop")]
     public class DewdropController : JB2.Common.WebAPI.BaseApiController
     {
+
+        private static DewdropService _service
+        {
+            get
+            {
+                return new DewdropService(JB2.Settings.Bowtie.UnitOfWork);
+
+            }
+        }
         public DewdropController()
             : base()
         {
@@ -65,6 +75,19 @@ namespace JB2.Bowtie.WebAPI.Controllers
 
 
         }
+
+        
+       [HttpGet]
+       public HttpResponseMessage Get(string id)
+        {
+            var drop = _service.RetrieveById(id);
+
+            drop = JB2.Bowtie.Dewdrop.NewDewdrop("api test", "test description", null, null);
+
+            return createResponse<DewdropViewModel>(new DewdropViewModel(drop), "All", HttpStatusCode.OK);
+        }
+
+
 
 
     }
