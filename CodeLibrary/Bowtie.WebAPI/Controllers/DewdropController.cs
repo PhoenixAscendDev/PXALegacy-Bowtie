@@ -10,7 +10,7 @@ using JB2.Bowtie.WebAPI.Models;
 
 namespace JB2.Bowtie.WebAPI.Controllers
 {
-    [RoutePrefix("api/v1/dewdrop")]
+    //[RoutePrefix("api/v1/dewdrop")]
     public class DewdropController : JB2.Common.WebAPI.BaseApiController
     {
 
@@ -76,14 +76,15 @@ namespace JB2.Bowtie.WebAPI.Controllers
 
         }
 
-        
-       [HttpGet]
+        [Route("api/v1/dewdrop/{id}")]
+        [HttpGet]
        public HttpResponseMessage Get(string id)
         {
-            var drop = _service.RetrieveById(id);
+            var drop = _service.RetrieveById(id,Common.Data.OnErrorReturnType.Null);
 
             drop = JB2.Bowtie.Dewdrop.NewDewdrop("api test", "test description", null, null);
 
+            
             return createResponse<DewdropViewModel>(new DewdropViewModel(drop), "All", HttpStatusCode.OK);
         }
 

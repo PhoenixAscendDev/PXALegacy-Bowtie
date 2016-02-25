@@ -57,16 +57,16 @@
       <HintPath>..\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.WebAPI, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.WebAPI.0.1.0\lib\JB2.Common.WebAPI.dll</HintPath>
+    <Reference Include="JB2.Common.WebAPI, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Common.WebAPI.0.1.2\lib\JB2.Common.WebAPI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.GoogleAnalytics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.WebAPI.0.1.0\lib\JB2.GoogleAnalytics.dll</HintPath>
+      <HintPath>..\packages\JB2.Common.WebAPI.0.1.2\lib\JB2.GoogleAnalytics.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Gravatar, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.WebAPI.0.1.0\lib\JB2.Gravatar.dll</HintPath>
+      <HintPath>..\packages\JB2.Common.WebAPI.0.1.2\lib\JB2.Gravatar.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -280,6 +280,10 @@
     <ProjectReference Include="..\JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj">
       <Project>{878da1e1-f733-4555-bb1d-b1c9188d287b}</Project>
       <Name>JB2.Bowtie.GameObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JB2.Bowtie.Manager\JB2.Bowtie.Manager.csproj">
+      <Project>{2ac23884-2527-4b50-b2c4-bab99c96d9b4}</Project>
+      <Name>JB2.Bowtie.Manager</Name>
     </ProjectReference>
     <ProjectReference Include="..\JB2.Economy.AzureRepo\JB2.Economy.AzureRepo.csproj">
       <Project>{eb0bba4b-aa18-44e2-953c-b3ec0a110fff}</Project>
