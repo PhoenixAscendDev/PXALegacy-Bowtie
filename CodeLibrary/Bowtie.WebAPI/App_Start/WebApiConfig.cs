@@ -16,7 +16,7 @@ namespace JB2.Bowtie.WebAPI
 
             config.Routes.MapHttpRoute(
                name: "BowtieApi",
-               routeTemplate: "api/v1/{controller}/{action}/{id}",
+               routeTemplate: "v1/{controller}/{action}/{id}",
                defaults: new { id = RouteParameter.Optional }
            );
 

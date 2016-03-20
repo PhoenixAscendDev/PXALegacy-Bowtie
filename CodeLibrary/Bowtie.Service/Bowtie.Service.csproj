@@ -48,9 +48,6 @@
       <HintPath>..\packages\JB2.Common.Core.0.3.8\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Data">
-      <HintPath>..\..\..\API-JB2Common\CSharp\JB2.Common.Data\bin\Release\JB2.Common.Data.dll</HintPath>
-    </Reference>
     <Reference Include="JB2.Common.Date, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JB2.Date.0.2.0\lib\JB2.Common.Date.dll</HintPath>
       <Private>True</Private>
@@ -65,6 +62,18 @@
     </Reference>
     <Reference Include="JB2.Common.Ultities, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Economy.AzureRepo, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Economy.jBean.0.1.2\lib\JB2.Economy.AzureRepo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Economy.Core, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Economy.Core.0.1.2\lib\JB2.Economy.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Economy.jBean, Version=0.1.2.25702, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Economy.jBean.0.1.2\lib\JB2.Economy.jBean.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -103,14 +112,6 @@
     <ProjectReference Include="..\JB2.Bowtie.Core\JB2.Bowtie.Core.csproj">
       <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
       <Name>JB2.Bowtie.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JB2.BowTie.Economy\JB2.Economy.csproj">
-      <Project>{5ff36757-d424-40a8-8c3d-f87ada26f067}</Project>
-      <Name>JB2.Economy</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JB2.BowTie.GameObject.Currency\JB2.Economy.Jbean.csproj">
-      <Project>{387bae94-cbd5-45fa-8e9d-f16ad1229e1c}</Project>
-      <Name>JB2.Bowtie.Jbean</Name>
     </ProjectReference>
     <ProjectReference Include="..\JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj">
       <Project>{878da1e1-f733-4555-bb1d-b1c9188d287b}</Project>

@@ -233,6 +233,8 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
     <None Include="Properties\PublishProfiles\jb2-bowtie-api - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\jb2-bowtie-api - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\jbsquared-bowtie - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\jbsquared-bowtie - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -284,10 +286,6 @@
     <ProjectReference Include="..\JB2.Bowtie.Manager\JB2.Bowtie.Manager.csproj">
       <Project>{2ac23884-2527-4b50-b2c4-bab99c96d9b4}</Project>
       <Name>JB2.Bowtie.Manager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JB2.Economy.AzureRepo\JB2.Economy.AzureRepo.csproj">
-      <Project>{eb0bba4b-aa18-44e2-953c-b3ec0a110fff}</Project>
-      <Name>JB2.Economy.AzureRepo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

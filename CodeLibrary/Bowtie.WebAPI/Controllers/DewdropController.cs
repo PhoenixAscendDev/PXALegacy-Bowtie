@@ -87,9 +87,5 @@ namespace JB2.Bowtie.WebAPI.Controllers
             
             return createResponse<DewdropViewModel>(new DewdropViewModel(drop), "All", HttpStatusCode.OK);
         }
-
-
-
-
     }
 }

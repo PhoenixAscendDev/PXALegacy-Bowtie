@@ -59,6 +59,10 @@
       <HintPath>..\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="JB2.Economy.Core, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JB2.Economy.Core.0.1.2\lib\JB2.Economy.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JB2.Identity.Core.0.1.4\lib\JB2.Identity.Core.dll</HintPath>
       <Private>True</Private>
@@ -160,12 +164,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\JB2.BowTie.Economy\JB2.Economy.csproj">
-      <Project>{5ff36757-d424-40a8-8c3d-f87ada26f067}</Project>
-      <Name>JB2.Economy</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
