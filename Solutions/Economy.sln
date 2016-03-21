@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Websites", "Websites", "{5C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Economy.WebAPI", "..\Websites\Economy.WebAPI\Economy.WebAPI.csproj", "{E299D9EE-ED26-4FB1-8EC8-9B028F7F96AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "..\Websites\WebApplication1\WebApplication1.csproj", "{C7B7D535-0589-4D44-8ED6-4E061D2388BA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,16 +35,11 @@ Global
 		{E299D9EE-ED26-4FB1-8EC8-9B028F7F96AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E299D9EE-ED26-4FB1-8EC8-9B028F7F96AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E299D9EE-ED26-4FB1-8EC8-9B028F7F96AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7B7D535-0589-4D44-8ED6-4E061D2388BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7B7D535-0589-4D44-8ED6-4E061D2388BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7B7D535-0589-4D44-8ED6-4E061D2388BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7B7D535-0589-4D44-8ED6-4E061D2388BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E299D9EE-ED26-4FB1-8EC8-9B028F7F96AA} = {5CF49D76-E43F-444E-ADCC-3C7B3C241D66}
-		{C7B7D535-0589-4D44-8ED6-4E061D2388BA} = {5CF49D76-E43F-444E-ADCC-3C7B3C241D66}
 	EndGlobalSection
 EndGlobal
