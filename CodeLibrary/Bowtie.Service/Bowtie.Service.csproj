@@ -41,43 +41,43 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="JB2.Common.Color, Version=0.1.6.28890, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.0.1.6\lib\JB2.Common.Color.dll</HintPath>
+      <HintPath>..\..\Solutions\packages\JB2.Common.0.1.6\lib\JB2.Common.Color.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Core, Version=0.3.8.38723, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Core.0.3.8\lib\JB2.Common.Core.dll</HintPath>
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.3.8\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Date, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Date.0.2.0\lib\JB2.Common.Date.dll</HintPath>
+      <HintPath>..\..\Solutions\packages\JB2.Date.0.2.0\lib\JB2.Common.Date.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Image, Version=0.1.6.28890, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.0.1.6\lib\JB2.Common.Image.dll</HintPath>
+      <HintPath>..\..\Solutions\packages\JB2.Common.0.1.6\lib\JB2.Common.Image.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Map, Version=0.2.1.23896, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Map.0.2.1\lib\JB2.Common.Map.dll</HintPath>
+      <HintPath>..\..\Solutions\packages\JB2.Common.Map.0.2.1\lib\JB2.Common.Map.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Ultities, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
+      <HintPath>..\..\Solutions\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Economy.AzureRepo, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Economy.jBean.0.1.2\lib\JB2.Economy.AzureRepo.dll</HintPath>
+      <HintPath>..\..\Solutions\packages\JB2.Economy.jBean.0.1.2\lib\JB2.Economy.AzureRepo.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Economy.Core, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Economy.Core.0.1.2\lib\JB2.Economy.Core.dll</HintPath>
+    <Reference Include="JB2.Economy.Core, Version=0.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Economy.Core.0.1.3\lib\JB2.Economy.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Economy.jBean, Version=0.1.2.25702, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Economy.jBean.0.1.2\lib\JB2.Economy.jBean.dll</HintPath>
+    <Reference Include="JB2.Economy.jBean, Version=0.1.3.42253, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Economy.jBean.0.1.3.42253\lib\JB2.Economy.jBean.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Identity.Core.0.1.4\lib\JB2.Identity.Core.dll</HintPath>
+      <HintPath>..\..\Solutions\packages\JB2.Identity.Core.0.1.4\lib\JB2.Identity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -94,7 +94,6 @@
     <Compile Include="ApplicationService.cs" />
     <Compile Include="DewdropService.cs" />
     <Compile Include="GameCommandService.cs" />
-    <Compile Include="GameObjectsService.cs" />
     <Compile Include="GenericService.cs" />
     <Compile Include="GraphService.cs" />
     <Compile Include="LeaderboardService.cs" />
@@ -112,10 +111,6 @@
     <ProjectReference Include="..\JB2.Bowtie.Core\JB2.Bowtie.Core.csproj">
       <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
       <Name>JB2.Bowtie.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj">
-      <Project>{878da1e1-f733-4555-bb1d-b1c9188d287b}</Project>
-      <Name>JB2.Bowtie.GameObjects</Name>
     </ProjectReference>
     <ProjectReference Include="..\JB2.Bowtie.Graph\JB2.Bowtie.Graph.csproj">
       <Project>{7c28a0e8-2266-4e96-bab5-ece5e7bf9ce9}</Project>

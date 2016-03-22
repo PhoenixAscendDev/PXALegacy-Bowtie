@@ -24,7 +24,7 @@ namespace JB2.Economy.WebAPI
             {
                 ID = Economy.JbeanSettingName.CurrencyID,
                 Name = "CurrencyID",
-                Value = "jbeanID123456789"
+                Value = JB2.Configuration.GetjBeanCurrencyID()
             };
 
             JB2.Settings.Jbean.Configure(new JB2.Common.BaseSetting[1] { s }, jBeanRepo);

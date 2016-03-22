@@ -57,23 +57,12 @@ namespace JB2.Economy
                                                             new JBeanDenomination(Enum.JBeanTokenType.Navy),
                                                             new JBeanDenomination(Enum.JBeanTokenType.Pinto)
                                                           };
-            ICurrency jBeanCurrency = new JBean()
-            {
-                ID = sc[JbeanSettingName.CurrencyID].ToString(),
-                Denominations = factory.Denominations,
-                Name = "jBean",
-                PluralName = "jBeans"
-            };
 
+            ICurrency jBeanCurrency = new JBean(JB2.Configuration.GetjBeanCurrencyID());
             
             factory.Currencies = new ICurrency[1] { jBeanCurrency };
-
-            factory.Denominations = new IDenomination[3] {  new JBeanDenomination(Enum.JBeanTokenType.Kidney),
-                                                            new JBeanDenomination(Enum.JBeanTokenType.Navy),
-                                                            new JBeanDenomination(Enum.JBeanTokenType.Pinto)
-                                                          };
+            factory.Denominations = jBeanCurrency.Denominations;
             factory.Treasury = new JbeanTreasury(repo);
-
             factory.CentralBank = new jBeanCentralBank(factory.Treasury, repo);
 
             return factory;

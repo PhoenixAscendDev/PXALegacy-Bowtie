@@ -11,7 +11,30 @@ namespace JB2.Economy
 
         //Dictionary<Enum.JBeanTokenType, JBeanToken> _tokens;
 
-       
+        #region Constructors
+
+        public JBean(string currencyID)
+        {
+            
+            var demoinations = new JB2.Economy.IDenomination[3] {  new JB2.Economy.JBeanDenomination(JB2.Economy.Enum.JBeanTokenType.Kidney),
+                                                            new JB2.Economy.JBeanDenomination(JB2.Economy.Enum.JBeanTokenType.Navy),
+                                                            new JB2.Economy.JBeanDenomination(JB2.Economy.Enum.JBeanTokenType.Pinto)
+                                                          };
+            ID = currencyID;
+            Denominations = demoinations;
+            Name = "jBean";
+            PluralName = "jBeans";
+        }
+
+        public JBean()
+        {
+
+        }
+
+
+        #endregion Constructors
+
+
 
 
         #region Properties

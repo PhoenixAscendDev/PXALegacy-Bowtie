@@ -13,7 +13,5 @@ namespace JB2.Economy
         public IDenomination[] Denominations { get; set; }
         public JB2.Common.SettingCollection<string> Settings {get;set;}
         public IBank<TBankAccountHolder,TBankAccountStatus> CentralBank { get; set; }
-
-
     }
 }

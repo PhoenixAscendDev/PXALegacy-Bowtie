@@ -184,14 +184,6 @@
       <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
       <Name>JB2.Bowtie.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JB2.BowTie.Economy\JB2.Economy.csproj">
-      <Project>{5ff36757-d424-40a8-8c3d-f87ada26f067}</Project>
-      <Name>JB2.Economy</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JB2.BowTie.GameObject.Currency\JB2.Economy.Jbean.csproj">
-      <Project>{387bae94-cbd5-45fa-8e9d-f16ad1229e1c}</Project>
-      <Name>JB2.Economy.Jbean</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JB2.Bowtie.Graph\JB2.Bowtie.Graph.csproj">
       <Project>{7c28a0e8-2266-4e96-bab5-ece5e7bf9ce9}</Project>
       <Name>JB2.Bowtie.Graph</Name>

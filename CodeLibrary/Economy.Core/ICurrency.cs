@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-using JB2.Bowtie.Enum;
+using JB2.Economy.Enum;
 
 namespace JB2.Economy
 {

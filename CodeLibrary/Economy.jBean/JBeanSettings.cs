@@ -19,6 +19,14 @@ namespace JB2.Settings
         //private static SettingCollection<string> _settings;
         #endregion Fields
 
+        public static bool  IsConfigured
+        {
+            get
+            {
+                return _isConfigured;
+            }
+        }
+
 
         public static void Configure(IEnumerable<ISetting> settings,JB2.Economy.IJBeanRepository repo)
         {          

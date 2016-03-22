@@ -1,0 +1,145 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.Lib", "..\CodeLibrary\Bowtie.Lib\Bowtie.Lib.csproj", "{488D241B-CBA6-4096-B76F-A1FB03EA5F76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.ConsoleTest", "..\CodeLibrary\Bowtie.ConsoleTest\Bowtie.ConsoleTest.csproj", "{CB581EBF-8E78-43C2-932B-1EB804357691}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.Service", "..\CodeLibrary\Bowtie.Service\Bowtie.Service.csproj", "{E9F8ABC3-957E-4ADA-B7DB-A61E16BEAA1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.RepoLinq", "..\CodeLibrary\Bowtie.RepoLinq\Bowtie.RepoLinq.csproj", "{A1701AB0-0670-4A88-A4D4-304CE4898699}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.RepoNoDB", "..\CodeLibrary\Bowtie.RepoNoDB\Bowtie.RepoNoDB.csproj", "{226CE497-A55F-4B8B-8178-9C9B41AB34DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.ClientREST", "..\CodeLibrary\BowtieClientREST\Bowtie.ClientREST.csproj", "{66987C26-B983-46EC-B524-E1A2C1E2C3B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.WebMain", "..\CodeLibrary\Bowtie.WebMain\Bowtie.WebMain.csproj", "{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{488D241B-CBA6-4096-B76F-A1FB03EA5F76} = {488D241B-CBA6-4096-B76F-A1FB03EA5F76}
+		{226CE497-A55F-4B8B-8178-9C9B41AB34DC} = {226CE497-A55F-4B8B-8178-9C9B41AB34DC}
+		{A1701AB0-0670-4A88-A4D4-304CE4898699} = {A1701AB0-0670-4A88-A4D4-304CE4898699}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.WebAPI", "..\CodeLibrary\Bowtie.WebAPI\Bowtie.WebAPI.csproj", "{0381E8E2-27DF-48E2-A659-DE2488917DAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.GameObjects", "..\CodeLibrary\JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj", "{878DA1E1-F733-4555-BB1D-B1C9188D287B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.RepoAzure", "..\CodeLibrary\Bowtie.AzureRepo\Bowtie.RepoAzure.csproj", "{6D362C4A-06D4-40C6-B314-AA559791E1F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "..\CodeLibrary\Test\Test.csproj", "{A01B5F39-B496-42C7-8630-20F0A7D16CED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.Manager", "..\CodeLibrary\JB2.Bowtie.Manager\JB2.Bowtie.Manager.csproj", "{2AC23884-2527-4B50-B2C4-BAB99C96D9B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.Core", "..\CodeLibrary\JB2.Bowtie.Core\JB2.Bowtie.Core.csproj", "{99E5812C-BC21-4722-A8F1-75A6715B21A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.PlayerAzureRepo", "..\CodeLibrary\JB2.Bowtie.PlayerAzureRepo\JB2.Bowtie.PlayerAzureRepo.csproj", "{1D0D9310-9366-4829-8CF2-1CD26A8DB33E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.Graph", "..\CodeLibrary\JB2.Bowtie.Graph\JB2.Bowtie.Graph.csproj", "{7C28A0E8-2266-4E96-BAB5-ECE5E7BF9CE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		NoDB|Any CPU = NoDB|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU
+		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
+		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{488D241B-CBA6-4096-B76F-A1FB03EA5F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB581EBF-8E78-43C2-932B-1EB804357691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB581EBF-8E78-43C2-932B-1EB804357691}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB581EBF-8E78-43C2-932B-1EB804357691}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU
+		{CB581EBF-8E78-43C2-932B-1EB804357691}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
+		{CB581EBF-8E78-43C2-932B-1EB804357691}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB581EBF-8E78-43C2-932B-1EB804357691}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9F8ABC3-957E-4ADA-B7DB-A61E16BEAA1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9F8ABC3-957E-4ADA-B7DB-A61E16BEAA1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9F8ABC3-957E-4ADA-B7DB-A61E16BEAA1E}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU
+		{E9F8ABC3-957E-4ADA-B7DB-A61E16BEAA1E}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
+		{E9F8ABC3-957E-4ADA-B7DB-A61E16BEAA1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9F8ABC3-957E-4ADA-B7DB-A61E16BEAA1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1701AB0-0670-4A88-A4D4-304CE4898699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1701AB0-0670-4A88-A4D4-304CE4898699}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1701AB0-0670-4A88-A4D4-304CE4898699}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU
+		{A1701AB0-0670-4A88-A4D4-304CE4898699}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
+		{A1701AB0-0670-4A88-A4D4-304CE4898699}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1701AB0-0670-4A88-A4D4-304CE4898699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{226CE497-A55F-4B8B-8178-9C9B41AB34DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{226CE497-A55F-4B8B-8178-9C9B41AB34DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{226CE497-A55F-4B8B-8178-9C9B41AB34DC}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU
+		{226CE497-A55F-4B8B-8178-9C9B41AB34DC}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
+		{226CE497-A55F-4B8B-8178-9C9B41AB34DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{226CE497-A55F-4B8B-8178-9C9B41AB34DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66987C26-B983-46EC-B524-E1A2C1E2C3B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66987C26-B983-46EC-B524-E1A2C1E2C3B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66987C26-B983-46EC-B524-E1A2C1E2C3B8}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU
+		{66987C26-B983-46EC-B524-E1A2C1E2C3B8}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
+		{66987C26-B983-46EC-B524-E1A2C1E2C3B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66987C26-B983-46EC-B524-E1A2C1E2C3B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU
+		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
+		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU
+		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
+		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{878DA1E1-F733-4555-BB1D-B1C9188D287B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{878DA1E1-F733-4555-BB1D-B1C9188D287B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{878DA1E1-F733-4555-BB1D-B1C9188D287B}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{878DA1E1-F733-4555-BB1D-B1C9188D287B}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{878DA1E1-F733-4555-BB1D-B1C9188D287B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{878DA1E1-F733-4555-BB1D-B1C9188D287B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D362C4A-06D4-40C6-B314-AA559791E1F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D362C4A-06D4-40C6-B314-AA559791E1F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D362C4A-06D4-40C6-B314-AA559791E1F4}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{6D362C4A-06D4-40C6-B314-AA559791E1F4}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{6D362C4A-06D4-40C6-B314-AA559791E1F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D362C4A-06D4-40C6-B314-AA559791E1F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A01B5F39-B496-42C7-8630-20F0A7D16CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A01B5F39-B496-42C7-8630-20F0A7D16CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A01B5F39-B496-42C7-8630-20F0A7D16CED}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{A01B5F39-B496-42C7-8630-20F0A7D16CED}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{A01B5F39-B496-42C7-8630-20F0A7D16CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A01B5F39-B496-42C7-8630-20F0A7D16CED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AC23884-2527-4B50-B2C4-BAB99C96D9B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AC23884-2527-4B50-B2C4-BAB99C96D9B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AC23884-2527-4B50-B2C4-BAB99C96D9B4}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{2AC23884-2527-4B50-B2C4-BAB99C96D9B4}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{2AC23884-2527-4B50-B2C4-BAB99C96D9B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AC23884-2527-4B50-B2C4-BAB99C96D9B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99E5812C-BC21-4722-A8F1-75A6715B21A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99E5812C-BC21-4722-A8F1-75A6715B21A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99E5812C-BC21-4722-A8F1-75A6715B21A8}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{99E5812C-BC21-4722-A8F1-75A6715B21A8}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{99E5812C-BC21-4722-A8F1-75A6715B21A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99E5812C-BC21-4722-A8F1-75A6715B21A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D0D9310-9366-4829-8CF2-1CD26A8DB33E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D0D9310-9366-4829-8CF2-1CD26A8DB33E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D0D9310-9366-4829-8CF2-1CD26A8DB33E}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{1D0D9310-9366-4829-8CF2-1CD26A8DB33E}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{1D0D9310-9366-4829-8CF2-1CD26A8DB33E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D0D9310-9366-4829-8CF2-1CD26A8DB33E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C28A0E8-2266-4E96-BAB5-ECE5E7BF9CE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C28A0E8-2266-4E96-BAB5-ECE5E7BF9CE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C28A0E8-2266-4E96-BAB5-ECE5E7BF9CE9}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{7C28A0E8-2266-4E96-BAB5-ECE5E7BF9CE9}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{7C28A0E8-2266-4E96-BAB5-ECE5E7BF9CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C28A0E8-2266-4E96-BAB5-ECE5E7BF9CE9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+	EndGlobalSection
+EndGlobal
