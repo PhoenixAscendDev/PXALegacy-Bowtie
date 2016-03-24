@@ -15,15 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.RepoNoDB", "..\CodeL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.ClientREST", "..\CodeLibrary\BowtieClientREST\Bowtie.ClientREST.csproj", "{66987C26-B983-46EC-B524-E1A2C1E2C3B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.WebMain", "..\CodeLibrary\Bowtie.WebMain\Bowtie.WebMain.csproj", "{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}"
-	ProjectSection(ProjectDependencies) = postProject
-		{488D241B-CBA6-4096-B76F-A1FB03EA5F76} = {488D241B-CBA6-4096-B76F-A1FB03EA5F76}
-		{226CE497-A55F-4B8B-8178-9C9B41AB34DC} = {226CE497-A55F-4B8B-8178-9C9B41AB34DC}
-		{A1701AB0-0670-4A88-A4D4-304CE4898699} = {A1701AB0-0670-4A88-A4D4-304CE4898699}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.WebAPI", "..\CodeLibrary\Bowtie.WebAPI\Bowtie.WebAPI.csproj", "{0381E8E2-27DF-48E2-A659-DE2488917DAA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.GameObjects", "..\CodeLibrary\JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj", "{878DA1E1-F733-4555-BB1D-B1C9188D287B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.RepoAzure", "..\CodeLibrary\Bowtie.AzureRepo\Bowtie.RepoAzure.csproj", "{6D362C4A-06D4-40C6-B314-AA559791E1F4}"
@@ -37,6 +28,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.PlayerAzureRepo", "..\CodeLibrary\JB2.Bowtie.PlayerAzureRepo\JB2.Bowtie.PlayerAzureRepo.csproj", "{1D0D9310-9366-4829-8CF2-1CD26A8DB33E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.Graph", "..\CodeLibrary\JB2.Bowtie.Graph\JB2.Bowtie.Graph.csproj", "{7C28A0E8-2266-4E96-BAB5-ECE5E7BF9CE9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Websites", "Websites", "{D49A01BC-388B-4391-BC11-3849B066E5CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.WebAPI", "..\Websites\Bowtie.WebAPI\Bowtie.WebAPI.csproj", "{0381E8E2-27DF-48E2-A659-DE2488917DAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.WebMain", "..\Websites\Bowtie.WebMain\Bowtie.WebMain.csproj", "{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,18 +78,6 @@ Global
 		{66987C26-B983-46EC-B524-E1A2C1E2C3B8}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
 		{66987C26-B983-46EC-B524-E1A2C1E2C3B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66987C26-B983-46EC-B524-E1A2C1E2C3B8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU
-		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
-		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU
-		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
-		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{878DA1E1-F733-4555-BB1D-B1C9188D287B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{878DA1E1-F733-4555-BB1D-B1C9188D287B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{878DA1E1-F733-4555-BB1D-B1C9188D287B}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
@@ -135,9 +120,25 @@ Global
 		{7C28A0E8-2266-4E96-BAB5-ECE5E7BF9CE9}.NoDB|Any CPU.Build.0 = Release|Any CPU
 		{7C28A0E8-2266-4E96-BAB5-ECE5E7BF9CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C28A0E8-2266-4E96-BAB5-ECE5E7BF9CE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU
+		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
+		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0381E8E2-27DF-48E2-A659-DE2488917DAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.NoDB|Any CPU.ActiveCfg = NoDB|Any CPU
+		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.NoDB|Any CPU.Build.0 = NoDB|Any CPU
+		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0381E8E2-27DF-48E2-A659-DE2488917DAA} = {D49A01BC-388B-4391-BC11-3849B066E5CD}
+		{B180A2D5-BA4F-4AE4-B1C2-DF26A3A1D5E4} = {D49A01BC-388B-4391-BC11-3849B066E5CD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
