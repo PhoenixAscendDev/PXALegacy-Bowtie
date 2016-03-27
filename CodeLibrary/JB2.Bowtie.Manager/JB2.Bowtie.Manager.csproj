@@ -163,6 +163,7 @@
       <HintPath>..\..\Solutions\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -172,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BowtieSettings.cs" />
+    <Compile Include="JB2AppSettings.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
