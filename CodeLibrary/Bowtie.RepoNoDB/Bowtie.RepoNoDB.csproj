@@ -93,21 +93,17 @@
     <Compile Include="UnitofWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bowtie.Lib\Bowtie.Lib.csproj">
-      <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
-      <Name>Bowtie.Lib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JB2.Bowtie.Core\JB2.Bowtie.Core.csproj">
-      <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
-      <Name>JB2.Bowtie.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JB2.Bowtie.Graph\JB2.Bowtie.Graph.csproj">
-      <Project>{7c28a0e8-2266-4e96-bab5-ece5e7bf9ce9}</Project>
-      <Name>JB2.Bowtie.Graph</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\JB2.Bowtie.Core\Bowtie.Core.csproj">
+      <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
+      <Name>Bowtie.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JB2.Bowtie.Graph\Bowtie.Graph.csproj">
+      <Project>{7c28a0e8-2266-4e96-bab5-ece5e7bf9ce9}</Project>
+      <Name>Bowtie.Graph</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
