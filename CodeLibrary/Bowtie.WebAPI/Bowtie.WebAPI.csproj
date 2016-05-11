@@ -42,40 +42,40 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="JB2.Common.Core, Version=0.3.8.38723, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.3.8\lib\JB2.Common.Core.dll</HintPath>
+      <HintPath>..\packages\JB2.Common.Core.0.3.8\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Date, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Date.0.2.0\lib\JB2.Common.Date.dll</HintPath>
+      <HintPath>..\packages\JB2.Date.0.2.0\lib\JB2.Common.Date.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Map, Version=0.2.1.23896, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Map.0.2.1\lib\JB2.Common.Map.dll</HintPath>
+      <HintPath>..\packages\JB2.Common.Map.0.2.1\lib\JB2.Common.Map.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Ultities, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
+      <HintPath>..\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.WebAPI, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.WebAPI.0.1.2\lib\JB2.Common.WebAPI.dll</HintPath>
+      <HintPath>..\packages\JB2.Common.WebAPI.0.1.2\lib\JB2.Common.WebAPI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.GoogleAnalytics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.WebAPI.0.1.2\lib\JB2.GoogleAnalytics.dll</HintPath>
+      <HintPath>..\packages\JB2.Common.WebAPI.0.1.2\lib\JB2.GoogleAnalytics.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Gravatar, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.WebAPI.0.1.2\lib\JB2.Gravatar.dll</HintPath>
+      <HintPath>..\packages\JB2.Common.WebAPI.0.1.2\lib\JB2.Gravatar.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Identity.Core.0.1.4\lib\JB2.Identity.Core.dll</HintPath>
+      <HintPath>..\packages\JB2.Identity.Core.0.1.4\lib\JB2.Identity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -85,7 +85,7 @@
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Caching" />
@@ -97,36 +97,36 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\Microsoft.AspNet.Mvc.5.2.0\lib\net45\System.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.0\lib\net45\System.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\Microsoft.AspNet.Razor.3.2.0\lib\net45\System.Web.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.0\lib\net45\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
@@ -134,23 +134,23 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>..\..\Solutions\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
     <Reference Include="System.Web.Optimization">
-      <HintPath>..\..\Solutions\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
-      <HintPath>..\..\Solutions\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
-      <HintPath>..\..\Solutions\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -233,8 +233,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
     <None Include="Properties\PublishProfiles\jb2-bowtie-api - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\jb2-bowtie-api - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\jbsquared-bowtie - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\jbsquared-bowtie - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -259,29 +257,37 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\CodeLibrary\Bowtie.AzureRepo\Bowtie.RepoAzure.csproj">
+    <ProjectReference Include="..\Bowtie.AzureRepo\Bowtie.RepoAzure.csproj">
       <Project>{6d362c4a-06d4-40c6-b314-aa559791e1f4}</Project>
       <Name>Bowtie.RepoAzure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\Bowtie.RepoNoDB\Bowtie.RepoNoDB.csproj">
+    <ProjectReference Include="..\Bowtie.Lib\Bowtie.Lib.csproj">
+      <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
+      <Name>Bowtie.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bowtie.RepoNoDB\Bowtie.RepoNoDB.csproj">
       <Project>{226ce497-a55f-4b8b-8178-9c9b41ab34dc}</Project>
       <Name>Bowtie.RepoNoDB</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\Bowtie.Service\Bowtie.Service.csproj">
+    <ProjectReference Include="..\Bowtie.Service\Bowtie.Service.csproj">
       <Project>{e9f8abc3-957e-4ada-b7db-a61e16beaa1e}</Project>
       <Name>Bowtie.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Core\Bowtie.Core.csproj">
+    <ProjectReference Include="..\JB2.Bowtie.Core\Bowtie.Core.csproj">
       <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
       <Name>Bowtie.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Graph\Bowtie.Graph.csproj">
-      <Project>{7c28a0e8-2266-4e96-bab5-ece5e7bf9ce9}</Project>
-      <Name>Bowtie.Graph</Name>
+    <ProjectReference Include="..\JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj">
+      <Project>{878da1e1-f733-4555-bb1d-b1c9188d287b}</Project>
+      <Name>JB2.Bowtie.GameObjects</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Manager\Bowtie.Manager.csproj">
+    <ProjectReference Include="..\JB2.Bowtie.Manager\Bowtie.Manager.csproj">
       <Project>{2ac23884-2527-4b50-b2c4-bab99c96d9b4}</Project>
       <Name>Bowtie.Manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JB2.Economy.AzureRepo\JB2.Economy.AzureRepo.csproj">
+      <Project>{eb0bba4b-aa18-44e2-953c-b3ec0a110fff}</Project>
+      <Name>JB2.Economy.AzureRepo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

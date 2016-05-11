@@ -147,18 +147,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API.cs" />
+    <Compile Include="Application.cs" />
     <Compile Include="BowtieMetaDataCollection.cs" />
     <Compile Include="BowtieObject.cs" />
     <Compile Include="BowtieObjectType.cs" />
+    <Compile Include="Enum\AchievementRarityType.cs" />
+    <Compile Include="Enum\AchievementState.cs" />
+    <Compile Include="Enum\AchievementType.cs" />
+    <Compile Include="Enum\APIAuthorizeState.cs" />
+    <Compile Include="Enum\APIMode.cs" />
+    <Compile Include="Enum\GraphElementType.cs" />
+    <Compile Include="Enum\LeaderboardScoreType.cs" />
+    <Compile Include="Enum\LeaderboardType.cs" />
+    <Compile Include="Enum\RepoDataSource.cs" />
+    <Compile Include="Enum\RepositoryType.cs" />
+    <Compile Include="Enum\ScoreOrderType.cs" />
+    <Compile Include="GameCommand.cs" />
     <Compile Include="IBowtieObject.cs" />
     <Compile Include="IBowtiePlayer.cs" />
     <Compile Include="IDewdropRepository.cs" />
+    <Compile Include="Interfaces\IAchievement.cs" />
+    <Compile Include="Interfaces\IAchievementRepository.cs" />
+    <Compile Include="Interfaces\IApplication.cs" />
+    <Compile Include="Interfaces\IApplicationRepository.cs" />
+    <Compile Include="Interfaces\IClient.cs" />
+    <Compile Include="Interfaces\IGameCommand.cs" />
+    <Compile Include="Interfaces\IGameCommandRepository.cs" />
+    <Compile Include="Interfaces\IGraphElement.cs" />
+    <Compile Include="Interfaces\IGraphRepository.cs" />
+    <Compile Include="Interfaces\ILeaderboard.cs" />
+    <Compile Include="Interfaces\ILeaderboardRepository.cs" />
+    <Compile Include="Interfaces\IMasterLeaderboard.cs" />
+    <Compile Include="Interfaces\IPlayerAchievement.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="IPlayerRespository.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Dewdrop.cs" />
     <Compile Include="IPlayerDewdrop.cs" />
     <Compile Include="PlayerDewdrop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="TokenName.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>

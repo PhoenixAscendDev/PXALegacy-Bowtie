@@ -37,6 +37,14 @@
       <HintPath>..\packages\JB2.Common.Core.0.3.8\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="JB2.Economy.Core, Version=0.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Economy.Core.0.1.3\lib\JB2.Economy.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Economy.jBean, Version=0.1.3.42253, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Economy.jBean.0.1.3.42253\lib\JB2.Economy.jBean.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -59,13 +67,17 @@
       <Project>{6d362c4a-06d4-40c6-b314-aa559791e1f4}</Project>
       <Name>Bowtie.RepoAzure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bowtie.Lib\Bowtie.Lib.csproj">
-      <Project>{488d241b-cba6-4096-b76f-a1fb03ea5f76}</Project>
-      <Name>Bowtie.Lib</Name>
+    <ProjectReference Include="..\JB2.Bowtie.Core\Bowtie.Core.csproj">
+      <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
+      <Name>Bowtie.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JB2.Bowtie.Graph\JB2.Bowtie.Graph.csproj">
+    <ProjectReference Include="..\JB2.Bowtie.Graph\Bowtie.Graph.csproj">
       <Project>{7c28a0e8-2266-4e96-bab5-ece5e7bf9ce9}</Project>
-      <Name>JB2.Bowtie.Graph</Name>
+      <Name>Bowtie.Graph</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JB2.Bowtie.Manager\Bowtie.Manager.csproj">
+      <Project>{2ac23884-2527-4b50-b2c4-bab99c96d9b4}</Project>
+      <Name>Bowtie.Manager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
