@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+    
+
+</head>
+<html>
+    script src="jquery-1.10.2.min.js"></script>
+<script src="easyXDM.min.js"></script>
+<script>
+
+    function apiTunnel(endpoint, params, callback) {
+        var options = {
+            url:      'http://bowtie.jbsquared.com/api/' + endpoint,
+            data:     params,
+            type:     'GET',
+            complete: complete,
+            headers:  {
+                'JBsquared-Publisher-Origin': rpc.origin
+            }
+        };
+
+        function complete(xhr) {
+            var response = {};
+
+            if (xhr.status !== 200)
+                response.error = xhr.responseText;
+            else
+                response.data = JSON.parse(xhr.responseText);
+
+            callback(response);
+        }
+
+        jQuery.ajax(options);
+    }
+
+    var rpc = new easyXDM.Rpc({}, {
+        local: {
+            apiTunnel: apiTunnel
+        }
+    });
+</script>
+    
+</html>
