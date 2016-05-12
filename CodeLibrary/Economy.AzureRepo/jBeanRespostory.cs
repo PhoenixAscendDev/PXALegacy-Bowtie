@@ -498,10 +498,10 @@ namespace JB2.Economy.Data
                 settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.KidneyValue, Value = ce["Demo1_Value"].Int32Value });
                 settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.NavyFrontImage, Value = ce["Demo2_FrontImage"].StringValue });
                 settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.NavyBackImage, Value = ce["Demo2_BackImage"].StringValue });
-                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.NavyValue, Value = ce["Demo2_Value"].StringValue });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.NavyValue, Value = ce["Demo2_Value"].Int32Value });
                 settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.PintoFrontImage, Value = ce["Demo3_FrontImage"].StringValue });
                 settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.PintoBackImage, Value = ce["Demo3_BackImage"].StringValue });
-                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.PintoValue, Value = ce["Demo3_Value"].StringValue });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.PintoValue, Value = ce["Demo3_Value"].Int32Value });
             }
 
             var te = _jbeanTable.GetEntity<DynamicTableEntity>("treasury", "id:jBean");

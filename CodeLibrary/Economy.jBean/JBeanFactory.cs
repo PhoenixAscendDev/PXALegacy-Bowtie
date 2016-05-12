@@ -22,28 +22,94 @@ namespace JB2.Economy
 
         public  string GetTokenImageFront(Enum.JBeanTokenType type)
         {
-            return string.Empty;
+            if(Settings == null)
+                return string.Empty;
+
+            var settingName = string.Empty;
+            switch(type)
+            {
+                case JBeanTokenType.Kidney:
+                    settingName = JB2.Economy.JbeanSettingName.KidneyFrontImage;
+                    break;
+                case JBeanTokenType.Navy:
+                    settingName = JB2.Economy.JbeanSettingName.NavyFrontImage;
+                    break;
+                case JBeanTokenType.Pinto:
+                    settingName = JB2.Economy.JbeanSettingName.PintoFrontImage;
+                    break;
+            }
+
+            if (Settings[settingName] != null)
+                return (string)Settings[settingName].Value;
+            else
+                return string.Empty;
         }
 
         public  string GetTokenImageBack(Enum.JBeanTokenType type)
         {
-            return string.Empty;
+            if (Settings == null)
+                return string.Empty;
+
+            var settingName = string.Empty;
+            switch (type)
+            {
+                case JBeanTokenType.Kidney:
+                    settingName = JB2.Economy.JbeanSettingName.KidneyBackImage;
+                    break;
+                case JBeanTokenType.Navy:
+                    settingName = JB2.Economy.JbeanSettingName.NavyBackImage;
+                    break;
+                case JBeanTokenType.Pinto:
+                    settingName = JB2.Economy.JbeanSettingName.PintoBackImage;
+                    break;
+            }
+
+            if (Settings[settingName] != null)
+                return (string)Settings[settingName].Value;
+            else
+                return string.Empty;
         }
 
         public int GetTokenValue(Enum.JBeanTokenType type)
         {
-            switch(type)
+            if (Settings == null)
+            {
+                switch (type)
+                {
+                    case Enum.JBeanTokenType.Kidney:
+                        return 1;
+                    case Enum.JBeanTokenType.Navy:
+                        return 100;
+                    case Enum.JBeanTokenType.Pinto:
+                        return 1000;
+                    default:
+                        return 0;
+                }
+            }
+
+            var settingName = string.Empty;
+
+            switch (type)
             {
                 case Enum.JBeanTokenType.Kidney:
-                    return 1;
+                    settingName = JbeanSettingName.KidneyValue;
+                    break;
                 case Enum.JBeanTokenType.Navy:
-                    return 100;
+                    settingName = JbeanSettingName.NavyValue;
+                    break;
                 case Enum.JBeanTokenType.Pinto:
-                    return 1000;
+                    settingName = JbeanSettingName.PintoValue;
+                    break;
                 default:
                     return 0;
             }
-            
+
+            if (Settings[settingName] != null)
+                return (int)Settings[settingName].Value;
+            else
+                return 0;
+
+
         }
 
         public static JBeanFactory Configure(IEnumerable<ISetting> settings, IJBeanRepository repo)
