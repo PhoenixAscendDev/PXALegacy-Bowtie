@@ -7,7 +7,7 @@ using JB2.Common;
 
 namespace JB2.Bowtie
 {
-    public class Application : BowtieObject,IApplication
+    public class Application : BowtieObject,IApplication, JB2.Common.IAPIKeySecretPair
     {
 
         #region Fields
@@ -31,6 +31,10 @@ namespace JB2.Bowtie
             get
             {
                 return _secret;
+            }
+            set
+            {
+                _secret = value;
             }
         }
 
@@ -59,7 +63,24 @@ namespace JB2.Bowtie
 
 
 
-       #endregion Public Properies
+        #endregion Public Properies
+
+        #region IAPIKeySecretPair
+
+        public string APIkey
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                _id = value;
+            }
+        }
+
+
+        #endregion IAPIKeySecretPair
 
 
         public bool canIssueJBeans

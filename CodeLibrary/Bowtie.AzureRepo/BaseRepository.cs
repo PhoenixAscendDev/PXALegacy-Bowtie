@@ -9,8 +9,14 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 namespace JB2.Bowtie.Data.Azure
 {
-    public abstract class BaseRepository<T,Tentity> : JB2.Common.IRepository<T, string>
-        where Tentity : AzureTableEntity, new()
+
+    public abstract class BowtieRepository<T> : BowtieRepository<T,DynamicTableEntity>
+    {
+
+    }
+
+    public abstract class BowtieRepository<T,Tentity> : JB2.Common.IRepository<T, string>
+        where Tentity : class, ITableEntity, new()
     {
         protected JB2.Common.Data.AzureTableRepository _table;
         protected JB2.Common.Data.AzureBlobRepository _blob;
@@ -40,9 +46,14 @@ namespace JB2.Bowtie.Data.Azure
 
         public virtual T GetById(string id)
         {
-            var e = _table.GetEntity<Tentity>(_defaultPartitionKey, "id:" + id);
+            var e = _table.GetEntity<Tentity>(_defaultPartitionKey, "id:" + id,false);
 
             return convertToObject(e);
+        }
+
+        public virtual T[] SearchFor(string filter)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion IRepository
@@ -57,5 +68,6 @@ namespace JB2.Bowtie.Data.Azure
 
         protected abstract void deleteAll(Tentity e);
 
+       
     }
 }

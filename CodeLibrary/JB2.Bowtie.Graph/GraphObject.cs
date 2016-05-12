@@ -63,7 +63,14 @@ namespace JB2.Bowtie
             result.Plural = pural;
 
             return result;
-                
+
         }
+
+        #region IMetaData
+
+ 
+        #endregion IMetaData
+
+
     }
 }

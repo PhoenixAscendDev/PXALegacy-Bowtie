@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.Data.NoDB
 {
-    public class GameCommandRepository : JB2.Bowtie.IGameCommandRepository
+    public class GameCommandRepository :  JB2.Bowtie.IGameCommandRepository
     {
         public IGameCommand[] GetByGameID(string gameID)
         {
@@ -34,6 +34,11 @@ namespace JB2.Bowtie.Data.NoDB
         }
 
         public IGameCommand[] SearchFor()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IGameCommand[] SearchFor(string filter)
         {
             throw new NotImplementedException();
         }

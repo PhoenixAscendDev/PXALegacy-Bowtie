@@ -67,5 +67,10 @@ namespace JB2.Bowtie.Data.NoDB
         {
             throw new NotImplementedException();
         }
+
+        public IApplication[] SearchFor(string filter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -10,7 +10,7 @@ using JB2.Common.Data;
 
 namespace JB2.Bowtie.Data.Azure
 {
-    public class DewdropRepository : BaseRepository<Dewdrop,DewdropEntity>,  IDewdropRepository
+    public class DewdropRepository : BowtieRepository<Dewdrop,DewdropEntity>,  IDewdropRepository
     {
   
         #region Constructors

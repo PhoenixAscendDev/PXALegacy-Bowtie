@@ -34,5 +34,10 @@ namespace JB2.Bowtie.Test
         {
             throw new NotImplementedException();
         }
+
+        public Tobject[] SearchFor(string filter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
