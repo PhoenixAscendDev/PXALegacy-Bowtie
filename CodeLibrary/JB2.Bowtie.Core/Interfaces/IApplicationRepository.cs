@@ -10,6 +10,8 @@ namespace JB2.Bowtie
     {
         IApplication[] GetAPIAllowedApps();
 
-        IApplication[] GetApplicationsByClientID();
+        IApplication[] GetApplicationsByClientID(string clientID);
+
+        IApplication GetApplicationByAPIKey(string publicKey);
     }
 }

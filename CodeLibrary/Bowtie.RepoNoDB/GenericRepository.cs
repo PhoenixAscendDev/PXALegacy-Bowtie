@@ -8,8 +8,6 @@ namespace JB2.Bowtie.Test
 {
     public class GenericRepository<Tobject> : JB2.Common.IRepository<Tobject, string> where Tobject : IBowtieObject
     {
-
-
         public void Delete(Tobject entity)
         {
             throw new NotImplementedException();

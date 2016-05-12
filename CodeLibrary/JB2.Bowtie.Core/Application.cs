@@ -14,14 +14,21 @@ namespace JB2.Bowtie
         private string _secret;       
         private Enum.APIAuthorizeState _APIstate;
 
-        
+
         #endregion Fields
 
         #region Constructors
-        public Application(string publickey, string secretKey ) : base(Enum.BowtieObjectType.bowtie_application,publickey)
+
+        public Application(string publickey, string secretKey) : this (publickey,secretKey,Enum.APIAuthorizeState.Unknown)
         {
-            this._secret = secretKey;           
+
         }
+        public Application(string publickey, string secretKey, Enum.APIAuthorizeState state ) : base(Enum.BowtieObjectType.bowtie_application,publickey)
+        {
+            this._secret = secretKey;
+            _APIstate = state;          
+        }
+
         #endregion Constructors
 
         #region Public Properies

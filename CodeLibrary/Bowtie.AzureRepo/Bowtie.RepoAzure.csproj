@@ -156,6 +156,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationRepository.cs" />
     <Compile Include="AzureStorage.cs" />
     <Compile Include="BaseRepository.cs" />
     <Compile Include="BingoCardEntry.cs" />

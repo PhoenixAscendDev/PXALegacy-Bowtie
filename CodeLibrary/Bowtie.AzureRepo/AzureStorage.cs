@@ -57,6 +57,14 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public static AzureTableRepository ApplicationTable
+        {
+            get
+            {
+                return JB2.Infrastructure.Storage.BowtieAccount.GetTable("applications");
+            }
+        }
+
 
 
 

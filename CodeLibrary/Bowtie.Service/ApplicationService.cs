@@ -21,8 +21,9 @@ namespace JB2.Bowtie.Service
             _uofw = unitOfWork;
         }
 
-        public ApplicationService(IApplicationRepository repo): base( repo)
+        public ApplicationService(IApplicationRepository repo): base(repo)
         {
+            _uofw = JB2.Settings.Bowtie.UnitOfWork;
 
         }
 
@@ -36,13 +37,24 @@ namespace JB2.Bowtie.Service
             return app == null ? JB2.Bowtie.Enum.APIAuthorizeState.Unknown : app.AuthorizedState;
         }
 
-        public bool isApplicationAuthorized(string applicationID)
+        public bool isAuthorized(string applicationID)
         {
-            APIAuthorizeState state = CheckAPIAuthorization(applicationID);
-
-            return state == APIAuthorizeState.Authorized; 
-           
+            return isAuthorized(_repo.GetById(applicationID));     
         }
+
+        public bool isAuthorized(JB2.Common.IAPIKeySecretPair api)
+        {
+            var app = _repo.GetApplicationByAPIKey(api.APIkey);
+            return isAuthorized(app);
+        }
+
+        private bool isAuthorized(IApplication app)
+        {
+            if (app == null)
+                return false;
+
+            return app.isAuthorized;
+        } 
 
 
 
