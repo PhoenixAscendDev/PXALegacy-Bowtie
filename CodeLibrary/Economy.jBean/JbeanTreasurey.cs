@@ -28,9 +28,6 @@ namespace JB2.Economy
 
         #endregion Constructor
 
-
-
-
         public void CancelNote(ITreasuryNote treasuryNote)
         {
             var code = _repo.GetTreasuryNoteStatus(treasuryNote);

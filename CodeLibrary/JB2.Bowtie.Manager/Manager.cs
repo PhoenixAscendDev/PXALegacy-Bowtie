@@ -37,7 +37,7 @@ namespace JB2.Bowtie
             {
                 ID = Economy.JbeanSettingName.CurrencyID,
                 Name = "CurrencyID",
-                Value = "jbeanID123456789"
+                Value = JB2.Configuration.GetjBeanCurrencyID()
             };
             //JB2.Bowtie.Settings._application = app;
             var jbeanStorage = JB2.Infrastructure.Storage.BowtieAccount;
