@@ -23,7 +23,7 @@
 
     Bowtie.instances = {};
     Bowtie.callbackQueue = {};
-    Bowtie.init = function (version, callback) {
+    Bowtie.init = function (appkey,version, callback) {
         console.log('bowtie.init....loading');
         if (typeof version === 'function') {
             callback = version;
@@ -62,6 +62,10 @@
         window.Bowtie = _Bowtie;
         return Bowtie;
     };
+
+    if (typeof window.BowtieAsyncReady === 'function') {
+        window.BowtieAsyncReady();
+    }
 })(this);
 
 // Embed the 'script' microlib into our initial script file for loading dependencies.

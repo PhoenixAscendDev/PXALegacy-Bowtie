@@ -7,13 +7,35 @@
 <body>
     This is a test
 
-    <script src="http://bowtie.jbsquared.com/sdk/sdk.js"></script>
+    <script>
+        (function() {
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = 'http://bowtie.jbsquared.com/sdk/sdk.js';
+                var entry = document.getElementsByTagName('script')[0];
+                entry.parentNode.insertBefore(script, entry);
+        })();
+        window.BowtieAsyncReady = function () {
+            Bowtie.init("1.2",function (B) {
+                alert(B);
+                B.productWidget({
+                    id: '1337',
+                    dom: 'stork-widget-location'
+                });
+            });
+            alert(Bowtie);
+        };
+    </script>
+
+
+
+    <!--<script src="http://bowtie.jbsquared.com/sdk/sdk.js"></script>
     <script>
         Bowtie.init(function (B) {
-            alert("");
+            alert(B);
             B.productWidget({ id: '1337', dom: 'widget-location-id' });
         });
-    </script>
+    </script>-->
 
     Bowtie
 </body>
