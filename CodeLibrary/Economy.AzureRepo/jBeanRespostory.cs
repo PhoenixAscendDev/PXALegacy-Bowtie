@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using JB2.Economy.Enum;
 using Microsoft.WindowsAzure.Storage.Table;
+using JB2.Common;
 
 namespace JB2.Economy.Data
 {
@@ -479,11 +480,44 @@ namespace JB2.Economy.Data
             _jbeanTable.Insert<TreasuryStats>(e, true);
 
             return true;
-        }  
+        }
+
+        public IEnumerable<ISetting> GetFactorySettings(string currencyID)
+        {
+            var settings = new List<ISetting>();
 
 
 
+            var ce = _jbeanTable.GetEntity<DynamicTableEntity>("currency", "id:" + currencyID);
 
+            if (ce != null)
+            {
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.CurrencyID, Value = ce["ID"].StringValue });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.KidneyFrontImage, Value = ce["Demo1_FrontImage"].StringValue });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.KidneyBackImage, Value = ce["Demo1_BackImage"].StringValue });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.KidneyValue, Value = ce["Demo1_Value"].Int32Value });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.NavyFrontImage, Value = ce["Demo2_FrontImage"].StringValue });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.NavyBackImage, Value = ce["Demo2_BackImage"].StringValue });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.NavyValue, Value = ce["Demo2_Value"].StringValue });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.PintoFrontImage, Value = ce["Demo3_FrontImage"].StringValue });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.PintoBackImage, Value = ce["Demo3_BackImage"].StringValue });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.PintoValue, Value = ce["Demo3_Value"].StringValue });
+            }
 
+            var te = _jbeanTable.GetEntity<DynamicTableEntity>("treasury", "id:jBean");
+
+            if (te != null)
+            {
+
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.AutoFillMinBalance, Value = ce["AutoFill_MinBalance"].Int32Value });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.AutoFillEnable, Value = ce["AutoFill_Enable"].BooleanValue });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.AutoFillTime, Value = ce["AutoFill_TimeMinutes"].Int32Value });
+
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.TreasuryRequestLimit, Value = ce["RequestLimit"].Int32Value });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.TreasuryRequestLimitCoolDown, Value = ce["RequestLimit_CoolDownMinutes"].Int32Value });
+            }
+
+            return settings;
+        }
     }
 }

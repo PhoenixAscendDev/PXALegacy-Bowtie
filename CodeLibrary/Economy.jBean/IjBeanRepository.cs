@@ -51,7 +51,12 @@ namespace JB2.Economy
 
         #endregion Token
 
+        #region Treasury
 
+        IEnumerable<ISetting> GetFactorySettings(string currencyID);
+        
+
+        #endregion Treasury
 
         jBeanTotals GetStats();
 

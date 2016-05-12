@@ -52,6 +52,27 @@ namespace JB2.Economy
 
             JB2.Common.SettingCollection<string> sc = new SettingCollection<string>(settings);
 
+            IEnumerable<ISetting> defaultsettings = new List<ISetting>();
+            //get default settings
+
+            try
+            {
+                foreach (var s in settings)
+                {
+                    if (s.ID == JB2.Economy.JbeanSettingName.CurrencyID)
+                        defaultsettings = repo.GetFactorySettings((string)s.Value);
+                }
+                foreach( var ds in defaultsettings)
+                {
+                    sc.Add(ds);
+                }
+
+            }
+            catch(Exception ex)
+            {
+                sc = new SettingCollection<string>(settings);
+            }
+
             factory.Settings = sc;
             factory.Denominations = new IDenomination[3] {  new JBeanDenomination(Enum.JBeanTokenType.Kidney),
                                                             new JBeanDenomination(Enum.JBeanTokenType.Navy),
