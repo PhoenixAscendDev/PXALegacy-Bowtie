@@ -243,7 +243,7 @@ namespace JB2.Economy.Data
 
         public jBeanAppSettings GetApplicationSettings(JB2.Identity.IApplication app)
         {
-            var e = _jbeanTable.GetEntity<AppSettingEntity>("applicationSetting:jbean", "id:" + app.ID);
+            var e = _jbeanTable.GetEntity<AppSettingEntity>("application:jbean", "id:" + app.ID);
 
             if(e != null)
             {
@@ -262,11 +262,11 @@ namespace JB2.Economy.Data
 
         public JB2.Common.ServiceResult SaveApplicationSettings(string appId, jBeanAppSettings settings)
         {
-            var e = _jbeanTable.GetEntity<AppSettingEntity>("applicationSetting:jbean", "id:" + appId);
+            var e = _jbeanTable.GetEntity<AppSettingEntity>("application:jbean", "id:" + appId);
 
             if(e == null)
             {
-                e = new AppSettingEntity("applicationSetting:jbean", "id:" + appId);
+                e = new AppSettingEntity("application:jbean", "id:" + appId);
                 var d = jBeanAppSettings.Default();
                 e.CanRequest = d.CanRequest;
                 e.ID = appId;
