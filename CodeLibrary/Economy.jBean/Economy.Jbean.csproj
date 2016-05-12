@@ -34,12 +34,12 @@
       <HintPath>..\..\Solutions\packages\Hyak.Common.1.0.2\lib\net45\Hyak.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Core, Version=0.2.6.23895, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\JB2.Economy\packages\JB2.Common.Core.0.2.6\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.3.17.23064, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.3.17\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Data.AzureStorage, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.2.0\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
+    <Reference Include="JB2.Common.Data.AzureStorage, Version=0.2.3.22792, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.2.3\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Date, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
@@ -58,12 +58,12 @@
       <HintPath>..\JB2.Economy\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Identity.Core, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\JB2.Economy\packages\JB2.Identity.Core.0.1.1\lib\JB2.Identity.Core.dll</HintPath>
+    <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Identity.Core.0.1.4.1\lib\JB2.Identity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Infrastructure, Version=0.2.11.35239, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.11\lib\JB2.Infrastructure.dll</HintPath>
+    <Reference Include="JB2.Infrastructure, Version=0.2.14.40996, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.14\lib\JB2.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
