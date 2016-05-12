@@ -509,12 +509,12 @@ namespace JB2.Economy.Data
             if (te != null)
             {
 
-                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.AutoFillMinBalance, Value = ce["AutoFill_MinBalance"].Int32Value });
-                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.AutoFillEnable, Value = ce["AutoFill_Enable"].BooleanValue });
-                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.AutoFillTime, Value = ce["AutoFill_TimeMinutes"].Int32Value });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.AutoFillMinBalance, Value = te["AutoFill_MinBalance"].Int32Value });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.AutoFillEnable, Value = te["AutoFill_Enable"].BooleanValue });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.AutoFillTime, Value = te["AutoFill_TimeMinutes"].Int32Value });
 
-                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.TreasuryRequestLimit, Value = ce["RequestLimit"].Int32Value });
-                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.TreasuryRequestLimitCoolDown, Value = ce["RequestLimit_CoolDownMinutes"].Int32Value });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.TreasuryRequestLimit, Value = te["RequestLimit"].Int32Value });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.TreasuryRequestLimitCoolDown, Value = te["RequestLimit_CoolDownMinutes"].Int32Value });
             }
 
             return settings;

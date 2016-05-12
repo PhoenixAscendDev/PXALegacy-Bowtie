@@ -28,6 +28,9 @@ namespace JB2.Economy.WebAPI
             };
 
             JB2.Settings.Jbean.Configure(new JB2.Common.BaseSetting[1] { s }, jBeanRepo);
+
+            var pintoValue = JB2.Settings.Jbean.GetTokenValue(Enum.JBeanTokenType.Pinto);
+
         }
     }
 }

@@ -130,7 +130,8 @@ namespace JB2.Economy
                 }
                 foreach( var ds in defaultsettings)
                 {
-                    sc.Add(ds);
+                    if(settings.ToList().Find(x => x.ID == ds.ID) == null)
+                        sc.Add(ds);
                 }
 
             }
