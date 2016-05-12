@@ -43,13 +43,16 @@
             default:
                 throw "Unknown SDK version: " + version;
         }
-        Bowtie.callbackQueue[version] = [callback];
+        Bowtie.callbackQueue[version] = callback;
         console.log("callbackQueue", Bowtie.callbackQueue);
         file = 'http://bowtie.jbsquared.com/sdk/' + file;
-        loadScript(file, function() {
-            for (var i = 0; i < Bowtie.callbackQueue; i++) {
-                Bowtie.callbackQueue[i](Bowtie.instances[version]);
-            }
+        loadScript(file, function () {
+            console.log("loadScript");
+            Bowtie.callbackQueue[version](Bowtie.instances[version]);
+            //for (var i = 0; i < Bowtie.callbackQueue; i++) {
+            //    console.log("instince", Bowtie.instances[version]);
+            //    Bowtie.callbackQueue[i](Bowtie.instances[version]);
+            //}
         });
     };
 

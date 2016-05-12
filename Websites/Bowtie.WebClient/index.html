@@ -9,9 +9,9 @@
 
     <script src="http://bowtie.jbsquared.com/sdk/sdk.js"></script>
     <script>
-        Bowtie.init(function () {
-            alert("init");
-            Bowtie.productWidget({ id: '1337', dom: 'widget-location-id' });
+        Bowtie.init(function (B) {
+            alert("");
+            B.productWidget({ id: '1337', dom: 'widget-location-id' });
         });
     </script>
 
