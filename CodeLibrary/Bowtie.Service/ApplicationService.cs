@@ -27,6 +27,11 @@ namespace JB2.Bowtie.Service
 
         }
 
+        public IApplication RetrieveByAPIKey(JB2.Common.IAPIKeySecretPair apiKey)
+        {
+            return _repo.GetApplicationByAPIKey(apiKey.APIkey);
+        }
+
         public JB2.Bowtie.Enum.APIAuthorizeState CheckAPIAuthorization(string applicationID)
         {
             IApplication app = _repo.GetById(applicationID);

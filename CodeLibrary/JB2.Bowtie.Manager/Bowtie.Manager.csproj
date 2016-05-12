@@ -91,6 +91,10 @@
       <HintPath>..\..\Solutions\packages\JB2.Economy.jBean.0.1.3.42253\lib\JB2.Economy.jBean.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Identity.Core.0.1.4.1\lib\JB2.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="JB2.Infrastructure, Version=0.2.8.4181, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.8\lib\JB2.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -184,6 +188,10 @@
     <ProjectReference Include="..\Bowtie.AzureRepo\Bowtie.RepoAzure.csproj">
       <Project>{6d362c4a-06d4-40c6-b314-aa559791e1f4}</Project>
       <Name>Bowtie.RepoAzure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bowtie.Service\Bowtie.Service.csproj">
+      <Project>{e9f8abc3-957e-4ada-b7db-a61e16beaa1e}</Project>
+      <Name>Bowtie.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\JB2.Bowtie.Core\Bowtie.Core.csproj">
       <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>

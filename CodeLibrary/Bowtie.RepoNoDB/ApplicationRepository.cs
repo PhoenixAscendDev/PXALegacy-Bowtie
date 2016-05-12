@@ -72,5 +72,15 @@ namespace JB2.Bowtie.Data.NoDB
         {
             throw new NotImplementedException();
         }
+
+        public IApplication[] GetApplicationsByClientID(string clientID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IApplication GetApplicationByAPIKey(string publicKey)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using JB2.Common;
+using JB2.Bowtie.Exceptions;
 
 namespace JB2.Bowtie
 {
@@ -13,7 +14,24 @@ namespace JB2.Bowtie
 
         public static bool Initialize(string publicKey, string secretKey)
         {
-            Application app = new Application(publicKey, secretKey);
+            var pair = new JB2.Common.ApiKeySecretPair() { APIkey = publicKey, Secret = secretKey };
+
+            return Initialize(pair);
+        }
+        public static bool Initialize(JB2.Common.IAPIKeySecretPair apiKey)
+        {
+
+            IUnitOfWork uofw = new JB2.Bowtie.Data.Azure.UnitOfWork();
+
+            var appService = new JB2.Bowtie.Service.ApplicationService(uofw);
+
+
+            IApplication app = appService.RetrieveByAPIKey(apiKey);
+
+            if (app == null)
+                throw new ApplicationNotInitialized("Application could not be Initialized");
+            if (app.Secret != apiKey.Secret)
+                throw new ApplicationNotInitialized("Application API Key and Secret are invalid");
 
             BaseSetting s = new BaseSetting()
             {
@@ -45,7 +63,7 @@ namespace JB2.Bowtie
             {
                 ID = "UNITOFWORK",
                 Name = "Unit Of Work",
-                Value = new JB2.Bowtie.Data.Azure.UnitOfWork()            
+                Value = uofw          
             });
 
             JB2.Settings.Bowtie.Configure(bowtieSettings);
