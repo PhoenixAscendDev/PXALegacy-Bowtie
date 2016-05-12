@@ -10,7 +10,7 @@ using JB2.Bowtie.WebAPI.Models;
 
 namespace JB2.Bowtie.WebAPI.Controllers
 {
-    //[RoutePrefix("api/v1/dewdrop")]
+    //[RoutePrefix("v1/dewdrop")]
     public class DewdropController : JB2.Common.WebAPI.BaseApiController
     {
 
