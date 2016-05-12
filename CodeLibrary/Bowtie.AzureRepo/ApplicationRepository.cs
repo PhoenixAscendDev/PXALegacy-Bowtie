@@ -21,6 +21,7 @@ namespace JB2.Bowtie.Data.Azure
         {
             _table = table;
             _blob = blob;
+            _defaultPartitionKey = "application";
         }
 
         #endregion
@@ -72,7 +73,9 @@ namespace JB2.Bowtie.Data.Azure
             var apiKey = new JB2.Common.ApiKeySecretPair();
 
             apiKey.APIkey = e.Properties["APIKey"].StringValue;
-            apiKey.Secret = e.Properties["APISecret"].StringValue;
+
+
+            apiKey.Secret = e.Properties["APISecret"].PropertyType == EdmType.Guid ? e.Properties["APISecret"].GuidValue.GetValueOrDefault().ToString() : e.Properties["APISecret"].PropertyAsObject.ToString();
          
             Enum.APIAuthorizeState state = Enum.APIAuthorizeState.Unknown;
 

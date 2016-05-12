@@ -102,6 +102,9 @@ namespace JB2.Bowtie.Data.Azure
                             case RepositoryType.Dewdrop:
                                 _repos.Add(repository, new JB2.Bowtie.Data.Azure.DewdropRepository());
                                 break;
+                            case RepositoryType.Application:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.ApplicationRepository());
+                                break;
                             //case RepositoryType.Achievement:
                                // _repos.Add(repository, new JB2.Bowtie.Data.Azure.A)
                         }

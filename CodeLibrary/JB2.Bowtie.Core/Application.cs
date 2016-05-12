@@ -13,6 +13,7 @@ namespace JB2.Bowtie
         #region Fields
         private string _secret;       
         private Enum.APIAuthorizeState _APIstate;
+        private string _apiKey;
 
 
         #endregion Fields
@@ -26,6 +27,8 @@ namespace JB2.Bowtie
         public Application(string publickey, string secretKey, Enum.APIAuthorizeState state ) : base(Enum.BowtieObjectType.bowtie_application,publickey)
         {
             this._secret = secretKey;
+            this._apiKey = publickey;
+
             _APIstate = state;          
         }
 
@@ -78,11 +81,11 @@ namespace JB2.Bowtie
         {
             get
             {
-                return _id;
+                return _apiKey;
             }
             set
             {
-                _id = value;
+                _apiKey = value;
             }
         }
 
