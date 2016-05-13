@@ -8,7 +8,7 @@ using JB2.Common;
 
 namespace JB2.Economy
 {
-    public interface IWallet<TCurrency,TOwner,TID>
+    public interface IWallet<TCurrency,TOwner,TID> : JB2.Common.IIDProp<TID>
         where TID : IComparable
         where TOwner : JB2.Common.IPerson<TID>
         where TCurrency : ICurrency

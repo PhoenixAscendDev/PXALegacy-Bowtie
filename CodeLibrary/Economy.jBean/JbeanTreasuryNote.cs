@@ -15,7 +15,6 @@ namespace JB2.Economy
             _requestor = app;
         }
 
-
         public static JbeanTreasuryNote NewNote(long amount, JB2.Common.IIDNamePair<string, string> requestor)
         {
             var note = new JbeanTreasuryNote(JB2.Common.NewID.Guid(), amount, requestor);

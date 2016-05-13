@@ -5,24 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 
 using JB2.Common;
-using JB2.Bowtie;
 
-namespace JB2.Bowtie.Economy
+
+namespace JB2.Economy
 {
-    public class JBeanWallet : IWallet<IPlayer,long,JBeanToken,string,Enum.JBeanTokenType>
+    public class JBeanWallet : JB2.Common.IDValue<string>,IApplicationWallet<JB2.Economy.JBean, JB2.Common.IPerson<string>,string>
     {
-        private Dictionary<JBeanToken,int> _tokens;
-        private IPlayer _player;
-
-
+        private JBeanBag _tokens;
+        private JB2.Common.IPerson<string> _player;
+        protected string _appID;
 
         public JBeanWallet()
         {
-            _tokens = new Dictionary<JBeanToken, int>();
+            _tokens = new JBeanBag();
 
         }
 
-        public IPlayer Owner
+        public JB2.Common.IPerson<string> Owner
         {
             get
             {
@@ -34,48 +33,43 @@ namespace JB2.Bowtie.Economy
             }
         }
 
-        public JBeanToken[] Denomination
-        {
-            get
-            {
-                return _tokens.Keys.ToArray();
-            }        
-        }
+
 
         public long Amount
         {
             get 
             {
-                long result = 0;
+                long result = (long)_tokens;
 
-                foreach(var item in _tokens)
-                {
-                    result = result + (long)(item.Value * item.Key.UnitMultiplier);
-                }
+               
                 return result;
             }
         }
-
-        public bool AddDenomination(JBeanToken denomination, int quantity)
+        public string GetApplicationID()
         {
-            throw new NotImplementedException();
+            return _appID;
         }
 
-        public bool RemoveDenomination(JBeanToken denomination, int quantity)
+        public double CurrencyTotal(JBean currency)
         {
-            throw new NotImplementedException();
+            return (double)_tokens;
         }
 
-        public string ID
+        public void AddAmount(JBean currency, double quantity)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            int intQ = (int)quantity;
+            _tokens = (int)_tokens + intQ;
+        }
+
+        public void RemoveAmount(JBean currency, double quantity)
+        {
+            int intQ = (int)quantity;
+            _tokens = (int)_tokens - intQ;
+        }
+
+        public override string GetID()
+        {
+            return base.ID;
         }
 
         public string Name
@@ -87,6 +81,19 @@ namespace JB2.Bowtie.Economy
             set
             {
                 throw new NotImplementedException();
+            }
+        }
+
+        public string ApplicationID
+        {
+            get
+            {
+                return _appID;
+            }
+
+            set
+            {
+                _appID = value;
             }
         }
     }

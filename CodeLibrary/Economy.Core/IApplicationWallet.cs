@@ -11,7 +11,6 @@ namespace JB2.Economy
         where TOwner : JB2.Common.IPerson<TID>
         where TCurrency : ICurrency
     {
-
         TID ApplicationID { get; set; }
         TID GetApplicationID();
     }
