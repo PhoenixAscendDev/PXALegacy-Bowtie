@@ -10,7 +10,7 @@ namespace JB2.Economy
 {
     public static class JBeanExtenstions
     {
-        public static int JBeanAmount(this IWallet wallet)
+        public static int JBeanAmount(this IWallet<ICurrency,JB2.Common.IPerson<string>,string> wallet)
         {
             int result = 0;
             var c = wallet.CurrencyTotal(new JBean());
@@ -39,7 +39,6 @@ namespace JB2.Economy
         {
             return (int)b;
         }
-
         public static jBeanAccount jBeanAccount(this JB2.Identity.IPlayer player)
         {
             return new jBeanAccount(player.GetjBeanAccountNumber());

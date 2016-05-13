@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy
 {
-    public class PlayerWallet : IWallet
+    public class PlayerWallet : IWallet<ICurrency,JB2.Common.IPerson<string>,string>
     {
 
         #region Fields
         private string _id;
-        private string _playerId;
+        private JB2.Common.IPerson<string> _player;
         private Dictionary<string, CurrencyAmountPair> _amounts;
 
         #endregion
@@ -23,11 +23,11 @@ namespace JB2.Economy
             }
         }
 
-        public string PlayerID
+        public JB2.Common.IPerson<string> Owner
         {
             get
             {
-                return _playerId;
+                return _player;
             }
         }
 

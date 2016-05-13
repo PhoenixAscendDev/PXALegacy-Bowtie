@@ -47,7 +47,8 @@
   <ItemGroup>
     <Compile Include="CurrencyAmountPair.cs" />
     <Compile Include="CurrencyType.cs" />
-    <Compile Include="Economy\IWallet.cs" />
+    <Compile Include="IApplicationWallet.cs" />
+    <Compile Include="IWallet.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="IBankTransactionReceipt.cs" />
     <Compile Include="ICurrency.cs" />
