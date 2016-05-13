@@ -11,7 +11,6 @@ namespace JB2.Bowtie
 {
     public class Manager
     {
-
         public static bool Initialize(string publicKey, string secretKey)
         {
             var pair = new JB2.Common.ApiKeySecretPair() { APIkey = publicKey, Secret = secretKey };

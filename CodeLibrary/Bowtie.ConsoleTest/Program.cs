@@ -20,7 +20,7 @@ namespace Bowtie.ConsoleTest
         {
             
             JB2.Bowtie.Manager.Initialize("BT-BDF1FC3E51F48224", "912473a6-8c31-4ecf-9d5c-1af07c1b8ef3");
-         
+            Console.WriteLine(JB2.Settings.Jbean.GetTokenValue(JB2.Economy.Enum.JBeanTokenType.Pinto).ToString());
             Console.ReadLine();
         }
 

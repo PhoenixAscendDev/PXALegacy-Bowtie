@@ -242,11 +242,11 @@ namespace JB2.Economy.Data
             return entity != null ? entity.AccountNumber : string.Empty;
         }
 
-        public jBeanAppSettings GetApplicationSettings(JB2.Identity.IApplication app)
+        public jBeanAppSettings GetApplicationSettingsByID(string applicationID)
         {
-            var e = _jbeanTable.GetEntity<AppSettingEntity>("application:jbean", "id:" + app.ID);
+            var e = _jbeanTable.GetEntity<AppSettingEntity>("application:jbean", "id:" + applicationID);
 
-            if(e != null)
+            if (e != null)
             {
                 return new jBeanAppSettings()
                 {
@@ -258,7 +258,12 @@ namespace JB2.Economy.Data
             {
                 return jBeanAppSettings.Default();
             }
-            
+        }
+
+        public jBeanAppSettings GetApplicationSettings(JB2.Identity.IApplication app)
+        {
+
+            return GetApplicationSettingsByID(app.ID);
         }
 
         public JB2.Common.ServiceResult SaveApplicationSettings(string appId, jBeanAppSettings settings)

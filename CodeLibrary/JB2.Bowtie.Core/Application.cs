@@ -92,13 +92,6 @@ namespace JB2.Bowtie
 
         #endregion IAPIKeySecretPair
 
-
-        public bool canIssueJBeans
-        {
-            get;set;
-            
-        }
-
         #region IApplication
         public IEnumerable<JB2.Identity.IPlayer> GetAdmins()
         {

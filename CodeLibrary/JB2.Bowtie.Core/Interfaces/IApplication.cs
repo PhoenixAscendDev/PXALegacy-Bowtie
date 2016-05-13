@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IApplication : IBowtieObject, JB2.Common.IIDNamePair<string, string>,JB2.Identity.IApplication, JB2.Common.IAPIKeySecretPair
+    public interface IApplication : IBowtieObject, JB2.Common.IIDNamePair<string, string>, JB2.Common.IAPIKeySecretPair
     {
         string Secret { get; }
         bool isAuthorized { get; }
         Enum.APIAuthorizeState AuthorizedState { get; }
         string ClientID { get; set; }
-        bool canIssueJBeans { get; set; }
+       
         IEnumerable<JB2.Identity.IPlayer> GetAdmins();
 
 

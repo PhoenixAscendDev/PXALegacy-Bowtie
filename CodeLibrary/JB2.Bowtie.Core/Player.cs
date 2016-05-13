@@ -20,7 +20,6 @@ namespace JB2.Bowtie
         protected Dictionary<string, MetaDataCollection> _modules;              
         #endregion Fields
 
-
         public abstract string DisplayName { get; set; }
         public virtual Name Name
         {
@@ -86,6 +85,26 @@ namespace JB2.Bowtie
         public string GetPlayerID()
         {
             return _player.GetPlayerID();
+        }
+
+        public PlayerProfilePacket GetDefaultProfile()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IMetaData GetMetaData(string propertyName)
+        {
+           return  _metadata[propertyName];
+        }
+
+        public string GetCounterName()
+        {
+            return "bowtie_player";
+        }
+
+        public int GetCounterIndex()
+        {
+            return -1;
         }
 
         #endregion IBowtiePlayer
