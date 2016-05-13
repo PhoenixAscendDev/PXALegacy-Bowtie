@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy
 {
-    public interface IApplicationWallet<TCurrency,TOwner,TID> : IWallet<TCurrency, TOwner, TID>
+    public interface IApplicationWallet<TOwner,TID> : IWallet<TOwner, TID>
         where TID : IComparable
         where TOwner : JB2.Common.IPerson<TID>
-        where TCurrency : ICurrency
     {
         TID ApplicationID { get; set; }
         TID GetApplicationID();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy
 {
-    public class PlayerWallet : JB2.Common.IDValue<string>, IWallet<ICurrency,JB2.Common.IPerson<string>,string>
+    public class PlayerWallet : JB2.Common.IDValue<string>, IWallet<JB2.Common.IPerson<string>,string>
     {
 
         #region Fields

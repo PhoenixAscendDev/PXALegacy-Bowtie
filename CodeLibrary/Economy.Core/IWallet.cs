@@ -8,15 +8,14 @@ using JB2.Common;
 
 namespace JB2.Economy
 {
-    public interface IWallet<TCurrency,TOwner,TID> : JB2.Common.IIDProp<TID>
+    public interface IWallet<TOwner,TID> : JB2.Common.IIDProp<TID>
         where TID : IComparable
         where TOwner : JB2.Common.IPerson<TID>
-        where TCurrency : ICurrency
     {
         TOwner Owner { get; }
         TID ID { get; }
-        double CurrencyTotal(TCurrency currency);
-        void AddAmount(TCurrency currency, double quantity);
-        void RemoveAmount(TCurrency currency, double quantity);     
+        double CurrencyTotal(ICurrency currency);
+        void AddAmount(ICurrency currency, double quantity);
+        void RemoveAmount(ICurrency currency, double quantity);     
     }
 }

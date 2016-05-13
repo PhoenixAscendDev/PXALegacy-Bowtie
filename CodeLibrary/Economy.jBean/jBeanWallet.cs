@@ -9,7 +9,7 @@ using JB2.Common;
 
 namespace JB2.Economy
 {
-    public class JBeanWallet : JB2.Common.IDValue<string>,IApplicationWallet<JB2.Economy.JBean, JB2.Common.IPerson<string>,string>
+    public class JBeanWallet : JB2.Common.IDValue<string>,IApplicationWallet<JB2.Common.IPerson<string>,string>
     {
         private JBeanBag _tokens;
         private JB2.Common.IPerson<string> _player;
@@ -50,18 +50,18 @@ namespace JB2.Economy
             return _appID;
         }
 
-        public double CurrencyTotal(JBean currency)
+        public double CurrencyTotal(ICurrency currency)
         {
             return (double)_tokens;
         }
 
-        public void AddAmount(JBean currency, double quantity)
+        public void AddAmount(ICurrency currency, double quantity)
         {
             int intQ = (int)quantity;
             _tokens = (int)_tokens + intQ;
         }
 
-        public void RemoveAmount(JBean currency, double quantity)
+        public void RemoveAmount(ICurrency currency, double quantity)
         {
             int intQ = (int)quantity;
             _tokens = (int)_tokens - intQ;
