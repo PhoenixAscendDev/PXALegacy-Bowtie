@@ -52,6 +52,7 @@
     <Compile Include="IBankTransactionReceipt.cs" />
     <Compile Include="ICurrency.cs" />
     <Compile Include="IDenomination.cs" />
+    <Compile Include="IRequestor.cs" />
     <Compile Include="ITreasuryRequest.cs" />
     <Compile Include="IBank.cs" />
     <Compile Include="IBankAccount.cs" />

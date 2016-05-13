@@ -9,7 +9,7 @@ using JB2.Economy.Enum;
 
 namespace JB2.Economy
 {
-    public class jBeanCentralBank : JB2.Common.IDNamePair, IBank<JB2.Common.IIDProp<string>,JB2.Economy.Enum.jBeanAccountStatus>
+    public class jBeanCentralBank : JB2.Common.IDNamePair, IBank<JB2.Common.IIDProp<string>,JB2.Economy.Enum.jBeanAccountStatus,ITreasuryRequest,IRequestor,string>
     {
         #region Fields
         private IJBeanRepository _repo;

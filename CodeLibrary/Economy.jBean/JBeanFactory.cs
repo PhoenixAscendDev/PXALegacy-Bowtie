@@ -10,7 +10,7 @@ using JB2.Economy.Enum;
 namespace JB2.Economy
 {
     //private static JB2.Economy.EconomicFactory;
-    public class JBeanFactory : Economy.EconomicFactory<IIDProp<string>,jBeanAccountStatus>
+    public class JBeanFactory : Economy.EconomicFactory<IIDProp<string>,jBeanAccountStatus,ITreasuryRequest,IRequestor,string>
     {
         public ISetting GetSetting(string settingName)
         {

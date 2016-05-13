@@ -25,7 +25,7 @@ namespace JB2.Economy.Data
         #endregion Constructor
 
         #region Properties
-        public object Requestor { get; set; }
+        public IRequestor Requestor { get; set; }
         public DateTime RequestDate { get; set; }
         public long Amount { get; set; }
         public string VerificationKey { get; set; }

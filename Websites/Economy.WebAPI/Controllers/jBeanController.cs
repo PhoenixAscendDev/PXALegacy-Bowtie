@@ -62,7 +62,7 @@ namespace JB2.Economy.WebAPI.Controllers
             if (request.Requestor.GetType() != typeof(Identity.IApplication))
             {
                 var requestApp = JB2.Identity.ApplicatonStore.GetApplicationByID(request.Requestor.ToString());
-                request.Requestor = requestApp;
+                request.Requestor = (IRequestor)requestApp;
             }
             receipt = bank.Withdrawn(account, request);
             return Json(receipt);              
@@ -86,7 +86,7 @@ namespace JB2.Economy.WebAPI.Controllers
             var request = new TreasuryRequest();
             request.Amount = 50;
             request.RequestDate = DateTime.Now;
-            request.Requestor = new JB2.Common.IDNamePair<string, string>("apptest", string.Empty);
+            request.Requestor = (IRequestor)new JB2.Common.IDNamePair<string, string>("apptest", string.Empty);
             request.VerificationKey = "not being used";
 
             var result = getCentralBank().Withdrawn(account, request);
@@ -115,7 +115,7 @@ namespace JB2.Economy.WebAPI.Controllers
             long.TryParse(amount, out a);
             request.Amount = a;
             request.RequestDate = DateTime.Now;
-            request.Requestor = new JB2.Common.IDNamePair<string, string>(appid,string.Empty);
+            request.Requestor = (IRequestor)new JB2.Common.IDNamePair<string, string>(appid,string.Empty);
 
             return RequestAmountFromTreasury(request);
 

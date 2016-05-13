@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy
 {
-    public class TreasuryRequest : ITreasuryRequest
+    public class TreasuryRequest : TreasuryRequest<IRequestor,string>, ITreasuryRequest
     {
-        public object Requestor { get; set; }
+
+    }
+    public class TreasuryRequest<TRequestor,TID> : ITreasuryRequest<TID,TRequestor>
+         where TID : IComparable
+        where TRequestor : IRequestor<TID>
+    {
+        public TRequestor Requestor { get; set; }
         public DateTime RequestDate { get; set; }
         public long Amount { get; set; }
         public string VerificationKey { get; set; }

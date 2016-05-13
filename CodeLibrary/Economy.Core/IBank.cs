@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy
 {
-    public interface IBank<TAccountHolder,TAccountStatus> :  JB2.Common.IIDNamePair<string,string>
+    public interface IBank<TAccountHolder,TAccountStatus,TRequest,TRequestor,TID> :  JB2.Common.IIDNamePair<string,string>
+        where TID : IComparable
+        where TRequestor : IRequestor<TID>
+        where TRequest : ITreasuryRequest<TID,TRequestor>
     {
         IBankAccount<TAccountHolder,TAccountStatus> GetBankAccount(TAccountHolder accountHolder);
         IBankAccount<TAccountHolder,TAccountStatus> OpenNewBankAccount(TAccountHolder accountHolder);
@@ -17,7 +20,7 @@ namespace JB2.Economy
         long TotalCapital();
         float InterestRate(DateTime dt);
         IBankTransactionReceipt Deposit(IBankAccount<TAccountHolder,TAccountStatus> account, ITreasuryNote treasuryNote);
-        IBankTransactionReceipt Withdrawn(IBankAccount<TAccountHolder,TAccountStatus> account, ITreasuryRequest request);
+        IBankTransactionReceipt Withdrawn(IBankAccount<TAccountHolder,TAccountStatus> account, TRequest request);
 
         float CheckBalance(IBankAccount<TAccountHolder,TAccountStatus> account);
 
