@@ -17,6 +17,8 @@ namespace JB2.Bowtie
         IGraphRepository GraphRepository { get; }
 
         IDewdropRepository DewdropRepository { get;}
+
+        JB2.Economy.IJBeanRepository JbeanRepository { get;}
         
         //IPlayerRepo PlayerRepository { get; }
         object GetRepository(Enum.RepositoryType respository);

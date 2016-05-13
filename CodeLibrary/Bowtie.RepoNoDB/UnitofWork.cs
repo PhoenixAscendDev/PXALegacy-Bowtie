@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JB2.Economy;
 
 namespace JB2.Bowtie.Data.NoDB
 {
@@ -61,6 +62,14 @@ namespace JB2.Bowtie.Data.NoDB
         }
 
         public IDewdropRepository DewdropRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IJBeanRepository JbeanRepository
         {
             get
             {

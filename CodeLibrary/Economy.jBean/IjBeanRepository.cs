@@ -64,6 +64,8 @@ namespace JB2.Economy
 
         jBeanAppSettings GetApplicationSettings(Identity.IApplication app);
 
+        jBeanAppSettings GetApplicationSettingsByID(string applicationID);
+
 
     }
 }

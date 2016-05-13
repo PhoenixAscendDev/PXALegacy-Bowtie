@@ -15,6 +15,7 @@ namespace JB2.Bowtie.Enum
         GameCommand,
         Leaderboard,
         Graph,
-        Dewdrop
+        Dewdrop,
+        Jbean
     }
 }

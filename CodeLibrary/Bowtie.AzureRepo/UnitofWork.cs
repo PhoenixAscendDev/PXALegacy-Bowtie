@@ -69,6 +69,14 @@ namespace JB2.Bowtie.Data.Azure
                 return (IDewdropRepository)GetRepository(RepositoryType.Dewdrop);
             }
         }
+
+        public JB2.Economy.IJBeanRepository JbeanRepository
+        {
+            get
+            {
+                return (JB2.Economy.IJBeanRepository)GetRepository(RepositoryType.Jbean);
+            }
+        }
         
 
         //public JB2.Common.IPlayerRepo PlayerRepository
@@ -104,6 +112,10 @@ namespace JB2.Bowtie.Data.Azure
                                 break;
                             case RepositoryType.Application:
                                 _repos.Add(repository, new JB2.Bowtie.Data.Azure.ApplicationRepository());
+                                break;
+                            case RepositoryType.Jbean:
+                                var storage = JB2.Infrastructure.Storage.EconomyAccount;
+                                _repos.Add(repository, new JB2.Economy.Data.jBeanRespostory(storage));
                                 break;
                             //case RepositoryType.Achievement:
                                // _repos.Add(repository, new JB2.Bowtie.Data.Azure.A)

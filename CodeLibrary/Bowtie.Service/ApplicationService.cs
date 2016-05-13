@@ -53,6 +53,16 @@ namespace JB2.Bowtie.Service
             return isAuthorized(app);
         }
 
+        public JB2.Economy.jBeanAppSettings RetrievejBeanSettings(string applicationID)
+        {
+            var jbeanRepo = _uofw.JbeanRepository;
+
+            var settings = jbeanRepo.GetApplicationSettingsByID(applicationID);
+
+            return settings;
+
+        }
+
         private bool isAuthorized(IApplication app)
         {
             if (app == null)
@@ -60,6 +70,8 @@ namespace JB2.Bowtie.Service
 
             return app.isAuthorized;
         } 
+
+        
 
 
 

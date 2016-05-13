@@ -49,6 +49,8 @@ namespace JB2.Bowtie.Data.Azure
             return all.ToList().Find(x => x.APIkey == key);
         }
 
+        
+
         #endregion Gets
 
         protected override DynamicTableEntity convertToEntity(IApplication o)
