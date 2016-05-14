@@ -7,7 +7,7 @@
     <ProjectGuid>{99E5812C-BC21-4722-A8F1-75A6715B21A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JB2.Bowtie.Core</RootNamespace>
+    <RootNamespace>JB2.Bowtie</RootNamespace>
     <AssemblyName>JB2.Bowtie.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -59,12 +59,12 @@
       <HintPath>..\..\Solutions\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Economy.Core, Version=0.1.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Economy.Core.0.1.5\lib\JB2.Economy.Core.dll</HintPath>
+    <Reference Include="JB2.Economy.Core, Version=0.1.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Economy.Core.0.1.6\lib\JB2.Economy.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Economy.jBean, Version=0.1.5.18449, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Economy.jBean.0.1.5\lib\JB2.Economy.jBean.dll</HintPath>
+    <Reference Include="JB2.Economy.jBean, Version=0.1.6.35376, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Economy.jBean.0.1.6\lib\JB2.Economy.jBean.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -156,6 +156,7 @@
     <Compile Include="BowtieMetaDataCollection.cs" />
     <Compile Include="BowtieObject.cs" />
     <Compile Include="BowtieObjectType.cs" />
+    <Compile Include="EconomyRepository.cs" />
     <Compile Include="Enum\AchievementRarityType.cs" />
     <Compile Include="Enum\AchievementState.cs" />
     <Compile Include="Enum\AchievementType.cs" />
@@ -187,6 +188,9 @@
     <Compile Include="Interfaces\IPlayerAchievement.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="IPlayerRespository.cs" />
+    <Compile Include="IWallet.cs" />
+    <Compile Include="JBeanCollection.cs" />
+    <Compile Include="JBeanRequest.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Dewdrop.cs" />
     <Compile Include="IPlayerDewdrop.cs" />
@@ -195,6 +199,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="TokenName.cs" />
     <Compile Include="Utility.cs" />
+    <Compile Include="Wallet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -16,6 +16,7 @@ namespace JB2.Bowtie.Enum
         Leaderboard,
         Graph,
         Dewdrop,
-        Jbean
+        Jbean,
+        Wallet
     }
 }

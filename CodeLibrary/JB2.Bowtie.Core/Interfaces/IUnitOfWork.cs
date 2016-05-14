@@ -19,6 +19,10 @@ namespace JB2.Bowtie
         IDewdropRepository DewdropRepository { get;}
 
         JB2.Economy.IJBeanRepository JbeanRepository { get;}
+
+        IWalletRepository WalletRepository { get; }
+
+        IBowtiePlayerRespository PlayerRepository { get; }
         
         //IPlayerRepo PlayerRepository { get; }
         object GetRepository(Enum.RepositoryType respository);

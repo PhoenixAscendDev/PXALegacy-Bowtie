@@ -77,6 +77,22 @@ namespace JB2.Bowtie.Data.NoDB
             }
         }
 
+        public IWalletRepository WalletRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        IBowtiePlayerRespository IUnitOfWork.PlayerRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public object GetRepository(Enum.RepositoryType respository)
         {
             switch(respository)

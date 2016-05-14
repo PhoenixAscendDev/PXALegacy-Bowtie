@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IBowtiePlayer : JB2.Identity.IPlayer
+    public interface IWallet : JB2.Economy.IApplicationWallet<JB2.Common.IPerson<string>, string>
     {
-        string GetIdentityAuthID();
-        JB2.Bowtie.IWallet GetWallet();   
+        JB2.Economy.JBeanBag JBeanTotal { get; }
     }
 }

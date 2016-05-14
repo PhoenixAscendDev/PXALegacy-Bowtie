@@ -14,7 +14,7 @@ namespace JB2.Bowtie
         #region Fields
         protected JB2.Identity.IPlayer _player;
         protected Name _name;
-        protected JB2.Economy.IWallet _wallet;
+        protected IWallet _wallet;
         protected MetaDataCollection _metadata;
         
         protected Dictionary<string, MetaDataCollection> _modules;              
@@ -65,7 +65,7 @@ namespace JB2.Bowtie
         #endregion IPlayer
 
         #region IBowtiePlayer
-        public virtual JB2.Economy.IWallet GetWallet()
+        public virtual IWallet GetWallet()
         {
             return _wallet;
         }
