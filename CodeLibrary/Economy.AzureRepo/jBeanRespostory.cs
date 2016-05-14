@@ -440,6 +440,9 @@ namespace JB2.Economy.Data
                 e.RowKey = "id:" + e.ID;
                 _tokenTable.Insert<TokenEntity>(e, true);
             }
+
+            
+
             return e;
         }
 

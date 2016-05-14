@@ -57,7 +57,16 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override IWallet convertToObject(DynamicTableEntity e)
         {
-            throw new NotImplementedException();
+            var jBeans = new JB2.Economy.JBeanCollection();
+
+            var playerID = e.Properties.ContainsKey("PlayerID") ? e.Properties["PlayerID"].StringValue : string.Empty;
+            var appID = e.Properties.ContainsKey("ApplicationID") ? e.Properties["ApplicationID"].StringValue : string.Empty;
+            var id = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
+
+            IWallet wallet = new PlayerWallet(id, playerID, jBeans);
+            wallet.ApplicationID = appID;
+
+            return wallet;
         }
 
         protected override void deleteAll(DynamicTableEntity e)
@@ -69,5 +78,19 @@ namespace JB2.Bowtie.Data.Azure
         {
             throw new NotImplementedException();
         }
+
+        protected  void saveTokens(IWallet wallet)
+        {
+            //first delete all previous tokens for wallet
+
+            //if (!string.IsNullOrEmpty(e.WalletID))
+            //{
+            //    e.PartitionKey = "token:jbean:wallet_" + e.WalletID;
+            //    e.RowKey = "id:" + e.ID;
+            //    _tokenTable.Insert<JB2.TokenEntity>(e, true);
+            //}
+        }
+
+
     }
 }

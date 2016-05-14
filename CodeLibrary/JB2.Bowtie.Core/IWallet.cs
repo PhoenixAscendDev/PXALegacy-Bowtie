@@ -9,5 +9,7 @@ namespace JB2.Bowtie
     public interface IWallet : JB2.Economy.IApplicationWallet<JB2.Common.IPerson<string>, string>
     {
         JB2.Economy.JBeanBag JBeanTotal { get; }
+
+        IEnumerable<JB2.Economy.jBeanToken> GetJBeanTokens(); 
     }
 }

@@ -19,6 +19,17 @@ namespace JB2.Bowtie
         protected string _playerID;
 
         #endregion Fields
+
+
+        #region Constructor
+        public PlayerWallet(string id, string playerID, JBeanCollection jbeanTokens)
+        {
+            ID = id;
+            _jbeanTokens = jbeanTokens;
+            _playerID = playerID;
+        }
+
+        #endregion Constructor
         public string ApplicationID
         {
             get
@@ -73,6 +84,11 @@ namespace JB2.Bowtie
         public void RemoveAmount(ICurrency currency, double quantity)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<jBeanToken>  GetJBeanTokens()
+        {
+            return _jbeanTokens;
         }
     }
 }

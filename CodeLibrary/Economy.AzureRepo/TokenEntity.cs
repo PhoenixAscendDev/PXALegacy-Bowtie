@@ -22,5 +22,7 @@ namespace JB2.Economy.Data
         public string TreasuryNoteID { get; set; }
         public string BankAccountNumber { get; set; }
         public DateTime DateCreated { get; set; }
+
+        public string WalletID { get; set; }
     }
 }
