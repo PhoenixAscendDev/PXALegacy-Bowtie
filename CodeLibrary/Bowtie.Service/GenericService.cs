@@ -27,7 +27,6 @@ namespace JB2.Bowtie
             _repo = repository;
         }
 
-
         protected ITreasuryNote retrieveJBeanTokens(JB2.Economy.Enum.JBeanTokenType type,int quantity)
         {
             JB2.Economy.ITreasury treasury = JB2.Settings.Jbean.Factory.Treasury;
