@@ -153,6 +153,7 @@
   <ItemGroup>
     <Compile Include="API.cs" />
     <Compile Include="Application.cs" />
+    <Compile Include="AppPlayer.cs" />
     <Compile Include="BowtieMetaDataCollection.cs" />
     <Compile Include="BowtieObject.cs" />
     <Compile Include="BowtieObjectType.cs" />

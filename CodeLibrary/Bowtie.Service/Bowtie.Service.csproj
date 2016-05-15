@@ -84,6 +84,14 @@
       <HintPath>..\..\Solutions\packages\JB2.Identity.Core.0.1.4.1\lib\JB2.Identity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="JB2.Identity.Player, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Identity.Player.0.1.2\lib\JB2.Identity.Player.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Identity.Repo, Version=0.1.4.31869, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Identity.Repo.0.1.4\lib\JB2.Identity.Repo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
       <Private>True</Private>
