@@ -37,7 +37,7 @@ namespace JB2.Bowtie.Data.Azure
 
         public IWallet GetByPlayerAndApplication(string playerID, string appID)
         {
-            var e = _table.GetEntity<DynamicTableEntity>("wallet:application:" + appID, "playerID:" + playerID);
+            var e = _table.GetByRowKeyStartWith<DynamicTableEntity>("wallet:application::" + appID, "playerid:" + playerID,1000).FirstOrDefault();
             return convertToObject(e);
         }
 
@@ -88,21 +88,25 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override void saveEntity(DynamicTableEntity e, bool replace)
         {
-            throw new NotImplementedException();
+            e.PartitionKey = "wallet" + e.Properties["ID"].StringValue;
+            e.RowKey = "id:" + e.Properties["ID"].StringValue;
+            _table.Insert<DynamicTableEntity>(e);
+
+            e.PartitionKey = "wallet:application:" + e.Properties["ApplicationID"].StringValue;
+            e.RowKey = "playerid:" + e.Properties["PlayerID"].StringValue + "_id:" + e.Properties["ID"].StringValue;
+            _table.Insert<DynamicTableEntity>(e);
+
+            e.PartitionKey = "wallet:player:" + e.Properties["ApplicationID"].StringValue;
+            e.RowKey = "appid:" + e.Properties["ApplicationID"].StringValue + "_id:" + e.Properties["ID"].StringValue;
+            _table.Insert<DynamicTableEntity>(e);
         }
 
-        protected  void saveTokens(IWallet wallet)
+        public override void Insert(IWallet obj)
         {
-            //first delete all previous tokens for wallet
-            
-            //if (!string.IsNullOrEmpty(e.WalletID))
-            //{
-            //    e.PartitionKey = "token:jbean:wallet_" + e.WalletID;
-            //    e.RowKey = "id:" + e.ID;
-            //    _tokenTable.Insert<JB2.TokenEntity>(e, true);
-            //}
-        }
+            var e = convertToEntity(obj);
 
+            saveEntity(e,true);
+        }
 
     }
 }

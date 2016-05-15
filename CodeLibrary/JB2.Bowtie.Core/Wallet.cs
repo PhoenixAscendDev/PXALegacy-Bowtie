@@ -143,6 +143,11 @@ namespace JB2.Bowtie
         public IEnumerable<WalletReceipt> GetReceipts()
         {
             return _receipts;
-        }       
+        }
+
+        public string GetPlayerID()
+        {
+            return _playerID;
+        }
     }
 }

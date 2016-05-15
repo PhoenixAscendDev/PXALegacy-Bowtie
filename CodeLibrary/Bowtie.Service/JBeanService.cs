@@ -35,12 +35,44 @@ namespace JB2.Bowtie.Service
         {
             var wallet = getWallet(player, app);
 
+            AddJBeansToWallet(wallet, amount);
+        }
+
+        public void AddJBeansToWallet(IWallet wallet, int amount)
+        {
+            var player = _uofw.PlayerRepository.GetById(wallet.Owner.ID);
+            var app = _uofw.ApplicationRepository.GetById(wallet.GetApplicationID());
+
             var treasuryNote = getJBeansFromTreasury(app, amount);
 
-            if(treasuryNote.Amount == amount)
+            if (treasuryNote.Amount == amount)
             {
                 wallet.AddTreasuryNote(treasuryNote);
             }
+
+            _walletrepo.Insert(wallet);
+
+        }
+
+        public void RemoveJBeansToWaller(IBowtiePlayer player, IApplication app, int amount)
+        {
+            var wallet = getWallet(player, app);
+
+            RemoveJBeansToWallet(wallet, amount);
+        }
+        public void RemoveJBeansToWallet(IWallet wallet, int amount)
+        {
+            var player = _uofw.PlayerRepository.GetById(wallet.Owner.ID);
+            var app = _uofw.ApplicationRepository.GetById(wallet.GetApplicationID());
+
+            //we don't allow negative accounts
+            var amountInWallet = wallet.JBeanTotal;
+            if(amountInWallet >= amount)
+            {
+                wallet.RemoveAmount(JB2.Settings.Jbean.Factory.Currencies[0], amount);
+            }
+            _walletrepo.Insert(wallet);
+
         }
 
         private  JB2.Economy.JbeanTreasuryNote getJBeansFromTreasury(IApplication app, long amount)
