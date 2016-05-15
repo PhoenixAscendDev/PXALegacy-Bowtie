@@ -14,7 +14,7 @@ namespace JB2.Bowtie
         #region Fields
         protected JB2.Identity.IPlayer _player;
         protected Name _name;
-        protected IWallet _wallet;
+        
         protected MetaDataCollection _metadata;
         
         protected Dictionary<string, MetaDataCollection> _modules;              
@@ -67,7 +67,7 @@ namespace JB2.Bowtie
         #region IBowtiePlayer
         public virtual IWallet GetWallet()
         {
-            return _wallet;
+            return JB2.Settings.Bowtie.UnitOfWork.WalletRepository.GetByPlayerAndApplication(this.GetPlayerID(), JB2.Settings.Bowtie.CurrentApplication.ID);
         }
 
         public abstract string GetIdentityAuthID();
