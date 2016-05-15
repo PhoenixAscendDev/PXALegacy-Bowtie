@@ -13,7 +13,7 @@ namespace JB2.Bowtie.Service
         protected IUnitOfWork _uofw;
         #endregion Fields
 
-
+        #region Constructors
         public JBeanService() : this(JB2.Settings.Bowtie.UnitOfWork)
         {
 
@@ -29,12 +29,11 @@ namespace JB2.Bowtie.Service
             _walletrepo = repo;
         }
 
+        #endregion Constructors
+
         public void AddJBeansToWallet(IBowtiePlayer player, IApplication app, int amount )
         {
-            var wallet = getWallet(player, app);
-
-            
-                
+            var wallet = getWallet(player, app);                
         }
 
         private  JB2.Economy.ITreasuryNote GetJBeansFromTreasury(IApplication app, long amount)

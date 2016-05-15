@@ -18,5 +18,13 @@ namespace JB2.Economy
 
             return (JBeanBag)total;
         }
+
+        public static implicit operator double(JBeanCollection c)
+        {
+            var bag = (JBeanBag)c;
+
+            return Convert.ToDouble((int)bag);
+
+        }
     }
 }

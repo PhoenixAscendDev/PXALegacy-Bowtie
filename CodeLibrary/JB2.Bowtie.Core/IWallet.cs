@@ -12,9 +12,8 @@ namespace JB2.Bowtie
 
         IEnumerable<JB2.Economy.jBeanToken> GetJBeanTokens();
 
+        bool AddTreasuryNote(JB2.Economy.JbeanTreasuryNote note);
 
-        bool AddTreasuryNote(JB2.Economy.JbeanTreasuryNote);
-
-
+        IEnumerable<WalletReceipt> GetReceipts();
     }
 }

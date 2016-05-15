@@ -94,7 +94,7 @@ namespace JB2.Bowtie.Data.Azure
         protected  void saveTokens(IWallet wallet)
         {
             //first delete all previous tokens for wallet
-            _table
+            
             //if (!string.IsNullOrEmpty(e.WalletID))
             //{
             //    e.PartitionKey = "token:jbean:wallet_" + e.WalletID;

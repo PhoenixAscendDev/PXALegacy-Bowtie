@@ -126,6 +126,16 @@ namespace JB2.Bowtie
             throw new NotImplementedException();
         }
 
+        public string GetCounterName()
+        {
+            return "bowtie_application";
+        }
+
+        public int GetCounterIndex()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion Idenitity IApplication
 
     }

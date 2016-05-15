@@ -200,6 +200,8 @@
     <Compile Include="TokenName.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="Wallet.cs" />
+    <Compile Include="WalletReceipt.cs" />
+    <Compile Include="WalletTransationType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
