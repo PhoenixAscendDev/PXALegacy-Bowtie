@@ -49,9 +49,12 @@ namespace JB2.Bowtie.Data.Azure
             e.Properties.Add("DisplayName", new EntityProperty(o.DisplayName));
             e.Properties.Add("Age", new EntityProperty(o.GetDefaultProfile().Age));
             e.Properties.Add("Gender", new EntityProperty(o.GetDefaultProfile().Gender));
+            e.Properties.Add("PlayerID", new EntityProperty(o.GetPlayerID()));
 
             return e;
         }
+
+
 
         protected override IEnumerable<IBowtiePlayer> convertToObject(IEnumerable<DynamicTableEntity> list)
         {
@@ -63,6 +66,27 @@ namespace JB2.Bowtie.Data.Azure
             throw new NotImplementedException();
         }
 
+        public new virtual IPerson<string>  GetById(string id)
+        {
+            var e = _table.GetEntity<DynamicTableEntity>("player", "id:" + id);
+            if(e == null)
+            {
+                return new Person() { ID = id };
+            }
+            else
+                return convertToPerson(e);
+        }
+
+        protected IPerson<string> convertToPerson(DynamicTableEntity e)
+        {
+            var person = new Person();
+            person.ID = e.Properties.ContainsKey("PlayerID") ? e.Properties["PlayerID"].StringValue : string.Empty;
+            person.DisplayName = e.Properties.ContainsKey("DisplayName") ? e.Properties["DisplayName"].StringValue : string.Empty;
+            person.Name = new Name();
+
+            return person;
+        }
+
         protected override void deleteAll(DynamicTableEntity e)
         {
             throw new NotImplementedException();
@@ -70,8 +94,12 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override void saveEntity(DynamicTableEntity e, bool replace)
         {
-            e.PartitionKey = "player";
+            e.PartitionKey = "profile";
             e.RowKey = "id:" + e.Properties["ID"].StringValue;
+            _table.Insert<DynamicTableEntity>(e, true);
+
+            e.PartitionKey = "player";
+            e.RowKey = "id:" + e.Properties["PlayerID"].StringValue;
             _table.Insert<DynamicTableEntity>(e, true);
         }
     }

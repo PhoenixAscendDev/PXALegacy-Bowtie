@@ -75,6 +75,13 @@ namespace JB2.Bowtie.Service
 
         }
 
+        public IWallet RetrieveWalletByPlayer(IBowtiePlayer player,IApplication app)
+        {
+            var wallet = getWallet(player, app);
+
+            return wallet;
+        }
+
         private  JB2.Economy.JbeanTreasuryNote getJBeansFromTreasury(IApplication app, long amount)
         {
             var settings = _uofw.JbeanRepository.GetApplicationSettings(app);
@@ -112,5 +119,7 @@ namespace JB2.Bowtie.Service
             return wallet;
 
         }
+
+
     }
 }

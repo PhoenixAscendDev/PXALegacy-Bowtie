@@ -37,8 +37,9 @@ namespace JB2.Bowtie.Data.Azure
 
         public IWallet GetByPlayerAndApplication(string playerID, string appID)
         {
-            var e = _table.GetByRowKeyStartWith<DynamicTableEntity>("wallet:application::" + appID, "playerid:" + playerID, 1000).FirstOrDefault();
+            var e = _table.GetByRowKeyStartWith<DynamicTableEntity>("wallet:application:" + appID, "playerid:" + playerID, 1000).FirstOrDefault();
 
+           
             return convertToObject(e);
 
 
@@ -95,7 +96,7 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override void saveEntity(DynamicTableEntity e, bool replace)
         {
-            e.PartitionKey = "wallet" + e.Properties["ID"].StringValue;
+            e.PartitionKey = "wallet";
             e.RowKey = "id:" + e.Properties["ID"].StringValue;
             _table.Insert<DynamicTableEntity>(e);
 

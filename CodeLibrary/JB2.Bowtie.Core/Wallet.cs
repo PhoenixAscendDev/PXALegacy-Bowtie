@@ -18,19 +18,39 @@ namespace JB2.Bowtie
         protected JBeanCollection _treasuryNotes;
         protected IEnumerable<JB2.Bowtie.WalletReceipt> _receipts;
         protected Dictionary<string, double> _amounts;
+        protected string _id;
         
         protected string _playerID;
 
         #endregion Fields
 
         #region Constructor
+
+        public override string ID
+        {
+            get
+            {
+                return _id;
+            }   
+            set
+            {
+                _id = value;
+            }    
+        }
+
+        public override string GetID()
+        {
+            return _id;
+        }
+
         public PlayerWallet(string id, string playerID, JBeanCollection jbeanTreasuryNotes)
         {
-            ID = id;
+            _id = id;
             _treasuryNotes = jbeanTreasuryNotes;
             _playerID = playerID;
             _amounts = new Dictionary<string, double>();
             _amounts.Add(JB2.Settings.Jbean.Factory.Currencies[0].ID, (double)jbeanTreasuryNotes);
+            _receipts = new List<WalletReceipt>();
         }
 
         #endregion Constructor
@@ -103,10 +123,6 @@ namespace JB2.Bowtie
             return _appID;
         }
 
-        public override string GetID()
-        {
-            return base.ID;
-        }
 
         public void RemoveAmount(ICurrency currency, double quantity)
         {

@@ -40,7 +40,6 @@ namespace JB2.Bowtie.Service
             return filterByType<GraphStory>(elements, Enum.GraphElementType.Story);          
         }
 
-
         #region Graph Properties
         public IEnumerable<GraphProperty> RetreiveProperties()
         {

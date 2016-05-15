@@ -49,6 +49,9 @@ namespace JB2.Bowtie.Service
         {
             IBowtiePlayer result = new JB2.Bowtie.ApplicationPlayer(player, app.GetID());
 
+            WalletService wservice = new WalletService(_uofw);
+            var wallet = wservice.RetrieveWalletByPlayer(result, app);
+
             _uofw.PlayerRepository.Insert(result);
 
             return result;
