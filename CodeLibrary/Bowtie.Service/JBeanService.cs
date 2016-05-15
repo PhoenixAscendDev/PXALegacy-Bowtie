@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie.Service
 {
-    public class JBeanService
+    public class WalletService
     {
         #region Fields
         protected IWalletRepository _walletrepo;
@@ -14,29 +14,36 @@ namespace JB2.Bowtie.Service
         #endregion Fields
 
         #region Constructors
-        public JBeanService() : this(JB2.Settings.Bowtie.UnitOfWork)
+        public WalletService() : this(JB2.Settings.Bowtie.UnitOfWork)
         {
 
         }
-        public JBeanService(IUnitOfWork unitofWork)
+        public WalletService(IUnitOfWork unitofWork)
         {
             _uofw = unitofWork;
             _walletrepo = _uofw.WalletRepository;
         }
 
-        public JBeanService(IWalletRepository repo) : this()
+        public WalletService(IWalletRepository repo) : this()
         {
             _walletrepo = repo;
         }
 
         #endregion Constructors
 
-        public void AddJBeansToWallet(IBowtiePlayer player, IApplication app, int amount )
+        public void AddJBeansToWallet(IBowtiePlayer player, IApplication app, int amount)
         {
-            var wallet = getWallet(player, app);                
+            var wallet = getWallet(player, app);
+
+            var treasuryNote = getJBeansFromTreasury(app, amount);
+
+            if(treasuryNote.Amount == amount)
+            {
+                wallet.AddTreasuryNote(treasuryNote);
+            }
         }
 
-        private  JB2.Economy.ITreasuryNote GetJBeansFromTreasury(IApplication app, long amount)
+        private  JB2.Economy.JbeanTreasuryNote getJBeansFromTreasury(IApplication app, long amount)
         {
             var settings = _uofw.JbeanRepository.GetApplicationSettings(app);
 
@@ -52,7 +59,7 @@ namespace JB2.Bowtie.Service
 
             if (note != null && note.Amount == amount)
             {
-                return note;
+                return (JB2.Economy.JbeanTreasuryNote)note;
             }
             else
                 return null;         
