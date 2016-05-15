@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IApplication : IBowtieObject, JB2.Common.IIDNamePair<string, string>, JB2.Common.IAPIKeySecretPair, JB2.Economy.IRequestor
+    public interface IApplication : IBowtieObject, JB2.Common.IIDNamePair<string, string>, JB2.Common.IAPIKeySecretPair, JB2.Economy.IRequestor, JB2.Identity.IApplication
     {
         string Secret { get; }
         bool isAuthorized { get; }

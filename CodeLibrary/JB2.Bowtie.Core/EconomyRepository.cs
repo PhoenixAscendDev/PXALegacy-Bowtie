@@ -8,6 +8,6 @@ namespace JB2.Bowtie
 {
     public interface IWalletRepository : JB2.Common.IRepository<IWallet, string>
     {
-
+        IWallet GetByPlayerAndApplication(string playerID, string appID);
     }
 }

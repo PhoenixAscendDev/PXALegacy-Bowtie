@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy
 {
-    public class JBeanCollection : JB2.Common.BaseCollection<jBeanToken>
+    public class JBeanCollection : JB2.Common.BaseCollection<JbeanTreasuryNote>
     {
         public static implicit operator JBeanBag(JBeanCollection c)
         {
             int total = 0;
             foreach(var token in c)
             {
-                total = total + (int)token.Value;
+                total = total + (int)token.Amount;
             }
 
             return (JBeanBag)total;

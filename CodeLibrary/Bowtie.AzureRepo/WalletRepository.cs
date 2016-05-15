@@ -35,6 +35,12 @@ namespace JB2.Bowtie.Data.Azure
 
         #endregion
 
+        public IWallet GetByPlayerAndApplication(string playerID, string appID)
+        {
+            var e = _table.GetEntity<DynamicTableEntity>("wallet:application:" + appID, "playerID:" + playerID);
+            return convertToObject(e);
+        }
+
 
         protected override DynamicTableEntity convertToEntity(IWallet o)
         {
@@ -52,7 +58,13 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override IEnumerable<IWallet> convertToObject(IEnumerable<DynamicTableEntity> list)
         {
-            throw new NotImplementedException();
+            var results = new List<IWallet>();
+
+            foreach(var e in list)
+            {
+                results.Add(convertToObject(e));
+            }
+            return results;
         }
 
         protected override IWallet convertToObject(DynamicTableEntity e)
@@ -82,7 +94,7 @@ namespace JB2.Bowtie.Data.Azure
         protected  void saveTokens(IWallet wallet)
         {
             //first delete all previous tokens for wallet
-
+            _table
             //if (!string.IsNullOrEmpty(e.WalletID))
             //{
             //    e.PartitionKey = "token:jbean:wallet_" + e.WalletID;

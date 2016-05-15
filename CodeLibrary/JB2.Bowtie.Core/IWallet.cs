@@ -10,6 +10,11 @@ namespace JB2.Bowtie
     {
         JB2.Economy.JBeanBag JBeanTotal { get; }
 
-        IEnumerable<JB2.Economy.jBeanToken> GetJBeanTokens(); 
+        IEnumerable<JB2.Economy.jBeanToken> GetJBeanTokens();
+
+
+        bool AddTreasuryNote(JB2.Economy.JbeanTreasuryNote);
+
+
     }
 }

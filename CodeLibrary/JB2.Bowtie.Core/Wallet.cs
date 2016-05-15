@@ -88,7 +88,12 @@ namespace JB2.Bowtie
 
         public IEnumerable<jBeanToken>  GetJBeanTokens()
         {
-            return _jbeanTokens;
+            return null;
+        }
+
+        public bool AddTreasuryNote(JbeanTreasuryNote note)
+        {
+            _jbeanTokens.Add(note);
         }
     }
 }
