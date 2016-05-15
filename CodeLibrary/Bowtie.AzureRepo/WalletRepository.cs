@@ -98,15 +98,15 @@ namespace JB2.Bowtie.Data.Azure
         {
             e.PartitionKey = "wallet";
             e.RowKey = "id:" + e.Properties["ID"].StringValue;
-            _table.Insert<DynamicTableEntity>(e);
+            _table.Insert<DynamicTableEntity>(e,true);
 
             e.PartitionKey = "wallet:application:" + e.Properties["ApplicationID"].StringValue;
             e.RowKey = "playerid:" + e.Properties["PlayerID"].StringValue + "_id:" + e.Properties["ID"].StringValue;
-            _table.Insert<DynamicTableEntity>(e);
+            _table.Insert<DynamicTableEntity>(e, true);
 
             e.PartitionKey = "wallet:player:" + e.Properties["ApplicationID"].StringValue;
             e.RowKey = "appid:" + e.Properties["ApplicationID"].StringValue + "_id:" + e.Properties["ID"].StringValue;
-            _table.Insert<DynamicTableEntity>(e);
+            _table.Insert<DynamicTableEntity>(e, true);
         }
 
         public override void Insert(IWallet obj)

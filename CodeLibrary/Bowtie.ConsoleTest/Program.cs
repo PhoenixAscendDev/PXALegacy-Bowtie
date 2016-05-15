@@ -24,9 +24,18 @@ namespace Bowtie.ConsoleTest
 
             var pservice = new JB2.Bowtie.Service.PlayerService();
 
-            var player = pservice.RetrieveByAuthID("i-febble",JB2.Settings.Bowtie.CurrentApplication);
+            var player = pservice.RetrieveByAuthID("i-febble", JB2.Settings.Bowtie.CurrentApplication);
+            var app = JB2.Settings.Bowtie.CurrentApplication;
 
-            Console.WriteLine(player.GetWallet().JBeanTotal.ToString());
+            JB2.Bowtie.Service.WalletService wservice = new JB2.Bowtie.Service.WalletService();
+
+            
+
+            var wallet = wservice.RetrieveWalletByPlayer(player, app);
+
+            wservice.AddJBeansToWallet(wallet, 100);
+
+            Console.WriteLine(wallet.JBeanTotal.ToString());
             Console.ReadLine();
         }
 
