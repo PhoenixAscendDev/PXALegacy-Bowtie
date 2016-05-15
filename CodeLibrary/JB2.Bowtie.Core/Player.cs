@@ -9,11 +9,11 @@ using JB2.Identity;
 
 namespace JB2.Bowtie
 {
-    public abstract class Player  : JB2.Common.ShortGuidID, IBowtiePlayer
+    public abstract class Player  : BowtieObject, IBowtiePlayer
     {
         #region Fields
         protected JB2.Identity.IPlayer _player;
-        protected Name _name;
+        protected new Name _name;
         
         protected MetaDataCollection _metadata;
         
@@ -21,7 +21,7 @@ namespace JB2.Bowtie
         #endregion Fields
 
         public abstract string DisplayName { get; set; }
-        public virtual Name Name
+        public new virtual Name Name
         {
             get
             {

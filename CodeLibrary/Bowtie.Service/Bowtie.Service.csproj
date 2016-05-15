@@ -130,6 +130,7 @@
     <Compile Include="GraphService.cs" />
     <Compile Include="JBeanService.cs" />
     <Compile Include="LeaderboardService.cs" />
+    <Compile Include="PlayerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

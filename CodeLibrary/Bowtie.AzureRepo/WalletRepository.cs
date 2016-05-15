@@ -14,7 +14,7 @@ namespace JB2.Bowtie.Data.Azure
     {
 
         #region Constructors
-        public WalletRepository() : this("appdata","general")
+        public WalletRepository() : this("wallets","general")
         {
 
         }
