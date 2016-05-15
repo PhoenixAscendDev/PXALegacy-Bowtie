@@ -22,6 +22,7 @@ namespace JB2.Bowtie
         public ApplicationPlayer(JB2.Identity.IPlayer authPlayer, string applicationID)
         {
             _player = authPlayer;
+            _id = authPlayer.GetDefaultProfile().ID;
             _applicationID = applicationID;
         }
 

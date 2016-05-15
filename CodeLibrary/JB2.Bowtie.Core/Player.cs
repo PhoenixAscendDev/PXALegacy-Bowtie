@@ -87,9 +87,10 @@ namespace JB2.Bowtie
             return _player.GetPlayerID();
         }
 
+
         public PlayerProfilePacket GetDefaultProfile()
         {
-            throw new NotImplementedException();
+            return _player.GetDefaultProfile();
         }
 
         public IMetaData GetMetaData(string propertyName)

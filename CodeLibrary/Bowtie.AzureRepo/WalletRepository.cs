@@ -37,8 +37,11 @@ namespace JB2.Bowtie.Data.Azure
 
         public IWallet GetByPlayerAndApplication(string playerID, string appID)
         {
-            var e = _table.GetByRowKeyStartWith<DynamicTableEntity>("wallet:application::" + appID, "playerid:" + playerID,1000).FirstOrDefault();
+            var e = _table.GetByRowKeyStartWith<DynamicTableEntity>("wallet:application::" + appID, "playerid:" + playerID, 1000).FirstOrDefault();
+
             return convertToObject(e);
+
+
         }
 
 
@@ -69,16 +72,20 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override IWallet convertToObject(DynamicTableEntity e)
         {
-            var jBeans = new JB2.Economy.JBeanCollection();
+            if (e != null)
+            {
+                var jBeans = new JB2.Economy.JBeanCollection();
 
-            var playerID = e.Properties.ContainsKey("PlayerID") ? e.Properties["PlayerID"].StringValue : string.Empty;
-            var appID = e.Properties.ContainsKey("ApplicationID") ? e.Properties["ApplicationID"].StringValue : string.Empty;
-            var id = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
+                var playerID = e.Properties.ContainsKey("PlayerID") ? e.Properties["PlayerID"].StringValue : string.Empty;
+                var appID = e.Properties.ContainsKey("ApplicationID") ? e.Properties["ApplicationID"].StringValue : string.Empty;
+                var id = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
 
-            IWallet wallet = new PlayerWallet(id, playerID, jBeans);
-            wallet.ApplicationID = appID;
+                IWallet wallet = new PlayerWallet(id, playerID, jBeans);
+                wallet.ApplicationID = appID;
 
-            return wallet;
+                return wallet;
+            }
+            return null;
         }
 
         protected override void deleteAll(DynamicTableEntity e)
