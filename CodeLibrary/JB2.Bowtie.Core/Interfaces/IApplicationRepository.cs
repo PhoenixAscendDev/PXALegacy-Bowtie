@@ -13,5 +13,9 @@ namespace JB2.Bowtie
         IApplication[] GetApplicationsByClientID(string clientID);
 
         IApplication GetApplicationByAPIKey(string publicKey);
+
+        string GetTreasuryRequestKey(string id, string treasuryID);
+
+        
     }
 }

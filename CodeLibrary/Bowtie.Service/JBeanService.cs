@@ -84,16 +84,16 @@ namespace JB2.Bowtie.Service
 
         private  JB2.Economy.JbeanTreasuryNote getJBeansFromTreasury(IApplication app, long amount)
         {
-            var settings = _uofw.JbeanRepository.GetApplicationSettings(app);
+            // var settings = _uofw.JbeanRepository.GetApplicationSettings(app);
 
-            if (!settings.CanRequest)
-                throw new JB2.Economy.Exceptions.IssueJBeanProhibited();
+            var requestKey = _uofw.ApplicationRepository.GetTreasuryRequestKey(app.GetID(), "jBean");
 
             var request = new JB2.Economy.jBeanRequest();
             request.RequestDate = System.DateTime.Now;
             request.Requestor = app;
-            request.VerificationKey = settings.RequestValidationKey;
+            request.VerificationKey = requestKey;
             request.Amount = amount;
+
             var note = JB2.Settings.Jbean.Factory.Treasury.IssueNote(request);
 
             if (note != null && note.Amount == amount)

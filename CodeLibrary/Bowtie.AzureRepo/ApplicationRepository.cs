@@ -100,5 +100,21 @@ namespace JB2.Bowtie.Data.Azure
         {
             throw new NotImplementedException();
         }
+
+        public string GetTreasuryRequestKey(string applicationID, string treasuryID)
+        {
+            var e = _table.GetEntity<DynamicTableEntity>("application", applicationID);
+
+
+            if (e == null)
+                return string.Empty;
+
+            if (treasuryID == "jBean")
+            {
+                return e.Properties.ContainsKey("JBeanRequestKey") ? e.Properties["JBeanRequestKey"].StringValue : string.Empty;
+            }
+            else
+                return string.Empty;
+        }
     }
 }

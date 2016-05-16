@@ -82,5 +82,10 @@ namespace JB2.Bowtie.Data.NoDB
         {
             throw new NotImplementedException();
         }
+
+        public string GetTreasuryRequestKey(string id, string treasuryID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
