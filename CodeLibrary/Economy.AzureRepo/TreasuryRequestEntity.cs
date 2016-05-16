@@ -31,6 +31,11 @@ namespace JB2.Economy.Data
         public string VerificationKey { get; set; }
         public string Treasury { get; set; }
         public string RequestorID { get; set; }
+
+        public string GetTreasuryID()
+        {
+            throw new NotImplementedException();
+        }
         #endregion Properties
     }
 }

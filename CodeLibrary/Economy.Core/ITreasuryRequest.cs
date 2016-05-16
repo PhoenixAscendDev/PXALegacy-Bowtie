@@ -17,7 +17,7 @@ namespace JB2.Economy
     {
 
     }
-    public interface ITreasuryRequest<T,TRequestor>
+    public interface ITreasuryRequest<T, TRequestor>
         where T : IComparable
         where TRequestor : IRequestor<T>
 
@@ -26,5 +26,6 @@ namespace JB2.Economy
         DateTime RequestDate { get; set; }
         long Amount { get; set; }
         string VerificationKey { get; set; }
+        string GetTreasuryID();
     }
 }

@@ -18,5 +18,10 @@ namespace JB2.Economy
         public DateTime RequestDate { get; set; }
         public long Amount { get; set; }
         public string VerificationKey { get; set; }
+
+        public virtual string GetTreasuryID()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

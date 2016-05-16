@@ -72,6 +72,9 @@ namespace JB2.Economy
         public bool IsValidRequest(ITreasuryRequest request)
         {
             return true;
+            
+
+
             //Make sure the requestor is a JB2 Identity Application
             if (request.Requestor.GetType() != typeof(JB2.Identity.IApplication))
                 return false;

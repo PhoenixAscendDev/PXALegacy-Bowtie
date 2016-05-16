@@ -15,5 +15,7 @@ namespace JB2.Bowtie
         bool AddTreasuryNote(JB2.Economy.JbeanTreasuryNote note);
 
         IEnumerable<WalletReceipt> GetReceipts();
+
+        IEnumerable<JB2.Economy.ITreasuryNote> GetTreasuryNotes();
     }
 }

@@ -164,6 +164,7 @@
     <Compile Include="jBeanCentralBank.cs" />
     <Compile Include="JBeanFactory.cs" />
     <Compile Include="jBeanReceipt.cs" />
+    <Compile Include="jBeanRequest.cs" />
     <Compile Include="JbeanSettingNames.cs" />
     <Compile Include="JbeanSettings.cs" />
     <Compile Include="JBeanDenomination.cs" />

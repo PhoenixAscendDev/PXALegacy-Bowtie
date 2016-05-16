@@ -89,7 +89,7 @@ namespace JB2.Bowtie.Service
             if (!settings.CanRequest)
                 throw new JB2.Economy.Exceptions.IssueJBeanProhibited();
 
-            var request = new JB2.Economy.TreasuryRequest();
+            var request = new JB2.Economy.jBeanRequest();
             request.RequestDate = System.DateTime.Now;
             request.Requestor = app;
             request.VerificationKey = settings.RequestValidationKey;

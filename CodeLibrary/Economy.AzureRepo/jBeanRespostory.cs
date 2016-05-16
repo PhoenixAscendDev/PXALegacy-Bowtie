@@ -359,11 +359,11 @@ namespace JB2.Economy.Data
             e.ID = JB2.Common.NewID.Guid();
             e.Name = "jBean Treasury Request";
             e.RequestDate = request.RequestDate;
-            e.RequestorID = request.Requestor.ToString();
-            e.Treasury = "jBean";
-            e.VerificationKey = string.Empty;
+            e.RequestorID = request.Requestor.GetID();
+            e.Treasury = request.GetTreasuryID();
+            e.VerificationKey = request.VerificationKey;
+            e.Amount = request.Amount;
             saveTreasuryRequest(e);
-
             return true;
         }
 

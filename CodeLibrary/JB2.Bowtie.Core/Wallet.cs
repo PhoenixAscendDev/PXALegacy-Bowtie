@@ -16,7 +16,7 @@ namespace JB2.Bowtie
 
         protected string _appID;
         protected JBeanCollection _treasuryNotes;
-        protected IEnumerable<JB2.Bowtie.WalletReceipt> _receipts;
+        protected IList<JB2.Bowtie.WalletReceipt> _receipts;
         protected Dictionary<string, double> _amounts;
         protected string _id;
         
@@ -135,7 +135,7 @@ namespace JB2.Bowtie
             receipt.CurrencyID = currency.ID;
             receipt.TransationID = "wt-" + JB2.Common.NewID.ShortGuid();
             receipt.Amount = quantity;
-            _receipts.ToList().Add(receipt);
+            _receipts.Add(receipt);
 
             _amounts[currency.ID] = _amounts[currency.ID] - quantity;
         }
@@ -164,6 +164,11 @@ namespace JB2.Bowtie
         public string GetPlayerID()
         {
             return _playerID;
+        }
+
+        public IEnumerable<ITreasuryNote> GetTreasuryNotes()
+        {
+            return _treasuryNotes;
         }
     }
 }
