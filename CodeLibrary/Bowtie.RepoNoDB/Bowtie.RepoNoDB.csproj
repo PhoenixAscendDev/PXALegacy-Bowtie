@@ -75,8 +75,8 @@
       <HintPath>..\..\Solutions\packages\JB2.Economy.Core.0.1.7\lib\JB2.Economy.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Economy.jBean, Version=0.1.7.40959, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Economy.jBean.0.1.7.40959\lib\JB2.Economy.jBean.dll</HintPath>
+    <Reference Include="JB2.Economy.jBean, Version=0.1.7.41453, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Economy.jBean.0.1.7.41453\lib\JB2.Economy.jBean.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">

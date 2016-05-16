@@ -71,19 +71,17 @@ namespace JB2.Economy
         }
         public bool IsValidRequest(ITreasuryRequest request)
         {
-            return true;
-            
 
+            //first lets make sure the requestor is jbean application 
 
-            //Make sure the requestor is a JB2 Identity Application
-            if (request.Requestor.GetType() != typeof(JB2.Identity.IApplication))
+            var appsettings = _repo.GetApplicationSettingsByID(request.Requestor.GetID());
+
+            if (appsettings == null)
                 return false;
+
             try
             {
-                //Now make sure the request's validation key matches that of the application and can request
-                var app = request.Requestor as JB2.Identity.IApplication;
-                var appSettings = _repo.GetApplicationSettings(app);
-                return ((appSettings.CanRequest) && (appSettings.RequestValidationKey == request.VerificationKey));
+                return ((appsettings.CanRequest) && (appsettings.RequestValidationKey == request.VerificationKey));
             }
             catch(Exception ex)
             {

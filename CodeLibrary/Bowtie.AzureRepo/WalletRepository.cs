@@ -81,6 +81,26 @@ namespace JB2.Bowtie.Data.Azure
                 var appID = e.Properties.ContainsKey("ApplicationID") ? e.Properties["ApplicationID"].StringValue : string.Empty;
                 var id = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
 
+
+                var treasuryNotes = _table.GetByRowKeyStartWith<DynamicTableEntity>("wallet:" + id, "treasurynote:", 1000);
+
+
+                var app = JB2.Settings.Bowtie.UnitOfWork.ApplicationRepository.GetById(appID);
+                foreach(var n in treasuryNotes)
+                {
+                    var noteID = n.Properties.ContainsKey("ID") ? n.Properties["ID"].StringValue : string.Empty;
+                    var amount = n.Properties.ContainsKey("Amount") ? n.Properties["Amount"].Int64Value : 0;
+
+                    var tempNote = new JB2.Economy.JbeanTreasuryNote(noteID, (int)amount, app);
+
+                    var isValid = JB2.Settings.Jbean.Factory.Treasury.IsValidNote(tempNote);
+
+                    if(isValid)
+                        jBeans.Add(tempNote);
+                }
+
+
+
                 IWallet wallet = new PlayerWallet(id, playerID, jBeans);
                 wallet.ApplicationID = appID;
 
@@ -109,9 +129,47 @@ namespace JB2.Bowtie.Data.Azure
             _table.Insert<DynamicTableEntity>(e, true);
         }
 
+
+        private void saveTreasuryNote(IWallet wallet, JB2.Economy.ITreasuryNote note)
+        {
+            var e = new DynamicTableEntity();
+
+            e.Properties.Add("ID", new EntityProperty(note.ID));
+            e.Properties.Add("Amount", new EntityProperty(note.Amount));
+            e.Properties.Add("IssuedBy", new EntityProperty(note.GetRequestor().GetID()));
+
+            e.PartitionKey = "wallet:" + wallet.GetID();
+            e.RowKey = "treasurynote:" + note.ID;
+            _table.Insert(e, true);
+
+        }
+
+        private void saveReceipt(IWallet wallet, WalletReceipt receipt)
+        {
+            var e = new DynamicTableEntity();
+            e.Properties.Add("CurrencyID", new EntityProperty(receipt.CurrencyID));
+            e.Properties.Add("Description", new EntityProperty(receipt.Description));
+            e.Properties.Add("Amount", new EntityProperty(receipt.Amount));
+            e.Properties.Add("TransationDate", new EntityProperty(receipt.TransactionDate));
+            e.Properties.Add("TransationType", new EntityProperty(receipt.TransactionType.ToString()));
+            e.Properties.Add("ID", new EntityProperty(receipt.TransationID));
+            e.PartitionKey = "wallet:" + wallet.GetID();
+            e.RowKey = "receipt:" + receipt.TransationID;
+            _table.Insert(e, true);
+        }
         public override void Insert(IWallet obj)
         {
             var e = convertToEntity(obj);
+
+            foreach(var n in obj.GetTreasuryNotes())
+            {
+                saveTreasuryNote(obj, n);
+            }
+
+            foreach (var r in obj.GetReceipts())
+            {
+                saveReceipt(obj, r);
+            }
 
             saveEntity(e,true);
         }

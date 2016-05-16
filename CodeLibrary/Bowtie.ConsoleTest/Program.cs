@@ -29,11 +29,12 @@ namespace Bowtie.ConsoleTest
 
             JB2.Bowtie.Service.WalletService wservice = new JB2.Bowtie.Service.WalletService();
 
-            
 
             var wallet = wservice.RetrieveWalletByPlayer(player, app);
 
             wservice.AddJBeansToWallet(wallet, 100);
+
+            wservice.RemoveJBeansToWallet(wallet, 10);
 
             Console.WriteLine(wallet.JBeanTotal.ToString());
             Console.ReadLine();
