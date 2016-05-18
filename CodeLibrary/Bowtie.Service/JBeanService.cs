@@ -45,7 +45,9 @@ namespace JB2.Bowtie.Service
 
             var treasuryNote = getJBeansFromTreasury(app, amount);
 
-            if (treasuryNote.Amount == amount)
+
+
+            if (treasuryNote != null && treasuryNote.Amount == amount)
             {
                 wallet.AddTreasuryNote(treasuryNote);
             }
