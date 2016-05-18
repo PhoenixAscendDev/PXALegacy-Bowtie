@@ -14,8 +14,9 @@ namespace JB2.Bowtie
     {
         protected List<ObjectTag> _tags;
         protected BowtieObjectType _kind;
-              
-        public BowtieObject(BowtieObjectType kind,string id): this(id)
+        protected int _rng = 0;
+
+        public BowtieObject(BowtieObjectType kind, string id) : this(id)
         {
             this._kind = kind;
         }
@@ -25,7 +26,7 @@ namespace JB2.Bowtie
             this._id = id == null ? JB2.Bowtie.Utility.GenerateNewObjectID() : id;
             //if(id == null)
             //    this._id = ;
-            
+
         }
 
         public BowtieObject()
@@ -34,6 +35,7 @@ namespace JB2.Bowtie
             this._name = string.Empty;
             this._id = JB2.Bowtie.Utility.GenerateNewObjectID();
             this._kind = BowtieObjectType.unknown;
+            this._rng = JB2.Common.RNG.Randy;
         }
 
         public string UniqueToken
@@ -61,7 +63,7 @@ namespace JB2.Bowtie
             {
                 return _kind;
             }
-            
+
         }
 
         public bool RemoveTag(Common.ObjectTag tag)
@@ -95,6 +97,18 @@ namespace JB2.Bowtie
         public IEnumerable<ObjectTag> GetTags()
         {
             return _tags;
+        }
+
+        public int RNG
+        {
+           get
+            {
+                return _rng;
+            }
+            set
+            {
+                _rng = value;
+            }
         }
     }
 }
