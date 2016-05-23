@@ -110,7 +110,5 @@ namespace JB2.Bowtie
 
         #endregion IBowtiePlayer
 
-
-
     }
 }
