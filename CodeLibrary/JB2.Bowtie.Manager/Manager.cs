@@ -40,7 +40,7 @@ namespace JB2.Bowtie
             };
             //JB2.Bowtie.Settings._application = app;
             var jbeanStorage = JB2.Infrastructure.Storage.BowtieAccount;
-            JB2.Settings.Jbean.Configure( new BaseSetting[1]{ s }, new JB2.Economy.Data.jBeanRespostory(jbeanStorage));
+            JB2.Settings.Jbean.Configure(new BaseSetting[1] { s }, new JB2.Economy.Data.jBeanRespostory(jbeanStorage));
 
             //genera bowtie settings
             List<ISetting> bowtieSettings = new List<ISetting>();
@@ -62,7 +62,7 @@ namespace JB2.Bowtie
             {
                 ID = "UNITOFWORK",
                 Name = "Unit Of Work",
-                Value = uofw          
+                Value = uofw
             });
 
             JB2.Settings.Bowtie.Configure(bowtieSettings);
@@ -82,5 +82,9 @@ namespace JB2.Bowtie
 
             return true;
         }
+
+        #region Events
+        EventHandler
+        #endregion Events
     }
 }

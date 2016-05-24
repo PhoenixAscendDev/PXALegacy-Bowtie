@@ -20,6 +20,8 @@ namespace JB2.Settings
 
         internal const string _headerDelimiter = ":";
 
+        internal static IEnumerable<Dewdrop> _dewdrops;
+
         internal static int _authCheckInterval = 5;
         private static JB2.Common.SettingCollection<string> _settings;
         private static bool _isConfigured = false;
@@ -27,22 +29,33 @@ namespace JB2.Settings
         
         public static APIMode Mode
         {
-            get 
+            get
             {
                 APIMode result = APIMode.Debug;
-                    #if DEBUG
-                        result =  APIMode.Debug;    
-                    #endif
-                    #if NODB
+#if DEBUG
+                result = APIMode.Debug;
+#endif
+#if NODB
                         result = Enum.APIMode.UnitTest;
-                    #endif
+#endif
 
-                    
+
                 return result;
             }
         }
 
+        public static IEnumerable<Dewdrop> Dewdrops
+        {
+            get
+            {
+                return _dewdrops;
+            }
+            set
+            {
+                _dewdrops = value;
+            }
 
+        }
         public static Application CurrentApplication
         {
             get
