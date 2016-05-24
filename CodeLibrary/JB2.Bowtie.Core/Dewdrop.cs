@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class Dewdrop : JB2.Common.IDNamePair, JB2.Identity.IApplicationable, JB2.Common.IIDNamePair<string, string>
+    public class Dewdrop : JB2.Common.IDNamePair, IDewdrop,JB2.Identity.IApplicationable, JB2.Common.IIDNamePair<string, string>
     {
         #region Fields
         protected string _appid;

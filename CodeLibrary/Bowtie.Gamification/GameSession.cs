@@ -12,7 +12,7 @@ namespace JB2.Bowtie
         protected IDictionary<int, IBowtiePlayer> _players;
         protected DateTime _startTime;
         protected DateTime _endTime;
-        
+        protected JB2.Common.BaseCollection<IGameCommand> _commands;        
 
         #endregion Fields
 
@@ -32,7 +32,7 @@ namespace JB2.Bowtie
         public event Action<IGameSession, DateTime> Started;
         public event Action<IGameSession, DateTime> TimedOut;
         public event Action<IGameSession, int> Vacancy;
-
+        public event Action<IGameSession, IGameCommand> CommandAdded;
 
         public virtual void AddPlayer(IBowtiePlayer player)
         {
@@ -80,6 +80,15 @@ namespace JB2.Bowtie
             return _startTime;
         }
 
+        public virtual IEnumerable<IGameCommand> GetGameCommands()
+        {
+            return _commands;
+        }
+
+        public virtual void AddGameCommand(IGameCommand command)
+        {
+            _commands.Add(command);
+        }
 
         public virtual void ManuallyStop()
         {

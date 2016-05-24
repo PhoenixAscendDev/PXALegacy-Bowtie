@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
+
+    
     public interface IGameSession
     {
         #region Getters
@@ -26,6 +28,11 @@ namespace JB2.Bowtie
         void Start();
         void ManuallyStop();
         void TimeOutStop();
+        IEnumerable<IGameCommand> GetGameCommands();
+
+        void AddGameCommand(IGameCommand command);
+
+
 
 
         event Action<IGameSession,DateTime> Started;
