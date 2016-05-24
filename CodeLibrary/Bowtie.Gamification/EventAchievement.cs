@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class EventAchievement : BaseAchievement, IAchievement
+    public class EventAchievement : Achievement, IAchievement
     {
         public EventAchievement()
         {

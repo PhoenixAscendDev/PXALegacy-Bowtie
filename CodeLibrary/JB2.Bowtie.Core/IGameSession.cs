@@ -29,7 +29,7 @@ namespace JB2.Bowtie
 
 
         event Action<IGameSession,DateTime> Started;
-        event Action<IGameSession,DateTime> ManutallyStopped;
+        event Action<IGameSession,DateTime> ManuallyStopped;
         event Action<IGameSession,DateTime> TimedOut;
         event Action<IGameSession, IBowtiePlayer, int> PlayerAdded;
         event Action<IGameSession, IBowtiePlayer, int> PlayerRemoved;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class BaseAchievement : BowtieObject, IAchievement
+    public abstract class Achievement : BowtieObject, IAchievement
     {
         protected string _appID;
         protected int _sortorder;
@@ -21,11 +21,11 @@ namespace JB2.Bowtie
         protected long _points;
 
 
-        public BaseAchievement() : this(null)
+        public Achievement() : this(null)
         {
         }
 
-        public BaseAchievement(string id) : base(Enum.BowtieObjectType.bowtie_achievement,id)
+        public Achievement(string id) : base(Enum.BowtieObjectType.bowtie_achievement,id)
         {
             _icons = new Dictionary<string,string>();
             _icons.Add("EARNED", string.Empty);
@@ -36,7 +36,7 @@ namespace JB2.Bowtie
 
 
 
-        public string ApplicationID
+        public virtual string ApplicationID
         {
             get
             {
@@ -48,7 +48,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public int SortOrder
+        public virtual int SortOrder
         {
             get
             {
@@ -60,7 +60,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public string Description
+        public virtual string Description
         {
             get
             {
@@ -72,7 +72,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public Enum.AchievementType AchievementType
+        public virtual Enum.AchievementType AchievementType
         {
             get
             {
@@ -84,7 +84,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public string Category
+        public virtual string Category
         {
             get
             {
@@ -96,7 +96,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public int StepsRequired
+        public virtual int StepsRequired
         {
             get
             {
@@ -108,7 +108,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public string EarnedIconUrl
+        public virtual string EarnedIconUrl
         {
             get
             {
@@ -120,7 +120,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public string HiddenIconUrl
+        public virtual string HiddenIconUrl
         {
             get
             {
@@ -132,7 +132,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public string ShownIconUrl
+        public virtual string ShownIconUrl
         {
             get
             {
@@ -144,7 +144,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public Enum.AchievementRarityType Rarity
+        public virtual Enum.AchievementRarityType Rarity
         {
             get
             {
@@ -156,7 +156,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public DateTime TimeBoundStart
+        public virtual DateTime TimeBoundStart
         {
             get
             {
@@ -169,7 +169,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public DateTime TimeBoundEnd
+        public virtual DateTime TimeBoundEnd
         {
             get
             {
@@ -181,7 +181,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public long Points
+        public virtual long Points
         {
             get
             {
