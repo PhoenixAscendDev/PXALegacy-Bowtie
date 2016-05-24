@@ -175,6 +175,7 @@
     <Compile Include="Enum\ScoreOrderType.cs" />
     <Compile Include="Exceptions\ApplicationNotInitialized.cs" />
     <Compile Include="GameCommand.cs" />
+    <Compile Include="IGameSession.cs" />
     <Compile Include="Interfaces\IDewdrop.cs" />
     <Compile Include="Interfaces\IGameEngine.cs" />
     <Compile Include="IBowtieObject.cs" />

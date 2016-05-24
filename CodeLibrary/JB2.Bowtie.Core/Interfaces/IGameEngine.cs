@@ -25,6 +25,11 @@ namespace JB2.Bowtie
 
         IEnumerable<IBowtiePlayer> GetPlayers();
 
+        IGameSession FindSessionByPlayer(IBowtiePlayer player);
+
+        IGameSession FindSessionByPlayerID(string playerID);
+
+
         IEnumerable<IGameSession> GetSessions();
 
         IApplication GetApplication();
