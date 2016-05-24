@@ -70,7 +70,22 @@ namespace JB2.Bowtie
 
         public abstract IEnumerable<IPlayerDewdrop> GetDewdrops();
 
-        public abstract void AddDewDrop(string dewdropID, string playerID, object value);
+        public virtual void AddDewDrop(string dewdropID, string playerID, object value)
+        {
+            var dewdrop = JB2.Settings.Bowtie.UnitOfWork.DewdropRepository.GetById(dewdropID);
+            var player = JB2.Settings.Bowtie.UnitOfWork.PlayerRepository.GetById(playerID);
+            if(validateDewDrop(dewdrop))
+            {
+                //Do stuff
+                if (DewdropIssued != null)
+                    DewdropIssued(this, dewdrop, (IBowtiePlayer)player);             
+            }
+        }
+
+        private bool validateDewDrop(IDewdrop dewdrop)
+        {
+            return true;
+        }
 
 
         #endregion Dewdrops
