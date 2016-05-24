@@ -34,6 +34,22 @@
       <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.3.17\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="JB2.Common.Date, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Date.0.2.0\lib\JB2.Common.Date.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Common.Map, Version=0.2.1.23896, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Map.0.2.1\lib\JB2.Common.Map.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Common.Ultities, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Identity.Core.0.1.4.1\lib\JB2.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,8 +60,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAchievement.cs" />
+    <Compile Include="AchievementManager.cs" />
+    <Compile Include="BaseAchievement.cs" />
+    <Compile Include="EventAchievement.cs" />
+    <Compile Include="PlayerAchievement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StandardAchievement.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JB2.Bowtie.Core\Bowtie.Core.csproj">

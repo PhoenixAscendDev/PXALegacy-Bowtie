@@ -175,9 +175,11 @@
     <Compile Include="Enum\ScoreOrderType.cs" />
     <Compile Include="Exceptions\ApplicationNotInitialized.cs" />
     <Compile Include="GameCommand.cs" />
+    <Compile Include="Interfaces\IDewdrop.cs" />
+    <Compile Include="Interfaces\IGameEngine.cs" />
     <Compile Include="IBowtieObject.cs" />
     <Compile Include="IBowtiePlayer.cs" />
-    <Compile Include="IDewdropRepository.cs" />
+    <Compile Include="Interfaces\IDewdropRepository.cs" />
     <Compile Include="Interfaces\IAchievement.cs" />
     <Compile Include="Interfaces\IAchievementRepository.cs" />
     <Compile Include="Interfaces\IApplication.cs" />

@@ -83,8 +83,6 @@ namespace JB2.Bowtie
             return true;
         }
 
-        #region Events
-        EventHandler
-        #endregion Events
+        
     }
 }
