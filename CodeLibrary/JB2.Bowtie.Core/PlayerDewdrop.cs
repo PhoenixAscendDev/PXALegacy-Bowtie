@@ -24,7 +24,6 @@ namespace JB2.Bowtie
             _metadata = new MetaDataCollection(metadataList);           
         }
 
-
         #region IPlayerDewdrop
         public string GetApplicationID()
         {
