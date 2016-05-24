@@ -8,17 +8,19 @@ namespace JB2.Bowtie
 {
     public class SinglePlayerSession : GameSession, IGameSession
     {
-        #region Fields
-        protected DateTime _endtime;
-        protected DateTime _starttime;
+        #region Constructor
 
-
-
-        #endregion Fields
-        public override DateTime GetEndTime()
+        public SinglePlayerSession() : base()
         {
-            return _endtime;
+            ID = "s-" + JB2.Common.NewID.Guid();
         }
+
+        public SinglePlayerSession(IBowtiePlayer player) : this()
+        {
+            _players.Add(1, player);
+        }
+
+        #endregion Constructor
 
         public override string GetID()
         {
@@ -29,22 +31,6 @@ namespace JB2.Bowtie
         {
             return 1;
         }
-
-        public override DateTime GetStartTime()
-        {
-            return _starttime;
-        }
-
-        
-
-        public override void Start()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void TimeOutStop()
-        {
-            throw new NotImplementedException();
-        }
     }
+
 }
