@@ -14,7 +14,7 @@ namespace JB2.Bowtie.Data.NoDB
             throw new NotImplementedException();
         }
 
-        public bool SavePlayerAchievements(IPlayerAchievement playerAchievement)
+        public void Insert(IPlayerAchievement playerAchievement)
         {
             throw new NotImplementedException();
         }
