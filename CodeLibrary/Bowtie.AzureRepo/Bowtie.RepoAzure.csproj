@@ -168,11 +168,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AchievementRepository.cs" />
     <Compile Include="ApplicationRepository.cs" />
     <Compile Include="AzureStorage.cs" />
     <Compile Include="BaseRepository.cs" />
     <Compile Include="BingoCardEntry.cs" />
     <Compile Include="BingPatternEntry.cs" />
+    <Compile Include="BowtieCacheDictionary.cs" />
     <Compile Include="ColorEntry.cs" />
     <Compile Include="ColorSetEntry.cs" />
     <Compile Include="Entities\DewdropEntity.cs" />

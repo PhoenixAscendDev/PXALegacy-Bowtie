@@ -19,6 +19,8 @@ namespace JB2.Bowtie
         protected DateTime _timeStart;
         protected DateTime _timeEnd;
         protected long _points;
+        protected string _stepRegEx;
+        protected IEnumerable<string> _dewdropsTriggers;
 
 
         public Achievement() : this(null)
@@ -190,6 +192,32 @@ namespace JB2.Bowtie
             set
             {
                 _points = value;
+            }
+        }
+
+        public string StepRegex
+        {
+            get
+            {
+                return _stepRegEx;
+            }
+
+            set
+            {
+                _stepRegEx = value;
+            }
+        }
+
+        public IEnumerable<string> DewdropTriggers
+        {
+            get
+            {
+                return _dewdropsTriggers;
+            }
+
+            set
+            {
+                _dewdropsTriggers = value;
             }
         }
     }

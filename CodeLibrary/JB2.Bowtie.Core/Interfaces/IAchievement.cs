@@ -21,6 +21,9 @@ namespace JB2.Bowtie
         DateTime TimeBoundStart { get; set; }
         DateTime TimeBoundEnd { get; set; }
         long Points { get; set; }
+        string StepRegex { get; set; }
+
+        IEnumerable<string> DewdropTriggers { get; set; }
        
     }
 }

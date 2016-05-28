@@ -49,7 +49,23 @@ namespace JB2.Bowtie.Data.Azure
             return all.ToList().Find(x => x.APIkey == key);
         }
 
-        
+        public string GetTreasuryRequestKey(string applicationID, string treasuryID)
+        {
+            var e = _table.GetEntity<DynamicTableEntity>("application", applicationID);
+
+
+            if (e == null)
+                return string.Empty;
+
+            if (treasuryID == "jBean")
+            {
+                return e.Properties.ContainsKey("JBeanRequestKey") ? e.Properties["JBeanRequestKey"].StringValue : string.Empty;
+            }
+            else
+                return string.Empty;
+        }
+
+
 
         #endregion Gets
 
@@ -101,20 +117,14 @@ namespace JB2.Bowtie.Data.Azure
             throw new NotImplementedException();
         }
 
-        public string GetTreasuryRequestKey(string applicationID, string treasuryID)
+        public override IApplication[] SearchFor(bool useCache = true)
         {
-            var e = _table.GetEntity<DynamicTableEntity>("application", applicationID);
+            throw new NotImplementedException();
+        }
 
-
-            if (e == null)
-                return string.Empty;
-
-            if (treasuryID == "jBean")
-            {
-                return e.Properties.ContainsKey("JBeanRequestKey") ? e.Properties["JBeanRequestKey"].StringValue : string.Empty;
-            }
-            else
-                return string.Empty;
+        public override IApplication[] SearchFor(string filter, bool useCache = true)
+        {
+            throw new NotImplementedException();
         }
     }
 }
