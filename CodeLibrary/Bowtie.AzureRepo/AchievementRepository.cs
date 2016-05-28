@@ -46,14 +46,18 @@ namespace JB2.Bowtie.Data.Azure
 
         public IPlayerAchievement[] GetPlayerAchievements(string playerID, string appID)
         {
-            throw new NotImplementedException();
+            //e.PartitionKey = _defaultPartitionKey + "player" + ":" + e.Properties["PlayerID"].StringValue;
+            //e.RowKey = "app:" + achievement.ApplicationID + "_achievementid:" + achievement.GetID() + "_id:" + e.Properties["ID"].StringValue;
+            //_table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
+
+            var elist = _table.GetByRowKeyStartWith<DynamicTableEntity>(_defaultPartitionKey + "player" + ":" + playerID, "app:" + appID,1000);
+
+            return convertToPlayerAchievement(elist);
         }
 
         public void Insert(IPlayerAchievement playerAchievement)
         {
-            savePlayerAchievement(convertToEntity(playerAchievement), true);
-
-            
+            savePlayerAchievement(convertToEntity(playerAchievement), true);           
         }
 
         public override IAchievement[] SearchFor(bool useCache = true)
@@ -129,6 +133,17 @@ namespace JB2.Bowtie.Data.Azure
         }
 
 
+
+        protected IPlayerAchievement[] convertToPlayerAchievement(IEnumerable<DynamicTableEntity> elist)
+        {
+            var result = new List<IPlayerAchievement>(elist.Count());
+            foreach(var e in elist)
+            {
+                result.Add(convertToPlayerAchievement(e));
+            }
+
+            return result.ToArray();
+        }
         protected IPlayerAchievement convertToPlayerAchievement(DynamicTableEntity e)
         {
 
