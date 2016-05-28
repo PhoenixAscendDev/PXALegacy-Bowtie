@@ -10,7 +10,7 @@ using JB2.Bowtie.Enum;
 
 namespace JB2.Bowtie
 {
-    public class BowtieObject : IDNamePair, IBowtieObject
+    public abstract class BowtieObject : IDNamePair, IBowtieObject
     {
         protected List<ObjectTag> _tags;
         protected BowtieObjectType _kind;
@@ -33,7 +33,7 @@ namespace JB2.Bowtie
         {
             this._tags = new List<ObjectTag>();
             this._name = string.Empty;
-            this._id = JB2.Bowtie.Utility.GenerateNewObjectID();
+            this._id = 
             this._kind = BowtieObjectType.unknown;
             this._rng = JB2.Common.RNG.Randy;
         }
@@ -110,5 +110,7 @@ namespace JB2.Bowtie
                 _rng = value;
             }
         }
+
+        
     }
 }
