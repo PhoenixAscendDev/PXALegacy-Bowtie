@@ -173,6 +173,7 @@
     <Compile Include="Enum\RepoDataSource.cs" />
     <Compile Include="Enum\RepositoryType.cs" />
     <Compile Include="Enum\ScoreOrderType.cs" />
+    <Compile Include="Enum\StepFxType.cs" />
     <Compile Include="Exceptions\ApplicationNotInitialized.cs" />
     <Compile Include="GameCommand.cs" />
     <Compile Include="IGameSession.cs" />

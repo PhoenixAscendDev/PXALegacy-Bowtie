@@ -104,12 +104,13 @@ namespace JB2.Bowtie.Data.Azure
             e.Properties.Add("ShownIconUrl", new EntityProperty(o.ShownIconUrl));
             e.Properties.Add("Points", new EntityProperty(o.Points));
             e.Properties.Add("Rarity", new EntityProperty(o.Rarity.ToString()));
-            e.Properties.Add("StepRegEx", new EntityProperty(o.StepRegex));
+            e.Properties.Add("StepFx", new EntityProperty(o.StepFx));
             e.Properties.Add("StepRequired", new EntityProperty(o.StepsRequired));
             e.Properties.Add("TimeBoundEnd", new EntityProperty(o.TimeBoundEnd));
             e.Properties.Add("TimeBoundStart", new EntityProperty(o.TimeBoundStart));
             e.Properties.Add("UniqueToken", new EntityProperty(o.UniqueToken));
             e.Properties.Add("SortOrder", new EntityProperty(o.SortOrder));
+            e.Properties.Add("StepType", new EntityProperty(o.StepType.ToString()));
 
             e.PartitionKey = _defaultPartitionKey;
             e.RowKey = "id:" + o.GetID();
@@ -201,8 +202,9 @@ namespace JB2.Bowtie.Data.Azure
 
             result.Rarity = e.Properties.ContainsKey("Rarity") ? (Enum.AchievementRarityType)System.Enum.Parse(typeof(Enum.AchievementRarityType), e.Properties["Rarity"].StringValue) : Enum.AchievementRarityType.Common;
 
-            result.StepRegex = e.Properties["StepRegEx"].StringValue;
+            result.StepFx = e.Properties["StepRegEx"].StringValue;
             result.StepsRequired = e.Properties["StepRequired"].Int32Value.GetValueOrDefault();
+            result.StepType = e.Properties.ContainsKey("StepType") ? (Enum.StepFxType)System.Enum.Parse(typeof(Enum.StepFxType), e.Properties["StepType"].StringValue) : Enum.StepFxType.Empty;
 
             result.TimeBoundEnd = e.Properties["TimeBoundEnd"].DateTime.GetValueOrDefault();
             result.TimeBoundStart = e.Properties["TimeBoundStart"].DateTime.GetValueOrDefault();

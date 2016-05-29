@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JB2.Bowtie.Enum;
 
 namespace JB2.Bowtie
 {
@@ -21,6 +22,7 @@ namespace JB2.Bowtie
         protected long _points;
         protected string _stepRegEx;
         protected IEnumerable<string> _dewdropsTriggers;
+        protected Enum.StepFxType _stepType;
 
 
         public Achievement() : this(null)
@@ -195,7 +197,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public string StepRegex
+        public virtual string StepFx
         {
             get
             {
@@ -208,7 +210,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public IEnumerable<string> DewdropTriggers
+        public virtual IEnumerable<string> DewdropTriggers
         {
             get
             {
@@ -218,6 +220,19 @@ namespace JB2.Bowtie
             set
             {
                 _dewdropsTriggers = value;
+            }
+        }
+
+        public virtual StepFxType StepType
+        {
+            get
+            {
+                return _stepType;
+            }
+
+            set
+            {
+                _stepType = value;
             }
         }
     }

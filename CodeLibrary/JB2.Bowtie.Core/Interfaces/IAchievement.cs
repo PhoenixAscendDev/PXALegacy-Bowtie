@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IAchievement : IBowtieObject, JB2.Common.IIDNamePair<string,string>
+    public interface IAchievement : IBowtieObject, JB2.Common.IIDNamePair<string, string>
     {
         string ApplicationID { get; set; }
         int SortOrder { get; set; }
@@ -21,9 +21,8 @@ namespace JB2.Bowtie
         DateTime TimeBoundStart { get; set; }
         DateTime TimeBoundEnd { get; set; }
         long Points { get; set; }
-        string StepRegex { get; set; }
-
-        IEnumerable<string> DewdropTriggers { get; set; }
-       
+        string StepFx { get; set; }
+        Enum.StepFxType StepType { get; set; }
+        IEnumerable<string> DewdropTriggers { get; set; }      
     }
 }

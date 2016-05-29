@@ -33,7 +33,6 @@ namespace JB2.Bowtie
         {
             this._tags = new List<ObjectTag>();
             this._name = string.Empty;
-            this._id = 
             this._kind = BowtieObjectType.unknown;
             this._rng = JB2.Common.RNG.Randy;
         }
