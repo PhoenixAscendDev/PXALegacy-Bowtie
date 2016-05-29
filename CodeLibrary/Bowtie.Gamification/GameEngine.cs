@@ -117,6 +117,8 @@ namespace JB2.Bowtie
         #endregion Process Delgates
 
 
+        public abstract void Sync();
+
 
 
 

@@ -14,12 +14,12 @@ namespace JB2.Bowtie
         #region Events
         event Action<IGameEngine<TGameSession>, TGameSession> SessionStarted;
         event Action<IGameEngine<TGameSession>, TGameSession> SessionStopped;
-        event Action<IGameEngine<TGameSession>, IAchievement, IBowtiePlayer,int> AchievementUnlocked;
-        event Action<IGameEngine<TGameSession>, IAchievement, IBowtiePlayer,int, IEnumerable<Enum.AchievementFlag>> AchievementUpdated;
-        event Action<IGameEngine<TGameSession>, JB2.Economy.ITreasuryNote, IBowtiePlayer> jBeanAwarded;  
+        event Action<IGameEngine<TGameSession>, IAchievement, IBowtiePlayer, int> AchievementUnlocked;
+        event Action<IGameEngine<TGameSession>, IAchievement, IBowtiePlayer, int, IEnumerable<Enum.AchievementFlag>> AchievementUpdated;
+        event Action<IGameEngine<TGameSession>, JB2.Economy.ITreasuryNote, IBowtiePlayer> jBeanAwarded;
         event Action<IGameEngine<TGameSession>, IBowtiePlayer, int> PlayerAdded;
         event Action<IGameEngine<TGameSession>, IBowtiePlayer, int> PlayerDropped;
-        event Action<IGameEngine<TGameSession>, IDewdrop,IBowtiePlayer> DewdropIssued;
+        event Action<IGameEngine<TGameSession>, IDewdrop, IBowtiePlayer> DewdropIssued;
         event Action<IGameEngine<TGameSession>, IGameCommand> GameCommandIssued;
         #endregion Events;
 
@@ -48,11 +48,13 @@ namespace JB2.Bowtie
         void ProcessDewdrops(ProcessDewdrop processDewdrop);
         void ProcessGameCommands(ProcessGameCommand processCommand);
         void AddPlayer(string sessionID, int seat, IBowtiePlayer player);
-        void AddPlayer(string sessionID,IBowtiePlayer player);
+        void AddPlayer(string sessionID, IBowtiePlayer player);
 
         void AddDewDrop(string dewdropID, string playerID, object value);
-        void RemovePlayer(string sessionID,int seat);
-        void RemovePlayer(string sessionID,IBowtiePlayer player);
+        void RemovePlayer(string sessionID, int seat);
+        void RemovePlayer(string sessionID, IBowtiePlayer player);
+
+        void Sync();
 
         #endregion Methods
 
