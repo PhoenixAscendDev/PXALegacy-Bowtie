@@ -29,7 +29,7 @@ namespace JB2.Bowtie.Web
             switch (source)
             {
                 case Enum.RepoDataSource.Standard:
-                    return new JB2.Bowtie.Data.Linq.UnitOfWork();
+                    return new JB2.Bowtie.Data.Azure.UnitOfWork();
                 default:
                     return new JB2.Bowtie.Data.NoDB.UnitofWork();
             }

@@ -54,7 +54,7 @@ namespace JB2.Bowtie.Web.Controllers
             switch(source)
             {
                 case Enum.RepoDataSource.Standard:
-                    _unitOfWork = new JB2.Bowtie.Data.Linq.UnitOfWork();
+                    _unitOfWork = new JB2.Bowtie.Data.Azure.UnitOfWork();
                     break;
                 default:
                     _unitOfWork = new JB2.Bowtie.Data.NoDB.UnitofWork();

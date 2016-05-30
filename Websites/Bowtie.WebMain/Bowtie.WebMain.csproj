@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JB2.Bowtie.Web</RootNamespace>
     <AssemblyName>JB2.Bowtie.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,23 +41,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common.Core, Version=0.3.8.38723, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.3.8\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.3.17.23064, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.3.17\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -98,6 +97,7 @@
       <Private>True</Private>
       <HintPath>..\..\Solutions\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\..\Solutions\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -239,6 +239,36 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CodeLibrary\Bowtie.AzureRepo\Bowtie.RepoAzure.csproj">
+      <Project>{6d362c4a-06d4-40c6-b314-aa559791e1f4}</Project>
+      <Name>Bowtie.RepoAzure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CodeLibrary\Bowtie.Gamification\Bowtie.Gamification.csproj">
+      <Project>{40f36cd2-7823-4f26-9f85-473367db4013}</Project>
+      <Name>Bowtie.Gamification</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CodeLibrary\Bowtie.RepoNoDB\Bowtie.RepoNoDB.csproj">
+      <Project>{226ce497-a55f-4b8b-8178-9c9b41ab34dc}</Project>
+      <Name>Bowtie.RepoNoDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CodeLibrary\Bowtie.Service\Bowtie.Service.csproj">
+      <Project>{e9f8abc3-957e-4ada-b7db-a61e16beaa1e}</Project>
+      <Name>Bowtie.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Core\Bowtie.Core.csproj">
+      <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
+      <Name>Bowtie.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Graph\Bowtie.Graph.csproj">
+      <Project>{7c28a0e8-2266-4e96-bab5-ece5e7bf9ce9}</Project>
+      <Name>Bowtie.Graph</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Manager\Bowtie.Manager.csproj">
+      <Project>{2ac23884-2527-4b50-b2c4-bab99c96d9b4}</Project>
+      <Name>Bowtie.Manager</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

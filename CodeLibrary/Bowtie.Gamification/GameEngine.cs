@@ -120,8 +120,6 @@ namespace JB2.Bowtie
         public abstract void Sync();
 
 
-
-
         public event Action<IGameEngine<TSession>, IAchievement, IBowtiePlayer, int> AchievementUnlocked;
         public event Action<IGameEngine<TSession>, IAchievement, IBowtiePlayer, int, IEnumerable<AchievementFlag>> AchievementUpdated;
         public event Action<IGameEngine<TSession>, IDewdrop, IBowtiePlayer> DewdropIssued;
