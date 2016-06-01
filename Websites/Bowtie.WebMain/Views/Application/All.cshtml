@@ -1,0 +1,9 @@
+﻿@model List<JB2.Bowtie.Web.Models.ApplicationViewModel>
+
+
+@foreach(JB2.Bowtie.Web.Models.ApplicationViewModel a in Model)
+{
+    <h2>@a.ID</h2>
+}
+
+@Html.DropDownList("ApplicationSelect")

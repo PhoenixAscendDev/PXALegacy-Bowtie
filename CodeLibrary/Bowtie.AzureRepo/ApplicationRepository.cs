@@ -102,7 +102,7 @@ namespace JB2.Bowtie.Data.Azure
             var app = new Application(apiKey.APIkey, apiKey.Secret, state);
             app.ID = e.Properties["ID"].StringValue;
             app.ClientID = e.Properties.ContainsKey("IdentityClientIDs") ? e.Properties["IdentityClientIDs"].StringValue : string.Empty;
-
+            app.Name = e.Properties["Name"].StringValue;
             return app;
 
         }

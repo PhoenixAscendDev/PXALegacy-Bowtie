@@ -104,6 +104,18 @@ namespace JB2.Bowtie.Web.Controllers
         }
 
 
+        protected List<SelectListItem> applicationSelectList()
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            
+            var appsAll = this.ApplicationService.Retrieve();
+
+            foreach(IApplication a in appsAll)
+            {
+                items.Add(new SelectListItem { Text = a.GetName(), Value = a.GetID() });
+            }
+            return items;
+        }
 
         #endregion
     }
