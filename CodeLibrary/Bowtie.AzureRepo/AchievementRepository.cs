@@ -10,6 +10,8 @@ using JB2.Common;
 using JB2.Common.Data;
 using JB2.Identity;
 
+using JB2.Bowtie;
+
 namespace JB2.Bowtie.Data.Azure
 {
     public class AchievementRepository : BowtieRepository<IAchievement>, IAchievementRepository
