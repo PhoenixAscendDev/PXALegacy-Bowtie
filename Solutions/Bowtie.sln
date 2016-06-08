@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.Lib", "..\CodeLibrary\Bowtie.Lib\Bowtie.Lib.csproj", "{488D241B-CBA6-4096-B76F-A1FB03EA5F76}"
 EndProject
@@ -18,6 +18,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.GameObjects", "..\CodeLibrary\JB2.Bowtie.GameObjects\JB2.Bowtie.GameObjects.csproj", "{878DA1E1-F733-4555-BB1D-B1C9188D287B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.RepoAzure", "..\CodeLibrary\Bowtie.AzureRepo\Bowtie.RepoAzure.csproj", "{6D362C4A-06D4-40C6-B314-AA559791E1F4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{40F36CD2-7823-4F26-9F85-473367DB4013} = {40F36CD2-7823-4F26-9F85-473367DB4013}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "..\CodeLibrary\Test\Test.csproj", "{A01B5F39-B496-42C7-8630-20F0A7D16CED}"
 EndProject
