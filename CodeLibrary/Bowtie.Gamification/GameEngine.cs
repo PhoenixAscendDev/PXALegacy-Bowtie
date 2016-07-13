@@ -8,9 +8,11 @@ using JB2.Economy;
 
 namespace JB2.Bowtie
 {
-
-    public abstract class GameEngine<TSession> : IGameEngine<TSession>
-        where TSession: IGameSession, new()
+    
+    public abstract class GameEngine<TSession, TPlayer, TID> : IGameEngine<TSession,TPlayer,TID>
+        where TSession: IGameSession<TPlayer,TID>, new()
+        where TPlayer :  JB2.Identity.IPlayerable<TID>
+        where TID : IComparable
     {
         #region Fields
 
@@ -21,22 +23,22 @@ namespace JB2.Bowtie
         #endregion Fields
 
         #region Players
-        public virtual void AddPlayer(string sessionID, IBowtiePlayer player)
+        public virtual void AddPlayer(string sessionID, TPlayer player)
         {
             var session = _sessions[sessionID];
             session.AddPlayer(player);
         }
-        public abstract void AddPlayer(string sessionID, int seat, IBowtiePlayer player);
-        public abstract IEnumerable<IBowtiePlayer> GetPlayers();
-        public abstract void RemovePlayer(string sessionID, IBowtiePlayer player);
+        public abstract void AddPlayer(string sessionID, int seat, TPlayer player);
+        public abstract IEnumerable<TPlayer> GetPlayers();
+        public abstract void RemovePlayer(string sessionID, TPlayer player);
         public abstract void RemovePlayer(string sessionID, int seat);
 
         #endregion Players
 
         #region Session
         public abstract void EndSession(TSession session);
-        public abstract TSession FindSessionByPlayer(IBowtiePlayer player);
-        public abstract TSession FindSessionByPlayerID(string playerID);
+        public abstract TSession FindSessionByPlayer(TPlayer player);
+        public abstract TSession FindSessionByPlayerID(TID playerID);
 
         public virtual IEnumerable<TSession> GetSessions()
         {
@@ -46,6 +48,7 @@ namespace JB2.Bowtie
         {
             _application = application;
             var session = new TSession();
+           
             session.Started += OnSessionStart;
             session.ManuallyStopped += OnSessionStop;
             session.PlayerAdded += OnSessionPlayerAdd;
@@ -78,7 +81,7 @@ namespace JB2.Bowtie
             {
                 //Do stuff
                 if (DewdropIssued != null)
-                    DewdropIssued(this, dewdrop, (IBowtiePlayer)player);             
+                    DewdropIssued(this, dewdrop, (TPlayer)player);             
             }
         }
 
@@ -103,7 +106,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public void ProcessGameCommands(ProcessGameCommand processCommand)
+        public void ProcessGameCommands(ProcessGameCommand<TPlayer,TID> processCommand)
         {
             foreach(var session in _sessions.Values)
             {
@@ -120,35 +123,36 @@ namespace JB2.Bowtie
         public abstract void Sync();
 
 
-        public event Action<IGameEngine<TSession>, IAchievement, IBowtiePlayer, int> AchievementUnlocked;
-        public event Action<IGameEngine<TSession>, IAchievement, IBowtiePlayer, int, IEnumerable<AchievementFlag>> AchievementUpdated;
-        public event Action<IGameEngine<TSession>, IDewdrop, IBowtiePlayer> DewdropIssued;
-        public event Action<IGameEngine<TSession>, IGameCommand> GameCommandIssued;
-        public event Action<IGameEngine<TSession>, Economy.ITreasuryNote, IBowtiePlayer> jBeanAwarded;
-        public event Action<IGameEngine<TSession>, IBowtiePlayer, int> PlayerAdded;
-        public event Action<IGameEngine<TSession>, IBowtiePlayer, int> PlayerDropped;
-        public event Action<IGameEngine<TSession>, TSession> SessionStarted;
-        public event Action<IGameEngine<TSession>, TSession> SessionStopped;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, IAchievement, TPlayer, int> AchievementUnlocked;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, IAchievement, TPlayer, int, IEnumerable<AchievementFlag>> AchievementUpdated;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, IDewdrop, TPlayer> DewdropIssued;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, IGameCommand> GameCommandIssued;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, Economy.ITreasuryNote, TPlayer> jBeanAwarded;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, int> PlayerAdded;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, int> PlayerDropped;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, TSession> SessionStarted;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, TSession> SessionStopped;
 
-        protected virtual void OnSessionStart(IGameSession session,DateTime start)
+        protected virtual void OnSessionStart(IGameSession<TPlayer, TID> session,DateTime start)
         {
+            
             if (SessionStarted != null)
                 SessionStarted(this, (TSession)session);
         }
 
-        protected virtual void OnSessionStop(IGameSession session, DateTime end)
+        protected virtual void OnSessionStop(IGameSession<TPlayer, TID> session, DateTime end)
         {
             if (SessionStopped != null)
                 SessionStopped(this, (TSession)session);
         }
 
-        protected virtual void OnSessionPlayerAdd(IGameSession session, IBowtiePlayer player, int seat)
+        protected virtual void OnSessionPlayerAdd(IGameSession<TPlayer, TID> session, TPlayer player, int seat)
         {
             if (PlayerAdded != null)
                 PlayerAdded(this, player, seat);
         }
 
-        protected virtual void OnSessionPlayerRemove(IGameSession session, IBowtiePlayer player, int seat)
+        protected virtual void OnSessionPlayerRemove(IGameSession<TPlayer, TID> session, TPlayer player, int seat)
         {
             if (PlayerDropped != null)
                 PlayerDropped(this, player, seat);

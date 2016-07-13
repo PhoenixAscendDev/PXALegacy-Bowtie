@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public abstract class GameSession : JB2.Common.IDValue<string>,IGameSession
+    public abstract class GameSession<TPlayer,TID> : JB2.Common.IDValue<TID>,IGameSession<TPlayer,TID>
+        where TPlayer : JB2.Identity.IPlayerable<TID>
+        where TID : IComparable
     {
         #region Fields
-        protected IDictionary<int, IBowtiePlayer> _players;
+        protected IDictionary<int, TPlayer> _players;
         protected DateTime _startTime;
         protected DateTime _endTime;
         protected JB2.Common.BaseCollection<IGameCommand> _commands;        
@@ -19,28 +21,28 @@ namespace JB2.Bowtie
         #region Constructors
         public GameSession(): base()
         {
-            _players = new Dictionary<int, IBowtiePlayer>();
+            _players = new Dictionary<int, TPlayer>();
         }
 
         #endregion Constructors
 
 
-        public event Action<IGameSession, DateTime> ManuallyStopped;
-        public event Action<IGameSession, int> NoVacancy;
-        public event Action<IGameSession, IBowtiePlayer, int> PlayerAdded;
-        public event Action<IGameSession, IBowtiePlayer, int> PlayerRemoved;
-        public event Action<IGameSession, DateTime> Started;
-        public event Action<IGameSession, DateTime> TimedOut;
-        public event Action<IGameSession, int> Vacancy;
-        public event Action<IGameSession, IGameCommand> CommandAdded;
+        public event Action<IGameSession<TPlayer,TID>, DateTime> ManuallyStopped;
+        public event Action<IGameSession<TPlayer, TID>, int> NoVacancy;
+        public event Action<IGameSession<TPlayer, TID>, TPlayer, int> PlayerAdded;
+        public event Action<IGameSession<TPlayer, TID>, TPlayer, int> PlayerRemoved;
+        public event Action<IGameSession<TPlayer, TID>, DateTime> Started;
+        public event Action<IGameSession<TPlayer, TID>, DateTime> TimedOut;
+        public event Action<IGameSession<TPlayer, TID>, int> Vacancy;
+        public event Action<IGameSession<TPlayer, TID>, IGameCommand> CommandAdded;
 
-        public virtual void AddPlayer(IBowtiePlayer player)
+        public virtual void AddPlayer(TPlayer player)
         {
             int newSeat = _players.Keys.Max() + 1;
             AddPlayer(player, newSeat);
         }
 
-        public void AddPlayer(IBowtiePlayer player, int seat)
+        public void AddPlayer(TPlayer player, int seat)
         {
             if (_players.Count() < GetMaxSeats())
             {               
@@ -65,12 +67,12 @@ namespace JB2.Bowtie
 
         public abstract int GetMaxSeats();
 
-        public virtual IDictionary<int, IBowtiePlayer> GetPlayers()
+        public virtual IDictionary<int, TPlayer> GetPlayers()
         {
             return _players;
         }
 
-        public string GetSessionID()
+        public TID GetSessionID()
         {
             return ID;
         }
@@ -97,7 +99,7 @@ namespace JB2.Bowtie
                 ManuallyStopped(this, _endTime);
         }
        
-        public virtual void RemovePlayer(IBowtiePlayer player)
+        public virtual void RemovePlayer(TPlayer player)
         {
             throw new NotImplementedException();
         }

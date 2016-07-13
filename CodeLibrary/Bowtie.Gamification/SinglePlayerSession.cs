@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class SinglePlayerSession : GameSession, IGameSession
+
+    public class SinglePlayerSession<TPlayer> : GameSession<TPlayer,string>, IGameSession<TPlayer,string>
+        where TPlayer : JB2.Identity.IPlayerable<string>
     {
         #region Constructor
 
@@ -15,7 +17,7 @@ namespace JB2.Bowtie
             ID = "s-" + JB2.Common.NewID.Guid();
         }
 
-        public SinglePlayerSession(IBowtiePlayer player) : this()
+        public SinglePlayerSession(TPlayer player) : this()
         {
             _players.Add(1, player);
         }
