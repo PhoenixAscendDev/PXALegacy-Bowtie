@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class Dewdrop : JB2.Common.IDNamePair, IDewdrop,JB2.Identity.IApplicationable, JB2.Common.IIDNamePair<string, string>
+    public class Dewdrop : JB2.Common.IDNamePair, IDewdrop, JB2.Identity.IApplicationable, JB2.Common.IIDNamePair<string, string>
     {
         #region Fields
         protected string _appid;
         protected string _graphID;
         protected string _description;
+        protected int _jbeanCost;
         #endregion Fields
 
         public Dewdrop()
@@ -19,13 +20,14 @@ namespace JB2.Bowtie
 
         }
 
-        public Dewdrop(string id, string name, string description, string applicationID, string graphID)
+        public Dewdrop(string id, string name, string description, string applicationID, string graphID, int jbeanCost = 0)
         {
             _id = id;
             _name = name;
             _appid = applicationID;
             _graphID = graphID;
             _description = description;
+            _jbeanCost = jBeanCost;
         }
 
         protected string ApplicationID
@@ -38,7 +40,19 @@ namespace JB2.Bowtie
             {
                 _appid = value;
             }
-        } 
+        }
+
+        protected int jBeanCost
+        {
+            get
+            {
+                return _jbeanCost;
+            }
+            set
+            {
+                _jbeanCost = value;
+            }
+        }
 
         public string GetApplicationID()
         {
@@ -55,11 +69,11 @@ namespace JB2.Bowtie
             return _description;
         }
 
-        public static Dewdrop NewDewdrop(string name, string description, string applicationID,string graphID)
+        public static Dewdrop NewDewdrop(string name, string description, string applicationID, string graphID)
         {
             Dewdrop newDew = new Dewdrop();
-            var idvalue = JB2.Infrastructure.Counter.GetNext("dewdrop",defaultStart: 1000000);      
-            newDew.ID = JB2.Common.NewID.Base62("dew_{0}",(long)idvalue);
+            var idvalue = JB2.Infrastructure.Counter.GetNext("dewdrop", defaultStart: 1000000);
+            newDew.ID = JB2.Common.NewID.Base62("dew_{0}", (long)idvalue);
             newDew.Name = name;
             newDew.ApplicationID = applicationID;
             newDew._graphID = graphID;
@@ -77,6 +91,11 @@ namespace JB2.Bowtie
             newDew._description = string.Empty;
 
             return newDew;
+        }
+
+        public int GetjBeanCost()
+        {
+            return _jbeanCost;
         }
     }
 }

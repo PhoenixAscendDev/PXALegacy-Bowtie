@@ -27,6 +27,8 @@ namespace JB2.Bowtie.Data.Azure
 
         public string Description { get; set; }
 
+        public int jBeanCost { get; set; }
+
         #endregion Properties
     }
 }

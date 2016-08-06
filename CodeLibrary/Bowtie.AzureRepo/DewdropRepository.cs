@@ -12,7 +12,13 @@ namespace JB2.Bowtie.Data.Azure
 {
     public class DewdropRepository : BowtieRepository<Dewdrop,DewdropEntity>,  IDewdropRepository
     {
-  
+
+        #region Fields
+
+        protected AzureTableRepository _playerTable;
+
+        #endregion Fields
+
         #region Constructors
         public DewdropRepository() : this("dewdrops","general")
         {
@@ -21,16 +27,19 @@ namespace JB2.Bowtie.Data.Azure
 
         protected DewdropRepository(string tableName, string blobName)
             : this(JB2.Infrastructure.Storage.BowtieAccount.GetTable(tableName),
-                   JB2.Infrastructure.Storage.BowtieAccount.GetBlog(blobName))
+                   JB2.Infrastructure.Storage.BowtieAccount.GetBlog(blobName),
+                   JB2.Infrastructure.Storage.BowtieAccount.GetTable(tableName + "players"))
         {
 
         }
 
-        public DewdropRepository(AzureTableRepository azureTable, AzureBlobRepository azureBlob) : base()
+        public DewdropRepository(AzureTableRepository azureTable, AzureBlobRepository azureBlob, AzureTableRepository playerTable) : base()
         {
             _table = azureTable;
             _blob = azureBlob;
             _defaultPartitionKey = "dewdrop";
+
+            _playerTable = playerTable;
         }
 
         #endregion Constructors
@@ -67,13 +76,13 @@ namespace JB2.Bowtie.Data.Azure
 
         public IEnumerable<IPlayerDewdrop> GetPlayerDewsByPlayerID(string playerID)
         {
-            var elements = _table.GetByRowKeyStartWith<DynamicTableEntity>("player:" + playerID, "dewlog:",1000);
+            var elements = _playerTable.GetByRowKeyStartWith<DynamicTableEntity>("player:" + playerID, "dewlog:",1000);
             return convertToPlayerDewdrop(elements);
         }
 
         public IEnumerable<IPlayerDewdrop> GetPlayerDews(string playerID, string dewdropID)
         {
-            var elements = _table.GetByRowKeyStartWith<DynamicTableEntity>("player:" + playerID, "dewlog:" + dewdropID, 1000);
+            var elements = _playerTable.GetByRowKeyStartWith<DynamicTableEntity>("player:" + playerID, "dewlog:" + dewdropID, 1000);
             return convertToPlayerDewdrop(elements);
         }
 
@@ -91,7 +100,8 @@ namespace JB2.Bowtie.Data.Azure
         {
             if (e == null)
                 throw new NullReferenceException();
-            var result = new Dewdrop(e.ID, e.Name,e.Description,e.ApplicationID, e.GraphID);
+            var result = new Dewdrop(e.ID, e.Name,e.Description,e.ApplicationID, e.GraphID,e.jBeanCost);
+           
             return result;
         }
 
@@ -103,6 +113,7 @@ namespace JB2.Bowtie.Data.Azure
             metadata.Add(new MetaData<DateTime>("DewDate", (DateTime)e.Properties["DewDate"].DateTime));
             metadata.Add(new MetaData<string>("DewdropID", e.Properties["DewdropID"].StringValue));
             metadata.Add(new MetaData<string>("PlayerID", e.Properties["PlayerID"].StringValue));
+
             
             var result = new PlayerDewdrop(metadata, e.Properties["Value"].StringValue);
             result.ID = e.Properties["ID"].StringValue;
@@ -139,19 +150,19 @@ namespace JB2.Bowtie.Data.Azure
         {
             e.PartitionKey = "log";
             e.RowKey = "id:" + e.Properties["ID"].StringValue;
-            _table.Insert<DynamicTableEntity>(e, replace);
+            _playerTable.Insert<DynamicTableEntity>(e, replace);
 
             e.PartitionKey = "app:" + e.Properties["ApplicationID"].StringValue;
             e.RowKey = "dewlog:" + e.Properties["DewdropID"].StringValue + ">*<" + e.Properties["ID"].StringValue;
-            _table.Insert<DynamicTableEntity>(e, replace);
+            _playerTable.Insert<DynamicTableEntity>(e, replace);
 
             e.PartitionKey = "player";
             e.RowKey = "dewlog:" + e.Properties["DewdropID"].StringValue + ">*<" + e.Properties["ID"].StringValue;
-            _table.Insert<DynamicTableEntity>(e, replace);
+            _playerTable.Insert<DynamicTableEntity>(e, replace);
 
             e.PartitionKey = "player:" + e.Properties["PlayerID"].StringValue;
             e.RowKey = "dewlog:" + e.Properties["DewdropID"].StringValue + ">*<" + e.Properties["ID"].StringValue;
-            _table.Insert<DynamicTableEntity>(e, replace);
+            _playerTable.Insert<DynamicTableEntity>(e, replace);
 
         }
 
