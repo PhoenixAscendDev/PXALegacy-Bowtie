@@ -16,27 +16,68 @@ namespace Bowtie.ConsoleTest
 {
     class Program
     {
+
+        static void AddRegisterGraphAction()
+        {
+
+            var dewdropService = new JB2.Bowtie.Service.DewdropService();
+            var graphService = new JB2.Bowtie.Service.GraphService();
+
+            var allProps = graphService.RetreiveProperties();
+
+            var jbeanCostProp = GraphProperty.NewProperty("jb2:jbean_cost", GraphPropertyType.Number, string.Empty, false);
+
+            var registerAction = GraphAction.NewAction("PlayerRegister", string.Empty);
+
+
+            registerAction.AddProperty(jbeanCostProp);
+
+            foreach (var prop in allProps)
+            {
+                switch (prop.PropertyName)
+                {
+                    case "jb2:app_id":
+                    case "bt:start_time":
+                    case "jb2:profile_id":
+                        registerAction.AddProperty(prop);
+                        break;
+                }
+            }
+            graphService.SaveProperty(jbeanCostProp);
+            graphService.SaveAction(registerAction);
+        }
+
         static void Main(string[] args)
         {
             
             JB2.Bowtie.Manager.Initialize("BT-BDF1FC3E51F48224", "912473a6-8c31-4ecf-9d5c-1af07c1b8ef3");
             Console.WriteLine(JB2.Settings.Jbean.GetTokenValue(JB2.Economy.Enum.JBeanTokenType.Pinto).ToString());
 
-            var pservice = new JB2.Bowtie.Service.PlayerService();
+            //AddRegisterGraphAction();
 
-            var player = pservice.RetrieveByAuthID("i-febble", JB2.Settings.Bowtie.CurrentApplication);
-            var app = JB2.Settings.Bowtie.CurrentApplication;
+            var dewdropService = new JB2.Bowtie.Service.DewdropService();
 
-            JB2.Bowtie.Service.WalletService wservice = new JB2.Bowtie.Service.WalletService();
+            var d1 = Dewdrop.NewDewdrop("RegisterNewPlayer", "Player account has been created", "SV-001", "a_jQfgLjIiYU2Oidw-aeB1Qg");
+
+            dewdropService.Save(d1);
 
 
-            var wallet = wservice.RetrieveWalletByPlayer(player, app);
 
-            wservice.AddJBeansToWallet(wallet, 100);
+            //var pservice = new JB2.Bowtie.Service.PlayerService();
 
-            wservice.RemoveJBeansToWallet(wallet, 10);
+            //var player = pservice.RetrieveByAuthID("i-febble", JB2.Settings.Bowtie.CurrentApplication);
+            //var app = JB2.Settings.Bowtie.CurrentApplication;
 
-            Console.WriteLine(wallet.JBeanTotal.ToString());
+            //JB2.Bowtie.Service.WalletService wservice = new JB2.Bowtie.Service.WalletService();
+
+
+            //var wallet = wservice.RetrieveWalletByPlayer(player, app);
+
+            //wservice.AddJBeansToWallet(wallet, 100);
+
+            //wservice.RemoveJBeansToWallet(wallet, 10);
+
+            //Console.WriteLine(wallet.JBeanTotal.ToString());
             Console.ReadLine();
         }
 
