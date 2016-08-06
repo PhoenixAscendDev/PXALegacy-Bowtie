@@ -34,6 +34,22 @@ namespace JB2.Bowtie.Service
         }
         #endregion Constructors
 
+        public JB2.Common.ServiceResult Validate(IBowtiePlayer player, IDewdrop dewdrop)
+        {
+            JB2.Common.ServiceResult result = false;
+
+            if (dewdrop.GetjBeanCost() <= 0)
+                return true;
+
+            // make sure the person has enough jbeans in wallet
+            var wallet = player.GetWallet();
+
+            if (wallet != null && wallet.JBeanTotal >= dewdrop.GetjBeanCost())
+                return true;
+            else
+                return false;
+        }
+
         #region Retrieve 
         public IEnumerable<Dewdrop> Retrieve(string request, OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
         {

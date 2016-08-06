@@ -57,7 +57,9 @@ namespace Bowtie.ConsoleTest
 
             var dewdropService = new JB2.Bowtie.Service.DewdropService();
 
-            var d1 = Dewdrop.NewDewdrop("RegisterNewPlayer", "Player account has been created", "SV-001", "a_jQfgLjIiYU2Oidw-aeB1Qg");
+            var d1 = Dewdrop.NewDewdrop("RegisterNewPlayer", "Player account has been created", "SV-001", "a_jQfgLjIiYU2Oidw-aeB1Qg",-1000);
+
+
 
             dewdropService.Save(d1);
 

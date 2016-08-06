@@ -58,6 +58,7 @@ namespace JB2.Bowtie.Data.Azure
             e.ID = o.GetID();
             e.Name = o.GetName();
             e.Description = o.GetDescription();
+            e.jBeanCost = o.GetjBeanCost();
             return e;
         }
 

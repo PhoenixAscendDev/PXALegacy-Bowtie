@@ -69,7 +69,7 @@ namespace JB2.Bowtie
             return _description;
         }
 
-        public static Dewdrop NewDewdrop(string name, string description, string applicationID, string graphID)
+        public static Dewdrop NewDewdrop(string name, string description, string applicationID, string graphID, int jbeanCost = 0)
         {
             Dewdrop newDew = new Dewdrop();
             var idvalue = JB2.Infrastructure.Counter.GetNext("dewdrop", defaultStart: 1000000);
@@ -78,6 +78,7 @@ namespace JB2.Bowtie
             newDew.ApplicationID = applicationID;
             newDew._graphID = graphID;
             newDew._description = description;
+            newDew._jbeanCost = jbeanCost;
             return newDew;
         }
 
