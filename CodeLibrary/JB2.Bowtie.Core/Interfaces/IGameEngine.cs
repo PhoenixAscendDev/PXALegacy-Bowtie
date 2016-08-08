@@ -33,6 +33,8 @@ namespace JB2.Bowtie
         event Action<IGameEngine<TGameSession, TPlayer, TID>, IGameCommand> GameCommandIssued;
         event Action<IGameEngine<TGameSession, TPlayer, TID>, IWallet, TPlayer, JB2.Economy.ITreasuryNote> TreasuryNoteAdded;
         event Action<IGameEngine<TGameSession, TPlayer, TID>, IAchievement, TPlayer> AchievementEarned;
+        event Action<IGameEngine<TGameSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedIn;
+        event Action<IGameEngine<TGameSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedOut;
         #endregion Events;
 
         #region Getters
@@ -65,6 +67,10 @@ namespace JB2.Bowtie
         void AddDewDrop(string dewdropID, TPlayer player, object value);
         void RemovePlayer(string sessionID, int seat);
         void RemovePlayer(string sessionID, TPlayer player);
+
+        void SignInPlayer(TPlayer player);
+
+        void SignOutPlayer(TPlayer player);
 
         void Sync();
 

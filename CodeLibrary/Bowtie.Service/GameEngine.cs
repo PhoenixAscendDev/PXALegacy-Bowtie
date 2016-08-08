@@ -166,6 +166,30 @@ namespace JB2.Bowtie
 
         #endregion Dewdrops
 
+        #region Signin
+
+        public virtual void SignInPlayer(TPlayer player)
+        {
+            var dewID = JB2.Configuration.GetAppSetting("JB2:dewdrop:signinout");
+            AddDewDrop(dewID, player, "IN");
+
+            if (PlayerSignedIn != null)
+                PlayerSignedIn(this, player, DateTime.Now);
+
+        }
+
+        public virtual void SignOutPlayer(TPlayer player)
+        {
+            var dewID = JB2.Configuration.GetAppSetting("JB2:dewdrop:signinout");
+            AddDewDrop(dewID, player, "OUT");
+
+            if (PlayerSignedOut != null)
+                PlayerSignedOut(this, player, DateTime.Now);
+        }
+
+
+        #endregion SignOut
+
 
         #region Process Delgates
 
@@ -208,6 +232,8 @@ namespace JB2.Bowtie
         public event Action<IGameEngine<TSession, TPlayer, TID>, TSession> SessionStopped;
         public event Action<IGameEngine<TSession, TPlayer, TID>, IWallet, TPlayer, JB2.Economy.ITreasuryNote> TreasuryNoteAdded;
         public event Action<IGameEngine<TSession, TPlayer, TID>, IAchievement, TPlayer> AchievementEarned;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedIn;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedOut;
 
         protected virtual void OnSessionStart(IGameSession<TPlayer, TID> session,DateTime start)
         {
