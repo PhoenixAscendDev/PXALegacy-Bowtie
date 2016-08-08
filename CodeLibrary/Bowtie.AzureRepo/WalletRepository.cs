@@ -37,12 +37,8 @@ namespace JB2.Bowtie.Data.Azure
 
         public IWallet GetByPlayerAndApplication(string playerID, string appID)
         {
-            var e = _table.GetByRowKeyStartWith<DynamicTableEntity>("wallet:application:" + appID, "playerid:" + playerID, 1000).FirstOrDefault();
-
-           
+            var e = _table.GetByRowKeyStartWith<DynamicTableEntity>("wallet:application:" + appID, "playerid:" + playerID, 1000).FirstOrDefault();           
             return convertToObject(e);
-
-
         }
 
 

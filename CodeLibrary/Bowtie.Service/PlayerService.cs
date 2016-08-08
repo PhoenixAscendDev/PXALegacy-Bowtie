@@ -37,7 +37,6 @@ namespace JB2.Bowtie.Service
             return fromIdentity(appPlayer, app);
         }
 
-
         public IBowtiePlayer RetrieveByAppPlayerID(string id,IApplication app)
         {
             var appPlayer = JB2.Identity.PlayerStore.GetPlayerByAppPlayerID(id, app.ClientID);
@@ -56,5 +55,6 @@ namespace JB2.Bowtie.Service
 
             return result;
         }
+
     }
 }

@@ -73,12 +73,26 @@ namespace JB2.Bowtie
 
         public abstract IEnumerable<IPlayerDewdrop> GetDewdrops();
 
-        public virtual void AddDewDrop(string dewdropID, string playerID, object value)
+        public virtual void AddDewDrop(string dewdropID, TPlayer player, object value)
         {
             var dewdrop = JB2.Settings.Bowtie.UnitOfWork.DewdropRepository.GetById(dewdropID);
-            var player = JB2.Settings.Bowtie.UnitOfWork.PlayerRepository.GetById(playerID);
-            if(validateDewDrop(dewdrop))
+            var btplayer = getPlayer(player);
+            
+            if (validateDewDrop(dewdrop))
             {
+
+                //add jBeans to Wallet
+                int amount = dewdrop.GetjBeanCost();
+                
+                if(amount > 0)
+                {             
+                    var tNote = addAmountToWallet(JB2.Settings.Jbean.Factory.Currencies[0], amount, player);
+                    var wallet = new JB2.Bowtie.Service.WalletService().RetrieveWalletByPlayer(btplayer, this.GetApplication());
+                    if (TreasuryNoteAdded != null)
+                        TreasuryNoteAdded(this, wallet, player, tNote);
+                    if(jBeanAwarded != null)
+                        jBeanAwarded(this, tNote, player);
+                }
                 //Do stuff
                 if (DewdropIssued != null)
                     DewdropIssued(this, dewdrop, (TPlayer)player);             
@@ -90,6 +104,55 @@ namespace JB2.Bowtie
             return true;
         }
 
+        private IBowtiePlayer getPlayer(TPlayer player)
+        {
+            if (player is IBowtiePlayer)
+                return (IBowtiePlayer)player;
+            else
+            {
+                var playerService = new JB2.Bowtie.Service.PlayerService();
+                var bowtiePlayer = playerService.RetrieveByAppPlayerID(player.GetPlayerID().ToString(), this.GetApplication());
+
+                return bowtiePlayer;
+            }
+        }
+
+        private JB2.Economy.ITreasuryNote addAmountToWallet(ICurrency currency, decimal amount, TPlayer player)
+        {
+            JB2.Economy.ITreasuryNote tNote = null;
+
+            var btplayer = getPlayer(player);
+
+            var walletService = new JB2.Bowtie.Service.WalletService();
+            var wallet = walletService.RetrieveWalletByPlayer(btplayer, this.GetApplication());
+
+            if(currency.GetID() == JB2.Configuration.GetjBeanCurrencyID() && wallet != null)
+            {
+                int jBeanAmount = (JBeanBag)amount;
+                if (jBeanAmount > 0)
+                    tNote = walletService.AddJBeansToWallet(wallet, jBeanAmount);
+                else
+                    tNote =  null;
+            }
+
+            return tNote;
+
+            //if(currency.GetID() ==  )
+        }
+
+        private void removeAmountToWallet(ICurrency currency, decimal amount, TPlayer player)
+        {
+            var btplayer = getPlayer(player);
+
+            var walletService = new JB2.Bowtie.Service.WalletService();
+            var wallet = walletService.RetrieveWalletByPlayer(btplayer, this.GetApplication());
+
+            if (currency.GetID() == JB2.Configuration.GetjBeanCurrencyID() && wallet != null)
+            {
+                int jBeanAmount = (JBeanBag)amount;
+                walletService.RemoveJBeansToWallet(wallet, jBeanAmount);
+            }
+        }
 
         #endregion Dewdrops
 
@@ -132,6 +195,8 @@ namespace JB2.Bowtie
         public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, int> PlayerDropped;
         public event Action<IGameEngine<TSession, TPlayer, TID>, TSession> SessionStarted;
         public event Action<IGameEngine<TSession, TPlayer, TID>, TSession> SessionStopped;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, IWallet, TPlayer, JB2.Economy.ITreasuryNote> TreasuryNoteAdded;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, IAchievement, TPlayer> AchievementEarned;
 
         protected virtual void OnSessionStart(IGameSession<TPlayer, TID> session,DateTime start)
         {

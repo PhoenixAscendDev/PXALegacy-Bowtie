@@ -83,6 +83,14 @@ namespace JB2.Bowtie
             return true;
         }
 
-        
+        public static void PlayerSignIn(JB2.Bowtie.IBowtiePlayer player, string dewdropID = "")
+        {
+            
+        }
+
+
+
+
+
     }
 }

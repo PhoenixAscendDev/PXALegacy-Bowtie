@@ -38,14 +38,12 @@ namespace JB2.Bowtie.Service
             AddJBeansToWallet(wallet, amount);
         }
 
-        public void AddJBeansToWallet(IWallet wallet, int amount)
+        public JB2.Economy.ITreasuryNote AddJBeansToWallet(IWallet wallet, int amount)
         {
             var player = _uofw.PlayerRepository.GetById(wallet.Owner.ID);
             var app = _uofw.ApplicationRepository.GetById(wallet.GetApplicationID());
 
             var treasuryNote = getJBeansFromTreasury(app, amount);
-
-
 
             if (treasuryNote != null && treasuryNote.Amount == amount)
             {
@@ -54,14 +52,16 @@ namespace JB2.Bowtie.Service
 
             _walletrepo.Insert(wallet);
 
+            return treasuryNote;
+
         }
 
-        public void RemoveJBeansToWaller(IBowtiePlayer player, IApplication app, int amount)
-        {
-            var wallet = getWallet(player, app);
+        //public void RemoveJBeansToWaller(IBowtiePlayer player, IApplication app, int amount)
+        //{
+        //    var wallet = getWallet(player, app);
 
-            RemoveJBeansToWallet(wallet, amount);
-        }
+        //    RemoveJBeansToWallet(wallet, amount);
+        //}
         public void RemoveJBeansToWallet(IWallet wallet, int amount)
         {
             var player = _uofw.PlayerRepository.GetById(wallet.Owner.ID);
@@ -80,6 +80,18 @@ namespace JB2.Bowtie.Service
         public IWallet RetrieveWalletByPlayer(IBowtiePlayer player,IApplication app)
         {
             var wallet = getWallet(player, app);
+
+            return wallet;
+        }
+
+        public IWallet GenerateWalletForPlayer(IBowtiePlayer player, IApplication app)
+        {
+            IWallet wallet = null;
+
+            string id = "w-" + JB2.Common.NewID.ShortGuid();
+            wallet = new PlayerWallet(id, player.GetPlayerID(), new Economy.JBeanCollection());
+            wallet.ApplicationID = app.GetID();
+            _walletrepo.Insert(wallet);
 
             return wallet;
         }
@@ -112,10 +124,7 @@ namespace JB2.Bowtie.Service
 
             if(wallet == null)
             {
-                string id = "w-" + JB2.Common.NewID.ShortGuid();
-                wallet = new PlayerWallet(id, player.GetPlayerID(), new Economy.JBeanCollection());
-                wallet.ApplicationID = app.GetID();
-                _walletrepo.Insert(wallet);
+                wallet = GenerateWalletForPlayer(player, app);           
             }
 
             return wallet;
