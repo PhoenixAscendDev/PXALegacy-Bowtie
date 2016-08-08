@@ -11,16 +11,18 @@ namespace JB2.Bowtie
         protected string _playerid;
         protected string _achievementid;
         protected int _currentStep;
-        protected Enum.AchievementFlag[]  _flags;
+        protected Enum.AchievementFlag[] _flags;
         protected int _points;
+        protected DateTime _dateachieved;
 
 
-        public PlayerAchievement() :this(null)
+
+        public PlayerAchievement() : this(null)
         {
 
         }
 
-        public PlayerAchievement(string id) : base(Enum.BowtieObjectType.bowtie_playerachievement,id)
+        public PlayerAchievement(string id) : base(Enum.BowtieObjectType.bowtie_playerachievement, id)
         {
 
         }
@@ -85,5 +87,66 @@ namespace JB2.Bowtie
                 _points = value;
             }
         }
+
+        public DateTime DateAchieved
+        {
+            get
+            {
+                return _dateachieved;
+            }
+
+            set
+            {
+                _dateachieved = value;
+            }
+        }
+
+        public bool isAchieved
+        {
+            get
+            {
+                return _flags.Contains(Enum.AchievementFlag.Earned);
+            }
+        }
+
+
+        #region Methods
+
+        public void Achieve(int pointsEarned)
+        {
+            List<Enum.AchievementFlag> flags = this._flags.ToList();
+            flags.Add(Enum.AchievementFlag.Earned);
+            this._flags = flags.ToArray();
+
+            this._points = pointsEarned;
+            this._dateachieved = System.DateTime.Now;
+
+
+        }
+
+        #endregion Methods
+
+
+        #region Static
+
+        public static PlayerAchievement Empty()
+        {
+            var result = new PlayerAchievement();
+            result._currentStep = 0;
+            result._flags = new Enum.AchievementFlag[0];
+            return result;
+        }
+
+        public static PlayerAchievement New(string playerID, IAchievement a)
+        {
+            var result = PlayerAchievement.Empty();
+            result._playerid = playerID;
+            result._achievementid = a.GetID();
+            result._name = a.GetName();
+
+            return result;
+        }
+
+        #endregion Static
     }
 }

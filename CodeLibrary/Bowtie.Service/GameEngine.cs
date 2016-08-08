@@ -94,14 +94,19 @@ namespace JB2.Bowtie
                     if (jBeanAwarded != null)
                         jBeanAwarded(this, tNote, player);
                 }
-                //Do stuff
+
+                //add dewdrop
+                var dewdropService = new JB2.Bowtie.Service.DewdropService();
+                PlayerDewdrop pdew = dewdropService.GenerateNewPlayerDewdrop(btplayer, dewdrop, value.ToString());
+                dewdropService.Save(pdew);
+                this._dewdrops.Add(pdew);
+
+
+                //fire event
                 if (DewdropIssued != null)
                     DewdropIssued(this, dewdrop, (TPlayer)player);
             }
-            var dewdropService = new JB2.Bowtie.Service.DewdropService();
-            PlayerDewdrop pdew = dewdropService.GenerateNewPlayerDewdrop(btplayer, dewdrop, value.ToString());
-            dewdropService.Save(pdew);
-            this._dewdrops.Add(pdew);
+
         }
 
         private bool validateDewDrop(IDewdrop dewdrop)
@@ -166,9 +171,10 @@ namespace JB2.Bowtie
 
         public void ProcessDewdrops(ProcessDewdrop processDewdrop)
         {
+            var dewdropService = new JB2.Bowtie.Service.DewdropService();
             foreach(var pdew in _dewdrops)
             {
-                var dewdrop = JB2.Settings.Bowtie.UnitOfWork.DewdropRepository.GetById(pdew.GetDewdropID());
+                var dewdrop = dewdropService.RetrieveById(pdew.GetDewdropID());
                 processDewdrop(dewdrop, pdew.GetPlayerID(), pdew.GetValue());
 
             }

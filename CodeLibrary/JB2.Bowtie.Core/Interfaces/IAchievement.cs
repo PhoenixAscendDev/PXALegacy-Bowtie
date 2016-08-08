@@ -20,7 +20,7 @@ namespace JB2.Bowtie
         Enum.AchievementRarityType Rarity { get; set; }
         DateTime TimeBoundStart { get; set; }
         DateTime TimeBoundEnd { get; set; }
-        long Points { get; set; }
+        int Points { get; set; }
         string StepFx { get; set; }
         Enum.StepFxType StepType { get; set; }
         IEnumerable<string> DewdropTriggers { get; set; }      

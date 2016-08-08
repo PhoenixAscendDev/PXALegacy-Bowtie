@@ -54,5 +54,10 @@ namespace JB2.Bowtie.Data.NoDB
         {
             throw new NotImplementedException();
         }
+
+        public IPlayerAchievement GetPlayerAchievement(string playerID, string achievementID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

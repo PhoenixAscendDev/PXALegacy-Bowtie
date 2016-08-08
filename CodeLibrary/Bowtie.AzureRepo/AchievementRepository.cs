@@ -52,9 +52,21 @@ namespace JB2.Bowtie.Data.Azure
             //e.RowKey = "app:" + achievement.ApplicationID + "_achievementid:" + achievement.GetID() + "_id:" + e.Properties["ID"].StringValue;
             //_table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
 
-            var elist = _table.GetByRowKeyStartWith<DynamicTableEntity>(_defaultPartitionKey + "player" + ":" + playerID, "app:" + appID,1000);
+            var elist = _table.GetByRowKeyStartWith<DynamicTableEntity>(_defaultPartitionKey + "player" + ":" + playerID, "app:" + appID, 1000);
 
             return convertToPlayerAchievement(elist);
+        }
+
+        public IPlayerAchievement GetPlayerAchievement(string playerID, string achievementID)
+        {
+            var e = _table.GetEntity<DynamicTableEntity>("player:" + playerID, "achievementid:" + achievementID);
+
+            if (e != null)
+                return convertToPlayerAchievement(e);
+            else
+            {
+                return null;
+            }
         }
 
         public void Insert(IPlayerAchievement playerAchievement)
@@ -84,6 +96,7 @@ namespace JB2.Bowtie.Data.Azure
             e.Properties.Add("Kind", new EntityProperty(o.GetKind().ToString()));
             e.Properties.Add("UniqueToken", new EntityProperty(o.UniqueToken));
             e.Properties.Add("LastUpdate", new EntityProperty(o.GetLastUpdate()));
+            e.Properties.Add("DateAchieved", new EntityProperty(o.DateAchieved));
 
             return e;
         }
@@ -159,6 +172,7 @@ namespace JB2.Bowtie.Data.Azure
             result.Name = e.Properties["Name"].StringValue;
             result.PlayerID = e.Properties["PlayerID"].StringValue;
             result.PointsEarned = e.Properties["PointsEarned"].Int32Value.GetValueOrDefault();
+            result.DateAchieved = e.Properties["DateAchieved"].DateTime.GetValueOrDefault();
             
             //var e = new DynamicTableEntity();
             //e.Properties.Add("AchievementID", new EntityProperty(o.AchievementID));
@@ -200,7 +214,7 @@ namespace JB2.Bowtie.Data.Azure
             result.EarnedIconUrl = e.Properties["EarnedIconUrl"].StringValue;
             result.HiddenIconUrl = e.Properties["HiddenIconUrl"].StringValue;
             result.ShownIconUrl = e.Properties["ShownIconUrl"].StringValue;
-            result.Points = (long)e.Properties["Points"].Int64Value;
+            result.Points = (int)e.Properties["Points"].Int32Value;
 
             result.Rarity = e.Properties.ContainsKey("Rarity") ? (Enum.AchievementRarityType)System.Enum.Parse(typeof(Enum.AchievementRarityType), e.Properties["Rarity"].StringValue) : Enum.AchievementRarityType.Common;
 
@@ -274,6 +288,10 @@ namespace JB2.Bowtie.Data.Azure
 
             e.PartitionKey = _defaultPartitionKey + "player";
             e.RowKey = "achievementid:" + achievement.GetID() + "_playerID:" + e.Properties["PlayerID"].StringValue + "_id:"  + e.Properties["ID"].StringValue;
+            _table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
+
+            e.PartitionKey = _defaultPartitionKey + "player:" + e.Properties["PlayerID"].StringValue;
+            e.RowKey = "achievementid:" + achievement.GetID();
             _table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
 
         }

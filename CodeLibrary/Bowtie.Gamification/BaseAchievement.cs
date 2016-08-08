@@ -19,7 +19,7 @@ namespace JB2.Bowtie
         protected Enum.AchievementRarityType _rarity;
         protected DateTime _timeStart;
         protected DateTime _timeEnd;
-        protected long _points;
+        protected int _points;
         protected string _stepRegEx;
         protected IEnumerable<string> _dewdropsTriggers;
         protected Enum.StepFxType _stepType;
@@ -29,13 +29,13 @@ namespace JB2.Bowtie
         {
         }
 
-        public Achievement(string id) : base(Enum.BowtieObjectType.bowtie_achievement,id)
+        public Achievement(string id) : base(Enum.BowtieObjectType.bowtie_achievement, id)
         {
-            _icons = new Dictionary<string,string>();
+            _icons = new Dictionary<string, string>();
             _icons.Add("EARNED", string.Empty);
             _icons.Add("HIDDEN", string.Empty);
             _icons.Add("SHOW", string.Empty);
-            
+
         }
 
 
@@ -185,7 +185,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public virtual long Points
+        public virtual int Points
         {
             get
             {
@@ -235,5 +235,8 @@ namespace JB2.Bowtie
                 _stepType = value;
             }
         }
+
+
+
     }
 }

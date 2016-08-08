@@ -10,6 +10,8 @@ namespace JB2.Bowtie
     {
         IPlayerAchievement[] GetPlayerAchievements(string playerID, string appID);
 
+        IPlayerAchievement GetPlayerAchievement(string playerID, string achievementID);
+
         void Insert(IPlayerAchievement playerAchievement);
 
         IAchievement[] GetAchievementsByApplication(string appID);
