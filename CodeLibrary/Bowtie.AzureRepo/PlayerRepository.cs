@@ -47,14 +47,12 @@ namespace JB2.Bowtie.Data.Azure
 
             e.Properties.Add("ID", new EntityProperty(o.GetID()));
             e.Properties.Add("DisplayName", new EntityProperty(o.DisplayName));
-            e.Properties.Add("Age", new EntityProperty(o.GetDefaultProfile().Age));
-            e.Properties.Add("Gender", new EntityProperty(o.GetDefaultProfile().Gender));
+            e.Properties.Add("Age", new EntityProperty(o.Age));
+            e.Properties.Add("Gender", new EntityProperty(o.Gender));
             e.Properties.Add("PlayerID", new EntityProperty(o.GetPlayerID()));
 
             return e;
         }
-
-
 
         protected override IEnumerable<IBowtiePlayer> convertToObject(IEnumerable<DynamicTableEntity> list)
         {

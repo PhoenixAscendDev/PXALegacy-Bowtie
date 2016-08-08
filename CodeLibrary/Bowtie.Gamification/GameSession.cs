@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace JB2.Bowtie
 {
     public abstract class GameSession<TPlayer,TID> : JB2.Common.IDValue<TID>,IGameSession<TPlayer,TID>
-        where TPlayer : JB2.Identity.IPlayerable<TID>
+        where TPlayer : JB2.Bowtie.IPlayerable<TID>
         where TID : IComparable
     {
         #region Fields

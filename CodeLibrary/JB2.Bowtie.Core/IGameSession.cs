@@ -12,12 +12,12 @@ namespace JB2.Bowtie
     }
     
     public interface IGamSession<TPlayer> : IGameSession<TPlayer,string>
-        where TPlayer : JB2.Identity.IPlayerable<string>
+        where TPlayer : JB2.Bowtie.IPlayerable<string>
     {
        
     }
     public interface IGameSession<TPlayer,TID>
-        where TPlayer :  JB2.Identity.IPlayerable<TID>
+        where TPlayer :  JB2.Bowtie.IPlayerable<TID>
         where TID : IComparable
     {
         #region Getters

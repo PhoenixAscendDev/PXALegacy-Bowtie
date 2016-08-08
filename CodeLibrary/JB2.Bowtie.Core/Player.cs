@@ -12,9 +12,8 @@ namespace JB2.Bowtie
     public abstract class Player  : BowtieObject, IBowtiePlayer
     {
         #region Fields
-        protected JB2.Identity.IPlayer _player;
+        //protected JB2.Identity.IPlayer _player;
         protected new Name _name;
-        
         protected MetaDataCollection _metadata;
         
         protected Dictionary<string, MetaDataCollection> _modules;              
@@ -33,12 +32,33 @@ namespace JB2.Bowtie
             }
         }
 
+        public int Age
+        {
+            get
+            {
+                return _metadata["Age"].GetValue().IntValue;
+            }
+
+            set
+            {
+                _metadata["Age"].UpdateValue(value);
+            }
+        }
+
+        public string Gender
+        {
+            get
+            {
+                return _metadata["Gender"].GetValue().StringValue;
+            }
+
+            set
+            {
+                _metadata["Gender"].UpdateValue(value);
+            }
+        }
+
         #region IPlayer
-        public abstract int GetBitScore();
-        public abstract string GetFamilyID();
-        public abstract string GetjBeanAccountNumber();
-        public abstract string GetMasterEmail();
-        public abstract string GetMasterUsername();
         public virtual IMetaData GetModuleMetaData(string module, string propertyName)
         {
             //MetaDataCollection collection = _modules[module];
@@ -47,9 +67,6 @@ namespace JB2.Bowtie
             else
                 return null;
         }
-
-        public abstract Name GetName();
-        public abstract IEnumerable<PlayerProfilePacket> GetProfiles();
 
         public virtual IMetaData MetaData(string propertyName)
         {
@@ -72,25 +89,19 @@ namespace JB2.Bowtie
 
         public abstract string GetIdentityAuthID();
 
-        public IMetaData GetModuleAttribute(string module, string propertyName)
-        {
-            return _player.GetModuleAttribute(module, propertyName);
-        }
+        //public IMetaData GetModuleAttribute(string module, string propertyName)
+        //{
+        //    return _player.GetModuleAttribute(module, propertyName);
+        //}
 
-        public void SetModuleAttribute(string module, IMetaData metadata)
-        {
-            _player.SetModuleAttribute(module, metadata);
-        }
+        //public void SetModuleAttribute(string module, IMetaData metadata)
+        //{
+        //    _player.SetModuleAttribute(module, metadata);
+        //}
 
         public string GetPlayerID()
         {
-            return _player.GetPlayerID();
-        }
-
-
-        public PlayerProfilePacket GetDefaultProfile()
-        {
-            return _player.GetDefaultProfile();
+            return _id;
         }
 
         public IMetaData GetMetaData(string propertyName)
@@ -106,6 +117,11 @@ namespace JB2.Bowtie
         public int GetCounterIndex()
         {
             return -1;
+        }
+
+        Name INameProp<Name>.GetName()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion IBowtiePlayer

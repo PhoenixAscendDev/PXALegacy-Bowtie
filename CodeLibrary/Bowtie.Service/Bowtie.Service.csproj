@@ -176,7 +176,6 @@
     <Compile Include="ApplicationService.cs" />
     <Compile Include="DewdropService.cs" />
     <Compile Include="GameCommandService.cs" />
-    <Compile Include="GameEngine.cs" />
     <Compile Include="GenericService.cs" />
     <Compile Include="GraphService.cs" />
     <Compile Include="WalletService.cs" />

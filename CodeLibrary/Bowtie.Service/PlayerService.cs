@@ -34,27 +34,39 @@ namespace JB2.Bowtie.Service
 
             var appPlayer = JB2.Identity.PlayerStore.GetPlayerByAppPlayerID(playerid, app.ClientID);
 
-            return fromIdentity(appPlayer, app);
+            //return fromIdentity(appPlayer, app);
+            throw new NotImplementedException();
         }
 
-        public IBowtiePlayer RetrieveByAppPlayerID(string id,IApplication app)
+        //public IBowtiePlayer RetrieveByAppPlayerID(string id,IApplication app)
+        //{
+        //    var appPlayer = JB2.Identity.PlayerStore.GetPlayerByAppPlayerID(id, app.ClientID);
+
+        //    return fromIdentity(appPlayer, app);
+        //}
+
+
+        public IBowtiePlayer RegisterPlayer(JB2.Bowtie.IPlayerable player, IApplication app)
         {
-            var appPlayer = JB2.Identity.PlayerStore.GetPlayerByAppPlayerID(id, app.ClientID);
+            IBowtiePlayer result = new JB2.Bowtie.ApplicationPlayer(player.GetPlayerID(), app.GetID());
 
-            return fromIdentity(appPlayer, app);
-        }
-
-        private IBowtiePlayer fromIdentity(JB2.Identity.IPlayer player, IApplication app)
-        {
-            IBowtiePlayer result = new JB2.Bowtie.ApplicationPlayer(player, app.GetID());
-
-            WalletService wservice = new WalletService(_uofw);
-            var wallet = wservice.RetrieveWalletByPlayer(result, app);
-
-            _uofw.PlayerRepository.Insert(result);
-
+            _repo.Insert(result);
             return result;
         }
+
+
+
+        //private IBowtiePlayer fromIdentity(JB2.Identity.IPlayer player, IApplication app)
+        //{
+        //    IBowtiePlayer result = new JB2.Bowtie.ApplicationPlayer(player, app.GetID());
+
+        //    WalletService wservice = new WalletService(_uofw);
+        //    var wallet = wservice.RetrieveWalletByPlayer(result, app);
+
+        //    _uofw.PlayerRepository.Insert(result);
+
+        //    return result;
+        //}
 
     }
 }

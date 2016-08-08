@@ -177,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BowtieSettings.cs" />
+    <Compile Include="GameEngine.cs" />
     <Compile Include="JB2AppSettings.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

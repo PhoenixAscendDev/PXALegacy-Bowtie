@@ -19,25 +19,13 @@ namespace JB2.Bowtie
 
 
         #region Constructors
-        public ApplicationPlayer(JB2.Identity.IPlayer authPlayer, string applicationID)
+        public ApplicationPlayer(string id, string applicationID)
         {
-            _player = authPlayer;
-            _id = authPlayer.GetDefaultProfile().ID;
+            _id = id;
             _applicationID = applicationID;
         }
 
-        public override string DisplayName
-        {
-            get
-            {
-                return _player.DisplayName;
-            }
 
-            set
-            {
-                _player.DisplayName = value;
-            }
-        }
 
         #endregion Constructors
 
@@ -47,55 +35,30 @@ namespace JB2.Bowtie
             return _applicationID;
         }
 
-
-
         #endregion IApplicationable
-
-        #region IBowtiePlayer
-
-        public override int GetBitScore()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string GetFamilyID()
-        {
-            return _player.GetFamilyID();
-        }
 
         public override string GetIdentityAuthID()
         {
             throw new NotImplementedException();
         }
 
-        public override string GetjBeanAccountNumber()
+        public override string DisplayName
         {
-            throw new NotImplementedException();
-        }
+            get
+            {
+                return _metadata["DisplayName"].GetValue().StringValue;
+            }
 
-        public override string GetMasterEmail()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string GetMasterUsername()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Name GetName()
-        {
-            return _player.Name;
-        }
-
-        public override IEnumerable<PlayerProfilePacket> GetProfiles()
-        {
-            var packet = this._player.GetDefaultProfile();
-            return new PlayerProfilePacket[1] { packet };
+            set
+            {
+                _metadata["DisplayName"].UpdateValue(value);
+            }
         }
 
 
-        #endregion IBowtiePlayer
+
+
+
 
 
 

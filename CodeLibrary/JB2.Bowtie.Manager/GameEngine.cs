@@ -11,7 +11,7 @@ namespace JB2.Bowtie
     
     public abstract class GameEngine<TSession, TPlayer, TID> : IGameEngine<TSession,TPlayer,TID>
         where TSession: IGameSession<TPlayer,TID>, new()
-        where TPlayer :  JB2.Identity.IPlayerable<TID>
+        where TPlayer :  JB2.Bowtie.IPlayerable<TID>
         where TID : IComparable
     {
         #region Fields
@@ -121,7 +121,7 @@ namespace JB2.Bowtie
             else
             {
                 var playerService = new JB2.Bowtie.Service.PlayerService();
-                var bowtiePlayer = playerService.RetrieveByAppPlayerID(player.GetPlayerID().ToString(), this.GetApplication());
+                var bowtiePlayer = playerService.RetrieveById(player.GetPlayerID().ToString());
 
                 return bowtiePlayer;
             }

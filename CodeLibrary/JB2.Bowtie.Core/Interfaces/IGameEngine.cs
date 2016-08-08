@@ -8,7 +8,7 @@ namespace JB2.Bowtie
 {
     public delegate void ProcessDewdrop(IDewdrop dewdrop, string playerID, object value);
     public delegate void ProcessGameCommand<TPlayer,TID>(IGameCommand command, IGameSession<TPlayer,TID> session) 
-        where TPlayer: JB2.Identity.IPlayerable<TID> 
+        where TPlayer: JB2.Bowtie.IPlayerable<TID> 
         where TID : IComparable;
 
     public interface IGameEngine<TGameSession> : IGameEngine<TGameSession,IBowtiePlayer,string>
@@ -18,7 +18,7 @@ namespace JB2.Bowtie
     }
     public interface IGameEngine<TGameSession,TPlayer,TID>
         where TGameSession : IGameSession<TPlayer,TID>, new()
-        where TPlayer :  JB2.Identity.IPlayerable<TID>
+        where TPlayer :  JB2.Bowtie.IPlayerable<TID>
         where TID : IComparable
     {
         #region Events

@@ -8,7 +8,7 @@ namespace JB2.Bowtie
 {
 
     public class SinglePlayerSession<TPlayer> : GameSession<TPlayer,string>, IGameSession<TPlayer,string>
-        where TPlayer : JB2.Identity.IPlayerable<string>
+        where TPlayer : JB2.Bowtie.IPlayerable<string>
     {
         #region Constructor
 
