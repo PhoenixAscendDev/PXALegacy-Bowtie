@@ -76,27 +76,32 @@ namespace JB2.Bowtie
         public virtual void AddDewDrop(string dewdropID, TPlayer player, object value)
         {
             var dewdrop = JB2.Settings.Bowtie.UnitOfWork.DewdropRepository.GetById(dewdropID);
+
             var btplayer = getPlayer(player);
-            
+
             if (validateDewDrop(dewdrop))
             {
 
                 //add jBeans to Wallet
                 int amount = dewdrop.GetjBeanCost();
-                
-                if(amount > 0)
-                {             
+
+                if (amount > 0)
+                {
                     var tNote = addAmountToWallet(JB2.Settings.Jbean.Factory.Currencies[0], amount, player);
                     var wallet = new JB2.Bowtie.Service.WalletService().RetrieveWalletByPlayer(btplayer, this.GetApplication());
                     if (TreasuryNoteAdded != null)
                         TreasuryNoteAdded(this, wallet, player, tNote);
-                    if(jBeanAwarded != null)
+                    if (jBeanAwarded != null)
                         jBeanAwarded(this, tNote, player);
                 }
                 //Do stuff
                 if (DewdropIssued != null)
-                    DewdropIssued(this, dewdrop, (TPlayer)player);             
+                    DewdropIssued(this, dewdrop, (TPlayer)player);
             }
+            var dewdropService = new JB2.Bowtie.Service.DewdropService();
+            PlayerDewdrop pdew = dewdropService.GenerateNewPlayerDewdrop(btplayer, dewdrop, value.ToString());
+            dewdropService.Save(pdew);
+            this._dewdrops.Add(pdew);
         }
 
         private bool validateDewDrop(IDewdrop dewdrop)

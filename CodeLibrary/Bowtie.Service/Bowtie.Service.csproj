@@ -189,6 +189,10 @@
       <Project>{6d362c4a-06d4-40c6-b314-aa559791e1f4}</Project>
       <Name>Bowtie.RepoAzure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bowtie.Gamification\Bowtie.Gamification.csproj">
+      <Project>{40f36cd2-7823-4f26-9f85-473367db4013}</Project>
+      <Name>Bowtie.Gamification</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JB2.Bowtie.Core\Bowtie.Core.csproj">
       <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
       <Name>Bowtie.Core</Name>

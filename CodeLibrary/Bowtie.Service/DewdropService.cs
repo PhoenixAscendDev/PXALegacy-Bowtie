@@ -50,6 +50,21 @@ namespace JB2.Bowtie.Service
                 return false;
         }
 
+
+
+        public PlayerDewdrop GenerateNewPlayerDewdrop(IBowtiePlayer player, IDewdrop dewdrop, string value)
+        {
+            var metadata = new List<JB2.Common.IMetaData>();
+            metadata.Add(new JB2.Common.StringMetaData("PlayerID", player.GetPlayerID()));
+            metadata.Add(new JB2.Common.StringMetaData("DewdropID", dewdrop.GetID()));
+            metadata.Add(new JB2.Common.DateTimeMetaData("DewDate", DateTime.Now));
+
+            var newdew = new PlayerDewdrop(metadata,value);
+
+            return newdew;
+        }
+
+
         #region Retrieve 
         public IEnumerable<Dewdrop> Retrieve(string request, OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
         {
