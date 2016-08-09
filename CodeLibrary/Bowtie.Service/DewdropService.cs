@@ -89,7 +89,7 @@ namespace JB2.Bowtie.Service
         public Dewdrop RetrieveById(string id, OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
         {
             Regex regex = new Regex(@"\d+");
-            Match match = regex.Match("^dew_?");
+            Match match = regex.Match(id);
             if(!match.Success)
             {
                 id = "dew_" + id;

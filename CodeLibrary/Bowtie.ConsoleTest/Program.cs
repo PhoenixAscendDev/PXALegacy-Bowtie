@@ -78,13 +78,21 @@ namespace Bowtie.ConsoleTest
             Console.WriteLine(JB2.Settings.Jbean.GetTokenValue(JB2.Economy.Enum.JBeanTokenType.Pinto).ToString());
 
 
+            //var dewdropService = new JB2.Bowtie.Service.DewdropService();
+
+            //var d1 = Dewdrop.NewDewdrop("RegisterNewPlayer", "Player account has been created", "JB2-SV001", "a_jQfgLjIiYU2Oidw-aeB1Qg",-1000);
+            //dewdropService.Save(d1);
+            //var d2 = Dewdrop.NewDewdrop("RegisterNewPlayer", "Player account has been created", "JB2-LF004", "a_jQfgLjIiYU2Oidw-aeB1Qg", -1000);
+            //dewdropService.Save(d2);
+
+
             var app = JB2.Settings.Bowtie.CurrentApplication;
 
             var playerService = new JB2.Bowtie.Service.PlayerService();
 
 
 
-            var tplayer = playerService.RetrieveById("i-febble");
+            var tplayer = playerService.RetrieveById("ZM584Wigp0mftfAFd_jTlA");
 
             playerService.RegisterPlayer(tplayer, app, "JBID");
 
