@@ -19,7 +19,7 @@ namespace JB2.Bowtie
 
 
         #region Constructors
-        public ApplicationPlayer(string id, string applicationID)
+        public ApplicationPlayer(string id, string applicationID) : base()
         {
             _id = id;
             _applicationID = applicationID;

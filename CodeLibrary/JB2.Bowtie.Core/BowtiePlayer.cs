@@ -8,6 +8,16 @@ namespace JB2.Bowtie
 {
     public class BowtiePlayer : Player, IBowtiePlayer
     {
+
+
+        #region Constructors
+        public BowtiePlayer() : base()
+        {
+
+        }
+
+
+        #endregion Constructors
         public override string DisplayName
         {
             get

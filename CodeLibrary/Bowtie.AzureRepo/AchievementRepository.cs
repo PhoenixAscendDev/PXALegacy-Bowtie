@@ -96,7 +96,7 @@ namespace JB2.Bowtie.Data.Azure
             e.Properties.Add("Kind", new EntityProperty(o.GetKind().ToString()));
             e.Properties.Add("UniqueToken", new EntityProperty(o.UniqueToken));
             e.Properties.Add("LastUpdate", new EntityProperty(o.GetLastUpdate()));
-            e.Properties.Add("DateAchieved", new EntityProperty(o.DateAchieved));
+            e.Properties.Add("DateAchieved", new EntityProperty(o.DateAchieved.ToString() ));
 
             return e;
         }
@@ -166,13 +166,13 @@ namespace JB2.Bowtie.Data.Azure
             var id = e.Properties["ID"].StringValue;
             IPlayerAchievement result = new PlayerAchievement(id);
 
-            result.AchievementID = e.Properties["AchievementID"].StringValue;
-            result.CurrentStep = e.Properties["CurrentStep"].Int32Value.GetValueOrDefault();
-            result.ID = e.Properties["ID"].StringValue;
-            result.Name = e.Properties["Name"].StringValue;
-            result.PlayerID = e.Properties["PlayerID"].StringValue;
-            result.PointsEarned = e.Properties["PointsEarned"].Int32Value.GetValueOrDefault();
-            result.DateAchieved = e.Properties["DateAchieved"].DateTime.GetValueOrDefault();
+            result.AchievementID = e.Properties.ContainsKey("AchievementID") ? e.Properties["AchievementID"].StringValue : string.Empty;
+            result.CurrentStep = e.Properties.ContainsKey("CurrentStep") ? e.Properties["CurrentStep"].Int32Value.GetValueOrDefault() : 0;
+            result.ID = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
+            result.Name = e.Properties.ContainsKey("Name") ? e.Properties["Name"].StringValue : string.Empty;
+            result.PlayerID = e.Properties.ContainsKey("PlayerID") ? e.Properties["PlayerID"].StringValue : string.Empty;
+            result.PointsEarned = e.Properties.ContainsKey("PointsEarned") ? e.Properties["PointsEarned"].Int32Value.GetValueOrDefault() : 0;
+            result.DateAchieved = e.Properties.ContainsKey("DateAchieved") ? Convert.ToDateTime(e.Properties["DateAchieved"].StringValue) : DateTime.MinValue;
             
             //var e = new DynamicTableEntity();
             //e.Properties.Add("AchievementID", new EntityProperty(o.AchievementID));
@@ -202,28 +202,28 @@ namespace JB2.Bowtie.Data.Azure
                     break;
             }
 
-            result.Name = e.Properties["Name"].StringValue;
+            result.Name = e.Properties.ContainsKey("Name") ? e.Properties["Name"].StringValue : string.Empty;
             result.AchievementType = type;
-            result.ApplicationID = e.Properties["ApplicationID"].StringValue;
-            result.Category = e.Properties["Category"].StringValue;
-            result.Description = e.Properties["Description"].StringValue;
+            result.ApplicationID = e.Properties.ContainsKey("ApplicationID") ? e.Properties["ApplicationID"].StringValue : string.Empty;
+            result.Category = e.Properties.ContainsKey("Category") ? e.Properties["Category"].StringValue : string.Empty;
+            result.Description = e.Properties.ContainsKey("Description") ? e.Properties["Description"].StringValue : string.Empty;
 
-            var drewdroptriggers = e.Properties["DewdropCSV"].StringValue.Split(',');
+            var drewdroptriggers = e.Properties.ContainsKey("DewdropCSV") ? e.Properties["DewdropCSV"].StringValue.Split(',') : new string[0];
             result.DewdropTriggers = drewdroptriggers;
 
-            result.EarnedIconUrl = e.Properties["EarnedIconUrl"].StringValue;
-            result.HiddenIconUrl = e.Properties["HiddenIconUrl"].StringValue;
-            result.ShownIconUrl = e.Properties["ShownIconUrl"].StringValue;
-            result.Points = (int)e.Properties["Points"].Int32Value;
+            result.EarnedIconUrl = e.Properties.ContainsKey("EarnedIconUrl") ? e.Properties["EarnedIconUrl"].StringValue : string.Empty;
+            result.HiddenIconUrl = e.Properties.ContainsKey("HiddenIconUrl") ? e.Properties["HiddenIconUrl"].StringValue : string.Empty;
+            result.ShownIconUrl = e.Properties.ContainsKey("ShownIconUrl") ? e.Properties["ShownIconUrl"].StringValue : string.Empty;
+            result.Points = e.Properties.ContainsKey("Points") ? (int)e.Properties["Points"].Int32Value : 0;
 
             result.Rarity = e.Properties.ContainsKey("Rarity") ? (Enum.AchievementRarityType)System.Enum.Parse(typeof(Enum.AchievementRarityType), e.Properties["Rarity"].StringValue) : Enum.AchievementRarityType.Common;
 
-            result.StepFx = e.Properties["StepRegEx"].StringValue;
-            result.StepsRequired = e.Properties["StepRequired"].Int32Value.GetValueOrDefault();
+            result.StepFx = e.Properties.ContainsKey("StepRegEx") ? e.Properties["StepRegEx"].StringValue : string.Empty;
+            result.StepsRequired = e.Properties.ContainsKey("StepRequired") ? e.Properties["StepRequired"].Int32Value.GetValueOrDefault() : 0;
             result.StepType = e.Properties.ContainsKey("StepType") ? (Enum.StepFxType)System.Enum.Parse(typeof(Enum.StepFxType), e.Properties["StepType"].StringValue) : Enum.StepFxType.Empty;
 
-            result.TimeBoundEnd = e.Properties["TimeBoundEnd"].DateTime.GetValueOrDefault();
-            result.TimeBoundStart = e.Properties["TimeBoundStart"].DateTime.GetValueOrDefault();
+            result.TimeBoundEnd = e.Properties.ContainsKey("TimeBoundEnd") ? Convert.ToDateTime(e.Properties["TimeBoundEnd"].StringValue) : System.DateTime.MinValue;
+            result.TimeBoundStart = e.Properties.ContainsKey("TimeBoundStart") ? Convert.ToDateTime(e.Properties["TimeBoundStart"].StringValue) : System.DateTime.MinValue;
 
             //result.UniqueToken = e.Properties["UniqueToken"].StringValue;
 

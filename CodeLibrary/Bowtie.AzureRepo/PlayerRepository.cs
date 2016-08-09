@@ -172,7 +172,7 @@ namespace JB2.Bowtie.Data.Azure
 
         protected void saveAppUser(DynamicTableEntity e, bool replace)
         {
-            e.PartitionKey = "applicationplayer:" + e.Properties["ApplicationID"];
+            e.PartitionKey = "applicationplayer:" + e.Properties["ApplicationID"].StringValue;
             e.RowKey = "id:" + e.Properties["PlayerID"].StringValue;
             _table.Insert<DynamicTableEntity>(e, true);
 

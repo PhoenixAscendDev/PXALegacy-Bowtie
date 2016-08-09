@@ -11,13 +11,23 @@ namespace JB2.Bowtie
 {
     public abstract class Player  : BowtieObject, IBowtiePlayer
     {
+
         #region Fields
         //protected JB2.Identity.IPlayer _player;
         protected new Name _name;
         protected MetaDataCollection _metadata;
         
-        protected Dictionary<string, MetaDataCollection> _modules;              
+        protected Dictionary<string, MetaDataCollection> _modules;
         #endregion Fields
+
+
+        #region Constructors
+        public Player()
+        {
+            _metadata = new MetaDataCollection();
+        }
+
+        #endregion Constructors
 
         public abstract string DisplayName { get; set; }
         public new virtual Name Name
