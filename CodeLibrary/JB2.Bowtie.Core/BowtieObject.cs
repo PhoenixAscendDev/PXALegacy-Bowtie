@@ -90,7 +90,7 @@ namespace JB2.Bowtie
 
         public DateTime GetLastUpdate()
         {
-            throw new NotImplementedException();
+            return DateTime.Now;
         }
 
         public IEnumerable<ObjectTag> GetTags()

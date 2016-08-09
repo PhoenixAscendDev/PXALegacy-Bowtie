@@ -6,21 +6,20 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class StandardAchievement : Achievement, IAchievement
+    public class LapelPinAchievement : Achievement, IAchievement
     {
-        public StandardAchievement(): this(null)
+        public LapelPinAchievement(): this(null)
         {
 
         }
 
-        public StandardAchievement(string id) : base(id)
+        public LapelPinAchievement(string id) : base(id)
         {
             //standard achievements are not timebased so default them to min and max dates
             base._timeStart = DateTime.MinValue;
             base._timeEnd = DateTime.MinValue;
-            base.AchievementType = Enum.AchievementType.Standard;
-
-
+            base.AchievementType = Enum.AchievementType.LabelPin;
+           
         }
     }
 }

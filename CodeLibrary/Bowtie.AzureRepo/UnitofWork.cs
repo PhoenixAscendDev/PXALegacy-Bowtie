@@ -139,8 +139,9 @@ namespace JB2.Bowtie.Data.Azure
                             case RepositoryType.Wallet:
                                 _repos.Add(repository, new JB2.Bowtie.Data.Azure.WalletRepository());
                                 break;
-                            //case RepositoryType.Achievement:
-                               // _repos.Add(repository, new JB2.Bowtie.Data.Azure.A)
+                            case RepositoryType.Achievement:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.AchievementRepository());
+                                break;
                         }
                     }
 

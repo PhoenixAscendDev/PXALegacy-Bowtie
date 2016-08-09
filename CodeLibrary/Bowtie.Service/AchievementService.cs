@@ -28,6 +28,44 @@ namespace JB2.Bowtie.Service
 
         }
 
+
+        #region IAchievement
+        public IAchievement[] RetrieveByApplication(string applicationid)
+        {
+            IAchievement[] result = null;
+            try
+            {
+                result = _repo.GetAchievementsByApplication(applicationid);
+            }
+            catch
+            {
+                result = new IAchievement[0];
+            }
+
+            return result;
+        }
+
+        public IAchievement[] RetrieveByType(string applicationid, Enum.AchievementType type)
+        {
+            List<IAchievement> result = null;
+            try
+            {
+                var list  = _repo.GetAchievementsByApplication(applicationid);
+                result = list.ToList().FindAll(x => x.AchievementType == type);
+            }
+            catch
+            {
+                result = new List<IAchievement>();
+            }
+
+            return result.ToArray();
+        }
+
+        #endregion IAchievement
+
+
+        #region PlayerAchievements
+
         public IPlayerAchievement[] InitilizePlayerAchievements(IBowtiePlayer player, IApplication app)
         {
             var paList = _repo.GetPlayerAchievements(player.GetPlayerID(), app.GetID());
@@ -90,29 +128,30 @@ namespace JB2.Bowtie.Service
         } 
 
 
-        IPlayerAchievement[] RetrievePlayerAchievement(string playerid, string applicationid)
+        public IPlayerAchievement[] RetrievePlayerAchievement(string playerid, string applicationid)
         {
             throw new NotImplementedException();
         }
 
-        IPlayerAchievement[] RetrievePlayerAchievementByPlayer(string playerid)
+        public IPlayerAchievement[] RetrievePlayerAchievementByPlayer(string playerid)
         {
             throw new NotImplementedException();
         }
 
-        IPlayerAchievement[] RetrievePlayerAchievementByApplication(string applicationid)
+        public IPlayerAchievement[] RetrievePlayerAchievementByApplication(string applicationid)
         {
             throw new NotImplementedException();
         }
-        IPlayerAchievement RetrievePlayerAchievementByID(string id)
+        public IPlayerAchievement RetrievePlayerAchievementByID(string id)
         {
             throw new NotImplementedException();
 
         }
 
-        IAchievement[] RetrieveByApplication(string applicationid)
-        {
-            throw new NotImplementedException();
-        }
+
+        #endregion PlayerAchievements
+
+
+
     }
 }

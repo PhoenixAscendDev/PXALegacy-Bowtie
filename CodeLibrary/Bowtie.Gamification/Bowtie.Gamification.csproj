@@ -71,6 +71,7 @@
     <Compile Include="BaseAchievement.cs" />
     <Compile Include="EventAchievement.cs" />
     <Compile Include="GameSession.cs" />
+    <Compile Include="LapelPinAchievement.cs" />
     <Compile Include="PlayerAchievement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SinglePlayerSession.cs" />

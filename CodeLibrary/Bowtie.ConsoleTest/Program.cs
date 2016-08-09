@@ -47,21 +47,67 @@ namespace Bowtie.ConsoleTest
             graphService.SaveAction(registerAction);
         }
 
+        static void AchievementReg()
+        {
+            var app = JB2.Settings.Bowtie.CurrentApplication;
+            var registerAchievement = new LapelPinAchievement();
+
+            registerAchievement.Name = "First Signin";
+            registerAchievement.ApplicationID = app.GetID();
+            registerAchievement.DewdropTriggers = new string[1] { "dew_4CBe" };
+            registerAchievement.Description = "Signed into Five|Two for the first time";
+            registerAchievement.StepFx = "REGISTER";
+            registerAchievement.StepsRequired = 1;
+            registerAchievement.StepType = StepFxType.RegexMatchSingle;
+            registerAchievement.Points = 1000;
+
+            var achievementService = new JB2.Bowtie.Service.AchievementService();
+            achievementService.Save(registerAchievement);
+
+
+        }
+
+
+
+        
+
         static void Main(string[] args)
         {
             
             JB2.Bowtie.Manager.Initialize("BT-BDF1FC3E51F48224", "912473a6-8c31-4ecf-9d5c-1af07c1b8ef3");
             Console.WriteLine(JB2.Settings.Jbean.GetTokenValue(JB2.Economy.Enum.JBeanTokenType.Pinto).ToString());
 
+
+            var app = JB2.Settings.Bowtie.CurrentApplication;
+
+            var playerService = new JB2.Bowtie.Service.PlayerService();
+
+
+
+            var tplayer = playerService.RetrieveById("i-febble");
+
+            playerService.RegisterPlayer(tplayer, app, "JBID");
+
+
+
+            //new Register Achievements
+
+ 
+
+
+
+
+
+
             //AddRegisterGraphAction();
 
-            var dewdropService = new JB2.Bowtie.Service.DewdropService();
+            //var dewdropService = new JB2.Bowtie.Service.DewdropService();
 
-            var d1 = Dewdrop.NewDewdrop("RegisterNewPlayer", "Player account has been created", "SV-001", "a_jQfgLjIiYU2Oidw-aeB1Qg",-1000);
+            //var d1 = Dewdrop.NewDewdrop("RegisterNewPlayer", "Player account has been created", "SV-001", "a_jQfgLjIiYU2Oidw-aeB1Qg",-1000);
 
 
 
-            dewdropService.Save(d1);
+            //dewdropService.Save(d1);
 
 
 

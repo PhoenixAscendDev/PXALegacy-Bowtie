@@ -35,6 +35,9 @@ namespace JB2.Bowtie
             _icons.Add("EARNED", string.Empty);
             _icons.Add("HIDDEN", string.Empty);
             _icons.Add("SHOW", string.Empty);
+            _timeStart = DateTime.MinValue;
+            _timeEnd = DateTime.MinValue;
+            _dewdropsTriggers = new string[0];
 
         }
 

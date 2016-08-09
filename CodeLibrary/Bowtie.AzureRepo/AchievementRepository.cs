@@ -29,7 +29,7 @@ namespace JB2.Bowtie.Data.Azure
 
         }
 
-        public AchievementRepository(AzureTableRepository azureTable, AzureBlobRepository azureBlob) : base()
+        public AchievementRepository(AzureTableRepository azureTable, AzureBlobRepository azureBlob)
         {
             _table = azureTable;
             _blob = azureBlob;
@@ -121,8 +121,8 @@ namespace JB2.Bowtie.Data.Azure
             e.Properties.Add("Rarity", new EntityProperty(o.Rarity.ToString()));
             e.Properties.Add("StepFx", new EntityProperty(o.StepFx));
             e.Properties.Add("StepRequired", new EntityProperty(o.StepsRequired));
-            e.Properties.Add("TimeBoundEnd", new EntityProperty(o.TimeBoundEnd));
-            e.Properties.Add("TimeBoundStart", new EntityProperty(o.TimeBoundStart));
+            e.Properties.Add("TimeBoundEnd", new EntityProperty(o.TimeBoundEnd.ToString()));
+            e.Properties.Add("TimeBoundStart", new EntityProperty(o.TimeBoundStart.ToString()));
             e.Properties.Add("UniqueToken", new EntityProperty(o.UniqueToken));
             e.Properties.Add("SortOrder", new EntityProperty(o.SortOrder));
             e.Properties.Add("StepType", new EntityProperty(o.StepType.ToString()));
