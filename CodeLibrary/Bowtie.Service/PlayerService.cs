@@ -48,8 +48,9 @@ namespace JB2.Bowtie.Service
 
         public void RegisterPlayer(JB2.Bowtie.IBowtiePlayer player, IApplication app,string authprovider)
         {
-            ApplicationPlayer result = new JB2.Bowtie.ApplicationPlayer(player.GetPlayerID(), app.GetID());
-
+            ApplicationPlayer result = ApplicationPlayer.FromPlayer(player, app);
+            result.AuthProvider = authprovider;
+            result.DateRegistered = DateTime.Now;
             _repo.Insert(result);
         }
 

@@ -123,9 +123,6 @@ namespace JB2.Bowtie.Data.Azure
             return player;
         }
 
-
-
-
         protected  ApplicationPlayer convertToAppPlayer(DynamicTableEntity e)
         {
             
@@ -139,6 +136,7 @@ namespace JB2.Bowtie.Data.Azure
             player.Age = e.Properties.ContainsKey("Age") ? e.Properties["Age"].Int32Value.GetValueOrDefault() : 0;
             player.Gender = e.Properties.ContainsKey("Gender") ? e.Properties["Gender"].StringValue : string.Empty;
             player.AuthProvider = e.Properties.ContainsKey("AuthProvider") ? e.Properties["AuthProvider"].StringValue : string.Empty;
+            player.DateRegistered = e.Properties.ContainsKey("DateRegistered") ? e.Properties["DateRegistered"].DateTime.GetValueOrDefault() : DateTime.MinValue;
 
             return player;
 

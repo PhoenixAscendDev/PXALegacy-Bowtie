@@ -55,6 +55,21 @@ namespace JB2.Bowtie
             }
         }
 
+
+        public DateTime DateRegistered
+        {
+            get
+            {
+                return _metadata["DateRegistered"].GetValue().DateTimeValue;
+            }
+
+            set
+            {
+                _metadata["DateRegistered"].UpdateValue(value);
+            }
+        }
+
+
         #region Static Methods
         public static ApplicationPlayer FromPlayer(IBowtiePlayer player, IApplication app)
         {
