@@ -10,6 +10,10 @@ namespace JB2.Bowtie
     {
         BowtieMetadata GetMetaDataByPlayerID(string playerID);
 
-        new JB2.Common.IPerson<string> GetById(string id);
+        void Insert(ApplicationPlayer player);
+
+        ApplicationPlayer GetAppPlayerByID(string playerID, string appID);
+
+
     }
 }

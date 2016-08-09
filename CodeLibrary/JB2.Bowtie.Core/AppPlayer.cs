@@ -55,6 +55,21 @@ namespace JB2.Bowtie
             }
         }
 
+        #region Static Methods
+        public static ApplicationPlayer FromPlayer(IBowtiePlayer player, IApplication app)
+        {
+            ApplicationPlayer ap = new ApplicationPlayer(player.GetID(), app.GetID());
+            ap.Age = player.Age;
+            ap.AuthProvider = player.AuthProvider;
+            ap.DisplayName = player.DisplayName;
+            ap.Gender = player.Gender;
+
+
+            return ap;
+        }
+
+        #endregion Static Methods
+
 
 
 

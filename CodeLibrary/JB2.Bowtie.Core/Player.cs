@@ -58,6 +58,19 @@ namespace JB2.Bowtie
             }
         }
 
+        public string AuthProvider
+        {
+            get
+            {
+                return _metadata["Auth"].GetValue().StringValue;
+            }
+
+            set
+            {
+                _metadata["Auth"].UpdateValue(value);
+            }
+        }
+
         #region IPlayer
         public virtual IMetaData GetModuleMetaData(string module, string propertyName)
         {

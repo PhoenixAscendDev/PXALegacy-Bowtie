@@ -15,7 +15,7 @@ namespace JB2.Bowtie.Data.Azure
     public class PlayerRepository : BowtieRepository<IBowtiePlayer>, IBowtiePlayerRespository
     {
         #region Constructors
-        public PlayerRepository() : this("players","general")
+        public PlayerRepository() : this("players", "general")
         {
 
         }
@@ -36,10 +36,44 @@ namespace JB2.Bowtie.Data.Azure
 
         #endregion
 
+
+        public override IBowtiePlayer GetById(string id)
+        {
+            var e = _table.GetEntity<DynamicTableEntity>("player", "id:" + id);
+            if (e != null)
+            {
+                return convertToObject(e);
+            }
+            else
+                return null;
+        }
+
         public BowtieMetadata GetMetaDataByPlayerID(string playerID)
         {
             throw new NotImplementedException();
         }
+
+
+        public void Insert(ApplicationPlayer player)
+        {
+            saveAppUser(convertToEntity(player), true);
+        }
+
+        public ApplicationPlayer GetAppPlayerByID(string playerID, string appID)
+        {
+            var e = _table.GetEntity<DynamicTableEntity>("applicationplayer:" + appID, "id:" + playerID);
+
+            //e.PartitionKey = "applicationplayer:" + e.Properties["ApplicationID"];
+            //e.RowKey = "id:" + e.Properties["PlayerID"].StringValue;
+
+            if (e != null)
+                return convertToAppPlayer(e);
+            else
+                return null;
+            //throw new NotImplementedException();
+        }
+
+        #region Non-Public Methods
 
         protected override DynamicTableEntity convertToEntity(IBowtiePlayer o)
         {
@@ -50,36 +84,73 @@ namespace JB2.Bowtie.Data.Azure
             e.Properties.Add("Age", new EntityProperty(o.Age));
             e.Properties.Add("Gender", new EntityProperty(o.Gender));
             e.Properties.Add("PlayerID", new EntityProperty(o.GetPlayerID()));
+            e.Properties.Add("AuthProvider", new EntityProperty(o.AuthProvider));
+
+            return e;
+        }
+
+        protected  DynamicTableEntity convertToEntity(ApplicationPlayer p)
+        {
+            var e = convertToEntity((IBowtiePlayer)p);
+
+            e.Properties.Add("ApplicationID", new EntityProperty(p.GetApplicationID()));
 
             return e;
         }
 
         protected override IEnumerable<IBowtiePlayer> convertToObject(IEnumerable<DynamicTableEntity> list)
         {
-            throw new NotImplementedException();
+            List<IBowtiePlayer> players = new List<IBowtiePlayer>(list.Count());
+
+            foreach (var e in list)
+            {
+                players.Add(convertToObject(e));
+            }
+
+            return players;
         }
 
         protected override IBowtiePlayer convertToObject(DynamicTableEntity e)
         {
-            throw new NotImplementedException();
+            BowtiePlayer player = new BowtiePlayer();
+
+            player.ID = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
+            player.DisplayName = e.Properties.ContainsKey("DisplayName") ? e.Properties["DisplayName"].StringValue : string.Empty;
+            player.Age = e.Properties.ContainsKey("Age") ? e.Properties["Age"].Int32Value.GetValueOrDefault() : 0;
+            player.Gender = e.Properties.ContainsKey("Gender") ? e.Properties["Gender"].StringValue : string.Empty;
+            player.AuthProvider = e.Properties.ContainsKey("AuthProvider") ? e.Properties["AuthProvider"].StringValue : string.Empty;
+
+            return player;
         }
 
-        public new virtual IPerson<string>  GetById(string id)
+
+
+
+        protected  ApplicationPlayer convertToAppPlayer(DynamicTableEntity e)
         {
-            var e = _table.GetEntity<DynamicTableEntity>("player", "id:" + id);
-            if(e == null)
-            {
-                return new Person() { ID = id };
-            }
-            else
-                return convertToPerson(e);
+            
+            var id = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
+            var applicationid = e.Properties.ContainsKey("AppllicationID") ? e.Properties["AppllicationID"].StringValue : string.Empty;
+
+
+            ApplicationPlayer player = new ApplicationPlayer(id, applicationid);
+            player.ID = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
+            player.DisplayName = e.Properties.ContainsKey("DisplayName") ? e.Properties["DisplayName"].StringValue : string.Empty;
+            player.Age = e.Properties.ContainsKey("Age") ? e.Properties["Age"].Int32Value.GetValueOrDefault() : 0;
+            player.Gender = e.Properties.ContainsKey("Gender") ? e.Properties["Gender"].StringValue : string.Empty;
+            player.AuthProvider = e.Properties.ContainsKey("AuthProvider") ? e.Properties["AuthProvider"].StringValue : string.Empty;
+
+            return player;
+
         }
+
 
         protected IPerson<string> convertToPerson(DynamicTableEntity e)
         {
             var person = new Person();
             person.ID = e.Properties.ContainsKey("PlayerID") ? e.Properties["PlayerID"].StringValue : string.Empty;
             person.DisplayName = e.Properties.ContainsKey("DisplayName") ? e.Properties["DisplayName"].StringValue : string.Empty;
+
             person.Name = new Name();
 
             return person;
@@ -100,5 +171,20 @@ namespace JB2.Bowtie.Data.Azure
             e.RowKey = "id:" + e.Properties["PlayerID"].StringValue;
             _table.Insert<DynamicTableEntity>(e, true);
         }
+
+        protected void saveAppUser(DynamicTableEntity e, bool replace)
+        {
+            e.PartitionKey = "applicationplayer:" + e.Properties["ApplicationID"];
+            e.RowKey = "id:" + e.Properties["PlayerID"].StringValue;
+            _table.Insert<DynamicTableEntity>(e, true);
+
+            saveEntity(e, replace);
+        }
+
+
+
+
+        #endregion Non-Public Methods
+
     }
 }

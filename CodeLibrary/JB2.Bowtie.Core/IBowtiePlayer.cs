@@ -13,5 +13,7 @@ namespace JB2.Bowtie
         int Age { get; set; }
         string Gender { get; set; }
 
+        string AuthProvider { get; set; }
+
     }
 }

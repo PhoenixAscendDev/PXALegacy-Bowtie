@@ -46,12 +46,11 @@ namespace JB2.Bowtie.Service
         //}
 
 
-        public IBowtiePlayer RegisterPlayer(JB2.Bowtie.IPlayerable player, IApplication app)
+        public void RegisterPlayer(JB2.Bowtie.IBowtiePlayer player, IApplication app,string authprovider)
         {
-            IBowtiePlayer result = new JB2.Bowtie.ApplicationPlayer(player.GetPlayerID(), app.GetID());
+            ApplicationPlayer result = new JB2.Bowtie.ApplicationPlayer(player.GetPlayerID(), app.GetID());
 
             _repo.Insert(result);
-            return result;
         }
 
 
