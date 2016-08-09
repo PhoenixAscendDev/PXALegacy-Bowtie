@@ -21,13 +21,14 @@ namespace JB2.Bowtie
         }
         public PlayerDewdrop( IEnumerable<IMetaData> metadataList, string value)
         {
-            _metadata = new MetaDataCollection(metadataList);           
+            _metadata = new MetaDataCollection(metadataList);
+            _id = JB2.Common.NewID.ShortGuid();
         }
 
         #region IPlayerDewdrop
         public string GetApplicationID()
         {
-            return _metadata["ApplicationID"].GetValue().ToString();
+            return _metadata["ApplicationID"].GetValue().StringValue;
 
         }
 

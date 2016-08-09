@@ -58,9 +58,10 @@ namespace JB2.Bowtie.Service
             metadata.Add(new JB2.Common.StringMetaData("PlayerID", player.GetPlayerID()));
             metadata.Add(new JB2.Common.StringMetaData("DewdropID", dewdrop.GetID()));
             metadata.Add(new JB2.Common.DateTimeMetaData("DewDate", DateTime.Now));
+            metadata.Add(new JB2.Common.StringMetaData("ApplicationID", dewdrop.GetApplicationID()));
 
             var newdew = new PlayerDewdrop(metadata,value);
-
+            newdew.Name = dewdrop.Name;
             return newdew;
         }
 

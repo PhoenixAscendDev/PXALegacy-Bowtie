@@ -71,6 +71,7 @@ namespace JB2.Bowtie.Data.Azure
             e.Properties.Add("DewdropID", EntityProperty.GeneratePropertyForString(o.GetDewdropID()));
             e.Properties.Add("PlayerID", EntityProperty.GeneratePropertyForString(o.GetPlayerID()));
             e.Properties.Add("DewDate", EntityProperty.CreateEntityPropertyFromObject(o.GetDewDate()));
+            e.Properties.Add("Value", EntityProperty.CreateEntityPropertyFromObject(o.GetValue()));
             return e;
         }
 
