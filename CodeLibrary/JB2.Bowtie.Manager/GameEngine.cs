@@ -23,6 +23,14 @@ namespace JB2.Bowtie
 
         #endregion Fields
 
+
+        public GameEngine()
+        {
+            _dewdrops = new Common.BaseCollection<IPlayerDewdrop>();
+            _commands = new Common.BaseCollection<IGameCommand>();
+            _sessions = new Dictionary<string, TSession>();
+        }
+
         #region Players
         public virtual void AddPlayer(string sessionID, TPlayer player)
         {
