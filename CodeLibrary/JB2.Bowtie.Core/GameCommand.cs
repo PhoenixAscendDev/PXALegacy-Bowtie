@@ -92,13 +92,8 @@ namespace JB2.Bowtie
         public string ToPacket()
         {
             //var cmdCode = "1223344444";
-
-
             string cmdFormat = "{0}>*<{1}>*<{2}>*<{3}";
-
-
             return string.Format(cmdFormat, this._applicationID, this._issuedPlayer, this._affectedPlayer, this._commandCode);
-
         }
     }
 }

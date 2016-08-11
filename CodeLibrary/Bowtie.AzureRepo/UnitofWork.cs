@@ -142,6 +142,8 @@ namespace JB2.Bowtie.Data.Azure
                             case RepositoryType.Achievement:
                                 _repos.Add(repository, new JB2.Bowtie.Data.Azure.AchievementRepository());
                                 break;
+                           // case RepositoryType.GameCommand:
+                             //   _repos.Add(repository, new JB2.Bowtie.Data.Azure.G)
                         }
                     }
 

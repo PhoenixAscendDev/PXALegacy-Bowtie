@@ -47,8 +47,8 @@
       <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.3.21.1\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Data.AzureStorage, Version=0.2.4.16368, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.2.4\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
+    <Reference Include="JB2.Common.Data.AzureStorage, Version=0.2.5.12714, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.2.5\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Date, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
@@ -181,6 +181,7 @@
     <Compile Include="DewdropRepository.cs" />
     <Compile Include="EntityNotFoundException.cs" />
     <Compile Include="Entities\GraphElementEntity.cs" />
+    <Compile Include="GameCommandRepository.cs" />
     <Compile Include="GraphRepository.cs" />
     <Compile Include="OnErrorReturnType.cs" />
     <Compile Include="PlayerRepository.cs" />
