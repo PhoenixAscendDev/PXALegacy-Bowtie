@@ -19,6 +19,7 @@ namespace JB2.Bowtie
         protected IDictionary<string, TSession> _sessions;
         protected IApplication _application;
         protected JB2.Common.BaseCollection<IPlayerDewdrop> _dewdrops;
+        protected JB2.Common.BaseCollection<IGameCommand> _commands;
 
         #endregion Fields
 
@@ -28,6 +29,8 @@ namespace JB2.Bowtie
             var session = _sessions[sessionID];
             session.AddPlayer(player);
         }
+
+        
         public abstract void AddPlayer(string sessionID, int seat, TPlayer player);
         public abstract IEnumerable<TPlayer> GetPlayers();
         public abstract void RemovePlayer(string sessionID, TPlayer player);
@@ -53,7 +56,7 @@ namespace JB2.Bowtie
             session.ManuallyStopped += OnSessionStop;
             session.PlayerAdded += OnSessionPlayerAdd;
             session.PlayerRemoved += OnSessionPlayerRemove;
-
+            session.CommandAdded += OnGameCommandIssue;
             session.Start();
 
             return session;
@@ -190,6 +193,28 @@ namespace JB2.Bowtie
 
         #endregion SignOut
 
+        #region Game Command
+        public void AddGameCommand(string commandCode, string sessionID, TPlayer issuedPlayer, TPlayer affectedPlayer)
+        {
+            var gamecommandService = new JB2.Bowtie.Service.GameCommandService();
+
+            var gc = gamecommandService.New(commandCode, this._application.GetID(), sessionID);
+
+            gc.AffectedPlayerID = affectedPlayer.GetPlayerID().ToString();
+            gc.IssuedPlayerID = issuedPlayer.GetPlayerID().ToString();
+
+            var session = _sessions[sessionID];
+
+            if (session != null)
+            {
+                session.AddGameCommand(gc);
+                _commands.Add(gc);
+            }
+        }
+
+
+        #endregion Game Command
+
 
         #region Process Delgates
 
@@ -234,6 +259,14 @@ namespace JB2.Bowtie
         public event Action<IGameEngine<TSession, TPlayer, TID>, IAchievement, TPlayer> AchievementEarned;
         public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedIn;
         public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedOut;
+
+
+        protected virtual void OnGameCommandIssue(IGameSession<TPlayer, TID> session, IGameCommand command)
+        {
+            if (GameCommandIssued != null)
+                GameCommandIssued(this,command);
+        }
+        
 
         protected virtual void OnSessionStart(IGameSession<TPlayer, TID> session,DateTime start)
         {

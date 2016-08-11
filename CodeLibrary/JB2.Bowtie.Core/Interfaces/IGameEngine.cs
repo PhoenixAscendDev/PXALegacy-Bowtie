@@ -65,6 +65,8 @@ namespace JB2.Bowtie
         void AddPlayer(string sessionID, TPlayer player);
 
         void AddDewDrop(string dewdropID, TPlayer player, object value);
+
+        void AddGameCommand(string commandCode,string sessionID, TPlayer issuedPlayer, TPlayer affectedPlayer);
         void RemovePlayer(string sessionID, int seat);
         void RemovePlayer(string sessionID, TPlayer player);
 

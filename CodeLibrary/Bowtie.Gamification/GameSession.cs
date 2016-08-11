@@ -90,6 +90,8 @@ namespace JB2.Bowtie
         public virtual void AddGameCommand(IGameCommand command)
         {
             _commands.Add(command);
+            if (CommandAdded != null)
+                CommandAdded(this, command);
         }
 
         public virtual void ManuallyStop()

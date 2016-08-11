@@ -8,7 +8,7 @@ namespace JB2.Bowtie.Service
 {
     public class GameCommandService : GenericService<IGameCommand,IGameCommandRepository>
     {
-        public GameCommandService()
+        public GameCommandService() : this(JB2.Settings.Bowtie.UnitOfWork)
         {
            
         }
@@ -16,6 +16,17 @@ namespace JB2.Bowtie.Service
         public GameCommandService(IUnitOfWork unitOfWork) : this(unitOfWork.GameCommandRepository)
         {
             _uofw = unitOfWork;
+        }
+
+        public GameCommand New(string code = "", string applicationID = "", string gameID = "")
+        {
+
+            GameCommand gc = new GameCommand();
+            gc.CommandCode = code;
+            gc.AppID = applicationID;
+            gc.GameID = gameID;
+
+            return gc;
         }
 
         public GameCommandService(IGameCommandRepository repo)

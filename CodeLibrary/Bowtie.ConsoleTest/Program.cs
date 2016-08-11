@@ -86,15 +86,20 @@ namespace Bowtie.ConsoleTest
             //dewdropService.Save(d2);
 
 
-            var app = JB2.Settings.Bowtie.CurrentApplication;
+            //var app = JB2.Settings.Bowtie.CurrentApplication;
 
-            var playerService = new JB2.Bowtie.Service.PlayerService();
+            //var playerService = new JB2.Bowtie.Service.PlayerService();
 
+            var gameService = new JB2.Bowtie.Service.GameCommandService();
 
+            var gc = gameService.New("102939404939220303");
 
-            var tplayer = playerService.RetrieveById("ZM584Wigp0mftfAFd_jTlA");
+            gameService.Save(gc);
+            
 
-            playerService.RegisterPlayer(tplayer, app, "JBID");
+            //var tplayer = playerService.RetrieveById("ZM584Wigp0mftfAFd_jTlA");
+
+            //playerService.RegisterPlayer(tplayer, app, "JBID");
 
 
 

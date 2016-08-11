@@ -52,6 +52,7 @@ namespace JB2.Bowtie
         event Action<IGameSession<TPlayer, TID>, TPlayer, int> PlayerRemoved;
         event Action<IGameSession<TPlayer, TID>, int> NoVacancy;
         event Action<IGameSession<TPlayer, TID>, int> Vacancy;
+        event Action<IGameSession<TPlayer, TID>, IGameCommand> CommandAdded;
 
 
     }
