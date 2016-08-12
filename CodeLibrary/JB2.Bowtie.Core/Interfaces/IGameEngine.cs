@@ -42,11 +42,11 @@ namespace JB2.Bowtie
 
         IEnumerable<TPlayer> GetPlayers();
 
+        int GetDewdropCount(TPlayer player, string Dewdropcode);
+        
         TGameSession FindSessionByPlayer(TPlayer player);
 
         TGameSession FindSessionByPlayerID(TID playerID);
-
-
         IEnumerable<TGameSession> GetSessions();
 
         IApplication GetApplication();

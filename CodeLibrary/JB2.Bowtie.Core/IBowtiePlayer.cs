@@ -12,8 +12,8 @@ namespace JB2.Bowtie
         JB2.Bowtie.IWallet GetWallet();  
         int Age { get; set; }
         string Gender { get; set; }
-
-        string AuthProvider { get; set; }
-
+        string AuthProvider { get; set; }     
+        IDictionary<string,int> DewdropCounts { get; set; }
+        void AddDewDrop(IDewdrop dewdrop);
     }
 }

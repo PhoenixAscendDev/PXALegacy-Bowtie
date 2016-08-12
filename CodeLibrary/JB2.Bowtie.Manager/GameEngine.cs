@@ -8,10 +8,10 @@ using JB2.Economy;
 
 namespace JB2.Bowtie
 {
-    
-    public abstract class GameEngine<TSession, TPlayer, TID> : IGameEngine<TSession,TPlayer,TID>
-        where TSession: IGameSession<TPlayer,TID>, new()
-        where TPlayer :  JB2.Bowtie.IPlayerable<TID>
+
+    public abstract class GameEngine<TSession, TPlayer, TID> : IGameEngine<TSession, TPlayer, TID>
+        where TSession : IGameSession<TPlayer, TID>, new()
+        where TPlayer : JB2.Bowtie.IPlayerable<TID>
         where TID : IComparable
     {
         #region Fields
@@ -20,10 +20,12 @@ namespace JB2.Bowtie
         protected IApplication _application;
         protected JB2.Common.BaseCollection<IPlayerDewdrop> _dewdrops;
         protected JB2.Common.BaseCollection<IGameCommand> _commands;
+        
 
         #endregion Fields
 
 
+        #region Constructors
         public GameEngine()
         {
             _dewdrops = new Common.BaseCollection<IPlayerDewdrop>();
@@ -31,14 +33,14 @@ namespace JB2.Bowtie
             _sessions = new Dictionary<string, TSession>();
         }
 
+        #endregion Constructors
+
         #region Players
         public virtual void AddPlayer(string sessionID, TPlayer player)
         {
             var session = _sessions[sessionID];
             session.AddPlayer(player);
         }
-
-        
         public abstract void AddPlayer(string sessionID, int seat, TPlayer player);
         public abstract IEnumerable<TPlayer> GetPlayers();
         public abstract void RemovePlayer(string sessionID, TPlayer player);
@@ -59,7 +61,7 @@ namespace JB2.Bowtie
         {
             _application = application;
             var session = new TSession();
-           
+
             session.Started += OnSessionStart;
             session.ManuallyStopped += OnSessionStop;
             session.PlayerAdded += OnSessionPlayerAdd;
@@ -83,6 +85,8 @@ namespace JB2.Bowtie
         #region Dewdrops
 
         public abstract IEnumerable<IPlayerDewdrop> GetDewdrops();
+
+        public abstract int GetDewdropCount(TPlayer player, string Dewdropcode);
 
         public virtual void AddDewDrop(string dewdropID, TPlayer player, object value)
         {
@@ -125,19 +129,6 @@ namespace JB2.Bowtie
             return true;
         }
 
-        private IBowtiePlayer getPlayer(TPlayer player)
-        {
-            if (player is IBowtiePlayer)
-                return (IBowtiePlayer)player;
-            else
-            {
-                var playerService = new JB2.Bowtie.Service.PlayerService();
-                var bowtiePlayer = playerService.RetrieveById(player.GetPlayerID().ToString());
-
-                return bowtiePlayer;
-            }
-        }
-
         private JB2.Economy.ITreasuryNote addAmountToWallet(ICurrency currency, decimal amount, TPlayer player)
         {
             JB2.Economy.ITreasuryNote tNote = null;
@@ -147,13 +138,13 @@ namespace JB2.Bowtie
             var walletService = new JB2.Bowtie.Service.WalletService();
             var wallet = walletService.RetrieveWalletByPlayer(btplayer, this.GetApplication());
 
-            if(currency.GetID() == JB2.Configuration.GetjBeanCurrencyID() && wallet != null)
+            if (currency.GetID() == JB2.Configuration.GetjBeanCurrencyID() && wallet != null)
             {
                 int jBeanAmount = (JBeanBag)amount;
                 if (jBeanAmount > 0)
                     tNote = walletService.AddJBeansToWallet(wallet, jBeanAmount);
                 else
-                    tNote =  null;
+                    tNote = null;
             }
 
             return tNote;
@@ -229,7 +220,7 @@ namespace JB2.Bowtie
         public void ProcessDewdrops(ProcessDewdrop processDewdrop)
         {
             var dewdropService = new JB2.Bowtie.Service.DewdropService();
-            foreach(var pdew in _dewdrops)
+            foreach (var pdew in _dewdrops)
             {
                 var dewdrop = dewdropService.RetrieveById(pdew.GetDewdropID());
                 processDewdrop(dewdrop, pdew.GetPlayerID(), pdew.GetValue());
@@ -237,11 +228,11 @@ namespace JB2.Bowtie
             }
         }
 
-        public void ProcessGameCommands(ProcessGameCommand<TPlayer,TID> processCommand)
+        public void ProcessGameCommands(ProcessGameCommand<TPlayer, TID> processCommand)
         {
-            foreach(var session in _sessions.Values)
+            foreach (var session in _sessions.Values)
             {
-                foreach(var command in session.GetGameCommands())
+                foreach (var command in session.GetGameCommands())
                 {
                     processCommand(command, session);
                 }
@@ -254,6 +245,7 @@ namespace JB2.Bowtie
         public abstract void Sync();
 
 
+        #region Events
         public event Action<IGameEngine<TSession, TPlayer, TID>, IAchievement, TPlayer, int> AchievementUnlocked;
         public event Action<IGameEngine<TSession, TPlayer, TID>, IAchievement, TPlayer, int, IEnumerable<AchievementFlag>> AchievementUpdated;
         public event Action<IGameEngine<TSession, TPlayer, TID>, IDewdrop, TPlayer> DewdropIssued;
@@ -267,18 +259,20 @@ namespace JB2.Bowtie
         public event Action<IGameEngine<TSession, TPlayer, TID>, IAchievement, TPlayer> AchievementEarned;
         public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedIn;
         public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedOut;
+        #endregion Events
 
 
+        #region Event Actions
         protected virtual void OnGameCommandIssue(IGameSession<TPlayer, TID> session, IGameCommand command)
         {
             if (GameCommandIssued != null)
-                GameCommandIssued(this,command);
+                GameCommandIssued(this, command);
         }
-        
 
-        protected virtual void OnSessionStart(IGameSession<TPlayer, TID> session,DateTime start)
+
+        protected virtual void OnSessionStart(IGameSession<TPlayer, TID> session, DateTime start)
         {
-            
+
             if (SessionStarted != null)
                 SessionStarted(this, (TSession)session);
         }
@@ -301,6 +295,25 @@ namespace JB2.Bowtie
                 PlayerDropped(this, player, seat);
         }
 
-        
+        #endregion Event Actions
+
+        #region Helper Methods
+        private IBowtiePlayer getPlayer(TPlayer player)
+        {
+            if (player is IBowtiePlayer)
+                return (IBowtiePlayer)player;
+            else
+            {
+                var playerService = new JB2.Bowtie.Service.PlayerService();
+                var bowtiePlayer = playerService.RetrieveById(player.GetPlayerID().ToString());
+
+                return bowtiePlayer;
+            }
+        }
+        #endregion Helper Methods
+
+
+
+
     }
 }

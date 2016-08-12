@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Enum
+namespace JB2.Bowtie.Maintenance
 {
-    public enum StepFxType
+    class Program
     {
-        Empty,
-        RegexMatchSingle,
-        DewdropCount     
+        static void Main(string[] args)
+        {
+        }
     }
 }

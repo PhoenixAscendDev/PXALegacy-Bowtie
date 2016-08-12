@@ -18,6 +18,8 @@ namespace JB2.Bowtie
         protected MetaDataCollection _metadata;
         
         protected Dictionary<string, MetaDataCollection> _modules;
+
+        protected IDictionary<string, int> _dewdrops;
         #endregion Fields
 
 
@@ -25,6 +27,7 @@ namespace JB2.Bowtie
         public Player()
         {
             _metadata = new MetaDataCollection();
+            _dewdrops = new Dictionary<string, int>();
         }
 
         #endregion Constructors
@@ -108,6 +111,26 @@ namespace JB2.Bowtie
         public virtual IWallet GetWallet()
         {
             return JB2.Settings.Bowtie.UnitOfWork.WalletRepository.GetByPlayerAndApplication(this.GetPlayerID(), JB2.Settings.Bowtie.CurrentApplication.ID);
+        }
+
+        public virtual IDictionary<string, int> DewdropCounts
+        {
+            get
+            {
+                return _dewdrops;
+            }
+            set
+            {
+                _dewdrops = value;
+            }
+        }
+
+        public virtual void AddDewDrop(IDewdrop dewdrop)
+        {
+            if (!_dewdrops.ContainsKey(dewdrop.GetID()))
+                _dewdrops.Add(dewdrop.GetID(), 1);
+            else
+                _dewdrops[dewdrop.GetID()]++;
         }
 
         public abstract string GetIdentityAuthID();

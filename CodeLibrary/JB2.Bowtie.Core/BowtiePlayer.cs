@@ -9,7 +9,6 @@ namespace JB2.Bowtie
     public class BowtiePlayer : Player, IBowtiePlayer
     {
 
-
         #region Constructors
         public BowtiePlayer() : base()
         {
@@ -30,6 +29,8 @@ namespace JB2.Bowtie
                 _metadata["DisplayName"].UpdateValue(value);
             }
         }
+
+
 
         public override string GetIdentityAuthID()
         {

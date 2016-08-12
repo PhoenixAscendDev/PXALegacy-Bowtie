@@ -17,7 +17,6 @@ namespace JB2.Bowtie
 
         #endregion Fields
 
-
         #region Constructors
         public ApplicationPlayer(string id, string applicationID) : base()
         {
@@ -54,7 +53,6 @@ namespace JB2.Bowtie
                 _metadata["DisplayName"].UpdateValue(value);
             }
         }
-
 
         public DateTime DateRegistered
         {

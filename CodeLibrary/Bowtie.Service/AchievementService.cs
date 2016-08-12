@@ -90,9 +90,9 @@ namespace JB2.Bowtie.Service
         }
 
 
-        public IPlayerAchievement  CalculateAchievement(string playerid, string achievementid, object value)
+        public IPlayerAchievement  CalculateAchievement(IBowtiePlayer player, string achievementid, IPlayerDewdrop dewdrop)
         {
-            var pa = _repo.GetPlayerAchievement(playerid, achievementid);
+            var pa = _repo.GetPlayerAchievement(player.GetPlayerID(), achievementid);
 
             if (pa != null)
             {
@@ -104,11 +104,16 @@ namespace JB2.Bowtie.Service
                         pa.CurrentStep++;
                         break;
                     case Enum.StepFxType.RegexMatchSingle:
-                        Match match = Regex.Match(value.ToString(), a.StepFx, RegexOptions.IgnoreCase);
+                        Match match = Regex.Match(dewdrop.GetValue(), a.StepFx, RegexOptions.IgnoreCase);
                         if (match.Success)
                         {
                             pa.CurrentStep++;
                         }
+                        break;
+                    case Enum.StepFxType.DewdropCount:                  
+                        int? count = player.DewdropCounts[dewdrop.GetID()];
+                        if (count != null && count.GetValueOrDefault() >= Convert.ToInt32(a.StepFx))
+                            pa.CurrentStep++;
                         break;
                 }
 
