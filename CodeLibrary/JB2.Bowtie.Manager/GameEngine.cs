@@ -31,6 +31,7 @@ namespace JB2.Bowtie
             _dewdrops = new Common.BaseCollection<IPlayerDewdrop>();
             _commands = new Common.BaseCollection<IGameCommand>();
             _sessions = new Dictionary<string, TSession>();
+            DewdropIssued += OnDewdropIssued;
         }
 
         #endregion Constructors
@@ -114,12 +115,18 @@ namespace JB2.Bowtie
                 var dewdropService = new JB2.Bowtie.Service.DewdropService();
                 PlayerDewdrop pdew = dewdropService.GenerateNewPlayerDewdrop(btplayer, dewdrop, value.ToString());
                 dewdropService.Save(pdew);
+
+                btplayer.AddDewDrop(dewdrop);
+
                 this._dewdrops.Add(pdew);
+
+               
+
 
 
                 //fire event
                 if (DewdropIssued != null)
-                    DewdropIssued(this, dewdrop, (TPlayer)player);
+                    DewdropIssued(this, pdew, (TPlayer)player);
             }
 
         }
@@ -193,22 +200,25 @@ namespace JB2.Bowtie
         #endregion SignOut
 
         #region Game Command
-        public void AddGameCommand(string commandCode, string sessionID, TPlayer issuedPlayer, TPlayer affectedPlayer)
+        public void AddGameCommand(string commandCode, string sessionID, TPlayer issuedPlayer, TPlayer affectedPlayer, RunGameCommand<TPlayer, TID> runCommand)
         {
+            
+
+            //create GameCommand
             var gamecommandService = new JB2.Bowtie.Service.GameCommandService();
-
             var gc = gamecommandService.New(commandCode, this._application.GetID(), sessionID);
-
             gc.AffectedPlayerID = affectedPlayer.GetPlayerID().ToString();
             gc.IssuedPlayerID = issuedPlayer.GetPlayerID().ToString();
 
+            //add it to session
             var session = _sessions[sessionID];
-
             if (session != null)
             {
                 session.AddGameCommand(gc);
                 _commands.Add(gc);
             }
+            //run command
+            runCommand(gc, session);
         }
 
 
@@ -228,7 +238,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public void ProcessGameCommands(ProcessGameCommand<TPlayer, TID> processCommand)
+        public void ProcessGameCommands(RunGameCommand<TPlayer, TID> processCommand)
         {
             foreach (var session in _sessions.Values)
             {
@@ -248,7 +258,7 @@ namespace JB2.Bowtie
         #region Events
         public event Action<IGameEngine<TSession, TPlayer, TID>, IAchievement, TPlayer, int> AchievementUnlocked;
         public event Action<IGameEngine<TSession, TPlayer, TID>, IAchievement, TPlayer, int, IEnumerable<AchievementFlag>> AchievementUpdated;
-        public event Action<IGameEngine<TSession, TPlayer, TID>, IDewdrop, TPlayer> DewdropIssued;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, IPlayerDewdrop, TPlayer> DewdropIssued;
         public event Action<IGameEngine<TSession, TPlayer, TID>, IGameCommand> GameCommandIssued;
         public event Action<IGameEngine<TSession, TPlayer, TID>, Economy.ITreasuryNote, TPlayer> jBeanAwarded;
         public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, int> PlayerAdded;
@@ -256,7 +266,6 @@ namespace JB2.Bowtie
         public event Action<IGameEngine<TSession, TPlayer, TID>, TSession> SessionStarted;
         public event Action<IGameEngine<TSession, TPlayer, TID>, TSession> SessionStopped;
         public event Action<IGameEngine<TSession, TPlayer, TID>, IWallet, TPlayer, JB2.Economy.ITreasuryNote> TreasuryNoteAdded;
-        public event Action<IGameEngine<TSession, TPlayer, TID>, IAchievement, TPlayer> AchievementEarned;
         public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedIn;
         public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedOut;
         #endregion Events
@@ -293,6 +302,38 @@ namespace JB2.Bowtie
         {
             if (PlayerDropped != null)
                 PlayerDropped(this, player, seat);
+        }
+
+        protected virtual void OnDewdropIssued(IGameEngine<TSession, TPlayer, TID> engine, IPlayerDewdrop dewdrop, TPlayer player)
+        {
+            
+
+        }
+
+        protected void CheckAchievement(TPlayer player, IPlayerDewdrop dewdrop)
+        {
+            //determine the achievements
+            var aservice = new JB2.Bowtie.Service.AchievementService();
+            var palist = aservice.RetrievePlayerAchievement(dewdrop.GetPlayerID(), this.GetApplication().GetID());
+
+            foreach (var pa in palist)
+            {
+                if(pa.isAchieved == false)
+                {
+                    var a = aservice.RetrieveById(pa.AchievementID);
+                    if (a.DewdropTriggers.Contains(dewdrop.GetDewdropID()))
+                    {
+                        var newpa = aservice.CalculateAchievement(getPlayer(player), a.GetID(), dewdrop);
+                        aservice.Save(newpa);
+                        if (pa.isAchieved == true && AchievementUnlocked != null)
+                            AchievementUnlocked(this, a, player, 0);
+                     }
+                }
+
+                
+
+            }
+
         }
 
         #endregion Event Actions

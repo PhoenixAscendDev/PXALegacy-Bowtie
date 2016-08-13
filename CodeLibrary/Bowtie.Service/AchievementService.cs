@@ -153,6 +153,11 @@ namespace JB2.Bowtie.Service
 
         }
 
+        public void Save(IPlayerAchievement pa)
+        {
+            _repo.Insert(pa);
+        }
+
 
         #endregion PlayerAchievements
 

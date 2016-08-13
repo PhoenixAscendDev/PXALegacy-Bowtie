@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace JB2.Bowtie
 {
     public delegate void ProcessDewdrop(IDewdrop dewdrop, string playerID, object value);
-    public delegate void ProcessGameCommand<TPlayer,TID>(IGameCommand command, IGameSession<TPlayer,TID> session) 
+    public delegate void RunGameCommand<TPlayer,TID>(IGameCommand command, IGameSession<TPlayer,TID> session) 
         where TPlayer: JB2.Bowtie.IPlayerable<TID> 
         where TID : IComparable;
 
@@ -29,10 +29,10 @@ namespace JB2.Bowtie
         event Action<IGameEngine<TGameSession, TPlayer, TID>, JB2.Economy.ITreasuryNote, TPlayer> jBeanAwarded;
         event Action<IGameEngine<TGameSession, TPlayer, TID>, TPlayer, int> PlayerAdded;
         event Action<IGameEngine<TGameSession, TPlayer, TID>, TPlayer, int> PlayerDropped;
-        event Action<IGameEngine<TGameSession, TPlayer, TID>, IDewdrop, TPlayer> DewdropIssued;
+        event Action<IGameEngine<TGameSession, TPlayer, TID>, IPlayerDewdrop, TPlayer> DewdropIssued;
         event Action<IGameEngine<TGameSession, TPlayer, TID>, IGameCommand> GameCommandIssued;
         event Action<IGameEngine<TGameSession, TPlayer, TID>, IWallet, TPlayer, JB2.Economy.ITreasuryNote> TreasuryNoteAdded;
-        event Action<IGameEngine<TGameSession, TPlayer, TID>, IAchievement, TPlayer> AchievementEarned;
+
         event Action<IGameEngine<TGameSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedIn;
         event Action<IGameEngine<TGameSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedOut;
         #endregion Events;
@@ -60,13 +60,13 @@ namespace JB2.Bowtie
         void EndSession(TGameSession session);
 
         void ProcessDewdrops(ProcessDewdrop processDewdrop);
-        void ProcessGameCommands(ProcessGameCommand<TPlayer,TID> processCommand);
+        void ProcessGameCommands(RunGameCommand<TPlayer,TID> processCommand);
         void AddPlayer(string sessionID, int seat, TPlayer player);
         void AddPlayer(string sessionID, TPlayer player);
 
         void AddDewDrop(string dewdropID, TPlayer player, object value);
 
-        void AddGameCommand(string commandCode,string sessionID, TPlayer issuedPlayer, TPlayer affectedPlayer);
+        void AddGameCommand(string commandCode,string sessionID, TPlayer issuedPlayer, TPlayer affectedPlayer, RunGameCommand<TPlayer,TID> runCommand);
         void RemovePlayer(string sessionID, int seat);
         void RemovePlayer(string sessionID, TPlayer player);
 
