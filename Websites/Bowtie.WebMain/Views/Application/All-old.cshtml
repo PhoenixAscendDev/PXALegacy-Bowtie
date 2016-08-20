@@ -1,0 +1,26 @@
+﻿@model List<JB2.Bowtie.Web.Models.ApplicationViewModel>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>API</th>
+            <th>Client ID</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach(JB2.Bowtie.Web.Models.ApplicationViewModel a in Model)
+{
+    <tr>
+        <td>@a.ID</td>
+        <td>@a.Name</td>
+        <td>@a.APIkey</td>
+        <td>@a.ClientID</td>
+    </tr>
+}
+    </tbody>
+</table>
+
+
+@Html.DropDownList("ApplicationSelect")

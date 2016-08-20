@@ -16,6 +16,17 @@ namespace JB2.Bowtie.Web.Controllers
             return View();
         }
 
+        public ActionResult Edit(string id)
+        {
+            return View(GetByID(id));
+        }
+
+        public ActionResult Detail(string id)
+        {
+            
+            return View(GetByID(id));
+        }
+
         public ActionResult All()
         {
 
@@ -25,14 +36,28 @@ namespace JB2.Bowtie.Web.Controllers
 
             var model = new List<ApplicationViewModel>(appslist.Count());
 
-            foreach(var a in appslist)
+            foreach (var a in appslist)
             {
                 model.Add(AutoMapper.Mapper.Map<IApplication, ApplicationViewModel>(a));
             }
 
             ViewBag.ApplicationSelect = this.applicationSelectList();
-           
+
             return View(model);
         }
+
+
+        private ApplicationViewModel GetByID(string id)
+        {
+            var appService = new JB2.Bowtie.Service.ApplicationService(JB2.Settings.Bowtie.UnitOfWork);
+
+            var app = appService.RetrieveById(id);
+
+            var model = AutoMapper.Mapper.Map<IApplication, ApplicationViewModel>(app);
+
+            return model;
+        }
+
+
     }
 }
