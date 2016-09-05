@@ -158,6 +158,7 @@
     <Compile Include="API.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="AppPlayer.cs" />
+    <Compile Include="BowtieGroup.cs" />
     <Compile Include="BowtieMetaDataCollection.cs" />
     <Compile Include="BowtieObject.cs" />
     <Compile Include="BowtieObjectType.cs" />
@@ -178,6 +179,8 @@
     <Compile Include="Exceptions\ApplicationNotInitialized.cs" />
     <Compile Include="GameCommand.cs" />
     <Compile Include="IGameSession.cs" />
+    <Compile Include="Interfaces\IApplicationable.cs" />
+    <Compile Include="Interfaces\IBowtieGroup.cs" />
     <Compile Include="Interfaces\IDewdrop.cs" />
     <Compile Include="Interfaces\IGameEngine.cs" />
     <Compile Include="IBowtieObject.cs" />

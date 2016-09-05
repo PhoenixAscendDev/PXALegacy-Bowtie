@@ -8,7 +8,7 @@ using JB2.Identity;
 
 namespace JB2.Bowtie
 {
-    public class ApplicationPlayer : Player, JB2.Identity.IApplicationable<string>
+    public class ApplicationPlayer : Player, IApplicationable<string>
     {
         #region Fields
 

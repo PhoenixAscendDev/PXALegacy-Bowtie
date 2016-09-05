@@ -73,9 +73,12 @@ namespace Bowtie.ConsoleTest
 
         static void Main(string[] args)
         {
-            
-            JB2.Bowtie.Manager.Initialize("BT-BDF1FC3E51F48224", "912473a6-8c31-4ecf-9d5c-1af07c1b8ef3");
-            Console.WriteLine(JB2.Settings.Jbean.GetTokenValue(JB2.Economy.Enum.JBeanTokenType.Pinto).ToString());
+
+            char alpha = (char)937;
+            Console.WriteLine(alpha);
+            Console.ReadLine();
+            //JB2.Bowtie.Manager.Initialize("BT-BDF1FC3E51F48224", "912473a6-8c31-4ecf-9d5c-1af07c1b8ef3");
+            //Console.WriteLine(JB2.Settings.Jbean.GetTokenValue(JB2.Economy.Enum.JBeanTokenType.Pinto).ToString());
 
 
             //var dewdropService = new JB2.Bowtie.Service.DewdropService();
@@ -90,11 +93,11 @@ namespace Bowtie.ConsoleTest
 
             //var playerService = new JB2.Bowtie.Service.PlayerService();
 
-            var gameService = new JB2.Bowtie.Service.GameCommandService();
+            //var gameService = new JB2.Bowtie.Service.GameCommandService();
 
-            var gc = gameService.New("102939404939220303");
+            //var gc = gameService.New("102939404939220303");
 
-            gameService.Save(gc);
+            //gameService.Save(gc);
             
 
             //var tplayer = playerService.RetrieveById("ZM584Wigp0mftfAFd_jTlA");
