@@ -20,9 +20,6 @@ namespace JB2.Economy
         float[] SubUnits { get; set; }
         IDenomination[] Denominations { get; set; }
 
-        
-
-
     }
 
     //public interface ICurrency : ICurrency<IDenomination<string>,string>
