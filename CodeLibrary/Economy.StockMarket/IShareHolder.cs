@@ -14,6 +14,10 @@ namespace JB2.Economy
 
         IEnumerable<TShare> GetShares(TKey stockSymbol);
 
+        TStockValue GetFundsAvalable();
+
+        uint GetShareCount(TKey stockSymbol);
+
 
     }
 }

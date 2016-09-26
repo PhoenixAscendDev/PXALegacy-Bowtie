@@ -83,6 +83,12 @@ namespace JB2.Economy
             return cap.Amount;
         }
 
+        public static implicit operator long(CurrencyAmountPair cap)
+        {
+            return (long)cap.Amount;
+        }
+
+
         public static CurrencyAmountPair operator +(CurrencyAmountPair a, CurrencyAmountPair b)
         {
             if (a.Currency.ID == b.Currency.ID)

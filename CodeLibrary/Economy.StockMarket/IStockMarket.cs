@@ -21,7 +21,9 @@ namespace JB2.Economy
 
         TShare GetShare(string transactionID);
 
-        TradeTransactionNote<TKey> Trade(string holderAccountID, string stockSymbol, int quantity,TradeType tradeType);
+        TradeTransactionNote<TKey> Trade(string holderAccountID, string stockSymbol, int quantity,TradeType tradeType,long? askPrice);
+
+        ServiceResult ValidateTrade(TradeTransactionNote<TKey> note);
 
         bool IsOpen { get; }
 

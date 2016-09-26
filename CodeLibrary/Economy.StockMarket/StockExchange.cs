@@ -77,13 +77,14 @@ namespace JB2.Economy
 
         public abstract TShare GetShare(string transactionID);
 
-        public abstract TradeTransactionNote<TKey> Trade(string holderAccountID, string stockSymbol, int quantity, TradeType tradeType);
+        public abstract TradeTransactionNote<TKey> Trade(string holderAccountID, string stockSymbol, int quantity, TradeType tradeType, long? askPrice);
 
         public abstract DateTime GetLastOpenDate();
 
         public abstract DateTime GetNextCloseTime();
 
         public abstract DateTime GetLastTradeTime();
-        
+
+        public abstract ServiceResult ValidateTrade(TradeTransactionNote<TKey> note);
     }
 }
