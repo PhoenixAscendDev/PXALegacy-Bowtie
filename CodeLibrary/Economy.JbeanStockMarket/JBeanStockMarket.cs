@@ -85,10 +85,11 @@ namespace JB2.Economy
                 switch(result.TradeType)
                 {
                     case TradeType.Sell:
-                        Sell(result);
+                        sell(result);
                         break;
                     case TradeType.Buy:
-                        Buy(result);
+                        buy(result);
+                        break;
                 }
                 
                 return result;
@@ -100,13 +101,19 @@ namespace JB2.Economy
 
         }
 
-        private bool Sell(TradeTransactionNote<string> note)
+        private bool sell(TradeTransactionNote<string> note)
         {
+            //get jBean Bank Account info
+            IJbeanStockHolder holder = JB2.Settings.JbeanStockMarket.Repository.RetrieveShareHolder(note.AccountID);
+            var bankAccountID = holder.GetjBeanAccount();
+
+
+
             JB2.Settings.JbeanStockMarket.Repository.Save(note);
             return true;
         }
 
-        private bool Buy(TradeTransactionNote<string> note)
+        private bool buy(TradeTransactionNote<string> note)
         {
             JB2.Settings.JbeanStockMarket.Repository.Save(note);
             return true;
