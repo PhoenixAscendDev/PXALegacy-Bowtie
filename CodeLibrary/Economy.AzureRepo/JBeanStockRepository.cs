@@ -232,7 +232,8 @@ namespace JB2.Economy.Data
         public ServiceResult Save(IJbeanStockHolder shareHolder)
         {
             DynamicTableEntity e = new DynamicTableEntity();
-            e.SetProperty<string>("AccountID", string.Empty);
+            e.SetProperty<string>("ExchangeAccountID", string.Empty);
+            e.SetProperty<string>("BankAccountID", string.Empty);
 
             try
             {
@@ -260,9 +261,10 @@ namespace JB2.Economy.Data
 
         private IJbeanStockHolder convertToStockHolder(DynamicTableEntity e)
         {
-            string accountID = e.PropertyStringValue("AccountID");
-            var holder = new JbeanStockHolder(accountID);
+            string accountID = e.PropertyStringValue("ExchangeAccountID");
 
+            var holder = new JbeanStockHolder(accountID);
+            holder.BankAccountID = e.PropertyStringValue("BankAccountID");
             return holder;
 
 

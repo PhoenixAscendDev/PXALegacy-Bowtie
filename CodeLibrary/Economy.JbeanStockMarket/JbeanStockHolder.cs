@@ -27,6 +27,19 @@ namespace JB2.Economy
         #endregion Constructor
 
 
+        public string BankAccountID
+        {
+            get
+            {
+               return  this.GetProperity<string>("BANKACCOUNTID");
+            }
+            set
+            {
+                this.SetProperty<string>("BANKACCOUNTID", value);
+            }
+        }
+
+
 
         public string StockExchangeAccountID
         {
@@ -43,7 +56,19 @@ namespace JB2.Economy
 
         public long GetFundsAvalable()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var bankAccount = this.GetjBeanAccount();
+                long balance = JB2.Settings.Jbean.Factory.CentralBank.CheckBalance(bankAccount).ToJBean().ToInt();
+
+                return balance;
+            }
+            catch(Exception ex)
+            {
+                return 0;
+            }
+
+
         }
 
         public jBeanAccount GetjBeanAccount()

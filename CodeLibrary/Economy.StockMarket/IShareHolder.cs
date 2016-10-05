@@ -16,6 +16,8 @@ namespace JB2.Economy
 
         TStockValue GetFundsAvalable();
 
+        string BankAccountID { get; set; }
+
         uint GetShareCount(TKey stockSymbol);
 
 

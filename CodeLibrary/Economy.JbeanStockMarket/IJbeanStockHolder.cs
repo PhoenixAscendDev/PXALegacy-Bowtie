@@ -8,6 +8,8 @@ namespace JB2.Economy
 {
     public interface IJbeanStockHolder : IShareHolder<JbeanStockShare,string,long>
     {
+       
+
         jBeanAccount GetjBeanAccount();
     }
 }
