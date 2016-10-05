@@ -8,7 +8,7 @@ using JB2.Common;
 
 namespace JB2.Economy
 {
-    interface IStockMarketRepository<TCompany, TExchange, TShareholder, TShare, TKey, TStockValue>
+    public interface IStockMarketRepository<TCompany, TExchange, TShareholder, TShare, TKey, TStockValue>
         where TExchange : IStockExchange<TCompany, TShareholder, TShare, TKey, TStockValue>
         where TCompany : IStockBusiness<TShareholder, TShare, TKey, TStockValue>
         where TShareholder : IShareHolder<TShare, TKey, TStockValue>
@@ -19,7 +19,7 @@ namespace JB2.Economy
     {
 
         #region Exchange
-        TExchange GetExchangeByID(TKey key);
+        TExchange GetExchange();
         ServiceResult Save(TExchange exchange);
         #endregion Exchange
 
@@ -57,6 +57,8 @@ namespace JB2.Economy
         IEnumerable<TShare> GetAllStockShares();
 
         IEnumerable<TShare> GetStockSharesByAccountID(TKey accountID);
+
+        ServiceResult Save(TShare share);
 
         #endregion Share
 

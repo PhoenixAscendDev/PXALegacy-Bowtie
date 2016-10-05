@@ -54,8 +54,8 @@
       <HintPath>..\..\Solutions\packages\JB2.Common.Utility.0.2.2\lib\JB2.Common.Ultities.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Infrastructure">
-      <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.18.3\lib\JB2.Infrastructure.dll</HintPath>
+    <Reference Include="JB2.Infrastructure, Version=0.2.19.9731, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.19\lib\JB2.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -134,9 +134,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper.cs" />
     <Compile Include="IJbeanStockHolder.cs" />
-    <Compile Include="IJbeanStockMarketRepository.cs" />
+    <Compile Include="IJbeanStockMarkertRepository.cs" />
     <Compile Include="JbeanStockCompany.cs" />
+    <Compile Include="JbeanStockHolder.cs" />
     <Compile Include="JbeanStockMarket.cs" />
     <Compile Include="JbeanStockShare.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

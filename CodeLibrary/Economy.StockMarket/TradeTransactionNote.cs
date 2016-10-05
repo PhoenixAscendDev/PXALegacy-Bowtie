@@ -22,6 +22,8 @@ namespace JB2.Economy
 
         public int ShareCount { get; set; }
 
+        public DateTime TransactionDate { get; set; }
+
         public CurrencyAmountPair SharePrice { get; set; }
 
         public CurrencyAmountPair GetTotalCost()

@@ -8,8 +8,8 @@ namespace JB2.Economy
 {
     public struct StockPrice<TKey,TStockValue>
     {
-        TKey StockExchangeCompanyID { get; set; }
-        DateTime PriceDate { get; set; }
-        TStockValue Value { get; set; }
+        public TKey StockExchangeCompanyID { get; set; }
+        public DateTime PriceDate { get; set; }
+        public TStockValue Value { get; set; }
     }
 }

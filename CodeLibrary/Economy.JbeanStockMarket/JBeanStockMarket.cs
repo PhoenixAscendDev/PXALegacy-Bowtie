@@ -10,16 +10,22 @@ namespace JB2.Economy
     public class JbeanStockExchange : StockExchange<JbeanStockCompany, IJbeanStockHolder, JbeanStockShare, string, long>
     {
         #region Fields
-
-
+        protected IJbeanStockMarketRepository _repo;
 
 
         #endregion Fields
 
         #region Constuctor
-        public JbeanStockExchange(string exchangeID)
+
+        public JbeanStockExchange(string exchangeID) : this(exchangeID,JB2.Settings.JbeanStockMarket.Repository)
+        {
+
+        }
+
+        public JbeanStockExchange(string exchangeID,IJbeanStockMarketRepository repo)
         {
             ID = exchangeID;
+            _repo = repo;
 
         }
 
@@ -31,13 +37,18 @@ namespace JB2.Economy
         {
             get
             {
-                throw new NotImplementedException();
+                return this.GetProperity<bool>("ISOPEN");
             }
+        }
+
+        public void SetOpen(bool open)
+        {
+            this.SetProperty<bool>("ISOPEN", open);
         }
 
         public override JbeanStockCompany GetCompany(string stockSymbol)
         {
-            return JB2.Settings.JbeanStockMarket.Repository.RetrieveCompanyBySymbol(stockSymbol);
+            return _repo.GetCompanyByStockSymbol(stockSymbol);
         }
 
         public override DateTime GetLastOpenDate()
@@ -58,12 +69,12 @@ namespace JB2.Economy
 
         public override JbeanStockShare GetShare(string transactionID)
         {
-            return JB2.Settings.JbeanStockMarket.Repository.RetrieveShareByTranID(transactionID);
+            return _repo.GetStockShareByTranID(transactionID);
         }
 
         public override IJbeanStockHolder GetShareHolder(string accountID)
         {
-            return JB2.Settings.JbeanStockMarket.Repository.RetrieveShareHolder(accountID);
+            return _repo.GetShareholderByID(accountID);
         }
 
         public override TradeTransactionNote<string> Trade(string holderAccountID, string stockSymbol, int quantity, TradeType tradeType, long? askPrice = null)
@@ -71,7 +82,7 @@ namespace JB2.Economy
             TradeTransactionNote<string> result = new TradeTransactionNote<string>();
             result.AccountID = holderAccountID;
 
-            JbeanStockCompany company = JB2.Settings.JbeanStockMarket.Repository.RetrieveCompanyBySymbol(stockSymbol);
+            JbeanStockCompany company = _repo.GetCompanyByStockSymbol(stockSymbol);
             if (askPrice == null)
                 askPrice = company.GetCurrentStockValue();
 
@@ -108,7 +119,7 @@ namespace JB2.Economy
         private bool sell(TradeTransactionNote<string> note)
         {
             //get jBean Bank Account info
-            IJbeanStockHolder holder = JB2.Settings.JbeanStockMarket.Repository.RetrieveShareHolder(note.AccountID);
+            IJbeanStockHolder holder = _repo.GetShareholderByID(note.AccountID);
             var bankAccountID = holder.GetjBeanAccount();
 
 
@@ -134,8 +145,8 @@ namespace JB2.Economy
 
 
             long fundsNeeded = note.SharePrice * note.ShareCount;
-            IJbeanStockHolder holder = JB2.Settings.JbeanStockMarket.Repository.RetrieveShareHolder(note.AccountID);
-            JbeanStockCompany company = JB2.Settings.JbeanStockMarket.Repository.RetrieveCompany(note.CompanyID);
+            IJbeanStockHolder holder = _repo.GetShareholderByID(note.AccountID);
+            JbeanStockCompany company = _repo.GetCompanyByID(note.CompanyID);
             switch (note.TradeType)
             {
 
@@ -174,6 +185,9 @@ namespace JB2.Economy
                 return JB2.Info.Project.GetRNG();
             }
         }
+
+
+
         public static int CalculateNewStockValue(int currentValue)
         {
 
@@ -232,6 +246,8 @@ namespace JB2.Economy
             return newValue;
 
         }
+
+        
 
 
     }
