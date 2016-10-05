@@ -12,7 +12,9 @@ namespace JB2.Economy
     {
         TStockValue GetTotalValue();
 
-        IEnumerable<TShare> GetShares(TKey stockSymbol);
+        TShare GetShares(TKey stockSymbol);
+
+        IEnumerable<TShare> GetShares();
 
         TStockValue GetFundsAvalable();
 
