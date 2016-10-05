@@ -502,7 +502,7 @@ namespace JB2.Economy.Data
 
         public StockPrice<string, long> GetStockPriceByCompanyDatetime(string companyID, DateTime date)
         {
-            var e = _priceTable.GetByPartitionKey<DynamicTableEntity>(e.PartitionKey = "exchange:" + _exchangeID + ":company:" + companyID + ":stockPrice");
+            var e = _priceTable.GetByPartitionKey<DynamicTableEntity>("exchange:" + _exchangeID + ":company:" + companyID + ":stockPrice");
 
             if (e == null)
                 return new StockPrice<string, long>();
@@ -516,13 +516,41 @@ namespace JB2.Economy.Data
             else
                 return new StockPrice<string, long>();
 
-
-
         }
 
         public IEnumerable<StockPrice<string, long>> GetStockPriceByDatetime(DateTime date)
         {
-            throw new NotImplementedException();
+            var e = _priceTable.GetByPartitionKey<DynamicTableEntity>("exchange:" + _exchangeID + ":day:" + date.ToJB2DateKey() + ":stockPrice");
+
+            var prices = convertToStockPrice(e);
+
+            var filters = prices.Where(p => p.PriceDate <= date).OrderBy(p => p.StockExchangeCompanyID);
+
+
+            List<StockPrice<string, long>> result = new List<StockPrice<string, long>>();
+
+
+            //get only the latest prices that price during the date
+            string companyID = filters.ToList()[0].StockExchangeCompanyID;
+            foreach( var s in filters)
+            {
+                if (companyID != s.StockExchangeCompanyID)
+                    result.Add(filters.Where(p => p.StockExchangeCompanyID == companyID).OrderBy(p => p.PriceDate).ToList()[0]);
+                companyID = s.StockExchangeCompanyID;
+            }
+
+            return result;
+
+        }
+
+        public IEnumerable<StockPrice<string, long>> GetStockPricesByCompany(string companyID)
+        {
+            var e = _priceTable.GetByPartitionKey<DynamicTableEntity>("exchange:" + _exchangeID + ":company:" + companyID + ":stockPrice");
+
+            var prices = convertToStockPrice(e);
+
+            return prices;
+
         }
 
         public ServiceResult Save(StockPrice<string, long> stockPrice)

@@ -87,6 +87,8 @@ namespace JB2.Economy
 
         IEnumerable<StockPrice<TKey, TStockValue>> GetStockPriceByDatetime(DateTime date);
 
+        IEnumerable<StockPrice<TKey, TStockValue>> GetStockPricesByCompany(TKey companyID);
+
         ServiceResult Save(StockPrice<TKey, TStockValue> stockPrice);
 
         #endregion StockPrice
