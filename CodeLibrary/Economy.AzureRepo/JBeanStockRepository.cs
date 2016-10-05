@@ -92,7 +92,7 @@ namespace JB2.Economy.Data
                 return new ServiceResult(ex);
             }
 
-            return false;
+            return true;
 
         }
 

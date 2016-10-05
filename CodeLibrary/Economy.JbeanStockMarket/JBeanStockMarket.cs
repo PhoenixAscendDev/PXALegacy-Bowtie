@@ -22,11 +22,14 @@ namespace JB2.Economy
 
         }
 
-        public JbeanStockExchange(string exchangeID,IJbeanStockMarketRepository repo)
+        public JbeanStockExchange(string exchangeID, IJbeanStockMarketRepository repo)
         {
+            this._props = new MetaDataCollection();
+            this._lastupdate = System.DateTime.Now;
+            this._defaultchangeLastUpdate = true;
+
             ID = exchangeID;
             _repo = repo;
-
         }
 
         #endregion Constructor
