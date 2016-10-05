@@ -36,6 +36,7 @@ namespace JB2.Settings
         public static void Configure(IEnumerable<ISetting> settings, JB2.Economy.IJbeanStockMarketRepository repo)
         {
             _repo = repo;
+            _settings = new SettingCollection<string>(settings);
             _isConfigured = true;
         }
 
@@ -44,8 +45,6 @@ namespace JB2.Settings
             checkIfConfigured();
             return _settings[settingName];
         }
-
-
 
         public static JbeanStockExchange StockExchange
         {
