@@ -8,6 +8,17 @@ namespace Economy.Test
 {
     class Program
     {
+
+        static void InitStockMarket()
+        {
+
+
+
+        }
+
+
+
+
         static void Main(string[] args)
         {
             int value = 58;

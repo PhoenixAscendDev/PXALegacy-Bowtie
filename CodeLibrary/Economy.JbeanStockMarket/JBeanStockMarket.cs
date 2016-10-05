@@ -185,9 +185,6 @@ namespace JB2.Economy
                 return JB2.Info.Project.GetRNG();
             }
         }
-
-
-
         public static int CalculateNewStockValue(int currentValue)
         {
 
@@ -219,7 +216,7 @@ namespace JB2.Economy
                     break;
             }
 
-            if (sizefaces > 0)       
+            if (sizefaces > 0)
                 percentChange = JB2.Common.RNG.Dice(sizefaces, JbeanStockExchange.RNG);
 
             switch (dice2)
@@ -237,7 +234,7 @@ namespace JB2.Economy
                     break;
             }
 
-            
+
 
             int change = (int)Math.Round((double)(percentChange / 100.00) * (double)Math.Abs(currentValue));
 
@@ -246,9 +243,5 @@ namespace JB2.Economy
             return newValue;
 
         }
-
-        
-
-
     }
 }
