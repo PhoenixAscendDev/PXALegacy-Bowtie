@@ -397,11 +397,16 @@ namespace JB2.Economy.Data
             return convertToTradeTran(e);
         }
 
-        public IEnumerable<TradeTransactionNote<string>> GetTradeTransByCompanyID(string companyid)
+        public IEnumerable<TradeTransactionNote<string>> GetTradeTransByCompanyID(string companyid, int? count)
         {
             var e = _tranlogTable.GetByPartitionKey<DynamicTableEntity>("exchange:" + _exchangeID + ":company:" + companyid + ":transaction");
 
-            return convertToTradeTran(e);
+            if (count == null)
+                return convertToTradeTran(e);
+            else
+                return convertToTradeTran(e).OrderBy(t => t.TransactionDate).Take((int)count);
+
+
         }
 
         public IEnumerable<TradeTransactionNote<string>> GetTradeTransByDate(DateTime date)
@@ -551,6 +556,15 @@ namespace JB2.Economy.Data
 
             return prices;
 
+        }
+
+        public IEnumerable<StockPrice<string, long>> GetStockPricesByCompany(string companyID, int count)
+        {
+            var e = _priceTable.GetByPartitionKey<DynamicTableEntity>("exchange:" + _exchangeID + ":company:" + companyID + ":stockPrice");
+
+            var prices = convertToStockPrice(e);
+
+            return prices.OrderBy(p => p.PriceDate).Take(count);
         }
 
         public ServiceResult Save(StockPrice<string, long> stockPrice)

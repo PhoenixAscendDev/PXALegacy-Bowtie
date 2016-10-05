@@ -104,7 +104,18 @@ namespace JB2.Economy
 
         public long GetCurrentStockValue()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var price = JB2.Settings.JbeanStockMarket.Repository.GetStockPricesByCompany(this.StockExchangeCompanyID, 1);
+                if (price != null)
+                    return price.FirstOrDefault().Value;
+                else
+                    throw new NullReferenceException();
+            }
+            catch(Exception ex)
+            {
+                return 0;
+            }
         }
 
         public string GetID()
@@ -114,12 +125,34 @@ namespace JB2.Economy
 
         public IEnumerable<StockPrice<string, long>> GetLastStockPrices(int count)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var price = JB2.Settings.JbeanStockMarket.Repository.GetStockPricesByCompany(this.StockExchangeCompanyID, count);
+                if (price != null)
+                    return price;
+                else
+                    throw new NullReferenceException();
+            }
+            catch (Exception ex)
+            {
+                return new List<StockPrice<string, long>>();
+            }
         }
 
         public DateTime GetLastTradeDate()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var trades = JB2.Settings.JbeanStockMarket.Repository.GetTradeTransByCompanyID(this.StockExchangeCompanyID, 1);
+                 if (trades != null)
+                    return trades.FirstOrDefault().TransactionDate;
+                else
+                    throw new NullReferenceException();
+            }
+            catch (Exception ex)
+            {
+                return DateTime.MinValue;
+            }
         }
 
         public string GetName()
@@ -129,22 +162,64 @@ namespace JB2.Economy
 
         public int GetShareCount()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var price = JB2.Settings.JbeanStockMarket.Repository.GetStockSharesByCompanyID(this.StockExchangeCompanyID);
+
+
+                if (price != null)
+                {
+                    int total = 0;
+                    foreach(var s in price)
+                    {
+                        total = total + s.Quantity;
+                    }
+                    return total;
+                }             
+                else
+                    throw new NullReferenceException();
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
         }
 
         public IJbeanStockHolder GetShareHolder(string accountID)
         {
-            throw new NotImplementedException();
+            return JB2.Settings.JbeanStockMarket.StockExchange.GetShareHolder(accountID);
         }
 
         public IEnumerable<IJbeanStockHolder> GetShareHolders()
         {
-            throw new NotImplementedException();
+            var shares = JB2.Settings.JbeanStockMarket.Repository.GetStockSharesByCompanyID(this.StockExchangeCompanyID);
+
+            Dictionary<string, IJbeanStockHolder> result = new Dictionary<string, IJbeanStockHolder>();
+
+            foreach(var s in shares)
+            {
+                var holder = JB2.Settings.JbeanStockMarket.StockExchange.GetShareHolder(s.StockExchangeAccountID);
+                if (!result.ContainsKey(holder.StockExchangeAccountID))
+                    result.Add(holder.StockExchangeAccountID, holder);
+            }
+
+            return result.Values.ToList();
         }
 
         public IEnumerable<StockPrice<string, long>> GetStockPricesRange(DateTime min, DateTime max)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var price = JB2.Settings.JbeanStockMarket.Repository.GetStockPricesByCompany(this.StockExchangeCompanyID);
+                if (price != null)
+                    return price.Where(p => p.PriceDate >= min && p.PriceDate <= max).OrderBy(p => p.PriceDate);
+                else
+                    throw new NullReferenceException();
+            }
+            catch (Exception ex)
+            {
+                return new List<StockPrice<string, long>>();
+            }
         }
     }
 }

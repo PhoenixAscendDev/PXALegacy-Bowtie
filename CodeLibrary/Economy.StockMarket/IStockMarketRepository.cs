@@ -67,7 +67,7 @@ namespace JB2.Economy
         TradeTransactionNote<TKey> GetTradeTranByID(TKey key);
 
         IEnumerable<TradeTransactionNote<TKey>> GetTradeTransByAccountID(TKey id);
-        IEnumerable<TradeTransactionNote<TKey>> GetTradeTransByCompanyID(TKey companyid);
+        IEnumerable<TradeTransactionNote<TKey>> GetTradeTransByCompanyID(TKey companyid, int? count);
 
         IEnumerable<TradeTransactionNote<TKey>> GetTradeTransByDate(DateTime date);
 
@@ -88,6 +88,9 @@ namespace JB2.Economy
         IEnumerable<StockPrice<TKey, TStockValue>> GetStockPriceByDatetime(DateTime date);
 
         IEnumerable<StockPrice<TKey, TStockValue>> GetStockPricesByCompany(TKey companyID);
+
+        IEnumerable<StockPrice<TKey, TStockValue>> GetStockPricesByCompany(TKey companyID, int count);
+
 
         ServiceResult Save(StockPrice<TKey, TStockValue> stockPrice);
 
