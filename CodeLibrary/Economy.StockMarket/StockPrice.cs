@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy
 {
-    public struct StockPrice<TKey,TStockValue>
+    public struct StockPrice<TKey,TStockValue>: IComparable
     {
         public TKey StockExchangeCompanyID { get; set; }
         public DateTime PriceDate { get; set; }
         public TStockValue Value { get; set; }
+
+        public int CompareTo(object obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

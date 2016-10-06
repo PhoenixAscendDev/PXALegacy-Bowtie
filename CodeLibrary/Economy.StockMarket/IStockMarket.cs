@@ -15,23 +15,17 @@ namespace JB2.Economy
         where TShare : IStockShare<TKey, TStockValue>
     {
 
-        #region Events
+
         #region Events
         event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TShareHolder> ShareHolderCreated;
         event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>,TradeTransactionNote<TKey>, TShareHolder,TCompany> ShareTraded;
         event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TradeTransactionNote<TKey>, TShareHolder,TCompany> ShareBought;
         event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TradeTransactionNote<TKey>, TShareHolder, TCompany> ShareSold;
 
-        event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, StockPrice<TKey, TStockValue>> StockPriceChanged;
-
+        event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, JB2.Common.Range<StockPrice<TKey, TStockValue>>> StockPriceChanged;
+        event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, JB2.Common.Range<StockPrice<TKey, TStockValue>>> StockPriceIncrease;
+        event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, JB2.Common.Range<StockPrice<TKey, TStockValue>>> StockPriceDecrease;
         #endregion Events;
-
-
-        #endregion Events
-
-
-
-
 
 
         JB2.Common.IBusiness<TKey> Owner { get; set; }
