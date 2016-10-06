@@ -14,6 +14,26 @@ namespace JB2.Economy
         where TCompany : IStockBusiness<TShareHolder, TShare, TKey, TStockValue>
         where TShare : IStockShare<TKey, TStockValue>
     {
+
+        #region Events
+        #region Events
+        event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TShareHolder> ShareHolderCreated;
+        event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>,TradeTransactionNote<TKey>, TShareHolder,TCompany> ShareTraded;
+        event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TradeTransactionNote<TKey>, TShareHolder,TCompany> ShareBought;
+        event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TradeTransactionNote<TKey>, TShareHolder, TCompany> ShareSold;
+
+        event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, StockPrice<TKey, TStockValue>> StockPriceChanged;
+
+        #endregion Events;
+
+
+        #endregion Events
+
+
+
+
+
+
         JB2.Common.IBusiness<TKey> Owner { get; set; }
         TCompany GetCompany(string stockSymbol);
 
