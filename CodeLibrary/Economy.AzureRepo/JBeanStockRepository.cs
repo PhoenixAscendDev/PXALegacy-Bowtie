@@ -443,6 +443,9 @@ namespace JB2.Economy.Data
             e.SetProperty<string>("TradeType", note.TradeType.ToString());
             e.SetProperty<string>("TransactionID", note.TransactionID);
             e.SetProperty<DateTime>("TransactionDate", note.TransactionDate);
+            e.SetProperty<bool>("IsComplete", note.IsComplete);
+            e.SetProperty<string>("Message", note.Message);
+
 
             try
             {
@@ -498,6 +501,8 @@ namespace JB2.Economy.Data
             note.TradeType = (TradeType)System.Enum.Parse(typeof(TradeType), e.PropertyStringValue("TradeType"));
             note.TransactionID = e.PropertyStringValue("TransactionID");
             note.TransactionDate = e.GetPropertyValue<DateTime>("TransactionDate", System.DateTime.Now);
+            note.IsComplete = e.GetPropertyValue<bool>("IsComplete", false);
+            note.Message = e.GetPropertyValue<string>("Message", string.Empty);
 
             return note;
         }

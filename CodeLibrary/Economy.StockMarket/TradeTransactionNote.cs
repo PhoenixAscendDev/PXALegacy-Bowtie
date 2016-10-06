@@ -34,6 +34,9 @@ namespace JB2.Economy
 
         }
 
+        public JB2.Common.ServiceResult IsComplete { get; set; }
+        public string Message { get; set; }
+
         public static implicit operator double(TradeTransactionNote<TKey> note)
         {
             return (double)note.GetTotalCost();

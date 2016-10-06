@@ -89,6 +89,15 @@ namespace JB2.Settings
                 throw new JB2.Common.Exceptions.NotConfiguredException();
         }
 
+        public static string JBeanTreasuryVerificationKey
+        {
+            get
+            {
+                var setting = GetSetting(JbeanStockMarketSettingName.TreasuryValidationKey);
+                return (string)setting.Value;
+            }
+        }
+
 
     }
 }

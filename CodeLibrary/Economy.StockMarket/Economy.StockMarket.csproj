@@ -120,6 +120,7 @@
   <ItemGroup>
     <Compile Include="Exceptions\InsufficientFunds.cs" />
     <Compile Include="Exceptions\InvalidChecksum.cs" />
+    <Compile Include="Exceptions\TradeTransationException.cs" />
     <Compile Include="IShareHolder.cs" />
     <Compile Include="IStock.cs" />
     <Compile Include="IStockable.cs" />

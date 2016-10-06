@@ -11,6 +11,7 @@ namespace JB2.Economy
         public const string StockExchange = "STOCKEXCHANGE";
         public const string Currency = "CURRENCY";
         public const string TreasuryRequestor = "TREASURYREQUESTOR";
+        public const string TreasuryValidationKey = "TREASURYVALIDATIONKEY";
 
     }
 }

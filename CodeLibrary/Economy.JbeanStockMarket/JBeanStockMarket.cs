@@ -117,22 +117,66 @@ namespace JB2.Economy
 
         }
 
-        private bool sell(TradeTransactionNote<string> note)
+        private void sell(TradeTransactionNote<string> note)
         {
+             try
+            {
+                //get jBean Bank Account info
+               
+
             //get jBean Bank Account info
             IJbeanStockHolder holder = _repo.GetShareholderByID(note.AccountID);
-            var bankAccountID = holder.GetjBeanAccount();
+                var bankAccount = holder.GetjBeanAccount();
 
+                //get jBean Central Bank
+                var bank = JB2.Settings.Jbean.Factory.CentralBank;
 
+                //create jBean Treasury Note
+                var treasuryNote = JbeanTreasuryNote.NewNote(note.GetTotalCost(), JB2.Settings.JbeanStockMarket.JBeanTreasuryRequestor);
 
-            JB2.Settings.JbeanStockMarket.Repository.Save(note);
-            return true;
+                var result = bank.Deposit(bankAccount, treasuryNote);
+            }
+            catch (Exception ex)
+            {
+                note.IsComplete = new ServiceResult(new TradeTransationException(TradeType.Sell));
+                note.Message = "Error:" + ex.Message;
+            }
+            finally
+            {
+                JB2.Settings.JbeanStockMarket.Repository.Save(note);
+            }
+
         }
 
-        private bool buy(TradeTransactionNote<string> note)
+        private void buy(TradeTransactionNote<string> note)
         {
-            JB2.Settings.JbeanStockMarket.Repository.Save(note);
-            return true;
+            try
+            {
+                //get jBean Central Bank
+                var bank = JB2.Settings.Jbean.Factory.CentralBank;
+
+                //get jBean Bank Account info
+                IJbeanStockHolder holder = JB2.Settings.JbeanStockMarket.Repository.GetShareholderByID(note.AccountID);
+                var bankAccount = holder.GetjBeanAccount();
+
+                //create a TreasuryRequest
+                var request = new TreasuryRequest();
+                request.Amount = note.GetTotalCost();
+                request.RequestDate = DateTime.Now;
+                request.Requestor = JB2.Settings.JbeanStockMarket.JBeanTreasuryRequestor;
+                request.VerificationKey = JB2.Settings.JbeanStockMarket.JBeanTreasuryVerificationKey;
+
+                var result = bank.Withdrawn(bankAccount, request);
+            }
+            catch (Exception ex)
+            {
+                note.IsComplete = new ServiceResult(new TradeTransationException(TradeType.Sell));
+                note.Message = "Error:" + ex.Message;
+            }
+            finally
+            {
+                JB2.Settings.JbeanStockMarket.Repository.Save(note);
+            }
         }
 
         public override ServiceResult ValidateTrade(TradeTransactionNote<string> note)
