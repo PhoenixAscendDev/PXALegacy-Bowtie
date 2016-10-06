@@ -17,7 +17,7 @@ namespace JB2.Economy
 
         #region Constuctor
 
-        public JbeanStockExchange(string exchangeID) : this(exchangeID,JB2.Settings.JbeanStockMarket.Repository)
+        public JbeanStockExchange(string exchangeID) : this(exchangeID, JB2.Settings.JbeanStockMarket.Repository)
         {
 
         }
@@ -33,8 +33,6 @@ namespace JB2.Economy
         }
 
         #endregion Constructor
-
-
 
         public override bool IsOpen
         {
@@ -244,6 +242,38 @@ namespace JB2.Economy
             newValue = neg == true ? (currentValue + (-1 * change)) : (currentValue + change);
 
             return newValue;
+
+        }
+
+        public IJbeanStockHolder CreateNewShareHolder(string bankAccountID)
+        {
+            JbeanStockHolder holder = JbeanStockHolder.New;
+            holder.BankAccountID = bankAccountID;
+
+            try
+            {
+                var repo = JB2.Settings.JbeanStockMarket.Repository;
+
+                repo.Save(holder);
+
+                var testkey = holder.StockExchangeAccountID;
+
+                var holder2 = repo.GetShareholderByID(testkey);
+
+                if (holder2.StockExchangeAccountID != holder.StockExchangeAccountID)
+                    throw new Exception("Account unable to save");
+
+                return holder;
+
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+
+
 
         }
     }

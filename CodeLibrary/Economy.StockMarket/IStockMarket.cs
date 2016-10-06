@@ -8,11 +8,11 @@ using JB2.Common;
 
 namespace JB2.Economy
 {
-    public interface IStockExchange<TCompany, TShareHolder, TShare,TKey, TStockValue> : IClass,IIDNamePair<TKey,string>
+    public interface IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue> : IClass, IIDNamePair<TKey, string>
         where TKey : IComparable
-        where TShareHolder : IShareHolder<TShare,TKey, TStockValue>
-        where TCompany : IStockBusiness<TShareHolder, TShare,TKey, TStockValue>
-        where TShare : IStockShare<TKey,TStockValue>
+        where TShareHolder : IShareHolder<TShare, TKey, TStockValue>
+        where TCompany : IStockBusiness<TShareHolder, TShare, TKey, TStockValue>
+        where TShare : IStockShare<TKey, TStockValue>
     {
         JB2.Common.IBusiness<TKey> Owner { get; set; }
         TCompany GetCompany(string stockSymbol);
@@ -21,7 +21,7 @@ namespace JB2.Economy
 
         TShare GetShare(string transactionID);
 
-        TradeTransactionNote<TKey> Trade(string holderAccountID, string stockSymbol, int quantity,TradeType tradeType,long? askPrice);
+        TradeTransactionNote<TKey> Trade(string holderAccountID, string stockSymbol, int quantity, TradeType tradeType, long? askPrice);
 
         ServiceResult ValidateTrade(TradeTransactionNote<TKey> note);
 
@@ -32,6 +32,8 @@ namespace JB2.Economy
         DateTime GetNextCloseTime();
 
         DateTime GetLastTradeTime();
+
+        TShareHolder CreateNewShareHolder(string bankAccountID);
 
     }
 }
