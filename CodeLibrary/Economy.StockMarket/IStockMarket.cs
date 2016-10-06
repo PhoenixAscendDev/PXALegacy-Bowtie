@@ -22,9 +22,9 @@ namespace JB2.Economy
         event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TradeTransactionNote<TKey>, TShareHolder,TCompany> ShareBought;
         event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TradeTransactionNote<TKey>, TShareHolder, TCompany> ShareSold;
 
-        event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, JB2.Common.Range<StockPrice<TKey, TStockValue>>> StockPriceChanged;
-        event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, JB2.Common.Range<StockPrice<TKey, TStockValue>>> StockPriceIncrease;
-        event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, JB2.Common.Range<StockPrice<TKey, TStockValue>>> StockPriceDecrease;
+        event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, StockPrice<TKey, TStockValue>, TStockValue> StockPriceChanged;
+        event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, StockPrice<TKey, TStockValue>, TStockValue> StockPriceIncrease;
+        event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, StockPrice<TKey, TStockValue>, TStockValue> StockPriceDecrease;
         #endregion Events;
 
 

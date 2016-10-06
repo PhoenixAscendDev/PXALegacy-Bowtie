@@ -80,6 +80,8 @@ namespace JB2.Economy
 
         public override TradeTransactionNote<string> Trade(string holderAccountID, string stockSymbol, int quantity, TradeType tradeType, long? askPrice = null)
         {
+
+            
             TradeTransactionNote<string> result = new TradeTransactionNote<string>();
             result.AccountID = holderAccountID;
 
@@ -119,13 +121,13 @@ namespace JB2.Economy
 
         private void sell(TradeTransactionNote<string> note)
         {
-             try
+            try
             {
                 //get jBean Bank Account info
-               
 
-            //get jBean Bank Account info
-            IJbeanStockHolder holder = _repo.GetShareholderByID(note.AccountID);
+
+                //get jBean Bank Account info
+                IJbeanStockHolder holder = _repo.GetShareholderByID(note.AccountID);
                 var bankAccount = holder.GetjBeanAccount();
 
                 //get jBean Central Bank
@@ -135,15 +137,31 @@ namespace JB2.Economy
                 var treasuryNote = JbeanTreasuryNote.NewNote(note.GetTotalCost(), JB2.Settings.JbeanStockMarket.JBeanTreasuryRequestor);
 
                 var result = bank.Deposit(bankAccount, treasuryNote);
+                note.IsComplete = true;
             }
             catch (Exception ex)
             {
                 note.IsComplete = new ServiceResult(new TradeTransationException(TradeType.Sell));
                 note.Message = "Error:" + ex.Message;
+
+
+
+
             }
             finally
             {
                 JB2.Settings.JbeanStockMarket.Repository.Save(note);
+
+                if (note.IsComplete)
+                {
+                    IJbeanStockHolder holder = JB2.Settings.JbeanStockMarket.Repository.GetShareholderByID(note.AccountID);
+                    JbeanStockCompany company = JB2.Settings.JbeanStockMarket.Repository.GetCompanyByID(note.CompanyID);
+                    OnShareTraded(this, note, holder, company);
+
+                    OnShareSold(this, note, holder, company);
+
+
+                }
             }
 
         }
@@ -167,6 +185,7 @@ namespace JB2.Economy
                 request.VerificationKey = JB2.Settings.JbeanStockMarket.JBeanTreasuryVerificationKey;
 
                 var result = bank.Withdrawn(bankAccount, request);
+                note.IsComplete = true;
             }
             catch (Exception ex)
             {
@@ -176,6 +195,17 @@ namespace JB2.Economy
             finally
             {
                 JB2.Settings.JbeanStockMarket.Repository.Save(note);
+                if (note.IsComplete)
+                {
+                    IJbeanStockHolder holder = JB2.Settings.JbeanStockMarket.Repository.GetShareholderByID(note.AccountID);
+                    JbeanStockCompany company = JB2.Settings.JbeanStockMarket.Repository.GetCompanyByID(note.CompanyID);
+                    OnShareTraded(this, note, holder, company);
+
+                    OnShareBought(this, note, holder, company);
+
+
+                }
+
             }
         }
 
@@ -289,7 +319,7 @@ namespace JB2.Economy
 
         }
 
-        public IJbeanStockHolder CreateNewShareHolder(string bankAccountID)
+        public override IJbeanStockHolder CreateNewShareHolder(string bankAccountID)
         {
             JbeanStockHolder holder = JbeanStockHolder.New;
             holder.BankAccountID = bankAccountID;
@@ -307,6 +337,9 @@ namespace JB2.Economy
                 if (holder2.StockExchangeAccountID != holder.StockExchangeAccountID)
                     throw new Exception("Account unable to save");
 
+
+                OnShareHolderCreated(this, holder);
+
                 return holder;
 
 
@@ -315,10 +348,6 @@ namespace JB2.Economy
             {
                 return null;
             }
-
-
-
-
         }
     }
 }

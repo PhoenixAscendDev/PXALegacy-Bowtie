@@ -21,10 +21,61 @@ namespace JB2.Economy
         public event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TradeTransactionNote<TKey>, TShareHolder, TCompany> ShareBought;
         public event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TradeTransactionNote<TKey>, TShareHolder, TCompany> ShareSold;
 
-        public event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, JB2.Common.Range<StockPrice<TKey, TStockValue>>> StockPriceChanged;
-        public event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, JB2.Common.Range<StockPrice<TKey, TStockValue>>> StockPriceIncrease;
-        public event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, JB2.Common.Range<StockPrice<TKey, TStockValue>>> StockPriceDecrease;
+        public event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, StockPrice<TKey, TStockValue>, TStockValue> StockPriceChanged;
+        public event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, StockPrice<TKey, TStockValue>, TStockValue> StockPriceIncrease;
+        public event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, StockPrice<TKey, TStockValue>, TStockValue> StockPriceDecrease;
+
+        protected virtual void OnShareHolderCreated(IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue> exchange, TShareHolder newholder)
+        {
+            if (ShareHolderCreated != null)
+                ShareHolderCreated(this, (TShareHolder)newholder);
+        }
+      
+
+        protected virtual void OnShareTraded(IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue> exchange, TradeTransactionNote<TKey> tradeTran, TShareHolder shareHolder, TCompany company)
+        {
+            if (ShareTraded != null)
+                ShareTraded(exchange, tradeTran, shareHolder, company);
+        }
+        protected virtual void OnShareBought(IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue> exchange, TradeTransactionNote<TKey> tradeTran, TShareHolder shareHolder, TCompany company)
+        {
+            if (ShareTraded != null)
+                ShareTraded(exchange, tradeTran, shareHolder, company);
+        }
+
+        protected virtual void OnShareSold(IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue> exchange, TradeTransactionNote<TKey> tradeTran, TShareHolder shareHolder, TCompany company)
+        {
+            if (ShareTraded != null)
+                ShareTraded(exchange, tradeTran, shareHolder, company);
+        }
+
+        protected virtual void OnStockPriceChanged(IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue> exchange, TCompany company, StockPrice<TKey, TStockValue> newprice, TStockValue lastprice)
+        {
+            if (StockPriceChanged != null)
+                StockPriceChanged(exchange, company, newprice, lastprice);
+        }
+
+        protected virtual void OnStockPriceDecrease(IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue> exchange, TCompany company, StockPrice<TKey, TStockValue> newprice, TStockValue lastprice)
+        {
+            if (StockPriceDecrease != null)
+                StockPriceDecrease(exchange, company, newprice, lastprice);
+        }
+        protected virtual void OnStockPriceIncrease(IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue> exchange, TCompany company, StockPrice<TKey, TStockValue> newprice, TStockValue lastprice)
+        {
+            if (StockPriceIncrease != null)
+                StockPriceIncrease(exchange, company, newprice, lastprice);
+        }
+
+
+
+
+
+
         #endregion Events;
+
+
+
+
 
 
         public virtual TKey ID
@@ -98,9 +149,14 @@ namespace JB2.Economy
 
         public abstract ServiceResult ValidateTrade(TradeTransactionNote<TKey> note);
 
-        public TShareHolder CreateNewShareHolder(string bankAccountID)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract TShareHolder CreateNewShareHolder(string bankAccountID);
+
+
+
+
+
+
+
+
     }
 }
