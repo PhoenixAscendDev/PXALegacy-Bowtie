@@ -49,5 +49,8 @@ namespace JB2.Economy
 
         TShareHolder CreateNewShareHolder(string bankAccountID);
 
+        StockPrice<TKey, TStockValue> UpdateStockPrice(TKey companyID, TStockValue value);
+            
+
     }
 }

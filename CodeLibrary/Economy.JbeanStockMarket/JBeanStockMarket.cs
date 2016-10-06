@@ -52,6 +52,12 @@ namespace JB2.Economy
             return _repo.GetCompanyByStockSymbol(stockSymbol);
         }
 
+        public  JbeanStockCompany GetCompanyByID(string id)
+        {
+            return _repo.GetCompanyByID(id);
+        }
+
+
         public override DateTime GetLastOpenDate()
         {
 
@@ -81,7 +87,7 @@ namespace JB2.Economy
         public override TradeTransactionNote<string> Trade(string holderAccountID, string stockSymbol, int quantity, TradeType tradeType, long? askPrice = null)
         {
 
-            
+
             TradeTransactionNote<string> result = new TradeTransactionNote<string>();
             result.AccountID = holderAccountID;
 
@@ -260,10 +266,10 @@ namespace JB2.Economy
                 return JB2.Info.Project.GetRNG();
             }
         }
-        public static int CalculateNewStockValue(int currentValue)
+        public static long CalculateNewStockValue(long currentValue)
         {
 
-            int newValue = currentValue;
+            long newValue = currentValue;
             //dice1 used to determine size of change
             byte dice1 = JB2.Common.RNG.Dice(6, JbeanStockExchange.RNG);
             //dice2 used to determine pos/neg change
@@ -311,7 +317,7 @@ namespace JB2.Economy
 
 
 
-            int change = (int)Math.Round((double)(percentChange / 100.00) * (double)Math.Abs(currentValue));
+            long change = (int)Math.Round((double)(percentChange / 100.00) * (double)Math.Abs(currentValue));
 
             newValue = neg == true ? (currentValue + (-1 * change)) : (currentValue + change);
 
@@ -349,5 +355,36 @@ namespace JB2.Economy
                 return null;
             }
         }
+
+
+        public override StockPrice<string, long> UpdateStockPrice(string companyID, long value)
+        {
+            JbeanStockCompany company = this.GetCompanyByID(companyID);
+            var oldStockPrice = company.GetLastStockPrices(1).FirstOrDefault();
+            var newPrice = JbeanStockExchange.CalculateNewStockValue(oldStockPrice.Value);
+
+            //establish new Stock Price
+            StockPrice<string, long> newStockPrice = new StockPrice<string, long>();
+            newStockPrice = new StockPrice<string, long>();
+            newStockPrice.PriceDate = System.DateTime.Now;
+            newStockPrice.StockExchangeCompanyID = company.StockExchangeCompanyID;
+            newStockPrice.Value = newPrice;
+
+            //save new price
+            _repo.Save(newStockPrice);
+
+            //trigger exchange events
+            if(newStockPrice.Value > oldStockPrice.Value)
+                OnStockPriceIncrease(this, company, newStockPrice,oldStockPrice.Value);
+            if (newStockPrice.Value < oldStockPrice.Value)
+                OnStockPriceDecrease(this, company, newStockPrice, oldStockPrice.Value);
+
+            OnStockPriceChanged(this, company, newStockPrice, oldStockPrice.Value);
+
+
+
+            return newStockPrice;
+        }
+
     }
 }

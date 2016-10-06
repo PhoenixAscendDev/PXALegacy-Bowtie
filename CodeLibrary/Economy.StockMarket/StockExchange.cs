@@ -66,17 +66,7 @@ namespace JB2.Economy
                 StockPriceIncrease(exchange, company, newprice, lastprice);
         }
 
-
-
-
-
-
         #endregion Events;
-
-
-
-
-
 
         public virtual TKey ID
         {
@@ -150,6 +140,8 @@ namespace JB2.Economy
         public abstract ServiceResult ValidateTrade(TradeTransactionNote<TKey> note);
 
         public abstract TShareHolder CreateNewShareHolder(string bankAccountID);
+
+        public abstract StockPrice<TKey, TStockValue> UpdateStockPrice(TKey companyID, TStockValue value);
 
 
 
