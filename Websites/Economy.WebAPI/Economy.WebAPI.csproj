@@ -55,8 +55,8 @@
       <HintPath>..\..\Solutions\packages\Hyak.Common.1.0.2\lib\net45\Hyak.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Core">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.3.21.1\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.3.23.22700, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.3.23\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Data.AzureStorage">
@@ -284,6 +284,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\jBeanController.cs" />
+    <Compile Include="Controllers\StockMarketController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -356,6 +357,10 @@
       <Project>{5ff36757-d424-40a8-8c3d-f87ada26f067}</Project>
       <Name>JB2.Economy</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\CodeLibrary\Economy.JbeanStockMarket\Economy.JbeanStockMarket.csproj">
+      <Project>{a4b39291-945c-4e4d-b48b-aa7b5f046d8c}</Project>
+      <Name>Economy.JbeanStockMarket</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\CodeLibrary\Economy.jBean\Economy.Jbean.csproj">
       <Project>{387bae94-cbd5-45fa-8e9d-f16ad1229e1c}</Project>
       <Name>JB2.Economy.Jbean</Name>
@@ -363,6 +368,10 @@
     <ProjectReference Include="..\..\CodeLibrary\Economy.AzureRepo\Economy.AzureRepo.csproj">
       <Project>{eb0bba4b-aa18-44e2-953c-b3ec0a110fff}</Project>
       <Name>JB2.Economy.AzureRepo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CodeLibrary\Economy.StockMarket\Economy.StockMarket.csproj">
+      <Project>{4d0bf82f-abdc-40b9-b093-f7aa18b24a75}</Project>
+      <Name>Economy.StockMarket</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
