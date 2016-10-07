@@ -10,7 +10,6 @@ namespace Economy.Test
 {
     class Program
     {
-
         static void InitStockMarket()
         {
 
