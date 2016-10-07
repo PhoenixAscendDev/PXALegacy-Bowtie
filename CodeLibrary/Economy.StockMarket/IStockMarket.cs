@@ -22,10 +22,17 @@ namespace JB2.Economy
         event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TradeTransactionNote<TKey>, TShareHolder,TCompany> ShareBought;
         event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TradeTransactionNote<TKey>, TShareHolder, TCompany> ShareSold;
 
+
         event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, StockPrice<TKey, TStockValue>, TStockValue> StockPriceChanged;
         event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, StockPrice<TKey, TStockValue>, TStockValue> StockPriceIncrease;
         event Action<IStockExchange<TCompany, TShareHolder, TShare, TKey, TStockValue>, TCompany, StockPrice<TKey, TStockValue>, TStockValue> StockPriceDecrease;
         #endregion Events;
+
+
+
+
+
+
 
 
         JB2.Common.IBusiness<TKey> Owner { get; set; }
@@ -48,9 +55,6 @@ namespace JB2.Economy
         DateTime GetLastTradeTime();
 
         TShareHolder CreateNewShareHolder(string bankAccountID);
-
-        StockPrice<TKey, TStockValue> UpdateStockPrice(TKey companyID, TStockValue value);
-            
 
     }
 }

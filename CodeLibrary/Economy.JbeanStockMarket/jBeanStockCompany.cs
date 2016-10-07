@@ -96,7 +96,11 @@ namespace JB2.Economy
         {
             get
             {
-                return this.GetProperity<string>("EXCHANGECOMPANYID");
+                string exchangeCompanyID = this.GetProperity<string>("EXCHANGECOMPANYID");
+                if (string.IsNullOrEmpty(exchangeCompanyID))
+                    return this.ID;
+                else
+                    return exchangeCompanyID;
             }
 
             set

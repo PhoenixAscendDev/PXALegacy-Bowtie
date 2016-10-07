@@ -15,14 +15,14 @@ namespace JB2.Helper
         public static string GenerateID<T>()
             where T: class
         {
-            var result = JB2.Configuration.GetjBeanStockMarketID() + "-" + JB2.Common.NewID.Guid();
+            var result = JB2.Common.NewID.UriHash( new Uri("http://jbean.stockmarket.com/?exchangeID=" + JB2.Configuration.GetjBeanStockMarketID())) + "." + JB2.Common.NewID.ShortGuid();
             Type type = typeof(T);
 
             if (type is IJbeanStockHolder)
-                result = "holder-" + result;
+                result = "h." + result;
 
             if (type == typeof(JbeanStockCompany))
-                result = "company-" + result;
+                result = "c." + result;
 
             return result;
         }

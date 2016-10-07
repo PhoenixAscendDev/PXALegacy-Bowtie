@@ -26,7 +26,7 @@ namespace JB2.Economy.Data
         #region Constructor
         public JBeanStockRepository(JB2.Common.Data.StorageAccount storageAccount) :
             this(storageAccount.GetTable("stockmarket"),
-                storageAccount.GetTable("stockmaketLog"),
+                storageAccount.GetTable("stockmaketTran"),
                 storageAccount.GetTable("stockmarketAccount"),
                 storageAccount.GetTable("stockmarketPrice")
             )
@@ -110,14 +110,16 @@ namespace JB2.Economy.Data
 
         public JbeanStockCompany GetCompanyByStockSymbol(string symbol)
         {
-            var e = _marketTable.GetEntity<DynamicTableEntity>("exchange:" + _exchangeID + ":company", "stocksymbol:" + symbol);
+            var pkey = "exchange:" + _exchangeID + ":company";
+            var rkey = "stocksymbol:" + symbol;
+            var e = _marketTable.GetEntity<DynamicTableEntity>(pkey,rkey);
 
             return convertToCompany(e);
         }
 
         public IEnumerable<JbeanStockCompany> GetAllCompanies()
         {
-            var e = _marketTable.GetByPartitionKey<DynamicTableEntity>("exchange: " + _exchangeID + ":company");
+            var e = _marketTable.GetByPartitionKey<DynamicTableEntity>("exchange:" + _exchangeID + ":company");
 
             return convertToCompany(e);
         }
@@ -154,11 +156,11 @@ namespace JB2.Economy.Data
 
             try
             {
-                e.PartitionKey = "exchange: " + _exchangeID + ":company";
+                e.PartitionKey = "exchange:" + _exchangeID + ":company";
                 e.RowKey = "id:" + company.StockExchangeCompanyID;
                 _marketTable.Insert<DynamicTableEntity>(e, true);
 
-                e.PartitionKey = "exchange: " + _exchangeID + ":company";
+                e.PartitionKey = "exchange:" + _exchangeID + ":company";
                 e.RowKey = "stocksymbol:" + company.StockSymbol;
                 _marketTable.Insert<DynamicTableEntity>(e, true);
             }
