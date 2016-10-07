@@ -11,6 +11,19 @@ namespace JB2.Economy
     public class JbeanStockCompany : JB2Class, IStockBusiness<IJbeanStockHolder, JbeanStockShare, string, long>
     {
 
+        #region Constructor
+
+        public JbeanStockCompany(string id)
+        {
+            
+            this._props = new MetaDataCollection();          
+            this._defaultchangeLastUpdate = true;
+            this._lastupdate = System.DateTime.Now;
+            this.ID = id;
+        }
+
+        #endregion Constructor
+
         public string ExchangeID
         {
             get
@@ -41,7 +54,10 @@ namespace JB2.Economy
         {
             get
             {
-                return this.GetProperity<IAddress>("ADDRESS");
+                IAddress address = this.GetProperity<IAddress>("ADDRESS");
+                if (address == null)
+                    return new JB2.Common.Map.EmptyAddress();
+                return address;
             }
 
             set
@@ -219,6 +235,15 @@ namespace JB2.Economy
             catch (Exception ex)
             {
                 return new List<StockPrice<string, long>>();
+            }
+        }
+
+        public static JbeanStockCompany New
+        {
+            get
+            {
+                var id = JB2.Helper.JbeanStockMarket.GenerateID<JbeanStockCompany>();
+                return new JbeanStockCompany(id);
             }
         }
     }

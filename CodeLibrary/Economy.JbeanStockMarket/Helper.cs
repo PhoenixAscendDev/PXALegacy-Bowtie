@@ -16,12 +16,13 @@ namespace JB2.Helper
             where T: class
         {
             var result = JB2.Configuration.GetjBeanStockMarketID() + "-" + JB2.Common.NewID.Guid();
-
-
             Type type = typeof(T);
 
             if (type is IJbeanStockHolder)
                 result = "holder-" + result;
+
+            if (type == typeof(JbeanStockCompany))
+                result = "company-" + result;
 
             return result;
         }

@@ -138,7 +138,11 @@ namespace JB2.Economy.Data
             e.SetProperty<string>("MailingAddress_Line1", company.MailingAddress.GetAddressLine1());
             e.SetProperty<string>("MailingAddress_Line2", company.MailingAddress.GetAddressLine2());
             e.SetProperty<string>("MailingAddress_City", company.MailingAddress.GetCity());
-            e.SetProperty<string>("MailingAddress_State", company.MailingAddress.GetStateProvince().ToString());
+
+            if(company.MailingAddress.GetStateProvince() == null)
+                e.SetProperty<string>("MailingAddress_State", string.Empty);
+            else
+                e.SetProperty<string>("MailingAddress_State", company.MailingAddress.GetStateProvince().ToString());
             e.SetProperty<string>("MailingAddress_PostalCode", company.MailingAddress.GetPostalCode());
 
 
@@ -171,7 +175,7 @@ namespace JB2.Economy.Data
 
             var id = e.PropertyStringValue("ID", string.Empty);
 
-            var result = new JbeanStockCompany();
+            var result = new JbeanStockCompany(id);
 
             result.ID = id;
             result.ExchangeID = _exchangeID;

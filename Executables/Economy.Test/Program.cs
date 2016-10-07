@@ -55,6 +55,33 @@ namespace Economy.Test
 
     }
 
+        static void SetupCompanies()
+        {
+            JbeanStockCompany c1 = JbeanStockCompany.New;
+            c1.StockSymbol = "WOOD03";
+            c1.Name = "Wooden Fellow";
+
+            JB2.Settings.JbeanStockMarket.Repository.Save(c1);
+
+            JbeanStockCompany c2 = JbeanStockCompany.New;
+            c2.StockSymbol = "SHEL06";
+            c2.Name = "Hard Shell";
+
+            JB2.Settings.JbeanStockMarket.Repository.Save(c2);
+
+            JbeanStockCompany c3 = JbeanStockCompany.New;
+            c3.StockSymbol = "SOLE02";
+            c3.Name = "Helpful Soles";
+
+            JB2.Settings.JbeanStockMarket.Repository.Save(c3);
+
+            JbeanStockCompany c4 = JbeanStockCompany.New;
+            c4.StockSymbol = "ECHM09";
+            c4.Name = "Echo Media";
+
+            JB2.Settings.JbeanStockMarket.Repository.Save(c4);
+        }
+
 
 
 
@@ -67,6 +94,8 @@ namespace Economy.Test
 
 
             JB2.Settings.JbeanStockMarket.Repository.Save(market);
+
+            SetupCompanies();
 
             Console.WriteLine(JB2.Settings.JbeanStockMarket.StockExchange.GetID());
 
