@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy
 {
-    public interface IJbeanStockHolder : IShareHolder<JbeanStockShare,string,long>
+    public interface IJbeanStockHolder : IShareHolder<string,long>
     {
        
 

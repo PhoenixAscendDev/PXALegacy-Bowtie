@@ -8,10 +8,11 @@ using JB2.Common;
 
 namespace JB2.Economy
 {
-    public interface IStockBusiness<TShareHolder,TShare,TKey,TStockValue> : IBusiness<TKey>, IStockable<TKey,TStockValue>
+    public interface IStockBusiness<TShareHolder,TKey,TStockValue> : IBusiness<TKey>, IStockable<TKey,TStockValue>
         where TKey : IComparable
-        where TShareHolder : IShareHolder<TShare,TKey,TStockValue>
-        where TShare : IStockShare<TKey, TStockValue>
+        where TStockValue : IComparable
+        where TShareHolder : IShareHolder<TKey,TStockValue>
+
     {
         int GetShareCount();
         TShareHolder GetShareHolder(string accountID);

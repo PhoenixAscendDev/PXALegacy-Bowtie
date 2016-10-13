@@ -8,10 +8,10 @@ using JB2.Common;
 
 namespace JB2.Economy
 {
-    public interface IStockMarketRepository<TCompany, TExchange, TShareholder, TShare, TKey, TStockValue>
-        where TExchange : IStockExchange<TCompany, TShareholder, TShare, TKey, TStockValue>
-        where TCompany : IStockBusiness<TShareholder, TShare, TKey, TStockValue>
-        where TShareholder : IShareHolder<TShare, TKey, TStockValue>
+    public interface IStockMarketRepository<TCompany, TExchange, TShareholder,TKey, TStockValue>
+        where TExchange : IStockExchange<TCompany, TShareholder, TKey, TStockValue>
+        where TCompany : IStockBusiness<TShareholder, TKey, TStockValue>
+        where TShareholder : IShareHolder<TKey, TStockValue>
         where TShare : IStockShare<TKey, TStockValue>
         where TKey : IComparable
         where TStockValue : IComparable
@@ -48,17 +48,17 @@ namespace JB2.Economy
 
         #region Share
 
-        TShare GetStockShareByID(TKey id);
+       // TShare GetStockShareByID(TKey id);
 
-        TShare GetStockShareByTranID(TKey transactionID);
+        Position<TKey,TStockValue> GetPositionByTranID(TKey transactionID);
 
-        IEnumerable<TShare> GetStockSharesByCompanyID(TKey companyID);
+        IEnumerable<Position<TKey, TStockValue>> GetStockPositionsByCompanyID(TKey companyID);
 
-        IEnumerable<TShare> GetAllStockShares();
+        IEnumerable<Position<TKey, TStockValue>> GetAllStockPositions();
 
-        IEnumerable<TShare> GetStockSharesByAccountID(TKey accountID);
+        IEnumerable<Position<TKey, TStockValue>> GetStockPositionByAccountID(TKey accountID);
 
-        ServiceResult Save(TShare share);
+        //ServiceResult Save(TShare share);
 
         #endregion Share
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy
 {
-    public class JbeanStockShare : StockShare<string,long>
-    {
-    }
+    //public class JbeanStockShare : StockShare<string,long>
+    //{
+    //}
 }

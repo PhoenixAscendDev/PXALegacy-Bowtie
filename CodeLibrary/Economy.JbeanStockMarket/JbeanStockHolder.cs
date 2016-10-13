@@ -93,7 +93,7 @@ namespace JB2.Economy
             {
                 var repo = JB2.Settings.JbeanStockMarket.Repository;
 
-                var shares = repo.GetStockSharesByAccountID(this.StockExchangeAccountID);
+                var shares = repo.GetStockPositionsByAccountID(this.StockExchangeAccountID);
 
                 foreach (var s in shares)
                 {
@@ -112,30 +112,31 @@ namespace JB2.Economy
 
         }
 
-        public JbeanStockShare GetShares(string stockSymbol)
+        public Position<string,long> GetShares(string stockSymbol)
         {
-            try
-            {
-                var repo = JB2.Settings.JbeanStockMarket.Repository;
+            //try
+            //{
+            //    var repo = JB2.Settings.JbeanStockMarket.Repository;
 
-                var shares = repo.GetStockSharesByAccountID(this.StockExchangeAccountID);
+            //    var shares = repo.GetStockSharesByAccountID(this.StockExchangeAccountID);
 
-                foreach (var s in shares)
-                {
-                    if (s.Company.StockSymbol == stockSymbol)
-                        return s;
-                }
+            //    foreach (var s in shares)
+            //    {
+            //        if (s.Company.StockSymbol == stockSymbol)
+            //            return s;
+            //    }
 
-                return null;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
+            //    return null;
+            //}
+            //catch (Exception ex)
+            //{
+            //    return null;
+            //}
+            return new Position<string, long>();
 
         }
 
-        public IEnumerable<JbeanStockShare> GetShares()
+        public IEnumerable<Position<string, long>> GetShares()
         {
             try
             {

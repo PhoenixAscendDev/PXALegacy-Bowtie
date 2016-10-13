@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy
 {
-    public interface IJbeanStockMarketRepository  : IStockMarketRepository<JbeanStockCompany,JbeanStockExchange,IJbeanStockHolder,JbeanStockShare,string,long>
+    public interface IJbeanStockMarketRepository  : IStockMarketRepository<JbeanStockCompany,JbeanStockExchange,IJbeanStockHolder,string,long>
     {
 
     }

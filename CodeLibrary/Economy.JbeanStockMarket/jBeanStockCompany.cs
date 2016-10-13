@@ -8,7 +8,7 @@ using JB2.Common;
 
 namespace JB2.Economy
 {
-    public class JbeanStockCompany : JB2Class, IStockBusiness<IJbeanStockHolder, JbeanStockShare, string, long>
+    public class JbeanStockCompany : JB2Class, IStockBusiness<IJbeanStockHolder, string, long>
     {
 
         #region Constructor
@@ -184,7 +184,7 @@ namespace JB2.Economy
         {
             try
             {
-                var price = JB2.Settings.JbeanStockMarket.Repository.GetStockSharesByCompanyID(this.StockExchangeCompanyID);
+                var price = JB2.Settings.JbeanStockMarket.Repository.GetStockPositionsByCompanyID(this.StockExchangeCompanyID);
 
 
                 if (price != null)
@@ -212,7 +212,7 @@ namespace JB2.Economy
 
         public IEnumerable<IJbeanStockHolder> GetShareHolders()
         {
-            var shares = JB2.Settings.JbeanStockMarket.Repository.GetStockSharesByCompanyID(this.StockExchangeCompanyID);
+            var shares = JB2.Settings.JbeanStockMarket.Repository.GetStockPositionsByCompanyID(this.StockExchangeCompanyID);
 
             Dictionary<string, IJbeanStockHolder> result = new Dictionary<string, IJbeanStockHolder>();
 

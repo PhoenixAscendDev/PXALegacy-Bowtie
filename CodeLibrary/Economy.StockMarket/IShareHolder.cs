@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy
 {
-    public interface IShareHolder<TShare,TKey, TStockValue> : IStockHolderable<TKey>
+    public interface IShareHolder<TKey, TStockValue> : IStockHolderable<TKey>
         where TKey: IComparable
-        where TShare : IStockShare<TKey, TStockValue>
+        where TStockValue: IComparable
     {
         TStockValue GetTotalValue();
 
-        TShare GetShares(TKey stockSymbol);
+        Position<TKey,TStockValue> GetShares(TKey stockSymbol);
 
-        IEnumerable<TShare> GetShares();
+        IEnumerable<Position<TKey, TStockValue>> GetShares();
 
         TStockValue GetFundsAvalable();
 
