@@ -7,7 +7,7 @@ using JB2.Common;
 
 namespace JB2.Economy
 {
-    public class JbeanStockExchange : StockExchange<JbeanStockCompany, IJbeanStockHolder, JbeanStockShare, string, long>
+    public class JbeanStockExchange : StockExchange<JbeanStockCompany, IJbeanStockHolder,string, long>
     {
         #region Fields
         protected IJbeanStockMarketRepository _repo;
@@ -74,9 +74,10 @@ namespace JB2.Economy
             throw new NotImplementedException();
         }
 
-        public override JbeanStockShare GetShare(string transactionID)
+        public override Position<string,long> GetShare(string transactionID)
         {
-            return _repo.GetStockShareByTranID(transactionID);
+            return _repo.GetPositionByTranID(transactionID);
+            //return _repo.GetStockShareByTranID(transactionID);
         }
 
         public override IJbeanStockHolder GetShareHolder(string accountID)

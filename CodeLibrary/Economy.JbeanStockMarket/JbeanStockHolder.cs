@@ -93,11 +93,12 @@ namespace JB2.Economy
             {
                 var repo = JB2.Settings.JbeanStockMarket.Repository;
 
-                var shares = repo.GetStockPositionsByAccountID(this.StockExchangeAccountID);
+                var shares = repo.GetStockPositionByAccountID(this.StockExchangeAccountID);
 
                 foreach (var s in shares)
                 {
-                    if (s.Company.StockSymbol == stockSymbol)
+                    var company = repo.GetCompanyByStockSymbol(s.Share.Symbol);
+                    if (company.StockSymbol == stockSymbol)
                         return (uint)s.Quantity;
                 }
 
@@ -142,7 +143,7 @@ namespace JB2.Economy
             {
                 var repo = JB2.Settings.JbeanStockMarket.Repository;
 
-                var shares = repo.GetStockSharesByAccountID(this.StockExchangeAccountID);
+                var shares = repo.GetStockPositionByAccountID(this.StockExchangeAccountID);
 
                 return shares;
             }
@@ -158,13 +159,14 @@ namespace JB2.Economy
             {
                 var repo = JB2.Settings.JbeanStockMarket.Repository;
 
-                var shares = repo.GetStockSharesByAccountID(this.StockExchangeAccountID);
+                var shares = repo.GetStockPositionByAccountID(this.StockExchangeAccountID);
 
                 long totalValue = 0;
 
                 foreach (var s in shares)
                 {
-                    totalValue += totalValue + (s.Company.GetCurrentStockValue() * s.Quantity);
+                    var company = repo.GetCompanyByStockSymbol(s.Share.Symbol);
+                    totalValue += totalValue + (company.GetCurrentStockValue() * s.Quantity);
                 }
 
                 return totalValue;

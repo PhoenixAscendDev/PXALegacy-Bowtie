@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Economy
 {
-    public struct Share<TStockPrice, TKey>
+    public struct Share<TKey,TStockPrice>
         where TStockPrice : IComparable
         where TKey : IComparable
     {

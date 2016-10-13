@@ -282,68 +282,181 @@ namespace JB2.Economy.Data
 
         #region StockShare
 
-        public JbeanStockShare GetStockShareByID(string id)
-        {
-            var e = _marketTable.GetEntity<DynamicTableEntity>("exchange:" + _exchangeID + "stockshare", "id:" + id);
+        //public JbeanStockShare GetStockShareByID(string id)
+        //{
+        //    var e = _marketTable.GetEntity<DynamicTableEntity>("exchange:" + _exchangeID + "stockshare", "id:" + id);
 
-            return convertToStockShare(e);
+        //    return convertToStockShare(e);
+        //}
+
+        //public JbeanStockShare GetStockShareByTranID(string transactionID)
+        //{
+        //    var e = _marketTable.GetEntity<DynamicTableEntity>("exchange:" + _exchangeID + ":stockshare", "id:" + transactionID);
+
+        //    return convertToStockShare(e);
+        //}
+
+        //public IEnumerable<JbeanStockShare> GetStockSharesByCompanyID(string companyID)
+        //{
+        //    var e = _marketTable.GetByPartitionKey<DynamicTableEntity>("exchange:" + _exchangeID + ":company:" + companyID + ":stockshare");
+
+        //    return convertToStockShare(e);
+        //}
+
+        //public IEnumerable<JbeanStockShare> GetAllStockShares()
+        //{
+        //    var e = _marketTable.GetByPartitionKey<DynamicTableEntity>("exchange:" + _exchangeID + ":stockshare");
+
+        //    return convertToStockShare(e);
+        //}
+
+        //public IEnumerable<JbeanStockShare> GetStockSharesByAccountID(string accountID)
+        //{
+        //    var e = _marketTable.GetByPartitionKey<DynamicTableEntity>("exchange:" + _exchangeID + ":account" + accountID + ":stockshare");
+
+        //    return convertToStockShare(e);
+        //}
+
+
+        //public ServiceResult Save(JbeanStockShare share)
+        //{
+        //    DynamicTableEntity e = new DynamicTableEntity();
+
+        //    e.SetProperty<string>("CompanyID", share.Company.StockExchangeCompanyID);
+        //    e.SetProperty<DateTime>("DatePurchased", share.DatePurchased);
+        //    e.SetProperty<string>("TransactionID", share.ExchangeTransactionID);
+        //    e.SetProperty<long>("PurchaseAmount", share.PurchaseAmount);
+        //    e.SetProperty<int>("Quantity", share.Quantity);
+        //    e.SetProperty<string>("AccountID", share.StockExchangeAccountID);
+        //    e.SetProperty<string>("ExchangeID", _exchangeID);
+
+        //    try
+        //    {
+
+        //        e.PartitionKey = "exchange:" + _exchangeID + ":stockshare";
+        //        e.RowKey = "id:" + share.ExchangeTransactionID;
+        //        _marketTable.Insert<DynamicTableEntity>(e, true);
+
+        //        e.PartitionKey = "exchange:" + _exchangeID + ":company:" + share.Company.StockExchangeCompanyID + ":stockshare";
+        //        e.RowKey = "id:" + share.ExchangeTransactionID;
+        //        _marketTable.Insert<DynamicTableEntity>(e, true);
+
+
+        //        e.PartitionKey = "exchange:" + _exchangeID + ":account" + share.StockExchangeAccountID + ":stockshare";
+        //        e.RowKey = "id:" + share.ExchangeTransactionID;
+        //        _marketTable.Insert<DynamicTableEntity>(e, true);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new ServiceResult(ex);
+        //    }
+
+        //    return true;
+
+        //}
+
+
+        //private IEnumerable<JbeanStockShare> convertToStockShare(IEnumerable<DynamicTableEntity> elist)
+        //{
+        //    List<JbeanStockShare> list = new List<JbeanStockShare>();
+
+        //    foreach (var e in elist)
+        //    {
+        //        list.Add(convertToStockShare(e));
+        //    }
+
+        //    return list;
+        //}
+
+        //private JbeanStockShare convertToStockShare(DynamicTableEntity e)
+        //{
+        //    JbeanStockShare share = new JbeanStockShare();
+
+        //    string companyID = e.PropertyStringValue("CompanyID");
+        //    share.Company = this.GetCompanyByID(companyID);
+        //    share.DatePurchased = e.GetPropertyValue<DateTime>("DatePurchased", DateTime.Now);
+        //    share.ExchangeTransactionID = e.GetPropertyValue<string>("TransactionID", string.Empty);
+        //    share.PurchaseAmount = e.GetPropertyValue<long>("PurchaseAmount", 0);
+        //    share.Quantity = e.GetPropertyValue<int>("Quantity", 0);
+        //    share.StockExchangeAccountID = e.GetPropertyValue<string>("AccountID", string.Empty);
+
+        //    return share;
+        //}
+
+        #endregion StockShare
+
+
+        #region StockPositions
+        public Position<string, long> GetPositionByTranID(string transactionID)
+        {
+           TradeTransactionNote<string> t  = GetTradeTranByID(transactionID);
+            var p = new Position<string, long>();
+            if ((TradeTransactionNote<string>)t != null)
+            {        
+                p.Quantity = t.ShareCount;
+                var s = new Share<string, long>();
+
+                var c = GetCompanyByID(t.CompanyID);
+                s.CurrentPrice = c.GetCurrentStockValue();
+                s.Symbol = c.StockSymbol;
+                s.ID = string.Empty;
+
+                p.Share = s;
+                p.StockExchangeAccountID = t.AccountID;
+                p.TotalCost = t.SharePrice * t.ShareCount;
+            }
+
+            return p;
         }
 
-        public JbeanStockShare GetStockShareByTranID(string transactionID)
+        public IEnumerable<Position<string, long>> GetStockPositionsByCompanyID(string companyID)
         {
-            var e = _marketTable.GetEntity<DynamicTableEntity>("exchange:" + _exchangeID + ":stockshare", "id:" + transactionID);
+            var list = _marketTable.GetByPartitionKey<DynamicTableEntity>("position" + ":company:" + companyID + ":exchange:" + _exchangeID);
 
-            return convertToStockShare(e);
+            return convertToPosition(list);
         }
 
-        public IEnumerable<JbeanStockShare> GetStockSharesByCompanyID(string companyID)
+        public IEnumerable<Position<string, long>> GetAllStockPositions()
         {
-            var e = _marketTable.GetByPartitionKey<DynamicTableEntity>("exchange:" + _exchangeID + ":company:" + companyID + ":stockshare");
+            var list = _marketTable.GetByPartitionKey<DynamicTableEntity>("position" +  ":exchange:" + _exchangeID);
 
-            return convertToStockShare(e);
+            return convertToPosition(list);
         }
 
-        public IEnumerable<JbeanStockShare> GetAllStockShares()
+        public IEnumerable<Position<string, long>> GetStockPositionByAccountID(string accountID)
         {
-            var e = _marketTable.GetByPartitionKey<DynamicTableEntity>("exchange:" + _exchangeID + ":stockshare");
+            var list = _marketTable.GetByPartitionKey<DynamicTableEntity>("position" + ":account:" + accountID + ":exchange:" + _exchangeID);
 
-            return convertToStockShare(e);
+            return convertToPosition(list);
         }
 
-        public IEnumerable<JbeanStockShare> GetStockSharesByAccountID(string accountID)
-        {
-            var e = _marketTable.GetByPartitionKey<DynamicTableEntity>("exchange:" + _exchangeID + ":account" + accountID + ":stockshare");
-
-            return convertToStockShare(e);
-        }
-
-
-        public ServiceResult Save(JbeanStockShare share)
+        public ServiceResult Save(Position<string,long> p)
         {
             DynamicTableEntity e = new DynamicTableEntity();
 
-            e.SetProperty<string>("CompanyID", share.Company.StockExchangeCompanyID);
-            e.SetProperty<DateTime>("DatePurchased", share.DatePurchased);
-            e.SetProperty<string>("TransactionID", share.ExchangeTransactionID);
-            e.SetProperty<long>("PurchaseAmount", share.PurchaseAmount);
-            e.SetProperty<int>("Quantity", share.Quantity);
-            e.SetProperty<string>("AccountID", share.StockExchangeAccountID);
-            e.SetProperty<string>("ExchangeID", _exchangeID);
-
+            e.SetProperty<long>("Quantity", p.Quantity);
+            e.SetProperty<string>("AccountID", p.StockExchangeAccountID);
+            e.SetProperty<long>("TotalCost", p.TotalCost);
+            e.SetProperty<long>("Share_CurrentPrice", p.Share.CurrentPrice);
+            e.SetProperty<string>("Share_CompanySymbol", p.Share.Symbol);
             try
             {
+                
+                var c = GetCompanyByStockSymbol(p.Share.Symbol);
 
-                e.PartitionKey = "exchange:" + _exchangeID + ":stockshare";
-                e.RowKey = "id:" + share.ExchangeTransactionID;
+                //base
+                e.PartitionKey = "position" + ":exchange:" + _exchangeID;
+                e.RowKey = "accountID:" + p.StockExchangeAccountID + ":company:" + c.StockExchangeCompanyID;
                 _marketTable.Insert<DynamicTableEntity>(e, true);
 
-                e.PartitionKey = "exchange:" + _exchangeID + ":company:" + share.Company.StockExchangeCompanyID + ":stockshare";
-                e.RowKey = "id:" + share.ExchangeTransactionID;
+                //by company
+                e.PartitionKey = "position" + ":company:" + c.StockExchangeCompanyID + ":exchange:" + _exchangeID;
+                e.RowKey = "accountID:" + p.StockExchangeAccountID + ":company:" + c.StockExchangeCompanyID;
                 _marketTable.Insert<DynamicTableEntity>(e, true);
 
-
-                e.PartitionKey = "exchange:" + _exchangeID + ":account" + share.StockExchangeAccountID + ":stockshare";
-                e.RowKey = "id:" + share.ExchangeTransactionID;
+                //by account
+                e.PartitionKey = "position" + ":account:" + p.StockExchangeAccountID + ":exchange:" + _exchangeID;
+                e.RowKey = "accountID:" + p.StockExchangeAccountID + ":company:" + c.StockExchangeCompanyID;
                 _marketTable.Insert<DynamicTableEntity>(e, true);
             }
             catch (Exception ex)
@@ -352,40 +465,40 @@ namespace JB2.Economy.Data
             }
 
             return true;
-
         }
 
-
-        private IEnumerable<JbeanStockShare> convertToStockShare(IEnumerable<DynamicTableEntity> elist)
+        private IEnumerable<Position<string,long>> convertToPosition(IEnumerable<DynamicTableEntity> elist)
         {
-            List<JbeanStockShare> list = new List<JbeanStockShare>();
-
-            foreach (var e in elist)
+            List<Position<string, long>> r = new List<Position<string, long>>();
+            foreach(var e in elist)
             {
-                list.Add(convertToStockShare(e));
+                r.Add(convertToPosition(e));
             }
 
-            return list;
+            return r;
         }
-
-        private JbeanStockShare convertToStockShare(DynamicTableEntity e)
+        private Position<string,long> convertToPosition(DynamicTableEntity e)
         {
-            JbeanStockShare share = new JbeanStockShare();
+            var p = new Position<string, long>();
+            p.Quantity = e.GetPropertyValue<int>("Quantity", 0);
+            p.StockExchangeAccountID = e.GetPropertyValue<string>("AccountID", string.Empty);
+            p.TotalCost = e.GetPropertyValue<long>("TotalCost", 0);
 
-            string companyID = e.PropertyStringValue("CompanyID");
-            share.Company = this.GetCompanyByID(companyID);
-            share.DatePurchased = e.GetPropertyValue<DateTime>("DatePurchased", DateTime.Now);
-            share.ExchangeTransactionID = e.GetPropertyValue<string>("TransactionID", string.Empty);
-            share.PurchaseAmount = e.GetPropertyValue<long>("PurchaseAmount", 0);
-            share.Quantity = e.GetPropertyValue<int>("Quantity", 0);
-            share.StockExchangeAccountID = e.GetPropertyValue<string>("AccountID", string.Empty);
+            var s = new Share<string, long>();
+            s.CurrentPrice = e.GetPropertyValue<long>("Share_CurrentPrice", 0);
+            s.ID = string.Empty;
+            s.Symbol = e.GetPropertyValue<string>("Share_CompanySymbol", string.Empty);
 
-            return share;
+            p.Share = s;
 
-
+            return p;
         }
 
-        #endregion StockShare
+
+
+        #endregion
+
+
 
         #region TradeTransations
 
@@ -633,7 +746,7 @@ namespace JB2.Economy.Data
 
         }
 
-
+        
 
 
         #endregion StockPrice

@@ -11,8 +11,7 @@ namespace JB2.Economy
     public interface IStockMarketRepository<TCompany, TExchange, TShareholder,TKey, TStockValue>
         where TExchange : IStockExchange<TCompany, TShareholder, TKey, TStockValue>
         where TCompany : IStockBusiness<TShareholder, TKey, TStockValue>
-        where TShareholder : IShareHolder<TKey, TStockValue>
-        where TShare : IStockShare<TKey, TStockValue>
+        where TShareholder : IShareHolder<TKey, TStockValue>     
         where TKey : IComparable
         where TStockValue : IComparable
 
@@ -58,7 +57,7 @@ namespace JB2.Economy
 
         IEnumerable<Position<TKey, TStockValue>> GetStockPositionByAccountID(TKey accountID);
 
-        //ServiceResult Save(TShare share);
+        ServiceResult Save(Position<TKey, TStockValue> position);
 
         #endregion Share
 
