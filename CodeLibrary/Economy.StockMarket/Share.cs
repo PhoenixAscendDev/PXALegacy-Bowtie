@@ -12,6 +12,6 @@ namespace JB2.Economy
     {
         public TKey ID { get; set; }
         public TStockPrice CurrentPrice { get; set; }
-        public string Symbol { get; set; }
+        public string StockSymbol { get; set; }
     }
 }

@@ -117,6 +117,9 @@ namespace JB2.Economy
                         break;
                 }
 
+                //update the stock holder's position
+                updatePosition(result);
+
                 return result;
             }
             else
@@ -214,6 +217,36 @@ namespace JB2.Economy
                 }
 
             }
+        }
+
+        private void updatePosition(TradeTransactionNote<string> note)
+        {
+            var positions = _repo.GetStockPositionByAccountID(note.AccountID);
+            var company = _repo.GetCompanyByID(note.CompanyID);
+            Position<string, long> newPosition = new Position<string, long>();
+            var share = new Share<string, long>();
+            share.StockSymbol = company.StockSymbol;
+            share.CurrentPrice = company.GetCurrentStockValue();
+            newPosition.StockExchangeAccountID = note.AccountID;
+            newPosition.Share = share;
+
+            newPosition.Quantity = note.ShareCount;
+            newPosition.TotalCost = (note.ShareCount * note.SharePrice);
+            if (note.TradeType == TradeType.Sell)
+            {
+                newPosition.TotalCost = (newPosition.TotalCost * -1);
+                newPosition.Quantity = (newPosition.Quantity * -1);
+            }
+            foreach (var p in positions)
+            {
+                if(p.Share.StockSymbol == newPosition.Share.StockSymbol && (p.StockExchangeAccountID == newPosition.StockExchangeAccountID))
+                {
+                    newPosition.Quantity = p.Quantity + newPosition.Quantity;
+                    newPosition.TotalCost = p.TotalCost + newPosition.TotalCost;
+                }
+                _repo.Save(newPosition);
+            }
+
         }
 
         public override ServiceResult ValidateTrade(TradeTransactionNote<string> note)

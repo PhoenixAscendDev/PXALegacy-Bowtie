@@ -398,7 +398,7 @@ namespace JB2.Economy.Data
 
                 var c = GetCompanyByID(t.CompanyID);
                 s.CurrentPrice = c.GetCurrentStockValue();
-                s.Symbol = c.StockSymbol;
+                s.StockSymbol = c.StockSymbol;
                 s.ID = string.Empty;
 
                 p.Share = s;
@@ -438,11 +438,11 @@ namespace JB2.Economy.Data
             e.SetProperty<string>("AccountID", p.StockExchangeAccountID);
             e.SetProperty<long>("TotalCost", p.TotalCost);
             e.SetProperty<long>("Share_CurrentPrice", p.Share.CurrentPrice);
-            e.SetProperty<string>("Share_CompanySymbol", p.Share.Symbol);
+            e.SetProperty<string>("Share_CompanySymbol", p.Share.StockSymbol);
             try
             {
                 
-                var c = GetCompanyByStockSymbol(p.Share.Symbol);
+                var c = GetCompanyByStockSymbol(p.Share.StockSymbol);
 
                 //base
                 e.PartitionKey = "position" + ":exchange:" + _exchangeID;
@@ -487,7 +487,7 @@ namespace JB2.Economy.Data
             var s = new Share<string, long>();
             s.CurrentPrice = e.GetPropertyValue<long>("Share_CurrentPrice", 0);
             s.ID = string.Empty;
-            s.Symbol = e.GetPropertyValue<string>("Share_CompanySymbol", string.Empty);
+            s.StockSymbol = e.GetPropertyValue<string>("Share_CompanySymbol", string.Empty);
 
             p.Share = s;
 

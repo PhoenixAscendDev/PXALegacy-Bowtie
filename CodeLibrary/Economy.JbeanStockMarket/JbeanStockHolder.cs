@@ -97,7 +97,7 @@ namespace JB2.Economy
 
                 foreach (var s in shares)
                 {
-                    var company = repo.GetCompanyByStockSymbol(s.Share.Symbol);
+                    var company = repo.GetCompanyByStockSymbol(s.Share.StockSymbol);
                     if (company.StockSymbol == stockSymbol)
                         return (uint)s.Quantity;
                 }
@@ -165,7 +165,7 @@ namespace JB2.Economy
 
                 foreach (var s in shares)
                 {
-                    var company = repo.GetCompanyByStockSymbol(s.Share.Symbol);
+                    var company = repo.GetCompanyByStockSymbol(s.Share.StockSymbol);
                     totalValue += totalValue + (company.GetCurrentStockValue() * s.Quantity);
                 }
 
