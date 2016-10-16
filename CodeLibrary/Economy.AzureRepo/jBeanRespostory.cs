@@ -24,7 +24,7 @@ namespace JB2.Economy.Data
         {
             _storage = storageAccount;
             _jbeanTable = _storage.GetTable("economy");
-            _tranlogTable = _storage.GetTable("economyLog");
+            _tranlogTable = _storage.GetTable("economyTran");
             _tokenTable = _storage.GetTable("economyTokens");
         }
         #endregion Constructor

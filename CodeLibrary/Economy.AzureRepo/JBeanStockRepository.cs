@@ -59,6 +59,8 @@ namespace JB2.Economy.Data
 
         private JbeanStockExchange convertToObject(DynamicTableEntity e)
         {
+            if (e == null)
+                throw new Exception("Table Entity is null");
             string id = e.GetPropertyValue<string>("ID", string.Empty);
 
             JbeanStockExchange exchange = new JbeanStockExchange(id);

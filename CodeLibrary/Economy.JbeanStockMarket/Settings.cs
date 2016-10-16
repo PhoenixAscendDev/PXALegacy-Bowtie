@@ -20,6 +20,7 @@ namespace JB2.Settings
         private static bool _isConfigured = false;
         private static SettingCollection<string> _settings;
         private static IJbeanStockMarketRepository _repo;
+        private static JbeanStockExchange _exchange;
 
         //private static SettingCollection<string> _settings;
         #endregion Fields
@@ -38,6 +39,13 @@ namespace JB2.Settings
             _repo = repo;
             _settings = new SettingCollection<string>(settings);
             _isConfigured = true;
+            _exchange = new JbeanStockExchange((string)GetSetting(JbeanStockMarketSettingName.StockExchangeID).Value);
+
+            if(!validExchange())
+            {
+                _isConfigured = false;
+                throw new Exception("Stock Exchange is not a valid jBean Stock Exchange");               
+            }
         }
 
         public static ISetting GetSetting(string settingName)
@@ -50,8 +58,8 @@ namespace JB2.Settings
         {
             get
             {
-                var setting = GetSetting(JbeanStockMarketSettingName.StockExchange);
-                return (JbeanStockExchange)setting.Value;
+
+                return _exchange;
             }
         }
 
@@ -98,6 +106,20 @@ namespace JB2.Settings
             }
         }
 
+        private static bool validExchange()
+        {
+            try
+            {
+                var exchangeID = (string)GetSetting(JbeanStockMarketSettingName.StockExchangeID).Value;
+                var exchange = _repo.GetExchange();
+
+                return (exchange.GetID() == exchangeID);
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
     }
 }

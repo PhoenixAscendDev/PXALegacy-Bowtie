@@ -33,9 +33,10 @@ namespace Economy.Test
 
             JB2.Common.BaseSetting s1 = new JB2.Common.BaseSetting()
             {
-                ID = JB2.Economy.JbeanStockMarketSettingName.StockExchange,
-                Name = JB2.Economy.JbeanStockMarketSettingName.StockExchange,
-                Value = new JbeanStockExchange(JB2.Configuration.GetjBeanStockMarketID(), jBeanStockRepo)
+                ID = JB2.Economy.JbeanStockMarketSettingName.StockExchangeID,
+                Name = JB2.Economy.JbeanStockMarketSettingName.StockExchangeID,
+                Value = JB2.Configuration.GetjBeanStockMarketID()
+                //Value = new JbeanStockExchange(JB2.Configuration.GetjBeanStockMarketID(), jBeanStockRepo)
             };
             JB2.Common.BaseSetting s2 = new JB2.Common.BaseSetting()
             {
@@ -123,7 +124,7 @@ namespace Economy.Test
 
             List<jBeanAccount> accounts = new List<jBeanAccount>();
 
-            for(var i=0;i <10; i++)
+            for(var i=0;i <100; i++)
             {
                 var account = (jBeanAccount)bank.OpenNewBankAccount(new JB2.Common.IDNamePair("BluffStreetChar" + i.ToString("D3"), string.Empty));
                

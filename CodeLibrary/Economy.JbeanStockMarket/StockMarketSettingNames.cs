@@ -8,7 +8,7 @@ namespace JB2.Economy
 {
     public static class JbeanStockMarketSettingName
     {
-        public const string StockExchange = "STOCKEXCHANGE";
+        public const string StockExchangeID = "STOCKEXCHANGE";
         public const string Currency = "CURRENCY";
         public const string TreasuryRequestor = "TREASURYREQUESTOR";
         public const string TreasuryValidationKey = "TREASURYVALIDATIONKEY";
