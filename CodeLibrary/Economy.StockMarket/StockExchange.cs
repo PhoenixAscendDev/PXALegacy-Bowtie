@@ -139,7 +139,7 @@ namespace JB2.Economy
 
         public abstract ServiceResult ValidateTrade(TradeTransactionNote<TKey> note);
 
-        public abstract TShareHolder CreateNewShareHolder(string bankAccountID);
+        public abstract TShareHolder OpenNewAccount(string bankAccountID);
 
         public abstract StockPrice<TKey, TStockValue> UpdateStockPrice(TKey companyID, TStockValue value);
 

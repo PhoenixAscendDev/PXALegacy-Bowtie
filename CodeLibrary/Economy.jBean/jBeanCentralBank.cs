@@ -25,6 +25,18 @@ namespace JB2.Economy
 
         #endregion Constructors
 
+
+        #region Events
+        public event Action<IBank<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus, ITreasuryRequest, IRequestor, string>, IBankAccount<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus>> AccountAccessed;
+        public event Action<IBank<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus, ITreasuryRequest, IRequestor, string>, IBankAccount<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus>> AccountOpened;
+        public event Action<IBank<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus, ITreasuryRequest, IRequestor, string>, IBankAccount<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus>, JB2.Economy.Enum.jBeanAccountStatus, JB2.Economy.Enum.jBeanAccountStatus> AccountStatusChange;
+        public event Action<string> AccountNumberGenerated;
+        public event Action<IBank<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus, ITreasuryRequest, IRequestor, string>, IBankAccount<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus>, IBankTransactionReceipt,long> AccountDeposited;
+        public event Action<IBank<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus, ITreasuryRequest, IRequestor, string>, IBankAccount<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus>, IBankTransactionReceipt,long> AccountWithdrawn;
+        #endregion Events
+
+
+
         public string GenerateNewAccountNumber()
         {
             return JB2.Common.NewID.Guid();

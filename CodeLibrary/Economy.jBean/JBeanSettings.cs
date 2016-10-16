@@ -68,6 +68,8 @@ namespace JB2.Settings
             
         }
 
+        
+
         private static void checkIfConfigured()
         {
             if (!_isConfigured)

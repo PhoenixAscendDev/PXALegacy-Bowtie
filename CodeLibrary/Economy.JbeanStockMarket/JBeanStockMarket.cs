@@ -359,7 +359,7 @@ namespace JB2.Economy
 
         }
 
-        public override IJbeanStockHolder CreateNewShareHolder(string bankAccountID)
+        public override IJbeanStockHolder OpenNewAccount(string bankAccountID)
         {
             JbeanStockHolder holder = JbeanStockHolder.New;
             holder.BankAccountID = bankAccountID;

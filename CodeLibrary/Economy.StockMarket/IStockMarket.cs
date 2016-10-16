@@ -48,7 +48,7 @@ namespace JB2.Economy
 
         DateTime GetLastTradeTime();
 
-        TShareHolder CreateNewShareHolder(string bankAccountID);
-
+        TShareHolder OpenNewAccount(string bankAccountID);
+        
     }
 }

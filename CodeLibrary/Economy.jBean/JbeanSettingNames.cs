@@ -28,5 +28,7 @@ namespace JB2.Economy
         public const string NavyValue = "VALUE_NAVY";
         public const string PintoValue = "VALUE_PINTO";
 
+        public const string LogRepo = "LOG_REPO";
+
     }
 }

@@ -500,6 +500,7 @@ namespace JB2.Economy.Data
 
             if (ce != null)
             {
+                var logRepo = new JB2.Common.Log.AzureRepo(JB2.Infrastructure.Storage.EconomyAccount, "factoryLog", "jbean");
                 settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.CurrencyID, Value = ce["ID"].StringValue });
                 settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.KidneyFrontImage, Value = ce["Demo1_FrontImage"].StringValue });
                 settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.KidneyBackImage, Value = ce["Demo1_BackImage"].StringValue });
@@ -510,6 +511,7 @@ namespace JB2.Economy.Data
                 settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.PintoFrontImage, Value = ce["Demo3_FrontImage"].StringValue });
                 settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.PintoBackImage, Value = ce["Demo3_BackImage"].StringValue });
                 settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.PintoValue, Value = ce["Demo3_Value"].Int32Value });
+                settings.Add(new BaseSetting() { ID = JB2.Economy.JbeanSettingName.LogRepo, Value = logRepo });
             }
 
             var te = _jbeanTable.GetEntity<DynamicTableEntity>("treasury", "id:jBean");

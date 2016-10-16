@@ -10,7 +10,13 @@ namespace JB2.Economy
 {
     public interface ITreasury : IIDNamePair<string,string>
     {
-              
+
+        #region Events
+        event Action<ITreasury, ITreasuryNote, ITreasuryRequest> NoteIssued;
+        event Action<ITreasury, ITreasuryNote> NoteCancelled;
+        #endregion Events
+
+
         ITreasuryNote IssueNote(ITreasuryRequest request);
 
         long GetAmountIssued();

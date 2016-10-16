@@ -11,6 +11,17 @@ namespace JB2.Economy
         where TRequestor : IRequestor<TID>
         where TRequest : ITreasuryRequest<TID,TRequestor>
     {
+
+        #region Events
+        event Action<IBank<TAccountHolder, TAccountStatus, TRequest, TRequestor, TID>, IBankAccount<TAccountHolder, TAccountStatus>> AccountAccessed;
+        event Action<IBank<TAccountHolder, TAccountStatus, TRequest, TRequestor, TID>, IBankAccount<TAccountHolder, TAccountStatus>> AccountOpened;
+        event Action<IBank<TAccountHolder, TAccountStatus, TRequest, TRequestor, TID>, IBankAccount<TAccountHolder, TAccountStatus>, TAccountStatus, TAccountStatus> AccountStatusChange;
+        event Action<string> AccountNumberGenerated;
+        event Action<IBank<TAccountHolder, TAccountStatus, TRequest, TRequestor, TID>, IBankAccount<TAccountHolder, TAccountStatus>, IBankTransactionReceipt,long> AccountDeposited;
+        event Action<IBank<TAccountHolder, TAccountStatus, TRequest, TRequestor, TID>, IBankAccount<TAccountHolder, TAccountStatus>, IBankTransactionReceipt,long> AccountWithdrawn;
+        #endregion Events
+
+
         IBankAccount<TAccountHolder,TAccountStatus> GetBankAccount(TAccountHolder accountHolder);
         IBankAccount<TAccountHolder,TAccountStatus> OpenNewBankAccount(TAccountHolder accountHolder);
 

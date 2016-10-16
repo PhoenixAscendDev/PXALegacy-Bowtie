@@ -10,11 +10,13 @@ namespace Economy.Test
 {
     class Program
     {
-        static void InitStockMarket()
+        static void InitjBean()
         {
 
-            //configure jBean
-            var jBeanRepo = new JB2.Economy.Data.jBeanRespostory(JB2.Infrastructure.Storage.BowtieAccount);
+            var logRepo = new JB2.Common.Log.AzureRepo(JB2.Infrastructure.Storage.EconomyAccount.GetTable("trst"));
+            
+                //configure jBean
+            var jBeanRepo = new JB2.Economy.Data.jBeanRespostory(JB2.Infrastructure.Storage.EconomyAccount);
             JB2.Common.BaseSetting s = new JB2.Common.BaseSetting()
             {
                 ID = JB2.Economy.JbeanSettingName.CurrencyID,
@@ -48,10 +50,6 @@ namespace Economy.Test
             };
 
             JB2.Settings.JbeanStockMarket.Configure(new JB2.Common.BaseSetting[3] { s1, s2, s3 }, jBeanStockRepo);
-
-
-
-
     }
 
         static void SetupCompanies()
@@ -108,23 +106,44 @@ namespace Economy.Test
             JB2.Settings.JbeanStockMarket.Repository.Save(c4);
         }
 
+        static void SetupAccounts()
+        {
+            var bank = JB2.Settings.Jbean.Factory.CentralBank;
+
+            List<jBeanAccount> accounts = new List<jBeanAccount>();
+
+            for(var i=0;i <10; i++)
+            {
+                var account = (jBeanAccount)bank.OpenNewBankAccount(new JB2.Common.IDNamePair("BluffStreetChar" + i.ToString("D3"), string.Empty));
+               
+                accounts.Add(account);
+                Console.WriteLine(i);
+            }
+        }
+
 
         static void Main(string[] args)
         {
 
-            InitStockMarket();
+            InitjBean();
 
             var market = JB2.Settings.JbeanStockMarket.StockExchange;
 
 
             JB2.Settings.JbeanStockMarket.Repository.Save(market);
 
-           SetupCompanies();
+            //SetupCompanies();
 
-            var company = market.GetCompany("SOLE02");
+            // var company = market.GetCompany("SOLE02");
+
+            SetupAccounts();
+
+
+
+
 
             Console.WriteLine(JB2.Settings.JbeanStockMarket.StockExchange.GetID());
-            Console.WriteLine(company.GetCurrentStockValue().ToString());
+            //Console.WriteLine(company.GetCurrentStockValue().ToString());
 
             //int value = 58;
             //Console.WriteLine(JB2.Info.Project.ID);

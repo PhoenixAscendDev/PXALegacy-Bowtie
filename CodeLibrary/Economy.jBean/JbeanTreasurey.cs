@@ -28,6 +28,11 @@ namespace JB2.Economy
 
         #endregion Constructor
 
+        #region Events
+        public event Action<ITreasury, ITreasuryNote, ITreasuryRequest> NoteIssued;
+        public event Action<ITreasury, ITreasuryNote> NoteCancelled;
+        #endregion Events
+
         public void CancelNote(ITreasuryNote treasuryNote)
         {
             var code = _repo.GetTreasuryNoteStatus(treasuryNote);
