@@ -15,7 +15,7 @@ namespace JB2.Economy.Data
         #region Fields
         private JB2.Common.Data.StorageAccount _storage;
         private JB2.Common.Data.AzureTableRepository _jbeanTable;
-        private JB2.Common.Data.AzureTableRepository _tranlogTable;
+        private JB2.Common.Data.AzureTableRepository _tranTable;
         private JB2.Common.Data.AzureTableRepository _tokenTable;
         #endregion Fields
 
@@ -24,7 +24,7 @@ namespace JB2.Economy.Data
         {
             _storage = storageAccount;
             _jbeanTable = _storage.GetTable("economy");
-            _tranlogTable = _storage.GetTable("economyTran");
+            _tranTable = _storage.GetTable("economyTran");
             _tokenTable = _storage.GetTable("economyTokens");
         }
         #endregion Constructor
@@ -313,13 +313,13 @@ namespace JB2.Economy.Data
 
         public ITreasuryNote GetTreasuryNoteById(string id)
         {
-            return _jbeanTable.GetEntity<TreasuryNoteEntity>("treasuryNote:jbean", "id:" + id);
+            return _tranTable.GetEntity<TreasuryNoteEntity>("treasuryNote:jbean", "id:" + id);
                       
         }
 
         public IEnumerable<ITreasuryNote> GetTreasuryNotes()
         {
-            var entity = _jbeanTable.GetByPartitionKey<TreasuryNoteEntity>("treasuryNote:jbean",1000);
+            var entity = _tranTable.GetByPartitionKey<TreasuryNoteEntity>("treasuryNote:jbean",1000);
             return entity;
         }
 
@@ -333,12 +333,12 @@ namespace JB2.Economy.Data
                     TableQuery.GenerateFilterCondition("Status", QueryComparisons.Equal, status.ToString())
                 )
             );
-            return _jbeanTable.ExecuteQuery<TreasuryNoteEntity>(query);
+            return _tranTable.ExecuteQuery<TreasuryNoteEntity>(query);
         }
 
         public jBeanTreasureNoteStatus GetTreasuryNoteStatus(ITreasuryNote note)
         {
-            var e = _jbeanTable.GetEntity<TreasuryNoteEntity>("treasuryNote:jbean", "id:" + note.ID);
+            var e = _tranTable.GetEntity<TreasuryNoteEntity>("treasuryNote:jbean", "id:" + note.ID);
 
             if (e != null)
             {
@@ -410,7 +410,7 @@ namespace JB2.Economy.Data
         {
             e.PartitionKey = "treasuryNote:jbean";
             e.RowKey = "id:" + e.ID;
-            _jbeanTable.Insert<TreasuryNoteEntity>(e, true);
+            _tranTable.Insert<TreasuryNoteEntity>(e, true);
 
             return e;
         }
@@ -419,7 +419,7 @@ namespace JB2.Economy.Data
         {
             e.PartitionKey = "treasuryRequest:jbean";
             e.RowKey = "id:" + e.ID;
-            _jbeanTable.Insert<TreasuryRequestEntity>(e, true);
+            _tranTable.Insert<TreasuryRequestEntity>(e, true);
 
             return e;
         }
