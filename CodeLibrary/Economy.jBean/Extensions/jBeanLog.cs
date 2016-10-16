@@ -15,7 +15,9 @@ namespace JB2.Economy
         {
             var factory = JB2.Settings.Jbean.Factory;
             ILogger logger = (ILogger)factory.Logger;
-            logger.LogError(exception);            
+            //logger.Log(new JB2.Common.Log.LogEntry("testID", Common.Enum.LogServerityType.Error, exception.Message, exception, System.DateTime.Now));
+            logger.Log(Common.Enum.LogServerityType.Error, exception);
+            //logger.LogError(exception);            
         }
     }
 }

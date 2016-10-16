@@ -115,11 +115,14 @@ namespace JB2.Economy
                 {
                     string accountNumber = this.GenerateNewAccountNumber();
                     var newAccount = new jBeanAccount(accountNumber);
+                    newAccount.AccountHolder = accountHolder;
+                    newAccount.Status = jBeanAccountStatus.Open;
+                 
                     _repo.SaveBankAccount(newAccount, accountHolder.GetID());
 
                     account = _repo.GetBankAccount(accountNumber);
 
-                    if (account.AccountHolder != accountHolder)
+                    if (account.AccountHolder.GetID() != accountHolder.GetID())
                         throw new Exception("Account Not Saved Account");
                     else
                     {

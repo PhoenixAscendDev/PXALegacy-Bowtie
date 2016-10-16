@@ -31,7 +31,7 @@ namespace JB2.Economy.Data
                 storageAccount.GetTable("stockmarketPrice")
             )
         {
-
+           _exchangeID = JB2.Configuration.GetjBeanStockMarketID();
         }
 
         public JBeanStockRepository(JB2.Common.Data.AzureTableRepository marketTable,
@@ -46,8 +46,6 @@ namespace JB2.Economy.Data
             _exchangeID = JB2.Configuration.GetjBeanStockMarketID();
         }
         #endregion Constructor
-
-
 
         #region Exchange
         public JbeanStockExchange GetExchange()
@@ -97,7 +95,6 @@ namespace JB2.Economy.Data
         }
 
         #endregion Exchange
-
 
         #region StockCompany
 
@@ -223,14 +220,24 @@ namespace JB2.Economy.Data
 
         public IJbeanStockHolder GetShareholderByID(string key)
         {
-            var e = _accountTable.GetEntity<DynamicTableEntity>("exchange:" + _exchangeID + ":account", "accountID:" + key);
+            try
+            {
+                var e = _accountTable.GetEntity<DynamicTableEntity>("account:exchange:" + _exchangeID,"id:" + key);
+                return convertToStockHolder(e);
+            }
+            catch(Exception ex)
+            {
+                ex.jBeanLog();
+                return null;
+            }
 
-            return convertToStockHolder(e);
+                
+            
         }
 
         public IEnumerable<IJbeanStockHolder> GetAllShareholders()
         {
-            var e = _accountTable.GetByPartitionKey<DynamicTableEntity>("exchange:" + _exchangeID + ":account");
+            var e = _accountTable.GetByPartitionKey<DynamicTableEntity>("account:exchange:" + _exchangeID);
 
             return convertToStockHolder(e);
         }
@@ -238,11 +245,14 @@ namespace JB2.Economy.Data
         public ServiceResult Save(IJbeanStockHolder shareHolder)
         {
             DynamicTableEntity e = new DynamicTableEntity();
-            e.SetProperty<string>("ExchangeAccountID", string.Empty);
-            e.SetProperty<string>("BankAccountID", string.Empty);
+            e.SetProperty<string>("ExchangeAccountID", shareHolder.StockExchangeAccountID);
+            e.SetProperty<string>("BankAccountID", shareHolder.BankAccountID);
+            e.SetProperty<string>("ExchangeID", _exchangeID);
 
             try
             {
+                e.PartitionKey = "account:exchange:" + _exchangeID;
+                e.RowKey = "id:" + shareHolder.StockExchangeAccountID;
                 _accountTable.Insert<DynamicTableEntity>(e, true);
             }
             catch (Exception ex)
@@ -267,14 +277,13 @@ namespace JB2.Economy.Data
 
         private IJbeanStockHolder convertToStockHolder(DynamicTableEntity e)
         {
+            if (e == null)
+                throw new Exception("Table Entity is null");
             string accountID = e.PropertyStringValue("ExchangeAccountID");
 
             var holder = new JbeanStockHolder(accountID);
             holder.BankAccountID = e.PropertyStringValue("BankAccountID");
             return holder;
-
-
-
         }
 
         #endregion StockHolder
@@ -497,7 +506,6 @@ namespace JB2.Economy.Data
 
 
         #endregion
-
 
 
         #region TradeTransations

@@ -161,7 +161,7 @@ namespace JB2.Economy
             factory.Treasury = treasury;
 
 
-            var logger = new JB2.Infrastructure.ProjectLogger((JB2.Common.Log.ILogRepo)sc[JB2.Economy.JbeanSettingName.LogRepo]);
+            var logger = new JB2.Infrastructure.ProjectLogger((JB2.Common.Log.ILogRepo)sc[JB2.Economy.JbeanSettingName.LogRepo].Value);
             factory.Logger = logger;
 
            

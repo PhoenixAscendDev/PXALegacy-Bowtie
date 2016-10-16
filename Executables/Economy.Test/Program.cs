@@ -13,7 +13,6 @@ namespace Economy.Test
         static void InitjBean()
         {
 
-            var logRepo = new JB2.Common.Log.AzureRepo(JB2.Infrastructure.Storage.EconomyAccount.GetTable("trst"));
             
                 //configure jBean
             var jBeanRepo = new JB2.Economy.Data.jBeanRespostory(JB2.Infrastructure.Storage.EconomyAccount);
@@ -58,7 +57,9 @@ namespace Economy.Test
         {
             var market = JB2.Settings.JbeanStockMarket.StockExchange;
 
-            market.OpenNewAccount(account.AccountNumber);
+            var holder = market.OpenNewAccount(account.AccountNumber);
+
+            Console.WriteLine("New Stock Holder:" + holder.StockExchangeAccountID);
         }
 
         static void SetupCompanies()

@@ -14,12 +14,7 @@ namespace JB2.Economy
 
         #region Constructor
 
-        protected JbeanStockHolder()
-        {
-
-        }
-
-        public JbeanStockHolder(string accountID)
+        public JbeanStockHolder(string accountID) : base()
         {
             this.SetProperty<string>("ACCOUNTID", accountID);
         }
@@ -182,9 +177,10 @@ namespace JB2.Economy
         {
             get
             {
-                var result = new JbeanStockHolder();
-                result.SetProperty<string>("ACCOUNTID", JB2.Helper.JbeanStockMarket.GenerateID<IJbeanStockHolder>());
+                string accountID = JB2.Helper.JbeanStockMarket.GenerateID<IJbeanStockHolder>();
 
+                var result = new JbeanStockHolder(accountID);
+               
                 return result;
 
             }
