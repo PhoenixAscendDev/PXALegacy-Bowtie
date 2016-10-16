@@ -26,6 +26,8 @@ namespace Economy.Test
 
             JB2.Settings.Jbean.Configure(new JB2.Common.BaseSetting[1] { s }, jBeanRepo);
 
+            JB2.Settings.Jbean.Factory.CentralBank.AccountOpened += CentralBank_AccountOpened;
+
             //configure jBeanStockMarket
 
             var jBeanStockRepo = new JB2.Economy.Data.JBeanStockRepository(JB2.Infrastructure.Storage.EconomyAccount);
@@ -51,6 +53,13 @@ namespace Economy.Test
 
             JB2.Settings.JbeanStockMarket.Configure(new JB2.Common.BaseSetting[3] { s1, s2, s3 }, jBeanStockRepo);
     }
+
+        private static void CentralBank_AccountOpened(IBank<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus, ITreasuryRequest, IRequestor, string> bank, IBankAccount<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus> account)
+        {
+            var market = JB2.Settings.JbeanStockMarket.StockExchange;
+
+            market.OpenNewAccount(account.AccountNumber);
+        }
 
         static void SetupCompanies()
         {
@@ -105,6 +114,7 @@ namespace Economy.Test
 
             JB2.Settings.JbeanStockMarket.Repository.Save(c4);
         }
+
 
         static void SetupAccounts()
         {

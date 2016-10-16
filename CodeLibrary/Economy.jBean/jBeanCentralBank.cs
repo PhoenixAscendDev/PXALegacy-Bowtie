@@ -39,38 +39,105 @@ namespace JB2.Economy
 
         public string GenerateNewAccountNumber()
         {
-            return JB2.Common.NewID.Guid();
+            var number = JB2.Common.NewID.Guid();
+
+            if (AccountNumberGenerated != null)
+                AccountNumberGenerated(number);
+            return number;
         }
         public IBankAccount<IIDProp<string>,jBeanAccountStatus> GetBankAccount(IIDProp<string> accountHolder)
         {
             var playerID = accountHolder.GetID();
-            return _repo.GetBankAccountByPlayerID(accountHolder.GetID());
+            IBankAccount<IIDProp<string>, jBeanAccountStatus> account = null;
+            try
+            {
+                account = _repo.GetBankAccountByPlayerID(accountHolder.GetID());
+
+                if(account == null)
+                    throw new Exceptions.AccountNoteFoundException("jBean Bank Account not found \r\n ID: " + accountHolder.GetID());
+                else
+                {
+                    if (AccountAccessed != null)
+                        AccountAccessed(this, account);
+                }
+
+            }
+            catch(Exception ex)
+            {
+                ex.jBeanLog();
+                
+            }
+            return account;
         }
 
         public IBankAccount<IIDProp<string>, jBeanAccountStatus> ChangeAccountStatus(IBankAccount<IIDProp<string>, jBeanAccountStatus> account,jBeanAccountStatus newStatus)
         {
-            var e = _repo.GetBankAccount(account.AccountNumber);
-            e.Status = newStatus;
+            jBeanAccount e = null;
+            try
+            {
+                e = _repo.GetBankAccount(account.AccountNumber);
+                if (e == null)
+                    throw new Exceptions.AccountNoteFoundException("jBean Bank Account not found \r\n Account: " + account.AccountNumber);
+                var prevStatus = e.Status;
 
-            _repo.SaveBankAccount(e, e.AccountHolder.GetID());
+                if(prevStatus != newStatus)
+                {
+                    e.Status = newStatus;
+                    _repo.SaveBankAccount(e, e.AccountHolder.GetID());
+
+                    //test to make sure it saved
+                    var e2 = _repo.GetBankAccount(account.AccountNumber);
+                    if ( (e2.Status != e.Status) && (e2.Status != newStatus))
+                        throw new Exception("Failed to Save Account on Status Change");
+
+                    if (AccountStatusChange != null)
+                        AccountStatusChange(this, e, prevStatus, newStatus);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.jBeanLog();
+            }
 
             return e;
         }
 
         public IBankAccount<IIDProp<string>, jBeanAccountStatus> OpenNewBankAccount(IIDProp<string> accountHolder)
         {
-            //check to make sure player doesn't already have account
-            if( string.IsNullOrEmpty(this.GetBankAccount(accountHolder).AccountNumber))
-            {
-                string accountNumber = this.GenerateNewAccountNumber();
-                var newAccount = new jBeanAccount(accountNumber);
-                _repo.SaveBankAccount(newAccount, accountHolder.GetID());
+            IBankAccount<IIDProp<string>, jBeanAccountStatus> account = null;
 
-                return _repo.GetBankAccount(accountNumber);
+            try
+            {
+                //check to make sure player doesn't already have account
+                var acccount = this.GetBankAccount(accountHolder);
+                if (account == null || string.IsNullOrEmpty(account.AccountNumber))
+                {
+                    string accountNumber = this.GenerateNewAccountNumber();
+                    var newAccount = new jBeanAccount(accountNumber);
+                    _repo.SaveBankAccount(newAccount, accountHolder.GetID());
+
+                    account = _repo.GetBankAccount(accountNumber);
+
+                    if (account.AccountHolder != accountHolder)
+                        throw new Exception("Account Not Saved Account");
+                    else
+                    {
+                        if (AccountOpened != null)
+                            AccountOpened(this, account);
+                    }
+                }
+
+                
+            }
+            catch (Exception ex)
+            {
+                ex.jBeanLog();
+                account = null;
             }
 
-            return _repo.GetBankAccountByPlayerID(accountHolder.GetID());
-           
+            return account;
+ 
         }
 
         public float CheckBalance(IBankAccount<IIDProp<string>, jBeanAccountStatus> account)
@@ -80,48 +147,56 @@ namespace JB2.Economy
 
         public IBankTransactionReceipt Deposit(IBankAccount<IIDProp<string>, jBeanAccountStatus> account, ITreasuryNote treasuryNote)
         {
-
             IBankTransactionReceipt receipt = null;
-            string transNumber = JB2.Common.NewID.Guid();
-            //make sure the note is valid and hasn't already been deposite
-            bool isValid  = _treasury.IsValidNote(treasuryNote);
 
-            if(!isValid)
+            try
             {
-                receipt = new jBeanReceipt(transNumber, string.Format("Treasury Note {0} is not valid", treasuryNote.ID), false);
+                string transNumber = JB2.Common.NewID.Guid();
+                //make sure the note is valid and hasn't already been deposite
+                bool isValid = _treasury.IsValidNote(treasuryNote);
+
+                // if note is not valid return a cancelled Receipt
+                if (!isValid)
+                {
+                    receipt = new jBeanReceipt(transNumber, string.Format("Treasury Note {0} is not valid", treasuryNote.ID), false);
+                    _repo.SaveBankReceipt(receipt);
+                    return receipt;
+                }
+                Enum.jBeanTreasureNoteStatus noteStatus = _repo.GetTreasuryNoteStatus(treasuryNote);
+                switch (noteStatus)
+                {
+                    case Enum.jBeanTreasureNoteStatus.Issued:
+                        //do the deposit
+                        JB2.Common.ServiceResult bankTransaction = _repo.AddFundsToAccount(treasuryNote, account.AccountNumber);
+
+                        //print receipt
+                        string message = (bankTransaction == true) ? string.Format("jBeans have successfully been deposited for the amount of {0}", treasuryNote.Amount.ToString())
+                                                                   : string.Format("jBeans were not desposited for the amount of {0}", treasuryNote.Amount.ToString());
+                        receipt = new jBeanReceipt(transNumber, message, bankTransaction);
+
+                        //mark note as deposited
+                        _repo.SaveTreasuryNote(treasuryNote, Enum.jBeanTreasureNoteStatus.Deposited);
+                        break;
+                    case Enum.jBeanTreasureNoteStatus.Deposited:
+                        receipt = new jBeanReceipt(transNumber, string.Format("Treasury Note ({0}) has already been deposited", treasuryNote.ID), false);
+                        break;
+                    case Enum.jBeanTreasureNoteStatus.Cancelled:
+                        receipt = new jBeanReceipt(transNumber, string.Format("Treasury Note ({0}) has previously been cancelled", treasuryNote.ID), false);
+                        break;
+                    case Enum.jBeanTreasureNoteStatus.NotApproved:
+                        receipt = new jBeanReceipt(transNumber, string.Format("Treasury Note ({0}) is not approved Note", treasuryNote.ID), false);
+                        break;
+                    case Enum.jBeanTreasureNoteStatus.Unknown:
+                        receipt = new jBeanReceipt(transNumber, string.Format("Treasury Note ({0}) is not approved Note", treasuryNote.ID), false);
+                        break;
+                }
                 _repo.SaveBankReceipt(receipt);
-                return receipt;
             }
-
-            Enum.jBeanTreasureNoteStatus noteStatus = _repo.GetTreasuryNoteStatus(treasuryNote);
-            switch(noteStatus)
+            catch (Exception ex)
             {
-                case Enum.jBeanTreasureNoteStatus.Issued:
-                    //do the deposit
-                    JB2.Common.ServiceResult bankTransaction = _repo.AddFundsToAccount(treasuryNote, account.AccountNumber);
-
-                    //print receipt
-                    string message = (bankTransaction == true) ? string.Format("jBeans have successfully been deposited for the amount of {0}", treasuryNote.Amount.ToString())
-                                                               : string.Format("jBeans were not desposited for the amount of {0}", treasuryNote.Amount.ToString());
-                    receipt = new jBeanReceipt(transNumber, message, bankTransaction);
-
-                    //mark note as deposited
-                    _repo.SaveTreasuryNote(treasuryNote, Enum.jBeanTreasureNoteStatus.Deposited);
-                    break;
-                case Enum.jBeanTreasureNoteStatus.Deposited:
-                    receipt = new jBeanReceipt(transNumber, string.Format("Treasury Note ({0}) has already been deposited",treasuryNote.ID),false);
-                    break;
-                case Enum.jBeanTreasureNoteStatus.Cancelled:
-                    receipt = new jBeanReceipt(transNumber, string.Format("Treasury Note ({0}) has previously been cancelled",treasuryNote.ID), false);
-                    break;
-                case Enum.jBeanTreasureNoteStatus.NotApproved:
-                    receipt = new jBeanReceipt(transNumber, string.Format("Treasury Note ({0}) is not approved Note",treasuryNote.ID), false);
-                    break;
-                case Enum.jBeanTreasureNoteStatus.Unknown:
-                    receipt = new jBeanReceipt(transNumber, string.Format("Treasury Note ({0}) is not approved Note",treasuryNote.ID), false);
-                    break;
+                ex.jBeanLog();
+                receipt = null;
             }
-            _repo.SaveBankReceipt(receipt);         
             return receipt;
         }
 
@@ -138,25 +213,35 @@ namespace JB2.Economy
         public IBankTransactionReceipt Withdrawn(IBankAccount<IIDProp<string>, jBeanAccountStatus> account, ITreasuryRequest request)
         {
             IBankTransactionReceipt receipt = null;
-            string transNumber = JB2.Common.NewID.Guid();
-            var isValid = _treasury.IsValidRequest(request);
-            if(!isValid)
-                receipt = new jBeanReceipt(transNumber, "Withdraw request is not valid", false);
-            else
+
+            try
             {
-                var balance = _repo.GetBalance(account.AccountNumber);
-                if (balance >= request.Amount)
-                {
-                    _repo.RemoveFundsFromAccount(request, account.AccountNumber);
-                    receipt = new jBeanReceipt(transNumber, "Withdraw from account has been successful", true);
-                }
+                string transNumber = JB2.Common.NewID.Guid();
+                var isValid = _treasury.IsValidRequest(request);
+                if (!isValid)
+                    receipt = new jBeanReceipt(transNumber, "Withdraw request is not valid", false);
                 else
                 {
-                    receipt = new jBeanReceipt(transNumber, "Withdraw from account cancelled: Insufficient Funds", false);
+                    var balance = _repo.GetBalance(account.AccountNumber);
+                    if (balance >= request.Amount)
+                    {
+                        _repo.RemoveFundsFromAccount(request, account.AccountNumber);
+                        receipt = new jBeanReceipt(transNumber, "Withdraw from account has been successful", true);
+                    }
+                    else
+                    {
+                        receipt = new jBeanReceipt(transNumber, "Withdraw from account cancelled: Insufficient Funds", false);
+                    }
                 }
-            }
 
-            _repo.SaveBankReceipt(receipt);
+                _repo.SaveBankReceipt(receipt);
+
+            }
+            catch (Exception ex)
+            {
+                ex.jBeanLog();
+                receipt = null;
+            }
 
             return receipt;
             

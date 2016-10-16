@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="CurrencyAmountPair.cs" />
     <Compile Include="CurrencyType.cs" />
+    <Compile Include="Exceptions\AccountNotFoundException.cs" />
     <Compile Include="Exceptions\InsufficientFundsException.cs" />
     <Compile Include="IApplicationWallet.cs" />
     <Compile Include="IWallet.cs" />
