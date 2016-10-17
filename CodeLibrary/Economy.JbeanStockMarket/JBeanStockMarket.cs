@@ -7,10 +7,11 @@ using JB2.Common;
 
 namespace JB2.Economy
 {
-    public class JbeanStockExchange : StockExchange<JbeanStockCompany, IJbeanStockHolder,string, long>
+    public class JbeanStockExchange : StockExchange<JbeanStockCompany, IJbeanStockHolder, string, long>
     {
         #region Fields
         protected IJbeanStockMarketRepository _repo;
+        protected ILogger _logger;
 
 
         #endregion Fields
@@ -42,6 +43,18 @@ namespace JB2.Economy
             }
         }
 
+        public ILogger Logger
+        {
+            get
+            {
+                return _logger;
+            }
+            set
+            {
+                _logger = value;
+            }
+        }
+
         public void SetOpen(bool open)
         {
             this.SetProperty<bool>("ISOPEN", open);
@@ -52,7 +65,7 @@ namespace JB2.Economy
             return _repo.GetCompanyByStockSymbol(stockSymbol);
         }
 
-        public  JbeanStockCompany GetCompanyByID(string id)
+        public JbeanStockCompany GetCompanyByID(string id)
         {
             return _repo.GetCompanyByID(id);
         }
@@ -74,7 +87,7 @@ namespace JB2.Economy
             throw new NotImplementedException();
         }
 
-        public override Position<string,long> GetShare(string transactionID)
+        public override Position<string, long> GetShare(string transactionID)
         {
             return _repo.GetPositionByTranID(transactionID);
             //return _repo.GetStockShareByTranID(transactionID);
@@ -239,7 +252,7 @@ namespace JB2.Economy
             }
             foreach (var p in positions)
             {
-                if(p.Share.StockSymbol == newPosition.Share.StockSymbol && (p.StockExchangeAccountID == newPosition.StockExchangeAccountID))
+                if (p.Share.StockSymbol == newPosition.Share.StockSymbol && (p.StockExchangeAccountID == newPosition.StockExchangeAccountID))
                 {
                     newPosition.Quantity = p.Quantity + newPosition.Quantity;
                     newPosition.TotalCost = p.TotalCost + newPosition.TotalCost;
@@ -408,8 +421,8 @@ namespace JB2.Economy
             _repo.Save(newStockPrice);
 
             //trigger exchange events
-            if(newStockPrice.Value > oldStockPrice.Value)
-                OnStockPriceIncrease(this, company, newStockPrice,oldStockPrice.Value);
+            if (newStockPrice.Value > oldStockPrice.Value)
+                OnStockPriceIncrease(this, company, newStockPrice, oldStockPrice.Value);
             if (newStockPrice.Value < oldStockPrice.Value)
                 OnStockPriceDecrease(this, company, newStockPrice, oldStockPrice.Value);
 
@@ -419,6 +432,16 @@ namespace JB2.Economy
 
             return newStockPrice;
         }
+
+
+        public override ILogger GetLogger()
+        {
+            return _logger;
+        }
+
+
+       
+
 
     }
 }
