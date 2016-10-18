@@ -66,7 +66,7 @@ namespace JB2.Settings
             
 
             _isConfigured = true;
-            _exchange = new JbeanStockExchange((string)GetSetting(JbeanStockMarketSettingName.StockExchangeID).Value);
+            _exchange = _repo.GetExchange(); // new JbeanStockExchange((string)GetSetting(JbeanStockMarketSettingName.StockExchangeID).Value);
             _exchange.Logger = logger;
 
 

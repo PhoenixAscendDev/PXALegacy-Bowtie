@@ -148,6 +148,7 @@ namespace Economy.Test
 
 
             Console.WriteLine(JB2.Settings.JbeanStockMarket.StockExchange.GetID());
+            Console.WriteLine(JB2.Settings.JbeanStockMarket.StockExchange.IsOpen.ToString());
             //Console.WriteLine(company.GetCurrentStockValue().ToString());
 
             //int value = 58;
