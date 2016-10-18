@@ -141,7 +141,7 @@ namespace Economy.Test
 
             // var company = market.GetCompany("SOLE02");
 
-            SetupAccounts();
+            //SetupAccounts();
 
 
 

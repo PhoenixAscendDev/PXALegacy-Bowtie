@@ -63,7 +63,7 @@ namespace JB2.Economy.Data
                 throw new Exception("Table Entity is null");
             string id = e.GetPropertyValue<string>("ID", string.Empty);
 
-            JbeanStockExchange exchange = new JbeanStockExchange(id);
+            JbeanStockExchange exchange = new JbeanStockExchange(id,this);
 
             exchange.Name = e.PropertyStringValue("Name");
             exchange.Owner = JB2.Info.HQ;
@@ -85,7 +85,7 @@ namespace JB2.Economy.Data
 
             try
             {
-                _marketTable.Insert<DynamicTableEntity>(e, true);
+                _marketTable.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
             }
             catch (Exception ex)
             {

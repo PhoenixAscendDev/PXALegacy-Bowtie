@@ -39,7 +39,7 @@ namespace JB2.Economy
         {
             get
             {
-                return this.GetProperity<bool>("ISOPEN");
+                return this.GetProperity<bool>("ISOPEN",false);
             }
         }
 
