@@ -794,7 +794,7 @@ namespace JB2.Economy.Data
             {
                 ID = JbeanStockMarketSettingName.LogRepo,
                 Name = JbeanStockMarketSettingName.LogRepo,
-                Value = new JB2.Common.Log.AzureRepo(JB2.Infrastructure.Storage.EconomyAccount, "stockMarketLog", "jbeanStockMarket")
+                Value = new JB2.Common.Log.AzureRepo(JB2.Infrastructure.Storage.EconomyAccount, "stockmarketLog", "jbeanStockMarket")
              });
 
 

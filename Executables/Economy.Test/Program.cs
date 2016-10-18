@@ -111,13 +111,13 @@ namespace Economy.Test
         }
 
 
-        static void SetupAccounts()
+        static void SetupBluffStreetAccounts()
         {
             var bank = JB2.Settings.Jbean.Factory.CentralBank;
 
             List<jBeanAccount> accounts = new List<jBeanAccount>();
 
-            for(var i=0;i <100; i++)
+            for(var i=0;i <10; i++)
             {
                 var account = (jBeanAccount)bank.OpenNewBankAccount(new JB2.Common.IDNamePair("BluffStreetChar" + i.ToString("D3"), string.Empty));
                
@@ -137,7 +137,12 @@ namespace Economy.Test
 
             JB2.Settings.JbeanStockMarket.Repository.Save(market);
 
-            //SetupCompanies();
+            SetupCompanies();
+
+            //SetupBluffStreetAccounts();
+
+
+            
 
             // var company = market.GetCompany("SOLE02");
 

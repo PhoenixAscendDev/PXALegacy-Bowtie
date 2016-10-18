@@ -23,7 +23,7 @@ namespace JB2.Economy
 
         }
 
-        public JbeanStockExchange(string exchangeID, IJbeanStockMarketRepository repo)
+        public JbeanStockExchange(string exchangeID, IJbeanStockMarketRepository repo) : base()
         {
             this._props = new MetaDataCollection();
             this._lastupdate = System.DateTime.Now;
@@ -389,13 +389,8 @@ namespace JB2.Economy
 
                 if (holder2.StockExchangeAccountID != holder.StockExchangeAccountID)
                     throw new Exception("Account unable to save");
-
-
                 OnShareHolderCreated(this, holder);
-
                 return holder;
-
-
             }
             catch (Exception ex)
             {
