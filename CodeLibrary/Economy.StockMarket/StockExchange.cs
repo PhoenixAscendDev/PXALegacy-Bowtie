@@ -20,6 +20,8 @@ namespace JB2.Economy
             ShareHolderCreated += Log_ShareHolderCreated;
             ShareTraded += Log_ShareTraded;
             StockPriceChanged += Log_StockPriceChange;
+            CompanyAdded += Log_CompanyAdded;
+            CompanyRemoved += Log_CompanyRemoved;
 
         }
 
@@ -33,6 +35,9 @@ namespace JB2.Economy
         public event Action<IStockExchange<TCompany, TShareHolder, TKey, TStockValue>, TCompany, StockPrice<TKey, TStockValue>, TStockValue> StockPriceChanged;
         public event Action<IStockExchange<TCompany, TShareHolder, TKey, TStockValue>, TCompany, StockPrice<TKey, TStockValue>, TStockValue> StockPriceIncrease;
         public event Action<IStockExchange<TCompany, TShareHolder, TKey, TStockValue>, TCompany, StockPrice<TKey, TStockValue>, TStockValue> StockPriceDecrease;
+
+        public event Action<IStockExchange<TCompany, TShareHolder, TKey, TStockValue>, TCompany> CompanyAdded;
+        public event Action<IStockExchange<TCompany, TShareHolder, TKey, TStockValue>, TCompany> CompanyRemoved;
 
         protected virtual void OnShareHolderCreated(IStockExchange<TCompany, TShareHolder, TKey, TStockValue> exchange, TShareHolder newholder)
         {
@@ -73,6 +78,18 @@ namespace JB2.Economy
         {
             if (StockPriceIncrease != null)
                 StockPriceIncrease(exchange, company, newprice, lastprice);
+        }
+
+        protected virtual void OnCompanyRemoved(IStockExchange<TCompany, TShareHolder, TKey, TStockValue> exchange, TCompany company)
+        {
+            if (CompanyRemoved != null)
+                CompanyRemoved(exchange, company);
+        }
+
+        protected virtual void OnCompanyAdded(IStockExchange<TCompany, TShareHolder, TKey, TStockValue> exchange, TCompany company)
+        {
+            if (CompanyAdded != null)
+                CompanyAdded(exchange, company);
         }
 
         #endregion Events;
@@ -155,6 +172,13 @@ namespace JB2.Economy
         public abstract ILogger GetLogger();
 
 
+        public abstract TCompany AddCompany(TCompany company, TStockValue initialValue);
+
+        public abstract ServiceResult RemoveCompany(TCompany company);
+
+
+
+
         #region Log Events
 
         protected virtual void Log_ShareHolderCreated(IStockExchange<TCompany, TShareHolder, TKey, TStockValue> exchange, TShareHolder holder)
@@ -169,7 +193,7 @@ namespace JB2.Economy
 
             if (logger != null)
                 logger.Log(newEntry);
-            
+
             //return newEntry;
         }
 
@@ -198,13 +222,13 @@ namespace JB2.Economy
         protected virtual void Log_StockPriceChange(IStockExchange<TCompany, TShareHolder, TKey, TStockValue> exchange, TCompany company, StockPrice<TKey, TStockValue> oldPrice, TStockValue newPrice)
         {
             ILogEntry newEntry = null;
-            string sign = (oldPrice.Value.CompareTo(newPrice)  >= 0) ? "+" : "-";
+            string sign = (oldPrice.Value.CompareTo(newPrice) >= 0) ? "+" : "-";
             string updown = (oldPrice.Value.CompareTo(newPrice) >= 0) ? "Up" : "Down";
             int change = (oldPrice.Value.CompareTo(newPrice));
             newEntry = new Common.Log.LogEntry("Info-ShareTraded" + JB2.Common.NewID.ShortGuid(), Common.Enum.LogServerityType.Informational,
               "Stock Price Changed: " + company.StockSymbol + " " + sign + change.ToString() + " \r\n"
               + "Exchange=" + exchange.GetID() + "\r\n"
-              + "StockSymbol=" + company.StockSymbol + "\r\n"
+              + "Stock Symbol=" + company.StockSymbol + "\r\n"
               + "Up/Down=" + updown + "\r\n"
               + "OldPrice=" + oldPrice.Value.ToString() + "\r\n"
               + "NewPrice=" + newPrice.ToString() + "\r\n"
@@ -218,7 +242,42 @@ namespace JB2.Economy
             //return newEntry;
         }
 
+        protected virtual void Log_CompanyAdded(IStockExchange<TCompany, TShareHolder, TKey, TStockValue> exchange, TCompany company)
+        {
+            ILogEntry newEntry = null;
+            
+            newEntry = new Common.Log.LogEntry("Info-CompanyAdded" + JB2.Common.NewID.ShortGuid(), Common.Enum.LogServerityType.Informational,
+              "Company Added: " + company.Name + " (" + company.StockSymbol  + ") \r\n"
+              + "Exchange=" + exchange.GetID() + "\r\n"
+              + "Stock Symbol=" + company.StockSymbol + "\r\n"
+              + "Stock Price=" + company.GetCurrentStockValue(), null, DateTime.Now);
 
+            Logit(newEntry);
+
+
+        }
+
+        protected virtual void Log_CompanyRemoved(IStockExchange<TCompany, TShareHolder, TKey, TStockValue> exchange, TCompany company)
+        {
+            ILogEntry newEntry = null;
+
+            newEntry = new Common.Log.LogEntry("Info-CompanyRemoved" + JB2.Common.NewID.ShortGuid(), Common.Enum.LogServerityType.Informational,
+              "Company Removed: " + company.Name + " (" + company.StockSymbol + ") \r\n"
+              + "Exchange=" + exchange.GetID() + "\r\n"
+              + "Stock Symbol=" + company.StockSymbol + "\r\n"
+              + "Stock Price=" + company.GetCurrentStockValue(), null, DateTime.Now);
+
+            Logit(newEntry);
+        }
+
+        protected virtual void Logit(ILogEntry entry)
+        {
+            var logger = this.GetLogger();
+
+            if (logger != null)
+                logger.Log(entry);
+
+        }
 
 
         #endregion Log Events

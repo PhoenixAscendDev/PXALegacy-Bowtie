@@ -47,6 +47,13 @@ namespace Economy.Test
             JB2.Settings.JbeanStockMarket.Configure(new JB2.Common.BaseSetting[2] { s1, s2}, jBeanStockRepo);
     }
 
+        static JB2.Economy.JbeanStockExchange GetStockExchange()
+        {
+            return JB2.Settings.JbeanStockMarket.StockExchange;
+        }
+
+
+
         private static void CentralBank_AccountOpened(IBank<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus, ITreasuryRequest, IRequestor, string> bank, IBankAccount<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus> account)
         {
             var market = JB2.Settings.JbeanStockMarket.StockExchange;
@@ -62,52 +69,57 @@ namespace Economy.Test
             c1.StockSymbol = "WOOD03";
             c1.Name = "Wooden Fellow";
 
-            StockPrice<string, long> p1 = new StockPrice<string, long>();
-            p1.PriceDate = System.DateTime.Now;
-            p1.StockExchangeCompanyID = c1.StockExchangeCompanyID;
-            p1.Value = 28;
+            //StockPrice<string, long> p1 = new StockPrice<string, long>();
+            //p1.PriceDate = System.DateTime.Now;
+            //p1.StockExchangeCompanyID = c1.StockExchangeCompanyID;
+            //p1.Value = 28;
 
-            JB2.Settings.JbeanStockMarket.Repository.Save(p1);
-            JB2.Settings.JbeanStockMarket.Repository.Save(c1);
-           
+            //JB2.Settings.JbeanStockMarket.Repository.Save(p1);
+            //JB2.Settings.JbeanStockMarket.Repository.Save(c1);
+
 
             JbeanStockCompany c2 = JbeanStockCompany.New;
             c2.StockSymbol = "SHEL06";
             c2.Name = "Hard Shell";
 
-            StockPrice<string, long> p2 = new StockPrice<string, long>();
-            p2.PriceDate = System.DateTime.Now;
-            p2.StockExchangeCompanyID = c2.StockExchangeCompanyID;
-            p2.Value = 105;
+            //StockPrice<string, long> p2 = new StockPrice<string, long>();
+            //p2.PriceDate = System.DateTime.Now;
+            //p2.StockExchangeCompanyID = c2.StockExchangeCompanyID;
+            //p2.Value = 105;
 
-            JB2.Settings.JbeanStockMarket.Repository.Save(p2);
-            JB2.Settings.JbeanStockMarket.Repository.Save(c2);
+            //JB2.Settings.JbeanStockMarket.Repository.Save(p2);
+            //JB2.Settings.JbeanStockMarket.Repository.Save(c2);
 
             JbeanStockCompany c3 = JbeanStockCompany.New;
             c3.StockSymbol = "SOLE02";
             c3.Name = "Helpful Soles";
 
-            StockPrice<string, long> p3 = new StockPrice<string, long>();
-            p3.PriceDate = System.DateTime.Now;
-            p3.StockExchangeCompanyID = c3.StockExchangeCompanyID;
-            p3.Value = 05;
+            //StockPrice<string, long> p3 = new StockPrice<string, long>();
+            //p3.PriceDate = System.DateTime.Now;
+            //p3.StockExchangeCompanyID = c3.StockExchangeCompanyID;
+            //p3.Value = 05;
 
-            JB2.Settings.JbeanStockMarket.Repository.Save(p3);
+            //JB2.Settings.JbeanStockMarket.Repository.Save(p3);
 
-            JB2.Settings.JbeanStockMarket.Repository.Save(c3);
+            //JB2.Settings.JbeanStockMarket.Repository.Save(c3);
 
             JbeanStockCompany c4 = JbeanStockCompany.New;
             c4.StockSymbol = "ECHM09";
             c4.Name = "Echo Media";
 
-            StockPrice<string, long> p4 = new StockPrice<string, long>();
-            p4.PriceDate = System.DateTime.Now;
-            p4.StockExchangeCompanyID = c4.StockExchangeCompanyID;
-            p4.Value = 76;
+            //StockPrice<string, long> p4 = new StockPrice<string, long>();
+            //p4.PriceDate = System.DateTime.Now;
+            //p4.StockExchangeCompanyID = c4.StockExchangeCompanyID;
+            //p4.Value = 76;
 
-            JB2.Settings.JbeanStockMarket.Repository.Save(p4);
+            //JB2.Settings.JbeanStockMarket.Repository.Save(p4);
 
-            JB2.Settings.JbeanStockMarket.Repository.Save(c4);
+            //JB2.Settings.JbeanStockMarket.Repository.Save(c4);
+
+            GetStockExchange().AddCompany(c1, 28);
+            GetStockExchange().AddCompany(c2, 105);
+            GetStockExchange().AddCompany(c3, 05);
+            GetStockExchange().AddCompany(c4, 76);
         }
 
 

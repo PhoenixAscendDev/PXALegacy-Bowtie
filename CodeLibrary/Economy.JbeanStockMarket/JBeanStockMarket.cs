@@ -39,7 +39,7 @@ namespace JB2.Economy
         {
             get
             {
-                return this.GetProperity<bool>("ISOPEN",false);
+                return this.GetProperity<bool>("ISOPEN", false);
             }
         }
 
@@ -434,8 +434,36 @@ namespace JB2.Economy
             return _logger;
         }
 
+        public override JbeanStockCompany AddCompany(JbeanStockCompany company, long initialValue)
+        {
+            StockPrice<string, long> p1 = new StockPrice<string, long>();
+            p1.PriceDate = System.DateTime.Now;
+            p1.StockExchangeCompanyID = this.GetID();
+            p1.Value = initialValue;
 
-       
+            company.ExchangeID = this.GetID();
+
+            //save company then price then load back from repo
+            _repo.Save(company);
+            _repo.Save(p1);
+
+            var companyVerify = _repo.GetCompanyByID(company.GetID());
+
+            if (companyVerify != null && (company.GetID() == companyVerify.GetID()))
+                OnCompanyAdded(this, companyVerify);
+
+            return companyVerify;
+        }
+
+        public override ServiceResult RemoveCompany(JbeanStockCompany company)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+
+
 
 
     }
