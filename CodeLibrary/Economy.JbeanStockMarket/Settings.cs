@@ -94,7 +94,7 @@ namespace JB2.Settings
         private static void checkIfConfigured()
         {
             if (!_isConfigured)
-                throw new JB2.Common.Exceptions.NotConfiguredException();
+                throw new JB2.Common.NotConfiguredException();
         }
 
         public static string JBeanTreasuryVerificationKey
