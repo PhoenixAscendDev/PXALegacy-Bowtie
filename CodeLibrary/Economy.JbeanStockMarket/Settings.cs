@@ -38,8 +38,38 @@ namespace JB2.Settings
         {
             _repo = repo;
             _settings = new SettingCollection<string>(settings);
+
+            IEnumerable<ISetting> defaultsettings = new List<ISetting>();
+            //get default settings
+            try
+            {
+                foreach (var s in _settings)
+                {
+                    if (s.ID == JB2.Economy.JbeanStockMarketSettingName.StockExchangeID)
+                        defaultsettings = repo.GetDefaultSettings(s.Value.ToString());
+                }
+
+                foreach (var ds in defaultsettings)
+                {
+                    if (settings.ToList().Find(x => x.ID == ds.ID) == null)
+                        _settings.Add(ds);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _settings = new SettingCollection<string>(settings);
+            }
+
+
+            var logger = new JB2.Infrastructure.ProjectLogger((JB2.Common.Log.ILogRepo)_settings[JB2.Economy.JbeanStockMarketSettingName.LogRepo].Value);
+            
+
             _isConfigured = true;
             _exchange = new JbeanStockExchange((string)GetSetting(JbeanStockMarketSettingName.StockExchangeID).Value);
+            _exchange.Logger = logger;
+
+
 
             if(!validExchange())
             {
@@ -86,8 +116,9 @@ namespace JB2.Settings
         {
             get
             {
-                var setting = GetSetting(JbeanStockMarketSettingName.TreasuryRequestor);
-                return (IRequestor)setting.Value;
+                var setting = GetSetting(JbeanStockMarketSettingName.TreasuryRequestorID);
+                IRequestor result =(IRequestor)new JB2.Common.IDNamePair<string, string>(setting.Value.ToString(), string.Empty);
+                return result;
             }
         }
 

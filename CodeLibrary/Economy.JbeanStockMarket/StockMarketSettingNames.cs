@@ -10,9 +10,9 @@ namespace JB2.Economy
     {
         public const string StockExchangeID = "STOCKEXCHANGE";
         public const string Currency = "CURRENCY";
-        public const string TreasuryRequestor = "TREASURYREQUESTOR";
+        public const string TreasuryRequestorID = "TREASURYREQUESTOR";
         public const string TreasuryValidationKey = "TREASURYVALIDATIONKEY";
-        public const string Logger = "LOGGER";
+        public const string LogRepo = "LOGREPO";
 
     }
 }

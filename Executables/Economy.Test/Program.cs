@@ -44,14 +44,7 @@ namespace Economy.Test
                 Name = JB2.Economy.JbeanStockMarketSettingName.Currency,
                 Value = JB2.Settings.Jbean.Factory.Currencies[0]
             };
-            JB2.Common.BaseSetting s3 = new JB2.Common.BaseSetting()
-            {
-                ID = JB2.Economy.JbeanStockMarketSettingName.TreasuryRequestor,
-                Name = JB2.Economy.JbeanStockMarketSettingName.TreasuryRequestor,
-                Value = null
-            };
-
-            JB2.Settings.JbeanStockMarket.Configure(new JB2.Common.BaseSetting[3] { s1, s2, s3 }, jBeanStockRepo);
+            JB2.Settings.JbeanStockMarket.Configure(new JB2.Common.BaseSetting[2] { s1, s2}, jBeanStockRepo);
     }
 
         private static void CentralBank_AccountOpened(IBank<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus, ITreasuryRequest, IRequestor, string> bank, IBankAccount<JB2.Common.IIDProp<string>, JB2.Economy.Enum.jBeanAccountStatus> account)

@@ -134,7 +134,7 @@
     <Compile Include="IStockable.cs" />
     <Compile Include="IStockBusiness.cs" />
     <Compile Include="IStockHolderable.cs" />
-    <Compile Include="IStockMarket.cs" />
+    <Compile Include="IStockExchange.cs" />
     <Compile Include="IStockMarketRepository.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

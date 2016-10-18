@@ -31,7 +31,7 @@ namespace JB2.Economy.Data
                 storageAccount.GetTable("stockmarketPrice")
             )
         {
-           _exchangeID = JB2.Configuration.GetjBeanStockMarketID();
+            _exchangeID = JB2.Configuration.GetjBeanStockMarketID();
         }
 
         public JBeanStockRepository(JB2.Common.Data.AzureTableRepository marketTable,
@@ -111,7 +111,7 @@ namespace JB2.Economy.Data
         {
             var pkey = "exchange:" + _exchangeID + ":company";
             var rkey = "stocksymbol:" + symbol;
-            var e = _marketTable.GetEntity<DynamicTableEntity>(pkey,rkey);
+            var e = _marketTable.GetEntity<DynamicTableEntity>(pkey, rkey);
 
             return convertToCompany(e);
         }
@@ -140,7 +140,7 @@ namespace JB2.Economy.Data
             e.SetProperty<string>("MailingAddress_Line2", company.MailingAddress.GetAddressLine2());
             e.SetProperty<string>("MailingAddress_City", company.MailingAddress.GetCity());
 
-            if(company.MailingAddress.GetStateProvince() == null)
+            if (company.MailingAddress.GetStateProvince() == null)
                 e.SetProperty<string>("MailingAddress_State", string.Empty);
             else
                 e.SetProperty<string>("MailingAddress_State", company.MailingAddress.GetStateProvince().ToString());
@@ -224,17 +224,17 @@ namespace JB2.Economy.Data
         {
             try
             {
-                var e = _accountTable.GetEntity<DynamicTableEntity>("account:exchange:" + _exchangeID,"id:" + key);
+                var e = _accountTable.GetEntity<DynamicTableEntity>("account:exchange:" + _exchangeID, "id:" + key);
                 return convertToStockHolder(e);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ex.jBeanLog();
                 return null;
             }
 
-                
-            
+
+
         }
 
         public IEnumerable<IJbeanStockHolder> GetAllShareholders()
@@ -400,10 +400,10 @@ namespace JB2.Economy.Data
         #region StockPositions
         public Position<string, long> GetPositionByTranID(string transactionID)
         {
-           TradeTransactionNote<string> t  = GetTradeTranByID(transactionID);
+            TradeTransactionNote<string> t = GetTradeTranByID(transactionID);
             var p = new Position<string, long>();
             if ((TradeTransactionNote<string>)t != null)
-            {        
+            {
                 p.Quantity = t.ShareCount;
                 var s = new Share<string, long>();
 
@@ -429,7 +429,7 @@ namespace JB2.Economy.Data
 
         public IEnumerable<Position<string, long>> GetAllStockPositions()
         {
-            var list = _marketTable.GetByPartitionKey<DynamicTableEntity>("position" +  ":exchange:" + _exchangeID);
+            var list = _marketTable.GetByPartitionKey<DynamicTableEntity>("position" + ":exchange:" + _exchangeID);
 
             return convertToPosition(list);
         }
@@ -441,7 +441,7 @@ namespace JB2.Economy.Data
             return convertToPosition(list);
         }
 
-        public ServiceResult Save(Position<string,long> p)
+        public ServiceResult Save(Position<string, long> p)
         {
             DynamicTableEntity e = new DynamicTableEntity();
 
@@ -452,7 +452,7 @@ namespace JB2.Economy.Data
             e.SetProperty<string>("Share_CompanySymbol", p.Share.StockSymbol);
             try
             {
-                
+
                 var c = GetCompanyByStockSymbol(p.Share.StockSymbol);
 
                 //base
@@ -478,17 +478,17 @@ namespace JB2.Economy.Data
             return true;
         }
 
-        private IEnumerable<Position<string,long>> convertToPosition(IEnumerable<DynamicTableEntity> elist)
+        private IEnumerable<Position<string, long>> convertToPosition(IEnumerable<DynamicTableEntity> elist)
         {
             List<Position<string, long>> r = new List<Position<string, long>>();
-            foreach(var e in elist)
+            foreach (var e in elist)
             {
                 r.Add(convertToPosition(e));
             }
 
             return r;
         }
-        private Position<string,long> convertToPosition(DynamicTableEntity e)
+        private Position<string, long> convertToPosition(DynamicTableEntity e)
         {
             var p = new Position<string, long>();
             p.Quantity = e.GetPropertyValue<int>("Quantity", 0);
@@ -673,7 +673,7 @@ namespace JB2.Economy.Data
 
             //get only the latest prices that price during the date
             string companyID = filters.ToList()[0].StockExchangeCompanyID;
-            foreach( var s in filters)
+            foreach (var s in filters)
             {
                 if (companyID != s.StockExchangeCompanyID)
                     result.Add(filters.Where(p => p.StockExchangeCompanyID == companyID).OrderBy(p => p.PriceDate).ToList()[0]);
@@ -744,7 +744,7 @@ namespace JB2.Economy.Data
             return list;
         }
 
-        private StockPrice<string,long> convertToStockPrice(DynamicTableEntity e)
+        private StockPrice<string, long> convertToStockPrice(DynamicTableEntity e)
         {
             StockPrice<string, long> newPrice = new StockPrice<string, long>();
 
@@ -756,10 +756,60 @@ namespace JB2.Economy.Data
 
         }
 
-        
-
 
         #endregion StockPrice
+
+
+        public IEnumerable<ISetting> GetDefaultSettings(string exchangeID)
+        {
+            SettingCollection<string> s = new SettingCollection<string>();
+
+            DynamicTableEntity e = _marketTable.GetEntity<DynamicTableEntity>("exchange", "id:" + exchangeID);
+
+            s.Add(new BaseSetting()
+            {
+                ID = JbeanStockMarketSettingName.StockExchangeID,
+                Name = JbeanStockMarketSettingName.StockExchangeID,
+                Value = exchangeID
+            });
+            s.Add(new BaseSetting()
+            {
+                ID = JbeanStockMarketSettingName.Currency,
+                Name = JbeanStockMarketSettingName.Currency,
+                Value = null
+            });
+            s.Add(new BaseSetting()
+            {
+                ID = JbeanStockMarketSettingName.TreasuryRequestorID,
+                Name = JbeanStockMarketSettingName.TreasuryRequestorID,
+                Value = e.GetPropertyValue<string>("TreasuryRequestorID",string.Empty)
+            });
+            s.Add(new BaseSetting()
+            {
+                ID = JbeanStockMarketSettingName.TreasuryValidationKey,
+                Name = JbeanStockMarketSettingName.TreasuryValidationKey,
+                Value = e.GetPropertyValue<string>("TreasuryValidationKey", string.Empty)
+            });
+            s.Add(new BaseSetting()
+            {
+                ID = JbeanStockMarketSettingName.LogRepo,
+                Name = JbeanStockMarketSettingName.LogRepo,
+                Value = new JB2.Common.Log.AzureRepo(JB2.Infrastructure.Storage.EconomyAccount, "stockMarketLog", "jbeanStockMarket")
+             });
+
+
+            var exchange = this.GetExchange();
+            if ((exchange == null) || (exchange.GetID() != exchangeID))
+                return s;
+
+
+
+
+            return s;
+        }
+
+
+
 
 
 
