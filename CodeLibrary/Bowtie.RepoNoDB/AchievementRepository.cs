@@ -59,5 +59,10 @@ namespace JB2.Bowtie.Data.NoDB
         {
             throw new NotImplementedException();
         }
+
+        public IAchievement[] GetAll(int? maxRecordCount)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

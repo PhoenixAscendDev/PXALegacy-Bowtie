@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Security.Cryptography;
 
-using JB2.Common.Extensions;
+using JB2.Common;
 
 namespace JB2.Bowtie
 {

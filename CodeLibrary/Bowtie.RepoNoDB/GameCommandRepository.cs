@@ -42,5 +42,10 @@ namespace JB2.Bowtie.Data.NoDB
         {
             throw new NotImplementedException();
         }
+
+        public IGameCommand[] GetAll(int? maxRecordCount)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

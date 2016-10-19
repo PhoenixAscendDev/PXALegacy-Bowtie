@@ -18,6 +18,11 @@ namespace JB2.Bowtie.Test
             throw new NotImplementedException();
         }
 
+        public Tobject[] GetAll(int? maxRecordCount)
+        {
+            throw new NotImplementedException();
+        }
+
         public Tobject GetById(string id)
         {
             throw new NotImplementedException();
