@@ -198,6 +198,7 @@
     <Compile Include="Interfaces\ILeaderboard.cs" />
     <Compile Include="Interfaces\ILeaderboardRepository.cs" />
     <Compile Include="Interfaces\IMasterLeaderboard.cs" />
+    <Compile Include="Interfaces\IModule.cs" />
     <Compile Include="Interfaces\IPlayerable.cs" />
     <Compile Include="Interfaces\IPlayerAchievement.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />

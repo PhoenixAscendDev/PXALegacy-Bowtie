@@ -12,7 +12,7 @@ namespace JB2.Bowtie
     {
 
         #region Fields
-        protected Dictionary<string, IMetaData> _metadata;
+        protected MetaDataCollection _metadata;
         protected string _playerid;
         #endregion Fields
 
@@ -20,7 +20,14 @@ namespace JB2.Bowtie
         #region Constructors
         public BowtieMetadata(string playerid)
         {
-            _metadata = new Dictionary<string, IMetaData>();
+            _metadata = new MetaDataCollection();
+            _playerid = playerid;
+        }
+
+        public BowtieMetadata(string playerid, IEnumerable<IMetaData> data)
+        {
+            _metadata = new MetaDataCollection(data);
+            _playerid = playerid;
         }
 
         #endregion Constructors
@@ -31,55 +38,55 @@ namespace JB2.Bowtie
             get { return _playerid; }
         }
 
-        public string jBeanAccountNumber
-        {
-            get
-            {
-                if (_metadata.ContainsKey("jbeanAccountNumber"))
-                    return _metadata["jbeanAccountNumber"].GetValue().ToString();
-                else
-                    return string.Empty;
-            }
-            set
-            {
-                StringMetaData md = new StringMetaData("jbeanAccountNumber", value);
-                _metadata["jbeanAccountNumber"] = md;
-            }
-        }
+        //public string jBeanAccountNumber
+        //{
+        //    get
+        //    {
+        //        if (_metadata.ContainsKey("jbeanAccountNumber"))
+        //            return _metadata["jbeanAccountNumber"].GetValue().ToString();
+        //        else
+        //            return string.Empty;
+        //    }
+        //    set
+        //    {
+        //        StringMetaData md = new StringMetaData("jbeanAccountNumber", value);
+        //        _metadata["jbeanAccountNumber"] = md;
+        //    }
+        //}
 
-        public string Title
-        {
-            get
-            {
-                if (_metadata.ContainsKey("title"))
-                    return _metadata["title"].GetValue().ToString();
-                else
-                    return string.Empty;
-            }
+        //public string Title
+        //{
+        //    get
+        //    {
+        //        if (_metadata.ContainsKey("title"))
+        //            return _metadata["title"].GetValue().ToString();
+        //        else
+        //            return string.Empty;
+        //    }
 
-            set
-            {
-                StringMetaData md = new StringMetaData("title", value);
-                _metadata["title"] = md;
-            }
-        }
+        //    set
+        //    {
+        //        StringMetaData md = new StringMetaData("title", value);
+        //        _metadata["title"] = md;
+        //    }
+        //}
 
-        public long BitScore
-        {
-            get
-            {
-                if (_metadata.ContainsKey("bitscore"))
-                    return _metadata["bitscore"].GetValue().LongValue;
-                else
-                    return 0;
-            }
+        //public long BitScore
+        //{
+        //    get
+        //    {
+        //        if (_metadata.ContainsKey("bitscore"))
+        //            return _metadata["bitscore"].GetValue().LongValue;
+        //        else
+        //            return 0;
+        //    }
 
-            set
-            {
-                MetaData<long> md = new MetaData<long>("bitscore", value);
-                _metadata["bitscore"] = md;
-            }
-        }
+        //    set
+        //    {
+        //        MetaData<long> md = new MetaData<long>("bitscore", value);
+        //        _metadata["bitscore"] = md;
+        //    }
+        //}
         
 
         //public Kenshin Kenshin
@@ -108,7 +115,12 @@ namespace JB2.Bowtie
 
         public static implicit operator MetaDataCollection(BowtieMetadata md)
         {
-            return new MetaDataCollection(md._metadata.Values.ToList(),NewID.ShortGuid(),"bowtie");
+            return md._metadata;
+        }
+
+        public static implicit operator List<IMetaData>(BowtieMetadata md)
+        {
+            return (List<IMetaData>)md._metadata.ToList();
         }
 
 
