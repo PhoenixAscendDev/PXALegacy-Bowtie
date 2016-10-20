@@ -8,6 +8,7 @@ namespace JB2.Bowtie.Enum
 {
     public enum ModuleType
     {
-        REST
+        REST,
+        BowtieStorage
     }
 }
