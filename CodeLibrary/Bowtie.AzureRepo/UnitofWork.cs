@@ -93,6 +93,14 @@ namespace JB2.Bowtie.Data.Azure
                 return (JB2.Bowtie.IWalletRepository)GetRepository(RepositoryType.Wallet);
             }
         }
+
+        public JB2.Bowtie.IModuleRepository ModuleRepository
+        {
+            get
+            {
+                return (JB2.Bowtie.IModuleRepository)GetRepository(RepositoryType.Module);
+            }
+        }
         
 
         //public JB2.Common.IPlayerRepo PlayerRepository
@@ -144,6 +152,9 @@ namespace JB2.Bowtie.Data.Azure
                                 break;
                             case RepositoryType.GameCommand:
                                 _repos.Add(repository, new JB2.Bowtie.Data.Azure.GameCommandRepository());
+                                break;
+                            case RepositoryType.Module:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.ModuleRepository());
                                 break;
                         }
                     }

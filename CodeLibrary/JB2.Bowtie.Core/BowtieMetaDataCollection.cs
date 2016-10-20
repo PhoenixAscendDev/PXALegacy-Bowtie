@@ -107,9 +107,6 @@ namespace JB2.Bowtie
 
         //}
 
-
-
-
         #endregion Properties
 
 

@@ -17,6 +17,7 @@ namespace JB2.Bowtie.Enum
         Graph,
         Dewdrop,
         Jbean,
-        Wallet
+        Wallet,
+        Module
     }
 }

@@ -178,6 +178,7 @@
     <Compile Include="GameCommandService.cs" />
     <Compile Include="GenericService.cs" />
     <Compile Include="GraphService.cs" />
+    <Compile Include="ModuleService.cs" />
     <Compile Include="WalletService.cs" />
     <Compile Include="LeaderboardService.cs" />
     <Compile Include="PlayerService.cs" />

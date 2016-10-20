@@ -39,38 +39,38 @@ namespace JB2.Bowtie
             return treasuryNote;        
         }
 
-        public bool Remove(Tobject entity)
+        public virtual bool Remove(Tobject entity)
         {
             _repo.Delete(entity);
             return true;
         }
 
-        public List<Tobject> Retrieve(string request)
+        public virtual List<Tobject> Retrieve(string request)
         {
             throw new NotImplementedException();
         }
 
-        public List<Tobject> Retrieve(bool isActive)
+        public virtual List<Tobject> Retrieve(bool isActive)
         {
             throw new NotImplementedException();
         }
 
-        public List<Tobject> Retrieve()
+        public virtual List<Tobject> Retrieve()
         {
             return _repo.GetAll().ToList();
         }
 
-        public Tobject RetrieveById(string id)
+        public virtual Tobject RetrieveById(string id)
         {
             return _repo.GetById(id);
         }
 
-        public Tobject RetrieveByName(string name)
+        public virtual Tobject RetrieveByName(string name)
         {
             throw new NotImplementedException();
         }
 
-        public bool Save(Tobject entity)
+        public virtual bool Save(Tobject entity)
         {
            _repo.Insert(entity);
            return true;

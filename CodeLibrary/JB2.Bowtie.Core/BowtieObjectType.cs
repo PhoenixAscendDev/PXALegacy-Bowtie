@@ -29,7 +29,8 @@ namespace JB2.Bowtie.Enum
         [TokenName("Bowtie>*<MasterLeaderboard")]
         bowtie_masterLeaderboard,
         [TokenName("Bowtie>*<GameObject")]
-        bowtie_gameobject
-
+        bowtie_gameobject,
+        [TokenName("Bowtie>*<Module")]
+        bowtie_module
     }
 }

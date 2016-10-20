@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class BowtieAPI
+    public interface IModuleRepository : JB2.Common.IRepository<IModule,string>
     {
-        public string Version { get; set; }
-        public string URL { get; set; }       
+       IModule GetByName(string name);
+
     }
 }
