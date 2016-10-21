@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common.Core, Version=0.3.27.11392, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.3.27\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.3.28.30379, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.3.28.1\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Economy.Core, Version=0.1.7.0, Culture=neutral, processorArchitecture=MSIL">
@@ -66,6 +66,10 @@
     <ProjectReference Include="..\Bowtie.AzureRepo\Bowtie.RepoAzure.csproj">
       <Project>{6d362c4a-06d4-40c6-b314-aa559791e1f4}</Project>
       <Name>Bowtie.RepoAzure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bowtie.Module\Bowtie.Module.csproj">
+      <Project>{81cf520a-6f22-462e-a674-72c74889aac7}</Project>
+      <Name>Bowtie.Module</Name>
     </ProjectReference>
     <ProjectReference Include="..\JB2.Bowtie.Core\Bowtie.Core.csproj">
       <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>

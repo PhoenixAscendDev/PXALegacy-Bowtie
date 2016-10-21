@@ -20,6 +20,8 @@ namespace JB2.Bowtie
         protected Dictionary<string,IModule> _modules;
 
         protected IDictionary<string, int> _dewdrops;
+
+        
         #endregion Fields
 
         #region Constructors
@@ -27,6 +29,7 @@ namespace JB2.Bowtie
         {
             _metadata = new MetaDataCollection();
             _dewdrops = new Dictionary<string, int>();
+            
         }
 
         #endregion Constructors
@@ -70,16 +73,16 @@ namespace JB2.Bowtie
             }
         }
 
-        public string AuthProvider
+        public AuthInfo AuthInfo
         {
             get
             {
-                return _metadata["Auth"].GetValue().StringValue;
+                return _metadata.GetProperty<AuthInfo>("AuthInfo", new AuthInfo());
             }
 
             set
             {
-                _metadata["Auth"].UpdateValue(value);
+                _metadata.SetProperty<AuthInfo>("AuthInfo", value);
             }
         }
 
@@ -97,6 +100,11 @@ namespace JB2.Bowtie
                 return _modules[moduleid].GetPlayerData(this.GetPlayerID());
             else
                 return new BowtieMetadata(this.GetPlayerID());
+        }
+
+        public virtual AuthInfo GetAuthInfo()
+        {
+            return this.AuthInfo;
         }
 
         public virtual IEnumerable<IPlayerInventoryItem> GetModuleInventory(string moduleid)
@@ -151,8 +159,6 @@ namespace JB2.Bowtie
             else
                 _dewdrops[dewdrop.GetID()]++;
         }
-
-        public abstract string GetIdentityAuthID();
 
         public string GetPlayerID()
         {

@@ -52,14 +52,5 @@ namespace JB2.Bowtie
             return bp;
         }
 
-        public override string GetIdentityAuthID()
-        {
-            if (_metadata["AuthID"] != null)
-                return _metadata["AuthID"].GetValue().StringValue;
-            else
-                return string.Empty;
-        }
-
-
     }
 }

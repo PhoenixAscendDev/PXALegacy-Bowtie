@@ -103,6 +103,32 @@ namespace JB2.Bowtie
             }
         }
 
+        public virtual IEnumerable<IInventoryItem> InventoryItems
+        {
+            get
+            {
+                return this.GetProperity<IEnumerable<IInventoryItem>>("InventoryItems", new List<IInventoryItem>());
+            }
+
+            set
+            {
+                this.SetProperty<IEnumerable<IInventoryItem>>("InventoryItems", value);
+            }
+        }
+
+        public virtual IEnumerable<string> PlayerDataNames
+        {
+            get
+            {
+                return this.GetProperity<IEnumerable<string>>("PlayerDataName", new List<string>());
+            }
+
+            set
+            {
+                this.SetProperty<IEnumerable<string>>("PlayerDataName", value);
+            }
+        }
+
         public virtual string GetID()
         {
             return this.ID;

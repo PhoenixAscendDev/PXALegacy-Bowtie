@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IModule : JB2.Common.IIDNamePair<string,string>, IBowtieObject
+    public interface IModule : JB2.Common.IIDNamePair<string, string>, IBowtieObject
     {
         BowtieAPI API { get; set; }
 
@@ -18,6 +18,10 @@ namespace JB2.Bowtie
 
         IEnumerable<IPlayerInventoryItem> GetPlayerInventory(string playerID);
 
-        
+        IEnumerable<IInventoryItem> InventoryItems { get; set; }
+
+        IEnumerable<string> PlayerDataNames { get; set; }
+
+
     }
 }

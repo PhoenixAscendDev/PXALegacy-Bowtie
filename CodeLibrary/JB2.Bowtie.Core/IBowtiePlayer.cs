@@ -8,7 +8,7 @@ namespace JB2.Bowtie
 {
     public interface IBowtiePlayer : JB2.Common.IPerson<string>, IPlayerable<string>, IPlayerable, IBowtieObject
     {
-        string GetIdentityAuthID();
+        AuthInfo GetAuthInfo();
         JB2.Bowtie.IWallet GetWallet();
 
         Backpack GetBackpack();
@@ -17,8 +17,7 @@ namespace JB2.Bowtie
         IEnumerable<IPlayerInventoryItem> GetModuleInventory(string moduleid);
         
         int Age { get; set; }
-        string Gender { get; set; }
-        string AuthProvider { get; set; }     
+        string Gender { get; set; }   
         IDictionary<string,int> DewdropCounts { get; set; }
         void AddDewDrop(IDewdrop dewdrop);
     }

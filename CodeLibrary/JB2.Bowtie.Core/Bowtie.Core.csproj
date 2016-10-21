@@ -35,8 +35,8 @@
       <HintPath>..\..\Solutions\packages\Hyak.Common.1.0.2\lib\net45\Hyak.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Core, Version=0.3.27.11392, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.3.27\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.3.28.30379, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.3.28.1\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Data.AzureStorage, Version=0.2.5.12714, Culture=neutral, processorArchitecture=MSIL">
@@ -158,6 +158,7 @@
     <Compile Include="API.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="AppPlayer.cs" />
+    <Compile Include="AuthInfo.cs" />
     <Compile Include="Backpack.cs" />
     <Compile Include="BowtieGroup.cs" />
     <Compile Include="BowtieMetaDataCollection.cs" />

@@ -73,6 +73,7 @@ namespace JB2.Bowtie.Data.Azure
             e.SetProperty<string>("API_Version", o.API.Version);
             e.SetProperty<string>("API_URL", o.API.URL);
             e.SetProperty<string>("ModuleStatus", o.Status.ToString());
+            e.SetProperty<string>("PropertyNames", string.Join(",", o.PlayerDataNames.ToArray()));
 
             return e;
         }
@@ -91,14 +92,14 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override IModule convertToObject(DynamicTableEntity e)
         {
-            Enum.ModuleType moduleType = (Enum.ModuleType)System.Enum.Parse(typeof(Enum.ModuleType),e.GetPropertyValue<string>("ModuleType","REST"));
+            Enum.ModuleType moduleType = (Enum.ModuleType)System.Enum.Parse(typeof(Enum.ModuleType), e.GetPropertyValue<string>("ModuleType", "REST"));
             var id = e.GetPropertyValue<string>("ID", string.Empty);
             IModule result = null;
 
             switch (moduleType)
             {
                 case Enum.ModuleType.BowtieRepo:
-                    result = new NonRestModule(id,this);
+                    result = new NonRestModule(id, this);
                     break;
                 case Enum.ModuleType.REST:
                 default:
@@ -110,7 +111,7 @@ namespace JB2.Bowtie.Data.Azure
             System.Enum.TryParse(e.GetPropertyValue<string>("StatusType", string.Empty), out statusType);
 
             result.Name = e.GetPropertyValue<string>("Name", string.Empty);
-            result.ModuleType = moduleType;        
+            result.ModuleType = moduleType;
             result.Status = statusType;
 
             BowtieAPI api = new BowtieAPI();
@@ -119,8 +120,30 @@ namespace JB2.Bowtie.Data.Azure
 
             result.API = api;
 
+
+            string dataNames = e.GetPropertyValue<string>("PropertyNames", string.Empty);
+            result.PlayerDataNames = dataNames.Split(",");
+
+            //load the Inventory Items
+            var itementies = _table.GetByPartitionKey<DynamicTableEntity>("inventory:" + ":module:" + id,1000);
+
+            //load the inventory items
+            List<IInventoryItem> items = new List<IInventoryItem>();
+            foreach (var i in itementies)
+            {
+                var itemID = i.GetPropertyValue<string>("ID", string.Empty);
+                InventoryItem newI = new InventoryItem(itemID);
+                newI.InventoryCategory = i.GetPropertyValue<string>("Category", string.Empty);
+                newI.Name = i.GetPropertyValue<string>("Name", string.Empty);
+                items.Add(newI);
+            }
+            result.InventoryItems = items;
+
             return result;
         }
+
+
+
 
         protected override void deleteAll(DynamicTableEntity e)
         {
@@ -195,6 +218,31 @@ namespace JB2.Bowtie.Data.Azure
             catch (Exception ex)
             {
                 return new BowtieMetadata(playerid);
+            }
+        }
+
+
+        public override void Insert(IModule obj)
+        {
+            //save the IModule
+            base.Insert(obj);
+
+            //save the InventoryItems
+            var items = obj.InventoryItems;
+
+            foreach(var i in items)
+            {
+                DynamicTableEntity e = new DynamicTableEntity();
+
+                e.SetProperty<string>("ID", i.ID);
+                e.SetProperty<string>("Name", i.Name);
+                e.SetProperty<string>("Category", i.InventoryCategory);
+                e.SetProperty<string>("Module", obj.ID);
+
+                e.PartitionKey = "inventory:module:" + obj.ID;
+                e.RowKey = "id:" + i.ID;
+
+                _table.Insert<DynamicTableEntity>(e, true);
             }
         }
     }
