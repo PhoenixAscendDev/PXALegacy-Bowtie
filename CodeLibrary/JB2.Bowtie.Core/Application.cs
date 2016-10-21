@@ -11,9 +11,10 @@ namespace JB2.Bowtie
     {
 
         #region Fields
-        private string _secret;       
-        private Enum.APIAuthorizeState _APIstate;
-        private string _apiKey;
+        protected string _secret;       
+        protected Enum.APIAuthorizeState _APIstate;
+        protected string _apiKey;
+        protected IDictionary<string, IModule> _modules;
 
 
         #endregion Fields
@@ -24,12 +25,23 @@ namespace JB2.Bowtie
         {
 
         }
-        public Application(string publickey, string secretKey, Enum.APIAuthorizeState state ) : base(Enum.BowtieObjectType.bowtie_application,publickey)
+        public Application(string publickey, string secretKey, Enum.APIAuthorizeState state ) : this(publickey,secretKey,Enum.APIAuthorizeState.Unknown, new List<IModule>())
+        {
+        
+        }
+
+        public Application(string publickey, string secretKey, Enum.APIAuthorizeState state,IEnumerable<IModule> modules) : base(Enum.BowtieObjectType.bowtie_application, publickey) 
         {
             this._secret = secretKey;
             this._apiKey = publickey;
 
-            _APIstate = state;          
+            _APIstate = state;
+
+            _modules = new Dictionary<string, IModule>();
+            foreach(var m in modules)
+            {
+                _modules.Add(m.GetID(), m);
+            }
         }
 
         #endregion Constructors
@@ -111,6 +123,11 @@ namespace JB2.Bowtie
         public JB2.Common.IMetaData GetMetaData(string propertyName)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<IModule> GetModules()
+        {
+            return _modules.Values;
         }
 
         #endregion IApplication

@@ -17,11 +17,10 @@ namespace JB2.Bowtie
         protected new Name _name;
         protected MetaDataCollection _metadata;
         
-        protected Dictionary<string, MetaDataCollection> _modules;
+        protected Dictionary<string,IModule> _modules;
 
         protected IDictionary<string, int> _dewdrops;
         #endregion Fields
-
 
         #region Constructors
         public Player()
@@ -84,12 +83,39 @@ namespace JB2.Bowtie
             }
         }
 
+        public abstract Backpack GetBackpack();
+
         #region IPlayer
-        public virtual IMetaData GetModuleMetaData(string module, string propertyName)
+        public virtual IEnumerable<IModule> GetModules()
+        {
+            return _modules.Values;
+        }
+
+        public virtual BowtieMetadata GetModuleData(string moduleid)
+        {
+            if (_modules.ContainsKey(moduleid))
+                return _modules[moduleid].GetPlayerData(this.GetPlayerID());
+            else
+                return new BowtieMetadata(this.GetPlayerID());
+        }
+
+        public virtual IEnumerable<IPlayerInventoryItem> GetModuleInventory(string moduleid)
+        {
+            if (_modules.ContainsKey(moduleid))
+                return _modules[moduleid].GetPlayerInventory(this.GetPlayerID());
+            else
+                return new List<IPlayerInventoryItem>();
+
+        }
+        public virtual IMetaData GetModuleData(string module, string propertyName)
         {
             //MetaDataCollection collection = _modules[module];
             if (_modules.ContainsKey(module))
-                return _modules[module][propertyName];
+            {
+                var data = _modules[module].GetPlayerData(this.GetPlayerID());
+                return data[propertyName];
+            }
+            
             else
                 return null;
         }
@@ -97,13 +123,6 @@ namespace JB2.Bowtie
         public virtual IMetaData MetaData(string propertyName)
         {
             return _metadata[propertyName];
-        }
-        public virtual void SetModuleMetaData(string module, IMetaData metadata)
-        {
-            if (!_modules.ContainsKey(module))
-                _modules.Add(module, new MetaDataCollection(metadata));
-            else
-                _modules[module].Add(metadata);
         }
         #endregion IPlayer
 
@@ -134,16 +153,6 @@ namespace JB2.Bowtie
         }
 
         public abstract string GetIdentityAuthID();
-
-        //public IMetaData GetModuleAttribute(string module, string propertyName)
-        //{
-        //    return _player.GetModuleAttribute(module, propertyName);
-        //}
-
-        //public void SetModuleAttribute(string module, IMetaData metadata)
-        //{
-        //    _player.SetModuleAttribute(module, metadata);
-        //}
 
         public string GetPlayerID()
         {

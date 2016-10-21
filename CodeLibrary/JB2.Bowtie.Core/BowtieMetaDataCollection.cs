@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using JB2.Common;
 
 namespace JB2.Bowtie
 {
-    public class BowtieMetadata
+    public class BowtieMetadata : IEnumerable<IMetaData>, IEnumerable, IObjectCollection<IMetaData>
     {
 
         #region Fields
@@ -30,7 +31,32 @@ namespace JB2.Bowtie
             _playerid = playerid;
         }
 
+        public IMetaData this[int index]
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         #endregion Constructors
+
+        #region This
+
+        public IMetaData this[string propertyName]
+        {
+            get
+            {
+                return _metadata[propertyName];
+            }
+        }
+
+        #endregion This
 
         #region Properties
         public string PlayerID
@@ -38,77 +64,38 @@ namespace JB2.Bowtie
             get { return _playerid; }
         }
 
-        //public string jBeanAccountNumber
-        //{
-        //    get
-        //    {
-        //        if (_metadata.ContainsKey("jbeanAccountNumber"))
-        //            return _metadata["jbeanAccountNumber"].GetValue().ToString();
-        //        else
-        //            return string.Empty;
-        //    }
-        //    set
-        //    {
-        //        StringMetaData md = new StringMetaData("jbeanAccountNumber", value);
-        //        _metadata["jbeanAccountNumber"] = md;
-        //    }
-        //}
-
-        //public string Title
-        //{
-        //    get
-        //    {
-        //        if (_metadata.ContainsKey("title"))
-        //            return _metadata["title"].GetValue().ToString();
-        //        else
-        //            return string.Empty;
-        //    }
-
-        //    set
-        //    {
-        //        StringMetaData md = new StringMetaData("title", value);
-        //        _metadata["title"] = md;
-        //    }
-        //}
-
-        //public long BitScore
-        //{
-        //    get
-        //    {
-        //        if (_metadata.ContainsKey("bitscore"))
-        //            return _metadata["bitscore"].GetValue().LongValue;
-        //        else
-        //            return 0;
-        //    }
-
-        //    set
-        //    {
-        //        MetaData<long> md = new MetaData<long>("bitscore", value);
-        //        _metadata["bitscore"] = md;
-        //    }
-        //}
-        
-
-        //public Kenshin Kenshin
-        //{
-        //    get
-        //    {
-        //        if (_metadata.ContainsKey("kenshin"))
-        //            return (Kenshin)_metadata["kenshin"].GetValue();
-        //        else
-        //            return new Kenshin();
-        //    }
-
-        //    set
-        //    {
-        //        MetaData<Kenshin> md = new MetaData<Kenshin>("kenshin", value);
-        //        _metadata["kenshin"] = md;
-        //    }
-
-        //}
-
         #endregion Properties
 
+
+        public IEnumerator<IMetaData> GetEnumerator()
+        {
+            return _metadata.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return _metadata.GetEnumerator();
+        }
+
+        public ServiceResult Add(IMetaData item)
+        {
+            return _metadata.Add(item);
+        }
+
+        public int Count()
+        {
+            return _metadata.Count();
+        }
+
+        public IMetaData Find(Func<IMetaData, bool> predicate)
+        {
+            return _metadata.Find(predicate);
+        }
+
+        public ServiceResult Remove(IMetaData item)
+        {
+            return _metadata.Remove(item);
+        }
 
         public static implicit operator MetaDataCollection(BowtieMetadata md)
         {

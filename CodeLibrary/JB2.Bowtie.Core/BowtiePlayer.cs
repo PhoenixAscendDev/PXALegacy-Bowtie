@@ -8,6 +8,10 @@ namespace JB2.Bowtie
 {
     public class BowtiePlayer : Player, IBowtiePlayer
     {
+        #region Fields
+        protected Backpack _backpack;
+
+        #endregion Fields
 
         #region Constructors
         public BowtiePlayer() : base()
@@ -17,6 +21,8 @@ namespace JB2.Bowtie
 
 
         #endregion Constructors
+
+
         public override string DisplayName
         {
             get
@@ -30,7 +36,21 @@ namespace JB2.Bowtie
             }
         }
 
+        public override Backpack GetBackpack()
+        {
+            Backpack bp = new Backpack(this.GetPlayerID());
 
+            foreach(var m in _modules.Values)
+            {
+                foreach(var i in m.GetPlayerInventory(this.GetPlayerID()))
+                {
+                    i.ID = m.GetID() + ":" + i.GetID();
+                    bp.Add(i);
+                }
+            }
+
+            return bp;
+        }
 
         public override string GetIdentityAuthID()
         {
@@ -39,5 +59,7 @@ namespace JB2.Bowtie
             else
                 return string.Empty;
         }
+
+
     }
 }

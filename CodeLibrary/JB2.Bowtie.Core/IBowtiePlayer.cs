@@ -6,10 +6,16 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IBowtiePlayer : JB2.Common.IPerson<string>, IPlayerable<string>,IPlayerable, IBowtieObject
+    public interface IBowtiePlayer : JB2.Common.IPerson<string>, IPlayerable<string>, IPlayerable, IBowtieObject
     {
         string GetIdentityAuthID();
-        JB2.Bowtie.IWallet GetWallet();  
+        JB2.Bowtie.IWallet GetWallet();
+
+        Backpack GetBackpack();
+
+        BowtieMetadata GetModuleData(string moduleid);
+        IEnumerable<IPlayerInventoryItem> GetModuleInventory(string moduleid);
+        
         int Age { get; set; }
         string Gender { get; set; }
         string AuthProvider { get; set; }     

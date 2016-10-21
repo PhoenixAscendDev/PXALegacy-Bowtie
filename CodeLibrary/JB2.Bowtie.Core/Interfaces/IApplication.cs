@@ -14,5 +14,7 @@ namespace JB2.Bowtie
         Enum.APIAuthorizeState AuthorizedState { get; }
         string ClientID { get; set; }
         IEnumerable<JB2.Identity.IPlayer> GetAdmins();
+
+        IEnumerable<IModule> GetModules();
     }
 }
