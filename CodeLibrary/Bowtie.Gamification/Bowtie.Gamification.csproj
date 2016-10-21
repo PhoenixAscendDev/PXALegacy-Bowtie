@@ -38,6 +38,10 @@
       <HintPath>..\..\Solutions\packages\JB2.Date.0.2.0\lib\JB2.Common.Date.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="JB2.Common.Image, Version=0.2.1.27179, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Image.0.2.1.27179\lib\JB2.Common.Image.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="JB2.Common.Map, Version=0.2.1.23896, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\JB2.Common.Map.0.2.1\lib\JB2.Common.Map.dll</HintPath>
       <Private>True</Private>
@@ -71,6 +75,7 @@
     <Compile Include="BaseAchievement.cs" />
     <Compile Include="EventAchievement.cs" />
     <Compile Include="GameSession.cs" />
+    <Compile Include="InventoryItem.cs" />
     <Compile Include="LapelPinAchievement.cs" />
     <Compile Include="PlayerAchievement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

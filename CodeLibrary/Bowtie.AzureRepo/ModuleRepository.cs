@@ -36,9 +36,9 @@ namespace JB2.Bowtie.Data.Azure
 
 
 
-        public IModule GetByName(string id)
+        public IModule GetByName(string name)
         {
-            return GetById(id, _useCache);
+            return GetByName(name, _useCache);
         }
 
         public IModule GetByName(string name, bool useCache = true)
@@ -97,6 +97,9 @@ namespace JB2.Bowtie.Data.Azure
 
             switch (moduleType)
             {
+                case Enum.ModuleType.BowtieRepo:
+                    result = new NonRestModule(id,this);
+                    break;
                 case Enum.ModuleType.REST:
                 default:
                     result = new RESTModule(id);
@@ -135,6 +138,64 @@ namespace JB2.Bowtie.Data.Azure
             e.PartitionKey = _defaultPartitionKey;
             e.RowKey = "name:" + e.GetPropertyValue<string>("Name", string.Empty);
             _table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
+        }
+
+        public IEnumerable<IPlayerInventoryItem> GetInventoryByPlayerID(string moduleid,string playerid)
+        {
+            List<IPlayerInventoryItem> list = new List<IPlayerInventoryItem>();
+            try
+            {
+                var elist = _table.GetByPartitionKey<DynamicTableEntity>("inventory" + ":player:" + playerid + ":module:" + moduleid, 1000);
+
+                if (elist == null)
+                    return list;
+
+                foreach(var e in elist)
+                {
+                    string itemID = e.GetPropertyValue<string>("ID", string.Empty);
+                    string playerID = e.GetPropertyValue<string>("PlayerID", string.Empty);
+                    PlayerInventoryItem i = new PlayerInventoryItem(itemID,playerID);
+                    i.Name = e.GetPropertyValue<string>("Name", string.Empty);
+                    i.PlayerID = e.GetPropertyValue<string>("PlayerID", string.Empty);
+                    i.Quanity = e.GetPropertyValue<int>("Quantity", 0);
+                    i.InventoryCategory = e.GetPropertyValue<string>("Category", string.Empty);
+
+                    list.Add(i);
+                }
+                return list;
+
+
+            }
+            catch(Exception ex)
+            {
+                list = new List<IPlayerInventoryItem>();
+                return list;
+            }
+        }
+
+        public BowtieMetadata GetDataByPlayerID(string moduleid, string playerid)
+        {
+            List<IMetaData> result = new List<IMetaData>();
+            try
+            {
+                var elist = _table.GetByPartitionKey<DynamicTableEntity>("data" + ":player:" + playerid + ":module:" + moduleid, 1000);
+
+                if (elist == null)
+                    return new BowtieMetadata(playerid, result);
+
+                foreach (var e in elist)
+                {
+                    string proName = e.GetPropertyValue<string>("PropertyName", string.Empty);
+                    string value = e.GetPropertyValue<string>("PropertyValue", string.Empty);
+                    MetaData<string> i = new MetaData<string>(proName, value);
+                    result.Add(i);
+                }
+                return new BowtieMetadata(playerid,result);
+            }
+            catch (Exception ex)
+            {
+                return new BowtieMetadata(playerid);
+            }
         }
     }
 }

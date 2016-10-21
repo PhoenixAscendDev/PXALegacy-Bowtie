@@ -10,5 +10,10 @@ namespace JB2.Bowtie
     {
        IModule GetByName(string name);
 
+
+        IEnumerable<IPlayerInventoryItem> GetInventoryByPlayerID(string moduleid, string playerid);
+
+        BowtieMetadata GetDataByPlayerID(string moduleid, string playerid);
+
     }
 }

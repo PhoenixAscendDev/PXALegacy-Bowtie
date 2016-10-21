@@ -16,6 +16,8 @@ namespace JB2.Bowtie
 
         Enum.ModuleType ModuleType { get; set; }
 
+        IEnumerable<IPlayerInventoryItem> GetPlayerInventory(string playerID);
+
         
     }
 }

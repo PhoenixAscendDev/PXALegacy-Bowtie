@@ -3,36 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JB2.Bowtie.Enum;
-
-using JB2.Common;
-
 
 namespace JB2.Bowtie
 {
-    public class RESTModule : Module
+    public class NonRestModule : Module
     {
 
+        #region Fields
+        protected IModuleRepository _repo;
+
+        #endregion Fields
+
         #region Constructor
-        public RESTModule(string id) : base()
+        public NonRestModule(string id, IModuleRepository repo) : base()
         {
             this.SetProperty<string>("ID", id);
+            _repo = repo;
         }
 
         #endregion Constructor
-
         public override BowtieMetadata GetPlayerData(string playerID)
         {
-            throw new NotImplementedException();
+            return _repo.GetDataByPlayerID(this.GetID(), playerID);
         }
 
         public override IEnumerable<IPlayerInventoryItem> GetPlayerInventory(string playerID)
         {
-            throw new NotImplementedException();
+            return _repo.GetInventoryByPlayerID(this.GetID(), playerID);
+           
         }
-
-
-
-
     }
 }
