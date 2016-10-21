@@ -57,6 +57,15 @@ namespace JB2.Bowtie.Data.Azure
         public void Insert(ApplicationPlayer player)
         {
             saveAppUser(convertToEntity(player), true);
+
+            InsertAuthInfo(player.GetPlayerID(), player.AuthInfo);
+        }
+
+        public override void Insert(IBowtiePlayer obj)
+        {
+            base.Insert(obj);
+
+            InsertAuthInfo(obj.GetPlayerID(), obj.GetAuthInfo());
         }
 
         public ApplicationPlayer GetAppPlayerByID(string playerID, string appID)
@@ -73,6 +82,47 @@ namespace JB2.Bowtie.Data.Azure
             //throw new NotImplementedException();
         }
 
+        public IBowtiePlayer GetPlayerByAuth(string authID, string provider)
+        {
+            var e = _table.GetEntity<DynamicTableEntity>("auth:" + provider, "authid:" + authID);            
+            if (e != null)
+            {
+                var playerID = e.GetPropertyValue<string>("PlayerID", string.Empty);
+                return this.GetById(playerID);
+            }
+              
+            else
+                return null;
+        }
+
+
+        #region AuthInfo
+
+        public ServiceResult InsertAuthInfo(string playerID, AuthInfo authinfo)
+        {
+            DynamicTableEntity e = new DynamicTableEntity();
+            e.SetProperty<string>("AuthProvider", authinfo.Provider);
+            e.SetProperty<string>("UserID", authinfo.UserID);
+            e.SetProperty<string>("PlayerID", playerID);
+
+            e.PartitionKey = "auth:" + authinfo.Provider;
+            e.RowKey = "authid:" + authinfo.UserID;
+
+            _table.Insert<DynamicTableEntity>(e, true);
+
+            return true;
+        }
+
+        public ServiceResult RemoveAuthInfo(string playerID, string authProvider)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+
+        #endregion AuthInfo
+
         #region Non-Public Methods
 
         protected override DynamicTableEntity convertToEntity(IBowtiePlayer o)
@@ -84,7 +134,7 @@ namespace JB2.Bowtie.Data.Azure
             e.Properties.Add("Age", new EntityProperty(o.Age));
             e.Properties.Add("Gender", new EntityProperty(o.Gender));
             e.Properties.Add("PlayerID", new EntityProperty(o.GetPlayerID()));
-            e.Properties.Add("AuthProvider", new EntityProperty(o.AuthProvider));
+            //e.Properties.Add("AuthProvider", new EntityProperty(o.AuthProvider));
 
             return e;
         }
@@ -118,7 +168,7 @@ namespace JB2.Bowtie.Data.Azure
             player.DisplayName = e.Properties.ContainsKey("DisplayName") ? e.Properties["DisplayName"].StringValue : string.Empty;
             player.Age = e.Properties.ContainsKey("Age") ? e.Properties["Age"].Int32Value.GetValueOrDefault() : 0;
             player.Gender = e.Properties.ContainsKey("Gender") ? e.Properties["Gender"].StringValue : string.Empty;
-            player.AuthProvider = e.Properties.ContainsKey("AuthProvider") ? e.Properties["AuthProvider"].StringValue : string.Empty;
+            //player.AuthProvider = e.Properties.ContainsKey("AuthProvider") ? e.Properties["AuthProvider"].StringValue : string.Empty;
 
             return player;
         }
@@ -135,7 +185,7 @@ namespace JB2.Bowtie.Data.Azure
             player.DisplayName = e.Properties.ContainsKey("DisplayName") ? e.Properties["DisplayName"].StringValue : string.Empty;
             player.Age = e.Properties.ContainsKey("Age") ? e.Properties["Age"].Int32Value.GetValueOrDefault() : 0;
             player.Gender = e.Properties.ContainsKey("Gender") ? e.Properties["Gender"].StringValue : string.Empty;
-            player.AuthProvider = e.Properties.ContainsKey("AuthProvider") ? e.Properties["AuthProvider"].StringValue : string.Empty;
+            //player.AuthProvider = e.Properties.ContainsKey("AuthProvider") ? e.Properties["AuthProvider"].StringValue : string.Empty;
             player.DateRegistered = e.Properties.ContainsKey("DateRegistered") ? e.Properties["DateRegistered"].DateTime.GetValueOrDefault() : DateTime.MinValue;
 
             return player;
@@ -178,7 +228,6 @@ namespace JB2.Bowtie.Data.Azure
 
             saveEntity(e, replace);
         }
-
 
 
 

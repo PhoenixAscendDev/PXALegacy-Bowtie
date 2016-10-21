@@ -39,10 +39,6 @@ namespace JB2.Bowtie
 
         #endregion IApplicationable
 
-        public override string GetIdentityAuthID()
-        {
-            throw new NotImplementedException();
-        }
 
         public override string DisplayName
         {
@@ -97,7 +93,7 @@ namespace JB2.Bowtie
         {
             ApplicationPlayer ap = new ApplicationPlayer(player.GetID(), app.GetID());
             ap.Age = player.Age;
-            ap.AuthProvider = player.AuthProvider;
+            ap.AuthInfo = player.GetAuthInfo();
             ap.DisplayName = player.DisplayName;
             ap.Gender = player.Gender;
             

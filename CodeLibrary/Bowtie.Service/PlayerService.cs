@@ -28,7 +28,9 @@ namespace JB2.Bowtie.Service
         }
 
         #endregion Constructors
-        public IBowtiePlayer RetrieveByAuthID(string id,IApplication app)
+
+
+        public IBowtiePlayer RetrieveByAuth(AuthInfo info)
         {
             //var playerid = JB2.Identity.PlayerStore.GetClientPlayerID(id, app.ClientID);
 
@@ -44,13 +46,13 @@ namespace JB2.Bowtie.Service
 
         //    return fromIdentity(appPlayer, app);
         //}
-
-
         public ApplicationPlayer RegisterPlayer(JB2.Bowtie.IBowtiePlayer player, IApplication app, string authprovider)
         {
             // create player
             ApplicationPlayer result = ApplicationPlayer.FromPlayer(player, app);
-            result.AuthProvider = authprovider;
+            AuthInfo authInfo = new AuthInfo();
+            authInfo.Provider = authprovider;
+            result.AuthInfo = authInfo;
             result.DateRegistered = DateTime.Now;
             _repo.Insert(result);
 
@@ -73,30 +75,8 @@ namespace JB2.Bowtie.Service
             {
                 dservice.Save(pdew);
             }
-
-
-
-
-
-
-
             return result;
-
-
-
         }
-
-        //private IBowtiePlayer fromIdentity(JB2.Identity.IPlayer player, IApplication app)
-        //{
-        //    IBowtiePlayer result = new JB2.Bowtie.ApplicationPlayer(player, app.GetID());
-
-        //    WalletService wservice = new WalletService(_uofw);
-        //    var wallet = wservice.RetrieveWalletByPlayer(result, app);
-
-        //    _uofw.PlayerRepository.Insert(result);
-
-        //    return result;
-        //}
 
     }
 }
