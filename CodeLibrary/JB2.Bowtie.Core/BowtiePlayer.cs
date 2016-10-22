@@ -19,6 +19,11 @@ namespace JB2.Bowtie
 
         }
 
+        public BowtiePlayer(string id, IEnumerable<IModule> modules) : base(id,modules)
+        {
+            
+        }
+
 
         #endregion Constructors
 

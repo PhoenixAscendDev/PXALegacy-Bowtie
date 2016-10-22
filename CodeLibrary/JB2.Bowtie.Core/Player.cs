@@ -29,7 +29,17 @@ namespace JB2.Bowtie
         {
             _metadata = new MetaDataCollection();
             _dewdrops = new Dictionary<string, int>();
-            
+            _modules = new Dictionary<string, IModule>();        
+        }
+        public Player(string id, IEnumerable<IModule> modules)
+        {
+            _metadata = new MetaDataCollection();
+            _dewdrops = new Dictionary<string, int>();
+            _modules = new Dictionary<string, IModule>();
+            foreach(var m in modules)
+            {
+                _modules.Add(m.GetID(), m);
+            }
         }
 
         #endregion Constructors

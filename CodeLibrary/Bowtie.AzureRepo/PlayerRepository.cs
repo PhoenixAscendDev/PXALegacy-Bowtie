@@ -162,14 +162,15 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override IBowtiePlayer convertToObject(DynamicTableEntity e)
         {
-            BowtiePlayer player = new BowtiePlayer();
+            var id = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
+            IEnumerable<IModule> modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll();
+            BowtiePlayer player = new BowtiePlayer(id, modules);
 
-            player.ID = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
+            player.ID = id;
             player.DisplayName = e.Properties.ContainsKey("DisplayName") ? e.Properties["DisplayName"].StringValue : string.Empty;
             player.Age = e.Properties.ContainsKey("Age") ? e.Properties["Age"].Int32Value.GetValueOrDefault() : 0;
             player.Gender = e.Properties.ContainsKey("Gender") ? e.Properties["Gender"].StringValue : string.Empty;
-            //player.AuthProvider = e.Properties.ContainsKey("AuthProvider") ? e.Properties["AuthProvider"].StringValue : string.Empty;
-
+            //player.AuthProvider = e.Properties.ContainsKey("AuthProvider") ? e.Properties["AuthProvider"].StringValue : string.Empty;          
             return player;
         }
 
