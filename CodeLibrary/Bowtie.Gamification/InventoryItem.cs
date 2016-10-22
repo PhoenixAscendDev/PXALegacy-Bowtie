@@ -66,6 +66,18 @@ namespace JB2.Bowtie
             }
         }
 
+        public string PuralName
+        {
+            get
+            {
+                return this.GetProperity<string>("PuralName", this.Name);
+            }
+            set
+            {
+                this.SetProperty<string>("PuralName", value);
+            }
+        }
+
         //public int Quanity
         //{
         //    get

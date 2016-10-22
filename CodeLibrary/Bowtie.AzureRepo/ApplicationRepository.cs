@@ -95,7 +95,9 @@ namespace JB2.Bowtie.Data.Azure
          
             Enum.APIAuthorizeState state = Enum.APIAuthorizeState.Unknown;
             System.Enum.TryParse<Enum.APIAuthorizeState>(e.Properties["AuthorizeState"].StringValue, out state);
-            List<IModule> modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll().ToList();
+            //List<IModule> modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll().ToList();
+
+            List<IModule> modules = new List<IModule>();
 
 
             var app = new Application(apiKey.APIkey, apiKey.Secret, state,modules);

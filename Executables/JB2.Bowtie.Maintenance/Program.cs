@@ -35,14 +35,52 @@ namespace JB2.Bowtie.Maintenance
             IModule bs = NonRestModule.New;
             bs.Name = "Bluff Street";
             propertyNames = new List<string>();
-            //propertyNames.Add("BANKACCOUNT");
-            //propertyNames.Add("STOCKMARKETACCOUNT");
+            propertyNames.Add("GUILD");
+            propertyNames.Add("ASSIGNED-GUILDCARD");
+            propertyNames.Add("COLLECTION-GUILDCARD");
+
+            
             bs.PlayerDataNames = propertyNames;
 
             List<IInventoryItem> bsitems = new List<IInventoryItem>();
 
-            bsitems.Add(new InventoryItem("bluffstreet-bronzeAcornd") { Name = "Bronze Acorns" });
-            bsitems.Add(new InventoryItem("bluffstreet-crabclaw") { Name = "Crab Claws" });
+            bsitems.Add(new InventoryItem("bluffstreet-bronzeAcorns") { Name = "Bronze Acorn", PuralName = "Bronze Acorns", InventoryCategory = "Acorn" });
+            bsitems.Add(new InventoryItem("bluffstreet-silverAcorns") { Name = "Silver Acorn", PuralName = "Silver Acorns", InventoryCategory = "Acorn" });
+            bsitems.Add(new InventoryItem("bluffstreet-goldenAcorns") { Name = "Golden Acorn", PuralName = "Golden Acorns", InventoryCategory = "Acorn" });
+
+            bsitems.Add(new InventoryItem("bluffstreet-crabclaw") { Name = "Crab Claw", PuralName = "Crab Claws", InventoryCategory = "BluffianHost" });
+            bsitems.Add(new InventoryItem("bluffstreet-strawbundle") { Name = "Straw Bundle", PuralName="Straw Bundles", InventoryCategory="BluffianHost" });
+            bsitems.Add(new InventoryItem("bluffstreet-owlfeather") { Name = "Owl Feather", PuralName = "Owl Feathers", InventoryCategory = "BluffianHost" });
+            bsitems.Add(new InventoryItem("bluffstreet-caterpillarsilk") { Name = "Catapillar Silk", PuralName = "Catapillar Silks", InventoryCategory = "BluffianHost" });
+            bsitems.Add(new InventoryItem("bluffstreet-pigtail") { Name = "Pig Tail", PuralName = "Pig Tails", InventoryCategory = "BluffianHost" });
+
+            bsitems.Add(new InventoryItem("bluffstreet-wheelticket") { Name = "Wheel Ticket", PuralName = "Wheel Tickets", InventoryCategory = "Ticket" });
+
+            for(var suit=1;suit <= 4;suit++)
+            {
+                for(var i = 1; i <= 13;i++)
+                {
+                    string suitName = string.Empty;
+                    switch (suit)
+                    {
+                        case 1:
+                            suitName = "heart";
+                            break;
+                        case 2:
+                            suitName = "diamond";
+                            break;
+                        case 3:
+                            suitName = "spade";
+                            break;
+                        case 4:
+                            suitName = "club";
+                            break;
+                    }
+
+                    bsitems.Add(new InventoryItem("bluffstreet-guildcard-" + i.ToString("D2") + suitName ) { Name = i.ToString() + " of " + suitName, PuralName = i.ToString() + " of " + suitName + "s", InventoryCategory = "GuildPlayingCard" });
+
+                }
+            }
 
             bs.InventoryItems = bsitems;
             moduleService.Save(bs);
@@ -54,10 +92,14 @@ namespace JB2.Bowtie.Maintenance
         {
 
             ConfigureBowtie();
-            SetupModules();
-            var moduleService = new JB2.Bowtie.Service.ModuleService();
+            //SetupModules();
+            //var moduleService = new JB2.Bowtie.Service.ModuleService();
 
-            var modules = moduleService.Retrieve();
+            //var modules = moduleService.Retrieve();
+
+            var companies = JB2.Settings.
+
+
             //Console.WriteLine(modules.Count());
             Console.ReadLine();
         }

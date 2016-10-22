@@ -135,6 +135,7 @@ namespace JB2.Bowtie.Data.Azure
                 InventoryItem newI = new InventoryItem(itemID);
                 newI.InventoryCategory = i.GetPropertyValue<string>("Category", string.Empty);
                 newI.Name = i.GetPropertyValue<string>("Name", string.Empty);
+                newI.PuralName = i.GetPropertyValue<string>("PuralName", newI.Name);
                 items.Add(newI);
             }
             result.InventoryItems = items;
@@ -182,6 +183,8 @@ namespace JB2.Bowtie.Data.Azure
                     i.PlayerID = e.GetPropertyValue<string>("PlayerID", string.Empty);
                     i.Quanity = e.GetPropertyValue<int>("Quantity", 0);
                     i.InventoryCategory = e.GetPropertyValue<string>("Category", string.Empty);
+                    i.PuralName = e.GetPropertyValue<string>("PuralName", i.Name);
+                    
 
                     list.Add(i);
                 }
@@ -238,6 +241,7 @@ namespace JB2.Bowtie.Data.Azure
                 e.SetProperty<string>("Name", i.Name);
                 e.SetProperty<string>("Category", i.InventoryCategory);
                 e.SetProperty<string>("Module", obj.ID);
+                e.SetProperty<string>("PuralName", i.PuralName);
 
                 e.PartitionKey = "inventory:module:" + obj.ID;
                 e.RowKey = "id:" + i.ID;

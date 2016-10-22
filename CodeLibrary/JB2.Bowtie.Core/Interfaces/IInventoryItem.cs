@@ -15,5 +15,7 @@ namespace JB2.Bowtie
         JB2Image Icon { get; set; }
 
         string InventoryCategory { get; set; }
+
+        string PuralName { get; set; }
     }
 }
