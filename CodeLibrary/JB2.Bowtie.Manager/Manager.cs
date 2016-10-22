@@ -20,27 +20,29 @@ namespace JB2.Bowtie
         public static bool Initialize(JB2.Common.IAPIKeySecretPair apiKey)
         {
 
+            // First we have to validate the application
             IUnitOfWork uofw = new JB2.Bowtie.Data.Azure.UnitOfWork();
-
             var appService = new JB2.Bowtie.Service.ApplicationService(uofw);
-
-
             IApplication app = appService.RetrieveByAPIKey(apiKey);
-
             if (app == null)
                 throw new ApplicationNotInitialized("Application could not be Initialized");
             if (app.Secret != apiKey.Secret)
                 throw new ApplicationNotInitialized("Application API Key and Secret are invalid");
 
+
+            //configure jBean
             BaseSetting s = new BaseSetting()
             {
                 ID = Economy.JbeanSettingName.CurrencyID,
                 Name = "CurrencyID",
                 Value = JB2.Configuration.GetjBeanCurrencyID()
             };
-            //JB2.Bowtie.Settings._application = app;
             var jbeanStorage = JB2.Infrastructure.Storage.BowtieAccount;
             JB2.Settings.Jbean.Configure(new BaseSetting[1] { s }, new JB2.Economy.Data.jBeanRespostory(jbeanStorage));
+
+            //configure jBean StockMarket
+
+
 
             //genera bowtie settings
             List<ISetting> bowtieSettings = new List<ISetting>();

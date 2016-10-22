@@ -229,6 +229,16 @@ namespace JB2.Bowtie.Data.Azure
             saveEntity(e, replace);
         }
 
+        public override IBowtiePlayer[] GetAll(int? maxRecordCount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IBowtiePlayer[] GetAll(int? maxRecordCount, bool useCache = true)
+        {
+            throw new NotImplementedException();
+        }
+
 
 
         #endregion Non-Public Methods

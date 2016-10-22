@@ -12,7 +12,7 @@ namespace JB2.Settings
 {
     public static class Bowtie
     {
-        internal static Application _application = null;
+        internal static IApplication _application = null;
 
         internal static DateTime _lastAPIAuthCheck;
 
@@ -22,10 +22,21 @@ namespace JB2.Settings
 
         internal static IEnumerable<Dewdrop> _dewdrops;
 
+        internal static ILogger _logger;
+
         internal static int _authCheckInterval = 5;
         private static JB2.Common.SettingCollection<string> _settings;
         private static bool _isConfigured = false;
         private static IUnitOfWork _unitofWork;
+
+
+        public static ILogger Logger
+        {
+            get
+            {
+                return _logger;
+            }
+        }
         
         public static APIMode Mode
         {
@@ -56,7 +67,7 @@ namespace JB2.Settings
             }
 
         }
-        public static Application CurrentApplication
+        public static IApplication CurrentApplication
         {
             get
             {
@@ -140,18 +151,24 @@ namespace JB2.Settings
 
             try
             {
-                var application = (Application)_settings["CURRENTAPPLICATION"].Value;
+                var unitofWork = (IUnitOfWork)_settings[BowtieSettingName.UnitofWork].Value;
+                if (unitofWork == null)
+                    throw new Exception("Unit of work is not set");
+                _unitofWork = unitofWork;
 
+                var application = (IApplication)_settings[BowtieSettingName.CurrentApplication].Value;
+                
                 if (isApplicationLegit(application))
                     _application = application;
                 else
                     throw new Exception("Application is not valid");
 
-                var unitofWork = (IUnitOfWork)_settings["UNITOFWORK"].Value;
-                if (unitofWork == null)
-                    throw new Exception("Unit of work is not set");
-                _unitofWork = unitofWork;
+                var logger = (ILogger)_settings[BowtieSettingName.Logger].Value;
 
+                if (logger == null)
+                    throw new Exception("Logger was not configured");
+                else
+                    _logger = logger;
             }
             catch(Exception ex)
             {
@@ -173,7 +190,7 @@ namespace JB2.Settings
                 throw new JB2.Common.NotConfiguredException();                             
         }
 
-        private static ServiceResult isApplicationLegit(Application app)
+        private static ServiceResult isApplicationLegit(IApplication app)
         {
             return true;
         }

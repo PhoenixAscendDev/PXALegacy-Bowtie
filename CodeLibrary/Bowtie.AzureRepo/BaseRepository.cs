@@ -65,6 +65,16 @@ namespace JB2.Bowtie.Data.Azure
             return GetAll(_useCache);
         }
 
+        public override T[] GetAll(int? count,bool usecache)
+        {
+            return GetAll(usecache);
+        }
+
+        public override T[] GetAll(int? recordCount)
+        {
+            return GetAll(false);
+        }
+
         public override T[] GetAll(bool usecache)
         {
             var list = _table.GetByRowKeyStartWith<Tentity>(_defaultPartitionKey, "id:", 1000);

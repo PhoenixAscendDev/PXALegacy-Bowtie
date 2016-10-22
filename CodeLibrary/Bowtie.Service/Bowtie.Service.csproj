@@ -48,8 +48,8 @@
       <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.3.28.1\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Data.AzureStorage, Version=0.2.5.12714, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.2.5\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
+    <Reference Include="JB2.Common.Data.AzureStorage, Version=0.2.9.21039, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.2.9\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Date, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
@@ -60,24 +60,40 @@
       <HintPath>..\..\Solutions\packages\JB2.Common.0.1.6\lib\JB2.Common.Image.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Map, Version=0.2.1.23896, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Map.0.2.1\lib\JB2.Common.Map.dll</HintPath>
+    <Reference Include="JB2.Common.Log, Version=0.2.2.8584, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Log.0.2.2\lib\JB2.Common.Log.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Ultities, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Utility.0.2.0\lib\JB2.Common.Ultities.dll</HintPath>
+    <Reference Include="JB2.Common.Log.AzureRepo, Version=0.2.3.3738, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Log.AzureRepo.0.2.3.1\lib\JB2.Common.Log.AzureRepo.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Economy.AzureRepo, Version=0.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Economy.AzureRepo.0.1.7\lib\JB2.Economy.AzureRepo.dll</HintPath>
+    <Reference Include="JB2.Common.Map, Version=0.2.3.3053, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Map.0.2.3\lib\JB2.Common.Map.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Economy.Core, Version=0.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Economy.Core.0.1.7\lib\JB2.Economy.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Ultities, Version=0.2.2.37707, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Utility.0.2.2\lib\JB2.Common.Ultities.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Economy.jBean, Version=0.1.7.41453, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Economy.jBean.0.1.7.41453\lib\JB2.Economy.jBean.dll</HintPath>
+    <Reference Include="JB2.Economy.AzureRepo, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Economy.AzureRepo.0.2.0\lib\JB2.Economy.AzureRepo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Economy.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Economy.Core.0.2.0\lib\JB2.Economy.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Economy.jBean, Version=0.2.0.5027, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Economy.jBean.0.2.0\lib\JB2.Economy.jBean.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Economy.JbeanStockMarket, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Economy.StockMarket.jBean.0.2.0\lib\JB2.Economy.JbeanStockMarket.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Economy.StockMarket.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Economy.StockMarket.Core.0.2.0\lib\JB2.Economy.StockMarket.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -92,8 +108,8 @@
       <HintPath>..\..\Solutions\packages\JB2.Identity.Repo.0.1.4\lib\JB2.Identity.Repo.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Infrastructure, Version=0.2.15.17394, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.15\lib\JB2.Infrastructure.dll</HintPath>
+    <Reference Include="JB2.Infrastructure, Version=0.2.20.9280, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.20\lib\JB2.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
