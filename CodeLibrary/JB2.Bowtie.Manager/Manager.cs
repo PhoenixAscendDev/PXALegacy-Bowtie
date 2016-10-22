@@ -37,10 +37,21 @@ namespace JB2.Bowtie
                 Name = "CurrencyID",
                 Value = JB2.Configuration.GetjBeanCurrencyID()
             };
-            var jbeanStorage = JB2.Infrastructure.Storage.BowtieAccount;
+            var jbeanStorage = JB2.Infrastructure.Storage.EconomyAccount;
             JB2.Settings.Jbean.Configure(new BaseSetting[1] { s }, new JB2.Economy.Data.jBeanRespostory(jbeanStorage));
 
+
+
             //configure jBean StockMarket
+            BaseSetting s1 = new BaseSetting()
+            {
+                ID = Economy.JbeanStockMarketSettingName.StockExchangeID,
+                Name = Economy.JbeanStockMarketSettingName.StockExchangeID,
+                Value = JB2.Configuration.GetjBeanStockMarketID()
+            };
+            var stockMarketAccount = JB2.Infrastructure.Storage.EconomyAccount;
+
+            JB2.Settings.JbeanStockMarket.Configure(new BaseSetting[1] { s1 }, new JB2.Economy.Data.JBeanStockRepository(stockMarketAccount));
 
 
 

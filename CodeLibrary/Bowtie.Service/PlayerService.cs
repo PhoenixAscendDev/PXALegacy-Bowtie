@@ -28,16 +28,9 @@ namespace JB2.Bowtie.Service
         }
 
         #endregion Constructors
-
-
         public IBowtiePlayer RetrieveByAuth(AuthInfo info)
         {
-            //var playerid = JB2.Identity.PlayerStore.GetClientPlayerID(id, app.ClientID);
-
-            //var appPlayer = JB2.Identity.PlayerStore.GetPlayerByAppPlayerID(playerid, app.ClientID);
-
-            //return fromIdentity(appPlayer, app);
-            throw new NotImplementedException();
+            return _repo.GetPlayerByAuth(info.UserID, info.Provider);
         }
 
         //public IBowtiePlayer RetrieveByAppPlayerID(string id,IApplication app)
