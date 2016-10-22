@@ -91,15 +91,14 @@ namespace JB2.Bowtie.Data.Azure
             var apiKey = new JB2.Common.ApiKeySecretPair();
 
             apiKey.APIkey = e.Properties["APIKey"].StringValue;
-
-
             apiKey.Secret = e.Properties["APISecret"].PropertyType == EdmType.Guid ? e.Properties["APISecret"].GuidValue.GetValueOrDefault().ToString() : e.Properties["APISecret"].PropertyAsObject.ToString();
          
             Enum.APIAuthorizeState state = Enum.APIAuthorizeState.Unknown;
-
             System.Enum.TryParse<Enum.APIAuthorizeState>(e.Properties["AuthorizeState"].StringValue, out state);
+            List<IModule> modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll().ToList();
 
-            var app = new Application(apiKey.APIkey, apiKey.Secret, state);
+
+            var app = new Application(apiKey.APIkey, apiKey.Secret, state,modules);
             app.ID = e.Properties["ID"].StringValue;
             app.ClientID = e.Properties.ContainsKey("IdentityClientIDs") ? e.Properties["IdentityClientIDs"].StringValue : string.Empty;
             app.Name = e.Properties["Name"].StringValue;

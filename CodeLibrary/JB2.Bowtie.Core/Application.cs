@@ -83,8 +83,6 @@ namespace JB2.Bowtie
             set;
         }
 
-
-
         #endregion Public Properies
 
         #region IAPIKeySecretPair
