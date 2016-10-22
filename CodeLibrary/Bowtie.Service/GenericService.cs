@@ -57,7 +57,16 @@ namespace JB2.Bowtie
 
         public virtual List<Tobject> Retrieve()
         {
-            return _repo.GetAll().ToList();
+            try
+            {
+                return _repo.GetAll().ToList();
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+                return new List<Tobject>();   
+            }
+            
         }
 
         public virtual Tobject RetrieveById(string id)

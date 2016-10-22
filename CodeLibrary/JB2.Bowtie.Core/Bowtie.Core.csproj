@@ -47,8 +47,8 @@
       <HintPath>..\..\Solutions\packages\JB2.Date.0.2.2\lib\JB2.Common.Date.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Image, Version=0.2.1.27179, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Image.0.2.1.27179\lib\JB2.Common.Image.dll</HintPath>
+    <Reference Include="JB2.Common.Image, Version=0.2.2.30380, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Image.0.2.2\lib\JB2.Common.Image.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Log, Version=0.2.2.8584, Culture=neutral, processorArchitecture=MSIL">
@@ -189,6 +189,7 @@
     <Compile Include="Enum\RepositoryType.cs" />
     <Compile Include="Enum\ScoreOrderType.cs" />
     <Compile Include="Enum\StepFxType.cs" />
+    <Compile Include="ExceptionExtension.cs" />
     <Compile Include="Exceptions\ApplicationNotInitialized.cs" />
     <Compile Include="GameCommand.cs" />
     <Compile Include="IGameSession.cs" />

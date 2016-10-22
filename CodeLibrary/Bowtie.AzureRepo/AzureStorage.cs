@@ -11,8 +11,6 @@ namespace JB2.Bowtie.Data.Azure
 {
     public static class AzureStorage
     {
-
-
         public static AzureBlobRepository GameObjectsBlob
         {
             get
