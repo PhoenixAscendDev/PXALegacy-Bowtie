@@ -29,8 +29,22 @@ namespace JB2.Bowtie
 
         public override IEnumerable<IPlayerInventoryItem> GetPlayerInventory(string playerID)
         {
-            return _repo.GetInventoryByPlayerID(this.GetID(), playerID);
-           
+            return _repo.GetInventoryByPlayerID(this.GetID(), playerID);          
         }
+
+
+
+        #region Static
+        public static NonRestModule New
+        {
+            get
+            {
+                string id = "m." + JB2.Common.NewID.ShortGuid();
+                NonRestModule result = new NonRestModule(id, JB2.Settings.Bowtie.UnitOfWork.ModuleRepository);
+
+                return result;
+            }
+        }
+        #endregion Static
     }
 }

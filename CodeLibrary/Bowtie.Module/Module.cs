@@ -12,6 +12,14 @@ namespace JB2.Bowtie
 {
     public abstract class Module : JB2.Common.JB2Class, IModule
     {
+
+        public Module() : base()
+        {
+            this.SetProperty<BowtieAPI>("API", new BowtieAPI());
+
+        }
+
+
         public virtual BowtieAPI API
         {
             get
