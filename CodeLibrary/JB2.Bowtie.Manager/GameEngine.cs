@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JB2.Bowtie.Enum;
+using JB2.Common;
 using JB2.Economy;
 
 namespace JB2.Bowtie
@@ -268,6 +269,9 @@ namespace JB2.Bowtie
         public event Action<IGameEngine<TSession, TPlayer, TID>, IWallet, TPlayer, JB2.Economy.ITreasuryNote> TreasuryNoteAdded;
         public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedIn;
         public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedOut;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, IMetaData> PlayerDataChanged;
+        public event Action<IGameEngine<TSession, TPlayer, TID>, TPlayer, IPlayerInventoryItem> PlayerInventoryChanged;
+
         #endregion Events
 
 
@@ -308,6 +312,18 @@ namespace JB2.Bowtie
         {
             
 
+        }
+
+        protected virtual void OnPlayerInventoryChanged(IGameEngine<TSession, TPlayer, TID> engine, TPlayer player, IPlayerInventoryItem item)
+        {
+            if (PlayerDataChanged != null)
+                PlayerInventoryChanged(engine, player, item);
+        }
+
+        protected virtual void OnPlayerDataChanged(IGameEngine<TSession, TPlayer, TID> engine, TPlayer player, IMetaData metadata)
+        {
+            if (PlayerDataChanged != null)
+                PlayerDataChanged(engine, player, metadata);
         }
 
         protected void CheckAchievement(TPlayer player, IPlayerDewdrop dewdrop)

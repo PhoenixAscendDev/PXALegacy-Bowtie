@@ -17,5 +17,7 @@ namespace JB2.Bowtie
 
         IEnumerable<IModule> GetModules();
         ApplicationModulePermission GetModulePermission(string moduleID);
+
+
     }
 }

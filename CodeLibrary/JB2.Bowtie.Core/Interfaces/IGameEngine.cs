@@ -35,6 +35,9 @@ namespace JB2.Bowtie
 
         event Action<IGameEngine<TGameSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedIn;
         event Action<IGameEngine<TGameSession, TPlayer, TID>, TPlayer, DateTime> PlayerSignedOut;
+
+        event Action<IGameEngine<TGameSession, TPlayer, TID>, TPlayer, JB2.Common.IMetaData> PlayerDataChanged;
+        event Action<IGameEngine<TGameSession, TPlayer, TID>, TPlayer, IPlayerInventoryItem> PlayerInventoryChanged;
         #endregion Events;
 
         #region Getters
