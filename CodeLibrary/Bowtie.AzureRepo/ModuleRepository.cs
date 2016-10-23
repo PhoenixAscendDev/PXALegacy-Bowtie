@@ -228,7 +228,7 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
-        public ServiceResult SavePlayerData(string moduleid, string playerid, IMetaData data)
+        public ServiceResult InsertPlayerData(string moduleid, string playerid, IMetaData data)
         {
             DynamicTableEntity e = new DynamicTableEntity();
 
@@ -247,7 +247,7 @@ namespace JB2.Bowtie.Data.Azure
             return true;
         }
 
-        public ServiceResult SavePlayerInventory(string moduleid, string playerid, IPlayerInventoryItem item)
+        public ServiceResult InsertPlayerInventory(string moduleid, string playerid, IPlayerInventoryItem item)
         {
             DynamicTableEntity e = new DynamicTableEntity();
 

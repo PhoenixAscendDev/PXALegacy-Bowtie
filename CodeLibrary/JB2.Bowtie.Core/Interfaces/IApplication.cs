@@ -16,5 +16,6 @@ namespace JB2.Bowtie
         IEnumerable<JB2.Identity.IPlayer> GetAdmins();
 
         IEnumerable<IModule> GetModules();
+        ApplicationModulePermission GetModulePermission(string moduleID);
     }
 }

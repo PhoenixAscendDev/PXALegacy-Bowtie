@@ -17,9 +17,9 @@ namespace JB2.Bowtie
 
         BowtieMetadata GetDataByPlayerID(string moduleid, string playerid);
 
-        ServiceResult SavePlayerData(string moduleid, string playerid, IMetaData data);
+        ServiceResult InsertPlayerData(string moduleid, string playerid, IMetaData data);
 
-        ServiceResult SavePlayerInventory(string moduleid, string playerid, IPlayerInventoryItem item);
+        ServiceResult InsertPlayerInventory(string moduleid, string playerid, IPlayerInventoryItem item);
 
 
 

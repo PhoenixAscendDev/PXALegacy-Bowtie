@@ -35,13 +35,13 @@ namespace JB2.Bowtie
 
         public override ServiceResult SetPlayerInventory(string playerID, IPlayerInventoryItem item)
         {
-            return _repo.SavePlayerInventory(this.GetID(), playerID, item);
+            return _repo.InsertPlayerInventory(this.GetID(), playerID, item);
             
         }
 
         public override ServiceResult SetPlayerData(string playerID, IMetaData data)
         {
-            return _repo.SavePlayerData(this.GetID(),playerID, data);
+            return _repo.InsertPlayerData(this.GetID(),playerID, data);
         }
 
         #region Static

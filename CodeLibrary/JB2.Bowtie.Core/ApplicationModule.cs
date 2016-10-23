@@ -18,6 +18,7 @@ namespace JB2.Bowtie
 
         public ApplicationModulePermission() : base()
         {
+           
 
         }
 
@@ -81,6 +82,31 @@ namespace JB2.Bowtie
             throw new NotImplementedException();
         }
         #endregion IApplicationable
+
+        public bool CanRead()
+        {
+            var p = this.Permission;
+
+            return p == Enum.ModulePermissionType.ReadOnly || p == Enum.ModulePermissionType.ReadWrite;
+        }
+       
+        public bool CanWrite()
+        {
+            var p = this.Permission;
+
+            return p == Enum.ModulePermissionType.ReadWrite;
+        }
+
+        public static ApplicationModulePermission Empty
+        {
+            get
+            {
+                var result = new ApplicationModulePermission();
+                result.Permission = Enum.ModulePermissionType.None;
+
+                return result;
+            }
+        }
 
     }
 }

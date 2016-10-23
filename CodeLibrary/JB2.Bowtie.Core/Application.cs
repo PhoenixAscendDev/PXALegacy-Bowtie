@@ -15,6 +15,7 @@ namespace JB2.Bowtie
         protected Enum.APIAuthorizeState _APIstate;
         protected string _apiKey;
         protected IDictionary<string, IModule> _modules;
+        protected IDictionary<string, ApplicationModulePermission> _modulePermission;
 
 
         #endregion Fields
@@ -126,6 +127,19 @@ namespace JB2.Bowtie
         public IEnumerable<IModule> GetModules()
         {
             return _modules.Values;
+        }
+
+        public ApplicationModulePermission GetModulePermission(string moduleID)
+        {
+            if (_modulePermission.Keys.Contains(moduleID))
+                return _modulePermission[moduleID];
+            else
+            {
+                var e = ApplicationModulePermission.Empty;
+                e.ApplicationID = this.GetID();
+                e.ModuleID = moduleID;
+                return e;
+            }
         }
 
         #endregion IApplication
