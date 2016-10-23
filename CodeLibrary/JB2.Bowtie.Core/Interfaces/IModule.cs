@@ -12,23 +12,22 @@ namespace JB2.Bowtie
     {
         BowtieAPI API { get; set; }
 
-        BowtieMetadata GetPlayerData(string playerID);
+
+
+        BowtieMetadata GetPlayerData(string playerID, ApiKeySecretPair AccessKey);
 
         Enum.ModuleStatusType Status { get; set; }
 
         Enum.ModuleType ModuleType { get; set; }
 
-        IEnumerable<IPlayerInventoryItem> GetPlayerInventory(string playerID);
+        IEnumerable<IPlayerInventoryItem> GetPlayerInventory(string playerID, ApiKeySecretPair AccessKey);
 
         IEnumerable<IInventoryItem> InventoryItems { get; set; }
 
         IEnumerable<string> PlayerDataNames { get; set; }
 
-        ServiceResult SetPlayerData(string playerID, IMetaData data);
+        ServiceResult SetPlayerData(string playerID, ApiKeySecretPair AccessKey, IMetaData data);
 
-        ServiceResult SetPlayerInventory(string playerID, IPlayerInventoryItem item);
-
-
-
+        ServiceResult SetPlayerInventory(string playerID, ApiKeySecretPair AccessKey,IPlayerInventoryItem item);
     }
 }

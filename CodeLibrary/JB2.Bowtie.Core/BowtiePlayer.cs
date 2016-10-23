@@ -44,10 +44,13 @@ namespace JB2.Bowtie
         public override Backpack GetBackpack()
         {
             Backpack bp = new Backpack(this.GetPlayerID());
-
+            
             foreach(var m in _modules.Values)
             {
-                foreach(var i in m.GetPlayerInventory(this.GetPlayerID()))
+                var accesskey = JB2.Settings.Bowtie.CurrentApplication.GetModulePermission(m.GetID()).AccessKey;
+
+                var moduleInventory = m.GetPlayerInventory(this.GetPlayerID(), accesskey);
+                foreach(var i in moduleInventory)
                 {
                     i.ID = m.GetID() + ":" + i.GetID();
                     bp.Add(i);

@@ -152,13 +152,13 @@ namespace JB2.Bowtie
             return this.Name;
         }
 
-        public abstract BowtieMetadata GetPlayerData(string playerID);
+        public abstract BowtieMetadata GetPlayerData(string playerID,ApiKeySecretPair accesskey);
 
-        public abstract IEnumerable<IPlayerInventoryItem> GetPlayerInventory(string playerID);
+        public abstract IEnumerable<IPlayerInventoryItem> GetPlayerInventory(string playerID, ApiKeySecretPair accesskey);
 
-        public abstract ServiceResult SetPlayerInventory(string playerID, IPlayerInventoryItem item);
+        public abstract ServiceResult SetPlayerInventory(string playerID,ApiKeySecretPair accesskey,IPlayerInventoryItem item);
 
-        public abstract ServiceResult SetPlayerData(string playerID, IMetaData data);
+        public abstract ServiceResult SetPlayerData(string playerID, ApiKeySecretPair accesskey, IMetaData data);
 
 
         #region Tags

@@ -23,16 +23,14 @@ namespace JB2.Bowtie.Service
         public ModuleService(IModuleRepository repo): base(repo)
         {
             _uofw = JB2.Settings.Bowtie.UnitOfWork;
-
         }
         #endregion Constructors
-
-
 
         IModule RetreieveByName(string name)
         {
             return _repo.GetByName(name);
         }
+
 
     }
 }

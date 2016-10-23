@@ -21,22 +21,22 @@ namespace JB2.Bowtie
 
         #endregion Constructor
 
-        public override BowtieMetadata GetPlayerData(string playerID)
+        public override BowtieMetadata GetPlayerData(string playerID, ApiKeySecretPair accesskey)
         {
             throw new NotImplementedException();
         }
 
-        public override IEnumerable<IPlayerInventoryItem> GetPlayerInventory(string playerID)
+        public override IEnumerable<IPlayerInventoryItem> GetPlayerInventory(string playerID, ApiKeySecretPair accesskey)
         {
             throw new NotImplementedException();
         }
 
-        public override ServiceResult SetPlayerData(string playerID, IMetaData data)
+        public override ServiceResult SetPlayerData(string playerID, ApiKeySecretPair accesskey, IMetaData data)
         {
             throw new NotImplementedException();
         }
 
-        public override ServiceResult SetPlayerInventory(string playerID, IPlayerInventoryItem item)
+        public override ServiceResult SetPlayerInventory(string playerID, ApiKeySecretPair accesskey, IPlayerInventoryItem item)
         {
             throw new NotImplementedException();
         }

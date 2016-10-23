@@ -107,7 +107,10 @@ namespace JB2.Bowtie
         public virtual BowtieMetadata GetModuleData(string moduleid)
         {
             if (_modules.ContainsKey(moduleid))
-                return _modules[moduleid].GetPlayerData(this.GetPlayerID());
+            {
+                var accesskey = JB2.Settings.Bowtie.CurrentApplication.GetModulePermission(moduleid).AccessKey;
+                return _modules[moduleid].GetPlayerData(this.GetPlayerID(),accesskey);
+            }             
             else
                 return new BowtieMetadata(this.GetPlayerID());
         }
@@ -120,17 +123,21 @@ namespace JB2.Bowtie
         public virtual IEnumerable<IPlayerInventoryItem> GetModuleInventory(string moduleid)
         {
             if (_modules.ContainsKey(moduleid))
-                return _modules[moduleid].GetPlayerInventory(this.GetPlayerID());
+            {
+                var accesskey = JB2.Settings.Bowtie.CurrentApplication.GetModulePermission(moduleid).AccessKey;
+                return _modules[moduleid].GetPlayerInventory(this.GetPlayerID(), accesskey);
+            }
             else
                 return new List<IPlayerInventoryItem>();
 
         }
-        public virtual IMetaData GetModuleData(string module, string propertyName)
+        public virtual IMetaData GetModuleData(string moduleID, string propertyName)
         {
             //MetaDataCollection collection = _modules[module];
-            if (_modules.ContainsKey(module))
+            if (_modules.ContainsKey(moduleID))
             {
-                var data = _modules[module].GetPlayerData(this.GetPlayerID());
+                var accesskey = JB2.Settings.Bowtie.CurrentApplication.GetModulePermission(moduleID).AccessKey;
+                var data = _modules[moduleID].GetPlayerData(this.GetPlayerID(),accesskey);
                 return data[propertyName];
             }
             
