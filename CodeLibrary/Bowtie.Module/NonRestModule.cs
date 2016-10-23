@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JB2.Common;
 
 namespace JB2.Bowtie
 {
@@ -32,7 +33,16 @@ namespace JB2.Bowtie
             return _repo.GetInventoryByPlayerID(this.GetID(), playerID);          
         }
 
+        public override ServiceResult SetPlayerInventory(string playerID, IPlayerInventoryItem item)
+        {
+            return _repo.SavePlayerInventory(this.GetID(), playerID, item);
+            
+        }
 
+        public override ServiceResult SetPlayerData(string playerID, IMetaData data)
+        {
+            return _repo.SavePlayerData(this.GetID(),playerID, data);
+        }
 
         #region Static
         public static NonRestModule New

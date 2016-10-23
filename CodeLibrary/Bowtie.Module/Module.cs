@@ -154,8 +154,11 @@ namespace JB2.Bowtie
 
         public abstract BowtieMetadata GetPlayerData(string playerID);
 
-
         public abstract IEnumerable<IPlayerInventoryItem> GetPlayerInventory(string playerID);
+
+        public abstract ServiceResult SetPlayerInventory(string playerID, IPlayerInventoryItem item);
+
+        public abstract ServiceResult SetPlayerData(string playerID, IMetaData data);
 
 
         #region Tags

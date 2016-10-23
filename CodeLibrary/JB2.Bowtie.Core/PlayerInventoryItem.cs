@@ -78,7 +78,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public int Quanity
+        public int Quantity
         {
             get
             {

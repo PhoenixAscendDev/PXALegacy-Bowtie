@@ -31,8 +31,14 @@ namespace JB2.Bowtie
             throw new NotImplementedException();
         }
 
+        public override ServiceResult SetPlayerData(string playerID, IMetaData data)
+        {
+            throw new NotImplementedException();
+        }
 
-
-
+        public override ServiceResult SetPlayerInventory(string playerID, IPlayerInventoryItem item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

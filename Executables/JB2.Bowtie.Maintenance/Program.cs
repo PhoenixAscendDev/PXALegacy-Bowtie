@@ -26,10 +26,36 @@ namespace JB2.Bowtie.Maintenance
             m.Name = "jBean";
             List<string> propertyNames = new List<string>();
             propertyNames.Add("BANKACCOUNT");
+            m.PlayerDataNames = propertyNames;
+
+            //moduleService.Save(m);
+
+
+            //jbean stock market
+            IModule sm = NonRestModule.New;
+            m.Name = "jBean Stock Market";
+            propertyNames = new List<string>();
             propertyNames.Add("STOCKMARKETACCOUNT");
             m.PlayerDataNames = propertyNames;
 
-            moduleService.Save(m);
+            var companies = JB2.Settings.JbeanStockMarket.Repository.GetAllCompanies();
+            List<IInventoryItem> smitems = new List<IInventoryItem>();
+
+            foreach (var c in companies)
+            {
+                smitems.Add(new InventoryItem("stockshare-" + c.StockSymbol) { Name = "Share of " + c.Name, PuralName = "Shares of " + c.Name, InventoryCategory = "StockShare" });
+            }
+
+            sm.PlayerDataNames = propertyNames;
+            sm.InventoryItems = smitems;
+
+            moduleService.Save(sm);
+
+
+
+
+
+         
 
             //bluffstreet
             IModule bs = NonRestModule.New;
@@ -83,7 +109,7 @@ namespace JB2.Bowtie.Maintenance
             }
 
             bs.InventoryItems = bsitems;
-            moduleService.Save(bs);
+            //moduleService.Save(bs);
 
 
 
@@ -92,15 +118,15 @@ namespace JB2.Bowtie.Maintenance
         {
 
             ConfigureBowtie();
-            //SetupModules();
+            SetupModules();
             //var moduleService = new JB2.Bowtie.Service.ModuleService();
 
             //var modules = moduleService.Retrieve();
 
-            var companies = JB2.Settings.
+            var companies = JB2.Settings.JbeanStockMarket.Repository.GetAllCompanies();
 
 
-            //Console.WriteLine(modules.Count());
+            Console.WriteLine(companies.Count());
             Console.ReadLine();
         }
     }

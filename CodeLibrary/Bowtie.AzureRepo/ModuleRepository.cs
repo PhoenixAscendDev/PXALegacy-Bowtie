@@ -34,8 +34,6 @@ namespace JB2.Bowtie.Data.Azure
             _defaultPartitionKey = "module";
         }
 
-
-
         public IModule GetByName(string name)
         {
             return GetByName(name, _useCache);
@@ -43,21 +41,11 @@ namespace JB2.Bowtie.Data.Azure
 
         public IModule GetByName(string name, bool useCache = true)
         {
-            //if (useCache)
-            //{
-            //    if (_cache.ContainsKey(id))
-            //        return _cache[id];
-            //}
+           
             var e = _table.GetEntity<DynamicTableEntity>(_defaultPartitionKey, "name:" + name);
 
             if (e != null)
             {
-                //go ahead and update cache in case the next request wants to use
-                //if (_cache.ContainsKey())
-                //    _cache[id] = convertToObject(e);
-                //else
-                //    _cache.Add(id, convertToObject(e));
-
                 return convertToObject(e);
             }
             else
@@ -143,9 +131,6 @@ namespace JB2.Bowtie.Data.Azure
             return result;
         }
 
-
-
-
         protected override void deleteAll(DynamicTableEntity e)
         {
             _table.DeleteAllByPartitionKey(_defaultPartitionKey);
@@ -153,15 +138,14 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override void saveEntity(DynamicTableEntity e, bool replace)
         {
-
-
             e.PartitionKey = _defaultPartitionKey;
-            e.RowKey = "id:" + e.GetPropertyValue<string>("ID",string.Empty);
+            e.RowKey = "id:" + e.GetPropertyValue<string>("ID", string.Empty);
             _table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
 
             e.PartitionKey = _defaultPartitionKey;
             e.RowKey = "name:" + e.GetPropertyValue<string>("Name", string.Empty);
             _table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
+
         }
 
         public IEnumerable<IPlayerInventoryItem> GetInventoryByPlayerID(string moduleid,string playerid)
@@ -173,7 +157,6 @@ namespace JB2.Bowtie.Data.Azure
 
                 if (elist == null)
                     return list;
-
                 foreach(var e in elist)
                 {
                     string itemID = e.GetPropertyValue<string>("ID", string.Empty);
@@ -181,16 +164,13 @@ namespace JB2.Bowtie.Data.Azure
                     PlayerInventoryItem i = new PlayerInventoryItem(itemID,playerID);
                     i.Name = e.GetPropertyValue<string>("Name", string.Empty);
                     i.PlayerID = e.GetPropertyValue<string>("PlayerID", string.Empty);
-                    i.Quanity = e.GetPropertyValue<int>("Quantity", 0);
+                    i.Quantity = e.GetPropertyValue<int>("Quantity", 0);
                     i.InventoryCategory = e.GetPropertyValue<string>("Category", string.Empty);
                     i.PuralName = e.GetPropertyValue<string>("PuralName", i.Name);
                     
-
                     list.Add(i);
                 }
                 return list;
-
-
             }
             catch(Exception ex)
             {
@@ -198,7 +178,6 @@ namespace JB2.Bowtie.Data.Azure
                 return list;
             }
         }
-
         public BowtieMetadata GetDataByPlayerID(string moduleid, string playerid)
         {
             List<IMetaData> result = new List<IMetaData>();
@@ -224,7 +203,6 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
-
         public override void Insert(IModule obj)
         {
             //save the IModule
@@ -248,6 +226,45 @@ namespace JB2.Bowtie.Data.Azure
 
                 _table.Insert<DynamicTableEntity>(e, true);
             }
+        }
+
+        public ServiceResult SavePlayerData(string moduleid, string playerid, IMetaData data)
+        {
+            DynamicTableEntity e = new DynamicTableEntity();
+
+            e.SetProperty<string>("ID", "pd."+ data.PropertyName);
+            e.SetProperty<string>("PlayerID", playerid);
+            e.SetProperty<string>("Name",data.PropertyName);
+            e.SetProperty<string>("Value", data.GetValue().ObjectValue.ToString());
+            e.SetProperty<string>("PropertyType", data.PropertyType.ToString());
+            e.SetProperty<string>("Module", moduleid);
+
+            e.PartitionKey = "data" + ":player:" + playerid + ":module:" + moduleid;
+            e.RowKey = "id:" + "pd." + data.PropertyName;
+
+            _table.Insert<DynamicTableEntity>(e, true);
+
+            return true;
+        }
+
+        public ServiceResult SavePlayerInventory(string moduleid, string playerid, IPlayerInventoryItem item)
+        {
+            DynamicTableEntity e = new DynamicTableEntity();
+
+            e.SetProperty<string>("ID", item.GetID());
+            e.SetProperty<string>("PlayerID", item.GetPlayerID());
+            e.SetProperty<string>("Name", item.Name);
+            e.SetProperty<int>("Quantity", item.Quantity);
+            e.SetProperty<string>("Category", item.InventoryCategory);
+            e.SetProperty<string>("PuralName", item.PuralName);
+            e.SetProperty<string>("Module", moduleid);
+
+            e.PartitionKey = "inventory" + ":player: " + item.GetPlayerID() + ":module: " + moduleid;
+            e.RowKey = "id:" + item.GetID();
+
+            _table.Insert<DynamicTableEntity>(e, true);
+
+            return true;
         }
     }
 }
