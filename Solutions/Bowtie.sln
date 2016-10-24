@@ -50,6 +50,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.Maintenance", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.Module", "..\CodeLibrary\Bowtie.Module\Bowtie.Module.csproj", "{81CF520A-6F22-462E-A674-72C74889AAC7}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Bowtie.AuthorizeAPI", "..\Websites\Bowtie.AuthorizeAPI\Bowtie.AuthorizeAPI.xproj", "{7A3193DB-31B0-4836-9655-550D81B5148B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -177,6 +179,12 @@ Global
 		{81CF520A-6F22-462E-A674-72C74889AAC7}.NoDB|Any CPU.Build.0 = Release|Any CPU
 		{81CF520A-6F22-462E-A674-72C74889AAC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81CF520A-6F22-462E-A674-72C74889AAC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A3193DB-31B0-4836-9655-550D81B5148B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A3193DB-31B0-4836-9655-550D81B5148B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A3193DB-31B0-4836-9655-550D81B5148B}.NoDB|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A3193DB-31B0-4836-9655-550D81B5148B}.NoDB|Any CPU.Build.0 = Debug|Any CPU
+		{7A3193DB-31B0-4836-9655-550D81B5148B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A3193DB-31B0-4836-9655-550D81B5148B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -195,6 +203,7 @@ Global
 		{172AEAD2-5FB7-4995-B807-732A9DFDB657} = {D49A01BC-388B-4391-BC11-3849B066E5CD}
 		{40F36CD2-7823-4F26-9F85-473367DB4013} = {0D87BE5D-A853-4475-87CC-0264CF853746}
 		{81CF520A-6F22-462E-A674-72C74889AAC7} = {0D87BE5D-A853-4475-87CC-0264CF853746}
+		{7A3193DB-31B0-4836-9655-550D81B5148B} = {D49A01BC-388B-4391-BC11-3849B066E5CD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
