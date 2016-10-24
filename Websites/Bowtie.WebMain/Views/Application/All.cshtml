@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<JB2.Bowtie.Web.Models.ApplicationViewModel>
 
 @{
-    ViewBag.Title = "Test";
+    ViewBag.Title = "Applications";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -19,6 +19,9 @@
             @Html.DisplayNameFor(model => model.APIkey)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Secret)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ClientID)
         </th>
         <th></th>
@@ -31,6 +34,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.APIkey)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Secret)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ClientID)

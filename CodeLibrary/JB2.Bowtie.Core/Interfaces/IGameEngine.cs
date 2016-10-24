@@ -73,6 +73,9 @@ namespace JB2.Bowtie
         void RemovePlayer(string sessionID, int seat);
         void RemovePlayer(string sessionID, TPlayer player);
 
+       
+
+
         void SignInPlayer(TPlayer player);
 
         void SignOutPlayer(TPlayer player);

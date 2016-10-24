@@ -11,6 +11,7 @@ namespace JB2.Bowtie.Service
     public class ApplicationService : GenericService<IApplication,IApplicationRepository>
     {
 
+        #region Constructors
         public ApplicationService()
         {
            
@@ -26,6 +27,9 @@ namespace JB2.Bowtie.Service
             _uofw = JB2.Settings.Bowtie.UnitOfWork;
 
         }
+
+        #endregion Constructors
+
 
         public IApplication RetrieveByAPIKey(JB2.Common.IAPIKeySecretPair apiKey)
         {

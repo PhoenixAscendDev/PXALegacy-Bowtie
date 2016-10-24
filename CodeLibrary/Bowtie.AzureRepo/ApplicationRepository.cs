@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage.Table;
 
+using JB2.Common;
+using JB2.Common.Data;
+
 namespace JB2.Bowtie.Data.Azure
 {
     public class ApplicationRepository : BowtieRepository<IApplication>, IApplicationRepository
@@ -25,7 +28,6 @@ namespace JB2.Bowtie.Data.Azure
         }
 
         #endregion
-
 
         #region Gets
 
@@ -66,7 +68,6 @@ namespace JB2.Bowtie.Data.Azure
         }
 
 
-
         #endregion Gets
 
         protected override DynamicTableEntity convertToEntity(IApplication o)
@@ -94,6 +95,29 @@ namespace JB2.Bowtie.Data.Azure
             apiKey.Secret = e.Properties["APISecret"].PropertyType == EdmType.Guid ? e.Properties["APISecret"].GuidValue.GetValueOrDefault().ToString() : e.Properties["APISecret"].PropertyAsObject.ToString();
          
             Enum.APIAuthorizeState state = Enum.APIAuthorizeState.Unknown;
+
+
+            //set the treasury keys
+            List<TreasuryRequestKey> treasuryKeys = new List<TreasuryRequestKey>();
+            var strtreasuryKeys = e.GetPropertyValue<string>("TreasuryKeys", string.Empty);
+            foreach(string keypair in strtreasuryKeys.Split(","))
+            {
+                try
+                {
+                    var treasuryID = keypair.Split(":")[0];
+                    var requestKey = keypair.Split(":")[1];
+
+                    var result = new TreasuryRequestKey(treasuryID, requestKey);
+
+                    treasuryKeys.Add(result);
+                }
+
+                catch(Exception ex)
+                {
+                    ex.BowtieLog();
+                }
+            }
+
             System.Enum.TryParse<Enum.APIAuthorizeState>(e.Properties["AuthorizeState"].StringValue, out state);
             //List<IModule> modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll().ToList();
 
@@ -104,6 +128,7 @@ namespace JB2.Bowtie.Data.Azure
             app.ID = e.Properties["ID"].StringValue;
             app.ClientID = e.Properties.ContainsKey("IdentityClientIDs") ? e.Properties["IdentityClientIDs"].StringValue : string.Empty;
             app.Name = e.Properties["Name"].StringValue;
+            app.TreasuryKeys = treasuryKeys;
             return app;
 
         }

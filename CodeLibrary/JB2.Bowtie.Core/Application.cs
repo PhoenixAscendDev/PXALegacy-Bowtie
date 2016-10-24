@@ -16,8 +16,7 @@ namespace JB2.Bowtie
         protected string _apiKey;
         protected IDictionary<string, IModule> _modules;
         protected IDictionary<string, ApplicationModulePermission> _modulePermission;
-
-
+        protected BaseCollection<TreasuryRequestKey> _treasuryKeys;
         #endregion Fields
 
         #region Constructors
@@ -49,15 +48,15 @@ namespace JB2.Bowtie
 
         #region Public Properies
 
-        public string Secret
+        public IEnumerable<TreasuryRequestKey> TreasuryKeys
         {
             get
             {
-                return _secret;
+                return _treasuryKeys;
             }
             set
             {
-                _secret = value;
+                _treasuryKeys = new BaseCollection<TreasuryRequestKey>(value);
             }
         }
 
@@ -84,9 +83,22 @@ namespace JB2.Bowtie
             set;
         }
 
-        #endregion Public Properies
+        
 
         #region IAPIKeySecretPair
+
+        public string Secret
+        {
+            get
+            {
+                return _secret;
+            }
+            set
+            {
+                _secret = value;
+            }
+        }
+
 
         public string APIkey
         {
@@ -100,8 +112,25 @@ namespace JB2.Bowtie
             }
         }
 
+        public string Website
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
 
         #endregion IAPIKeySecretPair
+
+        #endregion Public Properies
+
+        #region Public Methods
 
         #region IApplication
         public IEnumerable<JB2.Identity.IPlayer> GetAdmins()
@@ -144,10 +173,14 @@ namespace JB2.Bowtie
 
         #endregion IApplication
 
+        #endregion Public Methods
+
         #region Idenitity IApplication
         public string GetjBeanSecret()
         {
-            throw new NotImplementedException();
+            var jBeanID = JB2.Settings.Jbean.Factory.Treasury.GetID();
+            var key = this.GetTreasuryRequestKey(jBeanID);
+            return key.Key;
         }
 
         public JB2Image GetIcon()
@@ -163,6 +196,13 @@ namespace JB2.Bowtie
         public int GetCounterIndex()
         {
             throw new NotImplementedException();
+        }
+
+        public TreasuryRequestKey GetTreasuryRequestKey(string treasuryID)
+        {
+            var key = _treasuryKeys.Find(x => x.TreasuryID == treasuryID);
+
+            return key;
         }
 
         #endregion Idenitity IApplication
