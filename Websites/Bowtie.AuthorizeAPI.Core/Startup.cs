@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
+using Bowtie.AuthorizeAPI.Models;
+
 namespace Bowtie.AuthorizeAPI
 {
     public class Startup
@@ -38,6 +40,8 @@ namespace Bowtie.AuthorizeAPI
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddMvc();
+
+            services.AddSingleton<ITodoRepository, TodoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -51,6 +55,8 @@ namespace Bowtie.AuthorizeAPI
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseMvc();
+
+
         }
     }
 }
