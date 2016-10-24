@@ -14,7 +14,7 @@ namespace JB2.Bowtie.Maintenance
 
         static void ConfigureBowtie()
         {
-            JB2.Bowtie.Manager.Initialize("BT-1F4ACB33EAE78E37", JB2.Configuration.GetAppSetting("JB2:bowtie-apisecret"));
+            JB2.Bowtie.Web.Manager.Initialize("BT-1F4ACB33EAE78E37", JB2.Configuration.GetAppSetting("JB2:bowtie-apisecret"));
         }
 
         static void SetupModules()

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using JB2.Common;
 using JB2.Bowtie.Exceptions;
 
-namespace JB2.Bowtie
+namespace JB2.Bowtie.Web
 {
     public class Manager
     {
@@ -22,12 +22,14 @@ namespace JB2.Bowtie
             // First we have to validate the application
             IUnitOfWork uofw = new JB2.Bowtie.Data.Azure.UnitOfWork();
             var appService = new JB2.Bowtie.Service.ApplicationService(uofw);
-            IApplication app = appService.RetrieveByAPIKey(apiKey);
-            if (app == null)
-                throw new ApplicationNotInitialized("Application could not be Initialized");
-            if (app.Secret != apiKey.Secret)
-                throw new ApplicationNotInitialized("Application API Key and Secret are invalid");
 
+            ApplicationStatePair appState = appService.RetrieveAuthorizeState(apiKey.APIkey, apiKey.Secret);
+
+            ServiceResult isAuth = appService.isAuthorized(appState);
+            if (!isAuth)
+                throw new ApplicationNotInitialized(isAuth.ToString());
+
+            var app = appService.RetrieveByAPIKey(apiKey);
 
             //configure jBean
             BaseSetting s = new BaseSetting()

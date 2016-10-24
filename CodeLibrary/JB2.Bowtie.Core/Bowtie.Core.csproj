@@ -166,6 +166,7 @@
     <Compile Include="API.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="ApplicationModule.cs" />
+    <Compile Include="ApplicationStatePair.cs" />
     <Compile Include="AppPlayer.cs" />
     <Compile Include="AuthInfo.cs" />
     <Compile Include="Backpack.cs" />

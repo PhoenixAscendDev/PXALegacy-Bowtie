@@ -19,7 +19,7 @@ namespace Bowtie.WebMain
 
             AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<JB2.Bowtie.IApplication, JB2.Bowtie.Web.Models.ApplicationViewModel>());
 
-            JB2.Bowtie.Manager.Initialize("BT-1F4ACB33EAE78E37", JB2.Configuration.GetAppSetting("JB2:bowtie-apisecret"));
+            JB2.Bowtie.Web.Manager.Initialize("BTI-C9DA81DD5EB7BC1B854B9DEBC752A", JB2.Configuration.GetAppSetting("JB2:bowtie-apisecret"));
         }
     }
 }

@@ -36,6 +36,11 @@ namespace JB2.Bowtie.Service
             return _repo.GetApplicationByAPIKey(apiKey.APIkey);
         }
 
+        public ApplicationStatePair RetrieveAuthorizeState(string publickey, string secret)
+        {
+            return _repo.GetApplicationStateByAPIKey(publickey, secret);
+        }
+
         public JB2.Bowtie.Enum.APIAuthorizeState CheckAPIAuthorization(string applicationID)
         {
             IApplication app = _repo.GetById(applicationID);
@@ -46,15 +51,48 @@ namespace JB2.Bowtie.Service
             return app == null ? JB2.Bowtie.Enum.APIAuthorizeState.Unknown : app.AuthorizedState;
         }
 
-        public bool isAuthorized(string applicationID)
+        public JB2.Common.ServiceResult isAuthorized(string applicationID)
         {
-            return isAuthorized(_repo.GetById(applicationID));     
+            var state = _repo.GetApplicationStateByID(applicationID);
+            return isAuthorized(state);     
         }
 
-        public bool isAuthorized(JB2.Common.IAPIKeySecretPair api)
+        public JB2.Common.ServiceResult isAuthorized(JB2.Common.IAPIKeySecretPair api)
         {
-            var app = _repo.GetApplicationByAPIKey(api.APIkey);
+            var app = _repo.GetApplicationStateByAPIKey(api.APIkey, api.Secret);
             return isAuthorized(app);
+        }
+
+        
+
+        private bool isAuthorized(IApplication app)
+        {
+            var state = _repo.GetApplicationStateByAPIKey(app.APIkey, app.Secret);
+
+            return isAuthorized(state);
+        }
+
+        public JB2.Common.ServiceResult isAuthorized(ApplicationStatePair state)
+        {
+            //double check the secret is correct
+            var state2 = _repo.GetApplicationStateByAPIKey(state.APIKey.APIkey, state.APIKey.Secret);
+
+            if (state2.APIKey.Secret != state.APIKey.Secret)
+                return new Common.ServiceResult(new Exception("Not Authorized: API Key is invalid"));
+
+            if (state2.ApplicationID != state.ApplicationID)
+                return new Common.ServiceResult(new Exception("Not Authorized: Application can not be found"));
+
+            switch (state2.AuthorizeState)
+            {
+                case APIAuthorizeState.Authorized:
+                    return true;
+                case APIAuthorizeState.LifelongBan:
+                case APIAuthorizeState.TemporaryBlocked:
+                case APIAuthorizeState.Unknown:
+                default:
+                    return new JB2.Common.ServiceResult(new Exception("Not Authorized: Current Authorize State is " + state.AuthorizeState.ToString()));
+            }
         }
 
         public JB2.Economy.jBeanAppSettings RetrievejBeanSettings(string applicationID)
@@ -67,13 +105,7 @@ namespace JB2.Bowtie.Service
 
         }
 
-        private bool isAuthorized(IApplication app)
-        {
-            if (app == null)
-                return false;
 
-            return app.isAuthorized;
-        } 
 
         
 

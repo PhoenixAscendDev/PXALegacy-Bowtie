@@ -92,5 +92,15 @@ namespace JB2.Bowtie.Data.NoDB
         {
             throw new NotImplementedException();
         }
+
+        public ApplicationStatePair GetApplicationStateByAPIKey(string publicKey, string secret)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ApplicationStatePair GetApplicationStateByID(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

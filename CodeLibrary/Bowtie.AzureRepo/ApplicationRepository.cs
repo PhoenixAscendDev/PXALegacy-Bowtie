@@ -13,7 +13,7 @@ namespace JB2.Bowtie.Data.Azure
     public class ApplicationRepository : BowtieRepository<IApplication>, IApplicationRepository
     {
 
-        #region
+        #region Constructors
 
         public ApplicationRepository() : this(AzureStorage.ApplicationTable, AzureStorage.GeneralBlob)
         {
@@ -27,7 +27,7 @@ namespace JB2.Bowtie.Data.Azure
             _defaultPartitionKey = "application";
         }
 
-        #endregion
+        #endregion Constructors
 
         #region Gets
 
@@ -51,6 +51,35 @@ namespace JB2.Bowtie.Data.Azure
             return all.ToList().Find(x => x.APIkey == key);
         }
 
+        public ApplicationStatePair GetApplicationStateByAPIKey(string publicKey, string secret)
+        {
+            DynamicTableEntity e = _table.GetEntity<DynamicTableEntity>(_defaultPartitionKey, "key:" + publicKey);
+
+            try
+            {
+                return convertToState(e);
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+                return new ApplicationStatePair(string.Empty, Enum.APIAuthorizeState.Unknown);
+            }
+        }
+
+        public ApplicationStatePair GetApplicationStateByID(string id)
+        {
+            DynamicTableEntity e = _table.GetEntity<DynamicTableEntity>(_defaultPartitionKey, "id:" + id);
+            try
+            {
+                return convertToState(e);
+            }
+            catch (Exception ex)
+            {
+                ex.BowtieLog();
+                return new ApplicationStatePair(string.Empty, Enum.APIAuthorizeState.Unknown);
+            }
+        }
+
         public string GetTreasuryRequestKey(string applicationID, string treasuryID)
         {
             var e = _table.GetEntity<DynamicTableEntity>("application", applicationID);
@@ -67,8 +96,10 @@ namespace JB2.Bowtie.Data.Azure
                 return string.Empty;
         }
 
-
         #endregion Gets
+
+
+        #region Private Methods
 
         protected override DynamicTableEntity convertToEntity(IApplication o)
         {
@@ -83,6 +114,23 @@ namespace JB2.Bowtie.Data.Azure
             {
                 result.Add(convertToObject(e));
             }
+
+            return result;
+        }
+
+        protected  ApplicationStatePair convertToState(DynamicTableEntity e)
+        {
+            var apiKey = new JB2.Common.ApiKeySecretPair();
+
+            apiKey.APIkey = e.Properties["APIKey"].StringValue;
+            apiKey.Secret = e.Properties["APISecret"].PropertyType == EdmType.Guid ? e.Properties["APISecret"].GuidValue.GetValueOrDefault().ToString() : e.Properties["APISecret"].PropertyAsObject.ToString();
+
+            Enum.APIAuthorizeState state = Enum.APIAuthorizeState.Unknown;
+            System.Enum.TryParse<Enum.APIAuthorizeState>(e.Properties["AuthorizeState"].StringValue, out state);
+            var appID = e.GetPropertyValue<string>("ID", string.Empty);
+
+            var result = new ApplicationStatePair(appID, state);
+            result.APIKey = apiKey;
 
             return result;
         }
@@ -143,6 +191,10 @@ namespace JB2.Bowtie.Data.Azure
             throw new NotImplementedException();
         }
 
+        #endregion Private Methods
+
+        #region Search Methods
+
         public override IApplication[] SearchFor(bool useCache = true)
         {
             throw new NotImplementedException();
@@ -152,5 +204,9 @@ namespace JB2.Bowtie.Data.Azure
         {
             throw new NotImplementedException();
         }
+
+        #endregion Search Methods
+
+
     }
 }

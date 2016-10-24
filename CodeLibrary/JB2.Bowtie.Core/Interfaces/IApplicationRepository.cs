@@ -14,6 +14,11 @@ namespace JB2.Bowtie
 
         IApplication GetApplicationByAPIKey(string publicKey);
 
+        ApplicationStatePair GetApplicationStateByAPIKey(string publicKey, string secret);
+
+        ApplicationStatePair GetApplicationStateByID(string id);
+
+
         string GetTreasuryRequestKey(string id, string treasuryID);
 
         
