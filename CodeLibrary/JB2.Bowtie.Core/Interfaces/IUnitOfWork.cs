@@ -25,6 +25,8 @@ namespace JB2.Bowtie
         IWalletRepository WalletRepository { get; }
 
         IBowtiePlayerRespository PlayerRepository { get; }
+
+        IAuthorizeRepository AuthorizeRepository { get; }
         
         //IPlayerRepo PlayerRepository { get; }
         object GetRepository(Enum.RepositoryType respository);

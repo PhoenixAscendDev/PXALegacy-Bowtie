@@ -99,8 +99,8 @@
       <HintPath>..\..\Solutions\packages\JB2.Identity.Core.0.1.4.1\lib\JB2.Identity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Infrastructure, Version=0.2.20.9280, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.20\lib\JB2.Infrastructure.dll</HintPath>
+    <Reference Include="JB2.Infrastructure, Version=0.2.21.3363, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.21\lib\JB2.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">

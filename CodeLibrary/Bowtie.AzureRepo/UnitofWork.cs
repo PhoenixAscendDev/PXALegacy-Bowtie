@@ -101,6 +101,14 @@ namespace JB2.Bowtie.Data.Azure
                 return (JB2.Bowtie.IModuleRepository)GetRepository(RepositoryType.Module);
             }
         }
+
+        public JB2.Bowtie.IAuthorizeRepository AuthorizeRepository
+        {
+            get
+            {
+                return (JB2.Bowtie.IAuthorizeRepository)GetRepository(RepositoryType.Authorize);
+            }
+        }
         
 
         //public JB2.Common.IPlayerRepo PlayerRepository
@@ -155,6 +163,9 @@ namespace JB2.Bowtie.Data.Azure
                                 break;
                             case RepositoryType.Module:
                                 _repos.Add(repository, new JB2.Bowtie.Data.Azure.ModuleRepository());
+                                break;
+                            case RepositoryType.Authorize:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.AuthorizeRepository());
                                 break;
                         }
                     }

@@ -18,6 +18,7 @@ namespace JB2.Bowtie.Enum
         Dewdrop,
         Jbean,
         Wallet,
-        Module
+        Module,
+        Authorize
     }
 }

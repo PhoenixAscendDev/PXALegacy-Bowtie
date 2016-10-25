@@ -63,6 +63,14 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public static AzureTableRepository AuthorizeTable
+        {
+            get
+            {
+                return JB2.Infrastructure.Storage.APIKeyAccount.GetTable("bowtie");
+            }
+        }
+
 
 
 

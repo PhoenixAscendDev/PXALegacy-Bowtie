@@ -101,6 +101,14 @@ namespace JB2.Bowtie.Data.NoDB
             }
         }
 
+        public IAuthorizeRepository AuthorizeRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public object GetRepository(Enum.RepositoryType respository)
         {
             switch(respository)
