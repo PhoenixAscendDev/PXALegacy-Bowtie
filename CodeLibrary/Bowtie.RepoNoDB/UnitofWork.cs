@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JB2.Common.Log;
 using JB2.Economy;
 
 namespace JB2.Bowtie.Data.NoDB
@@ -102,6 +103,14 @@ namespace JB2.Bowtie.Data.NoDB
         }
 
         public IAuthorizeRepository AuthorizeRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public ILogRepo LogRepository
         {
             get
             {

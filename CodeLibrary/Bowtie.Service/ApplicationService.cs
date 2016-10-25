@@ -11,8 +11,14 @@ namespace JB2.Bowtie.Service
     public class ApplicationService : GenericService<IApplication,IApplicationRepository>
     {
 
+        #region Fields
+
+        protected IAuthorizeRepository _authRepo;
+
+        #endregion Fields
+
         #region Constructors
-        public ApplicationService()
+        public ApplicationService() : this(JB2.Settings.Bowtie.UnitOfWork)
         {
            
         }
@@ -20,12 +26,12 @@ namespace JB2.Bowtie.Service
         public ApplicationService(IUnitOfWork unitOfWork) : this(unitOfWork.ApplicationRepository)
         {
             _uofw = unitOfWork;
+            _authRepo = _uofw.AuthorizeRepository;
         }
 
         public ApplicationService(IApplicationRepository repo): base(repo)
         {
             _uofw = JB2.Settings.Bowtie.UnitOfWork;
-
         }
 
         #endregion Constructors
@@ -33,37 +39,38 @@ namespace JB2.Bowtie.Service
 
         public IApplication RetrieveByAPIKey(JB2.Common.IAPIKeySecretPair apiKey)
         {
-            return _repo.GetApplicationByAPIKey(apiKey.APIkey);
+            var authState = _authRepo.GetApplicationStateByAPIKey(apiKey.APIkey, apiKey.Secret);
+
+            return _repo.GetById(authState.ApplicationID);
         }
 
         public ApplicationStatePair RetrieveAuthorizeState(string publickey, string secret)
         {
-            return _repo.GetApplicationStateByAPIKey(publickey, secret);
+            var authState = _authRepo.GetApplicationStateByAPIKey(publickey,secret);
+
+            return authState;
         }
 
         public JB2.Bowtie.Enum.APIAuthorizeState CheckAPIAuthorization(string applicationID)
         {
-            IApplication app = _repo.GetById(applicationID);
-
-            if (app.ID == JB2.Settings.Bowtie.CurrentApplication.ID)
-                JB2.Settings.Bowtie.LastAPIAuthCheck = DateTime.Now;
-
-            return app == null ? JB2.Bowtie.Enum.APIAuthorizeState.Unknown : app.AuthorizedState;
+            var authState = _authRepo.GetApplicationStateByID(applicationID);
+            return authState.AuthorizeState;
         }
 
         public JB2.Common.ServiceResult isAuthorized(string applicationID)
         {
-            var state = _repo.GetApplicationStateByID(applicationID);
+            var state = _authRepo.GetApplicationStateByID(applicationID);
             return isAuthorized(state);     
         }
 
+
+
+
         public JB2.Common.ServiceResult isAuthorized(JB2.Common.IAPIKeySecretPair api)
         {
-            var app = _repo.GetApplicationStateByAPIKey(api.APIkey, api.Secret);
+            var app = _authRepo.GetApplicationStateByAPIKey(api.APIkey, api.Secret);
             return isAuthorized(app);
         }
-
-        
 
         private bool isAuthorized(IApplication app)
         {
@@ -75,7 +82,7 @@ namespace JB2.Bowtie.Service
         public JB2.Common.ServiceResult isAuthorized(ApplicationStatePair state)
         {
             //double check the secret is correct
-            var state2 = _repo.GetApplicationStateByAPIKey(state.APIKey.APIkey, state.APIKey.Secret);
+            var state2 = _authRepo.GetApplicationStateByAPIKey(state.APIKey.APIkey, state.APIKey.Secret);
 
             if (state2.APIKey.Secret != state.APIKey.Secret)
                 return new Common.ServiceResult(new Exception("Not Authorized: API Key is invalid"));
@@ -92,6 +99,35 @@ namespace JB2.Bowtie.Service
                 case APIAuthorizeState.Unknown:
                 default:
                     return new JB2.Common.ServiceResult(new Exception("Not Authorized: Current Authorize State is " + state.AuthorizeState.ToString()));
+            }
+        }
+
+
+        public string GenerateAuthorizeKey(ApplicationStatePair state)
+        {
+            try
+            {
+                var isauth = this.isAuthorized(state);
+
+                if (isauth)
+                {
+                    string keyurlformat = JB2.Configuration.GetAppSetting("JB2:UrlHash:BowtieAuthorizeKey");
+                    var dateGenerated = System.DateTime.Now;
+
+                    string url = string.Format(keyurlformat, state.APIKey.APIkey, state.APIKey.Secret, dateGenerated.Ticks.ToString());
+
+                    string key = JB2.Common.NewID.UriHash(new Uri(url));
+
+                    _authRepo.InsertAuthorizeKey(key, state.ApplicationID, dateGenerated);
+
+                    return key;
+                }
+                return string.Empty;
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+                return string.Empty;
             }
         }
 

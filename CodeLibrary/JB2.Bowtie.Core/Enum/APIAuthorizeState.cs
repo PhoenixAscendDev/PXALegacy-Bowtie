@@ -8,10 +8,9 @@ namespace JB2.Bowtie.Enum
 {
     public enum APIAuthorizeState
     {
-        Authorized,
-        TemporaryBlocked,
-        LifelongBan,
-        Unknown
-
+        Unknown = 0,
+        TemporaryBlocked = 1,
+        LifelongBan = 2,
+        Authorized = 3
     }
 }

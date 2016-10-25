@@ -28,6 +28,7 @@ namespace JB2.Settings
         private static JB2.Common.SettingCollection<string> _settings;
         private static bool _isConfigured = false;
         private static IUnitOfWork _unitofWork;
+        private static string _authorizekey;
 
 
         public static ILogger Logger
@@ -73,6 +74,15 @@ namespace JB2.Settings
             {
                 checkIfConfigured();
                 return _application;
+            }
+        }
+
+        public static string AuthorizeKey
+        {
+            get
+            {
+                checkIfConfigured();
+                return _authorizekey;
             }
         }
 
@@ -157,7 +167,9 @@ namespace JB2.Settings
                 _unitofWork = unitofWork;
 
                 var application = (IApplication)_settings[BowtieSettingName.CurrentApplication].Value;
-                
+
+                var authorizekey = (string)_settings[BowtieSettingName.AuthorizeKey].Value;
+
                 if (isApplicationLegit(application))
                     _application = application;
                 else
@@ -169,6 +181,11 @@ namespace JB2.Settings
                     throw new Exception("Logger was not configured");
                 else
                     _logger = logger;
+
+                if (authorizekey == null)
+                    throw new Exception("Authorize key was not configured");
+                else
+                    _authorizekey = authorizekey;
             }
             catch(Exception ex)
             {

@@ -14,7 +14,7 @@ namespace JB2.Bowtie.Maintenance
 
         static void ConfigureBowtie()
         {
-            JB2.Bowtie.Web.Manager.Initialize("BT-1F4ACB33EAE78E37", JB2.Configuration.GetAppSetting("JB2:bowtie-apisecret"));
+            JB2.Bowtie.Web.Manager.Initialize("BT-1F4ACB33EAE78E36", JB2.Configuration.GetAppSetting("JB2:bowtie-apisecret"));
         }
 
         static void SetupModules()
@@ -114,19 +114,46 @@ namespace JB2.Bowtie.Maintenance
 
 
         }
+
+        static void SetupAuthRepo()
+        {
+
+            var appservice = new JB2.Bowtie.Service.ApplicationService();
+
+            var apps = appservice.Retrieve();
+
+            IAuthorizeRepository authRepo = JB2.Settings.Bowtie.UnitOfWork.AuthorizeRepository;
+
+            foreach(var app in apps)
+            {
+                ApplicationStatePair asp = new ApplicationStatePair(app.ID, app.AuthorizedState);
+                asp.ApplicationID = app.ID;
+                asp.APIKey.APIkey = app.APIkey;
+                asp.APIKey.Secret = app.Secret;
+                asp.AuthorizeState = app.AuthorizedState;
+
+                authRepo.Insert(asp);
+                //authRepo.Save(Enum.APIAuthorizeState.Unknown, asp.ApplicationID);
+                authRepo.UpdateAuthorizeState(app.AuthorizedState, app.ID);
+            }
+
+            Console.WriteLine("app count: " + apps.Count());
+
+        }
         static void Main(string[] args)
         {
 
             ConfigureBowtie();
-            SetupModules();
+            SetupAuthRepo();
+            //SetupModules();
             //var moduleService = new JB2.Bowtie.Service.ModuleService();
 
             //var modules = moduleService.Retrieve();
 
-            var companies = JB2.Settings.JbeanStockMarket.Repository.GetAllCompanies();
+            //var companies = JB2.Settings.JbeanStockMarket.Repository.GetAllCompanies();
 
 
-            Console.WriteLine(companies.Count());
+            //Console.WriteLine(companies.Count());
             Console.ReadLine();
         }
     }

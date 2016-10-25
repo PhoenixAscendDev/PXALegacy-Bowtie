@@ -28,7 +28,7 @@ namespace JB2.Bowtie.Web
             ServiceResult isAuth = appService.isAuthorized(appState);
             if (!isAuth)
                 throw new ApplicationNotInitialized(isAuth.ToString());
-
+            var authorizeKey = appService.GenerateAuthorizeKey(appState);
             var app = appService.RetrieveByAPIKey(apiKey);
 
             //configure jBean
@@ -80,6 +80,17 @@ namespace JB2.Bowtie.Web
                 ID = "UNITOFWORK",
                 Name = "Unit Of Work",
                 Value = uofw
+            });
+            bowtieSettings.Add(new BaseSetting()
+            {
+                ID = BowtieSettingName.AuthorizeKey,
+                Name = BowtieSettingName.AuthorizeKey,
+                Value = authorizeKey
+            });
+            bowtieSettings.Add(new BaseSetting()
+            {
+                ID = BowtieSettingName.Logger,
+                Name = BowtieSettingName.Logger,
             });
 
             JB2.Settings.Bowtie.Configure(bowtieSettings);

@@ -71,6 +71,14 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public static AzureTableRepository LogTable
+        {
+            get
+            {
+                return JB2.Infrastructure.Storage.LogAccount.GetTable("bowtie");
+            }
+        }
+
 
 
 

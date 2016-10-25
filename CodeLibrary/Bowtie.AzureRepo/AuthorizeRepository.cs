@@ -83,12 +83,29 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
-        public ServiceResult SaveAuthorizeKey(string key, string applicationID)
-        {
-            throw new NotImplementedException();
+        public ServiceResult InsertAuthorizeKey(string key, string applicationID, DateTime dateGenerated)
+        {       
+            try
+            {
+                DynamicTableEntity e = new DynamicTableEntity();
+                e.PartitionKey = "accesskey:application";
+                e.RowKey = "accesskey:" + key;
+                e.SetProperty<string>("ID", applicationID);
+                e.SetProperty<string>("Ticks", dateGenerated.Ticks.ToString());
+                e.SetProperty<string>("AuthorizeKey", key);
+
+                _table.Insert<DynamicTableEntity>(e, true);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ex.BowtieLog();
+                return new ServiceResult(ex);
+            }
         }
 
-        public ServiceResult Save(ApplicationStatePair pair)
+        public ServiceResult Insert(ApplicationStatePair pair)
         {
             try
             {
@@ -115,7 +132,7 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
-        public JB2.Common.ServiceResult Save(Enum.APIAuthorizeState state, string applicationID)
+        public JB2.Common.ServiceResult UpdateAuthorizeState(Enum.APIAuthorizeState state, string applicationID)
         {
             try
             {
@@ -144,14 +161,14 @@ namespace JB2.Bowtie.Data.Azure
 
                     //save change log
                     DynamicTableEntity loge = new DynamicTableEntity();
-                    loge.PartitionKey = "changelog:application" + applicationID;
-                    loge.RowKey = "tick:" + changeDate.Ticks.ToString();
+                    loge.PartitionKey = "changelog:application:" + applicationID;
+                    loge.RowKey = "property:" + "authorizestate" + ":tick:" + changeDate.Ticks.ToString();
                     loge.SetProperty<DateTime>("ChangeDate", changeDate);
-                    loge.SetProperty<string>("Text", "State: " + currentState.ToString() + " => " + state.ToString());
+                    loge.SetProperty<string>("Text", "State: " + currentState.ToString() + " -> " + state.ToString());
                     loge.SetProperty<string>("PropertyName", "AuthorizeState");
                     loge.SetProperty<string>("PreviousValue", currentState.ToString());
                     loge.SetProperty<string>("NextValue", state.ToString());
-                    _table.Insert<DynamicTableEntity>(e, true);
+                    _table.Insert<DynamicTableEntity>(loge, true);
                 }
                 return true;
             }

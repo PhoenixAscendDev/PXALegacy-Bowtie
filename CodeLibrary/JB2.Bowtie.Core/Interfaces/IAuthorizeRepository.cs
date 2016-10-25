@@ -14,11 +14,11 @@ namespace JB2.Bowtie
 
         ApplicationStatePair GetApplicationStateByAuthorizeKey(string id);
 
-        JB2.Common.ServiceResult SaveAuthorizeKey(string key, string applicationID);
+        JB2.Common.ServiceResult InsertAuthorizeKey(string key, string applicationID, DateTime dateGenerated);
 
-        JB2.Common.ServiceResult Save(ApplicationStatePair pair);
+        JB2.Common.ServiceResult Insert(ApplicationStatePair pair);
 
-        JB2.Common.ServiceResult Save(Enum.APIAuthorizeState state, string applicationID);
+        JB2.Common.ServiceResult UpdateAuthorizeState(Enum.APIAuthorizeState state, string applicationID);
 
 
     }

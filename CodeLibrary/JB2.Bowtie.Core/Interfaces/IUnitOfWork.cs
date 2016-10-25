@@ -31,6 +31,8 @@ namespace JB2.Bowtie
         //IPlayerRepo PlayerRepository { get; }
         object GetRepository(Enum.RepositoryType respository);
 
+        JB2.Common.Log.ILogRepo LogRepository { get; }
+
       
     }
 }

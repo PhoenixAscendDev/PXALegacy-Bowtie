@@ -8,6 +8,7 @@ namespace JB2.Bowtie
 {
     public struct ApplicationStatePair
     {
+
         public ApplicationStatePair(string applicationID, Enum.APIAuthorizeState state)
         {
             this.ApplicationID = applicationID;

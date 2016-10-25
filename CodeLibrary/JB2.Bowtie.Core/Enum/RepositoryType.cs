@@ -19,6 +19,7 @@ namespace JB2.Bowtie.Enum
         Jbean,
         Wallet,
         Module,
-        Authorize
+        Authorize,
+        Log
     }
 }

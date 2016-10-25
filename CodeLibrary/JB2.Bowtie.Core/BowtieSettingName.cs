@@ -11,6 +11,7 @@ namespace JB2.Bowtie
         public const string UnitofWork = "UNITOFWORK";
         public const string CurrentApplication = "CURRENTAPPLICATION";
         public const string Logger = "LOGGER";
+        public const string AuthorizeKey = "AUTHORIZEKEY";
 
     }
 }
