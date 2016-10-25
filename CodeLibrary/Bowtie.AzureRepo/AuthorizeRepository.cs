@@ -196,6 +196,25 @@ namespace JB2.Bowtie.Data.Azure
 
             return result;
         }
+
+        public long GetAuthorizeKeyTicks(string authorizeKey)
+        {
+            long result = 0;
+            try
+            {
+                DynamicTableEntity e = _table.GetEntity<DynamicTableEntity>("accesskey:application", "accesskey:" + authorizeKey);
+                var ticks = e.GetPropertyValue<string>("Ticks", "0");
+
+                long.TryParse(ticks, out result);
+                return result;
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+                return result;
+            }
+
+        }
         #endregion Private Methods
     }
 }

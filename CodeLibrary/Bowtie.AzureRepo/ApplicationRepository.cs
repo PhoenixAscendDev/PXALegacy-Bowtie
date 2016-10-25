@@ -148,21 +148,24 @@ namespace JB2.Bowtie.Data.Azure
             //set the treasury keys
             List<TreasuryRequestKey> treasuryKeys = new List<TreasuryRequestKey>();
             var strtreasuryKeys = e.GetPropertyValue<string>("TreasuryKeys", string.Empty);
-            foreach(string keypair in strtreasuryKeys.Split(","))
+            if (!string.IsNullOrEmpty(strtreasuryKeys))
             {
-                try
+                foreach (string keypair in strtreasuryKeys.Split(","))
                 {
-                    var treasuryID = keypair.Split(":")[0];
-                    var requestKey = keypair.Split(":")[1];
+                    try
+                    {
+                        var treasuryID = keypair.Split(":")[0];
+                        var requestKey = keypair.Split(":")[1];
 
-                    var result = new TreasuryRequestKey(treasuryID, requestKey);
+                        var result = new TreasuryRequestKey(treasuryID, requestKey);
 
-                    treasuryKeys.Add(result);
-                }
+                        treasuryKeys.Add(result);
+                    }
 
-                catch(Exception ex)
-                {
-                    ex.BowtieLog();
+                    catch (Exception ex)
+                    {
+                        ex.BowtieLog();
+                    }
                 }
             }
 

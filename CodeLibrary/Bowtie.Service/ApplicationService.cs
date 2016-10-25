@@ -103,6 +103,54 @@ namespace JB2.Bowtie.Service
         }
 
 
+        public JB2.Common.ServiceResult VerifyAuthorizeKey(string authorizeKey, string applicationId)
+        {
+            JB2.Common.ServiceResult result = true;
+            //Get the ticks
+            try
+            {
+                var ticks = _authRepo.GetAuthorizeKeyTicks(authorizeKey);
+
+                if (ticks == 0)
+                    throw new Exception("Authorize Key not found");
+                var dateGenerated = new DateTime(ticks);
+
+                var state = _authRepo.GetApplicationStateByID(applicationId);
+
+                var isAuth = isAuthorized(state);
+                if (!isAuth)
+                    return isAuth;
+
+                var keyverify = createAuthorizeKey(state, dateGenerated);
+
+                if (keyverify != authorizeKey)
+                    throw new Exception("Authorize key does not match");
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+                return new Common.ServiceResult(ex);
+            }
+
+            return result;
+
+            
+
+
+        }
+
+        protected string createAuthorizeKey(ApplicationStatePair state, DateTime timestamp)
+        {
+            string keyurlformat = JB2.Configuration.GetAppSetting("JB2:UrlHash:BowtieAuthorizeKey");
+            
+            string url = string.Format(keyurlformat, state.APIKey.APIkey, state.APIKey.Secret, timestamp.Ticks.ToString());
+
+            string key = JB2.Common.NewID.UriHash(new Uri(url));
+
+            return key;
+
+        }
+
         public string GenerateAuthorizeKey(ApplicationStatePair state)
         {
             try
@@ -111,12 +159,8 @@ namespace JB2.Bowtie.Service
 
                 if (isauth)
                 {
-                    string keyurlformat = JB2.Configuration.GetAppSetting("JB2:UrlHash:BowtieAuthorizeKey");
-                    var dateGenerated = System.DateTime.Now;
-
-                    string url = string.Format(keyurlformat, state.APIKey.APIkey, state.APIKey.Secret, dateGenerated.Ticks.ToString());
-
-                    string key = JB2.Common.NewID.UriHash(new Uri(url));
+                    var dateGenerated = DateTime.Now;
+                    string key = createAuthorizeKey(state, dateGenerated);
 
                     _authRepo.InsertAuthorizeKey(key, state.ApplicationID, dateGenerated);
 
@@ -140,12 +184,5 @@ namespace JB2.Bowtie.Service
             return settings;
 
         }
-
-
-
-        
-
-
-
     }
 }

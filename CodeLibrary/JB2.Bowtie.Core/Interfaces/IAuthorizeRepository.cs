@@ -14,6 +14,8 @@ namespace JB2.Bowtie
 
         ApplicationStatePair GetApplicationStateByAuthorizeKey(string id);
 
+        long GetAuthorizeKeyTicks(string authorizeKey);
+
         JB2.Common.ServiceResult InsertAuthorizeKey(string key, string applicationID, DateTime dateGenerated);
 
         JB2.Common.ServiceResult Insert(ApplicationStatePair pair);
