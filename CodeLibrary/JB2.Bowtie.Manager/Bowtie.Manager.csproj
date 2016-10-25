@@ -195,9 +195,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Bowtie.AzureRepo\Bowtie.RepoAzure.csproj">
       <Project>{6d362c4a-06d4-40c6-b314-aa559791e1f4}</Project>
       <Name>Bowtie.RepoAzure</Name>
@@ -214,6 +211,9 @@
       <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
       <Name>Bowtie.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\Solutions\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\Solutions\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
