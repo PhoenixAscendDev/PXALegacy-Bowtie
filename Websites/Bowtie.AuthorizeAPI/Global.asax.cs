@@ -19,7 +19,7 @@ namespace Bowtie.AuthorizeAPI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            JB2.Bowtie.Web.Manager.Initialize("BTI-C9DA81DD5EB7BC1B854B9DEBC752A", JB2.Configuration.GetAppSetting("JB2:bowtie-apisecret"));
+            //JB2.Bowtie.Web.Manager.Initialize("BTI-C9DA81DD5EB7BC1B854B9DEBC752A", JB2.Configuration.GetAppSetting("JB2:bowtie-apisecret"));
         }
     }
 }
