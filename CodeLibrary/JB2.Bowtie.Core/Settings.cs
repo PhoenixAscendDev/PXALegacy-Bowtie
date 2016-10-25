@@ -170,7 +170,7 @@ namespace JB2.Settings
 
                 var authorizekey = (string)_settings[BowtieSettingName.AuthorizeKey].Value;
 
-                if (isApplicationLegit(application))
+                if (_application.AuthorizedState != APIAuthorizeState.Authorized)
                     _application = application;
                 else
                     throw new Exception("Application is not valid");
@@ -207,10 +207,7 @@ namespace JB2.Settings
                 throw new JB2.Common.NotConfiguredException();                             
         }
 
-        private static ServiceResult isApplicationLegit(IApplication app)
-        {
-            return true;
-        }
+
 
     }
 }

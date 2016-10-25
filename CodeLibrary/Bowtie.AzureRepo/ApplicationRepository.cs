@@ -51,34 +51,7 @@ namespace JB2.Bowtie.Data.Azure
             return all.ToList().Find(x => x.APIkey == key);
         }
 
-        public ApplicationStatePair GetApplicationStateByAPIKey(string publicKey, string secret)
-        {
-            DynamicTableEntity e = _table.GetEntity<DynamicTableEntity>(_defaultPartitionKey, "key:" + publicKey);
-
-            try
-            {
-                return convertToState(e);
-            }
-            catch(Exception ex)
-            {
-                ex.BowtieLog();
-                return new ApplicationStatePair(string.Empty, Enum.APIAuthorizeState.Unknown);
-            }
-        }
-
-        public ApplicationStatePair GetApplicationStateByID(string id)
-        {
-            DynamicTableEntity e = _table.GetEntity<DynamicTableEntity>(_defaultPartitionKey, "id:" + id);
-            try
-            {
-                return convertToState(e);
-            }
-            catch (Exception ex)
-            {
-                ex.BowtieLog();
-                return new ApplicationStatePair(string.Empty, Enum.APIAuthorizeState.Unknown);
-            }
-        }
+        
 
         public string GetTreasuryRequestKey(string applicationID, string treasuryID)
         {
@@ -137,12 +110,13 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override IApplication convertToObject(DynamicTableEntity e)
         {
-            var apiKey = new JB2.Common.ApiKeySecretPair();
+            var authrepo = JB2.Settings.Bowtie.UnitOfWork.AuthorizeRepository;
 
-            apiKey.APIkey = e.Properties["APIKey"].StringValue;
-            apiKey.Secret = e.Properties["APISecret"].PropertyType == EdmType.Guid ? e.Properties["APISecret"].GuidValue.GetValueOrDefault().ToString() : e.Properties["APISecret"].PropertyAsObject.ToString();
-         
-            Enum.APIAuthorizeState state = Enum.APIAuthorizeState.Unknown;
+            var appstate = authrepo.GetApplicationStateByID(e.GetPropertyValue<string>("ID", string.Empty));
+            var apiKey = appstate.APIKey;
+
+
+            Enum.APIAuthorizeState state = appstate.AuthorizeState;
 
 
             //set the treasury keys
@@ -169,7 +143,7 @@ namespace JB2.Bowtie.Data.Azure
                 }
             }
 
-            System.Enum.TryParse<Enum.APIAuthorizeState>(e.Properties["AuthorizeState"].StringValue, out state);
+            //System.Enum.TryParse<Enum.APIAuthorizeState>(e.Properties["AuthorizeState"].StringValue, out state);
             //List<IModule> modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll().ToList();
 
             List<IModule> modules = new List<IModule>();

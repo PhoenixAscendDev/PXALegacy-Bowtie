@@ -74,7 +74,7 @@ namespace JB2.Bowtie.Service
 
         private bool isAuthorized(IApplication app)
         {
-            var state = _repo.GetApplicationStateByAPIKey(app.APIkey, app.Secret);
+            var state = _authRepo.GetApplicationStateByAPIKey(app.APIkey, app.Secret);
 
             return isAuthorized(state);
         }
