@@ -11,7 +11,15 @@ using JB2.Common;
 namespace JB2.Settings
 {
     public static class Bowtie
-    {
+    { 
+    
+        public delegate ServiceResult CheckAuthorize(IApplication application, string authorizeKey);
+
+        public static CheckAuthorize CheckAuthorizeMethod;
+
+        //public delegate void MoveDelegate(object o);
+        //public static MoveDelegate MoveMethod;
+
         internal static IApplication _application = null;
 
         internal static DateTime _lastAPIAuthCheck;
@@ -170,7 +178,7 @@ namespace JB2.Settings
 
                 var authorizekey = (string)_settings[BowtieSettingName.AuthorizeKey].Value;
 
-                if (_application.AuthorizedState != APIAuthorizeState.Authorized)
+                if (application.isAuthorized)
                     _application = application;
                 else
                     throw new Exception("Application is not valid");
@@ -207,7 +215,19 @@ namespace JB2.Settings
                 throw new JB2.Common.NotConfiguredException();                             
         }
 
+        public static ServiceResult isAuthorized()
+        {
+            ServiceResult result = false;
+            if(CheckAuthorizeMethod != null)
+            {
+                result = CheckAuthorizeMethod(_application, _authorizekey);
+                _lastAPIAuthCheck = System.DateTime.Now;
+                return result;
+            }
+            return result;
 
+            
+        }
 
     }
 }

@@ -144,7 +144,9 @@ namespace JB2.Bowtie.Maintenance
         {
 
             ConfigureBowtie();
-            SetupAuthRepo();
+            //SetupAuthRepo();
+
+            Console.WriteLine(JB2.Settings.Bowtie.isAuthorized());
             //SetupModules();
             //var moduleService = new JB2.Bowtie.Service.ModuleService();
 

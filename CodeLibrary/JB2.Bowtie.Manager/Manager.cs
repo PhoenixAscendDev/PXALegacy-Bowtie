@@ -94,6 +94,8 @@ namespace JB2.Bowtie.Web
                 Value = new JB2.Infrastructure.ProjectLogger(uofw.LogRepository)
             });
 
+            JB2.Settings.Bowtie.CheckAuthorizeMethod = CheckApplicationAuthorization;
+
             JB2.Settings.Bowtie.Configure(bowtieSettings);
 
             return true;
@@ -110,6 +112,19 @@ namespace JB2.Bowtie.Web
             //JB2.Bowtie.Settings.SettingsFilename = bowtieConfigFile;
 
             return true;
+        }
+
+
+        public static ServiceResult CheckApplicationAuthorization(IApplication application, string authorizeKey)
+        {
+            var app = application;
+
+            var appService = new JB2.Bowtie.Service.ApplicationService(JB2.Settings.Bowtie.UnitOfWork);
+
+            var isValid = appService.VerifyAuthorizeKey(JB2.Settings.Bowtie.AuthorizeKey, app.ID);
+
+            return isValid;
+
         }
     }
 }

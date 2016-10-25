@@ -12,6 +12,7 @@ namespace JB2.Bowtie.Data.Azure
 {
     public class ApplicationRepository : BowtieRepository<IApplication>, IApplicationRepository
     {
+        
 
         #region Constructors
 
@@ -110,7 +111,7 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override IApplication convertToObject(DynamicTableEntity e)
         {
-            var authrepo = JB2.Settings.Bowtie.UnitOfWork.AuthorizeRepository;
+            var authrepo = _uofw.AuthorizeRepository;
 
             var appstate = authrepo.GetApplicationStateByID(e.GetPropertyValue<string>("ID", string.Empty));
             var apiKey = appstate.APIKey;

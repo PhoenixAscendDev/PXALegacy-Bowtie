@@ -26,6 +26,7 @@ namespace JB2.Bowtie.Data.Azure
 
         #region Fields
         protected bool _useCache;
+        protected IUnitOfWork _uofw;
 
         #endregion Fields
 
@@ -40,6 +41,7 @@ namespace JB2.Bowtie.Data.Azure
         public BowtieRepository(bool useCache) : base()
         {
             _useCache = useCache;
+            _uofw = new JB2.Bowtie.Data.Azure.UnitOfWork();
         }
 
         #endregion Constructors
