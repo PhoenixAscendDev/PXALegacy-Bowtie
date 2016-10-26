@@ -158,6 +158,12 @@ namespace JB2.Bowtie.Maintenance
             }
 
 
+            var newApp = appService.GenerateNewApplication();
+            newApp.Company = JB2.Info.HQ;
+            newApp.Name = "TestApp";
+
+            appService.Save(newApp);
+
             Console.ReadLine();
         }
     }

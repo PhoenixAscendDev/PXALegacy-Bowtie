@@ -57,11 +57,38 @@ namespace JB2.Bowtie.Service
             return authState.AuthorizeState;
         }
 
+        public IApplication GenerateNewApplication()
+        {
+            var apikey = new JB2.Common.ApiKeySecretPair();
+            apikey.APIkey = "BT-" + JB2.Common.NewID.UriHash(new Uri("http://bowtie.io?ticks=" + JB2.Common.NewID.TickHash())).ToUpper();
+            apikey.Secret = JB2.Common.NewID.Guid();
+
+            //set modules
+            var modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll();         
+            var app = new Application(apikey.APIkey, apikey.Secret, APIAuthorizeState.Authorized,modules);
+
+            //setup TreasuryKeys
+            var jBean = new TreasuryRequestKey("jBean", string.Empty);
+            app.TreasuryKeys = new TreasuryRequestKey[1] {  jBean};
+
+            
+            return app;
+        }
+        
+
         public JB2.Common.ServiceResult isAuthorized(string applicationID)
         {
             var state = _authRepo.GetApplicationStateByID(applicationID);
             return isAuthorized(state);     
         }
+
+
+        public override bool Save(IApplication entity)
+        {
+            return base.Save(entity);
+        }
+
+
 
 
 

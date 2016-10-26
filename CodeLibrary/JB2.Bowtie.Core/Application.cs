@@ -30,7 +30,7 @@ namespace JB2.Bowtie
         
         }
 
-        public Application(string publickey, string secretKey, Enum.APIAuthorizeState state,IEnumerable<IModule> modules) : base(Enum.BowtieObjectType.bowtie_application, publickey) 
+        public Application(string publickey, string secretKey, Enum.APIAuthorizeState state,IEnumerable<IModule> modules) : base(Enum.BowtieObjectType.bowtie_application, JB2.Helper.Bowtie.GenerateID<IApplication>()) 
         {
             this._secret = secretKey;
             this._apiKey = publickey;
@@ -42,6 +42,7 @@ namespace JB2.Bowtie
             {
                 _modules.Add(m.GetID(), m);
             }
+            _treasuryKeys = new BaseCollection<TreasuryRequestKey>();
         }
 
         #endregion Constructors
@@ -83,15 +84,15 @@ namespace JB2.Bowtie
             set;
         }
 
-        public string CompanyID
+        public JB2.Common.IBusiness Company
         {
             get
             {
-                return _props.GetProperty<string>("CompanyID", string.Empty);
+                return _props.GetProperty<JB2.Common.IBusiness>("CompanyID", null);
             }
             set
             {
-                _props.SetProperty<string>("CompanyID", value);
+                _props.SetProperty<JB2.Common.IBusiness> ("CompanyID", value);
             }
         }
 

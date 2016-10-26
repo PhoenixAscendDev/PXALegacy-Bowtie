@@ -90,8 +90,6 @@ namespace JB2.Bowtie.Data.Azure
 
         #endregion Inserts
 
-
-
         #region Private Methods
 
         protected override DynamicTableEntity convertToEntity(IApplication o)
@@ -111,7 +109,11 @@ namespace JB2.Bowtie.Data.Azure
             e.SetProperty<string>("UniqueToken", o.UniqueToken);
             e.SetProperty<string>("Website", o.Website);
             e.SetProperty<string>("Name", o.Name);
-            e.SetProperty<string>("CompanyID", o.CompanyID);
+
+
+ 
+            e.SetProperty<string>("CompanyID", o.Company.ID);
+            e.SetProperty<string>("CompanyName", o.Company.Name);
 
             
             //System.Enum.TryParse<Enum.APIAuthorizeState>(e.Properties["AuthorizeState"].StringValue, out state);
@@ -143,6 +145,11 @@ namespace JB2.Bowtie.Data.Azure
 
 
             Enum.APIAuthorizeState state = appstate.AuthorizeState;
+
+            //set Company
+            var company = new JB2.Common.Business();
+            company.ID = e.GetPropertyValue<string>("CompanyID", string.Empty);
+            company.Name = e.GetPropertyValue<string>("CompanyName", string.Empty);
 
 
             //set the treasury keys
@@ -181,7 +188,7 @@ namespace JB2.Bowtie.Data.Azure
             app.Name = e.GetPropertyValue<string>("Name", string.Empty); // e.Properties["Name"].StringValue;
             app.TreasuryKeys = treasuryKeys;
             app.Website = e.GetPropertyValue<string>("Website", string.Empty);
-            app.CompanyID = e.GetPropertyValue<string>("CompanyID", string.Empty);
+            app.Company = company;
             
             return app;
 
