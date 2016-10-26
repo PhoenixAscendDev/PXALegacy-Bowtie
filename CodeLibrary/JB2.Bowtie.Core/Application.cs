@@ -83,7 +83,17 @@ namespace JB2.Bowtie
             set;
         }
 
-        
+        public string CompanyID
+        {
+            get
+            {
+                return _props.GetProperty<string>("CompanyID", string.Empty);
+            }
+            set
+            {
+                _props.SetProperty<string>("CompanyID", value);
+            }
+        }
 
         #region IAPIKeySecretPair
 
@@ -124,7 +134,6 @@ namespace JB2.Bowtie
                 _props.SetProperty<string>("Website", value);
             }
         }
-
 
         #endregion IAPIKeySecretPair
 

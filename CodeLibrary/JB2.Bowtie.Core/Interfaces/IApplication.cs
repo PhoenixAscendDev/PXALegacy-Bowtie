@@ -14,12 +14,16 @@ namespace JB2.Bowtie
         Enum.APIAuthorizeState AuthorizedState { get; }
         string ClientID { get; set; }
         string Website { get; set; }
+
+        string CompanyID { get; set; }
+
         IEnumerable<JB2.Identity.IPlayer> GetAdmins();
 
         IEnumerable<IModule> GetModules();
         ApplicationModulePermission GetModulePermission(string moduleID);
-
         TreasuryRequestKey GetTreasuryRequestKey(string treasuryID);
+
+
 
 
     }

@@ -98,8 +98,7 @@ namespace JB2.Bowtie.Data.Azure
         {
 
             DynamicTableEntity e = new DynamicTableEntity();
-
-            e.GetPropertyValue<string>("ID", string.Empty);
+            e.SetProperty<string>("ID", o.ID);
 
             //set Treasury Keys
             List<string> keys = new List<string>();
@@ -107,10 +106,13 @@ namespace JB2.Bowtie.Data.Azure
             TreasuryRequestKey jBeanKey = o.GetTreasuryRequestKey("jBean");           
             keys.Add(jBeanKey.TreasuryID + ":" + jBeanKey.Key);
 
-            e.GetPropertyValue<string>("TreasuryKeys", string.Join(",", keys.ToArray()));
-            e.GetPropertyValue<string>("IdentityClientIDs", o.ClientID);
-            e.GetPropertyValue<string>("UniqueToken", o.UniqueToken);
-            e.GetPropertyValue<string>("Website", o.Website);
+            e.SetProperty<string>("TreasuryKeys", string.Join(",", keys.ToArray()));
+            e.SetProperty<string>("IdentityClientIDs", o.ClientID);
+            e.SetProperty<string>("UniqueToken", o.UniqueToken);
+            e.SetProperty<string>("Website", o.Website);
+            e.SetProperty<string>("Name", o.Name);
+            e.SetProperty<string>("CompanyID", o.CompanyID);
+
             
             //System.Enum.TryParse<Enum.APIAuthorizeState>(e.Properties["AuthorizeState"].StringValue, out state);
             //List<IModule> modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll().ToList();
@@ -131,8 +133,6 @@ namespace JB2.Bowtie.Data.Azure
 
             return result;
         }
-
-       
 
         protected override IApplication convertToObject(DynamicTableEntity e)
         {
@@ -176,11 +176,12 @@ namespace JB2.Bowtie.Data.Azure
 
 
             var app = new Application(apiKey.APIkey, apiKey.Secret, state,modules);
-            app.ID = e.Properties["ID"].StringValue;
-            app.ClientID = e.Properties.ContainsKey("IdentityClientIDs") ? e.Properties["IdentityClientIDs"].StringValue : string.Empty;
-            app.Name = e.Properties["Name"].StringValue;
+            app.ID = e.GetPropertyValue<string>("ID", string.Empty);// e.Properties["ID"].StringValue;
+            app.ClientID = e.GetPropertyValue<string>("IdentityClientIDs", string.Empty);// e.Properties.ContainsKey("IdentityClientIDs") ? e.Properties["IdentityClientIDs"].StringValue : string.Empty;
+            app.Name = e.GetPropertyValue<string>("Name", string.Empty); // e.Properties["Name"].StringValue;
             app.TreasuryKeys = treasuryKeys;
             app.Website = e.GetPropertyValue<string>("Website", string.Empty);
+            app.CompanyID = e.GetPropertyValue<string>("CompanyID", string.Empty);
             
             return app;
 
