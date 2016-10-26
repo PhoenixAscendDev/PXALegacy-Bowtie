@@ -116,12 +116,12 @@ namespace JB2.Bowtie
         {
             get
             {
-                throw new NotImplementedException();
+                return _props.GetProperty<string>("Website", string.Empty);
             }
 
             set
             {
-                throw new NotImplementedException();
+                _props.SetProperty<string>("Website", value);
             }
         }
 

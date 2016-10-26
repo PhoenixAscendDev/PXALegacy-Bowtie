@@ -147,15 +147,17 @@ namespace JB2.Bowtie.Maintenance
             //SetupAuthRepo();
 
             Console.WriteLine(JB2.Settings.Bowtie.isAuthorized());
-            //SetupModules();
-            //var moduleService = new JB2.Bowtie.Service.ModuleService();
 
-            //var modules = moduleService.Retrieve();
+            var appService = new JB2.Bowtie.Service.ApplicationService();
 
-            //var companies = JB2.Settings.JbeanStockMarket.Repository.GetAllCompanies();
+            var apps = appService.Retrieve();
+
+            foreach(var app in apps)
+            {
+                appService.Save(app);
+            }
 
 
-            //Console.WriteLine(companies.Count());
             Console.ReadLine();
         }
     }

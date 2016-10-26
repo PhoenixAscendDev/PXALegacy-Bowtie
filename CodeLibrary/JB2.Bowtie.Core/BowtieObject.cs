@@ -10,12 +10,17 @@ using JB2.Bowtie.Enum;
 
 namespace JB2.Bowtie
 {
-    public abstract class BowtieObject : IDNamePair, IBowtieObject
+    public abstract class BowtieObject : IDNamePair, IBowtieObject, IClass
     {
+        #region Fields
         protected List<ObjectTag> _tags;
         protected BowtieObjectType _kind;
         protected int _rng = 0;
+        protected MetaDataCollection _props;
 
+        #endregion Fields
+
+        #region Constructors
         public BowtieObject(BowtieObjectType kind, string id) : this(id)
         {
             this._kind = kind;
@@ -35,7 +40,11 @@ namespace JB2.Bowtie
             this._name = string.Empty;
             this._kind = BowtieObjectType.unknown;
             this._rng = JB2.Common.RNG.Randy;
+            this._props = new MetaDataCollection();
+            
         }
+
+        #endregion Constructors
 
         public string UniqueToken
         {
@@ -96,6 +105,16 @@ namespace JB2.Bowtie
         public IEnumerable<ObjectTag> GetTags()
         {
             return _tags;
+        }
+
+        public T GetProperity<T>(string index, T defaultValue)
+        {
+            return _props.GetProperty<T>(index);
+        }
+
+        public void SetProperty<T>(string index, T newValue, bool changeLastUpdate)
+        {
+            _props.SetProperty<T>(index, newValue, changeLastUpdate);
         }
 
         public int RNG

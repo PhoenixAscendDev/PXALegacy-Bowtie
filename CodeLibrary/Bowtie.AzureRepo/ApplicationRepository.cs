@@ -71,6 +71,27 @@ namespace JB2.Bowtie.Data.Azure
         #endregion Gets
 
 
+        #region Inserts
+        public override void Insert(IApplication obj)
+        {
+            base.Insert(obj);
+
+            ApplicationStatePair asp = new ApplicationStatePair();
+            asp.APIKey = new ApiKeySecretPair();
+            asp.APIKey.APIkey = obj.APIkey;
+            asp.APIKey.Secret = obj.Secret;
+            asp.ApplicationID = obj.ID;
+            asp.AuthorizeState = obj.AuthorizedState;
+
+            _uofw.AuthorizeRepository.Insert(asp);
+
+        }
+
+
+        #endregion Inserts
+
+
+
         #region Private Methods
 
         protected override DynamicTableEntity convertToEntity(IApplication o)
@@ -96,7 +117,7 @@ namespace JB2.Bowtie.Data.Azure
 
             List<IModule> modules = new List<IModule>();
 
-            return app;
+            return e;
         }
 
         protected override IEnumerable<IApplication> convertToObject(IEnumerable<DynamicTableEntity> list)
@@ -111,22 +132,7 @@ namespace JB2.Bowtie.Data.Azure
             return result;
         }
 
-        protected  ApplicationStatePair convertToState(DynamicTableEntity e)
-        {
-            var apiKey = new JB2.Common.ApiKeySecretPair();
-
-            apiKey.APIkey = e.Properties["APIKey"].StringValue;
-            apiKey.Secret = e.Properties["APISecret"].PropertyType == EdmType.Guid ? e.Properties["APISecret"].GuidValue.GetValueOrDefault().ToString() : e.Properties["APISecret"].PropertyAsObject.ToString();
-
-            Enum.APIAuthorizeState state = Enum.APIAuthorizeState.Unknown;
-            System.Enum.TryParse<Enum.APIAuthorizeState>(e.Properties["AuthorizeState"].StringValue, out state);
-            var appID = e.GetPropertyValue<string>("ID", string.Empty);
-
-            var result = new ApplicationStatePair(appID, state);
-            result.APIKey = apiKey;
-
-            return result;
-        }
+       
 
         protected override IApplication convertToObject(DynamicTableEntity e)
         {
