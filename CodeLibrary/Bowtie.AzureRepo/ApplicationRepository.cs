@@ -57,8 +57,6 @@ namespace JB2.Bowtie.Data.Azure
         public string GetTreasuryRequestKey(string applicationID, string treasuryID)
         {
             var e = _table.GetEntity<DynamicTableEntity>("application", applicationID);
-
-
             if (e == null)
                 return string.Empty;
 
@@ -77,7 +75,28 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override DynamicTableEntity convertToEntity(IApplication o)
         {
-            throw new NotImplementedException();
+
+            DynamicTableEntity e = new DynamicTableEntity();
+
+            e.GetPropertyValue<string>("ID", string.Empty);
+
+            //set Treasury Keys
+            List<string> keys = new List<string>();
+
+            TreasuryRequestKey jBeanKey = o.GetTreasuryRequestKey("jBean");           
+            keys.Add(jBeanKey.TreasuryID + ":" + jBeanKey.Key);
+
+            e.GetPropertyValue<string>("TreasuryKeys", string.Join(",", keys.ToArray()));
+            e.GetPropertyValue<string>("IdentityClientIDs", o.ClientID);
+            e.GetPropertyValue<string>("UniqueToken", o.UniqueToken);
+            e.GetPropertyValue<string>("Website", o.Website);
+            
+            //System.Enum.TryParse<Enum.APIAuthorizeState>(e.Properties["AuthorizeState"].StringValue, out state);
+            //List<IModule> modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll().ToList();
+
+            List<IModule> modules = new List<IModule>();
+
+            return app;
         }
 
         protected override IEnumerable<IApplication> convertToObject(IEnumerable<DynamicTableEntity> list)
@@ -155,6 +174,8 @@ namespace JB2.Bowtie.Data.Azure
             app.ClientID = e.Properties.ContainsKey("IdentityClientIDs") ? e.Properties["IdentityClientIDs"].StringValue : string.Empty;
             app.Name = e.Properties["Name"].StringValue;
             app.TreasuryKeys = treasuryKeys;
+            app.Website = e.GetPropertyValue<string>("Website", string.Empty);
+            
             return app;
 
         }
@@ -166,7 +187,13 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override void saveEntity(DynamicTableEntity e, bool replace)
         {
-            throw new NotImplementedException();
+            e.PartitionKey = _defaultPartitionKey;
+            e.RowKey = e.GetPropertyValue<string>("ID", string.Empty);
+            _table.Insert<DynamicTableEntity>(e, replace);
+
+            e.PartitionKey = _defaultPartitionKey;
+            e.RowKey = "id:" + e.GetPropertyValue<string>("ID", string.Empty);
+            _table.Insert<DynamicTableEntity>(e, replace);
         }
 
         #endregion Private Methods
