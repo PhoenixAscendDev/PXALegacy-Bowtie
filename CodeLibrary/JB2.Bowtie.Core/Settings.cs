@@ -15,6 +15,14 @@ namespace JB2.Settings
     
         public delegate ServiceResult CheckAuthorize(IApplication application, string authorizeKey);
 
+        public static event Action<IEnumerable<ISetting>> ConfiguredSuccess;
+
+        public static event Action<IEnumerable<ISetting>, ServiceResult> ConfiguredFailed;
+
+        public static event Action<IApplication> ApplicationNotAuthorized;
+
+        public static event Action<IApplication,string, DateTime> ApplicationAuthCheck;
+
         public static CheckAuthorize CheckAuthorizeMethod;
 
         //public delegate void MoveDelegate(object o);
@@ -198,8 +206,17 @@ namespace JB2.Settings
             catch(Exception ex)
             {
                 _isConfigured = false;
+                if (ConfiguredFailed != null)
+                    ConfiguredFailed(settings, new ServiceResult(ex));
                 ///Do something with the exceptions
             }
+
+            if(_isConfigured)
+            {
+                if (ConfiguredSuccess != null)
+                    ConfiguredSuccess(settings);
+            }
+
             
 
         }

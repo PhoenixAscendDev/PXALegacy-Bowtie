@@ -11,6 +11,7 @@ namespace JB2.Bowtie.Web
 {
     public class Manager
     {
+        private static JB2.Common.Scheduler.IScheduler<string,object> _schedule;
         public static bool Initialize(string publicKey, string secretKey)
         {
             var pair = new JB2.Common.ApiKeySecretPair() { APIkey = publicKey, Secret = secretKey };
@@ -18,6 +19,10 @@ namespace JB2.Bowtie.Web
         }
         public static bool Initialize(JB2.Common.IAPIKeySecretPair apiKey)
         {
+
+            //track config
+            JB2.Settings.Bowtie.ConfiguredSuccess += OnConfigSuccess;
+
 
             // First we have to validate the application
             IUnitOfWork uofw = new JB2.Bowtie.Data.Azure.UnitOfWork();
@@ -125,6 +130,26 @@ namespace JB2.Bowtie.Web
 
             return isValid;
 
+        }
+
+
+        public static JB2.Common.Scheduler.IScheduler<string, object> ManagerSchedule
+        {
+            get
+            {
+                if (_schedule == null)
+                {
+                    _schedule = new JB2.Common.Scheduler.SimpleScheduler(new AuthorizeCheckJob(), JB2.Settings.Bowtie.Logger);
+
+                }
+                return _schedule;
+            }
+        }
+
+
+        public static void OnConfigSuccess(IEnumerable<ISetting> settings)
+        {
+            ManagerSchedule.StartJobs();
         }
     }
 }
