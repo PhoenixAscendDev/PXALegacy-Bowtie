@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+
+using JB2.Common.Log;
+using JB2.Common;
 using JB2.Bowtie;
 using JB2.Bowtie.Enum;
 
@@ -78,7 +81,10 @@ namespace JB2.Bowtie.Service
             //save to repo
             _repo.Insert(app);
 
-         
+            var logentry = JB2.Common.Log.LogEntry.NewLogEntry(Common.Enum.LogServerityType.Informational, "Application Created: \r\n " + "ID: " + app.ID, "BT-1-001");
+            JB2.Settings.Bowtie.Logger.Log(logentry);
+
+            JB2.Events.Bowtie.OnApplicationCreated(app, DateTime.Now);
             return app;
         }
         

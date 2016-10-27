@@ -150,6 +150,8 @@ namespace JB2.Bowtie.Web
         public static void OnConfigSuccess(IEnumerable<ISetting> settings)
         {
             ManagerSchedule.StartJobs();
+
+            JB2.Events.Bowtie.OnApplicationInitilized(JB2.Settings.Bowtie.CurrentApplication, JB2.Settings.Bowtie.AuthorizeKey);
         }
     }
 }

@@ -202,6 +202,10 @@ namespace JB2.Settings
                     throw new Exception("Authorize key was not configured");
                 else
                     _authorizekey = authorizekey;
+
+
+                //setup events
+                _logger.EntryLogged += OnLogged;
             }
             catch(Exception ex)
             {
@@ -216,9 +220,6 @@ namespace JB2.Settings
                 if (ConfiguredSuccess != null)
                     ConfiguredSuccess(settings);
             }
-
-            
-
         }
 
         public static ISetting GetSetting(string settingName)
@@ -230,6 +231,11 @@ namespace JB2.Settings
         {
             if (!_isConfigured)
                 throw new JB2.Common.NotConfiguredException();                             
+        }
+
+        public static void OnLogged(ILogger<JB2.Common.Enum.LogServerityType, string, ILogEntry> logger, JB2.Common.Enum.LogServerityType type,ILogEntry logEntry)
+        {
+            JB2.Events.Bowtie.OnLogEntryLogged(logger, logEntry);
         }
 
         public static ServiceResult isAuthorized()

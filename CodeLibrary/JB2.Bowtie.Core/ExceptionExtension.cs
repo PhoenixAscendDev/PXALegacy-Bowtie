@@ -16,9 +16,13 @@ namespace JB2.Bowtie
             
             ILogger logger = (ILogger)JB2.Settings.Bowtie.Logger;
 
-            if(logger != null)
-            //logger.Log(new JB2.Common.Log.LogEntry("testID", Common.Enum.LogServerityType.Error, exception.Message, exception, System.DateTime.Now));
-                logger.Log(Common.Enum.LogServerityType.Error, exception);
+            if (logger != null)
+            {
+                ILogEntry e = JB2.Common.Log.LogEntry.NewLogEntry(Common.Enum.LogServerityType.Error, exception);
+                //logger.Log(new JB2.Common.Log.LogEntry("testID", Common.Enum.LogServerityType.Error, exception.Message, exception, System.DateTime.Now));
+                logger.Log(e);
+                JB2.Events.Bowtie.OnExceptionOccured(exception, e);
+            }
             //logger.LogError(exception);            
         }
     }
