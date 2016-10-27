@@ -146,23 +146,29 @@ namespace JB2.Bowtie.Maintenance
             ConfigureBowtie();
             //SetupAuthRepo();
 
-            Console.WriteLine(JB2.Settings.Bowtie.isAuthorized());
+            //Console.WriteLine(JB2.Settings.Bowtie.isAuthorized());
 
-            var appService = new JB2.Bowtie.Service.ApplicationService();
+            //var appService = new JB2.Bowtie.Service.ApplicationService();
 
-            var apps = appService.Retrieve();
+            //var apps = appService.Retrieve();
 
-            foreach(var app in apps)
+            //foreach(var app in apps)
+            //{
+            //    appService.Save(app);
+            //}
+
+
+            //var newApp = appService.GenerateNewApplication();
+            //newApp.Company = JB2.Info.HQ;
+            //newApp.Name = "TestApp";
+
+            //appService.Save(newApp);
+
+            for(int i=0; i< 3;i++)
             {
-                appService.Save(app);
+                var id = JB2.Common.NewID.ProductID(4);
+                Console.WriteLine(id);
             }
-
-
-            var newApp = appService.GenerateNewApplication();
-            newApp.Company = JB2.Info.HQ;
-            newApp.Name = "TestApp";
-
-            appService.Save(newApp);
 
             Console.ReadLine();
         }

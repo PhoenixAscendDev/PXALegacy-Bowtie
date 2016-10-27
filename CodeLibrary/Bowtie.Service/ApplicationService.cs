@@ -67,11 +67,22 @@ namespace JB2.Bowtie.Service
             var modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll();         
             var app = new Application(apikey.APIkey, apikey.Secret, APIAuthorizeState.Authorized,modules);
 
+
+
+
+
             //setup TreasuryKeys
-            var jBean = new TreasuryRequestKey("jBean", string.Empty);
+            //jBean
+            var jbeanRequestor = JB2.Settings.Jbean.Factory.Treasury.RegisterNewRequestor(app.ID);
+            var jBean = new TreasuryRequestKey("jBean", jbeanRequestor.RequestValidationKey);
+
+
             app.TreasuryKeys = new TreasuryRequestKey[1] {  jBean};
 
-            
+            //save to repo
+            _repo.Insert(app);
+
+         
             return app;
         }
         
@@ -85,13 +96,9 @@ namespace JB2.Bowtie.Service
 
         public override bool Save(IApplication entity)
         {
+
             return base.Save(entity);
         }
-
-
-
-
-
 
         public JB2.Common.ServiceResult isAuthorized(JB2.Common.IAPIKeySecretPair api)
         {
