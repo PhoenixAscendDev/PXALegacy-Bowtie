@@ -144,6 +144,12 @@ namespace JB2.Bowtie.Maintenance
         {
 
             ConfigureBowtie();
+
+            var appService = new JB2.Bowtie.Service.ApplicationService();
+
+            var app = appService.GenerateNewApplication();
+
+
             //SetupAuthRepo();
 
             //Console.WriteLine(JB2.Settings.Bowtie.isAuthorized());

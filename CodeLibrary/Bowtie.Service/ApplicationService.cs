@@ -67,10 +67,6 @@ namespace JB2.Bowtie.Service
             var modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll();         
             var app = new Application(apikey.APIkey, apikey.Secret, APIAuthorizeState.Authorized,modules);
 
-
-
-
-
             //setup TreasuryKeys
             //jBean
             var jbeanRequestor = JB2.Settings.Jbean.Factory.Treasury.RegisterNewRequestor(app.ID);
@@ -86,7 +82,6 @@ namespace JB2.Bowtie.Service
             return app;
         }
         
-
         public JB2.Common.ServiceResult isAuthorized(string applicationID)
         {
             var state = _authRepo.GetApplicationStateByID(applicationID);

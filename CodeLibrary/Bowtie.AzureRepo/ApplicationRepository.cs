@@ -111,9 +111,9 @@ namespace JB2.Bowtie.Data.Azure
             e.SetProperty<string>("Name", o.Name);
 
 
- 
-            e.SetProperty<string>("CompanyID", o.Company.ID);
-            e.SetProperty<string>("CompanyName", o.Company.Name);
+
+            e.SetProperty<string>("CompanyID", o.Company != null ? o.Company.ID : string.Empty);
+            e.SetProperty<string>("CompanyName", o.Company != null ? o.Company.Name : string.Empty);
 
             
             //System.Enum.TryParse<Enum.APIAuthorizeState>(e.Properties["AuthorizeState"].StringValue, out state);
