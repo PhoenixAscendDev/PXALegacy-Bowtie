@@ -14,7 +14,7 @@ namespace JB2.Bowtie.Maintenance
 
         static void ConfigureBowtie()
         {
-            JB2.Bowtie.Web.Manager.Initialize("BT-1F4ACB33EAE78E36", JB2.Configuration.GetAppSetting("JB2:bowtie-apisecret"));
+            JB2.Bowtie.Web.Manager.Initialize("BT-C2A69E7B", JB2.Configuration.GetAppSetting("JB2:bowtie-apisecret"));
         }
 
         static void SetupModules()
@@ -140,14 +140,31 @@ namespace JB2.Bowtie.Maintenance
             Console.WriteLine("app count: " + apps.Count());
 
         }
+
+
+        static void OnApplInitialized(IApplication application, string authorizeKey)
+        {
+            Console.WriteLine("App initialized: " + application.ID);
+        }
         static void Main(string[] args)
         {
-
+            JB2.Events.Bowtie.ApplicationInitilized += OnApplInitialized;
             ConfigureBowtie();
 
-            var appService = new JB2.Bowtie.Service.ApplicationService();
 
-            var app = appService.GenerateNewApplication();
+
+            //var appService = new JB2.Bowtie.Service.ApplicationService();
+
+            //var app = appService.GenerateNewApplication();
+
+            //app.Name = "Bowtie Admin Website";
+
+
+            //appService.Save(app);
+
+
+            //Console.WriteLine(app.APIkey);
+            //Console.WriteLine(app.Secret);
 
 
             //SetupAuthRepo();
@@ -170,11 +187,11 @@ namespace JB2.Bowtie.Maintenance
 
             //appService.Save(newApp);
 
-            for(int i=0; i< 3;i++)
-            {
-                var id = JB2.Common.NewID.ProductID(4);
-                Console.WriteLine(id);
-            }
+            //for (int i=0; i< 3;i++)
+            //{
+            //    var id = JB2.Common.NewID.ProductID(4);
+            //    Console.WriteLine(id);
+            //}
 
             Console.ReadLine();
         }

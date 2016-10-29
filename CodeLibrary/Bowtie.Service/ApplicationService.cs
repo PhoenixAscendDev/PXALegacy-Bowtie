@@ -62,30 +62,52 @@ namespace JB2.Bowtie.Service
 
         public IApplication GenerateNewApplication()
         {
-            var apikey = new JB2.Common.ApiKeySecretPair();
-            apikey.APIkey = "BT-" + JB2.Common.NewID.UriHash(new Uri("http://bowtie.io?ticks=" + JB2.Common.NewID.TickHash())).ToUpper();
-            apikey.Secret = JB2.Common.NewID.Guid();
+            try
+            {
+                var apikey = new JB2.Common.ApiKeySecretPair();
+                apikey.APIkey = "BT-" + JB2.Common.NewID.UriHash(new Uri("http://bowtie.io?ticks=" + JB2.Common.NewID.TickHash())).ToUpper();
+                apikey.Secret = JB2.Common.NewID.Guid();
 
-            //set modules
-            var modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll();         
-            var app = new Application(apikey.APIkey, apikey.Secret, APIAuthorizeState.Authorized,modules);
+                //set modules
+                var modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll();
+                var app = new Application(apikey.APIkey, apikey.Secret, APIAuthorizeState.Authorized, modules);
 
-            //setup TreasuryKeys
-            //jBean
-            var jbeanRequestor = JB2.Settings.Jbean.Factory.Treasury.RegisterNewRequestor(app.ID);
-            var jBean = new TreasuryRequestKey("jBean", jbeanRequestor.RequestValidationKey);
+                //setup TreasuryKeys
+                //jBean
+                var jbeanRequestor = JB2.Settings.Jbean.Factory.Treasury.RegisterNewRequestor(app.ID);
+                var jBean = new TreasuryRequestKey("jBean", jbeanRequestor.RequestValidationKey);
 
 
-            app.TreasuryKeys = new TreasuryRequestKey[1] {  jBean};
+                app.TreasuryKeys = new TreasuryRequestKey[1] { jBean };
 
-            //save to repo
-            _repo.Insert(app);
+                //save app to repo
+                _repo.Insert(app);
 
-            var logentry = JB2.Common.Log.LogEntry.NewLogEntry(Common.Enum.LogServerityType.Informational, "Application Created: \r\n " + "ID: " + app.ID, "BT-1-001");
-            JB2.Settings.Bowtie.Logger.Log(logentry);
+                //setup the authorize state
+                ApplicationStatePair state = new ApplicationStatePair();
+                state.ApplicationID = app.ID;
+                state.APIKey = apikey;
+                state.AuthorizeState = APIAuthorizeState.Authorized;
+                _authRepo.Insert(state);
+                
+                _authRepo.UpdateAuthorizeState(APIAuthorizeState.Authorized, app.ID);
 
-            JB2.Events.Bowtie.OnApplicationCreated(app, DateTime.Now);
-            return app;
+                var logentry = JB2.Common.Log.LogEntry.NewLogEntry(Common.Enum.LogServerityType.Informational, "Application Created: \r\n " + "ID: " + app.ID, "BT-1-001");
+                JB2.Settings.Bowtie.Logger.Log(logentry);
+
+                JB2.Events.Bowtie.OnApplicationCreated(app, DateTime.Now);
+                return app;
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+                return null;
+            }
+
+
+
+
+            
         }
         
         public JB2.Common.ServiceResult isAuthorized(string applicationID)

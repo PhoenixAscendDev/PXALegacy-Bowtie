@@ -11,11 +11,15 @@ namespace JB2.Events
 {
     public class Bowtie
     {
+        //logging
         public static event Action<ILogger<JB2.Common.Enum.LogServerityType, string, ILogEntry>, ILogEntry> LogEntryLogged;
         public static event Action<Exception, ILogEntry> ExceptionOccured;
+
+        //application 
         public static event Action<IApplication, DateTime> ApplicationCreated;
         public static event Action<IApplication, string> ApplicationInitilized;
 
+        //player
         public static event Action<IBowtiePlayer, IApplication, DateTime> PlayerSignedIn;
 
         public static void OnApplicationCreated(IApplication application, DateTime dateCreated)
