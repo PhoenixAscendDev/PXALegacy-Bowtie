@@ -282,6 +282,14 @@ namespace JB2.Bowtie
                 GameCommandIssued(this, command);
         }
 
+        protected virtual void OnPlayerSignIn(IGameEngine<TSession, TPlayer, TID> engine, TPlayer player, DateTime signinDate)
+        {
+            if (PlayerSignedIn != null)
+                PlayerSignedIn(engine, player, signinDate);
+
+            JB2.Events.Bowtie.OnPlayerSignedIn(getPlayer(player), engine.GetApplication(), signinDate);
+        }
+
 
         protected virtual void OnSessionStart(IGameSession<TPlayer, TID> session, DateTime start)
         {

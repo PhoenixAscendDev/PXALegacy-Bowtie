@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 namespace JB2.Bowtie
 {
     public class InventoryItem : JB2.Common.JB2Class, IInventoryItem
-    {
-
-        
+    {    
         public InventoryItem(string id) : base()
         {
             this.SetProperty<string>("ID", id);

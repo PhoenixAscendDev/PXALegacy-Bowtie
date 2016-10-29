@@ -16,6 +16,8 @@ namespace JB2.Events
         public static event Action<IApplication, DateTime> ApplicationCreated;
         public static event Action<IApplication, string> ApplicationInitilized;
 
+        public static event Action<IBowtiePlayer, IApplication, DateTime> PlayerSignedIn;
+
         public static void OnApplicationCreated(IApplication application, DateTime dateCreated)
         {
             if (ApplicationCreated != null)
@@ -40,6 +42,12 @@ namespace JB2.Events
             {
                 ApplicationInitilized(application, authorizeKey);
             }
+        }
+
+        public static void OnPlayerSignedIn(IBowtiePlayer player, IApplication application, DateTime signinDate)
+        {
+            if (PlayerSignedIn != null)
+                PlayerSignedIn(player, application, signinDate);
         }
     }
 }
