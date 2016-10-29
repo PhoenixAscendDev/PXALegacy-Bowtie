@@ -54,7 +54,7 @@ namespace JB2.Bowtie.Data.Azure
 
         public override void Delete(T obj)
         {
-            deleteAll(convertToEntity(obj));          
+            deleteEntry(convertToEntity(obj));          
         }
 
         public override T[] SearchFor()
@@ -152,7 +152,7 @@ namespace JB2.Bowtie.Data.Azure
 
         protected abstract void saveEntity(Tentity e, bool replace);
 
-        protected abstract void deleteAll(Tentity e);
+        protected abstract void deleteEntry(Tentity e);
 
        
     }

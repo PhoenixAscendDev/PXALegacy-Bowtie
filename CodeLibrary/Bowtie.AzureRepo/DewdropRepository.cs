@@ -193,7 +193,7 @@ namespace JB2.Bowtie.Data.Azure
 
         }
 
-        protected override void deleteAll(DewdropEntity e)
+        protected override void deleteEntry(DewdropEntity e)
         {
             //default partition
             e.PartitionKey = _defaultPartitionKey;

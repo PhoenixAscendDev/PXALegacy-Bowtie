@@ -205,7 +205,7 @@ namespace JB2.Bowtie.Data.Azure
             return person;
         }
 
-        protected override void deleteAll(DynamicTableEntity e)
+        protected override void deleteEntry(DynamicTableEntity e)
         {
             throw new NotImplementedException();
         }

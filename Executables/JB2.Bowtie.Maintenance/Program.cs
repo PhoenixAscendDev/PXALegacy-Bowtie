@@ -14,7 +14,7 @@ namespace JB2.Bowtie.Maintenance
 
         static void ConfigureBowtie()
         {
-            JB2.Bowtie.Web.Manager.Initialize("BT-C2A69E7B", JB2.Configuration.GetAppSetting("JB2:bowtie-apisecret"));
+            JB2.Bowtie.Web.Manager.Initialize("BT-35BC540F", JB2.Configuration.GetAppSetting("JB2:bowtie-apisecret"));
         }
 
         static void SetupModules()
@@ -151,14 +151,40 @@ namespace JB2.Bowtie.Maintenance
             JB2.Events.Bowtie.ApplicationInitilized += OnApplInitialized;
             ConfigureBowtie();
 
+            var appService = new JB2.Bowtie.Service.ApplicationService();
 
 
-            //var appService = new JB2.Bowtie.Service.ApplicationService();
+            //setup Link Fence App
+            var linkfence = appService.GenerateNewApplication();
+            linkfence.Name = "Link Fence";
+            linkfence.Company = JB2.Info.HQ;
+            linkfence.Website = "http://linkfence.io";
+
+            appService.Save(linkfence);
+
+            var fivetwo = appService.GenerateNewApplication();
+            fivetwo.Name = "Grateful Five|Two";
+            fivetwo.Company = JB2.Info.HQ;
+            fivetwo.Website = "http://fivetwo.io";
+
+            appService.Save(fivetwo);
+
+
+            //var allApps = appService.Retrieve();
+
+            //foreach (var a in allApps)
+            //{
+
+            //    Console.WriteLine("app:" + a.Name + "(" + a.ID + ")");
+            //    a.Company = JB2.Info.HQ;
+            //    appService.Save(a);
+
+
+            //}
 
             //var app = appService.GenerateNewApplication();
 
-            //app.Name = "Bowtie Admin Website";
-
+            //app.Name = "Bowtie Maintenance";
 
             //appService.Save(app);
 

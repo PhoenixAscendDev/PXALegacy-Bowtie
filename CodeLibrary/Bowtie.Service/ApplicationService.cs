@@ -116,12 +116,12 @@ namespace JB2.Bowtie.Service
             return isAuthorized(state);     
         }
 
-
         public override bool Save(IApplication entity)
         {
 
             return base.Save(entity);
         }
+
 
         public JB2.Common.ServiceResult isAuthorized(JB2.Common.IAPIKeySecretPair api)
         {
@@ -158,7 +158,6 @@ namespace JB2.Bowtie.Service
                     return new JB2.Common.ServiceResult(new Exception("Not Authorized: Current Authorize State is " + state.AuthorizeState.ToString()));
             }
         }
-
 
         public JB2.Common.ServiceResult VerifyAuthorizeKey(string authorizeKey, string applicationId)
         {

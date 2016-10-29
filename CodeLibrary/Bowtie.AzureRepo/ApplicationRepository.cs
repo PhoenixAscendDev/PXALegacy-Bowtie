@@ -161,8 +161,8 @@ namespace JB2.Bowtie.Data.Azure
                 {
                     try
                     {
-                        var treasuryID = keypair.Split(":")[0];
-                        var requestKey = keypair.Split(":")[1];
+                        var treasuryID = keypair.Split(':')[0];
+                        var requestKey = keypair.Split(':')[1];
 
                         var result = new TreasuryRequestKey(treasuryID, requestKey);
 
@@ -194,9 +194,17 @@ namespace JB2.Bowtie.Data.Azure
 
         }
 
-        protected override void deleteAll(DynamicTableEntity e)
+        protected override void deleteEntry(DynamicTableEntity e)
         {
-            throw new NotImplementedException();
+            var pkey = _defaultPartitionKey;
+            var rkey = e.GetPropertyValue<string>("ID", string.Empty);
+
+            _table.Delete<DynamicTableEntity>(pkey, rkey);
+
+            pkey = _defaultPartitionKey;
+            rkey = "id:" + e.GetPropertyValue<string>("ID", string.Empty);
+
+            _table.Delete<DynamicTableEntity>(pkey, rkey);
         }
 
         protected override void saveEntity(DynamicTableEntity e, bool replace)

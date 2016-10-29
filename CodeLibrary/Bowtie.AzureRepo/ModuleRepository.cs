@@ -131,7 +131,7 @@ namespace JB2.Bowtie.Data.Azure
             return result;
         }
 
-        protected override void deleteAll(DynamicTableEntity e)
+        protected override void deleteEntry(DynamicTableEntity e)
         {
             _table.DeleteAllByPartitionKey(_defaultPartitionKey);
         }
