@@ -9,7 +9,7 @@ namespace JB2.Bowtie
 {
     public interface IApplication : IBowtieObject, JB2.Common.IIDNamePair<string, string>, JB2.Common.IAPIKeySecretPair, JB2.Economy.IRequestor, JB2.Identity.IApplication
     {
-        string Secret { get; }
+        string Secret { get; set; }
         bool isAuthorized { get; }
         Enum.APIAuthorizeState AuthorizedState { get; }
         string ClientID { get; set; }

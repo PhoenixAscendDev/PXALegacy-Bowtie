@@ -16,10 +16,65 @@ namespace JB2.Bowtie.Web.Controllers
             return View();
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(ApplicationViewModel m)
+        {
+
+            try
+            {
+                var appService = this.ApplicationService;
+
+                var newApp = appService.GenerateNewApplication();
+
+                if (m.CompanyID == JB2.Info.HQ.ID)
+                    newApp.Company = JB2.Info.HQ;
+
+                newApp.Name = m.Name;
+                newApp.Website = m.Website;
+
+                appService.Save(newApp);
+
+                return View("All");
+            }
+            catch(Exception ex)
+            {
+                return View();
+            }
+        }
+
         public ActionResult Edit(string id)
         {
             return View(GetByID(id));
         }
+
+        
+        [HttpPost]
+        public ActionResult Edit(ApplicationViewModel m)
+        {
+            var appService = this.ApplicationService;
+
+            var app = appService.RetrieveById(m.ID);
+
+            app.Name = m.Name;
+            app.Website = m.Website;
+            app.Secret = m.Secret;
+            app.APIkey = m.APIkey;
+
+            var tkey = app.GetTreasuryRequestKey("jBean");
+            tkey.Key = m.jBeanKey;
+
+            ((Application)app).TreasuryKeys = new TreasuryRequestKey[1] {  tkey};
+
+            appService.Save(app);
+
+            return View();
+        }
+
 
         public ActionResult Detail(string id)
         {
@@ -30,7 +85,7 @@ namespace JB2.Bowtie.Web.Controllers
         public ActionResult All()
         {
 
-            var appService = new JB2.Bowtie.Service.ApplicationService(JB2.Settings.Bowtie.UnitOfWork);
+            var appService = this.ApplicationService;
 
             var appslist = appService.Retrieve();
 
@@ -44,6 +99,18 @@ namespace JB2.Bowtie.Web.Controllers
             ViewBag.ApplicationSelect = this.applicationSelectList();
 
             return View(model);
+        }
+
+        public ActionResult Delete(string id)
+        {
+            var appservice = this.ApplicationService;
+
+            var app = appservice.RetrieveById(id);
+
+            if (app != null)
+                appservice.Remove(app);
+
+            return View("All");
         }
 
 

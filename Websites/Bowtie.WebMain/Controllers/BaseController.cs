@@ -102,8 +102,6 @@ namespace JB2.Bowtie.Web.Controllers
         {
             return new JB2.Bowtie.Service.ApplicationService(_unitOfWork);
         }
-
-
         protected List<SelectListItem> applicationSelectList()
         {
             List<SelectListItem> items = new List<SelectListItem>();

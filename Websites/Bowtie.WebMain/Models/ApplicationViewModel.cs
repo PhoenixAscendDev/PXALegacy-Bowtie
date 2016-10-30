@@ -22,6 +22,12 @@ namespace JB2.Bowtie.Web.Models
 
         public string Website { get; set; }
 
+        public string CompanyID { get; set; }
+        public string CompanyName { get; set; }
+
+        public string jBeanKey { get; set; }
+
+
         public Enum.APIAuthorizeState AuthorizedState { get; set; }
     }
 }

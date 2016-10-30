@@ -16,8 +16,9 @@ namespace Bowtie.WebMain
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMapperConfig.RegisterMappings();
 
-            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<JB2.Bowtie.IApplication, JB2.Bowtie.Web.Models.ApplicationViewModel>());
+            //AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<JB2.Bowtie.IApplication, JB2.Bowtie.Web.Models.ApplicationViewModel>());
 
             JB2.Bowtie.Web.Manager.Initialize("BT-632FDE29", JB2.Configuration.GetAppSetting("JB2:bowtie-apisecret"));
         }
