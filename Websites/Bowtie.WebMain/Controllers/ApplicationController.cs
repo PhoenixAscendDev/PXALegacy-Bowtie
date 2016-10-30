@@ -13,7 +13,7 @@ namespace JB2.Bowtie.Web.Controllers
         // GET: Application
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("All");
         }
 
         public ActionResult Create()
@@ -110,7 +110,7 @@ namespace JB2.Bowtie.Web.Controllers
             if (app != null)
                 appservice.Remove(app);
 
-            return View("All");
+            return RedirectToAction("All")
         }
 
 
