@@ -430,6 +430,7 @@
     <Content Include="Views\Application\Edit.cshtml" />
     <Content Include="Views\Application\All.cshtml" />
     <Content Include="Views\Application\Create.cshtml" />
+    <Content Include="Views\Dewdrop\All.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

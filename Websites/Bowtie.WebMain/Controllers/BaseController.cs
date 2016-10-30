@@ -66,6 +66,8 @@ namespace JB2.Bowtie.Web.Controllers
 
         #region BowtieServices
 
+
+        #region Achievement
         protected JB2.Bowtie.Service.AchievementService AchievementService
         {
             get
@@ -83,6 +85,30 @@ namespace JB2.Bowtie.Web.Controllers
         {
             return new JB2.Bowtie.Service.AchievementService(_unitOfWork);
         }
+
+        #endregion Achievement
+
+        #region DewDrop
+
+        private JB2.Bowtie.Service.DewdropService GetDewdropService(int? testCount)
+        {
+            return new Service.DewdropService(_unitOfWork);
+        }
+
+        private JB2.Bowtie.Service.DewdropService GetDewdropService()
+        {
+            return this.GetDewdropService(null);
+        }
+
+        protected JB2.Bowtie.Service.DewdropService DewdropService
+        {
+            get
+            {
+                return this.GetDewdropService();
+            }
+        }
+
+        #endregion DewDrop
 
 
         protected JB2.Bowtie.Service.ApplicationService ApplicationService

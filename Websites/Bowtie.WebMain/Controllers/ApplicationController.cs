@@ -110,7 +110,7 @@ namespace JB2.Bowtie.Web.Controllers
             if (app != null)
                 appservice.Remove(app);
 
-            return RedirectToAction("All")
+            return RedirectToAction("All");
         }
 
 
