@@ -27,7 +27,7 @@ namespace JB2.Bowtie
             _appid = applicationID;
             _graphID = graphID;
             _description = description;
-            _jbeanCost = jBeanCost;
+            _jbeanCost = jbeanCost;
         }
 
         protected string ApplicationID

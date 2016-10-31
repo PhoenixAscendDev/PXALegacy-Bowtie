@@ -114,6 +114,34 @@ namespace JB2.Bowtie.Service
             }
         }
 
+        public JB2.Common.ServiceResult Remove(Dewdrop dewdrop, OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
+        {
+            try
+            {
+                _repo.Delete(dewdrop);
+                return true;
+            }
+            catch (NullReferenceException nullEx)
+            {
+                switch (errorReturntype)
+                {
+                    case OnErrorReturnType.ThrowException:
+                        throw new ObjectNotFoundInRepositoryException(nullEx, entityId: dewdrop.ID, respository: _repo);
+                    case OnErrorReturnType.Null:
+                        return null;
+                    case OnErrorReturnType.EmptyObject:
+                    default:
+                        return false;
+                }
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+                return new JB2.Common.ServiceResult(ex);
+            }
+
+        }
+
         public Dewdrop RetrieveByName(string name)
         {
             throw new NotImplementedException();

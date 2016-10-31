@@ -110,7 +110,7 @@ namespace JB2.Bowtie.Web.Controllers
 
         #endregion DewDrop
 
-
+        #region Application
         protected JB2.Bowtie.Service.ApplicationService ApplicationService
         {
             get
@@ -128,6 +128,31 @@ namespace JB2.Bowtie.Web.Controllers
         {
             return new JB2.Bowtie.Service.ApplicationService(_unitOfWork);
         }
+
+        #endregion Application
+
+        #region Graph
+
+        private JB2.Bowtie.Service.GraphService GetGraphService(int? testCount)
+        {
+            return new Service.GraphService(_unitOfWork);
+        }
+
+        private JB2.Bowtie.Service.GraphService GetGraphService()
+        {
+            return this.GetGraphService(null);
+        }
+
+        protected JB2.Bowtie.Service.GraphService GraphService
+        {
+            get
+            {
+                return this.GetGraphService();
+            }
+        }
+
+        #endregion Graph
+
         protected List<SelectListItem> applicationSelectList()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -139,6 +164,20 @@ namespace JB2.Bowtie.Web.Controllers
                 items.Add(new SelectListItem { Text = a.GetName(), Value = a.GetID() });
             }
             return items;
+        }
+
+        protected List<SelectListItem> graphactionsSelectList()
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+
+            var list = this.GraphService.RetrieveActions();
+
+            foreach(IGraphElement a in list)
+            {
+                items.Add(new SelectListItem { Text = a.GetName(), Value = a.GetID() });
+            }
+            return items;
+
         }
 
         #endregion

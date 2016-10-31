@@ -276,6 +276,7 @@
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DewdropController.cs" />
+    <Compile Include="Controllers\GraphController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -284,9 +285,13 @@
     <Compile Include="Models\AchievementViewModel.cs" />
     <Compile Include="Models\ApplicationViewModel.cs" />
     <Compile Include="Models\DewdropViewModel.cs" />
+    <Compile Include="Models\GraphElementViewModel.cs" />
+    <Compile Include="Models\GraphObjectViewModel.cs" />
+    <Compile Include="Models\GraphPropertyViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="WebExtenstion.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />
@@ -431,6 +436,9 @@
     <Content Include="Views\Application\All.cshtml" />
     <Content Include="Views\Application\Create.cshtml" />
     <Content Include="Views\Dewdrop\All.cshtml" />
+    <Content Include="Views\Dewdrop\Edit.cshtml" />
+    <Content Include="Views\Graph\All.cshtml" />
+    <Content Include="Views\Graph\Properties.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

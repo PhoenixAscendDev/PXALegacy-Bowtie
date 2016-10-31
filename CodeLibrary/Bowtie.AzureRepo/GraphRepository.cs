@@ -168,9 +168,19 @@ namespace JB2.Bowtie.Data.Azure
                     {
                         ((JB2.Bowtie.GraphAction)result).AddProperty(stringToGraphProperty(prop));
                     }
-                    foreach (string obj in e.AssociateObjectCSV.Split(','))
+                    if (!string.IsNullOrEmpty(e.AssociateObjectCSV))
                     {
-                        ((JB2.Bowtie.GraphAction)result).AddObject((GraphObject)this.GetGraphElement(obj));
+                        foreach (string obj in e.AssociateObjectCSV.Split(','))
+                        {
+                            try
+                            {
+                                ((JB2.Bowtie.GraphAction)result).AddObject((GraphObject)this.GetGraphElement(obj));
+                            }
+                            catch(Exception ex)
+                            {
+                                ex.BowtieLog();
+                            }
+                        }
                     }
                     break;
                 case GraphElementType.Story:

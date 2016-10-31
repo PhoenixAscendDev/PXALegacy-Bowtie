@@ -33,5 +33,53 @@ namespace JB2.Bowtie.Web.Controllers
 
             return View(model);
         }
+
+        public ActionResult Edit(string id)
+        {
+            var model = GetByID(id);
+
+            ViewBag.Applications = this.applicationSelectList();
+            ViewBag.GraphActions = this.graphactionsSelectList();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(DewdropViewModel m)
+        {
+            var service = this.DewdropService;
+            var dewdrop = new Dewdrop(m.ID, m.Name, m.Description, m.ApplicationID, m.GraphID, m.jBeanCost);
+
+            service.Save(dewdrop);
+
+            return RedirectToAction("All");
+        }
+
+        
+        public ActionResult Delete(string id)
+        {
+            var service = this.DewdropService;
+
+            var dewdrop = service.RetrieveById(id);
+
+            if (dewdrop != null)
+                service.Remove(dewdrop);
+
+            return RedirectToAction("All");
+
+
+        }
+
+
+        private DewdropViewModel GetByID(string id)
+        {
+            var service = this.DewdropService;
+
+            var app = service.RetrieveById(id);
+
+            var model = AutoMapper.Mapper.Map<IDewdrop, DewdropViewModel>(app);
+
+            return model;
+        }
     }
 }
