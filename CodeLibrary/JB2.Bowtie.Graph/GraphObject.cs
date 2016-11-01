@@ -28,7 +28,10 @@ namespace JB2.Bowtie
 
         public JB2.Common.ServiceResult AddProperty(GraphProperty p)
         {
-            return _properties.Add(p);
+            if (_properties.Find(prop => prop.ID == p.ID) == null)
+                return _properties.Add(p);
+            else
+                return new Common.ServiceResult(new Exception("item already exists in collection"));
         }
 
         public JB2.Common.ServiceResult RemoveProperty(GraphProperty p)
@@ -53,7 +56,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public static GraphObject NewObject(string name, string applicationid, string determiner, string pural)
+        public static GraphObject NewObject(string name, string applicationid, Enum.GraphDeterminer determiner, string pural)
         {
             var result = new GraphObject();
             result.Name = name;
@@ -61,6 +64,7 @@ namespace JB2.Bowtie
             result.ApplicationID = applicationid;
             result.Singular = name.ToLower();
             result.Plural = pural;
+            result.Determiner = determiner;
 
             return result;
 

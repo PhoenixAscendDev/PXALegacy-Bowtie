@@ -138,6 +138,10 @@
       <HintPath>..\..\Solutions\packages\WindowsAzure.Storage.6.1.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MvcCheckBoxList, Version=1.4.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\MvcCheckBoxList.1.4.5\lib\net45\MvcCheckBoxList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -284,6 +288,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AchievementViewModel.cs" />
     <Compile Include="Models\ApplicationViewModel.cs" />
+    <Compile Include="Models\BaseViewModel.cs" />
     <Compile Include="Models\DewdropViewModel.cs" />
     <Compile Include="Models\GraphElementViewModel.cs" />
     <Compile Include="Models\GraphObjectViewModel.cs" />
@@ -439,6 +444,11 @@
     <Content Include="Views\Dewdrop\Edit.cshtml" />
     <Content Include="Views\Graph\All.cshtml" />
     <Content Include="Views\Graph\Properties.cshtml" />
+    <Content Include="Views\Graph\EditProperty.cshtml" />
+    <Content Include="Views\Graph\CreateProperty.cshtml" />
+    <Content Include="Views\Graph\Objects.cshtml" />
+    <Content Include="Views\Graph\EditObject.cshtml" />
+    <Content Include="Views\Graph\CreateObject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

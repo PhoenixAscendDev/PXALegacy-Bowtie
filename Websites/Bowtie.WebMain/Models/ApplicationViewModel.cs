@@ -7,16 +7,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace JB2.Bowtie.Web.Models
 {
-    public class ApplicationViewModel
+    public class ApplicationViewModel : BaseViewModel
     {
-        public string Name { get; set; }
 
         [Display(Name = "Bowtie Key")]
         public string APIkey { get; set; }
 
         public string Secret { get; set; }
-
-        public string ID { get; set; }
 
         public string ClientID { get; set; }
 

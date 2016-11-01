@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace JB2.Bowtie.Web.Models
 {
-    public class DewdropViewModel : JB2.Common.IDNamePair<string,string>
+    public class DewdropViewModel : BaseViewModel
     {
         [Display(Name = "Application")]
         public string ApplicationID { get; set; }

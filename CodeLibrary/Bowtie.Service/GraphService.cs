@@ -40,7 +40,39 @@ namespace JB2.Bowtie.Service
             return filterByType<GraphStory>(elements, Enum.GraphElementType.Story);          
         }
 
+        #region All
+
+        public IEnumerable<IGraphElement> Retrieve()
+        {
+            var elements = _repo.GetAll();
+
+            return elements;
+
+        }
+
+        public IGraphElement RetrieveByID(string id)
+        {
+            var element = _repo.GetGraphElement(id);
+
+            return element;
+        }
+
+        public JB2.Common.ServiceResult Remove(IGraphElement element)
+        {
+            return _repo.DeleteGraphElement(element);
+        }
+
+        #endregion All
+
         #region Graph Properties
+
+        public GraphProperty RetrievePropertyByID(string id)
+        {
+            var element = _repo.GetGraphElement(id);
+
+            return (GraphProperty)element;
+        }
+
         public IEnumerable<GraphProperty> RetreiveProperties()
         {
             var elements = _repo.GetGraphElementsByType(Enum.GraphElementType.Property);

@@ -13,5 +13,14 @@ namespace JB2.Bowtie.Web.Models
         public string Determiner {get;set;}
 
         public IEnumerable<SelectListItem> Properties { get; set; }
+
+        public GraphObject obj { get; set; }
+
+        public string Singular { get; set; }
+        public string Plural { get; set; }
+
+        public string[] PostedPropertyIDs { get; set; }
+
+
     }
 }

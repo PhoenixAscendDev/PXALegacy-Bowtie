@@ -61,6 +61,8 @@ namespace JB2.Bowtie.Web.Controllers
                     break;
             }
             _repoSource = source;
+
+            JB2.Bowtie.Web.Models.BaseViewModel.UnitOfWork = _unitOfWork;
             return true;
         }
 

@@ -7,6 +7,8 @@ using JB2.Bowtie.Enum;
 using JB2.Common;
 using JB2.Common.Data;
 
+using Microsoft.WindowsAzure.Storage.Table;
+
 namespace JB2.Bowtie.Data.Azure
 {
     public class GraphRepository : IGraphRepository
@@ -63,7 +65,44 @@ namespace JB2.Bowtie.Data.Azure
         }
 
 
+        public ServiceResult DeleteGraphElement(IGraphElement element)
+        {
+            try
+            {
+                string pkey = string.Empty;
+                string rkey = string.Empty;
 
+                pkey = "graph";
+                rkey = "id" + element.ID;
+                _table.Delete<DynamicTableEntity>(pkey, rkey);
+
+                pkey = "graph";
+                rkey = "name:" + element.Name + ">*<" + element.ID;
+                _table.Delete<DynamicTableEntity>(pkey, rkey);
+
+                pkey = "graph";
+                rkey = "type:" + element.ElementType.ToString().ToLower() + "_" + element.ID;
+                _table.Delete<DynamicTableEntity>(pkey, rkey);
+
+                pkey = "app:" + element.ApplicationID;
+                rkey = "id:" + element.ID;
+                _table.Delete<DynamicTableEntity>(pkey, rkey);
+
+                pkey = "app:" + element.ApplicationID;
+                rkey = "name:" + element.ID;
+                _table.Delete<DynamicTableEntity>(pkey, rkey);
+
+                pkey = "app:" + element.ApplicationID;
+                rkey = element.ElementType.ToString().ToLower() + ":" + element.Name;
+                _table.Delete<DynamicTableEntity>(pkey, rkey);
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+                return new ServiceResult(ex);
+            }
+            return true;
+        }
         public ServiceResult InsertGraphElement(IGraphElement element)
         {
             GraphElementEntity e = new GraphElementEntity("graph", "id:" + element.ID);
@@ -218,9 +257,32 @@ namespace JB2.Bowtie.Data.Azure
             e.RowKey = "type:" + e.ElementType.ToString().ToLower() + "_" + e.ID;
             _table.Insert<GraphElementEntity>(e, true);
 
-            //e.PartitionKey = "graph";
-            //e.RowKey = "name:" + e.Name;
-            //_table.Insert<GraphElementEntity>(e, true);
+
+
+
+
+            //remove any app partitions
+            var apps = JB2.Settings.Bowtie.UnitOfWork.ApplicationRepository.GetAll();
+            foreach (var a in apps)
+            {
+                var pkey = string.Empty;
+                var rkey = string.Empty;
+                if (a.GetID() != e.ApplicationID)
+                {
+                    pkey = "app:" + a.GetID();
+                    rkey = "id:" + e.ID;
+                    _table.Delete<GraphElementEntity>(pkey, rkey);
+
+                    pkey = "app:" + a.GetID();
+                    rkey = "name:" + e.ID;
+                    _table.Delete<GraphElementEntity>(pkey, rkey);
+
+                    pkey = "app:" + a.GetID();
+                    rkey = e.ElementType.ToString().ToLower() + ":" + e.Name;
+                    _table.Delete<GraphElementEntity>(pkey, rkey);
+                }
+            }
+
 
             //app partition
             e.PartitionKey = "app:" + e.ApplicationID;
@@ -257,16 +319,23 @@ namespace JB2.Bowtie.Data.Azure
 
         private GraphProperty stringToGraphProperty(string str)
         {
-            GraphProperty p = new GraphProperty();
 
-            string[] propSplits = str.Split('|');
-            p.ID = propSplits[0];
-            p.Name = propSplits[1];
-            p.GraphPropertyType = (Enum.GraphPropertyType)System.Enum.Parse(typeof(GraphPropertyType), propSplits[2]);
-            p.isMultiValued = Convert.ToBoolean(propSplits[3]);
-            p.ApplicationID = propSplits[4];
+            if (!string.IsNullOrEmpty(str))
+            {
+                GraphProperty p = new GraphProperty();
 
-            return p;
+                string[] propSplits = str.Split('|');
+                p.ID = propSplits[0];
+                p.Name = propSplits[1];
+                p.GraphPropertyType = (Enum.GraphPropertyType)System.Enum.Parse(typeof(GraphPropertyType), propSplits[2]);
+                p.isMultiValued = Convert.ToBoolean(propSplits[3]);
+                p.ApplicationID = propSplits[4];
+                return p;
+            }
+            else
+                return null;
+
+           
 
         }
 
