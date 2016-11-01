@@ -290,6 +290,7 @@
     <Compile Include="Models\ApplicationViewModel.cs" />
     <Compile Include="Models\BaseViewModel.cs" />
     <Compile Include="Models\DewdropViewModel.cs" />
+    <Compile Include="Models\GraphActionViewModel.cs" />
     <Compile Include="Models\GraphElementViewModel.cs" />
     <Compile Include="Models\GraphObjectViewModel.cs" />
     <Compile Include="Models\GraphPropertyViewModel.cs" />
@@ -449,6 +450,9 @@
     <Content Include="Views\Graph\Objects.cshtml" />
     <Content Include="Views\Graph\EditObject.cshtml" />
     <Content Include="Views\Graph\CreateObject.cshtml" />
+    <Content Include="Views\Graph\Actions.cshtml" />
+    <Content Include="Views\Graph\CreateAction.cshtml" />
+    <Content Include="Views\Graph\EditAction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

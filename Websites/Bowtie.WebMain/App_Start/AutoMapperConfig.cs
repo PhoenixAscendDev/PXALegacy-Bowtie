@@ -32,6 +32,10 @@ namespace Bowtie.WebMain
                 cfg.CreateMap<JB2.Bowtie.GraphProperty, JB2.Bowtie.Web.Models.GraphPropertyViewModel>()
                         .ForMember(dest => dest.ElementType, opts => opts.MapFrom(src => src.ElementType.ToString()))
                         .ForMember(dest => dest.GraphPropertyType, opts => opts.MapFrom(src => src.GraphPropertyType.ToString()));
+                cfg.CreateMap<JB2.Bowtie.GraphAction, JB2.Bowtie.Web.Models.GraphActionViewModel>()
+                       .ForMember(dest => dest.ElementType, opts => opts.MapFrom(src => src.ElementType.ToString()))
+                       .ForMember(dest => dest.Properties, opts => opts.MapFrom(src => src.GetProperties().ToSelectItems()))
+                       .ForMember(dest => dest.Objects, opts => opts.MapFrom(src => src.GetAssociatedObjects().ToSelectItems()));
             });
         }
     }

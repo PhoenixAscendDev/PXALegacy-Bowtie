@@ -87,6 +87,22 @@ namespace JB2.Bowtie.Web.Controllers
             return View(model);
         }
 
+        public ActionResult Actions()
+        {
+            var service = this.GraphService;
+
+            var list = service.RetrieveActions();
+
+            var model = new List<GraphActionViewModel>(list.Count());
+
+            foreach (var d in list)
+            {
+                model.Add(AutoMapper.Mapper.Map<GraphAction, GraphActionViewModel>(d));
+            }
+
+            return View(model);
+        }
+
         // GET: Graph/Details/5
         public ActionResult Details(string id)
         {
@@ -121,6 +137,12 @@ namespace JB2.Bowtie.Web.Controllers
             return RedirectToAction("Properties");
         }
 
+        public ActionResult CreateObject()
+        {
+            var model = new GraphObjectViewModel();
+            return View(model);
+        }
+
         [HttpPost]
         public ActionResult CreateObject(GraphObjectViewModel m)
         {
@@ -146,12 +168,39 @@ namespace JB2.Bowtie.Web.Controllers
             return RedirectToAction("Objects");
         }
 
-        public ActionResult CreateObject()
+        public ActionResult CreateAction()
         {
-            var model = new GraphObjectViewModel();
+            var model = new GraphActionViewModel();
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult CreateAction(GraphActionViewModel m)
+        {
+            var a = GraphAction.NewAction(m.Name, m.ApplicationID);
+
+            //set the Properties
+            var newProps = convertToGraphProperties(m.PostedPropertyIDs);
+            foreach (var p in newProps)
+            {
+                a.AddProperty(p);
+            }
+            
+            //set the Objects
+            var newObjects = convertToGraphObjects(m.PostedObjectIDs);
+            foreach( var o in newObjects)
+            {
+                a.AddObject(o);
+            }
+            a.ParentID = m.ParentID;
+
+            var service = this.GraphService;
+
+            service.SaveAction(a);
+
+            return RedirectToAction("Actions");
+
+        }
         #endregion Creates
 
         #region Edits
@@ -168,6 +217,8 @@ namespace JB2.Bowtie.Web.Controllers
                     return EditProperty((GraphProperty)element);
                 case Enum.GraphElementType.Object:
                     return EditObject((GraphObject)element);
+                case Enum.GraphElementType.Action:
+                    return EditAction((GraphAction)element);
             }
             return View();
         }
@@ -199,7 +250,7 @@ namespace JB2.Bowtie.Web.Controllers
             return RedirectToAction("Properties");
         }
 
-
+ 
         public ActionResult EditObject(GraphObject o)
         {
             var model = AutoMapper.Mapper.Map<GraphObject, GraphObjectViewModel>(o);
@@ -252,9 +303,58 @@ namespace JB2.Bowtie.Web.Controllers
             return RedirectToAction("Objects");
         }
 
+        public ActionResult EditAction(GraphAction a)
+        {
+            var model = AutoMapper.Mapper.Map<GraphAction, GraphActionViewModel>(a);
+
+            return View("EditAction", model);
+        }
+
+        [HttpPost]
+        public ActionResult EditAction(GraphActionViewModel ma)
+        {
+            var service = this.GraphService;
+
+            var element = service.RetrieveActionByID(ma.ID);
+
+            element.ApplicationID = ma.ApplicationID;
+            element.Name = ma.Name;
+            element.ParentID = ma.ParentID;
+
+
+            //set Propropties
+            var currentProps = element.GetProperties();
+            foreach (var p in currentProps)
+            {
+                element.RemoveProperty(p);
+            }
+            var newProps = convertToGraphProperties(ma.PostedPropertyIDs);
+            foreach( var p in newProps)
+            {
+                element.AddProperty(p);
+            }
+
+            //set Objects
+            var currentObjects = element.GetAssociatedObjects();
+            foreach (var p in currentObjects)
+            {
+                element.RemoveObject(p);
+            }
+            var newObjects = convertToGraphObjects(ma.PostedObjectIDs);
+            foreach (var o in newObjects)
+            {
+                element.AddObject(o);
+            }
+
+            service.SaveAction(element);
+
+            return RedirectToAction("Actions");
+
+
+
+        }
+
         #endregion Edits
-
-
 
         #region Deletes
         public ActionResult Delete(string id)
@@ -272,6 +372,8 @@ namespace JB2.Bowtie.Web.Controllers
                     return RedirectToAction("Properties");
                 case Enum.GraphElementType.Object:
                     return RedirectToAction("Objects");
+                case Enum.GraphElementType.Action:
+                    return RedirectToAction("Actions");
             }
 
             
@@ -325,6 +427,32 @@ namespace JB2.Bowtie.Web.Controllers
             }
 
             return list;
+        }
+
+        protected IEnumerable<GraphObject> convertToGraphObjects(IEnumerable<string> ids)
+        {
+            if (ids != null)
+            {
+                List<GraphObject> list = new List<GraphObject>(ids.Count());
+                foreach (var i in ids)
+                {
+                    try
+                    {
+                        var service = this.GraphService;
+                        var p = service.RetrieveObjectByID(i);
+                        list.Add(p);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.BowtieLog();
+                    }
+                }
+                return list;
+            }
+            else
+            {
+                return new GraphObject[0];
+            }
         }
 
         #endregion Helpers

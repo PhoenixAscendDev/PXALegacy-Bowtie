@@ -126,6 +126,12 @@ namespace JB2.Bowtie.Service
 
         #region Graph Action
 
+        public GraphAction RetrieveActionByID(string id)
+        {
+            var element = _repo.GetGraphElement(id);
+
+            return (GraphAction)element;
+        }
         public IEnumerable<GraphAction> RetrieveActions()
         {
             var elements = _repo.GetGraphElementsByType(Enum.GraphElementType.Action);

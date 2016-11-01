@@ -48,9 +48,49 @@ namespace JB2.Bowtie.Web.Models
             var appsAll = service.Retrieve();
             return appsAll.ToSelectItems();
         }
+
+
+        public static IEnumerable<SelectListItem> GraphObjectsSelectList(IUnitOfWork uofw)
+        {
+            var service = new GraphService(uofw);
+            var all = service.RetrieveObjects();
+            return all.ToSelectItems();
+        }
+
+        public static IEnumerable<SelectListItem> GraphPropertiesSelectList(IUnitOfWork uofw)
+        {
+            var service = new GraphService(uofw);
+            var all = service.RetreiveProperties();
+            return all.ToSelectItems();
+        }
+
+        public static IEnumerable<SelectListItem> GraphActionSelectList(IUnitOfWork uofw)
+        {
+            var service = new GraphService(uofw);
+            var all = service.RetrieveActions();
+            return all.ToSelectItems();
+        }
+
+
+
         public static IEnumerable<SelectListItem> ApplicationSelectList()
         {
             return ApplicationSelectList(BaseViewModel.UnitOfWork);
+        }
+
+        public static IEnumerable<SelectListItem> GraphActionSelectList()
+        {
+            return GraphActionSelectList(BaseViewModel.UnitOfWork);
+        }
+
+        public static IEnumerable<SelectListItem> GraphObjectsSelectList()
+        {
+            return GraphObjectsSelectList(BaseViewModel.UnitOfWork);
+        }
+
+        public static IEnumerable<SelectListItem> GraphPropertiesSelectList()
+        {
+            return GraphPropertiesSelectList(BaseViewModel.UnitOfWork);
         }
 
         #endregion Static

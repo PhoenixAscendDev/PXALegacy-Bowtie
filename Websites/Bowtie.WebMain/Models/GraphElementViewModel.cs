@@ -42,10 +42,26 @@ namespace JB2.Bowtie.Web.Models
 
         public IEnumerable<SelectListItem> GetGraphPropertySelectList()
         {
-            var service = new JB2.Bowtie.Service.GraphService(BaseViewModel.UnitOfWork);
-            var list = service.RetreiveProperties();
 
-            return list.ToSelectItems();
+            return GetGraphPropertySelectList(false);
+        }
+
+        public IEnumerable<SelectListItem> GetGraphPropertySelectList(bool includeheader, string headerText = "Select Property")
+        {
+
+            var list = BaseViewModel.GraphPropertiesSelectList().ToList();
+            return list;        
+        }
+
+        public IEnumerable<SelectListItem> GetGraphObjectSelectList()
+        {
+            return GetGraphObjectSelectList(false);
+        }
+
+        public IEnumerable<SelectListItem> GetGraphObjectSelectList(bool includeheader, string headerText = "Select Graph Objects")
+        {
+            var list = BaseViewModel.GraphObjectsSelectList().ToList();
+            return list;
         }
 
     }
