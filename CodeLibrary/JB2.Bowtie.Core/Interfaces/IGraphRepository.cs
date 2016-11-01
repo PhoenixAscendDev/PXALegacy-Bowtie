@@ -17,5 +17,7 @@ namespace JB2.Bowtie
         JB2.Common.ServiceResult InsertGraphElement(IGraphElement element);
 
         JB2.Common.ServiceResult DeleteGraphElement(IGraphElement element);
+
+        
     }
 }

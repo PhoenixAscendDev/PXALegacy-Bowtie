@@ -153,6 +153,31 @@ namespace JB2.Bowtie.Service
 
         #endregion Graph Action
 
+
+        #region Graph Story
+        public GraphStory RetrieveStoryByID(string id)
+        {
+            var element = _repo.GetGraphElement(id);
+
+            return (GraphStory)element;
+        }
+
+        public IEnumerable<GraphStory> RetrieveStories()
+        {
+            var elements = _repo.GetGraphElementsByType(Enum.GraphElementType.Story);
+
+            return filterByType<GraphStory>(elements, Enum.GraphElementType.Story);
+        }
+
+        public IEnumerable<GraphStory> RetrieveStoriesByApplicationID(string id)
+        {
+            var elements = _repo.GetGraphElementsByApplication(app.ID);
+            return filterByType<GraphStory>(elements, Enum.GraphElementType.Story);
+        }
+
+
+        #endregion Graph Story
+
         #region internal helpers
         protected IEnumerable<T> filterByType<T>(IEnumerable<IGraphElement> list,Enum.GraphElementType type)
             where T : IGraphElement
