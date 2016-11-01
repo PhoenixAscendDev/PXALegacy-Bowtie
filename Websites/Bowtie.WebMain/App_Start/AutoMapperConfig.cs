@@ -36,6 +36,15 @@ namespace Bowtie.WebMain
                        .ForMember(dest => dest.ElementType, opts => opts.MapFrom(src => src.ElementType.ToString()))
                        .ForMember(dest => dest.Properties, opts => opts.MapFrom(src => src.GetProperties().ToSelectItems()))
                        .ForMember(dest => dest.Objects, opts => opts.MapFrom(src => src.GetAssociatedObjects().ToSelectItems()));
+                cfg.CreateMap<JB2.Bowtie.GraphStory, JB2.Bowtie.Web.Models.GraphStoryViewModel>()
+                      .ForMember(dest => dest.ElementType, opts => opts.MapFrom(src => src.ElementType.ToString()))
+                      .ForMember(dest => dest.ActionID, opts => opts.MapFrom(src => src.AssociatedAction.GetID()))
+                      .ForMember(dest => dest.ObjectID, opts => opts.MapFrom(src => src.AssociatedObject.GetID()))
+                      .ForMember(dest => dest.ImperativeTense, opts => opts.MapFrom(src => src.ActionTense.ImperativeTense))
+                      .ForMember(dest => dest.Past, opts => opts.MapFrom(src => src.ActionTense.Past))
+                      .ForMember(dest => dest.PluralPast, opts => opts.MapFrom(src => src.ActionTense.PluralPast))
+                      .ForMember(dest => dest.PluralPresent, opts => opts.MapFrom(src => src.ActionTense.PluralPresent))
+                      .ForMember(dest => dest.Present, opts => opts.MapFrom(src => src.ActionTense.Present));
             });
         }
     }

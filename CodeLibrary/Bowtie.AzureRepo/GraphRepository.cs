@@ -151,11 +151,11 @@ namespace JB2.Bowtie.Data.Azure
                     e.AssociateObjectCSV = story.AssociatedObject.ID;
                     e.AssociateActionCSV = story.AssociatedAction.ID;
                     var tense = story.ActionTense;
-                    e.WordTense_ImperativeTense = tense.ImperativeTense;
-                    e.WordTense_Past = tense.Past;
-                    e.WordTense_PluralPast = tense.PluralPast;
-                    e.WordTense_Present = tense.PluralPresent;
-                    e.WordTense_Present = tense.Present;                   
+                    e.WordTenseImperativeTense = tense.ImperativeTense;
+                    e.WordTensePast = tense.Past;
+                    e.WordTensePluralPast = tense.PluralPast;
+                    e.WordTensePresent = tense.PluralPresent;
+                    e.WordTensePresent = tense.Present;                   
                     break;
             }
             return saveEntity(e);
@@ -227,11 +227,11 @@ namespace JB2.Bowtie.Data.Azure
                     ((JB2.Bowtie.GraphStory)result).AssociatedObject = (GraphObject)this.GetGraphElement(e.AssociateObjectCSV);
                     ((JB2.Bowtie.GraphStory)result).AssociatedAction = (GraphAction)this.GetGraphElement(e.AssociateActionCSV); 
                     var tense = new WordTense();
-                    tense.ImperativeTense = e.WordTense_ImperativeTense;
-                    tense.Past = e.WordTense_Past;
-                    tense.PluralPast = e.WordTense_PluralPast;
-                    tense.PluralPresent = e.WordTense_Present;
-                    tense.Present = e.WordTense_Present;
+                    tense.ImperativeTense = e.WordTenseImperativeTense;
+                    tense.Past = e.WordTensePast;
+                    tense.PluralPast = e.WordTensePluralPast;
+                    tense.PluralPresent = e.WordTensePresent;
+                    tense.Present = e.WordTensePresent;
                     ((JB2.Bowtie.GraphStory)result).ActionTense = tense;
                     break;
             }

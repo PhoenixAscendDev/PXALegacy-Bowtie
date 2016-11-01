@@ -89,10 +89,10 @@ namespace JB2.Bowtie.Data.Azure
             get; set;
         }
 
-        public string WordTense_Past { get; set; }
-        public string WordTense_PluralPast { get; set; }
-        public string WordTense_Present { get; set; }
-        public string WordTense_PluralPresent { get; set; }
-        public string WordTense_ImperativeTense { get; set; }
+        public string WordTensePast { get; set; }
+        public string WordTensePluralPast { get; set; }
+        public string WordTensePresent { get; set; }
+        public string WordTensePluralPresent { get; set; }
+        public string WordTenseImperativeTense { get; set; }
     }
 }

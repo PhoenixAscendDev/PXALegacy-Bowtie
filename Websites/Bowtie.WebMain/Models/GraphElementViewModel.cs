@@ -64,5 +64,16 @@ namespace JB2.Bowtie.Web.Models
             return list;
         }
 
+        public IEnumerable<SelectListItem> GetGraphActionSelectList()
+        {
+            return GetGraphActionSelectList(false);
+        }
+
+        public IEnumerable<SelectListItem> GetGraphActionSelectList(bool includeheader, string headerText = "Select Graph Actions")
+        {
+            var list = BaseViewModel.GraphActionSelectList().ToList();
+            return list;
+        }
+
     }
 }

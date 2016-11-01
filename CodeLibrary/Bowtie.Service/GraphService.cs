@@ -171,8 +171,13 @@ namespace JB2.Bowtie.Service
 
         public IEnumerable<GraphStory> RetrieveStoriesByApplicationID(string id)
         {
-            var elements = _repo.GetGraphElementsByApplication(app.ID);
+            var elements = _repo.GetGraphElementsByApplication(id);
             return filterByType<GraphStory>(elements, Enum.GraphElementType.Story);
+        }
+
+        public void SaveStory(GraphStory story)
+        {
+            _repo.InsertGraphElement(story);
         }
 
 

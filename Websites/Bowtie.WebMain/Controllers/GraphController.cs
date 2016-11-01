@@ -103,6 +103,22 @@ namespace JB2.Bowtie.Web.Controllers
             return View(model);
         }
 
+        public ActionResult Stories()
+        {
+            var service = this.GraphService;
+
+            var list = service.RetrieveStories();
+
+            var model = new List<GraphStoryViewModel>(list.Count());
+
+            foreach (var d in list)
+            {
+                model.Add(AutoMapper.Mapper.Map<GraphStory, GraphStoryViewModel>(d));
+            }
+
+            return View(model);
+        }
+
         // GET: Graph/Details/5
         public ActionResult Details(string id)
         {
@@ -174,6 +190,10 @@ namespace JB2.Bowtie.Web.Controllers
             return View(model);
         }
 
+
+
+
+
         [HttpPost]
         public ActionResult CreateAction(GraphActionViewModel m)
         {
@@ -201,6 +221,61 @@ namespace JB2.Bowtie.Web.Controllers
             return RedirectToAction("Actions");
 
         }
+
+
+        public ActionResult CreateStory()
+        {
+            var model = new GraphStoryViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult CreateStory(GraphStoryViewModel m)
+        {
+            var s = GraphStory.NewStory(m.Name, m.ApplicationID);
+            s.ParentID = m.ParentID;
+            var service = this.GraphService;
+
+
+            //set the AssociatedAction
+            try
+            {
+                if (!string.IsNullOrEmpty(m.ActionID))
+                {
+                    var action = service.RetrieveActionByID(m.ActionID);
+                    s.AssociatedAction = action;
+                }
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+            }
+
+            //set the AssciateObject
+            try
+            {
+                if(!string.IsNullOrEmpty(m.ObjectID))
+                {
+                    var obj = service.RetrieveObjectByID(m.ObjectID);
+                    s.AssociatedObject = obj;
+                }
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+            }
+
+            JB2.Common.WordTense tense = new Common.WordTense();
+            tense.ImperativeTense = m.ImperativeTense;
+            tense.Past = m.Past;
+            tense.PluralPast = m.PluralPast;
+            tense.PluralPresent = m.PluralPresent;
+            tense.Present = m.Present;
+
+            service.SaveStory(s);
+
+            return RedirectToAction("Stories");
+        }
         #endregion Creates
 
         #region Edits
@@ -219,6 +294,8 @@ namespace JB2.Bowtie.Web.Controllers
                     return EditObject((GraphObject)element);
                 case Enum.GraphElementType.Action:
                     return EditAction((GraphAction)element);
+                case Enum.GraphElementType.Story:
+                    return EditStory((GraphStory)element);
             }
             return View();
         }
@@ -354,6 +431,66 @@ namespace JB2.Bowtie.Web.Controllers
 
         }
 
+        public ActionResult EditStory(GraphStory s)
+        {
+            var model = AutoMapper.Mapper.Map<GraphStory, GraphStoryViewModel>(s);
+
+            return View("EditStory", model);
+        }
+
+        [HttpPost]
+        public ActionResult EditStory(GraphStoryViewModel ms)
+        {
+            var service = this.GraphService;
+
+            var element = service.RetrieveStoryByID(ms.ID);
+
+            element.ApplicationID = ms.ApplicationID;
+            element.Name = ms.Name;
+            element.ParentID = ms.ParentID;
+
+            try
+            {
+                if (!string.IsNullOrEmpty(ms.ActionID))
+                {
+                    var action = service.RetrieveActionByID(ms.ActionID);
+                    element.AssociatedAction = action;
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.BowtieLog();
+            }
+
+            //set the AssciateObject
+            try
+            {
+                if (!string.IsNullOrEmpty(ms.ObjectID))
+                {
+                    var obj = service.RetrieveObjectByID(ms.ObjectID);
+                    element.AssociatedObject = obj;
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.BowtieLog();
+            }
+
+            JB2.Common.WordTense tense = new Common.WordTense();
+            tense.ImperativeTense = ms.ImperativeTense;
+            tense.Past = ms.Past;
+            tense.PluralPast = ms.PluralPast;
+            tense.PluralPresent = ms.PluralPresent;
+            tense.Present = ms.Present;
+
+            element.ActionTense = tense;
+
+            
+            service.SaveStory(element);
+
+            return RedirectToAction("Stories");
+        }
+
         #endregion Edits
 
         #region Deletes
@@ -374,6 +511,8 @@ namespace JB2.Bowtie.Web.Controllers
                     return RedirectToAction("Objects");
                 case Enum.GraphElementType.Action:
                     return RedirectToAction("Actions");
+                case Enum.GraphElementType.Story:
+                    return RedirectToAction("Stories");
             }
 
             

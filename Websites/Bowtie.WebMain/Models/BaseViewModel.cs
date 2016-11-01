@@ -71,6 +71,13 @@ namespace JB2.Bowtie.Web.Models
             return all.ToSelectItems();
         }
 
+        public static IEnumerable<SelectListItem> GraphStorySelectList(IUnitOfWork uofw)
+        {
+            var service = new GraphService(uofw);
+            var all = service.RetrieveStories();
+            return all.ToSelectItems();
+        }
+
 
 
         public static IEnumerable<SelectListItem> ApplicationSelectList()
