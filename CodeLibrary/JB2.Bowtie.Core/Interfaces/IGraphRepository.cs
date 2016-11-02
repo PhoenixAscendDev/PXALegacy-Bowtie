@@ -11,6 +11,11 @@ namespace JB2.Bowtie
         IGraphElement GetGraphElement(string id);
         IGraphElement GetGraphElementByName(string name);
 
+        JB2.Common.IDNamePair GetPropertyTypeByName(string name);
+        JB2.Common.IDNamePair GetPropertyTypeByID(string id);
+
+        IEnumerable<JB2.Common.IDNamePair> GetPropertyTypes();
+
         IEnumerable<IGraphElement> GetGraphElementsByType(Enum.GraphElementType type);
         IEnumerable<IGraphElement> GetGraphElementsByApplication(string applicationID);
         IEnumerable<IGraphElement> GetAll();

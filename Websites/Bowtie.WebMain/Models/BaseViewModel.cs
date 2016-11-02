@@ -78,7 +78,17 @@ namespace JB2.Bowtie.Web.Models
             return all.ToSelectItems();
         }
 
+        public static IEnumerable<SelectListItem> GraphDataTypeSelectList(IUnitOfWork uofw)
+        {
+            var service = new GraphService(uofw);
+            var all = service.RetrievePropertyTypes();
+            return all.ToSelectItems();
+        }
 
+        public static IEnumerable<SelectListItem> GraphDataTypeSelectList()
+        {
+            return GraphDataTypeSelectList(BaseViewModel.UnitOfWork);
+        }
 
         public static IEnumerable<SelectListItem> ApplicationSelectList()
         {

@@ -116,7 +116,7 @@ namespace JB2.Bowtie.Data.Azure
             {
                 case GraphElementType.Property:
                     e.IsMultiValued = ((GraphProperty)element).isMultiValued;
-                    e.GraphPropertyType = ((GraphProperty)element).GraphPropertyType.ToString();
+                    e.GraphPropertyType = ((GraphProperty)element).GraphPropertyType.ID;
                     break;
                 case GraphElementType.Object:
                     GraphObject obj = (GraphObject)element;
@@ -163,6 +163,8 @@ namespace JB2.Bowtie.Data.Azure
 
         #endregion Methods
 
+
+
         #region helpers
 
         private IEnumerable<IGraphElement> convertfromEntity(IEnumerable<GraphElementEntity> elements)
@@ -186,7 +188,10 @@ namespace JB2.Bowtie.Data.Azure
             {
                 case GraphElementType.Property:
                     result = new JB2.Bowtie.GraphProperty();
-                    ((GraphProperty)result).GraphPropertyType = (Enum.GraphPropertyType)System.Enum.Parse(typeof(Enum.GraphPropertyType), e.GraphPropertyType);
+
+                    JB2.Common.IDNamePair propType = this.GetPropertyTypeByName(e.GraphPropertyType).ID == String.Empty ? this.GetPropertyTypeByID(e.GraphPropertyType) : this.GetPropertyTypeByName(e.GraphPropertyType);
+
+                    ((GraphProperty)result).GraphPropertyType = propType;
                     ((GraphProperty)result).isMultiValued = e.IsMultiValued;
                     break;
 
@@ -308,7 +313,7 @@ namespace JB2.Bowtie.Data.Azure
             sb.Append("|");
             sb.Append(prop.Name);
             sb.Append("|");
-            sb.Append(prop.GraphPropertyType.ToString());
+            sb.Append(prop.GraphPropertyType.ID);
             sb.Append("|");
             sb.Append(prop.isMultiValued.ToString());
             sb.Append("|");
@@ -327,7 +332,9 @@ namespace JB2.Bowtie.Data.Azure
                 string[] propSplits = str.Split('|');
                 p.ID = propSplits[0];
                 p.Name = propSplits[1];
-                p.GraphPropertyType = (Enum.GraphPropertyType)System.Enum.Parse(typeof(GraphPropertyType), propSplits[2]);
+
+                JB2.Common.IDNamePair propType = this.GetPropertyTypeByName(propSplits[2]).ID == String.Empty ? this.GetPropertyTypeByID(propSplits[2]) : this.GetPropertyTypeByName(propSplits[2]);
+                p.GraphPropertyType = propType;
                 p.isMultiValued = Convert.ToBoolean(propSplits[3]);
                 p.ApplicationID = propSplits[4];
                 return p;
@@ -337,6 +344,76 @@ namespace JB2.Bowtie.Data.Azure
 
            
 
+        }
+
+
+        public JB2.Common.IDNamePair GetPropertyTypeByName(string name)
+        {
+            //test to see if Enum Simple first
+            Enum.GraphSimplePropertyType simple = GraphSimplePropertyType.Unknown;
+
+            System.Enum.TryParse<Enum.GraphSimplePropertyType>(name, out simple);
+
+            if(simple == GraphSimplePropertyType.Unknown)
+            {
+                var list = this.GetGraphElementsByType(GraphElementType.Object);
+                var obj = list.ToList().Find(x => x.Name == name);
+
+                if (obj == null)
+                    return new IDNamePair(string.Empty, Enum.GraphSimplePropertyType.Unknown.ToString()) { ID = string.Empty };
+
+
+                return new IDNamePair(obj.ID, obj.Name);
+            }
+            else
+            {
+                return new IDNamePair(((int)simple).ToString(), simple.ToString());
+            }
+        }
+
+        public JB2.Common.IDNamePair GetPropertyTypeByID(string id)
+        {
+            //test to see if Enum Simple first
+            int simpleid = -1;
+
+            int.TryParse(id, out simpleid);
+
+
+            if ( simpleid > 0 && System.Enum.IsDefined(typeof(Enum.GraphSimplePropertyType), simpleid))
+            {
+                return new IDNamePair(simpleid.ToString(), ((Enum.GraphSimplePropertyType)simpleid).ToString());
+            }
+            else
+            { 
+                var list = this.GetGraphElementsByType(GraphElementType.Object);
+                var obj = list.ToList().Find(x => x.ID == id);
+
+                if (obj == null)
+                    return new IDNamePair(string.Empty, Enum.GraphSimplePropertyType.Unknown.ToString()) { ID = string.Empty };
+                return new IDNamePair(obj.ID, obj.Name);
+            }
+            
+        }
+
+        public IEnumerable<JB2.Common.IDNamePair> GetPropertyTypes()
+        {
+             var simple = System.Enum.GetValues(typeof(Enum.GraphSimplePropertyType));
+
+            List<JB2.Common.IDNamePair> result = new List<IDNamePair>();
+
+            foreach(var s in simple)
+            {
+                result.Add(new IDNamePair( ((int)s).ToString(), ((Enum.GraphSimplePropertyType)s).ToString()));
+            }
+
+            var objs = GetGraphElementsByType(GraphElementType.Object);
+
+            foreach(var o in objs)
+            {
+                result.Add(new IDNamePair(o.ID, o.Name));
+            }
+
+            return result;
         }
 
         #endregion helpers

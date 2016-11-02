@@ -150,13 +150,12 @@ namespace JB2.Bowtie.Web.Controllers
         {
             if (m.ApplicationID == "-1")
                 m.ApplicationID = "";
-            Enum.GraphPropertyType  ptype = Enum.GraphPropertyType.Text;
-            System.Enum.TryParse<Enum.GraphPropertyType>(m.GraphPropertyType, out ptype);
-
-            var newp = GraphProperty.NewProperty(m.Name, ptype, m.ApplicationID, m.isMultiValued);
 
             var service = this.GraphService;
 
+            JB2.Common.IDNamePair propType = service.RetrievePropertyType(m.GraphPropertyTypeID);
+
+            var newp = GraphProperty.NewProperty(m.Name, propType, m.ApplicationID, m.isMultiValued);
             service.SaveProperty(newp);
 
             return RedirectToAction("Properties");
@@ -331,9 +330,8 @@ namespace JB2.Bowtie.Web.Controllers
             var element = service.RetrievePropertyByID(mp.ID);
 
             element.ApplicationID = mp.ApplicationID;
-            Enum.GraphPropertyType gpt = element.GraphPropertyType;
-            System.Enum.TryParse<Enum.GraphPropertyType>(mp.GraphPropertyType, out gpt);
-            element.GraphPropertyType = gpt;
+            JB2.Common.IDNamePair prop = service.RetrievePropertyType(mp.GraphPropertyTypeID);
+            element.GraphPropertyType = prop;
             element.Name = mp.Name;
             element.ParentID = mp.ParentID;
 
@@ -571,22 +569,27 @@ namespace JB2.Bowtie.Web.Controllers
 
         protected IEnumerable<GraphProperty> convertToGraphProperties(IEnumerable<string> ids)
         {
-            List<GraphProperty> list = new List<GraphProperty>(ids.Count());
-            foreach (var i in ids)
+            if (ids != null)
             {
-                try
+                List<GraphProperty> list = new List<GraphProperty>(ids.Count());
+                foreach (var i in ids)
                 {
-                    var service = this.GraphService;
-                    var p = service.RetrievePropertyByID(i);
-                    list.Add(p);
+                    try
+                    {
+                        var service = this.GraphService;
+                        var p = service.RetrievePropertyByID(i);
+                        list.Add(p);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.BowtieLog();
+                    }
                 }
-                catch (Exception ex)
-                {
-                    ex.BowtieLog();
-                }      
-            }
 
-            return list;
+                return list;
+            }
+            else
+                return new GraphProperty[0];
         }
 
         protected IEnumerable<GraphObject> convertToGraphObjects(IEnumerable<string> ids)

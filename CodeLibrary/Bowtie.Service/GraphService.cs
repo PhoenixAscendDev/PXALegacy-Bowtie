@@ -184,6 +184,19 @@ namespace JB2.Bowtie.Service
 
         #endregion Graph Story
 
+
+        public IEnumerable<JB2.Common.IDNamePair> RetrievePropertyTypes()
+        {
+            return _repo.GetPropertyTypes();
+        }
+        public JB2.Common.IDNamePair RetrievePropertyType(string key)
+        {
+            JB2.Common.IDNamePair propType = _repo.GetPropertyTypeByName(key).ID == String.Empty ? _repo.GetPropertyTypeByID(key) : _repo.GetPropertyTypeByName(key);
+
+            return propType;
+
+        }
+
         #region internal helpers
         protected IEnumerable<T> filterByType<T>(IEnumerable<IGraphElement> list,Enum.GraphElementType type)
             where T : IGraphElement

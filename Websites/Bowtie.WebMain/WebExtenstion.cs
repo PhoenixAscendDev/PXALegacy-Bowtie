@@ -19,7 +19,7 @@ namespace JB2.Bowtie.Web
                 return item;
             }
             else
-                return new SelectListItem();
+                return new SelectListItem() { Text = string.Empty, Value = string.Empty };
 
         }
 

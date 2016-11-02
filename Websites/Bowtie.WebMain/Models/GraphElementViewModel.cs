@@ -24,15 +24,15 @@ namespace JB2.Bowtie.Web.Models
 
         public IEnumerable<SelectListItem> GetGraphPropertyTypeSelectList()
         {
-            Array values = System.Enum.GetValues(typeof(Enum.GraphPropertyType));
+            Array values = System.Enum.GetValues(typeof(Enum.GraphSimplePropertyType));
             List<SelectListItem> items = new List<SelectListItem>(values.Length);
 
             foreach (var i in values)
             {
                 items.Add(new SelectListItem
                 {
-                    Text = System.Enum.GetName(typeof(Enum.GraphPropertyType), i),
-                    Value = System.Enum.GetName(typeof(Enum.GraphPropertyType), i),
+                    Text = System.Enum.GetName(typeof(Enum.GraphSimplePropertyType), i),
+                    Value = System.Enum.GetName(typeof(Enum.GraphSimplePropertyType), i),
                 });
             }
 
@@ -73,6 +73,17 @@ namespace JB2.Bowtie.Web.Models
         public IEnumerable<SelectListItem> GetGraphActionSelectList(bool includeheader, string headerText = "Select Graph Actions")
         {
             var list = BaseViewModel.GraphActionSelectList().ToList();
+            return list;
+        }
+
+        public IEnumerable<SelectListItem> GetGraphDataTypeSelectList()
+        {
+            return GetGraphDataTypeSelectList(false);
+        }
+
+        public IEnumerable<SelectListItem> GetGraphDataTypeSelectList(bool includeheader, string headerText = "Select Graph Actions")
+        {
+            var list = BaseViewModel.GraphDataTypeSelectList().ToList();
             return list;
         }
 

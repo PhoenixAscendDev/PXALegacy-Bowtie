@@ -15,7 +15,7 @@ namespace JB2.Bowtie
 
         }
 
-        public Enum.GraphPropertyType GraphPropertyType { get; set; }
+        public JB2.Common.IDNamePair GraphPropertyType { get; set; }
         public bool isMultiValued { get; set; }
         public override GraphElementType ElementType
         {
@@ -25,7 +25,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public static GraphProperty NewProperty(string name, GraphPropertyType type,string applicationid,bool isMultivalued)
+        public static GraphProperty NewProperty(string name, JB2.Common.IDNamePair type,string applicationid,bool isMultivalued)
         {
             GraphProperty p = new GraphProperty();
             p.ID = "p_" + JB2.Common.NewID.ShortGuid();

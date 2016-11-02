@@ -28,7 +28,7 @@
             @Html.DisplayNameFor(model => model.ParentID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GraphPropertyType)
+            @Html.DisplayNameFor(model => model.GraphPropertyTypeID)
         </th>
         <th></th>
     </tr>
@@ -48,7 +48,7 @@
             @Html.DisplayFor(modelItem => item.ParentID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.GraphPropertyType)
+            @Html.DisplayFor(modelItem => item.GraphPropertyTypeName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
