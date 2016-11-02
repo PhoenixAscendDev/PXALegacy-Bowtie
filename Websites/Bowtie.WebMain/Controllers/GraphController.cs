@@ -59,12 +59,18 @@ namespace JB2.Bowtie.Web.Controllers
 
             var list = service.RetreiveProperties();
 
+            list = list.OrderByDescending(x => x.ApplicationID).ThenBy(x => x.Name).ToList();
+
             var model = new List<GraphPropertyViewModel>(list.Count());
 
             foreach (var d in list)
             {
                 model.Add(AutoMapper.Mapper.Map<GraphProperty, GraphPropertyViewModel>(d));
             }
+
+           
+
+            
 
             ViewBag.ApplicationSelect = this.applicationSelectList();
 
@@ -134,6 +140,7 @@ namespace JB2.Bowtie.Web.Controllers
         public ActionResult CreateProperty()
         {
             var model = new GraphPropertyViewModel();
+            
             return View(model);
         }
 
@@ -141,6 +148,8 @@ namespace JB2.Bowtie.Web.Controllers
         [HttpPost]
         public ActionResult CreateProperty(GraphPropertyViewModel m)
         {
+            if (m.ApplicationID == "-1")
+                m.ApplicationID = "";
             Enum.GraphPropertyType  ptype = Enum.GraphPropertyType.Text;
             System.Enum.TryParse<Enum.GraphPropertyType>(m.GraphPropertyType, out ptype);
 
@@ -162,6 +171,8 @@ namespace JB2.Bowtie.Web.Controllers
         [HttpPost]
         public ActionResult CreateObject(GraphObjectViewModel m)
         {
+            if (m.ApplicationID == "-1")
+                m.ApplicationID = "";
             Enum.GraphDeterminer determiner = Enum.GraphDeterminer.A;
 
             System.Enum.TryParse<Enum.GraphDeterminer>(m.Determiner, out determiner);
@@ -190,13 +201,11 @@ namespace JB2.Bowtie.Web.Controllers
             return View(model);
         }
 
-
-
-
-
         [HttpPost]
         public ActionResult CreateAction(GraphActionViewModel m)
         {
+            if (m.ApplicationID == "-1")
+                m.ApplicationID = "";
             var a = GraphAction.NewAction(m.Name, m.ApplicationID);
 
             //set the Properties
@@ -232,6 +241,8 @@ namespace JB2.Bowtie.Web.Controllers
         [HttpPost]
         public ActionResult CreateStory(GraphStoryViewModel m)
         {
+            if (m.ApplicationID == "-1")
+                m.ApplicationID = "";
             var s = GraphStory.NewStory(m.Name, m.ApplicationID);
             s.ParentID = m.ParentID;
             var service = this.GraphService;
@@ -272,6 +283,8 @@ namespace JB2.Bowtie.Web.Controllers
             tense.PluralPresent = m.PluralPresent;
             tense.Present = m.Present;
 
+            s.ActionTense = tense;
+
             service.SaveStory(s);
 
             return RedirectToAction("Stories");
@@ -311,6 +324,8 @@ namespace JB2.Bowtie.Web.Controllers
         [HttpPost]
         public ActionResult EditProperty(GraphPropertyViewModel mp)
         {
+            if (mp.ApplicationID == "-1")
+                mp.ApplicationID = "";
             var service = this.GraphService;
 
             var element = service.RetrievePropertyByID(mp.ID);
@@ -338,6 +353,8 @@ namespace JB2.Bowtie.Web.Controllers
         [HttpPost]
         public ActionResult EditObject(GraphObjectViewModel mo)
         {
+            if (mo.ApplicationID == "-1")
+                mo.ApplicationID = "";
             var service = this.GraphService;
 
             var element = service.RetrieveObjectByID(mo.ID);
@@ -390,6 +407,8 @@ namespace JB2.Bowtie.Web.Controllers
         [HttpPost]
         public ActionResult EditAction(GraphActionViewModel ma)
         {
+            if (ma.ApplicationID == "-1")
+                ma.ApplicationID = "";
             var service = this.GraphService;
 
             var element = service.RetrieveActionByID(ma.ID);
@@ -441,6 +460,8 @@ namespace JB2.Bowtie.Web.Controllers
         [HttpPost]
         public ActionResult EditStory(GraphStoryViewModel ms)
         {
+            if (ms.ApplicationID == "-1")
+                ms.ApplicationID = "";
             var service = this.GraphService;
 
             var element = service.RetrieveStoryByID(ms.ID);

@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<JB2.Bowtie.Web.Models.GraphStoryViewModel>
 
+@using JB2.Bowtie.Web.Models
+@using JB2.Bowtie.Web.Mvc
+@using JB2.Bowtie
 @{
     ViewBag.Title = "Stories";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -48,7 +51,8 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ApplicationID)
+            @Html.ApplicationLink(item.ApplicationID)
+            @*@Html.DisplayFor(modelItem => item.ApplicationID)*@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -59,10 +63,10 @@
             @Html.DisplayFor(modelItem => item.ParentID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ActionID)
+            @Html.GraphActionLink(item.ActionID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ObjectID)
+            @Html.GraphObjectLink(item.ObjectID)           
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Past)

@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<JB2.Bowtie.Web.Models.GraphPropertyViewModel>
+@using JB2.Bowtie.Web.Models
+@using JB2.Bowtie.Web.Mvc
+@using JB2.Bowtie
 
 @{
     ViewBag.Title = "Properties";
@@ -33,7 +36,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ApplicationID)
+            @Html.ApplicationLink(item.ApplicationID) 
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ElementType)

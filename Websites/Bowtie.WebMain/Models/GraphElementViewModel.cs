@@ -13,6 +13,7 @@ namespace JB2.Bowtie.Web.Models
 {
     public class GraphElementViewModel : BaseViewModel
     {
+        [Display(Name = "Application")]
         public string ApplicationID { get; set; }
        
 

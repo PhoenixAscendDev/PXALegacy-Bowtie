@@ -147,6 +147,7 @@ namespace JB2.Bowtie.Service
 
         public void SaveAction(GraphAction act)
         {
+            
             _repo.InsertGraphElement(act);
         }
 

@@ -285,6 +285,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ActionLinks.cs" />
+    <Compile Include="Helpers\ActionType.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AchievementViewModel.cs" />
     <Compile Include="Models\ApplicationViewModel.cs" />
