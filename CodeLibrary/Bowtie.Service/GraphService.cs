@@ -187,11 +187,11 @@ namespace JB2.Bowtie.Service
 
         public IEnumerable<JB2.Common.IDNamePair> RetrievePropertyTypes()
         {
-            return _repo.GetPropertyTypes();
+            return _repo.GetDataTypes();
         }
         public JB2.Common.IDNamePair RetrievePropertyType(string key)
         {
-            JB2.Common.IDNamePair propType = _repo.GetPropertyTypeByName(key).ID == String.Empty ? _repo.GetPropertyTypeByID(key) : _repo.GetPropertyTypeByName(key);
+            JB2.Common.IDNamePair propType = _repo.GeDataTypeByName(key).ID == String.Empty ? _repo.GetDataTypeByID(key) : _repo.GeDataTypeByName(key);
 
             return propType;
 

@@ -189,7 +189,7 @@ namespace JB2.Bowtie.Data.Azure
                 case GraphElementType.Property:
                     result = new JB2.Bowtie.GraphProperty();
 
-                    JB2.Common.IDNamePair propType = this.GetPropertyTypeByName(e.GraphPropertyType).ID == String.Empty ? this.GetPropertyTypeByID(e.GraphPropertyType) : this.GetPropertyTypeByName(e.GraphPropertyType);
+                    JB2.Common.IDNamePair propType = this.GeDataTypeByName(e.GraphPropertyType).ID == String.Empty ? this.GetDataTypeByID(e.GraphPropertyType) : this.GeDataTypeByName(e.GraphPropertyType);
 
                     ((GraphProperty)result).GraphPropertyType = propType;
                     ((GraphProperty)result).isMultiValued = e.IsMultiValued;
@@ -333,7 +333,7 @@ namespace JB2.Bowtie.Data.Azure
                 p.ID = propSplits[0];
                 p.Name = propSplits[1];
 
-                JB2.Common.IDNamePair propType = this.GetPropertyTypeByName(propSplits[2]).ID == String.Empty ? this.GetPropertyTypeByID(propSplits[2]) : this.GetPropertyTypeByName(propSplits[2]);
+                JB2.Common.IDNamePair propType = this.GeDataTypeByName(propSplits[2]).ID == String.Empty ? this.GetDataTypeByID(propSplits[2]) : this.GeDataTypeByName(propSplits[2]);
                 p.GraphPropertyType = propType;
                 p.isMultiValued = Convert.ToBoolean(propSplits[3]);
                 p.ApplicationID = propSplits[4];
@@ -347,7 +347,7 @@ namespace JB2.Bowtie.Data.Azure
         }
 
 
-        public JB2.Common.IDNamePair GetPropertyTypeByName(string name)
+        public JB2.Common.IDNamePair GeDataTypeByName(string name)
         {
             //test to see if Enum Simple first
             Enum.GraphSimplePropertyType simple = GraphSimplePropertyType.Unknown;
@@ -371,7 +371,7 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
-        public JB2.Common.IDNamePair GetPropertyTypeByID(string id)
+        public JB2.Common.IDNamePair GetDataTypeByID(string id)
         {
             //test to see if Enum Simple first
             int simpleid = -1;
@@ -395,7 +395,7 @@ namespace JB2.Bowtie.Data.Azure
             
         }
 
-        public IEnumerable<JB2.Common.IDNamePair> GetPropertyTypes()
+        public IEnumerable<JB2.Common.IDNamePair> GetDataTypes()
         {
              var simple = System.Enum.GetValues(typeof(Enum.GraphSimplePropertyType));
 
