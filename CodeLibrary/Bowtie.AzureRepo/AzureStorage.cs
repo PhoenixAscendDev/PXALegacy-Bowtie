@@ -42,7 +42,7 @@ namespace JB2.Bowtie.Data.Azure
         {
             get
             {
-                return JB2.Infrastructure.Storage.BowtieAccount.GetTable("graphdata");
+                return JB2.Infrastructure.Storage.GraphAccount.GetTable("bowtie");
                 //return new AzureTableRepository(_BowtieAccount, "gameobjects");
             }
         }

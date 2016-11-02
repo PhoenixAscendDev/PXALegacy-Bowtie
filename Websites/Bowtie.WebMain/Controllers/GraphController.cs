@@ -155,7 +155,7 @@ namespace JB2.Bowtie.Web.Controllers
 
             JB2.Common.IDNamePair propType = service.RetrievePropertyType(m.GraphPropertyTypeID);
 
-            var newp = GraphProperty.NewProperty(m.Name, propType, m.ApplicationID, m.isMultiValued);
+            var newp = GraphProperty.New(m.Name, propType, m.ApplicationID, m.isMultiValued);
             service.SaveProperty(newp);
 
             return RedirectToAction("Properties");
@@ -175,7 +175,7 @@ namespace JB2.Bowtie.Web.Controllers
             Enum.GraphDeterminer determiner = Enum.GraphDeterminer.A;
 
             System.Enum.TryParse<Enum.GraphDeterminer>(m.Determiner, out determiner);
-            var newo = GraphObject.NewObject(m.Name, m.ApplicationID,determiner,m.Plural);
+            var newo = GraphObject.New(m.Name, m.ApplicationID,determiner,m.Plural);
 
             newo.ParentID = m.ParentID;
             newo.Singular = m.Singular;
@@ -205,7 +205,7 @@ namespace JB2.Bowtie.Web.Controllers
         {
             if (m.ApplicationID == "-1")
                 m.ApplicationID = "";
-            var a = GraphAction.NewAction(m.Name, m.ApplicationID);
+            var a = GraphAction.New(m.Name, m.ApplicationID);
 
             //set the Properties
             var newProps = convertToGraphProperties(m.PostedPropertyIDs);
@@ -242,7 +242,7 @@ namespace JB2.Bowtie.Web.Controllers
         {
             if (m.ApplicationID == "-1")
                 m.ApplicationID = "";
-            var s = GraphStory.NewStory(m.Name, m.ApplicationID);
+            var s = GraphStory.New(m.Name, m.ApplicationID);
             s.ParentID = m.ParentID;
             var service = this.GraphService;
 

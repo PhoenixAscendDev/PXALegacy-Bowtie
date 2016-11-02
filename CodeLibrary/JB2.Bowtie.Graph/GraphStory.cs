@@ -22,11 +22,11 @@ namespace JB2.Bowtie
         }
 
 
-        public static GraphStory NewStory(string name, string applicationID)
+        public static GraphStory New(string name, string applicationID)
         {
             var result = new GraphStory();
-            result.Name = name;          
-            result.ID = "s_" + JB2.Common.NewID.ShortGuid();
+            result.Name = name;
+            result.ID = JB2.Helper.Graph.GenerateID<GraphStory>();
             result.ApplicationID = applicationID;
 
             JB2.Common.WordTense tenses = new Common.WordTense();

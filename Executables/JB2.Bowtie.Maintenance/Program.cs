@@ -154,20 +154,25 @@ namespace JB2.Bowtie.Maintenance
             var appService = new JB2.Bowtie.Service.ApplicationService();
 
 
-            //setup Link Fence App
-            var linkfence = appService.GenerateNewApplication();
-            linkfence.Name = "Link Fence";
-            linkfence.Company = JB2.Info.HQ;
-            linkfence.Website = "http://linkfence.io";
 
-            appService.Save(linkfence);
+            for(int i = 0;i<5;i++)
+            {
+                Console.WriteLine(JB2.Helper.Graph.GenerateID<GraphAction>());
+            }
+            ////setup Link Fence App
+            //var linkfence = appService.GenerateNewApplication();
+            //linkfence.Name = "Link Fence";
+            //linkfence.Company = JB2.Info.HQ;
+            //linkfence.Website = "http://linkfence.io";
 
-            var fivetwo = appService.GenerateNewApplication();
-            fivetwo.Name = "Grateful Five|Two";
-            fivetwo.Company = JB2.Info.HQ;
-            fivetwo.Website = "http://fivetwo.io";
+            //appService.Save(linkfence);
 
-            appService.Save(fivetwo);
+            //var fivetwo = appService.GenerateNewApplication();
+            //fivetwo.Name = "Grateful Five|Two";
+            //fivetwo.Company = JB2.Info.HQ;
+            //fivetwo.Website = "http://fivetwo.io";
+
+            //appService.Save(fivetwo);
 
 
             //var allApps = appService.Retrieve();

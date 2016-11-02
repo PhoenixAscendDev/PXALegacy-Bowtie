@@ -56,11 +56,11 @@ namespace JB2.Bowtie
             }
         }
 
-        public static GraphObject NewObject(string name, string applicationid, Enum.GraphDeterminer determiner, string pural)
+        public static GraphObject New(string name, string applicationid, Enum.GraphDeterminer determiner, string pural)
         {
             var result = new GraphObject();
             result.Name = name;
-            result.ID = "o_" + JB2.Common.NewID.ShortGuid();
+            result.ID = JB2.Helper.Graph.GenerateID<GraphObject>();
             result.ApplicationID = applicationid;
             result.Singular = name.ToLower();
             result.Plural = pural;
