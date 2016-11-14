@@ -349,50 +349,18 @@ namespace JB2.Bowtie.Data.Azure
 
         public JB2.Common.IDNamePair GeDataTypeByName(string name)
         {
-            //test to see if Enum Simple first
-            Enum.GraphSimplePropertyType simple = GraphSimplePropertyType.Unknown;
+            var list = GetDataTypes();
 
-            System.Enum.TryParse<Enum.GraphSimplePropertyType>(name, out simple);
-
-            if(simple == GraphSimplePropertyType.Unknown)
-            {
-                var list = this.GetGraphElementsByType(GraphElementType.Object);
-                var obj = list.ToList().Find(x => x.Name == name);
-
-                if (obj == null)
-                    return new IDNamePair(string.Empty, Enum.GraphSimplePropertyType.Unknown.ToString()) { ID = string.Empty };
-
-
-                return new IDNamePair(obj.ID, obj.Name);
-            }
-            else
-            {
-                return new IDNamePair(((int)simple).ToString(), simple.ToString());
-            }
+            return list.ToList().Find(x => x.Name == name) == null ? new IDNamePair(string.Empty, Enum.GraphSimplePropertyType.Unknown.ToString()) { ID = string.Empty } : list.ToList().Find(x => x.Name == name);
         }
 
         public JB2.Common.IDNamePair GetDataTypeByID(string id)
         {
-            //test to see if Enum Simple first
-            int simpleid = -1;
+            var list = GetDataTypes();
 
-            int.TryParse(id, out simpleid);
+            return list.ToList().Find(x => x.ID == id) == null ? new IDNamePair(string.Empty, Enum.GraphSimplePropertyType.Unknown.ToString()) { ID = string.Empty } : list.ToList().Find(x => x.ID == id);
 
 
-            if ( simpleid > 0 && System.Enum.IsDefined(typeof(Enum.GraphSimplePropertyType), simpleid))
-            {
-                return new IDNamePair(simpleid.ToString(), ((Enum.GraphSimplePropertyType)simpleid).ToString());
-            }
-            else
-            { 
-                var list = this.GetGraphElementsByType(GraphElementType.Object);
-                var obj = list.ToList().Find(x => x.ID == id);
-
-                if (obj == null)
-                    return new IDNamePair(string.Empty, Enum.GraphSimplePropertyType.Unknown.ToString()) { ID = string.Empty };
-                return new IDNamePair(obj.ID, obj.Name);
-            }
-            
         }
 
         public IEnumerable<JB2.Common.IDNamePair> GetDataTypes()
@@ -401,16 +369,18 @@ namespace JB2.Bowtie.Data.Azure
 
             List<JB2.Common.IDNamePair> result = new List<IDNamePair>();
 
+            //convert to enum to Data Type
             foreach(var s in simple)
             {
                 result.Add(new IDNamePair( ((int)s).ToString(), ((Enum.GraphSimplePropertyType)s).ToString()));
             }
 
-            var objs = GetGraphElementsByType(GraphElementType.Object);
 
-            foreach(var o in objs)
+            //convert graph objects as a Data Type
+            var objs = _table.GetByRowKeyStartWith<DynamicTableEntity>("graph", "type:" + GraphElementType.Object.ToString().ToLower(), 1000);
+            foreach (var o in objs)
             {
-                result.Add(new IDNamePair(o.ID, o.Name));
+                result.Add(new IDNamePair(o.GetPropertyValue<string>("ID",string.Empty), o.GetPropertyValue<string>("Name",string.Empty)));
             }
 
             return result;

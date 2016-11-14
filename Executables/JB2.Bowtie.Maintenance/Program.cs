@@ -27,8 +27,25 @@ namespace JB2.Bowtie.Maintenance
             List<string> propertyNames = new List<string>();
             propertyNames.Add("BANKACCOUNT");
             m.PlayerDataNames = propertyNames;
-
             //moduleService.Save(m);
+
+
+            //sprog module
+            IModule s = NonRestModule.New;
+            s.Name = "Sprog";
+            propertyNames = new List<string>();
+            propertyNames.Add("APIKEY");
+            
+            propertyNames.Add("SECRET");
+            s.PlayerDataNames = propertyNames;
+
+            moduleService.Save(s);
+
+
+
+
+
+
 
 
             //jbean stock market
@@ -49,13 +66,8 @@ namespace JB2.Bowtie.Maintenance
             sm.PlayerDataNames = propertyNames;
             sm.InventoryItems = smitems;
 
-            moduleService.Save(sm);
+            //moduleService.Save(sm);
 
-
-
-
-
-         
 
             //bluffstreet
             IModule bs = NonRestModule.New;
@@ -153,12 +165,12 @@ namespace JB2.Bowtie.Maintenance
 
             var appService = new JB2.Bowtie.Service.ApplicationService();
 
+            //SetupModules();
 
-
-            for(int i = 0;i<5;i++)
-            {
-                Console.WriteLine(JB2.Helper.Graph.GenerateID<GraphAction>());
-            }
+            //for(int i = 0;i<5;i++)
+            //{
+            //    Console.WriteLine(JB2.Helper.Graph.GenerateID<GraphAction>());
+            //}
             ////setup Link Fence App
             //var linkfence = appService.GenerateNewApplication();
             //linkfence.Name = "Link Fence";

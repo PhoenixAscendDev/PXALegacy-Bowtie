@@ -19,15 +19,17 @@ namespace JB2.Bowtie.Enum
         Decimal = 8,
         Boolean = 9,
         Color = 10,
-        Image =100,
-        GeoLocation = 101,
-        Profile = 101,
-        Video = 102,
-        Audio = 103,
-        Locale = 104,   
-        Domain = 105,
-        PlayerDew = 106,
-        jBeanTreasoryNote = 107
+        Rarity = 11,
+
+        //Image =100,
+        //GeoLocation = 101,
+        //Profile = 101,
+        //Video = 102,
+        //Audio = 103,
+        //Locale = 104,   
+        //Domain = 105,
+        //PlayerDew = 106,
+        //jBeanTreasoryNote = 107
 
     }
 }
