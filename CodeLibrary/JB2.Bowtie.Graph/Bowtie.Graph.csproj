@@ -38,20 +38,20 @@
       <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.0\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Data.AzureStorage, Version=0.2.8.16344, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.2.8\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
+    <Reference Include="JB2.Common.Data.AzureStorage, Version=0.3.0.482, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.3.0.482\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Date, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Date.0.2.0\lib\JB2.Common.Date.dll</HintPath>
+    <Reference Include="JB2.Common.Date, Version=0.2.2.22361, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Date.0.2.2\lib\JB2.Common.Date.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Log, Version=0.2.1.19800, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Log.0.2.1\lib\JB2.Common.Log.dll</HintPath>
+    <Reference Include="JB2.Common.Log, Version=0.3.0.28091, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Log.0.3.0\lib\JB2.Common.Log.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Log.AzureRepo, Version=0.2.3.3738, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Log.AzureRepo.0.2.3.1\lib\JB2.Common.Log.AzureRepo.dll</HintPath>
+    <Reference Include="JB2.Common.Log.AzureRepo, Version=0.3.0.28091, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Log.AzureRepo.0.3.0\lib\JB2.Common.Log.AzureRepo.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Map, Version=0.2.3.3053, Culture=neutral, processorArchitecture=MSIL">
@@ -64,6 +64,18 @@
     </Reference>
     <Reference Include="JB2.Common.Ultities, Version=0.2.2.37707, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\JB2.Common.Utility.0.2.2\lib\JB2.Common.Ultities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Grab.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Grab.Core.0.2.0\lib\JB2.Grab.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Grab.DataAzure, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Grab.AzureRepo.0.2.0\lib\JB2.Grab.DataAzure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Grab.Queue, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Grab.Queue.0.2.0\lib\JB2.Grab.Queue.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Infrastructure, Version=0.2.22.22366, Culture=neutral, processorArchitecture=MSIL">

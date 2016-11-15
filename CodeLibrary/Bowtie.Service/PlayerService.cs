@@ -30,7 +30,7 @@ namespace JB2.Bowtie.Service
         #endregion Constructors
         public IBowtiePlayer RetrieveByAuth(AuthInfo info)
         {
-            return _repo.GetPlayerByAuth(info.UserID, info.Provider);
+            return _repo.GetPlayerByAuth(info.UserID, info.ProviderID);
         }
 
         //public IBowtiePlayer RetrieveByAppPlayerID(string id,IApplication app)
@@ -44,7 +44,7 @@ namespace JB2.Bowtie.Service
             // create player
             ApplicationPlayer result = ApplicationPlayer.FromPlayer(player, app);
             AuthInfo authInfo = new AuthInfo();
-            authInfo.Provider = authprovider;
+            authInfo.ProviderID = authprovider;
             result.AuthInfo = authInfo;
             result.DateRegistered = DateTime.Now;
             _repo.Insert(result);

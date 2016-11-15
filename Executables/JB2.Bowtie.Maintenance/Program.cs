@@ -11,7 +11,6 @@ namespace JB2.Bowtie.Maintenance
 {
     class Program
     {
-
         static void ConfigureBowtie()
         {
             JB2.Bowtie.Web.Manager.Initialize("BT-35BC540F", JB2.Configuration.GetAppSetting("JB2:bowtie-apisecret"));

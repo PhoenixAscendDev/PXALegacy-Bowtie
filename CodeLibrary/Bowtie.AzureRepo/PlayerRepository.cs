@@ -101,11 +101,11 @@ namespace JB2.Bowtie.Data.Azure
         public ServiceResult InsertAuthInfo(string playerID, AuthInfo authinfo)
         {
             DynamicTableEntity e = new DynamicTableEntity();
-            e.SetProperty<string>("AuthProvider", authinfo.Provider);
+            e.SetProperty<string>("AuthProvider", authinfo.ProviderID);
             e.SetProperty<string>("UserID", authinfo.UserID);
             e.SetProperty<string>("PlayerID", playerID);
 
-            e.PartitionKey = "auth:" + authinfo.Provider;
+            e.PartitionKey = "auth:" + authinfo.ProviderID;
             e.RowKey = "authid:" + authinfo.UserID;
 
             _table.Insert<DynamicTableEntity>(e, true);

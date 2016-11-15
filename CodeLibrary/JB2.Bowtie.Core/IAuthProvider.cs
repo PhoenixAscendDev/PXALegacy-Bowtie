@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public struct AuthInfo
+    public interface IAuthProvider : JB2.Common.IIDNamePair<string,string>
     {
-        public string ProviderID { get; set; }
-        public string UserID { get; set; }
+        
+
     }
 }
