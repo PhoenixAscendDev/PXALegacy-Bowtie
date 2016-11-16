@@ -7,12 +7,13 @@ using JB2.Common;
 
 namespace JB2.Bowtie
 {
-    public class PlayerStory : JB2.Common.IDNamePair,IPlayerStory
+    public class PlayerStory : JB2.Common.IDNamePair, IPlayerStory
     {
 
         #region Fields
 
         protected string _playerID;
+        protected string _applicationID;
 
 
 
@@ -22,12 +23,20 @@ namespace JB2.Bowtie
 
         #region Constructor
 
-        public PlayerStory( string playerID, GraphStory graphStory) : this()
+        public PlayerStory(string playerID, string applicationID, GraphStory story ) : this(playerID,applicationID,story.AssociatedAction, story.AssociatedObject)
         {
-            Action = graphStory.AssociatedAction;
-            Object = graphStory.AssociatedObject;
+
+        }
+
+
+
+        public PlayerStory(string playerID, string applicationID, GraphAction graphAction, GraphObject graphObject) : this()
+        {
+            Action = graphAction;
+            Object = graphObject;
 
             _playerID = playerID;
+            _applicationID = applicationID;
 
             CreateDate = System.DateTime.Now;
 
@@ -42,7 +51,7 @@ namespace JB2.Bowtie
                 this.ActionData = v;
             }
 
-            foreach(var op in ((GraphObject)Object).GetProperties())
+            foreach (var op in ((GraphObject)Object).GetProperties())
             {
                 var v = ActionData.ToList();
                 v.Add(new MetaData<object>(op.PropertyName, null));
@@ -61,8 +70,8 @@ namespace JB2.Bowtie
 
         public IGraphElement Action
         {
-            get;set;
-            
+            get; set;
+
         }
 
         public IEnumerable<IMetaData> ActionData
@@ -86,12 +95,21 @@ namespace JB2.Bowtie
         public IEnumerable<IMetaData> ObjectData
         {
             get; set;
+        }
 
+        public IEnumerable<IMetaData> PlayerData
+        {
+            get;set;
         }
 
         public string GetPlayerID()
         {
-            throw new NotImplementedException();
+            return _playerID;
+        }
+
+        public string GetApplicationID()
+        {
+            return _applicationID;
         }
     }
 }

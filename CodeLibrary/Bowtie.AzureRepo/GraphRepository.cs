@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using JB2.Bowtie.Enum;
 using JB2.Common;
 using JB2.Common.Data;
+using JB2.Grab;
 
 using Microsoft.WindowsAzure.Storage.Table;
 
@@ -15,6 +17,7 @@ namespace JB2.Bowtie.Data.Azure
     {
         private JB2.Common.Data.AzureTableRepository _table;
         private JB2.Common.Data.AzureBlobRepository _blob;
+        private JB2.Common.Data.AzureTableRepository _playerStorytable;
        
 
         #region Constructors
@@ -28,6 +31,14 @@ namespace JB2.Bowtie.Data.Azure
         {
             _table = azureTable;
             _blob = azureBlob;
+            _playerStorytable = _table;
+        }
+
+        public GraphRepository(AzureTableRepository azureTable, AzureBlobRepository azureBlob, AzureTableRepository playerStoryTable)
+        {
+            _table = azureTable;
+            _blob = azureBlob;
+            _playerStorytable = playerStoryTable;
         }
 
         #endregion Constructors
@@ -164,7 +175,154 @@ namespace JB2.Bowtie.Data.Azure
 
         #endregion Methods
 
+        #region Stories
+        public JB2.Common.ServiceResult InsertPlayerStory(IPlayerStory story)
+        {         
+            var pipe = convertToGraphPipe(story);
+
+            return playerStoryRepo().Insert(pipe);
+
+        }
+
+        public IEnumerable<IPlayerStory> GetPlayerStoryByObject(string playerid, string objectid)
+        {
+
+            IGraphElement graphObject = this.GetGraphElement(objectid);
+            var list = playerStoryRepo().Grab(new GraphLabel(playerid, "appPlayer"), GraphLabel.All, new GraphLabel(objectid, graphObject.Name),Grab.Enum.EdgeDirection.None);
+
+            return convertToPlayerStory(list.GetPipes());
+        }
+
+        public IEnumerable<IPlayerStory> GetPlayerStoryByPlayer(string playerid)
+        {
+            
+            var list = playerStoryRepo().Grab(new GraphLabel(playerid, "appPlayer"), GraphLabel.All, GraphLabel.All, Grab.Enum.EdgeDirection.None);
+
+            return convertToPlayerStory(list.GetPipes());
+        }
+
+        public IEnumerable<IPlayerStory> GetPlayerStoryByAction(string playerid, string actionid)
+        {
+            IGraphElement graphAction = this.GetGraphElement(actionid);
+            var list = playerStoryRepo().Grab(new GraphLabel(playerid, "appPlayer"), new GraphLabel(actionid, graphAction.Name), GraphLabel.All , Grab.Enum.EdgeDirection.None);
+
+            return convertToPlayerStory(list.GetPipes());
+        }
+        #endregion Stories
+
+
         #region helpers
+
+        private JB2.Grab.Data.GrabRepository playerStoryRepo()
+        {
+            return new Grab.Data.GrabRepository(_playerStorytable, _blob);
+        }
+
+        private JB2.Grab.IPipe convertToGraphPipe(IPlayerStory story)
+        {
+            JB2.Grab.Pipe pipe = Pipe.New(story.Name, "appPlayer".ToLower(), story.Action.Name.ToLower(), story.Object.Name.ToLower());
+
+
+            var playerRepo = JB2.Settings.Bowtie.UnitOfWork.PlayerRepository;
+
+            var player = playerRepo.GetAppPlayerByID(story.GetPlayerID(), story.GetApplicationID());
+
+            //set up the player node
+            pipe.Node1.ID = story.GetPlayerID();
+            pipe.Node1.AddProperty<string>("firstName", player.Name.First);
+            pipe.Node1.AddProperty<string>("lastName", player.Name.Last);
+            pipe.Node1.AddProperty<string>("displayName", player.DisplayName);
+            pipe.Node1.AddProperty<string>("applicationID", story.GetApplicationID());
+
+
+            //set the elements properties
+
+            foreach (var p in story.PlayerData)
+            {
+                pipe.Node1.AddProperty<string>(p.PropertyName, p.GetValue().StringValue);
+            }
+
+
+
+
+
+            foreach (var p in story.ActionData)
+            {
+                pipe.Edge.AddProperty<string>(p.PropertyName, p.GetValue().StringValue);
+            }
+
+            pipe.Edge.AddProperty<string>("actionID", story.Action.ID);
+
+            foreach (var p in story.ObjectData)
+            {
+                pipe.Node2.AddProperty<string>(p.PropertyName, p.GetValue().StringValue);
+            }
+            pipe.Node2.AddProperty<string>("objectID", story.Object.ID);
+
+
+            return pipe;
+
+
+
+
+        }
+
+        private IPlayerStory convertToPlayerStory(JB2.Grab.IPipe pipe)
+        {
+
+            var playerid = pipe.Node1.ID;
+            var applicationid = "";
+            var playerData = pipe.Node1.GetProperties();
+            var actionData = pipe.Edge.GetProperties();
+            var objectData = pipe.Node2.GetProperties();
+            IGraphElement graphAction = null;
+            IGraphElement graphObject = null;
+
+
+            foreach (var p in playerData)
+            {
+                if (p.PropertyName.ToLower() == "applicationid")
+                    applicationid = p.GetValue().StringValue;
+            }
+
+            foreach (var p in actionData)
+            {
+                if (p.PropertyName.ToLower() == "actionid")
+                {
+                    graphAction = this.GetGraphElement(p.GetValue().StringValue);
+                }
+            }
+
+            foreach (var p in objectData)
+            {
+                if (p.PropertyName.ToLower() == "objectid")
+                {
+                    graphObject = this.GetGraphElement(p.GetValue().StringValue);
+                }
+            }
+
+
+
+            IPlayerStory story = new PlayerStory(playerid, applicationid, (GraphAction)graphAction, (GraphObject)graphObject);
+            story.PlayerData = playerData;
+            story.ActionData = actionData;
+            story.ObjectData = objectData;
+
+            return story;
+        }
+
+        private IEnumerable<IPlayerStory> convertToPlayerStory(IEnumerable<JB2.Grab.IPipe> elist)
+        {
+            var list = new List<IPlayerStory>();
+
+            foreach (var e in elist)
+            {
+                list.Add(convertToPlayerStory(e));
+            }
+
+            return list;
+        }
+
 
         private IEnumerable<IGraphElement> convertfromEntity(IEnumerable<GraphElementEntity> elements)
         {

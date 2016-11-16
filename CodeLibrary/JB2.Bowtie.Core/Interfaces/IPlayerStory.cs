@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using JB2.Common;
 
 namespace JB2.Bowtie
-{ 
-    public interface IPlayerStory : IPlayerable<string>, IIDNamePair<string,string>
+{
+    public interface IPlayerStory : IPlayerable<string>, IIDNamePair<string, string>, IApplicationable<string>
     {
         IGraphElement Action { get; set; }
 
@@ -16,9 +16,11 @@ namespace JB2.Bowtie
 
         DateTime CreateDate { get; set; }
 
-        IEnumerable<IMetaData> ObjectData { get;  set; }
+        IEnumerable<IMetaData> ObjectData { get; set; }
 
         IEnumerable<IMetaData> ActionData { get; set; }
+
+        IEnumerable<IMetaData> PlayerData { get; set; }
 
     }
 }

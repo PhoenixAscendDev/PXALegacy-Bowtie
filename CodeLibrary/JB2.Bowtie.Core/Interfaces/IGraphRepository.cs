@@ -22,6 +22,18 @@ namespace JB2.Bowtie
         JB2.Common.ServiceResult InsertGraphElement(IGraphElement element);
         JB2.Common.ServiceResult DeleteGraphElement(IGraphElement element);
 
-        
+
+        #region Stories
+
+        JB2.Common.ServiceResult InsertPlayerStory(IPlayerStory story);
+
+        IEnumerable<IPlayerStory> GetPlayerStoryByObject(string playerid, string objectid);
+
+        IEnumerable<IPlayerStory> GetPlayerStoryByPlayer(string playerid);
+
+        IEnumerable<IPlayerStory> GetPlayerStoryByAction(string playerid, string actionid);
+        #endregion Stories
+
+
     }
 }

@@ -67,10 +67,6 @@ namespace Bowtie.ConsoleTest
 
         }
 
-
-
-        
-
         static void Main(string[] args)
         {
 

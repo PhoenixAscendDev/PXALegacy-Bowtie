@@ -8,7 +8,7 @@ namespace JB2.Bowtie
 { 
     public static class GraphExtension
     {
-        public static IPlayerStory ToPlayerStory(this JB2.Common.IClass o, string playerID)
+        public static IPlayerStory ToPlayerStory(this JB2.Common.IClass o, string playerID, string applicationID)
         {
             try
             {
@@ -19,7 +19,7 @@ namespace JB2.Bowtie
 
                 var graphStory = graphRepo.GetGraphElement(id);
 
-                PlayerStory pStory = new PlayerStory(playerID, (GraphStory)graphStory);
+                PlayerStory pStory = new PlayerStory(playerID, applicationID, (GraphStory)graphStory);
 
                 return pStory;
 

@@ -50,8 +50,6 @@ namespace JB2.Bowtie.Service
                 return false;
         }
 
-
-
         public PlayerDewdrop GenerateNewPlayerDewdrop(IBowtiePlayer player, IDewdrop dewdrop, string value)
         {
             var metadata = new List<JB2.Common.IMetaData>();
@@ -165,6 +163,8 @@ namespace JB2.Bowtie.Service
         
         public bool Save(IPlayerDewdrop playerdewdrop)
         {
+
+
             _repo.InsertPlayerDew(playerdewdrop);
 
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
+    [GraphStory("sD1275546")]
     public class PlayerAchievement : BowtieObject, IPlayerAchievement
     {
         protected string _playerid;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    [GraphStory("s280D5DAD")]
+    
     public class Dewdrop : JB2.Common.IDNamePair, IDewdrop, JB2.Identity.IApplicationable, JB2.Common.IIDNamePair<string, string>
     {
         #region Fields
