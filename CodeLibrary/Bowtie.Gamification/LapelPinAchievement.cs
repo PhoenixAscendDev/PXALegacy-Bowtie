@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
+    [GraphStory("sD1275546")]
     public class LapelPinAchievement : Achievement, IAchievement
     {
         public LapelPinAchievement(): this(null)

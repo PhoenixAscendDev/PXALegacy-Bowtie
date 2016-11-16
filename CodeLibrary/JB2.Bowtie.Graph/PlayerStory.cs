@@ -22,13 +22,36 @@ namespace JB2.Bowtie
 
         #region Constructor
 
-        public PlayerStory(GraphStory graphStory) : this()
+        public PlayerStory( string playerID, GraphStory graphStory) : this()
         {
             Action = graphStory.AssociatedAction;
             Object = graphStory.AssociatedObject;
 
+            _playerID = playerID;
+
+            CreateDate = System.DateTime.Now;
+
+            this.ActionData = new List<IMetaData>();
+            this.ObjectData = new List<IMetaData>();
+
+            foreach (var ap in ((GraphAction)Action).GetProperties())
+            {
+                var v = ActionData.ToList();
+                v.Add(new MetaData<object>(ap.PropertyName, null));
+
+                this.ActionData = v;
+            }
+
+            foreach(var op in ((GraphObject)Object).GetProperties())
+            {
+                var v = ActionData.ToList();
+                v.Add(new MetaData<object>(op.PropertyName, null));
+
+                this.ActionData = v;
+            }
+
         }
-        public PlayerStory()
+        private PlayerStory()
         {
             this.ActionData = new List<IMetaData>();
             this.ObjectData = new List<IMetaData>();

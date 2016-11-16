@@ -15,7 +15,7 @@ namespace JB2.Bowtie.Data.Azure
     {
         private JB2.Common.Data.AzureTableRepository _table;
         private JB2.Common.Data.AzureBlobRepository _blob;
-        private JB2.Common.Data.
+       
 
         #region Constructors
         public GraphRepository()

@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JB2.Bowtie.Enum;
 
+using JB2.Bowtie.Enum;
+using JB2.Common;
 namespace JB2.Bowtie
 {
-    public abstract class Achievement : BowtieObject, IAchievement
+
+    
+    public abstract class Achievement : BowtieObject, IAchievement, IClass
     {
         protected string _appID;
         protected int _sortorder;
@@ -23,7 +26,6 @@ namespace JB2.Bowtie
         protected string _stepRegEx;
         protected IEnumerable<string> _dewdropsTriggers;
         protected Enum.StepFxType _stepType;
-
 
         public Achievement() : this(null)
         {

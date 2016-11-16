@@ -168,6 +168,8 @@
     <Compile Include="ApplicationModule.cs" />
     <Compile Include="ApplicationStatePair.cs" />
     <Compile Include="AppPlayer.cs" />
+    <Compile Include="Attributes\GraphIDAttribute.cs" />
+    <Compile Include="Attributes\PlayerStoryAttribute.cs" />
     <Compile Include="AuthInfo.cs" />
     <Compile Include="Backpack.cs" />
     <Compile Include="BowtieGroup.cs" />
@@ -197,6 +199,7 @@
     <Compile Include="Exceptions\ApplicationNotInitialized.cs" />
     <Compile Include="GameCommand.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="IAuthProvider.cs" />
     <Compile Include="IGameSession.cs" />
     <Compile Include="Interfaces\IApplicationable.cs" />
     <Compile Include="Interfaces\IAuthorizeRepository.cs" />
@@ -224,6 +227,7 @@
     <Compile Include="Interfaces\IPlayerable.cs" />
     <Compile Include="Interfaces\IPlayerAchievement.cs" />
     <Compile Include="Interfaces\IPlayerInventoryItem.cs" />
+    <Compile Include="Interfaces\IPlayerStory.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="IPlayerRespository.cs" />
     <Compile Include="IWallet.cs" />

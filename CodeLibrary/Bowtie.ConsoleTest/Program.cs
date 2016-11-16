@@ -25,12 +25,12 @@ namespace Bowtie.ConsoleTest
 
             var allProps = graphService.RetreiveProperties();
 
-            var jbeanCostProp = GraphProperty.NewProperty("jb2:jbean_cost", GraphPropertyType.Number, string.Empty, false);
+            //var jbeanCostProp = GraphProperty.New("jb2:jbean_cost", Gra.Number, string.Empty, false);
 
-            var registerAction = GraphAction.NewAction("PlayerRegister", string.Empty);
+            var registerAction = GraphAction.New("PlayerRegister", string.Empty);
 
 
-            registerAction.AddProperty(jbeanCostProp);
+            //registerAction.AddProperty(jbeanCostProp);
 
             foreach (var prop in allProps)
             {
@@ -43,8 +43,8 @@ namespace Bowtie.ConsoleTest
                         break;
                 }
             }
-            graphService.SaveProperty(jbeanCostProp);
-            graphService.SaveAction(registerAction);
+            //graphService.SaveProperty(jbeanCostProp);
+            //graphService.SaveAction(registerAction);
         }
 
         static void AchievementReg()
@@ -62,7 +62,7 @@ namespace Bowtie.ConsoleTest
             registerAchievement.Points = 1000;
 
             var achievementService = new JB2.Bowtie.Service.AchievementService();
-            achievementService.Save(registerAchievement);
+            //achievementService.Save(registerAchievement);
 
 
         }
