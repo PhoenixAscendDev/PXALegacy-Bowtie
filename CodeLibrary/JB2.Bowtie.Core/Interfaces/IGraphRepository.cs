@@ -20,7 +20,6 @@ namespace JB2.Bowtie
         IEnumerable<IGraphElement> GetGraphElementsByApplication(string applicationID);
         IEnumerable<IGraphElement> GetAll();
         JB2.Common.ServiceResult InsertGraphElement(IGraphElement element);
-
         JB2.Common.ServiceResult DeleteGraphElement(IGraphElement element);
 
         
