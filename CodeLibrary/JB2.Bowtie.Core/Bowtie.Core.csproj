@@ -179,6 +179,7 @@
     <Compile Include="BowtieObjectType.cs" />
     <Compile Include="BowtiePlayer.cs" />
     <Compile Include="BowtieSettingName.cs" />
+    <Compile Include="DewdropTriggerInfo.cs" />
     <Compile Include="EconomyRepository.cs" />
     <Compile Include="Enum\AchievementRarityType.cs" />
     <Compile Include="Enum\AchievementState.cs" />
