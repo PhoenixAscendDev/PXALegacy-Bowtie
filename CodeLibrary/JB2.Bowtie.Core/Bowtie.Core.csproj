@@ -201,7 +201,6 @@
     <Compile Include="Exceptions\ApplicationNotInitialized.cs" />
     <Compile Include="GameCommand.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="IAuthProvider.cs" />
     <Compile Include="IGameSession.cs" />
     <Compile Include="Interfaces\IApplicationable.cs" />
     <Compile Include="Interfaces\IAuthorizeRepository.cs" />
