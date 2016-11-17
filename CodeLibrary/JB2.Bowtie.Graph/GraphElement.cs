@@ -58,10 +58,6 @@ namespace JB2.Bowtie
             return _metadata[propertyName];
         }
 
-
-
-        
-
         public virtual string ToHtmlMetaTag()
         {
             string format = "<meta property=\"{0}\" content=\"{1}\">";

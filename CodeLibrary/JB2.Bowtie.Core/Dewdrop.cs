@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-
     [GraphElement("o67C3D61D")]
     [GraphPropertyMap("id", "ID")]
     [GraphPropertyMap("title", "Name")]
@@ -102,7 +101,7 @@ namespace JB2.Bowtie
 
         public void SetProperty<T>(string index, T newValue, bool changeLastUpdate)
         {
-            return _prop.SetProperty<T>(index, newValue, changeLastUpdate);
+            _prop.SetProperty<T>(index, newValue, changeLastUpdate);
         }
 
         public DateTime GetLastUpdate()
@@ -141,9 +140,6 @@ namespace JB2.Bowtie
         
 
         #endregion Static Methods
-
-
-
 
     }
 }
