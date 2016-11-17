@@ -146,7 +146,7 @@ namespace JB2.Bowtie.Service
         }
 
 
-        public IEnumerable<DewdropTriggerInfo> RetrieveTriggersByID(string dewdropID, OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
+        public IEnumerable<DewdropTriggerInfo> RetrieveTriggersByDewdrop(string dewdropID, OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
         {
             try
             {
@@ -175,8 +175,38 @@ namespace JB2.Bowtie.Service
             }
 
         }
-        #endregion Retrieve
+        
+        public DewdropTriggerInfo RetrieveTriggerById(string id, OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
+        {
+            try
+            {
+                var result = _repo.GetDewdropTriggerByID(id);
 
+                return result;
+
+            }
+            catch (NullReferenceException nullEx)
+            {
+                switch (errorReturntype)
+                {
+                    case OnErrorReturnType.ThrowException:
+                        throw new ObjectNotFoundInRepositoryException(nullEx, entityId: id, respository: _repo);
+                    case OnErrorReturnType.Null:
+                        return new DewdropTriggerInfo();
+                    case OnErrorReturnType.EmptyObject:
+                    default:
+                        return new DewdropTriggerInfo();
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.BowtieLog();
+                return new DewdropTriggerInfo();
+            }
+
+        }
+        
+        #endregion Retrieve
 
         public JB2.Common.ServiceResult Save(DewdropTriggerInfo trigger, OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
         {
@@ -211,6 +241,53 @@ namespace JB2.Bowtie.Service
         {
             _repo.Insert(entity);
             return true;
+        }
+
+
+
+        public JB2.Common.ServiceResult PullsDewdropTriggers(IPlayerDewdrop pd)
+        {
+            var result = new JB2.Common.ServiceResult();
+            var triggers = RetrieveTriggersByDewdrop(pd.GetDewdropID());
+            foreach(var t in triggers)
+            {
+                try
+                {
+
+                    if (string.IsNullOrEmpty(t.Classname))
+                    {
+                        throw new ArgumentNullException("Classname");
+                    }
+                    var fullName = t.Namespace + "." + t.Classname;
+                    // This is assuming that the type will be in the same assembly
+                    // as the call. If that's not the case, we can look at that later.
+                    Type type = Type.GetType(fullName);
+                    if (type == null)
+                    {
+                        throw new ArgumentException("No such type: " + type);
+                    }
+                    if (!typeof(IDewdropTrigger).IsAssignableFrom(type))
+                    {
+                        throw new ArgumentException("Type " + type +
+                                                    " is not compatible with FooParent.");
+                    }
+                    var trigger = (IDewdropTrigger)Activator.CreateInstance(type, t.ParamaterString1, t.ParameterString2);
+
+                    if (trigger.ShouldWe(pd))
+                    {
+                        trigger.DoTheDew(pd);
+                        
+                    }
+
+                }
+                catch(Exception ex)
+                {
+                    ex.BowtieLog();
+                    result.Validation.Add(new Common.Validation(ex) { IsValid = false });
+
+                }
+            }
+            return result;
         }
 
         #region PlayerDewdrop
