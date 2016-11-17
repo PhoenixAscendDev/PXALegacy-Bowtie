@@ -18,9 +18,15 @@ namespace JB2.Bowtie
 
         #region DewdropTriggers
 
-        IEnumerable<DewdropTriggerInfo> GetDewdropTriggersBy(string dewdropID);
+        IEnumerable<DewdropTriggerInfo> GetDewdropTriggersByDewdrop(string dewdropID);
 
         void InsertTriggerInfo(DewdropTriggerInfo info);
+
+        DewdropTriggerInfo GetDewdropTriggerByID(string id);
+
+        void DeleteTriggerInfo(DewdropTriggerInfo info);
+
+
 
 
 

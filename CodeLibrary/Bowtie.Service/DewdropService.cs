@@ -150,7 +150,7 @@ namespace JB2.Bowtie.Service
         {
             try
             {
-                var result = _repo.GetDewdropTriggersBy(dewdropID);
+                var result = _repo.GetDewdropTriggersByDewdrop(dewdropID);
 
                 return result;
 
@@ -189,7 +189,7 @@ namespace JB2.Bowtie.Service
                 switch (errorReturntype)
                 {
                     case OnErrorReturnType.ThrowException:
-                        throw new ObjectNotFoundInRepositoryException(nullEx, entityId: dewdrop.ID, respository: _repo);
+                        throw new ObjectNotFoundInRepositoryException(nullEx, entityId: trigger.ID, respository: _repo);
                     case OnErrorReturnType.Null:
                         return null;
                     case OnErrorReturnType.EmptyObject:

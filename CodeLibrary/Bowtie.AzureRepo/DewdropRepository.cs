@@ -102,29 +102,38 @@ namespace JB2.Bowtie.Data.Azure
 
         #region DewdropTriggers
 
-        public IEnumerable<DewdropTriggerInfo> GetDewdropTriggersBy(string dewdropID)
+        public IEnumerable<DewdropTriggerInfo> GetDewdropTriggersByDewdrop(string dewdropID)
         {
             var e = _table.GetByPartitionKey<DynamicTableEntity>("dewdropTrigger:dewdrop:" + dewdropID);
 
             return convertToTriggerInfo(e);
         }
 
-
         public void InsertTriggerInfo(DewdropTriggerInfo info)
         {
             var e = converToEntity(info);
 
-            e.PartitionKey = "dewdropTrigger";
-            e.RowKey = "id:" + JB2.Common.NewID.ShortGuid();
+            e.PartitionKey = "dewdroptrigger";
+            e.RowKey = "id:" + info.ID;
             _table.Insert<DynamicTableEntity>(e);
 
-            e.PartitionKey = "drewdropTrigger:dewdrop:" + info.DewdropID;
-            e.RowKey = "id" + JB2.Common.NewID.ShortGuid();
+            e.PartitionKey = "dewdroptrigger:dewdrop:" + info.DewdropID;
+            e.RowKey = "id" + info.ID;
             _table.Insert<DynamicTableEntity>(e);
 
         }
 
+        public DewdropTriggerInfo GetDewdropTriggerByID(string id)
+        {
+            var e = _table.GetEntity<DynamicTableEntity>("dewdroptrigger", "id:" + id);
+            return convertToTriggerInfo(e);
+        }
 
+        public void DeleteTriggerInfo(DewdropTriggerInfo info)
+        {
+            _table.Delete<DynamicTableEntity>("dewdroptrigger: dewdrop:" + info.DewdropID, "id" + info.ID);
+            _table.Delete<DynamicTableEntity>("dewdroptrigger", "id" + info.ID);
+        }
 
         #endregion DewdropTriggers
 
@@ -152,6 +161,7 @@ namespace JB2.Bowtie.Data.Azure
             result.ParamaterString1 = e.GetPropertyValue<string>("ParamString1", string.Empty);
             result.ParameterString2 = e.GetPropertyValue<string>("ParamString2", string.Empty);
             result.TriggerType = e.GetPropertyValue<string>("TriggerType", string.Empty);
+            result.ID = e.GetPropertyValue<string>("ID", string.Empty);
 
             return result;
 
@@ -166,6 +176,7 @@ namespace JB2.Bowtie.Data.Azure
             result.SetProperty<string>("ParamString1", info.ParamaterString1);
             result.SetProperty<string>("ParamString2", info.ParameterString2);
             result.SetProperty<string>("TriggerType", info.TriggerType);
+            result.SetProperty<string>("ID", info.ID);
             return result;
         }
 
