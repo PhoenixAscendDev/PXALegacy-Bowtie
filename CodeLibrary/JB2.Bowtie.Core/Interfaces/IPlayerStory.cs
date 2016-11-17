@@ -10,9 +10,9 @@ namespace JB2.Bowtie
 {
     public interface IPlayerStory : IPlayerable<string>, IIDNamePair<string, string>, IApplicationable<string>
     {
-        IGraphElement Action { get; set; }
+        string ActionName { get; set; }
 
-        IGraphElement Object { get; set; }
+        string ObjectName { get; set; }
 
         DateTime CreateDate { get; set; }
 

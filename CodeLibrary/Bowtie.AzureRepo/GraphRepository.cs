@@ -220,9 +220,7 @@ namespace JB2.Bowtie.Data.Azure
 
         private JB2.Grab.IPipe convertToGraphPipe(IPlayerStory story)
         {
-            JB2.Grab.Pipe pipe = Pipe.New(story.Name, "appPlayer".ToLower(), story.Action.Name.ToLower(), story.Object.Name.ToLower());
-
-
+            JB2.Grab.Pipe pipe = Pipe.New(story.Name, "appPlayer".ToLower(), story.ActionName.ToLower(), story.ObjectName.ToLower());
             var playerRepo = JB2.Settings.Bowtie.UnitOfWork.PlayerRepository;
 
             var player = playerRepo.GetAppPlayerByID(story.GetPlayerID(), story.GetApplicationID());
@@ -251,13 +249,13 @@ namespace JB2.Bowtie.Data.Azure
                 pipe.Edge.AddProperty<string>(p.PropertyName, p.GetValue().StringValue);
             }
 
-            pipe.Edge.AddProperty<string>("actionID", story.Action.ID);
+            
 
             foreach (var p in story.ObjectData)
             {
                 pipe.Node2.AddProperty<string>(p.PropertyName, p.GetValue().StringValue);
             }
-            pipe.Node2.AddProperty<string>("objectID", story.Object.ID);
+            
 
 
             return pipe;

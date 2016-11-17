@@ -11,6 +11,17 @@ namespace JB2.Bowtie
     public static class GraphExtension
     {
 
+        public static JB2.Grab.IEdge ToEdge(this JB2.Bowtie.GraphAction action)
+        {
+            JB2.Grab.Edge edge = Edge.New(action.Name);
+
+            foreach (var p in action.GetProperties())
+            {
+                edge.AddProperty<string>(p.Name, string.Empty);
+            }
+            return edge;
+        }
+
         public static JB2.Grab.INode ToNode(this JB2.Common.IClass o)
         {
             INode node = null;
@@ -29,12 +40,25 @@ namespace JB2.Bowtie
 
                 var attributes = Attribute.GetCustomAttributes(o.GetType(), typeof(GraphPropertyMapAttribute));
 
-                foreach (var a in attributes)
+                foreach (var attribute in attributes)
                 {
+                    var a = (GraphPropertyMapAttribute)attribute;
                     try
                     {
-                        var value = o.GetType().GetProperty(((GraphPropertyMapAttribute)a).MemberName).GetValue(o, null);
-                        node.AddProperty<string>(((GraphPropertyMapAttribute)a).GraphPropertyName, value.ToString());
+                        object value = null;
+                        switch (a.MemberType)
+                        {
+                            case Enum.ClassMemberType.Property:
+                                value = o.GetType().GetProperty(a.MemberName).GetValue(o, null);
+                                break;
+                            case Enum.ClassMemberType.Method:
+                                value = o.GetType().GetMethod(a.MemberName).Invoke(o, null);
+                                break;
+                        }
+
+                        if(value != null)
+                            node.AddProperty<string>(a.GraphPropertyName, value.ToString());
+
                     }
                     catch (Exception ex)
                     {
@@ -63,7 +87,7 @@ namespace JB2.Bowtie
             return node;
         }
 
-        public static IPlayerStory ToPlayerStory(this JB2.Common.IClass o, string playerID, string applicationID, string actionName)
+        public static IPlayerStory ToPlayerStory(this JB2.Common.IClass o, string playerID, string applicationID, string actionName, IEnumerable<JB2.Common.IMetaData> playerData = null)
         {
             try
             {
@@ -72,14 +96,22 @@ namespace JB2.Bowtie
 
                 var graphRepo = JB2.Settings.Bowtie.UnitOfWork.GraphRepository;
 
-                var graphObject = graphRepo.GetGraphElement(id);
+                var graphObject = (GraphObject)graphRepo.GetGraphElement(id);
+                var graphAction = (GraphAction)graphRepo.GetGraphElementByName(actionName);
 
+                var node = o.ToNode();
+                var edge = graphAction.ToEdge();
 
+                PlayerStory pStory = new PlayerStory(playerID, applicationID, (GraphAction)graphAction, (GraphObject)graphObject);
+                pStory.ObjectData = node.GetProperties();
+                pStory.ActionData = edge.GetProperties();
 
-                PlayerStory pStory = new PlayerStory(playerID, applicationID, (GraphStory)graphObject);
+                pStory.ObjectData.ToList().Add(new JB2.Common.MetaData<string>("objectID", graphObject.ID));
+                pStory.ActionData.ToList().Add(new JB2.Common.MetaData<string>("actionID", graphAction.ID));
 
+                if (playerData != null)
+                    pStory.PlayerData = playerData;
                 return pStory;
-
             }
 
             catch (Exception ex)
