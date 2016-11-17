@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    
+
+    [GraphElement("o67C3D61D")]
+    [GraphPropertyMap("id", "ID")]
+    [GraphPropertyMap("title", "Name")]
+    [GraphPropertyMap("appID", "GetApplicationID", Enum.ClassMemberType.Method)]
+    [GraphPropertyMap("storyID", "GetGraphID", Enum.ClassMemberType.Method)]
+    [GraphPropertyMap("jbeanCost", "GetjBeanCost", Enum.ClassMemberType.Method)]
+    [GraphPropertyMap("description", "GetDescription", Enum.ClassMemberType.Method)]
     public class Dewdrop : JB2.Common.IDNamePair, IDewdrop, JB2.Identity.IApplicationable, JB2.Common.IIDNamePair<string, string>
     {
         #region Fields
@@ -14,10 +21,15 @@ namespace JB2.Bowtie
         protected string _graphID;
         protected string _description;
         protected int _jbeanCost;
+
+        protected JB2.Common.MetaDataCollection _prop;
+
         #endregion Fields
 
+        #region Constructors
         public Dewdrop()
         {
+            _prop = new JB2.Common.MetaDataCollection();
 
         }
 
@@ -31,6 +43,9 @@ namespace JB2.Bowtie
             _jbeanCost = jbeanCost;
         }
 
+        #endregion Constructors
+
+        #region Properties
         protected string ApplicationID
         {
             get
@@ -55,6 +70,9 @@ namespace JB2.Bowtie
             }
         }
 
+        #endregion Properties
+
+        #region Methods
         public string GetApplicationID()
         {
             return _appid;
@@ -69,7 +87,32 @@ namespace JB2.Bowtie
         {
             return _description;
         }
+        public int GetjBeanCost()
+        {
+            return _jbeanCost;
+        }
 
+        #endregion Methods
+
+        #region IClass
+        public T GetProperity<T>(string index, T defaultValue)
+        {
+            return _prop.GetProperty<T>(index, defaultValue);
+        }
+
+        public void SetProperty<T>(string index, T newValue, bool changeLastUpdate)
+        {
+            return _prop.SetProperty<T>(index, newValue, changeLastUpdate);
+        }
+
+        public DateTime GetLastUpdate()
+        {
+            return System.DateTime.Now;
+        }
+
+        #endregion IClass
+
+        #region Static Methods
         public static Dewdrop NewDewdrop(string name, string description, string applicationID, string graphID, int jbeanCost = 0)
         {
             Dewdrop newDew = new Dewdrop();
@@ -95,9 +138,12 @@ namespace JB2.Bowtie
             return newDew;
         }
 
-        public int GetjBeanCost()
-        {
-            return _jbeanCost;
-        }
+        
+
+        #endregion Static Methods
+
+
+
+
     }
 }

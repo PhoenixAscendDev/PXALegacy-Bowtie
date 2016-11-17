@@ -169,6 +169,7 @@
     <Compile Include="ApplicationStatePair.cs" />
     <Compile Include="AppPlayer.cs" />
     <Compile Include="Attributes\GraphIDAttribute.cs" />
+    <Compile Include="Attributes\GraphProperty.cs" />
     <Compile Include="Attributes\PlayerStoryAttribute.cs" />
     <Compile Include="AuthInfo.cs" />
     <Compile Include="Backpack.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Enum\ModulePermission.cs" />
     <Compile Include="Enum\ModuleStatusType.cs" />
     <Compile Include="Enum\ModuleType.cs" />
+    <Compile Include="Enum\ReflectionType.cs" />
     <Compile Include="Enum\RepoDataSource.cs" />
     <Compile Include="Enum\RepositoryType.cs" />
     <Compile Include="Enum\ScoreOrderType.cs" />

@@ -23,7 +23,7 @@ namespace JB2.Bowtie
 
         #region Constructor
 
-        public PlayerStory(string playerID, string applicationID, GraphStory story ) : this(playerID,applicationID,story.AssociatedAction, story.AssociatedObject)
+        public PlayerStory(string playerID, string applicationID, GraphStory story) : this(playerID, applicationID, story.AssociatedAction, story.AssociatedObject)
         {
 
         }
@@ -99,7 +99,7 @@ namespace JB2.Bowtie
 
         public IEnumerable<IMetaData> PlayerData
         {
-            get;set;
+            get; set;
         }
 
         public string GetPlayerID()
@@ -110,6 +110,11 @@ namespace JB2.Bowtie
         public string GetApplicationID()
         {
             return _applicationID;
+        }
+
+        public int ActionWeight
+        {
+            get;set;
         }
     }
 }

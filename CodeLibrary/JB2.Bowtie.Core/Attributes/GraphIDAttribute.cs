@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class GraphIDAttribute : Attribute
+    public class GraphElementAttribute : Attribute
     {
         #region Fields
         protected string _id;
         #endregion Fields
         #region Constructor
-        public GraphIDAttribute(string id)
+        public GraphElementAttribute(string id)
         {
             _id = id;
         }

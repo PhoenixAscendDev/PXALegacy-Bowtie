@@ -22,5 +22,7 @@ namespace JB2.Bowtie
 
         IEnumerable<IMetaData> PlayerData { get; set; }
 
+        int ActionWeight { get; set; }
+
     }
 }
