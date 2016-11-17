@@ -10,7 +10,7 @@ using JB2.Common.Data;
 
 namespace JB2.Bowtie.Data.Azure
 {
-    public class DewdropRepository : BowtieRepository<Dewdrop,DewdropEntity>,  IDewdropRepository
+    public class DewdropRepository : BowtieRepository<Dewdrop, DewdropEntity>, IDewdropRepository
     {
 
         #region Fields
@@ -20,9 +20,9 @@ namespace JB2.Bowtie.Data.Azure
         #endregion Fields
 
         #region Constructors
-        public DewdropRepository() : this("dewdrops","general")
+        public DewdropRepository() : this("dewdrops", "general")
         {
-            
+
         }
 
         protected DewdropRepository(string tableName, string blobName)
@@ -46,7 +46,7 @@ namespace JB2.Bowtie.Data.Azure
 
         public IEnumerable<Dewdrop> GetByApplicationID(string appID)
         {
-            var list_e = _table.GetByRowKeyStartWith<DewdropEntity>("app:" + appID, "id:",1000);
+            var list_e = _table.GetByRowKeyStartWith<DewdropEntity>("app:" + appID, "id:", 1000);
             return convertToObject(list_e);
         }
 
@@ -78,7 +78,7 @@ namespace JB2.Bowtie.Data.Azure
 
         public IEnumerable<IPlayerDewdrop> GetPlayerDewsByPlayerID(string playerID)
         {
-            var elements = _playerTable.GetByRowKeyStartWith<DynamicTableEntity>("player:" + playerID, "dewlog:",1000);
+            var elements = _playerTable.GetByRowKeyStartWith<DynamicTableEntity>("player:" + playerID, "dewlog:", 1000);
             return convertToPlayerDewdrop(elements);
         }
 
@@ -98,12 +98,85 @@ namespace JB2.Bowtie.Data.Azure
             savePlayerDew(convertToEntity(playerdew), true);
         }
 
+
+
+        #region DewdropTriggers
+
+        public IEnumerable<DewdropTriggerInfo> GetDewdropTriggersBy(string dewdropID)
+        {
+            var e = _table.GetByPartitionKey<DynamicTableEntity>("dewdropTrigger:dewdrop:" + dewdropID);
+
+            return convertToTriggerInfo(e);
+        }
+
+
+        public void InsertTriggerInfo(DewdropTriggerInfo info)
+        {
+            var e = converToEntity(info);
+
+            e.PartitionKey = "dewdropTrigger";
+            e.RowKey = "id:" + JB2.Common.NewID.ShortGuid();
+            _table.Insert<DynamicTableEntity>(e);
+
+            e.PartitionKey = "drewdropTrigger:dewdrop:" + info.DewdropID;
+            e.RowKey = "id" + JB2.Common.NewID.ShortGuid();
+            _table.Insert<DynamicTableEntity>(e);
+
+        }
+
+
+
+        #endregion DewdropTriggers
+
+        protected IEnumerable<DewdropTriggerInfo> convertToTriggerInfo(IEnumerable<DynamicTableEntity> elist)
+        {
+            List<DewdropTriggerInfo> list = new List<DewdropTriggerInfo>();
+            foreach (var e in elist)
+            {
+                list.Add(convertToTriggerInfo(e));
+            }
+
+            return list;
+        }
+
+        protected DewdropTriggerInfo convertToTriggerInfo(DynamicTableEntity e)
+        {
+            if (e == null)
+                throw new NullReferenceException();
+
+            var result = new DewdropTriggerInfo();
+
+            result.Classname = e.GetPropertyValue<string>("Classname", string.Empty);
+            result.DewdropID = e.GetPropertyValue<string>("DewdropID", string.Empty);
+            result.Namespace = e.GetPropertyValue<string>("Namespace", string.Empty);
+            result.ParamaterString1 = e.GetPropertyValue<string>("ParamString1", string.Empty);
+            result.ParameterString2 = e.GetPropertyValue<string>("ParamString2", string.Empty);
+
+            return result;
+
+        }
+
+        protected DynamicTableEntity converToEntity(DewdropTriggerInfo info)
+        {
+            var result = new DynamicTableEntity();
+            result.SetProperty<string>("Classname", info.Classname);
+            result.SetProperty<string>("DewdropID", info.DewdropID);
+            result.SetProperty<string>("Namespace", info.Namespace);
+            result.SetProperty<string>("ParamString1", info.ParamaterString1);
+            result.SetProperty<string>("ParamString2", info.ParameterString2);
+
+            return result;
+
+        }
+
+
+
         protected override Dewdrop convertToObject(DewdropEntity e)
         {
             if (e == null)
                 throw new NullReferenceException();
-            var result = new Dewdrop(e.ID, e.Name,e.Description,e.ApplicationID, e.GraphID,e.jBeanCost);
-           
+            var result = new Dewdrop(e.ID, e.Name, e.Description, e.ApplicationID, e.GraphID, e.jBeanCost);
+
             return result;
         }
 
@@ -116,7 +189,7 @@ namespace JB2.Bowtie.Data.Azure
             metadata.Add(new MetaData<string>("DewdropID", e.Properties["DewdropID"].StringValue));
             metadata.Add(new MetaData<string>("PlayerID", e.Properties["PlayerID"].StringValue));
 
-            
+
             var result = new PlayerDewdrop(metadata, e.Properties["Value"].StringValue);
             result.ID = e.Properties["ID"].StringValue;
             result.Name = e.Properties["Name"].StringValue;
@@ -128,15 +201,15 @@ namespace JB2.Bowtie.Data.Azure
         {
             List<Dewdrop> result = new List<Dewdrop>(list.Count());
 
-            foreach(DewdropEntity e in list)
+            foreach (DewdropEntity e in list)
             {
-                    result.Add(convertToObject(e));
+                result.Add(convertToObject(e));
             }
 
             return result;
         }
 
-        protected  IEnumerable<IPlayerDewdrop> convertToPlayerDewdrop(IEnumerable<DynamicTableEntity> list)
+        protected IEnumerable<IPlayerDewdrop> convertToPlayerDewdrop(IEnumerable<DynamicTableEntity> list)
         {
             List<IPlayerDewdrop> result = new List<IPlayerDewdrop>(list.Count());
 
@@ -214,6 +287,6 @@ namespace JB2.Bowtie.Data.Azure
             _table.Delete<DewdropEntity>(e.PartitionKey, e.RowKey);
         }
 
-       
     }
+
 }

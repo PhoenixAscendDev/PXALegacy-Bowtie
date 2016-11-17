@@ -145,7 +145,67 @@ namespace JB2.Bowtie.Service
             throw new NotImplementedException();
         }
 
+
+        public IEnumerable<DewdropTriggerInfo> RetrieveTriggersByID(string dewdropID, OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
+        {
+            try
+            {
+                var result = _repo.GetDewdropTriggersBy(dewdropID);
+
+                return result;
+
+            }
+            catch (NullReferenceException nullEx)
+            {
+                switch (errorReturntype)
+                {
+                    case OnErrorReturnType.ThrowException:
+                        throw new ObjectNotFoundInRepositoryException(nullEx, entityId: dewdropID, respository: _repo);
+                    case OnErrorReturnType.Null:
+                        return null;
+                    case OnErrorReturnType.EmptyObject:
+                    default:
+                        return new DewdropTriggerInfo[0];
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.BowtieLog();
+                return new DewdropTriggerInfo[0];
+            }
+
+        }
         #endregion Retrieve
+
+
+        public JB2.Common.ServiceResult Save(DewdropTriggerInfo trigger, OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
+        {
+            try
+            {
+                _repo.InsertTriggerInfo(trigger);
+            }
+            catch (NullReferenceException nullEx)
+            {
+                switch (errorReturntype)
+                {
+                    case OnErrorReturnType.ThrowException:
+                        throw new ObjectNotFoundInRepositoryException(nullEx, entityId: dewdrop.ID, respository: _repo);
+                    case OnErrorReturnType.Null:
+                        return null;
+                    case OnErrorReturnType.EmptyObject:
+                    default:
+                        return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.BowtieLog();
+                return false;
+            }
+
+            return true;
+
+        }
 
         public bool Save(Dewdrop entity)
         {
