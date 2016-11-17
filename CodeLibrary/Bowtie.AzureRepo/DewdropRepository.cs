@@ -151,6 +151,7 @@ namespace JB2.Bowtie.Data.Azure
             result.Namespace = e.GetPropertyValue<string>("Namespace", string.Empty);
             result.ParamaterString1 = e.GetPropertyValue<string>("ParamString1", string.Empty);
             result.ParameterString2 = e.GetPropertyValue<string>("ParamString2", string.Empty);
+            result.TriggerType = e.GetPropertyValue<string>("TriggerType", string.Empty);
 
             return result;
 
@@ -164,9 +165,8 @@ namespace JB2.Bowtie.Data.Azure
             result.SetProperty<string>("Namespace", info.Namespace);
             result.SetProperty<string>("ParamString1", info.ParamaterString1);
             result.SetProperty<string>("ParamString2", info.ParameterString2);
-
+            result.SetProperty<string>("TriggerType", info.TriggerType);
             return result;
-
         }
 
 

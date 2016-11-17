@@ -17,5 +17,7 @@ namespace JB2.Bowtie
         public string ParamaterString1 { get; set; }
 
         public string ParameterString2 { get; set; }
+
+        public string TriggerType { get; set}
     }
 }
