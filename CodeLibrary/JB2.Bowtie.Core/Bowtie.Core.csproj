@@ -39,8 +39,8 @@
       <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.0\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Data.AzureStorage, Version=0.2.9.21039, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.2.9\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
+    <Reference Include="JB2.Common.Data.AzureStorage, Version=0.3.0.482, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.3.0.482\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Date, Version=0.2.2.22361, Culture=neutral, processorArchitecture=MSIL">
@@ -208,6 +208,7 @@
     <Compile Include="Interfaces\IAuthorizeRepository.cs" />
     <Compile Include="Interfaces\IBowtieGroup.cs" />
     <Compile Include="Interfaces\IDewdrop.cs" />
+    <Compile Include="Interfaces\IDewdropQueue.cs" />
     <Compile Include="Interfaces\IGameEngine.cs" />
     <Compile Include="IBowtieObject.cs" />
     <Compile Include="IBowtiePlayer.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="Interfaces\IInventoryItem.cs" />
     <Compile Include="Interfaces\ILeaderboard.cs" />
     <Compile Include="Interfaces\ILeaderboardRepository.cs" />
+    <Compile Include="Interfaces\IMaintenanceQueue.cs" />
     <Compile Include="Interfaces\IMasterLeaderboard.cs" />
     <Compile Include="Interfaces\IModule.cs" />
     <Compile Include="Interfaces\IModuleRepository.cs" />
@@ -231,6 +233,7 @@
     <Compile Include="Interfaces\IPlayerAchievement.cs" />
     <Compile Include="Interfaces\IPlayerInventoryItem.cs" />
     <Compile Include="Interfaces\IPlayerStory.cs" />
+    <Compile Include="Interfaces\IQueue.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="IPlayerRespository.cs" />
     <Compile Include="IWallet.cs" />

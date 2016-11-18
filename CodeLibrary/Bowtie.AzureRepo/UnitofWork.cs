@@ -117,7 +117,23 @@ namespace JB2.Bowtie.Data.Azure
                 return (JB2.Common.Log.ILogRepo)GetRepository(RepositoryType.Log);
             }
         }
-        
+
+        public IDewdropQueueRepo DewdropQueue
+        {
+            get
+            {
+                return new JB2.Bowtie.Queue.Azure.DewdropQueue(AzureStorage.DewdropQueue);
+            }
+        }
+
+        public IMaintenanceQueueRepo MaintenanceQueue
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
 
         //public JB2.Common.IPlayerRepo PlayerRepository
         //{

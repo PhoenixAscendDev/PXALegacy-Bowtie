@@ -80,6 +80,23 @@ namespace JB2.Bowtie.Data.Azure
         }
 
 
+        public static AzureQueueRepository DewdropQueue
+        {
+            get
+            {
+               return JB2.Infrastructure.Storage.BowtieAccount.GetQueue("dewdrop");
+            }
+        }
+
+        public static AzureQueueRepository MaintenanceQueue
+        {
+            get
+            {
+                return JB2.Infrastructure.Storage.BowtieAccount.GetQueue("maintenanceTasks");
+            }
+        }
+
+
 
 
     }

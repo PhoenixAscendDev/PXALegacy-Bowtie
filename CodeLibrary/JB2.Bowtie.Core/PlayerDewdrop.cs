@@ -8,6 +8,7 @@ using JB2.Common;
 
 namespace JB2.Bowtie
 {
+    [Serializable]
     public class PlayerDewdrop : JB2.Common.ObjectWithMetadata<byte,string,string>,IPlayerDewdrop
     {
         #region Fields

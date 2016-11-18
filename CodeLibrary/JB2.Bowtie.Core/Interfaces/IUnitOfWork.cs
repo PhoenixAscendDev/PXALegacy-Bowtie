@@ -33,6 +33,13 @@ namespace JB2.Bowtie
 
         JB2.Common.Log.ILogRepo LogRepository { get; }
 
-      
+
+        #region Queues
+
+        IDewdropQueueRepo DewdropQueue { get; }
+        IMaintenanceQueueRepo MaintenanceQueue { get; }
+
+        #endregion Queues
+
     }
 }
