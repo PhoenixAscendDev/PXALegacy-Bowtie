@@ -223,6 +223,10 @@
       <Project>{7c28a0e8-2266-4e96-bab5-ece5e7bf9ce9}</Project>
       <Name>Bowtie.Graph</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JB2.Bowtie.Queue\Bowtie.QueueAzure.csproj">
+      <Project>{79614df6-f8db-47b0-bac1-d51312dfdf69}</Project>
+      <Name>Bowtie.QueueAzure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

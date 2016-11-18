@@ -245,7 +245,7 @@ namespace JB2.Bowtie.Service
 
 
 
-        public JB2.Common.ServiceResult PullsDewdropTriggers(IPlayerDewdrop pd)
+        public JB2.Common.ServiceResult FireDewdropTriggers(IPlayerDewdrop pd)
         {
             var result = new JB2.Common.ServiceResult();
             var triggers = RetrieveTriggersByDewdrop(pd.GetDewdropID());
@@ -298,11 +298,13 @@ namespace JB2.Bowtie.Service
         }
 
         
-        public bool Save(IPlayerDewdrop playerdewdrop)
+        public bool Save(IPlayerDewdrop playerdewdrop, bool addToQueue = true)
         {
 
-
             _repo.InsertPlayerDew(playerdewdrop);
+
+            if (addToQueue)
+                _uofw.DewdropQueue.PushDewdrop(playerdewdrop);
 
 
 
