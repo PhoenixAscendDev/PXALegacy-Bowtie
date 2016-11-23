@@ -48,10 +48,10 @@ namespace JB2.Bowtie.Data.Azure
                 return null;
         }
 
-        public BowtieMetadata GetMetaDataByPlayerID(string playerID)
-        {
-            throw new NotImplementedException();
-        }
+        //public BowtieMetadata GetMetaDataByPlayerID(string playerID)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
 
         public void Insert(ApplicationPlayer player)

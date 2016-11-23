@@ -10,7 +10,7 @@ namespace JB2.Bowtie
 {
     public interface IBowtiePlayerRespository : JB2.Common.IRepository<JB2.Bowtie.IBowtiePlayer, string>
     {
-        BowtieMetadata GetMetaDataByPlayerID(string playerID);
+        //BowtieMetadata GetMetaDataByPlayerID(string playerID);
 
         void Insert(ApplicationPlayer player);
 
