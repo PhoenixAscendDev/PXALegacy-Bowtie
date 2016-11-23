@@ -9,6 +9,7 @@ namespace JB2.Bowtie.Enum
     public enum RepositoryType
     {
         Application,
+        AuthProvider,
         Player,
         Game,
         Achievement,

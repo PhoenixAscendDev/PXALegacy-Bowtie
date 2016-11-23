@@ -63,7 +63,6 @@ namespace JB2.Bowtie.Service
             return newdew;
         }
 
-
         #region Retrieve 
         public IEnumerable<Dewdrop> Retrieve(string request, OnErrorReturnType errorReturntype = OnErrorReturnType.ThrowException)
         {
@@ -243,8 +242,6 @@ namespace JB2.Bowtie.Service
             return true;
         }
 
-
-
         public JB2.Common.ServiceResult FireDewdropTriggers(IPlayerDewdrop pd)
         {
             var result = new JB2.Common.ServiceResult();
@@ -296,8 +293,7 @@ namespace JB2.Bowtie.Service
         {
             return _repo.GetPlayerDewsByPlayerID(id);
         }
-
-        
+       
         public bool Save(IPlayerDewdrop playerdewdrop, bool addToQueue = true)
         {
 
@@ -305,8 +301,6 @@ namespace JB2.Bowtie.Service
 
             if (addToQueue)
                 _uofw.DewdropQueue.PushDewdrop(playerdewdrop);
-
-
 
             return true;
         }

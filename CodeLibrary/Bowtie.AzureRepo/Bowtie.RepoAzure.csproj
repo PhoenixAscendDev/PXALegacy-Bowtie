@@ -195,6 +195,7 @@
     <Compile Include="AchievementRepository.cs" />
     <Compile Include="ApplicationRepository.cs" />
     <Compile Include="AuthorizeRepository.cs" />
+    <Compile Include="AuthProviderRepository.cs" />
     <Compile Include="AzureStorage.cs" />
     <Compile Include="BaseRepository.cs" />
     <Compile Include="BingoCardEntry.cs" />

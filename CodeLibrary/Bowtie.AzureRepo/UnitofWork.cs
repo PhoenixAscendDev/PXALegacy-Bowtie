@@ -118,6 +118,15 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public IAuthProviderRepository AuthProviderRepository
+        {
+            get
+            {
+                return (JB2.Bowtie.IAuthProviderRepository)GetRepository(RepositoryType.AuthProvider);
+            }
+
+        }
+
         public IDewdropQueueRepo DewdropQueue
         {
             get
@@ -126,6 +135,8 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+
+
         public IMaintenanceQueueRepo MaintenanceQueue
         {
             get
@@ -133,6 +144,8 @@ namespace JB2.Bowtie.Data.Azure
                 throw new NotImplementedException();
             }
         }
+
+        
 
 
         //public JB2.Common.IPlayerRepo PlayerRepository
@@ -193,6 +206,9 @@ namespace JB2.Bowtie.Data.Azure
                                 break;
                             case RepositoryType.Log:
                                 _repos.Add(repository, new JB2.Common.Log.AzureRepo(AzureStorage.LogTable));
+                                break;
+                            case RepositoryType.AuthProvider:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.AuthProviderRepository());
                                 break;
                         }
                     }

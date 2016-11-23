@@ -115,7 +115,7 @@ namespace JB2.Bowtie
                 //add dewdrop
                 var dewdropService = new JB2.Bowtie.Service.DewdropService();
                 PlayerDewdrop pdew = dewdropService.GenerateNewPlayerDewdrop(btplayer, dewdrop, value.ToString());
-                dewdropService.Save(pdew);
+                dewdropService.Save(pdew,false);
 
                 btplayer.AddDewDrop(dewdrop);
 

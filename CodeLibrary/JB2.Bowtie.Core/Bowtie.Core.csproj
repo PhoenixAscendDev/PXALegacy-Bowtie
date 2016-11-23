@@ -172,6 +172,7 @@
     <Compile Include="Attributes\GraphProperty.cs" />
     <Compile Include="Attributes\PlayerStoryAttribute.cs" />
     <Compile Include="AuthInfo.cs" />
+    <Compile Include="AuthProvider.cs" />
     <Compile Include="Backpack.cs" />
     <Compile Include="BowtieGroup.cs" />
     <Compile Include="BowtieMetaDataCollection.cs" />
@@ -202,10 +203,12 @@
     <Compile Include="Exceptions\ApplicationNotInitialized.cs" />
     <Compile Include="GameCommand.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="IAuthProvider.cs" />
     <Compile Include="IDewdropTrigger.cs" />
     <Compile Include="IGameSession.cs" />
     <Compile Include="Interfaces\IApplicationable.cs" />
     <Compile Include="Interfaces\IAuthorizeRepository.cs" />
+    <Compile Include="Interfaces\IAuthProviderRepo.cs" />
     <Compile Include="Interfaces\IBowtieGroup.cs" />
     <Compile Include="Interfaces\IDewdrop.cs" />
     <Compile Include="Interfaces\IDewdropQueue.cs" />
