@@ -201,6 +201,7 @@
     <Compile Include="Events.cs" />
     <Compile Include="ExceptionExtension.cs" />
     <Compile Include="Exceptions\ApplicationNotInitialized.cs" />
+    <Compile Include="Extenstion\PlayerExtenstion.cs" />
     <Compile Include="GameCommand.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="IAuthProvider.cs" />
@@ -247,6 +248,7 @@
     <Compile Include="IPlayerDewdrop.cs" />
     <Compile Include="PlayerDewdrop.cs" />
     <Compile Include="PlayerInventoryItem.cs" />
+    <Compile Include="ProfileResource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="TokenName.cs" />

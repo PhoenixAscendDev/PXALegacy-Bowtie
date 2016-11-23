@@ -121,10 +121,6 @@ namespace JB2.Bowtie
 
                 this._dewdrops.Add(pdew);
 
-               
-
-
-
                 //fire event
                 if (DewdropIssued != null)
                     DewdropIssued(this, pdew, (TPlayer)player);

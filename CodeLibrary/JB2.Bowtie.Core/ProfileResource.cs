@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JB2.Bowtie
+{
+    public struct ProfileResourcePacket
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        public string DisplayName { get; set; }
+
+        public short AgeRangeMin { get; set; }
+
+        public short AgeRangeMax { get; set; }
+
+        public string Email { get; set; }
+
+        public string ProfilePicURL { get; set; }
+
+        public short BirthMonth { get; set; }
+
+        public short BirthDay { get; set; }
+
+        public string UserId { get; set; }
+
+        public string ProviderId { get; set; }
+
+
+
+
+
+
+
+    }
+}

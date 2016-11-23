@@ -158,6 +158,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extenstions\GraphExtension.cs" />
     <Compile Include="GraphAction.cs" />
     <Compile Include="GraphDelimiter.cs" />
     <Compile Include="GraphElement.cs" />

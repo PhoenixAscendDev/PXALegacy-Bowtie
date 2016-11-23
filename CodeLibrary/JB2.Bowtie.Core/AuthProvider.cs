@@ -8,10 +8,6 @@ namespace JB2.Bowtie
 {
     public class AuthProvider : JB2.Bowtie.BowtieObject, IAuthProvider
     {
-
-        
-
-
         public AuthProvider() : base()
         {
             _kind = Enum.BowtieObjectType.bowtie_auth;
@@ -24,7 +20,7 @@ namespace JB2.Bowtie
 
         #region Properties
 
-        public string ProfileDataEndpoint
+        public string ProfileResourceEndpoint
         {
             get
             {
