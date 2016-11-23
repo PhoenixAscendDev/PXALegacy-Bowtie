@@ -17,8 +17,11 @@ namespace JB2.Bowtie
         IEnumerable<IPlayerInventoryItem> GetModuleInventory(string moduleid);
 
 
-        
-        
+        JB2.Common.IRange<byte> AgeRange { get; set; }
+        short BirthMonth { get; set; }
+        short BirthDayOfMonth { get; set; }
+
+
         //int Age { get; set; }
         //string Gender { get; set; }
         IDictionary<string,int> DewdropCounts { get; set; }

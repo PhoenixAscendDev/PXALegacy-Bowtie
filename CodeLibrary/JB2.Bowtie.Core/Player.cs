@@ -57,31 +57,40 @@ namespace JB2.Bowtie
             }
         }
 
-        //public int Age
-        //{
-        //    get
-        //    {
-        //        return _metadata["Age"].GetValue().IntValue;
-        //    }
+        public virtual JB2.Common.IRange<byte> AgeRange
+        {
+            get
+            {
+                return _props.GetProperty<IRange<byte>>("AgeRange");
+            }
+            set
+            {
+                _props.SetProperty<IRange<byte>>("AgeRange", value);
+            }
+        }
 
-        //    set
-        //    {
-        //        _metadata["Age"].UpdateValue(value);
-        //    }
-        //}
-
-        //public string Gender
-        //{
-        //    get
-        //    {
-        //        return _metadata["Gender"].GetValue().StringValue;
-        //    }
-
-        //    set
-        //    {
-        //        _metadata["Gender"].UpdateValue(value);
-        //    }
-        //}
+        public virtual short BirthMonth
+        {
+            get
+            {
+                return _props.GetProperty<short>("BirthMonth");
+            }
+            set
+            {
+                _props.SetProperty<short>("BirthMonth", value);
+            }
+        }
+        public virtual short BirthDayOfMonth
+        {
+            get
+            {
+                return _props.GetProperty<short>("BirthDayOfMonth");
+            }
+            set
+            {
+                _props.SetProperty<short>("BirthDayOfMonth", value);
+            }
+        }
 
         public AuthInfo AuthInfo
         {
