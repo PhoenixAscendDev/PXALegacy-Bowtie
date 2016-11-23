@@ -15,8 +15,11 @@ namespace JB2.Bowtie
 
         BowtieMetadata GetModuleData(string moduleid);
         IEnumerable<IPlayerInventoryItem> GetModuleInventory(string moduleid);
+
+
         
-        int Age { get; set; }
+        
+        //int Age { get; set; }
         //string Gender { get; set; }
         IDictionary<string,int> DewdropCounts { get; set; }
         void AddDewDrop(IDewdrop dewdrop);

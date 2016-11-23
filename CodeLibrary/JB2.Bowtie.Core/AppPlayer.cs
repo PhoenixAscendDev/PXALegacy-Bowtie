@@ -92,7 +92,7 @@ namespace JB2.Bowtie
         public static ApplicationPlayer FromPlayer(IBowtiePlayer player, IApplication app)
         {
             ApplicationPlayer ap = new ApplicationPlayer(player.GetID(), app.GetID());
-            ap.Age = player.Age;
+            //ap.Age = player.Age;
             ap.AuthInfo = player.GetAuthInfo();
             ap.DisplayName = player.DisplayName;
             //ap.Gender = player.Gender;

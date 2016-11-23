@@ -57,18 +57,18 @@ namespace JB2.Bowtie
             }
         }
 
-        public int Age
-        {
-            get
-            {
-                return _metadata["Age"].GetValue().IntValue;
-            }
+        //public int Age
+        //{
+        //    get
+        //    {
+        //        return _metadata["Age"].GetValue().IntValue;
+        //    }
 
-            set
-            {
-                _metadata["Age"].UpdateValue(value);
-            }
-        }
+        //    set
+        //    {
+        //        _metadata["Age"].UpdateValue(value);
+        //    }
+        //}
 
         //public string Gender
         //{
