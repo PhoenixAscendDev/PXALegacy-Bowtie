@@ -42,6 +42,7 @@ namespace JB2.Bowtie.Data.Azure
             DynamicTableEntity e = new DynamicTableEntity();
             e.SetProperty<string>("ID", o.ID);
             e.SetProperty<string>("Name", o.Name);
+            e.SetProperty<string>("ProfileEndpoint", o.ProfileDataEndpoint);
 
             return e;
         }
@@ -64,6 +65,7 @@ namespace JB2.Bowtie.Data.Azure
 
             a.Name = e.GetPropertyValue<string>("Name",string.Empty);
             a.ID = e.GetPropertyValue<string>("ID", string.Empty);
+            a.ProfileDataEndpoint = e.GetPropertyValue<string>("ProfileEndpoint", string.Empty);
 
             return a;
 

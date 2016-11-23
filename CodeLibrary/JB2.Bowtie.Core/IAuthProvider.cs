@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IAuthProvider : JB2.Common.IIDNamePair<string,string>
+    public interface IAuthProvider : JB2.Common.IIDNamePair<string,string> , IBowtieObject
     {
-        
+        string ProfileDataEndpoint { get; set; }
 
     }
 }

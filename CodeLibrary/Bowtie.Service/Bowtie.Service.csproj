@@ -196,6 +196,7 @@
     <Compile Include="AchievementService.cs" />
     <Compile Include="AchievementTrigger.cs" />
     <Compile Include="ApplicationService.cs" />
+    <Compile Include="AuthProviderService.cs" />
     <Compile Include="DewdropService.cs" />
     <Compile Include="GameCommandService.cs" />
     <Compile Include="GenericService.cs" />

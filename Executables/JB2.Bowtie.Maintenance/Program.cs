@@ -152,6 +152,11 @@ namespace JB2.Bowtie.Maintenance
 
         }
 
+        //static void AddJB2ID()
+        //{
+        //    var appservice = new JB2.Bowtie.Service.
+        //}
+
 
         static void OnApplInitialized(IApplication application, string authorizeKey)
         {
@@ -163,6 +168,8 @@ namespace JB2.Bowtie.Maintenance
             ConfigureBowtie();
 
             var appService = new JB2.Bowtie.Service.ApplicationService();
+
+           
 
             //SetupModules();
 
