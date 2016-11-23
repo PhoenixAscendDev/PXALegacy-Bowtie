@@ -20,8 +20,6 @@ namespace JB2.Bowtie
 
         ServiceResult InsertAuthInfo(string playerID, AuthInfo authinfo);
 
-        ServiceResult RemoveAuthInfo(string playerID, string authProvider);
-       
-        
+        ServiceResult RemoveAuthInfo(string playerID, string authProvider);      
     }
 }
