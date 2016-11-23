@@ -132,7 +132,7 @@ namespace JB2.Bowtie.Data.Azure
             e.Properties.Add("ID", new EntityProperty(o.GetID()));
             e.Properties.Add("DisplayName", new EntityProperty(o.DisplayName));
             e.Properties.Add("Age", new EntityProperty(o.Age));
-            e.Properties.Add("Gender", new EntityProperty(o.Gender));
+            //e.Properties.Add("Gender", new EntityProperty(o.Gender));
             e.Properties.Add("PlayerID", new EntityProperty(o.GetPlayerID()));
             //e.Properties.Add("AuthProvider", new EntityProperty(o.AuthProvider));
 
@@ -169,7 +169,7 @@ namespace JB2.Bowtie.Data.Azure
             player.ID = id;
             player.DisplayName = e.Properties.ContainsKey("DisplayName") ? e.Properties["DisplayName"].StringValue : string.Empty;
             player.Age = e.Properties.ContainsKey("Age") ? e.Properties["Age"].Int32Value.GetValueOrDefault() : 0;
-            player.Gender = e.Properties.ContainsKey("Gender") ? e.Properties["Gender"].StringValue : string.Empty;
+            //player.Gender = e.Properties.ContainsKey("Gender") ? e.Properties["Gender"].StringValue : string.Empty;
             //player.AuthProvider = e.Properties.ContainsKey("AuthProvider") ? e.Properties["AuthProvider"].StringValue : string.Empty;          
             return player;
         }
@@ -185,7 +185,7 @@ namespace JB2.Bowtie.Data.Azure
             player.ID = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
             player.DisplayName = e.Properties.ContainsKey("DisplayName") ? e.Properties["DisplayName"].StringValue : string.Empty;
             player.Age = e.Properties.ContainsKey("Age") ? e.Properties["Age"].Int32Value.GetValueOrDefault() : 0;
-            player.Gender = e.Properties.ContainsKey("Gender") ? e.Properties["Gender"].StringValue : string.Empty;
+            //player.Gender = e.Properties.ContainsKey("Gender") ? e.Properties["Gender"].StringValue : string.Empty;
             //player.AuthProvider = e.Properties.ContainsKey("AuthProvider") ? e.Properties["AuthProvider"].StringValue : string.Empty;
             player.DateRegistered = e.Properties.ContainsKey("DateRegistered") ? e.Properties["DateRegistered"].DateTime.GetValueOrDefault() : DateTime.MinValue;
 

@@ -95,7 +95,7 @@ namespace JB2.Bowtie
             ap.Age = player.Age;
             ap.AuthInfo = player.GetAuthInfo();
             ap.DisplayName = player.DisplayName;
-            ap.Gender = player.Gender;
+            //ap.Gender = player.Gender;
             
             foreach(var m in app.GetModules())
             {

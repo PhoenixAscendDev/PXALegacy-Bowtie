@@ -70,18 +70,18 @@ namespace JB2.Bowtie
             }
         }
 
-        public string Gender
-        {
-            get
-            {
-                return _metadata["Gender"].GetValue().StringValue;
-            }
+        //public string Gender
+        //{
+        //    get
+        //    {
+        //        return _metadata["Gender"].GetValue().StringValue;
+        //    }
 
-            set
-            {
-                _metadata["Gender"].UpdateValue(value);
-            }
-        }
+        //    set
+        //    {
+        //        _metadata["Gender"].UpdateValue(value);
+        //    }
+        //}
 
         public AuthInfo AuthInfo
         {
