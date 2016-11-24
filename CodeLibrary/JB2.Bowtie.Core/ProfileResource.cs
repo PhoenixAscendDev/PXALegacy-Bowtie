@@ -13,9 +13,9 @@ namespace JB2.Bowtie
 
         public string DisplayName { get; set; }
 
-        public short AgeRangeMin { get; set; }
+        public byte AgeRangeMin { get; set; }
 
-        public short AgeRangeMax { get; set; }
+        public byte AgeRangeMax { get; set; }
 
         public string Email { get; set; }
 

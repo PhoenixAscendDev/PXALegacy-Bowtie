@@ -18,6 +18,8 @@ namespace JB2.Helper
 
             if (type is JB2.Bowtie.IApplication)
                 result = "001-" + result;
+            if (type is JB2.Bowtie.IBowtiePlayer)
+                result = "002-" + result;
 
             return result;
         }

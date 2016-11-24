@@ -208,7 +208,7 @@ namespace JB2.Bowtie
 
         Name INameProp<Name>.GetName()
         {
-            throw new NotImplementedException();
+            return _name;
         }
 
         #endregion IBowtiePlayer

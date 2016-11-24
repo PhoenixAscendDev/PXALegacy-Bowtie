@@ -25,7 +25,6 @@ namespace JB2.Bowtie
 
         #endregion Fields
 
-
         #region Constructors
         public GameEngine()
         {
