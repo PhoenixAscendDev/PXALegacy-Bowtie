@@ -45,7 +45,7 @@ namespace JB2.Bowtie.Service
             {
                 ApplicationPlayer result = null;
                 ServiceResult isAuthorized = appService.isAuthorized(application.GetApplicationID());
-               
+
                 if (!isAuthorized)
                     throw new Exception("Application Not Authorized during Signin");
 
@@ -58,23 +58,38 @@ namespace JB2.Bowtie.Service
                 {
                     player = CreateNewPlayer(profilePacket);
                     ((Player)player).AuthInfo = authInfo;
-                    _repo.InsertAuthInfo(player.GetID(), authInfo);                  
+                    _repo.InsertAuthInfo(player.GetID(), authInfo);
                 }
 
-               result = _repo.GetAppPlayerByID(player.GetID(), application.GetApplicationID());
+                result = _repo.GetAppPlayerByID(player.GetID(), application.GetApplicationID());
 
-               //player exists but never was registered for app;
-               if(result == null)
+                //player exists but never was registered for app;
+                if (result == null)
                     result = RegisterPlayer(player, app, authInfo.ProviderID);
-               
+
+
+                //if we finally have a player and we have a signin dewdrop then DO THE DEW
+                if (result != null && !string.IsNullOrEmpty(app.GetDewdropID(ApplicationDewdrop.SIGNIN)))
+                {
+
+                    DoTheDew(result.GetPlayerID(), app.GetDewdropID(ApplicationDewdrop.SIGNIN), DateTime.Now.Ticks.ToString(), this._uofw);
+
+                    //DewdropService dservice = new DewdropService(this._uofw);
+                    //var dew = dservice.RetrieveById(app.GetDewdropID(ApplicationDewdrop.SIGNIN));
+                    //var pdew = dservice.GenerateNewPlayerDewdrop(player, dew, DateTime.Now.Ticks.ToString());
+
+                    //if (dservice.Validate(player, dew))
+                    //    dservice.Save(pdew);
+                }
+
+                return result;
+
             }
             catch (Exception ex)
             {
                 ex.BowtieLog();
                 return null;
-            }
-
-
+            }         
         }
 
 
@@ -131,15 +146,7 @@ namespace JB2.Bowtie.Service
             aservice.InitilizePlayerAchievements(player, app);
 
             // do the dew
-            DewdropService dservice = new DewdropService(this._uofw);
-            var dew = dservice.RetrieveById("dew_4CBg");
-            var pdew = dservice.GenerateNewPlayerDewdrop(player, dew, "REGISTER");
-
-
-            if(dservice.Validate(player, dew))
-            {
-                dservice.Save(pdew);
-            }
+            DoTheDew(result.GetPlayerID(), app.GetDewdropID(ApplicationDewdrop.REGISTRATION), DateTime.Now.Ticks.ToString(), this._uofw);
             return result;
         }
 

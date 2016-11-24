@@ -23,8 +23,6 @@ namespace JB2.Bowtie
         ApplicationModulePermission GetModulePermission(string moduleID);
         TreasuryRequestKey GetTreasuryRequestKey(string treasuryID);
 
-
-
-
+        string GetDewdropID(string code);
     }
 }

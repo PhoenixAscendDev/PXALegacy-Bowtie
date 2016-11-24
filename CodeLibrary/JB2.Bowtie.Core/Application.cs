@@ -17,6 +17,7 @@ namespace JB2.Bowtie
         protected IDictionary<string, IModule> _modules;
         protected IDictionary<string, ApplicationModulePermission> _modulePermission;
         protected BaseCollection<TreasuryRequestKey> _treasuryKeys;
+        protected IDictionary<string, string> _dewdrops;
         #endregion Fields
 
         #region Constructors
@@ -166,6 +167,11 @@ namespace JB2.Bowtie
         public IEnumerable<IModule> GetModules()
         {
             return _modules.Values;
+        }
+
+        public string GetDewdropID(string code)
+        {
+            return _dewdrops[code];
         }
 
         public ApplicationModulePermission GetModulePermission(string moduleID)

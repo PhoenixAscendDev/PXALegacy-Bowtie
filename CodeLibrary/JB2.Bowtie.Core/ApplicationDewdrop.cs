@@ -8,9 +8,8 @@ namespace JB2.Bowtie
 {
     public static class ApplicationDewdrop
     {
-        public const string REGISTRATION = "Dewdrop:Registration";
-        public const string SIGNIN = "Dewdrop:Signout";
-        public const string SIGNOUT = "Dewdrop:Signout";
-
+        public const string REGISTRATION = "app_Registration";
+        public const string SIGNIN = "app_Signout";
+        public const string SIGNOUT = "app_Signout";
     }
 }
