@@ -15,7 +15,6 @@ namespace JB2.BitScore
 
         #endregion Fields
 
-
         #region Constructors
 
         public PlayerPoint(string playerID, int points)

@@ -14,8 +14,7 @@ namespace JB2.Bowtie
         Enum.AchievementFlag[] AchievementFlags { get; set; }
         int PointsEarned { get; set; }
 
-        void Achieve(int pointsEarned);
-
+        void Achieve();
 
         DateTime DateAchieved { get; set; }
 

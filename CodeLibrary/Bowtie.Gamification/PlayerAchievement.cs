@@ -120,16 +120,12 @@ namespace JB2.Bowtie
             return _playerid;
         }
 
-        public void Achieve(int pointsEarned)
+        public void Achieve()
         {
             List<Enum.AchievementFlag> flags = this._flags.ToList();
             flags.Add(Enum.AchievementFlag.Earned);
             this._flags = flags.ToArray();
-
-            this._points = pointsEarned;
             this._dateachieved = System.DateTime.Now;
-
-
         }
 
         #endregion Methods
