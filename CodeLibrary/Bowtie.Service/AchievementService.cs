@@ -119,7 +119,7 @@ namespace JB2.Bowtie.Service
                 //if we achieved then set it
                 if(!pa.AchievementFlags.Contains(Enum.AchievementFlag.Earned) && pa.CurrentStep >= a.StepsRequired)
                 {
-                    pa.Achieve(a.Points);
+                    pa.Achieve(a.GetPoints( new JB2.BitScore.BitScoreSystem().ID));
                     //add achievement to queue for future processing
                     _uofw.AchievementQueue.PushAchievement(pa);
                 }

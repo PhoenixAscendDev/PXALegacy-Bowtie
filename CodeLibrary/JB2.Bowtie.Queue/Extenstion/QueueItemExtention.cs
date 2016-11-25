@@ -30,8 +30,8 @@ namespace JB2.Bowtie.Queue
 
             i.Flags = flags.ToArray();
             i.PlayerID = pa.GetPlayerID();
-            i.Points = app.Points.ToString();
-            i.PointSystem = "bitscore";
+            i.Points = app.GetPoints("jb2-bitscore").ToString();
+            i.PointSystem = "jb2-bitscore";
             return i;
         }
 

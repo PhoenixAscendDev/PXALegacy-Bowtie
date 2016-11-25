@@ -35,7 +35,7 @@ namespace JB2.BitScore
         {
             get
             {
-                return "Bit Score";
+                return "BitScore";
             }
 
             set

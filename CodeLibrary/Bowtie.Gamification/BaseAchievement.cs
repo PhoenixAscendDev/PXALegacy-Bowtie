@@ -22,10 +22,11 @@ namespace JB2.Bowtie
         protected Enum.AchievementRarityType _rarity;
         protected DateTime _timeStart;
         protected DateTime _timeEnd;
-        protected int _points;
+        
         protected string _stepRegEx;
         protected IEnumerable<string> _dewdropsTriggers;
         protected Enum.StepFxType _stepType;
+        protected Dictionary<string, int> _points;
 
         public Achievement() : this(null)
         {
@@ -42,7 +43,6 @@ namespace JB2.Bowtie
             _dewdropsTriggers = new string[0];
 
         }
-
 
 
         public virtual string ApplicationID
@@ -190,18 +190,6 @@ namespace JB2.Bowtie
             }
         }
 
-        public virtual int Points
-        {
-            get
-            {
-                return _points;
-            }
-            set
-            {
-                _points = value;
-            }
-        }
-
         public virtual string StepFx
         {
             get
@@ -215,6 +203,18 @@ namespace JB2.Bowtie
             }
         }
 
+
+        public virtual Dictionary<string,int> Points
+        {
+            get
+            {
+                return _points;
+            }
+            set
+            {
+                _points = value;
+            }
+        }
         public virtual IEnumerable<string> DewdropTriggers
         {
             get
@@ -241,7 +241,22 @@ namespace JB2.Bowtie
             }
         }
 
+        public IEnumerable<string> PointSystems
+        {
+            get
+            {
+                return _points.Keys.ToArray();
+            }
 
+            set
+            {
+                throw new NotSupportedException();
+            }
+        }
 
+        public int GetPoints(string pointSystemID)
+        {
+            return _points[pointSystemID];
+        }
     }
 }

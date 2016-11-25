@@ -117,7 +117,6 @@ namespace JB2.Bowtie.Data.Azure
             e.Properties.Add("EarnedIconUrl", new EntityProperty(o.EarnedIconUrl));
             e.Properties.Add("HiddenIconUrl", new EntityProperty(o.HiddenIconUrl));
             e.Properties.Add("ShownIconUrl", new EntityProperty(o.ShownIconUrl));
-            e.Properties.Add("Points", new EntityProperty(o.Points));
             e.Properties.Add("Rarity", new EntityProperty(o.Rarity.ToString()));
             e.Properties.Add("StepFx", new EntityProperty(o.StepFx));
             e.Properties.Add("StepRequired", new EntityProperty(o.StepsRequired));
@@ -127,14 +126,21 @@ namespace JB2.Bowtie.Data.Azure
             e.Properties.Add("SortOrder", new EntityProperty(o.SortOrder));
             e.Properties.Add("StepType", new EntityProperty(o.StepType.ToString()));
 
+            List<string> points = new List<string>(o.PointSystems);
+
+            foreach (var p in o.PointSystems)
+            {
+                string point = p + ":" + o.GetPoints(p).ToString();
+                points.Add(point);
+            }
+
+            e.SetProperty<string>("Points", string.Join(",", points.ToArray()));
+
             e.PartitionKey = _defaultPartitionKey;
             e.RowKey = "id:" + o.GetID();
 
             return e;       
         }
-
-
-
 
         protected override IEnumerable<IAchievement> convertToObject(IEnumerable<DynamicTableEntity> list)
         {
@@ -147,8 +153,6 @@ namespace JB2.Bowtie.Data.Azure
 
             return result;
         }
-
-
 
         protected IPlayerAchievement[] convertToPlayerAchievement(IEnumerable<DynamicTableEntity> elist)
         {
@@ -214,7 +218,7 @@ namespace JB2.Bowtie.Data.Azure
             result.EarnedIconUrl = e.Properties.ContainsKey("EarnedIconUrl") ? e.Properties["EarnedIconUrl"].StringValue : string.Empty;
             result.HiddenIconUrl = e.Properties.ContainsKey("HiddenIconUrl") ? e.Properties["HiddenIconUrl"].StringValue : string.Empty;
             result.ShownIconUrl = e.Properties.ContainsKey("ShownIconUrl") ? e.Properties["ShownIconUrl"].StringValue : string.Empty;
-            result.Points = e.Properties.ContainsKey("Points") ? (int)e.Properties["Points"].Int32Value : 0;
+           
 
             result.Rarity = e.Properties.ContainsKey("Rarity") ? (Enum.AchievementRarityType)System.Enum.Parse(typeof(Enum.AchievementRarityType), e.Properties["Rarity"].StringValue) : Enum.AchievementRarityType.Common;
 
@@ -225,9 +229,29 @@ namespace JB2.Bowtie.Data.Azure
             result.TimeBoundEnd = e.Properties.ContainsKey("TimeBoundEnd") ? Convert.ToDateTime(e.Properties["TimeBoundEnd"].StringValue) : System.DateTime.MinValue;
             result.TimeBoundStart = e.Properties.ContainsKey("TimeBoundStart") ? Convert.ToDateTime(e.Properties["TimeBoundStart"].StringValue) : System.DateTime.MinValue;
 
+            //load the points per each point system
+            Dictionary<string, int> pointsDic = new Dictionary<string, int>();
+            string points = e.GetPropertyValue<string>("Points",string.Empty);
+            foreach (var p in points.Split(","))
+            {
+                try
+                {
+                    var systemid = p.Split(":")[0];
+                    var point = p.Split(":")[1];
+                    int pointint = 0;
+                    int.TryParse(point, out pointint);
+                    pointsDic.Add(systemid, pointint);
+                }
+                catch(Exception ex)
+                {
+                    ex.BowtieLog();
+                }
+            }
+            ((Achievement)result).Points = pointsDic;
+
             //result.UniqueToken = e.Properties["UniqueToken"].StringValue;
 
-            
+
 
             return result;
         }

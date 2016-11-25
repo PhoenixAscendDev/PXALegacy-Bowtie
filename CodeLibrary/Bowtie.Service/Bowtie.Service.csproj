@@ -216,6 +216,10 @@
       <Project>{40f36cd2-7823-4f26-9f85-473367db4013}</Project>
       <Name>Bowtie.Gamification</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JB2.BitScore\JB2.BitScore.csproj">
+      <Project>{a2f4485b-d33f-48b6-85c7-a9178a04798c}</Project>
+      <Name>JB2.BitScore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JB2.Bowtie.Core\Bowtie.Core.csproj">
       <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
       <Name>Bowtie.Core</Name>
