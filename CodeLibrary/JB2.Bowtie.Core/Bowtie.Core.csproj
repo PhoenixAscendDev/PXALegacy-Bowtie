@@ -239,12 +239,14 @@
     <Compile Include="Interfaces\IPlayerAchievement.cs" />
     <Compile Include="Interfaces\IPlayerInventoryItem.cs" />
     <Compile Include="Interfaces\IPlayerStory.cs" />
+    <Compile Include="Interfaces\IPointSystem.cs" />
     <Compile Include="Interfaces\IQueue.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="IPlayerRespository.cs" />
     <Compile Include="IWallet.cs" />
     <Compile Include="JBeanCollection.cs" />
     <Compile Include="JBeanRequest.cs" />
+    <Compile Include="LanguageTense.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Dewdrop.cs" />
     <Compile Include="IPlayerDewdrop.cs" />

@@ -168,7 +168,6 @@
     <Compile Include="GraphPropertyType.cs" />
     <Compile Include="GraphStory.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="LanguageTense.cs" />
     <Compile Include="PlayerStory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
