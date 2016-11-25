@@ -96,6 +96,14 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public static AzureQueueRepository AchievementQueue
+        {
+            get
+            {
+                return JB2.Infrastructure.Storage.BowtieAccount.GetQueue("achievement");
+            }
+        }
+
 
 
 

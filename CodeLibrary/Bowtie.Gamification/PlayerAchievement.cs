@@ -111,7 +111,14 @@ namespace JB2.Bowtie
         }
 
 
+
+
         #region Methods
+
+        public string GetPlayerID()
+        {
+            return _playerid;
+        }
 
         public void Achieve(int pointsEarned)
         {

@@ -122,7 +122,6 @@ namespace JB2.Bowtie.Service
             return base.Save(entity);
         }
 
-
         public JB2.Common.ServiceResult isAuthorized(JB2.Common.IAPIKeySecretPair api)
         {
             var app = _authRepo.GetApplicationStateByAPIKey(api.APIkey, api.Secret);

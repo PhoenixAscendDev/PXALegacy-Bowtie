@@ -116,12 +116,12 @@ namespace JB2.Bowtie.Service
                             pa.CurrentStep++;
                         break;
                 }
-
-
                 //if we achieved then set it
                 if(!pa.AchievementFlags.Contains(Enum.AchievementFlag.Earned) && pa.CurrentStep >= a.StepsRequired)
                 {
                     pa.Achieve(a.Points);
+                    //add achievement to queue for future processing
+                    _uofw.AchievementQueue.PushAchievement(pa);
                 }
             }
 

@@ -42,6 +42,8 @@ namespace JB2.Bowtie
         IDewdropQueueRepo DewdropQueue { get; }
         IMaintenanceQueueRepo MaintenanceQueue { get; }
 
+        IAchievementQueueRepo AchievementQueue { get; }
+
         #endregion Queues
 
     }

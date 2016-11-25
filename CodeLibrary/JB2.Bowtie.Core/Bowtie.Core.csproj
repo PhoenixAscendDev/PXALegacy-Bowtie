@@ -208,6 +208,7 @@
     <Compile Include="IAuthProvider.cs" />
     <Compile Include="IDewdropTrigger.cs" />
     <Compile Include="IGameSession.cs" />
+    <Compile Include="Interfaces\IAchievementQueueRepo.cs" />
     <Compile Include="Interfaces\IApplicationable.cs" />
     <Compile Include="Interfaces\IAuthorizeRepository.cs" />
     <Compile Include="Interfaces\IAuthProviderRepo.cs" />

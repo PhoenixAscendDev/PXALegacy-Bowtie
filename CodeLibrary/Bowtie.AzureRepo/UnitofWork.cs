@@ -135,6 +135,15 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public IAchievementQueueRepo AchievementQueue 
+        {
+            get
+            {
+                return new JB2.Bowtie.Queue.Azure.AchievementQueue(AzureStorage.AchievementQueue);
+            }
+        }
+
+
 
 
         public IMaintenanceQueueRepo MaintenanceQueue
