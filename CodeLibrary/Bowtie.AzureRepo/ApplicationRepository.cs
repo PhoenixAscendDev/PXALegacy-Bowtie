@@ -111,13 +111,8 @@ namespace JB2.Bowtie.Data.Azure
             e.SetProperty<string>("Name", o.Name);
 
 
-
             e.SetProperty<string>("CompanyID", o.Company != null ? o.Company.ID : string.Empty);
             e.SetProperty<string>("CompanyName", o.Company != null ? o.Company.Name : string.Empty);
-
-            
-            //System.Enum.TryParse<Enum.APIAuthorizeState>(e.Properties["AuthorizeState"].StringValue, out state);
-            //List<IModule> modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll().ToList();
 
             List<IModule> modules = new List<IModule>();
 
@@ -176,6 +171,8 @@ namespace JB2.Bowtie.Data.Azure
                 }
             }
 
+
+
             //System.Enum.TryParse<Enum.APIAuthorizeState>(e.Properties["AuthorizeState"].StringValue, out state);
             //List<IModule> modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll().ToList();
 
@@ -189,6 +186,8 @@ namespace JB2.Bowtie.Data.Azure
             app.TreasuryKeys = treasuryKeys;
             app.Website = e.GetPropertyValue<string>("Website", string.Empty);
             app.Company = company;
+
+            app.AllowedPointSystems = new IPointSystem[1] { new JB2.BitScore.BitScoreSystem() };
             
             return app;
 

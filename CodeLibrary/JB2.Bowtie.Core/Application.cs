@@ -97,6 +97,9 @@ namespace JB2.Bowtie
             }
         }
 
+
+        public IEnumerable<IPointSystem> AllowedPointSystems { get; set; }
+
         #region IAPIKeySecretPair
 
         public string Secret
@@ -173,6 +176,8 @@ namespace JB2.Bowtie
         {
             return _dewdrops[code];
         }
+
+
 
         public ApplicationModulePermission GetModulePermission(string moduleID)
         {

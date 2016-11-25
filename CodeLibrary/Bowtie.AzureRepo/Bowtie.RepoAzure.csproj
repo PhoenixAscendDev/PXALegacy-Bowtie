@@ -229,6 +229,10 @@
       <Project>{81cf520a-6f22-462e-a674-72c74889aac7}</Project>
       <Name>Bowtie.Module</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JB2.BitScore\JB2.BitScore.csproj">
+      <Project>{a2f4485b-d33f-48b6-85c7-a9178a04798c}</Project>
+      <Name>JB2.BitScore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JB2.Bowtie.Core\Bowtie.Core.csproj">
       <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
       <Name>Bowtie.Core</Name>
