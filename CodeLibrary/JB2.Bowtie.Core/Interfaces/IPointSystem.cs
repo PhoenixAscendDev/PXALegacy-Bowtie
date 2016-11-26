@@ -8,7 +8,7 @@ using JB2.Common;
 
 namespace JB2.Bowtie
 {
-    public interface IPointSystem : JB2.Common.IIDNamePair<string,string>
+    public interface IPointSystem : JB2.Common.IIDNamePair<string, string>
     {
         string Single { get; set; }
         string Plural { get; set; }
@@ -16,6 +16,8 @@ namespace JB2.Bowtie
         JB2.Common.WordTense ReceiveTense { get; set; }
 
         JB2.Common.JB2Image GetIcon(int point);
+
+        ServiceResult AddPointsToPlayer(int points, IPlayerable<string> player,string description);
 
     }
 }

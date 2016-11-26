@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JB2.Bowtie;
 using JB2.Common;
 
 namespace JB2.BitScore
@@ -90,7 +91,10 @@ namespace JB2.BitScore
             }
         }
 
-
+        public ServiceResult AddPointsToPlayer(int points, IPlayerable<string> player, string description)
+        {
+            throw new NotImplementedException();
+        }
 
         public JB2Image GetIcon(int point)
         {

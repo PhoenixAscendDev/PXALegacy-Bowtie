@@ -90,13 +90,23 @@ namespace JB2.Bowtie.Data.Azure
             e.Properties.Add("AchievementID", new EntityProperty(o.AchievementID));
             e.Properties.Add("CurrentStep", new EntityProperty(o.CurrentStep));
             e.Properties.Add("PlayerID", new EntityProperty(o.PlayerID));
-            e.Properties.Add("PointsEarned", new EntityProperty(o.PointsEarned));
+            
             e.Properties.Add("ID", new EntityProperty(o.GetID()));
             e.Properties.Add("Name", new EntityProperty(o.GetName()));
             e.Properties.Add("Kind", new EntityProperty(o.GetKind().ToString()));
             e.Properties.Add("UniqueToken", new EntityProperty(o.UniqueToken));
             e.Properties.Add("LastUpdate", new EntityProperty(o.GetLastUpdate()));
             e.Properties.Add("DateAchieved", new EntityProperty(o.DateAchieved.ToString() ));
+
+            List<string> points = new List<string>( o.GetPointSystems().Count());
+
+            foreach (var p in o.GetPointSystems())
+            {
+                string point = p + ":" + o.GetPointsEarned(p).ToString();
+                points.Add(point);
+            }
+
+            e.SetProperty<string>("Points", string.Join(",", points.ToArray()));
 
             return e;
         }
@@ -175,16 +185,28 @@ namespace JB2.Bowtie.Data.Azure
             result.ID = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
             result.Name = e.Properties.ContainsKey("Name") ? e.Properties["Name"].StringValue : string.Empty;
             result.PlayerID = e.Properties.ContainsKey("PlayerID") ? e.Properties["PlayerID"].StringValue : string.Empty;
-            result.PointsEarned = e.Properties.ContainsKey("PointsEarned") ? e.Properties["PointsEarned"].Int32Value.GetValueOrDefault() : 0;
-            result.DateAchieved = e.Properties.ContainsKey("DateAchieved") ? Convert.ToDateTime(e.Properties["DateAchieved"].StringValue) : DateTime.MinValue;
             
-            //var e = new DynamicTableEntity();
-            //e.Properties.Add("AchievementID", new EntityProperty(o.AchievementID));
-            //e.Properties.Add("CurrentStep", new EntityProperty(o.CurrentStep)));
-            //e.Properties.Add("PlayerID", new EntityProperty(o.PlayerID));
-            //e.Properties.Add("PointsEarned", new EntityProperty(o.PointsEarned));
-            //e.Properties.Add("ID", new EntityProperty(o.GetID()));
-            //e.Properties.Add("LastUpdate", new EntityProperty(o.GetLastUpdate()));
+            result.DateAchieved = e.Properties.ContainsKey("DateAchieved") ? Convert.ToDateTime(e.Properties["DateAchieved"].StringValue) : DateTime.MinValue;
+
+            //load the points per each point system
+            Dictionary<string, int> pointsDic = new Dictionary<string, int>();
+            string points = e.GetPropertyValue<string>("PointsEarned", string.Empty);
+            foreach (var p in points.Split(","))
+            {
+                try
+                {
+                    var systemid = p.Split(":")[0];
+                    var point = p.Split(":")[1];
+                    int pointint = 0;
+                    int.TryParse(point, out pointint);
+                    pointsDic.Add(systemid, pointint);
+                }
+                catch (Exception ex)
+                {
+                    ex.BowtieLog();
+                }
+            }
+            ((PlayerAchievement)result).PointsEarned = pointsDic;
 
             return result;
 

@@ -12,8 +12,10 @@ namespace JB2.Bowtie
         string AchievementID { get; set; }
         int CurrentStep { get; set; }
         Enum.AchievementFlag[] AchievementFlags { get; set; }
-        int PointsEarned { get; set; }
+        int GetPointsEarned(string pointSystemId);
 
+        IEnumerable<string> GetPointSystems();
+        
         void Achieve();
 
         DateTime DateAchieved { get; set; }

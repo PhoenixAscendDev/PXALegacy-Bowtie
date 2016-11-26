@@ -13,8 +13,9 @@ namespace JB2.Bowtie
         protected string _achievementid;
         protected int _currentStep;
         protected Enum.AchievementFlag[] _flags;
-        protected int _points;
+        //protected int _points;
         protected DateTime _dateachieved;
+        protected Dictionary<string, int> _points;
 
 
 
@@ -25,9 +26,8 @@ namespace JB2.Bowtie
 
         public PlayerAchievement(string id) : base(Enum.BowtieObjectType.bowtie_playerachievement, id)
         {
-
+            _points = new Dictionary<string, int>();
         }
-
 
         public string PlayerID
         {
@@ -77,7 +77,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public int PointsEarned
+        public Dictionary<string, int> PointsEarned
         {
             get
             {
@@ -87,6 +87,28 @@ namespace JB2.Bowtie
             {
                 _points = value;
             }
+        }
+
+        public IEnumerable<string> GetPointSystems()
+        {
+            return _points.Keys.ToArray();
+        }
+
+        //public int PointsEarned
+        //{
+        //    get
+        //    {
+        //        return _points;
+        //    }
+        //    set
+        //    {
+        //        _points = value;
+        //    }
+        //}
+
+        public int GetPointsEarned(string pointSystemID)
+        {
+            return _points[pointSystemID];
         }
 
         public DateTime DateAchieved
