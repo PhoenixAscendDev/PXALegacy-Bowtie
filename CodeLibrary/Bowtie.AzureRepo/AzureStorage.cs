@@ -111,6 +111,22 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public static AzureTableRepository DewdropTable
+        {
+            get
+            {
+                return ConfigStorage.GetTable("dewdrops");
+            }
+        }
+
+        public static AzureTableRepository PlayerDewdropTable
+        {
+            get
+            {
+                return PlayerDataStorage.GetTable("dewdrops");
+            }
+        }
+
 
 
         public static AzureTableRepository AuthorizeTable
