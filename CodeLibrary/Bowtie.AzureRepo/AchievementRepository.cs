@@ -256,7 +256,7 @@ namespace JB2.Bowtie.Data.Azure
 
         public IPlayerAchievement GetPlayerAchievement(string playerID, string achievementID)
         {
-            var e = _table.GetEntity<DynamicTableEntity>("player:" + playerID, "achievementid:" + achievementID);
+            var e = _playerData.GetEntity<DynamicTableEntity>("player:" + playerID, "achievementid:" + achievementID);
 
             if (e != null)
                 return convertToPlayerAchievement(e);
@@ -325,20 +325,20 @@ namespace JB2.Bowtie.Data.Azure
             //standard by ID
             e.PartitionKey = _defaultPartitionKey + "player";
             e.RowKey = "id:" + e.Properties["ID"].StringValue;
-            _table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
+            _playerData.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
 
             //by player and app
             e.PartitionKey = _defaultPartitionKey + "player" + ":" + e.Properties["PlayerID"].StringValue;
             e.RowKey = "app:" + achievement.ApplicationID + "_achievementid:" + achievement.GetID() + "_id:" + e.Properties["ID"].StringValue;
-            _table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
+            _playerData.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
 
             e.PartitionKey = _defaultPartitionKey + "player";
             e.RowKey = "achievementid:" + achievement.GetID() + "_playerID:" + e.Properties["PlayerID"].StringValue + "_id:" + e.Properties["ID"].StringValue;
-            _table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
+            _playerData.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
 
             e.PartitionKey = _defaultPartitionKey + "player:" + e.Properties["PlayerID"].StringValue;
             e.RowKey = "achievementid:" + achievement.GetID();
-            _table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
+            _playerData.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
 
         }
 
