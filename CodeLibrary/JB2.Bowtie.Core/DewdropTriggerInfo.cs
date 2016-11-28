@@ -31,6 +31,10 @@ namespace JB2.Bowtie
 
         public string Classname { get; set; }
 
+        public string Assembly { get; set; }
+
+        public string AssemblyQualifiedName { get; set; }
+
         public string ParamaterString1 { get; set; }
 
         public string ParameterString2 { get; set; }

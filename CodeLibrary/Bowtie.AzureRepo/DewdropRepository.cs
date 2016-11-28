@@ -153,6 +153,8 @@ namespace JB2.Bowtie.Data.Azure
             result.ParameterString2 = e.GetPropertyValue<string>("ParamString2", string.Empty);
             result.TriggerType = e.GetPropertyValue<string>("TriggerType", string.Empty);
             result.ID = e.GetPropertyValue<string>("ID", string.Empty);
+            result.Assembly = e.GetPropertyValue<string>("Assembly", string.Empty);
+            result.AssemblyQualifiedName = e.GetPropertyValue<string>("AssemblyQualifiedName", string.Empty);
 
             return result;
 
@@ -168,6 +170,8 @@ namespace JB2.Bowtie.Data.Azure
             result.SetProperty<string>("ParamString2", info.ParameterString2);
             result.SetProperty<string>("TriggerType", info.TriggerType);
             result.SetProperty<string>("ID", info.ID);
+            result.SetProperty<string>("AssemblyQualifiedName", info.AssemblyQualifiedName);
+            result.SetProperty<string>("Assembly", info.Assembly);
             return result;
         }
 

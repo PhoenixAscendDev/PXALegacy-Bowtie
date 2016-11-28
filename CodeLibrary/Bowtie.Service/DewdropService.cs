@@ -250,7 +250,6 @@ namespace JB2.Bowtie.Service
             {
                 try
                 {
-
                     if (string.IsNullOrEmpty(t.Classname))
                     {
                         throw new ArgumentNullException("Classname");
@@ -258,7 +257,7 @@ namespace JB2.Bowtie.Service
                     var fullName = t.Namespace + "." + t.Classname;
                     // This is assuming that the type will be in the same assembly
                     // as the call. If that's not the case, we can look at that later.
-                    Type type = Type.GetType(fullName);
+                    Type type = Type.GetType(t.AssemblyQualifiedName);
                     if (type == null)
                     {
                         throw new ArgumentException("No such type: " + type);
