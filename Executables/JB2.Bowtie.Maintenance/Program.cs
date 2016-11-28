@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using JB2.Bowtie;
+using JB2.Bowtie.Service;
 using JB2.Common;
 
 namespace JB2.Bowtie.Maintenance
@@ -152,11 +153,18 @@ namespace JB2.Bowtie.Maintenance
 
         }
 
-        //static void AddJB2ID()
-        //{
-        //    var appservice = new JB2.Bowtie.Service.
-        //}
+        static void SetupPointSystem()
+        {
+            PointSystemService pservice = new PointSystemService();
 
+
+            pservice.Save(new JB2.BitScore.BitScoreSystem());
+        }
+
+        
+
+        
+        
 
         static void OnApplInitialized(IApplication application, string authorizeKey)
         {
@@ -169,7 +177,18 @@ namespace JB2.Bowtie.Maintenance
 
             var appService = new JB2.Bowtie.Service.ApplicationService();
 
+
+
+
+            SetupPointSystem();
+
            
+
+            var pservice = new PointSystemService();
+
+            var all = pservice.RetrieveConfigs();
+
+            var test = pservice.RetrieveById(all[0].ID);
 
             //SetupModules();
 

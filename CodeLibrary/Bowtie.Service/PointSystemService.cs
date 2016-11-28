@@ -15,14 +15,20 @@ namespace JB2.Bowtie.Service
 
 
         #region Constructors
-        public PointSystemService()
+        public PointSystemService() : this(JB2.Settings.Bowtie.UnitOfWork)
         {
-            _repo = default(IPointSystemRepository);
+
         }
 
-        public PointSystemService(IPointSystemRepository repository)
+        public PointSystemService(IUnitOfWork unitOfWork) : this(unitOfWork.PointSystemRepository)
         {
-            _repo = repository;
+            _uofw = unitOfWork;
+        }
+
+        public PointSystemService(IPointSystemRepository repo)
+        {
+            _repo = repo;
+
         }
 
         #endregion Constructors

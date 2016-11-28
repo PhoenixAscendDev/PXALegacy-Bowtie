@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage.Table;
 
+using System.Reflection;
+
 
 using JB2.Common.Data;
 namespace JB2.Bowtie.Data.Azure
@@ -73,6 +75,8 @@ namespace JB2.Bowtie.Data.Azure
             e.SetProperty<string>("Present",o.ReceiveTense.Present);
             e.SetProperty<string>("Namespace", o.GetType().Namespace);
             e.SetProperty<string>("Classname", o.GetType().Name);
+            e.SetProperty<string>("Assembly", o.GetType().Assembly.FullName);
+            e.SetProperty<string>("AssemblyQualifiedName", o.GetType().AssemblyQualifiedName);
 
             return e;
 
@@ -94,13 +98,14 @@ namespace JB2.Bowtie.Data.Azure
         {
             string namespaceString = e.GetPropertyValue<string>("Namespace", string.Empty);
             string classString = e.GetPropertyValue<string>("Classname", string.Empty);
-
+            string qualifiedName = e.GetPropertyValue<string>("AssemblyQualifiedName", string.Empty);
             try
             {
                 var fullName = namespaceString + "." + classString;
+
                 // This is assuming that the type will be in the same assembly
                 // as the call. If that's not the case, we can look at that later.
-                Type type = Type.GetType(fullName);
+                Type type = Type.GetType(qualifiedName);
                 if (type == null)
                 {
                     throw new ArgumentException("No such type: " + type);
@@ -111,6 +116,8 @@ namespace JB2.Bowtie.Data.Azure
                                                 " is not compatible with FooParent.");
                 }
 
+                
+                Assembly a = Assembly.Load("JB2.BitScore");
                 return (IPointSystem)Activator.CreateInstance(type);
             }
             catch(Exception ex)
@@ -134,7 +141,7 @@ namespace JB2.Bowtie.Data.Azure
             e.RowKey = "id:" + e.GetPropertyValue<string>("ID",string.Empty);
             _table.Insert<DynamicTableEntity>(e, replace);
 
-            e.PartitionKey = _defaultPartitionKey + ":" + e.GetPropertyValue<string>("Namespace", string.Empty);
+            e.PartitionKey = _defaultPartitionKey + ":" + e.GetPropertyValue<string>("Assembly", string.Empty);
             e.RowKey = "id:" + e.GetPropertyValue<string>("ID", string.Empty);
             _table.Insert<DynamicTableEntity>(e, replace);
 
