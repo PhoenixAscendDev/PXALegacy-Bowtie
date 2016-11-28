@@ -97,8 +97,7 @@ namespace JB2.Bowtie
             }
         }
 
-
-        public IEnumerable<IPointSystem> AllowedPointSystems { get; set; }
+        public IEnumerable<IIDNamePair<string,string>> AllowedPointSystems { get; set; }
 
         #region IAPIKeySecretPair
 

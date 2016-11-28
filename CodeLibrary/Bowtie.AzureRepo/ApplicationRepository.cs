@@ -187,7 +187,7 @@ namespace JB2.Bowtie.Data.Azure
             app.Website = e.GetPropertyValue<string>("Website", string.Empty);
             app.Company = company;
 
-            app.AllowedPointSystems = new IPointSystem[1] { new JB2.BitScore.BitScoreSystem() };
+            app.AllowedPointSystems = new IIDNamePair<string,string>[1] { new JB2.BitScore.BitScoreSystem() };
             
             return app;
 

@@ -15,7 +15,7 @@ namespace JB2.Bowtie
         string ClientID { get; set; }
         string Website { get; set; }
 
-        IEnumerable<IPointSystem> AllowedPointSystems { get; set; }
+        IEnumerable<JB2.Common.IIDNamePair<string,string>> AllowedPointSystems { get; set; }
 
 
         JB2.Common.IBusiness Company{ get; set; }
