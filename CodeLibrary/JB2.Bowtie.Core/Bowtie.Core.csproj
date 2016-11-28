@@ -243,6 +243,7 @@
     <Compile Include="Interfaces\IQueue.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="IPlayerRespository.cs" />
+    <Compile Include="Interfaces\IPointSystemRepository.cs" />
     <Compile Include="IWallet.cs" />
     <Compile Include="JBeanCollection.cs" />
     <Compile Include="JBeanRequest.cs" />
@@ -252,6 +253,7 @@
     <Compile Include="IPlayerDewdrop.cs" />
     <Compile Include="PlayerDewdrop.cs" />
     <Compile Include="PlayerInventoryItem.cs" />
+    <Compile Include="PointSystemConfig.cs" />
     <Compile Include="ProfileResource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />

@@ -150,6 +150,14 @@ namespace JB2.Bowtie.Data.NoDB
             }
         }
 
+        public IPointSystemRepository PointSystemRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public object GetRepository(Enum.RepositoryType respository)
         {
             switch(respository)

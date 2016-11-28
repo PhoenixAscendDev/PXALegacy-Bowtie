@@ -30,11 +30,15 @@ namespace JB2.Bowtie
         IBowtiePlayerRespository PlayerRepository { get; }
 
         IAuthorizeRepository AuthorizeRepository { get; }
+
+        IPointSystemRepository PointSystemRepository { get; }
         
         //IPlayerRepo PlayerRepository { get; }
         object GetRepository(Enum.RepositoryType respository);
 
         JB2.Common.Log.ILogRepo LogRepository { get; }
+
+
 
 
         #region Queues

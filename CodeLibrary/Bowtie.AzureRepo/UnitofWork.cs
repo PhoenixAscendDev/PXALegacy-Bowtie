@@ -127,6 +127,14 @@ namespace JB2.Bowtie.Data.Azure
 
         }
 
+        public IPointSystemRepository PointSystemRepository
+        {
+            get
+            {
+                return (JB2.Bowtie.IPointSystemRepository)GetRepository(RepositoryType.PointSystem);
+            }
+        }
+
         public IDewdropQueueRepo DewdropQueue
         {
             get
@@ -218,6 +226,9 @@ namespace JB2.Bowtie.Data.Azure
                                 break;
                             case RepositoryType.AuthProvider:
                                 _repos.Add(repository, new JB2.Bowtie.Data.Azure.AuthProviderRepository());
+                                break;
+                            case RepositoryType.PointSystem:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.PointSysteRepository());
                                 break;
                         }
                     }

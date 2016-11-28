@@ -103,6 +103,14 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public static AzureTableRepository PointSystemTable
+        {
+            get
+            {
+                return ConfigStorage.GetTable("pointsystems");
+            }
+        }
+
         public static AzureTableRepository PlayerAchievementTable
         {
             get
