@@ -94,10 +94,64 @@ namespace JB2.Bowtie.Service
 
         #region Player Data
 
-        public ServiceResult AddPointsToPlayer(PlayerPoint playerPoint, IPointGiver pointgiver )
+        public int RetrievePlayerPointTotal(string pointsystemID)
         {
-            return true;
+            return 0;
         }
+
+        public PointTransaction AddPointsToPlayer(PlayerPoint playerPoint, IPointGiver pointGiver, bool addToQueue = true)
+        {
+            PointTransaction tran = null;
+            try
+            {
+                tran = PointTransaction.FromPlayerPointGiver(playerPoint, pointGiver);
+                tran.ValidationKey = GenerateValidationKey(tran);
+
+                _repo.InsertPointTransaction(tran);
+
+                if (addToQueue)
+                    _uofw.PointQueue.PushPoint(playerPoint, pointGiver);
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+            }
+
+            return tran;
+
+
+        }
+
+        public string GenerateValidationKey(PointTransaction pt, string hashkey = null)
+        {
+            //eventually based on application
+            if (hashkey == null)
+                hashkey = JB2.Common.RNG.D4.ToString();
+            var urlString = JB2.Configuration.GetAppSetting("JB2: UrlHash:BowtiePointTranID-" + hashkey.ToString());
+            var key = JB2.Common.NewID.UriHash(new Uri(
+                                string.Format(urlString,
+                                                pt.GiverID + pt.PlayerID,
+                                                pt.GiverID + pt.Points.ToString(),
+                                                pt.TransactionDate.Ticks.ToString()
+                                              )
+                                      )
+                                );
+            return hashkey + key;
+        }
+
+
+        public bool Validate(PointTransaction pt)
+        {        
+            var key2 = this.GenerateValidationKey(pt, pt.ValidationKey.Substring(0,1));
+            pt.IsValid = key2 == pt.ValidationKey;
+
+            return pt.IsValid;
+        }
+
+
+        
+
+        
 
         #endregion Player Data
 

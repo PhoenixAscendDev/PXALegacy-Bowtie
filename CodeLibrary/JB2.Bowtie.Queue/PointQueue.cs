@@ -17,16 +17,20 @@ namespace JB2.Bowtie.Queue
 
         }
 
-        public ServiceResult PushPoint(IPlayerPoint playerPoint, IPointGiver giver)
+        public ServiceResult PushPoint(IPlayerPoint playerPoint, IPointGiver pointGiver)
         {
+
+            var pt = PointTransaction.FromPlayerPointGiver(playerPoint, pointGiver);
+
             PointQueueItem i = new PointQueueItem();
-            i.Description = giver.Description;
-            i.GiverID = giver.ID;
-            i.GiverName = giver.Name;
-            i.GiverType = giver.PointGiverType;
+            i.Description = pointGiver.Description;
+            i.GiverID = pointGiver.ID;
+            i.GiverName = pointGiver.Name;
+            i.GiverType = pointGiver.PointGiverType;
             i.PlayerID = playerPoint.GetPlayerID();
             i.Points = playerPoint.Points;
             i.PointSystemID = playerPoint.PointSystem;
+            i.ValidationKey = pt.ValidationKey;
 
             var json = new JavaScriptSerializer().Serialize(i);
 

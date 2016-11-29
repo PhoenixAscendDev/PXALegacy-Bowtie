@@ -43,47 +43,48 @@ namespace JB2.Bowtie.Data.Azure
 
             return result;
         }
-        public JB2.Common.ServiceResult SavePlayerPoint(IPlayerPoint playerPoint, IPointGiver pointgiver)
+        public JB2.Common.ServiceResult InsertPointTransaction(PointTransaction tran)
         {
             try
             {
-                string ticks = DateTime.Now.Ticks.ToString();
-                var id = JB2.Common.NewID.UriHash(new Uri(string.Format("http://bowtie.jbsquared?s1={0]&s2={1}&s3={2}&s3={3}", pointgiver.ID, playerPoint.GetPlayerID(), playerPoint.Points.ToString(), ticks)));
+                bool replace = true;
+                var id = tran.ID;
 
                 DynamicTableEntity e = new DynamicTableEntity();
                 e.SetProperty<string>("ID", id);
-                e.SetProperty<int>("Points", playerPoint.Points);
-                e.SetProperty<string>("PointSystem", playerPoint.PointSystem);
-                e.SetProperty<string>("Description", pointgiver.Description);
-                e.SetProperty<string>("GiverID", pointgiver.ID);
-                e.SetProperty<string>("GiverName", pointgiver.Name);
-                e.SetProperty<string>("GiverType", pointgiver.PointGiverType);
-                e.SetProperty<long>("DateEnteredTicks", DateTime.Now.Ticks);
+                e.SetProperty<int>("Points", tran.Points);
+                e.SetProperty<string>("PointSystem", tran.PointSystem);
+                e.SetProperty<string>("Description", tran.Description);
+                e.SetProperty<string>("GiverID", tran.GiverID);
+                e.SetProperty<string>("GiverName", tran.GiverName);
+                e.SetProperty<string>("GiverType", tran.PointGiverType);
+                e.SetProperty<long>("DateEnteredTicks", tran.TransactionDate.Ticks);
+                e.SetProperty<string>("ValidationKey", tran.ValidationKey);
 
 
-                e.PartitionKey = "point";
+                e.PartitionKey = "pointtran";
                 e.RowKey = "id:" + id;
-                _playerData.Insert<DynamicTableEntity>(e);
+                _playerData.Insert<DynamicTableEntity>(e,replace);
 
-                e.PartitionKey = "point:player:" + playerPoint.GetPlayerID();
+                e.PartitionKey = "pointtran:player:" + tran.GetPlayerID();
                 e.RowKey = "id:" + id;
-                _playerData.Insert<DynamicTableEntity>(e);
+                _playerData.Insert<DynamicTableEntity>(e,replace);
 
-                e.PartitionKey = "point:pointsystem:" + playerPoint.PointSystem;
+                e.PartitionKey = "pointtran:pointsystem:" + tran.PointSystem;
                 e.RowKey = "id:" + id;
-                _playerData.Insert<DynamicTableEntity>(e);
+                _playerData.Insert<DynamicTableEntity>(e,replace);
 
-                e.PartitionKey = "point:player:" + playerPoint.GetPlayerID();
-                e.RowKey = "playerpoint:" + playerPoint.ToString() + ":id:" + id;
-                _playerData.Insert<DynamicTableEntity>(e);
+                e.PartitionKey = "pointtran:player:" + tran.GetPlayerID();
+                e.RowKey = "playerpoint:" + tran.ToString() + ":id:" + id;
+                _playerData.Insert<DynamicTableEntity>(e,replace);
 
-                e.PartitionKey = "point:giver:" + pointgiver.ID;
+                e.PartitionKey = "pointtran:giver:" + tran.ID;
                 e.RowKey = "id:" + id;
-                _playerData.Insert<DynamicTableEntity>(e);
+                _playerData.Insert<DynamicTableEntity>(e,replace);
 
-                e.PartitionKey = "point:giver:" + pointgiver.ID;
-                e.RowKey = "point:" + playerPoint.Points + ":id:" + id;
-                _playerData.Insert<DynamicTableEntity>(e);
+                e.PartitionKey = "pointtran:giver:" + tran.ID;
+                e.RowKey = "point:" + tran.Points + ":id:" + id;
+                _playerData.Insert<DynamicTableEntity>(e,replace);
             }
             catch (Exception ex)
             {
@@ -132,6 +133,7 @@ namespace JB2.Bowtie.Data.Azure
         }
 
 
+        
 
         protected override IEnumerable<IPointSystem> convertToObject(IEnumerable<DynamicTableEntity> list)
         {

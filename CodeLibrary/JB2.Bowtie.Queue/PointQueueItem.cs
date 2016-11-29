@@ -19,5 +19,7 @@ namespace JB2.Bowtie.Queue
         public string GiverType { get; set; }
 
         public string Description { get; set; }
+
+        public string ValidationKey { get; set; }
     }
 }

@@ -244,10 +244,10 @@
     <Compile Include="Interfaces\IPointSystem.cs" />
     <Compile Include="Interfaces\IQueue.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Interfaces\Point.cs" />
+    <Compile Include="Interfaces\IPoint.cs" />
     <Compile Include="IPlayerRespository.cs" />
     <Compile Include="Interfaces\IPointSystemRepository.cs" />
-    <Compile Include="IPointGiver.cs" />
+    <Compile Include="Interfaces\IPointGiver.cs" />
     <Compile Include="IWallet.cs" />
     <Compile Include="JBeanCollection.cs" />
     <Compile Include="JBeanRequest.cs" />
@@ -258,6 +258,7 @@
     <Compile Include="PlayerDewdrop.cs" />
     <Compile Include="PlayerInventoryItem.cs" />
     <Compile Include="PointSystemConfig.cs" />
+    <Compile Include="PointTransaction.cs" />
     <Compile Include="ProfileResource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />

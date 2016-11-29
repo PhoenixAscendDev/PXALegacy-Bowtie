@@ -12,7 +12,7 @@ namespace JB2.Bowtie
         IEnumerable<PointSystemConfig> GetAllConfigs();
 
 
-        JB2.Common.ServiceResult SavePlayerPoint(IPlayerPoint playerpoint, IPointGiver giver);
+        JB2.Common.ServiceResult InsertPointTransaction(PointTransaction tran);
 
     }
 }
