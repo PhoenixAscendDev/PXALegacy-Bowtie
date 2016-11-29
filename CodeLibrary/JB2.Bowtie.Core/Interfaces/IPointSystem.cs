@@ -17,7 +17,7 @@ namespace JB2.Bowtie
 
         JB2.Common.JB2Image GetIcon(int point);
 
-        ServiceResult AddPointsToPlayer(int points, IPlayerable<string> player,string description);
+        ServiceResult AddPointsToPlayer(int points, IPlayerable<string> player);
 
     }
 }

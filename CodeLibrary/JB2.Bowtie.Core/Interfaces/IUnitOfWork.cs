@@ -48,6 +48,8 @@ namespace JB2.Bowtie
 
         IAchievementQueueRepo AchievementQueue { get; }
 
+        IPointQueueRepository PointQueue { get; }
+
         #endregion Queues
 
     }

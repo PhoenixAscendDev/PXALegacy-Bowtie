@@ -91,7 +91,7 @@ namespace JB2.BitScore
             }
         }
 
-        public ServiceResult AddPointsToPlayer(int points, IPlayerable<string> player, string description)
+        public ServiceResult AddPointsToPlayer(int points, IPlayerable<string> player)
         {
             throw new NotImplementedException();
         }

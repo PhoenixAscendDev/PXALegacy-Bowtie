@@ -30,7 +30,6 @@ namespace JB2.Bowtie.Data.Azure
 
         #endregion Constructors
 
-
         public IEnumerable<PointSystemConfig> GetAllConfigs()
         {
             var elist = _table.GetByRowKeyStartWith<DynamicTableEntity>(_defaultPartitionKey, "id:", 1000);
@@ -44,7 +43,56 @@ namespace JB2.Bowtie.Data.Azure
 
             return result;
         }
+        public JB2.Common.ServiceResult SavePlayerPoint(IPlayerPoint playerPoint, IPointGiver pointgiver)
+        {
+            try
+            {
+                string ticks = DateTime.Now.Ticks.ToString();
+                var id = JB2.Common.NewID.UriHash(new Uri(string.Format("http://bowtie.jbsquared?s1={0]&s2={1}&s3={2}&s3={3}", pointgiver.ID, playerPoint.GetPlayerID(), playerPoint.Points.ToString(), ticks)));
 
+                DynamicTableEntity e = new DynamicTableEntity();
+                e.SetProperty<string>("ID", id);
+                e.SetProperty<int>("Points", playerPoint.Points);
+                e.SetProperty<string>("PointSystem", playerPoint.PointSystem);
+                e.SetProperty<string>("Description", pointgiver.Description);
+                e.SetProperty<string>("GiverID", pointgiver.ID);
+                e.SetProperty<string>("GiverName", pointgiver.Name);
+                e.SetProperty<string>("GiverType", pointgiver.PointGiverType);
+                e.SetProperty<long>("DateEnteredTicks", DateTime.Now.Ticks);
+
+
+                e.PartitionKey = "point";
+                e.RowKey = "id:" + id;
+                _playerData.Insert<DynamicTableEntity>(e);
+
+                e.PartitionKey = "point:player:" + playerPoint.GetPlayerID();
+                e.RowKey = "id:" + id;
+                _playerData.Insert<DynamicTableEntity>(e);
+
+                e.PartitionKey = "point:pointsystem:" + playerPoint.PointSystem;
+                e.RowKey = "id:" + id;
+                _playerData.Insert<DynamicTableEntity>(e);
+
+                e.PartitionKey = "point:player:" + playerPoint.GetPlayerID();
+                e.RowKey = "playerpoint:" + playerPoint.ToString() + ":id:" + id;
+                _playerData.Insert<DynamicTableEntity>(e);
+
+                e.PartitionKey = "point:giver:" + pointgiver.ID;
+                e.RowKey = "id:" + id;
+                _playerData.Insert<DynamicTableEntity>(e);
+
+                e.PartitionKey = "point:giver:" + pointgiver.ID;
+                e.RowKey = "point:" + playerPoint.Points + ":id:" + id;
+                _playerData.Insert<DynamicTableEntity>(e);
+            }
+            catch (Exception ex)
+            {
+                ex.BowtieLog();
+                return new JB2.Common.ServiceResult(ex);
+            }
+
+            return true;
+        }
 
         #region protected
 
@@ -82,6 +130,8 @@ namespace JB2.Bowtie.Data.Azure
 
 
         }
+
+
 
         protected override IEnumerable<IPointSystem> convertToObject(IEnumerable<DynamicTableEntity> list)
         {

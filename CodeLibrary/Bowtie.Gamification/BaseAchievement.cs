@@ -254,9 +254,13 @@ namespace JB2.Bowtie
             }
         }
 
+        public string PointGiverType { get; set; }
+
         public int GetPoints(string pointSystemID)
         {
             return _points[pointSystemID];
         }
+
+
     }
 }

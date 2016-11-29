@@ -92,5 +92,15 @@ namespace JB2.Bowtie.Service
         }
 
 
+        #region Player Data
+
+        public ServiceResult AddPointsToPlayer(PlayerPoint playerPoint, IPointGiver pointgiver )
+        {
+            return true;
+        }
+
+        #endregion Player Data
+
+
     }
 }

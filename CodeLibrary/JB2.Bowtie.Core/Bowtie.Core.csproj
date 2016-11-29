@@ -238,12 +238,16 @@
     <Compile Include="Interfaces\IPlayerable.cs" />
     <Compile Include="Interfaces\IPlayerAchievement.cs" />
     <Compile Include="Interfaces\IPlayerInventoryItem.cs" />
+    <Compile Include="Interfaces\IPlayerPoint.cs" />
     <Compile Include="Interfaces\IPlayerStory.cs" />
+    <Compile Include="Interfaces\IPointQueueRepository.cs" />
     <Compile Include="Interfaces\IPointSystem.cs" />
     <Compile Include="Interfaces\IQueue.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Interfaces\Point.cs" />
     <Compile Include="IPlayerRespository.cs" />
     <Compile Include="Interfaces\IPointSystemRepository.cs" />
+    <Compile Include="IPointGiver.cs" />
     <Compile Include="IWallet.cs" />
     <Compile Include="JBeanCollection.cs" />
     <Compile Include="JBeanRequest.cs" />

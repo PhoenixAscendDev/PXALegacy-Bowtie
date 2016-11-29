@@ -162,6 +162,14 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public IPointQueueRepository PointQueue
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         
 
 

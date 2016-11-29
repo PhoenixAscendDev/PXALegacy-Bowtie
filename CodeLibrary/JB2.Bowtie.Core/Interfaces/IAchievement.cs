@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IAchievement : IBowtieObject, JB2.Common.IIDNamePair<string, string>
+    public interface IAchievement : IBowtieObject, JB2.Common.IIDNamePair<string, string>, IPointGiver
     {
         string ApplicationID { get; set; }
         int SortOrder { get; set; }
-        string Description { get; set; }
         Enum.AchievementType AchievementType { get; set; }
         string Category { get; set; }
         int StepsRequired { get; set; }

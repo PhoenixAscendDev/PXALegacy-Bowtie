@@ -83,6 +83,8 @@
     <Compile Include="DewdropQueue.cs" />
     <Compile Include="Extenstion\QueueItemExtention.cs" />
     <Compile Include="MaintenanceQueue.cs" />
+    <Compile Include="PointQueue.cs" />
+    <Compile Include="PointQueueItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

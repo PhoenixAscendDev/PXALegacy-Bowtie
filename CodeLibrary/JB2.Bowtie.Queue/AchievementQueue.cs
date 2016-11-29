@@ -29,7 +29,7 @@ namespace JB2.Bowtie.Queue.Azure
 
 
 
-            return this.Push(json.Replace("'", "\""));
+            return this.Push(json);
         }
     }
 }

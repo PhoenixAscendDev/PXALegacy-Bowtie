@@ -164,6 +164,7 @@
     <Compile Include="InventoryItem.cs" />
     <Compile Include="LapelPinAchievement.cs" />
     <Compile Include="PlayerAchievement.cs" />
+    <Compile Include="PlayerPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SinglePlayerSession.cs" />
     <Compile Include="StandardAchievement.cs" />
