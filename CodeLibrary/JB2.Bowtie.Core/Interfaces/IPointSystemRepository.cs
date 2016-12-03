@@ -12,7 +12,9 @@ namespace JB2.Bowtie
         IEnumerable<PointSystemConfig> GetAllConfigs();
 
 
-        JB2.Common.ServiceResult InsertPointTransaction(PointTransaction tran);
+        JB2.Common.ServiceResult Insert(PointTransaction tran);
+
+        void UpdateIndex(PointTransaction tran);
 
     }
 }

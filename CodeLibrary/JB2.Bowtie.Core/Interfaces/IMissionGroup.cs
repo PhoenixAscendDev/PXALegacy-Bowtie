@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Enum
+namespace JB2.Bowtie.Interfaces
 {
-    public enum AchievementType
+    public interface IMissionGroup : IDewdrop, IPointGiver
     {
-        Standard,
-        TimeBound,
-        LabelPin,
-        Task
+        IEnumerable<IMission> GetMissions();
     }
 }

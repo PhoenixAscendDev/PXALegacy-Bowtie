@@ -8,8 +8,11 @@ namespace JB2.Bowtie
 {
     public class PointTransaction : IPlayerPoint, JB2.Common.IIDNamePair<string,string>, JB2.Common.IValidable
     {
+        #region Fields
+        string _processFlag;
+        #endregion Fields
+
         #region Constructors
-        
 
         protected PointTransaction()
         {
@@ -78,13 +81,25 @@ namespace JB2.Bowtie
 
         #endregion IPlayerPoint
 
-
         #region IValidable
 
         public bool IsValid { get; set; }
        
 
         #endregion IValidable
+
+        public string ProcessFlag
+        {
+            get
+            {
+                return _processFlag;
+            }
+
+            set
+            {
+                _processFlag = value;
+            }
+        }
 
         public static PointTransaction FromPlayerPointGiver(IPlayerPoint playerpoint, IPointGiver pointgiver)
         {

@@ -8,6 +8,6 @@ namespace JB2.Bowtie
 {
     public interface IPointQueueRepository : IQueueRepo
     {
-        JB2.Common.ServiceResult PushPoint(IPlayerPoint playerPoint, IPointGiver giver);
+        JB2.Common.ServiceResult PushPointTran(PointTransaction pt);
     }
 }

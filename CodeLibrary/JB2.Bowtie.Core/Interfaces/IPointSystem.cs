@@ -19,5 +19,7 @@ namespace JB2.Bowtie
 
         ServiceResult AddPointsToPlayer(int points, IPlayerable<string> player);
 
+        ServiceResult Process(PointTransaction tran);
+
     }
 }

@@ -93,9 +93,12 @@ namespace JB2.BitScore
 
         public ServiceResult AddPointsToPlayer(int points, IPlayerable<string> player)
         {
-            throw new NotImplementedException();
+            return true;
         }
-
+        public ServiceResult Process(PointTransaction tran)
+        {
+            return true;
+        }
         public JB2Image GetIcon(int point)
         {
             return new JB2Image();

@@ -107,10 +107,12 @@ namespace JB2.Bowtie.Service
                 tran = PointTransaction.FromPlayerPointGiver(playerPoint, pointGiver);
                 tran.ValidationKey = GenerateValidationKey(tran);
 
-                _repo.InsertPointTransaction(tran);
+                _repo.Insert(tran);
 
                 if (addToQueue)
-                    _uofw.PointQueue.PushPoint(playerPoint, pointGiver);
+                    _uofw.PointQueue.PushPointTran(tran);
+                else
+                    Process(tran);
             }
             catch(Exception ex)
             {
@@ -118,8 +120,6 @@ namespace JB2.Bowtie.Service
             }
 
             return tran;
-
-
         }
 
         public string GenerateValidationKey(PointTransaction pt, string hashkey = null)
@@ -138,8 +138,6 @@ namespace JB2.Bowtie.Service
                                 );
             return hashkey + key;
         }
-
-
         public bool Validate(PointTransaction pt)
         {        
             var key2 = this.GenerateValidationKey(pt, pt.ValidationKey.Substring(0,1));
@@ -148,10 +146,33 @@ namespace JB2.Bowtie.Service
             return pt.IsValid;
         }
 
+        public ServiceResult Process(PointTransaction pt)
+        {
+            try
+            {
+                //get the Point System
+                var pservice = new PointSystemService(_uofw);
 
-        
 
-        
+                var pointSystem = pservice.RetrieveById(pt.PointSystem);
+
+                if(pointSystem != null)
+                    pointSystem.Process(pt);
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+                return new ServiceResult(ex);
+            }
+
+
+            //mark it as processed and update the index
+            pt.ProcessFlag = System.DateTime.Now.Ticks.ToString();
+            _repo.Insert(pt);
+            _repo.UpdateIndex(pt);
+
+            return true;
+        }
 
         #endregion Player Data
 
