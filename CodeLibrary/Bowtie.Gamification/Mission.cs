@@ -11,11 +11,22 @@ namespace JB2.Bowtie
 {
     public class Mission : Achievement, IMission, IClass
     {
+
+
+        public Mission(string id) : base(id)
+        {
+
+        }
+
+
+
+
+
         public DateTime ExpireDate
         {
             get
             {
-                return _props.GetProperty<DateTime>("ExpireDate");
+                return _props.GetProperty<DateTime>("ExpireDate",DateTime.MaxValue);
             }
             set
             {

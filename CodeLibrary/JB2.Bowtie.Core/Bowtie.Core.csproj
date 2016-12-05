@@ -233,6 +233,9 @@
     <Compile Include="Interfaces\ILeaderboardRepository.cs" />
     <Compile Include="Interfaces\IMaintenanceQueue.cs" />
     <Compile Include="Interfaces\IMasterLeaderboard.cs" />
+    <Compile Include="Interfaces\IMission.cs" />
+    <Compile Include="Interfaces\IMissionGroup.cs" />
+    <Compile Include="Interfaces\IMissionRespository.cs" />
     <Compile Include="Interfaces\IModule.cs" />
     <Compile Include="Interfaces\IModuleRepository.cs" />
     <Compile Include="Interfaces\IPlayerable.cs" />

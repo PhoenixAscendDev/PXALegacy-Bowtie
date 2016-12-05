@@ -135,6 +135,14 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public IMissionRespository MissionRepository
+        {
+            get
+            {
+                return (JB2.Bowtie.IMissionRespository)GetRepository(RepositoryType.Mission);
+            }
+        }
+
         public IDewdropQueueRepo DewdropQueue
         {
             get
@@ -237,6 +245,9 @@ namespace JB2.Bowtie.Data.Azure
                                 break;
                             case RepositoryType.PointSystem:
                                 _repos.Add(repository, new JB2.Bowtie.Data.Azure.PointSysteRepository());
+                                break;
+                            case RepositoryType.Mission:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.MissionRespository());
                                 break;
                         }
                     }

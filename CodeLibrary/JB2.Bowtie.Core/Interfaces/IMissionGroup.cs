@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Interfaces
+namespace JB2.Bowtie
 {
     public interface IMissionGroup : IDewdrop, IPointGiver
     {

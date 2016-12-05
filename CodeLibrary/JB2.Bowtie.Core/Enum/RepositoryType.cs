@@ -22,6 +22,7 @@ namespace JB2.Bowtie.Enum
         Module,
         Authorize,
         Log,
-        PointSystem
+        PointSystem,
+        Mission
     }
 }

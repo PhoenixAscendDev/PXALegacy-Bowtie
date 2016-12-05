@@ -213,6 +213,7 @@
     <Compile Include="Entities\GraphElementEntity.cs" />
     <Compile Include="GameCommandRepository.cs" />
     <Compile Include="GraphRepository.cs" />
+    <Compile Include="MissionRespository.cs" />
     <Compile Include="ModuleRepository.cs" />
     <Compile Include="OnErrorReturnType.cs" />
     <Compile Include="PlayerRepository.cs" />
