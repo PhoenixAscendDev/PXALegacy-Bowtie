@@ -33,6 +33,8 @@ namespace JB2.Bowtie.Enum
         [TokenName("Bowtie>*<Module")]
         bowtie_module,
         [TokenName("Bowtie>*<AuthProvider")]
-        bowtie_auth
+        bowtie_auth,
+        [TokenName("Bowtie>*<Mission")]
+        bowtie_mission
     }
 }
