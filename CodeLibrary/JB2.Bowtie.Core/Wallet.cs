@@ -15,7 +15,7 @@ namespace JB2.Bowtie
         #region Fields
 
         protected string _appID;
-        protected JBeanCollection _treasuryNotes;
+        protected TreasuryNotes _treasuryNotes;
         protected IList<JB2.Bowtie.WalletReceipt> _receipts;
         protected Dictionary<string, double> _amounts;
         protected string _id;
@@ -43,13 +43,14 @@ namespace JB2.Bowtie
             return _id;
         }
 
-        public PlayerWallet(string id, string playerID, JBeanCollection jbeanTreasuryNotes)
+        public PlayerWallet(string id, string playerID, TreasuryNotes treasuryNotes)
         {
             _id = id;
-            _treasuryNotes = jbeanTreasuryNotes;
+            _treasuryNotes = treasuryNotes;
             _playerID = playerID;
             _amounts = new Dictionary<string, double>();
-            _amounts.Add(JB2.Settings.Jbean.Factory.Currencies[0].ID, (double)jbeanTreasuryNotes);
+
+            //_amounts.Add(JB2.Settings.Jbean.Factory.Currencies[0].ID, (double)jbeanTreasuryNotes);
             _receipts = new List<WalletReceipt>();
         }
 
@@ -67,21 +68,21 @@ namespace JB2.Bowtie
             }
         }   
 
-        public JBeanBag JBeanTotal
-        {
-            get
-            {
-                int noteAmount =  (JBeanBag)_treasuryNotes;
-                int totalWithdraw = 0;
+        //public JBeanBag JBeanTotal
+        //{
+        //    get
+        //    {
+        //        int noteAmount =  (JBeanBag)_treasuryNotes;
+        //        int totalWithdraw = 0;
 
-                foreach(var r in _receipts.ToList().FindAll(x => x.TransactionType == WalletTransationType.Withdraw))
-                {
-                    totalWithdraw = totalWithdraw + (int)r.Amount;
-                }
+        //        foreach(var r in _receipts.ToList().FindAll(x => x.TransactionType == WalletTransationType.Withdraw))
+        //        {
+        //            totalWithdraw = totalWithdraw + (int)r.Amount;
+        //        }
 
-                return noteAmount - totalWithdraw;              
-            }
-        }
+        //        return noteAmount - totalWithdraw;              
+        //    }
+        //}
 
         public IPerson<string> Owner
         {
@@ -110,9 +111,9 @@ namespace JB2.Bowtie
 
         public double CurrencyTotal(ICurrency currency)
         {
-            if (currency.ID == JB2.Settings.Jbean.Factory.Currencies[0].ID)
-                return Convert.ToDouble((int)this.JBeanTotal);
-            else if (_amounts.ContainsKey(currency.ID))
+            //if (currency.ID == JB2.Settings.Jbean.Factory.Currencies[0].ID)
+            //    return Convert.ToDouble((int)this.JBeanTotal);
+            if (_amounts.ContainsKey(currency.ID))
                 return _amounts[currency.ID];
             else
                 return 0;
@@ -140,22 +141,22 @@ namespace JB2.Bowtie
             _amounts[currency.ID] = _amounts[currency.ID] - quantity;
         }
 
-        public IEnumerable<jBeanToken>  GetJBeanTokens()
-        {
-            return null;
-        }
+        //public IEnumerable<jBeanToken>  GetJBeanTokens()
+        //{
+        //    return null;
+        //}
 
-        public bool AddTreasuryNote(JbeanTreasuryNote note)
+        public bool AddTreasuryNote(ITreasuryNote note)
         {
             var result = _treasuryNotes.Add(note);
 
             if (result)
                 this.AddAmount(JB2.Settings.Jbean.Factory.Currencies[0], note.Amount);
-                //_amounts[JB2.Settings.Jbean.Factory.Currencies[0].ID] = _amounts[JB2.Settings.Jbean.Factory.Currencies[0].ID] + note.Amount;
+            //_amounts[JB2.Settings.Jbean.Factory.Currencies[0].ID] = _amounts[JB2.Settings.Jbean.Factory.Currencies[0].ID] + note.Amount;
 
             return result;
         }
-        
+
         public IEnumerable<WalletReceipt> GetReceipts()
         {
             return _receipts;

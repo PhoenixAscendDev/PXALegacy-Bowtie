@@ -99,8 +99,7 @@ namespace JB2.Bowtie
             {
 
                 //add jBeans to Wallet
-                int amount = dewdrop.GetjBeanCost();
-
+                int amount = dewdrop.GetCurrencyCost(JB2.Settings.Jbean.Factory.Currencies[0].ID);
                 if (amount > 0)
                 {
                     var tNote = addAmountToWallet(JB2.Settings.Jbean.Factory.Currencies[0], amount, player);
@@ -165,7 +164,7 @@ namespace JB2.Bowtie
             if (currency.GetID() == JB2.Configuration.GetjBeanCurrencyID() && wallet != null)
             {
                 int jBeanAmount = (JBeanBag)amount;
-                walletService.RemoveJBeansToWallet(wallet, jBeanAmount);
+                //walletService.RemoveJBeansToWallet(wallet, jBeanAmount);
             }
         }
 

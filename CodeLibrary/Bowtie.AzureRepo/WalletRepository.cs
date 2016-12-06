@@ -45,14 +45,14 @@ namespace JB2.Bowtie.Data.Azure
         protected override DynamicTableEntity convertToEntity(IWallet o)
         {
             var e = new DynamicTableEntity();
-            var bag = o.JBeanTotal;
+            //var bag = o.JBeanTotal;
 
             e.Properties.Add("ID", new EntityProperty(o.GetID()));
             e.Properties.Add("PlayerID", new EntityProperty(o.Owner.GetID()));
             e.Properties.Add("ApplicationID", new EntityProperty(o.GetApplicationID()));
-            e.Properties.Add("JBean_KidneyTotal", new EntityProperty(bag.Kidney));
-            e.Properties.Add("JBean_NavyTotal", new EntityProperty(bag.Navy));
-            e.Properties.Add("JBean_PintoTotal", new EntityProperty(bag.Pinto));
+            //e.Properties.Add("JBean_KidneyTotal", new EntityProperty(bag.Kidney));
+            //e.Properties.Add("JBean_NavyTotal", new EntityProperty(bag.Navy));
+            //e.Properties.Add("JBean_PintoTotal", new EntityProperty(bag.Pinto));
             return e;
         }
 
@@ -71,7 +71,7 @@ namespace JB2.Bowtie.Data.Azure
         {
             if (e != null)
             {
-                var jBeans = new JB2.Economy.JBeanCollection();
+                var walletNotes = new JB2.Bowtie.TreasuryNotes();
 
                 var playerID = e.Properties.ContainsKey("PlayerID") ? e.Properties["PlayerID"].StringValue : string.Empty;
                 var appID = e.Properties.ContainsKey("ApplicationID") ? e.Properties["ApplicationID"].StringValue : string.Empty;
@@ -92,12 +92,12 @@ namespace JB2.Bowtie.Data.Azure
                     var isValid = JB2.Settings.Jbean.Factory.Treasury.IsValidNote(tempNote);
 
                     if(isValid)
-                        jBeans.Add(tempNote);
+                        walletNotes.Add(tempNote);
                 }
 
 
 
-                IWallet wallet = new PlayerWallet(id, playerID, jBeans);
+                IWallet wallet = new PlayerWallet(id, playerID, walletNotes);
                 wallet.ApplicationID = appID;
 
                 return wallet;

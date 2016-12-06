@@ -20,7 +20,7 @@ namespace Bowtie.WebMain
                         .ForMember(dest => dest.CompanyName, opts => opts.MapFrom(src => src.Company.Name))
                         .ForMember(dest => dest.jBeanKey, opts => opts.MapFrom(src => src.GetTreasuryRequestKey("jBean").Key));
                 cfg.CreateMap<JB2.Bowtie.IDewdrop, JB2.Bowtie.Web.Models.DewdropViewModel>()
-                        .ForMember(dest => dest.jBeanCost, opts => opts.MapFrom(src => src.GetjBeanCost()))
+                        //.ForMember(dest => dest.jBeanCost, opts => opts.MapFrom(src => src.GetjBeanCost()))
                         .ForMember(dest => dest.GraphID, opts => opts.MapFrom(src => src.GetGraphID()))
                         .ForMember(dest => dest.ApplicationID, opts => opts.MapFrom(src => src.GetApplicationID()))
                         .ForMember(dest => dest.Description, opts => opts.MapFrom(src => src.GetDescription()));

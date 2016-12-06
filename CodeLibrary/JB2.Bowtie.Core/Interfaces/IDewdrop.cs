@@ -10,6 +10,8 @@ namespace JB2.Bowtie
     {
         string GetGraphID();
         string GetDescription();
-        int GetjBeanCost();
+
+        int GetCurrencyCost(string currencyID);
+        //int GetjBeanCost();
     }
 }

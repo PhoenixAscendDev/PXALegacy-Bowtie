@@ -11,7 +11,7 @@ namespace JB2.Bowtie
     [GraphPropertyMap("title", "Name")]
     [GraphPropertyMap("appID", "GetApplicationID", Enum.ClassMemberType.Method)]
     [GraphPropertyMap("storyID", "GetGraphID", Enum.ClassMemberType.Method)]
-    [GraphPropertyMap("jbeanCost", "GetjBeanCost", Enum.ClassMemberType.Method)]
+    //[GraphPropertyMap("currencyCost", "GetjBeanCost", Enum.ClassMemberType.Method)]
     [GraphPropertyMap("description", "GetDescription", Enum.ClassMemberType.Method)]
     public class Dewdrop : JB2.Common.IDNamePair, IDewdrop, JB2.Identity.IApplicationable, JB2.Common.IIDNamePair<string, string>
     {
@@ -19,6 +19,7 @@ namespace JB2.Bowtie
         protected string _appid;
         protected string _graphID;
         protected string _description;
+        protected Dictionary<string, int> _currencyCost;
         protected int _jbeanCost;
 
         protected JB2.Common.MetaDataCollection _prop;
@@ -86,9 +87,17 @@ namespace JB2.Bowtie
         {
             return _description;
         }
-        public int GetjBeanCost()
+        //public int GetjBeanCost()
+        //{
+        //    return _jbeanCost;
+        //}
+
+        public int GetCurrencyCost(string currencyID)
         {
-            return _jbeanCost;
+            if (_currencyCost.ContainsKey(currencyID))
+                return _currencyCost[currencyID];
+            else
+                return 0;
         }
 
         #endregion Methods

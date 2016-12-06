@@ -62,20 +62,20 @@ namespace JB2.Bowtie.Service
 
         //    RemoveJBeansToWallet(wallet, amount);
         //}
-        public void RemoveJBeansToWallet(IWallet wallet, int amount)
-        {
-            var player = _uofw.PlayerRepository.GetById(wallet.Owner.ID);
-            var app = _uofw.ApplicationRepository.GetById(wallet.GetApplicationID());
+        //public void RemoveJBeansToWallet(IWallet wallet, int amount)
+        //{
+        //    var player = _uofw.PlayerRepository.GetById(wallet.Owner.ID);
+        //    var app = _uofw.ApplicationRepository.GetById(wallet.GetApplicationID());
 
-            //we don't allow negative accounts
-            var amountInWallet = wallet.JBeanTotal;
-            if(amountInWallet >= amount)
-            {
-                wallet.RemoveAmount(JB2.Settings.Jbean.Factory.Currencies[0], amount);
-            }
-            _walletrepo.Insert(wallet);
+        //    //we don't allow negative accounts
+        //    var amountInWallet = wallet.JBeanTotal;
+        //    if(amountInWallet >= amount)
+        //    {
+        //        wallet.RemoveAmount(JB2.Settings.Jbean.Factory.Currencies[0], amount);
+        //    }
+        //    _walletrepo.Insert(wallet);
 
-        }
+        //}
 
         public IWallet RetrieveWalletByPlayer(IBowtiePlayer player,IApplication app)
         {
@@ -89,7 +89,7 @@ namespace JB2.Bowtie.Service
             IWallet wallet = null;
 
             string id = "w-" + JB2.Common.NewID.ShortGuid();
-            wallet = new PlayerWallet(id, player.GetPlayerID(), new Economy.JBeanCollection());
+            wallet = new PlayerWallet(id, player.GetPlayerID(), new TreasuryNotes());
             wallet.ApplicationID = app.GetID();
             _walletrepo.Insert(wallet);
 

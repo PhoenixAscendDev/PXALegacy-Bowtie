@@ -205,9 +205,9 @@
     <Compile Include="Extenstion\PlayerExtenstion.cs" />
     <Compile Include="GameCommand.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="IAuthProvider.cs" />
-    <Compile Include="IDewdropTrigger.cs" />
-    <Compile Include="IGameSession.cs" />
+    <Compile Include="Interfaces\IAuthProvider.cs" />
+    <Compile Include="Interfaces\IDewdropTrigger.cs" />
+    <Compile Include="Interfaces\IGameSession.cs" />
     <Compile Include="Interfaces\IAchievementQueueRepo.cs" />
     <Compile Include="Interfaces\IApplicationable.cs" />
     <Compile Include="Interfaces\IAuthorizeRepository.cs" />
@@ -216,8 +216,8 @@
     <Compile Include="Interfaces\IDewdrop.cs" />
     <Compile Include="Interfaces\IDewdropQueue.cs" />
     <Compile Include="Interfaces\IGameEngine.cs" />
-    <Compile Include="IBowtieObject.cs" />
-    <Compile Include="IBowtiePlayer.cs" />
+    <Compile Include="Interfaces\IBowtieObject.cs" />
+    <Compile Include="Interfaces\IBowtiePlayer.cs" />
     <Compile Include="Interfaces\IDewdropRepository.cs" />
     <Compile Include="Interfaces\IAchievement.cs" />
     <Compile Include="Interfaces\IAchievementRepository.cs" />
@@ -248,16 +248,15 @@
     <Compile Include="Interfaces\IQueue.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Interfaces\IPoint.cs" />
-    <Compile Include="IPlayerRespository.cs" />
+    <Compile Include="Interfaces\IPlayerRespository.cs" />
     <Compile Include="Interfaces\IPointSystemRepository.cs" />
     <Compile Include="Interfaces\IPointGiver.cs" />
-    <Compile Include="IWallet.cs" />
+    <Compile Include="Interfaces\IWallet.cs" />
     <Compile Include="JBeanCollection.cs" />
-    <Compile Include="JBeanRequest.cs" />
     <Compile Include="LanguageTense.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Dewdrop.cs" />
-    <Compile Include="IPlayerDewdrop.cs" />
+    <Compile Include="Interfaces\IPlayerDewdrop.cs" />
     <Compile Include="PlayerDewdrop.cs" />
     <Compile Include="PlayerInventoryItem.cs" />
     <Compile Include="PointSystemConfig.cs" />
@@ -267,9 +266,10 @@
     <Compile Include="Settings.cs" />
     <Compile Include="TokenName.cs" />
     <Compile Include="TreasuryAccessKey.cs" />
+    <Compile Include="TreasuryNotes.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="Wallet.cs" />
-    <Compile Include="WalletOwner.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="WalletReceipt.cs" />
     <Compile Include="WalletTransationType.cs" />
   </ItemGroup>
