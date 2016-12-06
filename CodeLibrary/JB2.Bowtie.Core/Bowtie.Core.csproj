@@ -181,6 +181,7 @@
     <Compile Include="BowtieObjectType.cs" />
     <Compile Include="BowtiePlayer.cs" />
     <Compile Include="BowtieSettingName.cs" />
+    <Compile Include="ClassConfig.cs" />
     <Compile Include="DewdropTriggerInfo.cs" />
     <Compile Include="EconomyRepository.cs" />
     <Compile Include="Enum\AchievementRarityType.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="Enum\AchievementType.cs" />
     <Compile Include="Enum\APIAuthorizeState.cs" />
     <Compile Include="Enum\APIMode.cs" />
+    <Compile Include="Enum\ClassType.cs" />
     <Compile Include="Enum\GraphElementType.cs" />
     <Compile Include="Enum\LeaderboardScoreType.cs" />
     <Compile Include="Enum\LeaderboardType.cs" />
@@ -206,6 +208,7 @@
     <Compile Include="GameCommand.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Interfaces\IAuthProvider.cs" />
+    <Compile Include="Interfaces\IClassConfig.cs" />
     <Compile Include="Interfaces\IDewdropTrigger.cs" />
     <Compile Include="Interfaces\IGameSession.cs" />
     <Compile Include="Interfaces\IAchievementQueueRepo.cs" />
