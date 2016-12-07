@@ -7,25 +7,25 @@ using JB2.Common.Enum;
 
 namespace JB2.Bowtie
 {
-    public abstract class ObjectConfig : JB2.Common.IClassConfig
+    public abstract class ObjectConfig : JB2.Bowtie.IExternalClass
     {
 
         #region Fields
-        protected JB2.Common.ClassConfig _classconfig;
+        protected JB2.Bowtie.ExternalClass _classconfig;
         #endregion Fields
 
         #region Constructors
         public ObjectConfig()
         {
-            _classconfig = new Common.ClassConfig();
+            _classconfig = new ExternalClass();
         }
 
 
         #endregion Constructors
 
-        #region IClassConfig
+        #region IExteneralConfig
 
-        public string Assembly
+        public virtual string Assembly
         {
             get
             {
@@ -38,7 +38,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public string AssemblyQualifiedName
+        public virtual string AssemblyQualifiedName
         {
             get
             {
@@ -51,7 +51,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public string Classname
+        public virtual string Classname
         {
             get
             {
@@ -64,7 +64,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public ClassType ClassType
+        public virtual ClassType ClassType
         {
             get
             {
@@ -77,7 +77,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public string[] ConstructorParameters
+        public virtual string[] ConstructorParameters
         {
             get
             {
@@ -90,7 +90,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public string Namespace
+        public virtual string Namespace
         {
             get
             {
@@ -103,7 +103,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public string ClassConfigID
+        public virtual string ClassConfigID
         {
             get
             {
@@ -115,10 +115,13 @@ namespace JB2.Bowtie
             }
         }
 
-        public int GetConstructorParameterCount()
+        public virtual int GetConstructorParameterCount()
         {
             return _classconfig.GetConstructorParameterCount();
         }
+
+        public abstract string GetID();
+       
 
 
         #endregion IClassConfig

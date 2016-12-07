@@ -13,7 +13,7 @@ namespace JB2.Common
         string Assembly { get; set; }
         string AssemblyQualifiedName { get; set; }
         string[] ConstructorParameters { get; set; }
-        JB2.Common.Enum.ClassType ClassType { get; set; }
+        
 
         int GetConstructorParameterCount();
 

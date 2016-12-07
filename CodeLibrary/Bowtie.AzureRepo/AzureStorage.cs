@@ -145,6 +145,14 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public static AzureTableRepository ExternalClassTable
+        {
+            get
+            {
+                return ConfigStorage.GetTable("externalclasses");
+            }
+        }
+
         public static AzureTableRepository LogTable
         {
             get

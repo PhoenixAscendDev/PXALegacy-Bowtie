@@ -178,16 +178,14 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
-        
+        public IExternalClassRepository ExternalClassRepository
+        {
+            get
+            {
+                return (JB2.Bowtie.IExternalClassRepository)GetRepository(RepositoryType.ClassConfig);
+            }
+        }
 
-
-        //public JB2.Common.IPlayerRepo PlayerRepository
-        //{
-        //    get
-        //    {
-        //        return (JB2.Common.IPlayerRepo)GetRepository(Enum.RepositoryType.Player);
-        //    }
-        //}
 
         public object GetRepository(JB2.Bowtie.Enum.RepositoryType repository)
         {
@@ -248,6 +246,9 @@ namespace JB2.Bowtie.Data.Azure
                                 break;
                             case RepositoryType.Mission:
                                 _repos.Add(repository, new JB2.Bowtie.Data.Azure.MissionRespository());
+                                break;
+                            case RepositoryType.ClassConfig:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.ExternalClassRepository());
                                 break;
                         }
                     }

@@ -8,7 +8,6 @@ namespace JB2.Bowtie
 {
     public class CurrencyConfig : ObjectConfig, ICurrencyConfig
     {
-
         #region Constructor
 
         public CurrencyConfig(string currencyID)
@@ -27,7 +26,7 @@ namespace JB2.Bowtie
 
         public string Name { get; set; }
         
-        public string GetID()
+        public override string GetID()
         {
             return ID;
         }

@@ -205,6 +205,7 @@
     <Compile Include="BingoCardEntry.cs" />
     <Compile Include="BingPatternEntry.cs" />
     <Compile Include="BowtieCacheDictionary.cs" />
+    <Compile Include="ClassConfigRepository.cs" />
     <Compile Include="ColorEntry.cs" />
     <Compile Include="ColorSetEntry.cs" />
     <Compile Include="Entities\DewdropEntity.cs" />

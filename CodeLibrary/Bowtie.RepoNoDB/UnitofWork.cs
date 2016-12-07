@@ -142,6 +142,14 @@ namespace JB2.Bowtie.Data.NoDB
             }
         }
 
+        public IExternalClassRepository ExternalClassRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public IAchievementQueueRepo AchievementQueue
         {
             get
@@ -173,6 +181,8 @@ namespace JB2.Bowtie.Data.NoDB
                 throw new NotImplementedException();
             }
         }
+
+
 
         public object GetRepository(Enum.RepositoryType respository)
         {

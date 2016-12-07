@@ -7,11 +7,11 @@ using JB2.Common.Enum;
 
 using JB2.Common;
 
-namespace JB2.Common
+namespace JB2.Bowtie
 {
-    public class ClassConfig : JB2.Common.JB2Class, IClassConfig
+    public class ExternalClass : JB2.Common.JB2Class, IExternalClass
     {
-        public ClassConfig()
+        public ExternalClass()
         {
             _props = new MetaDataCollection();
         }
@@ -105,6 +105,13 @@ namespace JB2.Common
                 _props.SetProperty<string>("ClassConfigID", value);
             }
         }
+
+
+        public string GetID()
+        {
+            return ClassConfigID;
+        }
+
 
         public int GetConstructorParameterCount()
         {
