@@ -42,7 +42,7 @@ namespace JB2.Bowtie
         {
             get
             {
-                return _classconfig.AssemblyQualifiedName
+                return _classconfig.AssemblyQualifiedName;
             }
 
             set
@@ -100,6 +100,18 @@ namespace JB2.Bowtie
             set
             {
                 _classconfig.Namespace = value;
+            }
+        }
+
+        public string ClassConfigID
+        {
+            get
+            {
+                return _classconfig.ClassConfigID;
+            }
+            set
+            {
+                _classconfig.ClassConfigID = value;
             }
         }
 

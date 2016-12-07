@@ -182,6 +182,7 @@
     <Compile Include="BowtiePlayer.cs" />
     <Compile Include="BowtieSettingName.cs" />
     <Compile Include="ClassConfig.cs" />
+    <Compile Include="CurrencyConfig.cs" />
     <Compile Include="DewdropTriggerInfo.cs" />
     <Compile Include="EconomyRepository.cs" />
     <Compile Include="Enum\AchievementRarityType.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Helper.cs" />
     <Compile Include="Interfaces\IAuthProvider.cs" />
     <Compile Include="Interfaces\IClassConfig.cs" />
+    <Compile Include="Interfaces\ICurrencyConfig.cs" />
     <Compile Include="Interfaces\IDewdropTrigger.cs" />
     <Compile Include="Interfaces\IGameSession.cs" />
     <Compile Include="Interfaces\IAchievementQueueRepo.cs" />
@@ -257,6 +259,7 @@
     <Compile Include="Interfaces\IWallet.cs" />
     <Compile Include="JBeanCollection.cs" />
     <Compile Include="LanguageTense.cs" />
+    <Compile Include="ObjectConfig.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Dewdrop.cs" />
     <Compile Include="Interfaces\IPlayerDewdrop.cs" />

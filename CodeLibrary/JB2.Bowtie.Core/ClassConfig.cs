@@ -94,6 +94,18 @@ namespace JB2.Common
             }
         }
 
+        public string ClassConfigID
+        {
+            get
+            {
+                return _props.GetProperty<string>("ClassConfigID");
+            }
+            set
+            {
+                _props.SetProperty<string>("ClassConfigID", value);
+            }
+        }
+
         public int GetConstructorParameterCount()
         {
             return ConstructorParameters.Count();

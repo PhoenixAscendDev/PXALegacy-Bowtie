@@ -16,5 +16,7 @@ namespace JB2.Common
         JB2.Common.Enum.ClassType ClassType { get; set; }
 
         int GetConstructorParameterCount();
+
+        string ClassConfigID { get; set; }
     }
 }
