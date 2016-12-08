@@ -145,11 +145,11 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
-        public static AzureTableRepository ExternalClassTable
+        public static AzureTableRepository SystemTable
         {
             get
             {
-                return ConfigStorage.GetTable("externalclasses");
+                return ConfigStorage.GetTable("systems");
             }
         }
 

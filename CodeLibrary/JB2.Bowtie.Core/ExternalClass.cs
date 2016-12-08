@@ -10,11 +10,11 @@ using JB2.Common;
 namespace JB2.Bowtie
 {
 
-    public class ExternalClass: ExternalClass<object>, IExternalClass
+    public class ExternalClass: ExternalClass<object>, ISystem
     {
 
     }
-    public class ExternalClass<T> : JB2.Common.JB2Class, IExternalClass<T>
+    public class ExternalClass<T> : JB2.Common.JB2Class, ISystem<T>
     {
         #region IExternalClass
         public ExternalClass()

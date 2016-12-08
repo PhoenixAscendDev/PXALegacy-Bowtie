@@ -142,7 +142,7 @@ namespace JB2.Bowtie.Data.NoDB
             }
         }
 
-        public IExternalClassRepository ExternalClassRepository
+        public ISystemRepository SystemRepository
         {
             get
             {

@@ -178,11 +178,11 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
-        public IExternalClassRepository ExternalClassRepository
+        public ISystemRepository SystemRepository
         {
             get
             {
-                return (JB2.Bowtie.IExternalClassRepository)GetRepository(RepositoryType.ClassConfig);
+                return (JB2.Bowtie.ISystemRepository)GetRepository(RepositoryType.ClassConfig);
             }
         }
 
@@ -248,7 +248,7 @@ namespace JB2.Bowtie.Data.Azure
                                 _repos.Add(repository, new JB2.Bowtie.Data.Azure.MissionRespository());
                                 break;
                             case RepositoryType.ClassConfig:
-                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.ExternalClassRepository());
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.SystemRepository());
                                 break;
                         }
                     }

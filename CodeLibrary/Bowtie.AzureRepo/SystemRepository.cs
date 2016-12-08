@@ -10,16 +10,16 @@ using JB2.Common.Data;
 
 namespace JB2.Bowtie.Data.Azure
 {
-    public class ExternalClassRepository : BowtieRepository<JB2.Bowtie.IExternalClass>, IExternalClassRepository
+    public class SystemRepository : BowtieRepository<JB2.Bowtie.ISystem>, ISystemRepository
     {
         #region Constructors
 
-        public ExternalClassRepository() : this(AzureStorage.ExternalClassTable,AzureStorage.GeneralBlob,AzureStorage.ExternalClassTable)
+        public SystemRepository() : this(AzureStorage.SystemTable,AzureStorage.GeneralBlob,AzureStorage.SystemTable)
         {
 
         }
 
-        public ExternalClassRepository(Common.Data.AzureTableRepository table, Common.Data.AzureBlobRepository blob, Common.Data.AzureTableRepository playerdata)
+        public SystemRepository(Common.Data.AzureTableRepository table, Common.Data.AzureBlobRepository blob, Common.Data.AzureTableRepository playerdata)
         {
             _table = table;
             _blob = blob;
@@ -31,7 +31,7 @@ namespace JB2.Bowtie.Data.Azure
         #endregion Constructors
 
 
-        protected override DynamicTableEntity convertToEntity(IExternalClass o)
+        protected override DynamicTableEntity convertToEntity(ISystem o)
         {
             DynamicTableEntity e = new DynamicTableEntity();
 
@@ -49,9 +49,9 @@ namespace JB2.Bowtie.Data.Azure
 
         }
 
-        protected override IEnumerable<IExternalClass> convertToObject(IEnumerable<DynamicTableEntity> list)
+        protected override IEnumerable<ISystem> convertToObject(IEnumerable<DynamicTableEntity> list)
         {
-            List<IExternalClass> result = new List<IExternalClass>();
+            List<ISystem> result = new List<ISystem>();
 
             foreach(var e in  list)
             {
@@ -61,7 +61,7 @@ namespace JB2.Bowtie.Data.Azure
             return result;
         }
 
-        protected override IExternalClass convertToObject(DynamicTableEntity e)
+        protected override ISystem convertToObject(DynamicTableEntity e)
         {
             ExternalClass o = new ExternalClass();
 

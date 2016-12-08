@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IExternalClassRepository : JB2.Common.IRepository<JB2.Bowtie.IExternalClass, string>
+    public interface ISystemRepository : JB2.Common.IRepository<JB2.Bowtie.ISystem, string>
     {
 
     }

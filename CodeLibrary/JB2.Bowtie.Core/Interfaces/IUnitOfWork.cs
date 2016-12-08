@@ -35,7 +35,7 @@ namespace JB2.Bowtie
 
         IMissionRespository MissionRepository { get; }
 
-        IExternalClassRepository ExternalClassRepository { get; }
+        ISystemRepository SystemRepository { get; }
         
         //IPlayerRepo PlayerRepository { get; }
         object GetRepository(Enum.RepositoryType respository);

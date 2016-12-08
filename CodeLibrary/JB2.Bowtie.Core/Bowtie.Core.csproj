@@ -211,10 +211,10 @@
     <Compile Include="ICurrencyTreasury.cs" />
     <Compile Include="Interfaces\IAuthProvider.cs" />
     <Compile Include="Interfaces\IClassConfig.cs" />
-    <Compile Include="Interfaces\IExternalClassRepository.cs" />
+    <Compile Include="Interfaces\ISystemRepository.cs" />
     <Compile Include="Interfaces\ICurrencyConfig.cs" />
     <Compile Include="Interfaces\IDewdropTrigger.cs" />
-    <Compile Include="Interfaces\IExternalClass.cs" />
+    <Compile Include="Interfaces\ISystem.cs" />
     <Compile Include="Interfaces\IGameSession.cs" />
     <Compile Include="Interfaces\IAchievementQueueRepo.cs" />
     <Compile Include="Interfaces\IApplicationable.cs" />

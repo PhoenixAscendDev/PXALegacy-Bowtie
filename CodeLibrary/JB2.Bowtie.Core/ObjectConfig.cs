@@ -7,7 +7,7 @@ using JB2.Common.Enum;
 
 namespace JB2.Bowtie
 {
-    public abstract class ObjectConfig<T> : JB2.Bowtie.IExternalClass<T>
+    public abstract class ObjectConfig<T> : JB2.Bowtie.ISystem<T>
     {
 
         #region Fields

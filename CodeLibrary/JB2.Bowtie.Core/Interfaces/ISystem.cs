@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace JB2.Bowtie
 {
 
-    public interface IExternalClass : IExternalClass<object>
+    public interface ISystem : ISystem<object>
     {
 
     }
 
-    public interface IExternalClass<T> : JB2.Common.IClassConfig, JB2.Common.IIDProp<string>
+    public interface ISystem<T> : JB2.Common.IClassConfig, JB2.Common.IIDProp<string>
     {
 
         string Category { get; set; }

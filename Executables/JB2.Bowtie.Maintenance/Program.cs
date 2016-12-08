@@ -185,7 +185,7 @@ namespace JB2.Bowtie.Maintenance
             exClass.Namespace = currencyConfig.GetType().Namespace;
             exClass.Category = "Currency".ToUpper();
 
-            var classRepo = JB2.Settings.Bowtie.UnitOfWork.ExternalClassRepository;
+            var classRepo = JB2.Settings.Bowtie.UnitOfWork.SystemRepository;
 
             classRepo.Insert(exClass);
            
