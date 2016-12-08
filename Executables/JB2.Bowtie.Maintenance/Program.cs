@@ -183,6 +183,7 @@ namespace JB2.Bowtie.Maintenance
             exClass.ClassType = Common.Enum.ClassType.NewInstance;
             exClass.ConstructorParameters = new string[0];
             exClass.Namespace = currencyConfig.GetType().Namespace;
+            exClass.Category = "Currency".ToUpper();
 
             var classRepo = JB2.Settings.Bowtie.UnitOfWork.ExternalClassRepository;
 

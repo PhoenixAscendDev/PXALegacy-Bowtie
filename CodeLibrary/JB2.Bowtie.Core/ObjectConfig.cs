@@ -64,6 +64,18 @@ namespace JB2.Bowtie
             }
         }
 
+        public virtual string Category
+        {
+            get
+            {
+                return _classconfig.Category;
+            }
+            set
+            {
+                _classconfig.Category = value;
+            }
+        }
+
         public virtual ClassType ClassType
         {
             get

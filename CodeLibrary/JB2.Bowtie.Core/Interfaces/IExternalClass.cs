@@ -14,6 +14,8 @@ namespace JB2.Bowtie
 
     public interface IExternalClass<T> : JB2.Common.IClassConfig, JB2.Common.IIDProp<string>
     {
+
+        string Category { get; set; }
         T Construct();
 
         T Construct(KeyValuePair<string, object> parameter1);

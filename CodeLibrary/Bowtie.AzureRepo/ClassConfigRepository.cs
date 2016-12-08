@@ -42,6 +42,7 @@ namespace JB2.Bowtie.Data.Azure
             e.SetProperty<string>("Classname", o.Classname);
             e.SetProperty<string>("Namespace", o.Namespace);
             e.SetProperty<string>("ParametersCSV", string.Join(",", o.ConstructorParameters));
+            e.SetProperty<string>("Category", o.Category);
 
             return e;
 
@@ -68,6 +69,7 @@ namespace JB2.Bowtie.Data.Azure
             o.AssemblyQualifiedName = e.GetPropertyValue<string>("AssemblyQualifiedName", string.Empty);
             o.ClassConfigID = e.GetPropertyValue<string>("ClassConfigID", string.Empty);
             o.Classname = e.GetPropertyValue<string>("Classname", string.Empty);
+            o.Category = e.GetPropertyValue<string>("Category", string.Empty);
 
             //parameters
             string[] parameterNames = new string[0];

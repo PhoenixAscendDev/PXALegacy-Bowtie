@@ -61,6 +61,19 @@ namespace JB2.Bowtie
             }
         }
 
+        public string Category
+        {
+            get
+            {
+                return _props.GetProperty<string>("Category", string.Empty);
+            }
+
+            set
+            {
+                _props.SetProperty<string>("Category", value);
+            }
+        }
+
         public ClassType ClassType
         {
             get
