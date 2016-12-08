@@ -6,25 +6,8 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-
-    public interface ISystem : ISystem<object>
+    public interface ISystem : JB2.Common.IIDNamePair<string,string>
     {
-
-    }
-
-    public interface ISystem<T> : JB2.Common.IClassConfig, JB2.Common.IIDProp<string>
-    {
-
-        string Category { get; set; }
-        T Construct();
-
-        T Construct(KeyValuePair<string, object> parameter1);
-
-        T Construct(KeyValuePair<string, object> parameter1, KeyValuePair<string, object> parameter2);
-
-        T Construct(KeyValuePair<string, object> parameter1, KeyValuePair<string, object> parameter2, KeyValuePair<string, object> parameter3);
-
-        T Construct(IEnumerable<KeyValuePair<string, object>> parameters);
-
+        Enum.SystemType SystemType { get; set; }
     }
 }

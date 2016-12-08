@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie
+namespace JB2.Bowtie.Enum
 {
-    public interface ISystemRepository : JB2.Common.IRepository<JB2.Bowtie.ISystemConfig, string>
+    public enum SystemType
     {
+        Point,
+        Currency
 
     }
 }

@@ -171,7 +171,7 @@ namespace JB2.Bowtie.Maintenance
             var appService = new JB2.Bowtie.Service.ApplicationService();
 
 
-            var currencyConfig = new JB2.JBeanCurrency.CurrencyConfig();
+            var currencyConfig = new JB2.JBeanCurrency.CurrencySystem();
 
 
             JB2.Bowtie.ExternalClass exClass = new ExternalClass();

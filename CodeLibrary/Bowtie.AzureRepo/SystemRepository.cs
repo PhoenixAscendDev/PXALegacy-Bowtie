@@ -10,7 +10,7 @@ using JB2.Common.Data;
 
 namespace JB2.Bowtie.Data.Azure
 {
-    public class SystemRepository : BowtieRepository<JB2.Bowtie.ISystem>, ISystemRepository
+    public class SystemRepository : BowtieRepository<JB2.Bowtie.ISystemConfig>, ISystemRepository
     {
         #region Constructors
 
@@ -31,7 +31,7 @@ namespace JB2.Bowtie.Data.Azure
         #endregion Constructors
 
 
-        protected override DynamicTableEntity convertToEntity(ISystem o)
+        protected override DynamicTableEntity convertToEntity(ISystemConfig o)
         {
             DynamicTableEntity e = new DynamicTableEntity();
 
@@ -49,9 +49,9 @@ namespace JB2.Bowtie.Data.Azure
 
         }
 
-        protected override IEnumerable<ISystem> convertToObject(IEnumerable<DynamicTableEntity> list)
+        protected override IEnumerable<ISystemConfig> convertToObject(IEnumerable<DynamicTableEntity> list)
         {
-            List<ISystem> result = new List<ISystem>();
+            List<ISystemConfig> result = new List<ISystemConfig>();
 
             foreach(var e in  list)
             {
@@ -61,7 +61,7 @@ namespace JB2.Bowtie.Data.Azure
             return result;
         }
 
-        protected override ISystem convertToObject(DynamicTableEntity e)
+        protected override ISystemConfig convertToObject(DynamicTableEntity e)
         {
             ExternalClass o = new ExternalClass();
 

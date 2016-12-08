@@ -10,20 +10,21 @@ using JB2.Bowtie;
 
 namespace JB2.JBeanCurrency
 {
-    public class CurrencyConfig : JB2.Common.IDNamePair<string,string>, ICurrencyConfig
+    public class CurrencySystem : JB2.Bowtie.CurrencySystem, ICurrencySystem
     {
         #region Fields
         protected ICurrencyTreasury  _treasury;
 
         #endregion Fields
 
-        public CurrencyConfig() : base(JB2.Settings.Jbean.Factory.Currencies[0].ID + "config", JB2.Settings.Jbean.Factory.Currencies[0].Name + " Config")
+        public CurrencySystem()
         {
+            _id = JB2.Settings.Jbean.Factory.Currencies[0].ID + "config";
+            _name = JB2.Settings.Jbean.Factory.Currencies[0].Name + " Config";
             _treasury = new JB2.JBeanCurrency.BowtieTreasury();
-
         }
 
-        public string CurrencyID
+        public override string CurrencyID
         {
             get
             {
@@ -36,7 +37,7 @@ namespace JB2.JBeanCurrency
             }
         }
 
-        public ICurrencyTreasury Treasury
+        public override ICurrencyTreasury Treasury
         {
             get
             {
