@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C6A88182-1D68-428B-BBFF-B60A88B5F6C8}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{6F87E69E-A432-46D1-9546-4265DFB2FBD9}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JB2.Bowtie.Maintenance</RootNamespace>
-    <AssemblyName>JB2.Bowtie.Maintenance</AssemblyName>
+    <RootNamespace>JB2.JBeanCurrency</RootNamespace>
+    <AssemblyName>JB2.JBeanCurrency</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,16 +38,16 @@
       <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.0\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Data.AzureStorage, Version=0.3.0.482, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.3.0.482\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
+    <Reference Include="JB2.Common.Data.AzureStorage, Version=0.2.8.16344, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.2.8\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Date, Version=0.2.2.22361, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Date.0.2.2\lib\JB2.Common.Date.dll</HintPath>
+    <Reference Include="JB2.Common.Date, Version=0.2.0.42495, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Date.0.2.0\lib\JB2.Common.Date.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Log, Version=0.3.0.28091, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Log.0.3.0\lib\JB2.Common.Log.dll</HintPath>
+    <Reference Include="JB2.Common.Log, Version=0.2.3.10983, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Log.0.2.3\lib\JB2.Common.Log.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Log.AzureRepo, Version=0.2.3.3738, Culture=neutral, processorArchitecture=MSIL">
@@ -65,10 +62,6 @@
       <HintPath>..\..\Solutions\packages\JB2.Common.Utility.0.2.2\lib\JB2.Common.Ultities.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Economy.AzureRepo, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Economy.AzureRepo.0.3.0\lib\JB2.Economy.AzureRepo.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="JB2.Economy.Core, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\JB2.Economy.Core.0.3.0\lib\JB2.Economy.Core.dll</HintPath>
       <Private>True</Private>
@@ -77,20 +70,8 @@
       <HintPath>..\..\Solutions\packages\JB2.Economy.jBean.0.3.0\lib\JB2.Economy.jBean.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Economy.JbeanStockMarket, Version=0.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Economy.StockMarket.jBean.0.2.3\lib\JB2.Economy.JbeanStockMarket.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="JB2.Economy.StockMarket.Core, Version=0.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Economy.StockMarket.Core.0.2.3\lib\JB2.Economy.StockMarket.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Identity.Core.0.1.4.1\lib\JB2.Identity.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="JB2.Infrastructure, Version=0.2.22.22366, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.22\lib\JB2.Infrastructure.dll</HintPath>
+    <Reference Include="JB2.Infrastructure, Version=0.2.21.3363, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.21\lib\JB2.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -169,53 +150,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="CurrencyConfig.cs" />
+    <Compile Include="Extenstion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Treasury.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\CodeLibrary\Bowtie.AzureRepo\Bowtie.RepoAzure.csproj">
-      <Project>{6d362c4a-06d4-40c6-b314-aa559791e1f4}</Project>
-      <Name>Bowtie.RepoAzure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\Bowtie.Gamification\Bowtie.Gamification.csproj">
-      <Project>{40f36cd2-7823-4f26-9f85-473367db4013}</Project>
-      <Name>Bowtie.Gamification</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\Bowtie.Module\Bowtie.Module.csproj">
-      <Project>{81cf520a-6f22-462e-a674-72c74889aac7}</Project>
-      <Name>Bowtie.Module</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\Bowtie.RepoNoDB\Bowtie.RepoNoDB.csproj">
-      <Project>{226ce497-a55f-4b8b-8178-9c9b41ab34dc}</Project>
-      <Name>Bowtie.RepoNoDB</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\Bowtie.Service\Bowtie.Service.csproj">
-      <Project>{e9f8abc3-957e-4ada-b7db-a61e16beaa1e}</Project>
-      <Name>Bowtie.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\JB2.BitScore\JB2.BitScore.csproj">
-      <Project>{a2f4485b-d33f-48b6-85c7-a9178a04798c}</Project>
-      <Name>JB2.BitScore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Core\Bowtie.Core.csproj">
+    <ProjectReference Include="..\JB2.Bowtie.Core\Bowtie.Core.csproj">
       <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
       <Name>Bowtie.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Graph\Bowtie.Graph.csproj">
-      <Project>{7c28a0e8-2266-4e96-bab5-ece5e7bf9ce9}</Project>
-      <Name>Bowtie.Graph</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Manager\Bowtie.Manager.csproj">
-      <Project>{2ac23884-2527-4b50-b2c4-bab99c96d9b4}</Project>
-      <Name>Bowtie.Manager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\JB2.JBeanCurrency\JB2.JBeanCurrency.csproj">
-      <Project>{6f87e69e-a432-46d1-9546-4265dfb2fbd9}</Project>
-      <Name>JB2.JBeanCurrency</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

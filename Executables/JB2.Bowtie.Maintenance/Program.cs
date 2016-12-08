@@ -156,15 +156,8 @@ namespace JB2.Bowtie.Maintenance
         static void SetupPointSystem()
         {
             PointSystemService pservice = new PointSystemService();
-
-
             pservice.Save(new JB2.BitScore.BitScoreSystem());
         }
-
-        
-
-        
-        
 
         static void OnApplInitialized(IApplication application, string authorizeKey)
         {
@@ -178,17 +171,45 @@ namespace JB2.Bowtie.Maintenance
             var appService = new JB2.Bowtie.Service.ApplicationService();
 
 
+            var currencyConfig = new JB2.JBeanCurrency.CurrencyConfig();
 
 
-            SetupPointSystem();
+            JB2.Bowtie.ExternalClass exClass = new ExternalClass();
 
+            exClass.Assembly = currencyConfig.GetType().Assembly.ToString();
+            exClass.AssemblyQualifiedName = currencyConfig.GetType().AssemblyQualifiedName;
+            exClass.ClassConfigID = "jbeanCurrencyConfig";
+            exClass.Classname = currencyConfig.GetType().Name;
+            exClass.ClassType = Common.Enum.ClassType.NewInstance;
+            exClass.ConstructorParameters = new string[0];
+            exClass.Namespace = currencyConfig.GetType().Namespace;
+
+            var classRepo = JB2.Settings.Bowtie.UnitOfWork.ExternalClassRepository;
+
+            classRepo.Insert(exClass);
            
+            //Console.WriteLine(JB2.Settings.Jbean.Factory.Treasury.GetType().AssemblyQualifiedName);
 
-            var pservice = new PointSystemService();
+            //Console.WriteLine(JB2.Settings.Jbean.Factory.Treasury.GetType().Name);
 
-            var all = pservice.RetrieveConfigs();
+            //var t = Type.GetType("JB2.Settings.Jbean.Factory.Treasury");
 
-            var test = pservice.RetrieveById(all[0].ID);
+            //Console.WriteLine(t);
+
+            //var t2 = JB2.Settings.Jbean.Factory.Treasury;
+
+            //Console.WriteLine(t2);
+            //SetupPointSystem();
+
+
+
+            //var pservice = new PointSystemService();
+
+            //var all = pservice.RetrieveConfigs();
+
+            //var test = pservice.RetrieveById(all[0].ID);
+
+
 
             //SetupModules();
 

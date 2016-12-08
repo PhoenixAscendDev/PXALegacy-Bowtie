@@ -25,7 +25,9 @@ namespace JB2.Bowtie
         
 
         public string Name { get; set; }
-        
+
+        public ICurrencyTreasury Treasury { get; set; }
+
         public string GetID()
         {
             return ID;
@@ -35,6 +37,7 @@ namespace JB2.Bowtie
         {
             return Name;
         }
+
 
         #endregion ICurrencyConfig
     }
