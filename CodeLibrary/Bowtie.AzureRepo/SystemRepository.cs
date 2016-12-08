@@ -23,7 +23,7 @@ namespace JB2.Bowtie.Data.Azure
         {
             _table = table;
             _blob = blob;
-            _defaultPartitionKey = "externalclass";
+            _defaultPartitionKey = "systemclass";
             _playerData = playerdata;
         }
 
