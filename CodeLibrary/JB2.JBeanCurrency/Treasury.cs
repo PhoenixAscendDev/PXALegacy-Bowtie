@@ -11,6 +11,29 @@ namespace JB2.JBeanCurrency
 {
     public class BowtieTreasury : JB2.Bowtie.ICurrencyTreasury
     {
+        public TreasuryRequestKey RegisterApplication(IApplication application)
+        {
+            try
+            {
+                var treasury = JB2.Settings.Jbean.Factory.Treasury;
+
+                var requestor = treasury.RegisterNewRequestor(application.GetID());
+
+                var key = new TreasuryRequestKey();
+                key.TreasuryID = treasury.GetID();
+                key.Key = requestor.RequestValidationKey;
+
+                return key;
+
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+                return new TreasuryRequestKey();
+            }
+
+        }
+
         public decimal RequestAmount(JB2.Bowtie.IApplication application, string currencyID, decimal amount)
         {
             var treasury = JB2.Settings.Jbean.Factory.Treasury;

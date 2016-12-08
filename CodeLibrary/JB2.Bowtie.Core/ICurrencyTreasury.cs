@@ -11,6 +11,8 @@ namespace JB2.Bowtie
 
         decimal RequestAmount(IApplication application, string currencyID, decimal anmout);
 
+        TreasuryRequestKey RegisterApplication(IApplication application);
+
 
     }
 }
