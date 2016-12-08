@@ -7,17 +7,17 @@ using JB2.Common.Enum;
 
 namespace JB2.Bowtie
 {
-    public abstract class ObjectConfig : JB2.Bowtie.IExternalClass
+    public abstract class ObjectConfig<T> : JB2.Bowtie.IExternalClass<T>
     {
 
         #region Fields
-        protected JB2.Bowtie.ExternalClass _classconfig;
+        protected JB2.Bowtie.ExternalClass<T> _classconfig;
         #endregion Fields
 
         #region Constructors
         public ObjectConfig()
         {
-            _classconfig = new ExternalClass();
+            _classconfig = new ExternalClass<T>();
         }
 
 
@@ -121,7 +121,34 @@ namespace JB2.Bowtie
         }
 
         public abstract string GetID();
-       
+
+        public T Construct()
+        {
+            return _classconfig.Construct();
+        }
+
+        public T Construct(KeyValuePair<string, object> parameter1)
+        {
+            return _classconfig.Construct(parameter1);
+        }
+
+        public T Construct(KeyValuePair<string, object> parameter1, KeyValuePair<string, object> parameter2)
+        {
+            return _classconfig.Construct(parameter1,parameter2);
+        }
+
+        public T Construct(KeyValuePair<string, object> parameter1, KeyValuePair<string, object> parameter2, KeyValuePair<string, object> parameter3)
+        {
+            return _classconfig.Construct(parameter1,parameter2,parameter3);
+        }
+
+        public T Construct(IEnumerable<KeyValuePair<string, object>> parameters)
+        {
+            return _classconfig.Construct(parameters);
+        }
+
+
+
 
 
         #endregion IClassConfig

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface ICurrencyConfig : JB2.Common.IClassConfig , JB2.Common.IIDNamePair<string,string>
+    public interface ICurrencyConfig : JB2.Common.IIDNamePair<string,string>
     {
         string CurrencyID { get; set; }
-
     }
 }

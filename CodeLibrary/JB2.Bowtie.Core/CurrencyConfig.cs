@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public class CurrencyConfig : ObjectConfig, ICurrencyConfig
+    public class CurrencyConfig :  ICurrencyConfig
     {
         #region Constructor
 
@@ -26,7 +26,7 @@ namespace JB2.Bowtie
 
         public string Name { get; set; }
         
-        public override string GetID()
+        public string GetID()
         {
             return ID;
         }

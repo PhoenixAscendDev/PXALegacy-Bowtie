@@ -181,7 +181,7 @@
     <Compile Include="BowtieObjectType.cs" />
     <Compile Include="BowtiePlayer.cs" />
     <Compile Include="BowtieSettingName.cs" />
-    <Compile Include="ClassConfig.cs" />
+    <Compile Include="ExternalClass.cs" />
     <Compile Include="CurrencyConfig.cs" />
     <Compile Include="DewdropTriggerInfo.cs" />
     <Compile Include="EconomyRepository.cs" />
