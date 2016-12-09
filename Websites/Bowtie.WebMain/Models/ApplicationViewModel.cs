@@ -24,6 +24,10 @@ namespace JB2.Bowtie.Web.Models
 
         public string jBeanKey { get; set; }
 
+        public string CurrencySystem { get; set; }
+
+        public string PointSystem { get; set; }
+
 
         public Enum.APIAuthorizeState AuthorizedState { get; set; }
     }
