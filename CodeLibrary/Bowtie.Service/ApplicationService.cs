@@ -102,11 +102,11 @@ namespace JB2.Bowtie.Service
                 //setup Point Systems
                 var p = app.AllowedCurrencySystems.ToList();
 
-                foreach (var s in currencySystems)
+                foreach (var s in pointSystems)
                 {
                     p.Add((IIDNamePair<string, string>)s);
                 }
-                app.AllowedCurrencySystems = c;
+                app.AllowedPointSystems = p;
 
 
                 //save app to repo
