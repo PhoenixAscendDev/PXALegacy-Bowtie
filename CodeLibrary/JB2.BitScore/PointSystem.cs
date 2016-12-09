@@ -8,7 +8,7 @@ using JB2.Common;
 
 namespace JB2.BitScore
 {
-    public class BitScoreSystem : JB2.Bowtie.IPointSystem
+    public class BitScoreSystem : JB2.Bowtie.PointSystem, JB2.Bowtie.IPointSystem, JB2.Bowtie.ISystem
     {
 
         #region Constructor
@@ -19,7 +19,7 @@ namespace JB2.BitScore
         }
 
         #endregion Constructor
-        public string ID
+        public override string ID
         {
             get
             {
@@ -32,7 +32,7 @@ namespace JB2.BitScore
             }
         }
 
-        public string Name
+        public override string Name
         {
             get
             {
@@ -104,12 +104,12 @@ namespace JB2.BitScore
             return new JB2Image();
         }
 
-        public string GetID()
+        public override string GetID()
         {
             return ID;
         }
 
-        public string GetName()
+        public override string GetName()
         {
             return Name;
         }

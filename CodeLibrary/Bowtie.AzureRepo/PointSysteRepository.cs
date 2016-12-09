@@ -11,16 +11,16 @@ using System.Reflection;
 using JB2.Common.Data;
 namespace JB2.Bowtie.Data.Azure
 {
-    public class PointSysteRepository : BowtieRepository<IPointSystem>, IPointSystemRepository
+    public class PointSystemRepository : BowtieRepository<IPointSystem>, IPointSystemRepository
     {
 
         #region Constructors
-        public PointSysteRepository() : this(AzureStorage.PointSystemTable,AzureStorage.PointSystemTable,AzureStorage.GeneralBlob)
+        public PointSystemRepository() : this(AzureStorage.PointSystemTable,AzureStorage.PointSystemTable,AzureStorage.GeneralBlob)
         {
 
         }
 
-        public PointSysteRepository(AzureTableRepository configTable, AzureTableRepository playerData, AzureBlobRepository blob)
+        public PointSystemRepository(AzureTableRepository configTable, AzureTableRepository playerData, AzureBlobRepository blob)
         {
             _table = configTable;
             _playerData = playerData;
@@ -29,20 +29,6 @@ namespace JB2.Bowtie.Data.Azure
         }
 
         #endregion Constructors
-
-        public IEnumerable<PointSystemConfig> GetAllConfigs()
-        {
-            var elist = _table.GetByRowKeyStartWith<DynamicTableEntity>(_defaultPartitionKey, "id:", 1000);
-
-
-            List<PointSystemConfig> result = new List<PointSystemConfig>();
-            foreach(var e in elist)
-            {
-                result.Add(convertToConfig(e));
-            }
-
-            return result;
-        }
 
         public JB2.Common.ServiceResult Insert(PointTransaction tran)
         {
@@ -154,10 +140,6 @@ namespace JB2.Bowtie.Data.Azure
 
 
         }
-
-
-        
-
         protected override IEnumerable<IPointSystem> convertToObject(IEnumerable<DynamicTableEntity> list)
         {
             List<IPointSystem> points = new List<IPointSystem>();

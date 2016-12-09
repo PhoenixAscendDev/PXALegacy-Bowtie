@@ -242,7 +242,7 @@ namespace JB2.Bowtie.Data.Azure
                                 _repos.Add(repository, new JB2.Bowtie.Data.Azure.AuthProviderRepository());
                                 break;
                             case RepositoryType.PointSystem:
-                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.PointSysteRepository());
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.PointSystemRepository());
                                 break;
                             case RepositoryType.Mission:
                                 _repos.Add(repository, new JB2.Bowtie.Data.Azure.MissionRespository());

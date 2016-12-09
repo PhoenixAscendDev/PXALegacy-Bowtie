@@ -31,6 +31,93 @@ namespace JB2.Bowtie.Data.Azure
         #endregion Constructors
 
 
+        public IEnumerable<ISystemConfig<IPointSystem>> GetPointSystems()
+        {
+            var elist = _table.GetByRowKeyStartWith<DynamicTableEntity>(_defaultPartitionKey + ":category:POINT", "id:", 1000);
+
+            List<ISystemConfig<IPointSystem>> result = new List<ISystemConfig<IPointSystem>>();
+
+            foreach (var e in elist)
+            {
+                result.Add(convertToPointConfig(e));
+            }
+
+            return result;
+        }
+
+        public IEnumerable<ISystemConfig<ICurrencySystem>> GetCurrencySystems()
+        {
+            var elist = _table.GetByRowKeyStartWith<DynamicTableEntity>(_defaultPartitionKey + ":category:CURRENCY", "id:", 1000);
+
+            List<ISystemConfig<ICurrencySystem>> result = new List<ISystemConfig<ICurrencySystem>>();
+
+            foreach(var e in elist)
+            {
+                result.Add(convertToCurrencyConfig(e));
+            }
+
+            return result;
+
+        }
+
+
+
+        public ISystemConfig<ICurrencySystem> GetCurrencySystemByConfigID(string configID)
+        {
+            var e = _table.GetEntity<DynamicTableEntity>(_defaultPartitionKey, "id:" + configID);
+
+            return convertToCurrencyConfig(e);
+        }
+
+        public ISystemConfig<IPointSystem> GetPointSystemByConfigID(string configID)
+        {
+            var e = _table.GetEntity<DynamicTableEntity>(_defaultPartitionKey, "id:" + configID);
+
+            return convertToPointConfig(e);
+        }
+
+
+
+
+        #region helpers
+
+        protected ISystemConfig<IPointSystem> convertToPointConfig(DynamicTableEntity e)
+        {
+            var c = convertToObject(e);
+            var result = new SystemConfig<IPointSystem>();
+
+            result.Assembly = c.Assembly;
+            result.AssemblyQualifiedName = c.AssemblyQualifiedName;
+            result.Category = c.Category;
+            result.ClassConfigID = c.ClassConfigID;
+            result.Classname = c.Classname;
+            result.ClassType = Common.Enum.ClassType.NewInstance;
+            result.ConstructorParameters = c.ConstructorParameters;
+            result.Namespace = c.Namespace;
+            result.Category = c.Category;
+
+            return result;
+        }
+
+        protected  ISystemConfig<ICurrencySystem> convertToCurrencyConfig(DynamicTableEntity e)
+        {
+            var c = convertToObject(e);
+            var result = new SystemConfig<ICurrencySystem>();
+
+            result.Assembly = c.Assembly;
+            result.AssemblyQualifiedName = c.AssemblyQualifiedName;
+            result.Category = c.Category;
+            result.ClassConfigID = c.ClassConfigID;
+            result.Classname = c.Classname;
+            result.ClassType = Common.Enum.ClassType.NewInstance;
+            result.ConstructorParameters = c.ConstructorParameters;
+            result.Namespace = c.Namespace;
+            result.Category = c.Category;
+
+            return result;
+        }
+
+
         protected override DynamicTableEntity convertToEntity(ISystemConfig o)
         {
             DynamicTableEntity e = new DynamicTableEntity();
@@ -63,7 +150,7 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override ISystemConfig convertToObject(DynamicTableEntity e)
         {
-            ExternalClass o = new ExternalClass();
+            SystemConfig o = new SystemConfig();
 
             o.Assembly = e.GetPropertyValue<string>("Assembly", string.Empty);
             o.AssemblyQualifiedName = e.GetPropertyValue<string>("AssemblyQualifiedName", string.Empty);
@@ -106,6 +193,12 @@ namespace JB2.Bowtie.Data.Azure
             e.RowKey = "id:" + e.GetPropertyValue<string>("ID", string.Empty);
 
             _table.Insert<DynamicTableEntity>(e, replace);
+
+            e.PartitionKey = _defaultPartitionKey + ":category:" + e.GetPropertyValue<string>("Category", string.Empty);
         }
+
+        
+
+        #endregion helpers
     }
 }

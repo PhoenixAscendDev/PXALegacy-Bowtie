@@ -174,7 +174,7 @@ namespace JB2.Bowtie.Maintenance
             var currencyConfig = new JB2.JBeanCurrency.CurrencySystem();
 
 
-            JB2.Bowtie.ExternalClass exClass = new ExternalClass();
+            JB2.Bowtie.SystemConfig exClass = new SystemConfig();
 
             exClass.Assembly = currencyConfig.GetType().Assembly.ToString();
             exClass.AssemblyQualifiedName = currencyConfig.GetType().AssemblyQualifiedName;
@@ -188,7 +188,21 @@ namespace JB2.Bowtie.Maintenance
             var classRepo = JB2.Settings.Bowtie.UnitOfWork.SystemRepository;
 
             classRepo.Insert(exClass);
-           
+
+            JB2.Bowtie.SystemConfig bConfig = new SystemConfig();
+
+            var bitscore = new JB2.BitScore.BitScoreSystem();
+
+            bConfig.Assembly = bitscore.GetType().Assembly.ToString();
+            bConfig.AssemblyQualifiedName = bitscore.GetType().AssemblyQualifiedName;
+            bConfig.ClassConfigID = "bitscoreConfig";
+            bConfig.Classname = bitscore.GetType().Name;
+            bConfig.ClassType = Common.Enum.ClassType.NewInstance;
+            bConfig.ConstructorParameters = new string[0];
+            bConfig.Namespace = bitscore.GetType().Namespace;
+            bConfig.Category = "Point".ToUpper();
+
+            classRepo.Insert(bConfig);
             //Console.WriteLine(JB2.Settings.Jbean.Factory.Treasury.GetType().AssemblyQualifiedName);
 
             //Console.WriteLine(JB2.Settings.Jbean.Factory.Treasury.GetType().Name);

@@ -13,7 +13,7 @@ namespace JB2.Bowtie
     }
 
     public interface ISystemConfig<T> : JB2.Common.IClassConfig, JB2.Common.IIDProp<string>
-        where T: ISystem,new()
+        where T: ISystem
     {
         string Category { get; set; }
         T Construct();

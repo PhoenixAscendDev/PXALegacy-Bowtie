@@ -9,8 +9,6 @@ namespace JB2.Bowtie
     public interface IPointSystemRepository : JB2.Common.IRepository<JB2.Bowtie.IPointSystem, string>
     {
 
-        IEnumerable<PointSystemConfig> GetAllConfigs();
-
 
         JB2.Common.ServiceResult Insert(PointTransaction tran);
 

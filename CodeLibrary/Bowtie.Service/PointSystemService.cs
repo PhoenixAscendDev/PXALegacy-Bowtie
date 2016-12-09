@@ -34,14 +34,15 @@ namespace JB2.Bowtie.Service
         #endregion Constructors
 
 
-        public List<PointSystemConfig> RetrieveConfigs()
+        public List<ISystemConfig<IPointSystem>> RetrieveConfigs()
         {
-            return _repo.GetAllConfigs().ToList();
+            var systemRepo = _uofw.SystemRepository;
+            return systemRepo.GetPointSystems().ToList();
         }
 
-        public PointSystemConfig RetrieveConfigById(string id)
+        public ISystemConfig<IPointSystem> RetrieveConfigById(string id)
         {
-            return _repo.GetAllConfigs().ToList().Find(x => x.ID == id);
+            return RetrieveConfigs().Find(x => x.ClassConfigID == id);
         }
 
 

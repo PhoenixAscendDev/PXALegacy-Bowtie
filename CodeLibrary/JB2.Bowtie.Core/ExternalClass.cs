@@ -10,15 +10,15 @@ using JB2.Common;
 namespace JB2.Bowtie
 {
 
-    public class ExternalClass: ExternalClass<GenericSystem>, ISystemConfig
+    public class SystemConfig: SystemConfig<GenericSystem>, ISystemConfig
     {
 
     }
-    public class ExternalClass<T> : JB2.Common.JB2Class, ISystemConfig<T>
-        where T: ISystem,new()
+    public class SystemConfig<T> : JB2.Common.JB2Class, ISystemConfig<T>
+        where T: ISystem
     {
         #region IExternalClass
-        public ExternalClass()
+        public SystemConfig()
         {
             _props = new MetaDataCollection();
         }
@@ -193,7 +193,7 @@ namespace JB2.Bowtie
         #endregion Constructors
 
         #region Implicit Operators
-        public static implicit operator T(ExternalClass<T> ec)
+        public static implicit operator T(SystemConfig<T> ec)
         {
             return ec.Construct();
         }

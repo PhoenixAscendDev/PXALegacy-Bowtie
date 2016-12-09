@@ -12,13 +12,13 @@ namespace JB2.Bowtie
     {
 
         #region Fields
-        protected JB2.Bowtie.ExternalClass<T> _classconfig;
+        protected JB2.Bowtie.SystemConfig<T> _classconfig;
         #endregion Fields
 
         #region Constructors
         public ObjectConfig()
         {
-            _classconfig = new ExternalClass<T>();
+            _classconfig = new SystemConfig<T>();
         }
 
 

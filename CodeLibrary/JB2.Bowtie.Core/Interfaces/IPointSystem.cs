@@ -8,7 +8,7 @@ using JB2.Common;
 
 namespace JB2.Bowtie
 {
-    public interface IPointSystem : JB2.Common.IIDNamePair<string, string>
+    public interface IPointSystem : JB2.Common.IIDNamePair<string, string>, ISystem
     {
         string Single { get; set; }
         string Plural { get; set; }
