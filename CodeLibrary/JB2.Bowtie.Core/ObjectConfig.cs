@@ -103,6 +103,30 @@ namespace JB2.Bowtie
             }
         }
 
+        public virtual string ID
+        {
+            get
+            {
+                return _classconfig.ID;
+            }
+            set
+            {
+                _classconfig.ID = value;
+            }
+        }
+
+        public virtual string Name
+        {
+            get
+            {
+                return _classconfig.Name;
+            }
+            set
+            {
+                _classconfig.Name = value;
+            }
+        }
+
         public virtual string Namespace
         {
             get
@@ -134,6 +158,8 @@ namespace JB2.Bowtie
         }
 
         public abstract string GetID();
+
+        public abstract string GetName();
 
         public T Construct()
         {

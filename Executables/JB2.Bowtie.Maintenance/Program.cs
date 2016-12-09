@@ -179,6 +179,7 @@ namespace JB2.Bowtie.Maintenance
             exClass.Assembly = currencyConfig.GetType().Assembly.ToString();
             exClass.AssemblyQualifiedName = currencyConfig.GetType().AssemblyQualifiedName;
             exClass.ClassConfigID = "jbeanCurrencyConfig";
+            exClass.Name = "jBean Currency";
             exClass.Classname = currencyConfig.GetType().Name;
             exClass.ClassType = Common.Enum.ClassType.NewInstance;
             exClass.ConstructorParameters = new string[0];
@@ -201,6 +202,7 @@ namespace JB2.Bowtie.Maintenance
             bConfig.ConstructorParameters = new string[0];
             bConfig.Namespace = bitscore.GetType().Namespace;
             bConfig.Category = "Point".ToUpper();
+            bConfig.Name = "Bitscore Points";
 
             classRepo.Insert(bConfig);
 

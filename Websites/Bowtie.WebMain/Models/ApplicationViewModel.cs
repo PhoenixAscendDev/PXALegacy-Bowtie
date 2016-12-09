@@ -36,5 +36,5 @@ namespace JB2.Bowtie.Web.Models
         public Enum.APIAuthorizeState AuthorizedState { get; set; }
 
         }
-    }
+
 }

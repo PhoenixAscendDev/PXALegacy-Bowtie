@@ -126,10 +126,39 @@ namespace JB2.Bowtie
             }
         }
 
+        public string ID
+        {
+            get
+            {
+                return ClassConfigID;
+            }
+            set
+            {
+                ClassConfigID = value;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return _props.GetProperty<string>("Name");
+            }
+            set
+            {
+                _props.SetProperty<string>("Name", value);
+            }
+        }
+
 
         public string GetID()
         {
             return ClassConfigID;
+        }
+
+        public string GetName()
+        {
+            return Name;
         }
 
 

@@ -500,6 +500,10 @@
       <Project>{e9f8abc3-957e-4ada-b7db-a61e16beaa1e}</Project>
       <Name>Bowtie.Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\CodeLibrary\JB2.BitScore\JB2.BitScore.csproj">
+      <Project>{a2f4485b-d33f-48b6-85c7-a9178a04798c}</Project>
+      <Name>JB2.BitScore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Core\Bowtie.Core.csproj">
       <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
       <Name>Bowtie.Core</Name>
@@ -511,6 +515,10 @@
     <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Manager\Bowtie.Manager.csproj">
       <Project>{2ac23884-2527-4b50-b2c4-bab99c96d9b4}</Project>
       <Name>Bowtie.Manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CodeLibrary\JB2.JBeanCurrency\JB2.JBeanCurrency.csproj">
+      <Project>{6f87e69e-a432-46d1-9546-4265dfb2fbd9}</Project>
+      <Name>JB2.JBeanCurrency</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
