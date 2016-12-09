@@ -77,6 +77,15 @@ namespace JB2.Bowtie.Data.Azure
         }
 
 
+        public IEnumerable<ISystemConfig> GetSystemsByCategory(string category)
+        {
+            var elist = _table.GetByRowKeyStartWith<DynamicTableEntity>(_defaultPartitionKey + ":category:" + category.ToUpper(), "id:", 1000);
+
+            return convertToObject(elist);
+
+        }
+
+
 
 
         #region helpers
@@ -199,6 +208,8 @@ namespace JB2.Bowtie.Data.Azure
         }
 
         
+
+
 
         #endregion helpers
     }

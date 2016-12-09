@@ -16,6 +16,8 @@ namespace JB2.Bowtie
 
         ISystemConfig<IPointSystem> GetPointSystemByConfigID(string configID);
 
+        IEnumerable<ISystemConfig> GetSystemsByCategory(string category);
+
 
     }
 }

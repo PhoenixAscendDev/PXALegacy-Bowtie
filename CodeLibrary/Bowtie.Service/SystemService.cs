@@ -39,5 +39,15 @@ namespace JB2.Bowtie.Service
         {
             return _repo.GetCurrencySystems().ToList();
         }
+
+        public List<ISystemConfig> RetrieveConfigsByCategory(string category)
+        {
+            return _repo.GetSystemsByCategory(category).ToList();
+        }
+
+        public ISystemConfig RetrieveConfigByID(string id)
+        {
+            return _repo.GetById(id);
+        }
     }
 }

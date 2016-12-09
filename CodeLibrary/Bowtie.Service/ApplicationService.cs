@@ -62,6 +62,7 @@ namespace JB2.Bowtie.Service
 
         public IApplication GenerateNewApplication()
         {
+            
             try
             {
 
@@ -93,19 +94,14 @@ namespace JB2.Bowtie.Service
                 var c = app.AllowedCurrencySystems.ToList();
                 
                 foreach (var s in currencySystems)
-                {
                     c.Add( (IIDNamePair<string,string>)s);
-                }
                 app.AllowedCurrencySystems = c;
 
 
                 //setup Point Systems
                 var p = app.AllowedCurrencySystems.ToList();
-
                 foreach (var s in pointSystems)
-                {
                     p.Add((IIDNamePair<string, string>)s);
-                }
                 app.AllowedPointSystems = p;
 
 
