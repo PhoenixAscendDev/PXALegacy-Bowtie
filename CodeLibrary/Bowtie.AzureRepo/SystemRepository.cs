@@ -191,10 +191,11 @@ namespace JB2.Bowtie.Data.Azure
         {
             e.PartitionKey = _defaultPartitionKey;
             e.RowKey = "id:" + e.GetPropertyValue<string>("ID", string.Empty);
-
             _table.Insert<DynamicTableEntity>(e, replace);
 
             e.PartitionKey = _defaultPartitionKey + ":category:" + e.GetPropertyValue<string>("Category", string.Empty);
+            e.RowKey = "id:" + e.GetPropertyValue<string>("ID", string.Empty);
+            _table.Insert<DynamicTableEntity>(e, replace);
         }
 
         

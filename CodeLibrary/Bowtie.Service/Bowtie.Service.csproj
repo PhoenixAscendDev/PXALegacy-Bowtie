@@ -207,6 +207,7 @@
     <Compile Include="GraphService.cs" />
     <Compile Include="ModuleService.cs" />
     <Compile Include="PointSystemService.cs" />
+    <Compile Include="SystemService.cs" />
     <Compile Include="WalletService.cs" />
     <Compile Include="LeaderboardService.cs" />
     <Compile Include="PlayerService.cs" />

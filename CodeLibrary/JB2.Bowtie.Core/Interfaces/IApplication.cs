@@ -17,7 +17,7 @@ namespace JB2.Bowtie
 
         IEnumerable<JB2.Common.IIDNamePair<string,string>> AllowedPointSystems { get; set; }
 
-        IEnumerable<JB2.Common.IIDNamePair<string,string>> AllowedCurrency { get; set; }
+        IEnumerable<JB2.Common.IIDNamePair<string,string>> AllowedCurrencySystems { get; set; }
 
 
         JB2.Common.IBusiness Company{ get; set; }

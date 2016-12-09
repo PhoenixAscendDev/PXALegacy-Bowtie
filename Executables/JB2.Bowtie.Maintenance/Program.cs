@@ -203,6 +203,18 @@ namespace JB2.Bowtie.Maintenance
             bConfig.Category = "Point".ToUpper();
 
             classRepo.Insert(bConfig);
+
+
+
+            var systemService = new SystemService();
+
+            var systems = systemService.RetrievePointConfigs();
+
+            var t = systems[0].Construct();
+
+            Console.WriteLine(t.ID);
+
+
             //Console.WriteLine(JB2.Settings.Jbean.Factory.Treasury.GetType().AssemblyQualifiedName);
 
             //Console.WriteLine(JB2.Settings.Jbean.Factory.Treasury.GetType().Name);

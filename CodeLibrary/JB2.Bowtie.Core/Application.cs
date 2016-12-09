@@ -99,7 +99,7 @@ namespace JB2.Bowtie
 
         public IEnumerable<IIDNamePair<string,string>> AllowedPointSystems { get; set; }
 
-        public IEnumerable<IIDNamePair<string,string>> AllowedCurrency { get; set; }
+        public IEnumerable<IIDNamePair<string,string>> AllowedCurrencySystems { get; set; }
 
         #region IAPIKeySecretPair
 
