@@ -59,7 +59,7 @@ namespace Bowtie.ConsoleTest
             registerAchievement.StepFx = "REGISTER";
             registerAchievement.StepsRequired = 1;
             registerAchievement.StepType = StepFxType.RegexMatchSingle;
-            registerAchievement.Points = 1000;
+            //registerAchievement.Points = 1000;
 
             var achievementService = new JB2.Bowtie.Service.AchievementService();
             //achievementService.Save(registerAchievement);
