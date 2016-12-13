@@ -39,7 +39,7 @@ namespace JB2.Bowtie
             this._tags = new List<ObjectTag>();
             this._name = string.Empty;
             this._kind = BowtieObjectType.unknown;
-            this._rng = JB2.Common.RNG.Randy;
+            this._rng = JB2.Helper.Bowtie.NewRNG();
             this._props = new MetaDataCollection();
             
         }
@@ -127,8 +127,6 @@ namespace JB2.Bowtie
             {
                 _rng = value;
             }
-        }
-
-        
+        }      
     }
 }

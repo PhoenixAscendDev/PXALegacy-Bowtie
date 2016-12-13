@@ -63,8 +63,6 @@ namespace Bowtie.ConsoleTest
 
             var achievementService = new JB2.Bowtie.Service.AchievementService();
             //achievementService.Save(registerAchievement);
-
-
         }
 
         static void Main(string[] args)

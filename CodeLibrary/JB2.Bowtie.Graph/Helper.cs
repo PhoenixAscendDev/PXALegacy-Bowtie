@@ -17,7 +17,7 @@ namespace JB2.Helper
             TElement entity = new TElement();
 
             var url = JB2.Configuration.GetAppSetting("JB2:UrlHash:BowtieGraphNewID");
-            ushort rng = JB2.Common.RNG.Randy;
+            int rng = JB2.Helper.Bowtie.NewRNG();
             long count = JB2.Infrastructure.Counter.GetNext("Graph" + entity.ElementType.ToString());
             url = String.Format(url, entity.ElementType.ToString(), count.ToString("D6"), rng.ToString());
             StringBuilder id = new StringBuilder();

@@ -13,7 +13,7 @@ namespace JB2.Helper
             where T : class
         {
             var guid = JB2.Common.NewID.Guid();
-            var result = JB2.Common.NewID.UriHash(new Uri("http://bowtie.io/?=" + guid  + typeof(T).ToString()));
+            var result = JB2.Common.NewID.UriHash(new Uri("http://bowtie.io/?=" + guid + typeof(T).ToString()));
             Type type = typeof(T);
 
             if (type is JB2.Bowtie.IApplication)
@@ -22,6 +22,23 @@ namespace JB2.Helper
                 result = "002-" + result;
 
             return result;
+        }
+
+
+        public static int NewRNG()
+        {
+            var result = 0;
+
+            if (JB2.Settings.Bowtie.RNGMethod != null)
+                result = JB2.Settings.Bowtie.RNGMethod();
+            else
+                result = JB2.Common.RNG.Randy;
+
+
+            return result;
+
+
+
         }
     }
 }
