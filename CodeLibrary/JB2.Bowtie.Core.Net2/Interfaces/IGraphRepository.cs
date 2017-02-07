@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace JB2.Bowtie
+{
+    public interface IGraphRepository
+    {
+        IGraphElement GetGraphElement(string id);
+        IGraphElement GetGraphElementByName(string name);
+
+        JB2.Common.IDNamePair GeDataTypeByName(string name);
+        JB2.Common.IDNamePair GetDataTypeByID(string id);
+
+        IEnumerable<JB2.Common.IDNamePair> GetDataTypes();
+
+        IEnumerable<IGraphElement> GetGraphElementsByType(Enum.GraphElementType type);
+        IEnumerable<IGraphElement> GetGraphElementsByApplication(string applicationID);
+        IEnumerable<IGraphElement> GetAll();
+        JB2.Common.ServiceResult InsertGraphElement(IGraphElement element);
+        JB2.Common.ServiceResult DeleteGraphElement(IGraphElement element);
+
+
+        #region Stories
+
+        JB2.Common.ServiceResult InsertPlayerStory(IPlayerStory story);
+
+        IEnumerable<IPlayerStory> GetPlayerStoryByObject(string playerid, string objectid);
+
+        IEnumerable<IPlayerStory> GetPlayerStoryByPlayer(string playerid);
+
+        IEnumerable<IPlayerStory> GetPlayerStoryByAction(string playerid, string actionid);
+        #endregion Stories
+
+
+    }
+}

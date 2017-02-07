@@ -58,6 +58,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.BitScore", "..\CodeLibr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.JBeanCurrency", "..\CodeLibrary\JB2.JBeanCurrency\JB2.JBeanCurrency.csproj", "{6F87E69E-A432-46D1-9546-4265DFB2FBD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.Core.Net2", "..\CodeLibrary\JB2.Bowtie.Core.Net2\Bowtie.Core.Net2.csproj", "{E3E58567-B135-4264-BA5A-CFCE0B7C5D52}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework Net2.0", "Framework Net2.0", "{69FFF043-0784-4DD7-92F0-776A25A670AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.Gamification.Net2", "..\CodeLibrary\Bowtie.Gamification.Net2\Bowtie.Gamification.Net2.csproj", "{A5BF4496-EBA5-41ED-A8D1-3AF0FE72ECEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -209,6 +215,18 @@ Global
 		{6F87E69E-A432-46D1-9546-4265DFB2FBD9}.NoDB|Any CPU.Build.0 = Release|Any CPU
 		{6F87E69E-A432-46D1-9546-4265DFB2FBD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F87E69E-A432-46D1-9546-4265DFB2FBD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3E58567-B135-4264-BA5A-CFCE0B7C5D52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3E58567-B135-4264-BA5A-CFCE0B7C5D52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3E58567-B135-4264-BA5A-CFCE0B7C5D52}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{E3E58567-B135-4264-BA5A-CFCE0B7C5D52}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{E3E58567-B135-4264-BA5A-CFCE0B7C5D52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3E58567-B135-4264-BA5A-CFCE0B7C5D52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5BF4496-EBA5-41ED-A8D1-3AF0FE72ECEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5BF4496-EBA5-41ED-A8D1-3AF0FE72ECEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5BF4496-EBA5-41ED-A8D1-3AF0FE72ECEF}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{A5BF4496-EBA5-41ED-A8D1-3AF0FE72ECEF}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{A5BF4496-EBA5-41ED-A8D1-3AF0FE72ECEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5BF4496-EBA5-41ED-A8D1-3AF0FE72ECEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -231,6 +249,9 @@ Global
 		{79614DF6-F8DB-47B0-BAC1-D51312DFDF69} = {0D87BE5D-A853-4475-87CC-0264CF853746}
 		{A2F4485B-D33F-48B6-85C7-A9178A04798C} = {0D87BE5D-A853-4475-87CC-0264CF853746}
 		{6F87E69E-A432-46D1-9546-4265DFB2FBD9} = {0D87BE5D-A853-4475-87CC-0264CF853746}
+		{E3E58567-B135-4264-BA5A-CFCE0B7C5D52} = {69FFF043-0784-4DD7-92F0-776A25A670AB}
+		{69FFF043-0784-4DD7-92F0-776A25A670AB} = {0D87BE5D-A853-4475-87CC-0264CF853746}
+		{A5BF4496-EBA5-41ED-A8D1-3AF0FE72ECEF} = {69FFF043-0784-4DD7-92F0-776A25A670AB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

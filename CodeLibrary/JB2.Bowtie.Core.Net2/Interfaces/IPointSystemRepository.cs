@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace JB2.Bowtie
+{
+    public interface IPointSystemRepository : JB2.Common.IRepository<JB2.Bowtie.IPointSystem, string>
+    {
+
+
+        JB2.Common.ServiceResult Insert(PointTransaction tran);
+
+        void UpdateIndex(PointTransaction tran);
+
+    }
+}

@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace JB2.Helper
+{
+    public class Bowtie
+    {
+
+        public static string GenerateID<T>()
+            where T : class
+        {
+            var guid = JB2.Common.NewID.Guid();
+            var result = JB2.Common.NewID.UriHash(new Uri("http://bowtie.io/?=" + guid + typeof(T).ToString()));
+            Type type = typeof(T);
+
+            if (type is JB2.Bowtie.IApplication)
+                result = "001-" + result;
+            if (type is JB2.Bowtie.IBowtiePlayer)
+                result = "002-" + result;
+
+            return result;
+        }
+        public static int NewRNG()
+        {
+            var result = 0;
+
+            if (JB2.Settings.Bowtie.RNGMethod != null)
+                result = JB2.Settings.Bowtie.RNGMethod();
+            else
+                result = JB2.Common.RNG.Randy;
+
+
+            return result;
+
+
+
+        }
+    }
+}

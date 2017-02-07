@@ -214,7 +214,15 @@ namespace JB2.Bowtie.Maintenance
 
             var t = systems[0].Construct();
 
-            Console.WriteLine(t.ID);
+
+            var id = JB2.Common.NewID.ShortGuid();
+            var tick = System.DateTime.Now.Ticks.ToString();
+
+            string url = string.Format("http://foreverlife.jbsquared?id={0}&ticks={1}", id, tick);
+
+            Console.WriteLine(id);
+            Console.WriteLine(tick);
+            Console.WriteLine(JB2.Common.NewID.UriHash(new Uri(url)));
 
 
             //Console.WriteLine(JB2.Settings.Jbean.Factory.Treasury.GetType().AssemblyQualifiedName);
