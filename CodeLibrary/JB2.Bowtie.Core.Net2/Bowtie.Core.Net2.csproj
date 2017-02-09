@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JB2.Bowtie.Core</RootNamespace>
     <AssemblyName>JB2.Bowtie.Core.Net2</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -31,20 +31,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common.Core.Net2, Version=0.4.3.38871, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.Net2.0.4.3.3\lib\JB2.Common.Core.Net2.dll</HintPath>
+    <Reference Include="JB2.Common.Core.Net2, Version=0.4.4.4247, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.Net35.0.4.4.2\lib\JB2.Common.Core.Net2.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Date.Net2, Version=0.2.2.37038, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Date.Net2.0.2.2\lib\JB2.Common.Date.Net2.dll</HintPath>
+    <Reference Include="JB2.Common.Date.Net2, Version=0.2.2.36005, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Date.Net35.0.2.2\lib\JB2.Common.Date.Net2.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Image.Net2, Version=0.2.2.37898, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Image.Net2.0.2.2\lib\JB2.Common.Image.Net2.dll</HintPath>
+    <Reference Include="JB2.Common.Image.Net2, Version=0.2.2.37556, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Image.Net35.0.2.2\lib\JB2.Common.Image.Net2.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Log.Net2, Version=0.3.1.14794, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Log.Net2.0.3.2\lib\JB2.Common.Log.Net2.dll</HintPath>
+    <Reference Include="JB2.Common.Log.Net2, Version=0.3.1.37717, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Log.Net35.0.3.2\lib\JB2.Common.Log.Net2.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.RNG, Version=0.1.2.24290, Culture=neutral, processorArchitecture=MSIL">
@@ -52,15 +52,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Economy.Core.Net2, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Economy.Core.Net2.0.3.0\lib\JB2.Economy.Core.Net2.dll</HintPath>
+      <HintPath>..\..\Solutions\packages\JB2.Economy.Core.Net35.0.3.0\lib\JB2.Economy.Core.Net2.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Economy.jBean.Net2, Version=0.3.0.22095, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Economy.jBean.Net2.0.3.0\lib\JB2.Economy.jBean.Net2.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LinqBridge, Version=1.3.0.0, Culture=neutral, PublicKeyToken=c2b14eb747628076, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Image.Net2.0.2.2\lib\LinqBridge.dll</HintPath>
+    <Reference Include="JB2.Economy.jBean.Net2, Version=0.3.0.3019, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Economy.jBean.Net35.0.3.0\lib\JB2.Economy.jBean.Net2.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
