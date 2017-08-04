@@ -11,6 +11,38 @@ namespace JB2.Bowtie.Data.Azure
 {
     public static class AzureStorage
     {
+
+        private static StorageAccount ConfigStorage
+        {
+            get
+            {
+                var name = JB2.Configuration.GetAppSetting("JB2:bowtie-configStorageName");
+                var key = JB2.Configuration.GetAppSetting("JB2:bowtie-configStorageKey"); ;
+                return StorageAccount.FromAzureStorage(name, key);
+            }
+        }
+
+        private static StorageAccount ApplicationDataStorage
+        {
+            get
+            {
+                var name = JB2.Configuration.GetAppSetting("JB2:bowtie-appStorageName");
+                var key = JB2.Configuration.GetAppSetting("JB2:bowtie-appStorageKey"); ;
+                return StorageAccount.FromAzureStorage(name, key);
+            }
+        }
+
+        private static StorageAccount PlayerDataStorage
+        {
+            get
+            {
+                var name = JB2.Configuration.GetAppSetting("JB2:bowtie-playerdataStorageName");
+                var key = JB2.Configuration.GetAppSetting("JB2:bowtie-playerdataStorageKey"); ;
+                return StorageAccount.FromAzureStorage(name, key);
+            }
+        }
+
+
         public static AzureBlobRepository GameObjectsBlob
         {
             get
@@ -59,9 +91,51 @@ namespace JB2.Bowtie.Data.Azure
         {
             get
             {
-                return JB2.Infrastructure.Storage.BowtieAccount.GetTable("applications");
+                return ConfigStorage.GetTable("applications");
             }
         }
+
+        public static AzureTableRepository AchievementTable
+        {
+            get
+            {
+                return ConfigStorage.GetTable("achievements");
+            }
+        }
+
+        public static AzureTableRepository PointSystemTable
+        {
+            get
+            {
+                return ConfigStorage.GetTable("pointsystems");
+            }
+        }
+
+        public static AzureTableRepository PlayerAchievementTable
+        {
+            get
+            {
+                return PlayerDataStorage.GetTable("achievements");
+            }
+        }
+
+        public static AzureTableRepository DewdropTable
+        {
+            get
+            {
+                return ConfigStorage.GetTable("dewdrops");
+            }
+        }
+
+        public static AzureTableRepository PlayerDewdropTable
+        {
+            get
+            {
+                return PlayerDataStorage.GetTable("dewdrops");
+            }
+        }
+
+
 
         public static AzureTableRepository AuthorizeTable
         {
@@ -71,11 +145,44 @@ namespace JB2.Bowtie.Data.Azure
             }
         }
 
+        public static AzureTableRepository SystemTable
+        {
+            get
+            {
+                return ConfigStorage.GetTable("systems");
+            }
+        }
+
         public static AzureTableRepository LogTable
         {
             get
             {
                 return JB2.Infrastructure.Storage.LogAccount.GetTable("bowtie");
+            }
+        }
+
+
+        public static AzureQueueRepository DewdropQueue
+        {
+            get
+            {
+               return JB2.Infrastructure.Storage.BowtieAccount.GetQueue("dewdrop");
+            }
+        }
+
+        public static AzureQueueRepository MaintenanceQueue
+        {
+            get
+            {
+                return JB2.Infrastructure.Storage.BowtieAccount.GetQueue("maintenanceTasks");
+            }
+        }
+
+        public static AzureQueueRepository AchievementQueue
+        {
+            get
+            {
+                return JB2.Infrastructure.Storage.BowtieAccount.GetQueue("achievement");
             }
         }
 

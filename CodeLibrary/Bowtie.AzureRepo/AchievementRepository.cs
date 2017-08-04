@@ -17,22 +17,16 @@ namespace JB2.Bowtie.Data.Azure
     public class AchievementRepository : BowtieRepository<IAchievement>, IAchievementRepository
     {
         #region Constructors
-        public AchievementRepository() : this("achievements","general")
+        public AchievementRepository() : this(AzureStorage.AchievementTable, AzureStorage.PlayerAchievementTable, AzureStorage.GeneralBlob)
         {
 
         }
 
-        protected AchievementRepository(string tableName, string blobName)
-            : this(JB2.Infrastructure.Storage.BowtieAccount.GetTable(tableName),
-                   JB2.Infrastructure.Storage.BowtieAccount.GetBlog(blobName))
+        public AchievementRepository(AzureTableRepository configTable, AzureTableRepository playerData, AzureBlobRepository azureBlob)
         {
-
-        }
-
-        public AchievementRepository(AzureTableRepository azureTable, AzureBlobRepository azureBlob)
-        {
-            _table = azureTable;
+            _table = configTable;
             _blob = azureBlob;
+            _playerData = playerData;
             _defaultPartitionKey = "achievement";
         }
 
@@ -40,10 +34,10 @@ namespace JB2.Bowtie.Data.Azure
 
         public IAchievement[] GetAchievementsByApplication(string appID)
         {
-            var elist = _table.GetByRowKeyStartWith<DynamicTableEntity>(_defaultPartitionKey + ":app:" + appID, "id:",1000);
+            var elist = _table.GetByRowKeyStartWith<DynamicTableEntity>(_defaultPartitionKey + ":app:" + appID, "id:", 1000);
 
             return convertToObject(elist).ToArray();
-           
+
         }
 
         public IPlayerAchievement[] GetPlayerAchievements(string playerID, string appID)
@@ -57,22 +51,7 @@ namespace JB2.Bowtie.Data.Azure
             return convertToPlayerAchievement(elist);
         }
 
-        public IPlayerAchievement GetPlayerAchievement(string playerID, string achievementID)
-        {
-            var e = _table.GetEntity<DynamicTableEntity>("player:" + playerID, "achievementid:" + achievementID);
 
-            if (e != null)
-                return convertToPlayerAchievement(e);
-            else
-            {
-                return null;
-            }
-        }
-
-        public void Insert(IPlayerAchievement playerAchievement)
-        {
-            savePlayerAchievement(convertToEntity(playerAchievement), true);           
-        }
 
         public override IAchievement[] SearchFor(bool useCache = true)
         {
@@ -84,19 +63,29 @@ namespace JB2.Bowtie.Data.Azure
             throw new NotImplementedException();
         }
 
-        protected  DynamicTableEntity convertToEntity(IPlayerAchievement o)
+        protected DynamicTableEntity convertToEntity(IPlayerAchievement o)
         {
             var e = new DynamicTableEntity();
             e.Properties.Add("AchievementID", new EntityProperty(o.AchievementID));
             e.Properties.Add("CurrentStep", new EntityProperty(o.CurrentStep));
             e.Properties.Add("PlayerID", new EntityProperty(o.PlayerID));
-            e.Properties.Add("PointsEarned", new EntityProperty(o.PointsEarned));
+
             e.Properties.Add("ID", new EntityProperty(o.GetID()));
             e.Properties.Add("Name", new EntityProperty(o.GetName()));
             e.Properties.Add("Kind", new EntityProperty(o.GetKind().ToString()));
             e.Properties.Add("UniqueToken", new EntityProperty(o.UniqueToken));
             e.Properties.Add("LastUpdate", new EntityProperty(o.GetLastUpdate()));
-            e.Properties.Add("DateAchieved", new EntityProperty(o.DateAchieved.ToString() ));
+            e.Properties.Add("DateAchieved", new EntityProperty(o.DateAchieved.ToString()));
+
+            List<string> points = new List<string>(o.GetPointSystems().Count());
+
+            foreach (var p in o.GetPointSystems())
+            {
+                string point = p + ":" + o.GetPointsEarned(p).ToString();
+                points.Add(point);
+            }
+
+            e.SetProperty<string>("Points", string.Join(",", points.ToArray()));
 
             return e;
         }
@@ -117,7 +106,6 @@ namespace JB2.Bowtie.Data.Azure
             e.Properties.Add("EarnedIconUrl", new EntityProperty(o.EarnedIconUrl));
             e.Properties.Add("HiddenIconUrl", new EntityProperty(o.HiddenIconUrl));
             e.Properties.Add("ShownIconUrl", new EntityProperty(o.ShownIconUrl));
-            e.Properties.Add("Points", new EntityProperty(o.Points));
             e.Properties.Add("Rarity", new EntityProperty(o.Rarity.ToString()));
             e.Properties.Add("StepFx", new EntityProperty(o.StepFx));
             e.Properties.Add("StepRequired", new EntityProperty(o.StepsRequired));
@@ -127,20 +115,27 @@ namespace JB2.Bowtie.Data.Azure
             e.Properties.Add("SortOrder", new EntityProperty(o.SortOrder));
             e.Properties.Add("StepType", new EntityProperty(o.StepType.ToString()));
 
+            List<string> points = new List<string>(o.PointSystems);
+
+            foreach (var p in o.PointSystems)
+            {
+                string point = p + ":" + o.GetPoints(p).ToString();
+                points.Add(point);
+            }
+
+            e.SetProperty<string>("Points", string.Join(",", points.ToArray()));
+
             e.PartitionKey = _defaultPartitionKey;
             e.RowKey = "id:" + o.GetID();
 
-            return e;       
+            return e;
         }
-
-
-
 
         protected override IEnumerable<IAchievement> convertToObject(IEnumerable<DynamicTableEntity> list)
         {
             var result = new List<IAchievement>();
 
-            foreach(var e in list)
+            foreach (var e in list)
             {
                 result.Add(convertToObject(e));
             }
@@ -148,43 +143,6 @@ namespace JB2.Bowtie.Data.Azure
             return result;
         }
 
-
-
-        protected IPlayerAchievement[] convertToPlayerAchievement(IEnumerable<DynamicTableEntity> elist)
-        {
-            var result = new List<IPlayerAchievement>(elist.Count());
-            foreach(var e in elist)
-            {
-                result.Add(convertToPlayerAchievement(e));
-            }
-
-            return result.ToArray();
-        }
-        protected IPlayerAchievement convertToPlayerAchievement(DynamicTableEntity e)
-        {
-
-            var id = e.Properties["ID"].StringValue;
-            IPlayerAchievement result = new PlayerAchievement(id);
-
-            result.AchievementID = e.Properties.ContainsKey("AchievementID") ? e.Properties["AchievementID"].StringValue : string.Empty;
-            result.CurrentStep = e.Properties.ContainsKey("CurrentStep") ? e.Properties["CurrentStep"].Int32Value.GetValueOrDefault() : 0;
-            result.ID = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
-            result.Name = e.Properties.ContainsKey("Name") ? e.Properties["Name"].StringValue : string.Empty;
-            result.PlayerID = e.Properties.ContainsKey("PlayerID") ? e.Properties["PlayerID"].StringValue : string.Empty;
-            result.PointsEarned = e.Properties.ContainsKey("PointsEarned") ? e.Properties["PointsEarned"].Int32Value.GetValueOrDefault() : 0;
-            result.DateAchieved = e.Properties.ContainsKey("DateAchieved") ? Convert.ToDateTime(e.Properties["DateAchieved"].StringValue) : DateTime.MinValue;
-            
-            //var e = new DynamicTableEntity();
-            //e.Properties.Add("AchievementID", new EntityProperty(o.AchievementID));
-            //e.Properties.Add("CurrentStep", new EntityProperty(o.CurrentStep)));
-            //e.Properties.Add("PlayerID", new EntityProperty(o.PlayerID));
-            //e.Properties.Add("PointsEarned", new EntityProperty(o.PointsEarned));
-            //e.Properties.Add("ID", new EntityProperty(o.GetID()));
-            //e.Properties.Add("LastUpdate", new EntityProperty(o.GetLastUpdate()));
-
-            return result;
-
-        }
         protected override IAchievement convertToObject(DynamicTableEntity e)
         {
             IAchievement result = null;
@@ -197,7 +155,7 @@ namespace JB2.Bowtie.Data.Azure
                 case Enum.AchievementType.TimeBound:
                     result = new EventAchievement(id);
                     break;
-                default :
+                default:
                     result = new StandardAchievement(id);
                     break;
             }
@@ -214,7 +172,7 @@ namespace JB2.Bowtie.Data.Azure
             result.EarnedIconUrl = e.Properties.ContainsKey("EarnedIconUrl") ? e.Properties["EarnedIconUrl"].StringValue : string.Empty;
             result.HiddenIconUrl = e.Properties.ContainsKey("HiddenIconUrl") ? e.Properties["HiddenIconUrl"].StringValue : string.Empty;
             result.ShownIconUrl = e.Properties.ContainsKey("ShownIconUrl") ? e.Properties["ShownIconUrl"].StringValue : string.Empty;
-            result.Points = e.Properties.ContainsKey("Points") ? (int)e.Properties["Points"].Int32Value : 0;
+
 
             result.Rarity = e.Properties.ContainsKey("Rarity") ? (Enum.AchievementRarityType)System.Enum.Parse(typeof(Enum.AchievementRarityType), e.Properties["Rarity"].StringValue) : Enum.AchievementRarityType.Common;
 
@@ -225,9 +183,29 @@ namespace JB2.Bowtie.Data.Azure
             result.TimeBoundEnd = e.Properties.ContainsKey("TimeBoundEnd") ? Convert.ToDateTime(e.Properties["TimeBoundEnd"].StringValue) : System.DateTime.MinValue;
             result.TimeBoundStart = e.Properties.ContainsKey("TimeBoundStart") ? Convert.ToDateTime(e.Properties["TimeBoundStart"].StringValue) : System.DateTime.MinValue;
 
+            //load the points per each point system
+            Dictionary<string, int> pointsDic = new Dictionary<string, int>();
+            string points = e.GetPropertyValue<string>("Points", string.Empty);
+            foreach (var p in points.Split(","))
+            {
+                try
+                {
+                    var systemid = p.Split(":")[0];
+                    var point = p.Split(":")[1];
+                    int pointint = 0;
+                    int.TryParse(point, out pointint);
+                    pointsDic.Add(systemid, pointint);
+                }
+                catch (Exception ex)
+                {
+                    ex.BowtieLog();
+                }
+            }
+            ((Achievement)result).Points = pointsDic;
+
             //result.UniqueToken = e.Properties["UniqueToken"].StringValue;
 
-            
+
 
             return result;
         }
@@ -266,34 +244,108 @@ namespace JB2.Bowtie.Data.Azure
             //by dewdrops
             List<string> dewdrops = e.Properties["DewdropCSV"].StringValue.Split(',').ToList();
             e.PartitionKey = _defaultPartitionKey + ":" + e.Properties["ID"].StringValue;
-            foreach( string dewdrop in dewdrops)
+            foreach (string dewdrop in dewdrops)
             {
-                e.RowKey  = "dewdrop:" + dewdrop + "_id:" + e.Properties["ID"].StringValue;
+                e.RowKey = "dewdrop:" + dewdrop + "_id:" + e.Properties["ID"].StringValue;
                 _table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
             }
         }
 
-        protected  void savePlayerAchievement(DynamicTableEntity e, bool replace)
+
+        #region Player Data
+
+        public IPlayerAchievement GetPlayerAchievement(string playerID, string achievementID)
+        {
+            var e = _playerData.GetEntity<DynamicTableEntity>("player:" + playerID, "achievementid:" + achievementID);
+
+            if (e != null)
+                return convertToPlayerAchievement(e);
+            else
+            {
+                return null;
+            }
+        }
+
+        public void Insert(IPlayerAchievement playerAchievement)
+        {
+            savePlayerAchievement(convertToEntity(playerAchievement), true);
+        }
+
+        protected IPlayerAchievement[] convertToPlayerAchievement(IEnumerable<DynamicTableEntity> elist)
+        {
+            var result = new List<IPlayerAchievement>(elist.Count());
+            foreach (var e in elist)
+            {
+                result.Add(convertToPlayerAchievement(e));
+            }
+
+            return result.ToArray();
+        }
+        protected IPlayerAchievement convertToPlayerAchievement(DynamicTableEntity e)
+        {
+
+            var id = e.Properties["ID"].StringValue;
+            IPlayerAchievement result = new PlayerAchievement(id);
+
+            result.AchievementID = e.Properties.ContainsKey("AchievementID") ? e.Properties["AchievementID"].StringValue : string.Empty;
+            result.CurrentStep = e.Properties.ContainsKey("CurrentStep") ? e.Properties["CurrentStep"].Int32Value.GetValueOrDefault() : 0;
+            result.ID = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
+            result.Name = e.Properties.ContainsKey("Name") ? e.Properties["Name"].StringValue : string.Empty;
+            result.PlayerID = e.Properties.ContainsKey("PlayerID") ? e.Properties["PlayerID"].StringValue : string.Empty;
+
+            result.DateAchieved = e.Properties.ContainsKey("DateAchieved") ? Convert.ToDateTime(e.Properties["DateAchieved"].StringValue) : DateTime.MinValue;
+
+            //load the points per each point system
+            Dictionary<string, int> pointsDic = new Dictionary<string, int>();
+            string points = e.GetPropertyValue<string>("PointsEarned", string.Empty);
+            foreach (var p in points.Split(","))
+            {
+                try
+                {
+                    var systemid = p.Split(":")[0];
+                    var point = p.Split(":")[1];
+                    int pointint = 0;
+                    int.TryParse(point, out pointint);
+                    pointsDic.Add(systemid, pointint);
+                }
+                catch (Exception ex)
+                {
+                    ex.BowtieLog();
+                }
+            }
+            ((PlayerAchievement)result).PointsEarned = pointsDic;
+
+            return result;
+
+        }
+
+        protected void savePlayerAchievement(DynamicTableEntity e, bool replace)
         {
             var achievement = this.GetById(e.Properties["AchievementID"].StringValue);
             //standard by ID
             e.PartitionKey = _defaultPartitionKey + "player";
             e.RowKey = "id:" + e.Properties["ID"].StringValue;
-            _table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
+            _playerData.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
 
             //by player and app
             e.PartitionKey = _defaultPartitionKey + "player" + ":" + e.Properties["PlayerID"].StringValue;
-            e.RowKey = "app:" + achievement.ApplicationID + "_achievementid:" + achievement.GetID() +  "_id:" + e.Properties["ID"].StringValue;
-            _table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
+            e.RowKey = "app:" + achievement.ApplicationID + "_achievementid:" + achievement.GetID() + "_id:" + e.Properties["ID"].StringValue;
+            _playerData.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
 
             e.PartitionKey = _defaultPartitionKey + "player";
-            e.RowKey = "achievementid:" + achievement.GetID() + "_playerID:" + e.Properties["PlayerID"].StringValue + "_id:"  + e.Properties["ID"].StringValue;
-            _table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
+            e.RowKey = "achievementid:" + achievement.GetID() + "_playerID:" + e.Properties["PlayerID"].StringValue + "_id:" + e.Properties["ID"].StringValue;
+            _playerData.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
 
             e.PartitionKey = _defaultPartitionKey + "player:" + e.Properties["PlayerID"].StringValue;
             e.RowKey = "achievementid:" + achievement.GetID();
-            _table.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
+            _playerData.Insert<DynamicTableEntity>(e, TableInsertMode.Merge, false);
 
         }
+
+        #endregion Player Data
+
+
+
+
     }
 }

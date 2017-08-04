@@ -35,12 +35,12 @@
       <HintPath>..\..\Solutions\packages\Hyak.Common.1.0.2\lib\net45\Hyak.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Core, Version=0.4.0.28091, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.0\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.4.1.42060, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.1\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Data.AzureStorage, Version=0.2.9.21039, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.2.9\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
+    <Reference Include="JB2.Common.Data.AzureStorage, Version=0.3.0.482, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.3.0.482\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Date, Version=0.2.2.22361, Culture=neutral, processorArchitecture=MSIL">
@@ -83,8 +83,8 @@
       <HintPath>..\..\Solutions\packages\JB2.Identity.Core.0.1.4.1\lib\JB2.Identity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Infrastructure, Version=0.2.22.22366, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.22\lib\JB2.Infrastructure.dll</HintPath>
+    <Reference Include="JB2.Infrastructure, Version=0.2.23.5477, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.23\lib\JB2.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -165,6 +165,7 @@
   <ItemGroup>
     <Compile Include="API.cs" />
     <Compile Include="Application.cs" />
+    <Compile Include="ApplicationDewdrop.cs" />
     <Compile Include="ApplicationModule.cs" />
     <Compile Include="ApplicationStatePair.cs" />
     <Compile Include="AppPlayer.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Attributes\GraphProperty.cs" />
     <Compile Include="Attributes\PlayerStoryAttribute.cs" />
     <Compile Include="AuthInfo.cs" />
+    <Compile Include="AuthProvider.cs" />
     <Compile Include="Backpack.cs" />
     <Compile Include="BowtieGroup.cs" />
     <Compile Include="BowtieMetaDataCollection.cs" />
@@ -179,12 +181,16 @@
     <Compile Include="BowtieObjectType.cs" />
     <Compile Include="BowtiePlayer.cs" />
     <Compile Include="BowtieSettingName.cs" />
+    <Compile Include="Enum\SystemType.cs" />
+    <Compile Include="ExternalClass.cs" />
+    <Compile Include="DewdropTriggerInfo.cs" />
     <Compile Include="EconomyRepository.cs" />
     <Compile Include="Enum\AchievementRarityType.cs" />
     <Compile Include="Enum\AchievementState.cs" />
     <Compile Include="Enum\AchievementType.cs" />
     <Compile Include="Enum\APIAuthorizeState.cs" />
     <Compile Include="Enum\APIMode.cs" />
+    <Compile Include="Enum\ClassType.cs" />
     <Compile Include="Enum\GraphElementType.cs" />
     <Compile Include="Enum\LeaderboardScoreType.cs" />
     <Compile Include="Enum\LeaderboardType.cs" />
@@ -199,16 +205,30 @@
     <Compile Include="Events.cs" />
     <Compile Include="ExceptionExtension.cs" />
     <Compile Include="Exceptions\ApplicationNotInitialized.cs" />
+    <Compile Include="Extenstion\PlayerExtenstion.cs" />
     <Compile Include="GameCommand.cs" />
+    <Compile Include="Systems\CurrencySystem.cs" />
+    <Compile Include="Systems\GenericSystem.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="IGameSession.cs" />
+    <Compile Include="ICurrencyTreasury.cs" />
+    <Compile Include="Interfaces\IAuthProvider.cs" />
+    <Compile Include="Interfaces\IClassConfig.cs" />
+    <Compile Include="Interfaces\ISystem.cs" />
+    <Compile Include="Interfaces\ISystemRepository.cs" />
+    <Compile Include="Interfaces\ICurrencyConfig.cs" />
+    <Compile Include="Interfaces\IDewdropTrigger.cs" />
+    <Compile Include="Interfaces\ISystemConfig.cs" />
+    <Compile Include="Interfaces\IGameSession.cs" />
+    <Compile Include="Interfaces\IAchievementQueueRepo.cs" />
     <Compile Include="Interfaces\IApplicationable.cs" />
     <Compile Include="Interfaces\IAuthorizeRepository.cs" />
+    <Compile Include="Interfaces\IAuthProviderRepo.cs" />
     <Compile Include="Interfaces\IBowtieGroup.cs" />
     <Compile Include="Interfaces\IDewdrop.cs" />
+    <Compile Include="Interfaces\IDewdropQueue.cs" />
     <Compile Include="Interfaces\IGameEngine.cs" />
-    <Compile Include="IBowtieObject.cs" />
-    <Compile Include="IBowtiePlayer.cs" />
+    <Compile Include="Interfaces\IBowtieObject.cs" />
+    <Compile Include="Interfaces\IBowtiePlayer.cs" />
     <Compile Include="Interfaces\IDewdropRepository.cs" />
     <Compile Include="Interfaces\IAchievement.cs" />
     <Compile Include="Interfaces\IAchievementRepository.cs" />
@@ -222,36 +242,54 @@
     <Compile Include="Interfaces\IInventoryItem.cs" />
     <Compile Include="Interfaces\ILeaderboard.cs" />
     <Compile Include="Interfaces\ILeaderboardRepository.cs" />
+    <Compile Include="Interfaces\IMaintenanceQueue.cs" />
     <Compile Include="Interfaces\IMasterLeaderboard.cs" />
+    <Compile Include="Interfaces\IMission.cs" />
+    <Compile Include="Interfaces\IMissionGroup.cs" />
+    <Compile Include="Interfaces\IMissionRespository.cs" />
     <Compile Include="Interfaces\IModule.cs" />
     <Compile Include="Interfaces\IModuleRepository.cs" />
     <Compile Include="Interfaces\IPlayerable.cs" />
     <Compile Include="Interfaces\IPlayerAchievement.cs" />
     <Compile Include="Interfaces\IPlayerInventoryItem.cs" />
+    <Compile Include="Interfaces\IPlayerPoint.cs" />
     <Compile Include="Interfaces\IPlayerStory.cs" />
+    <Compile Include="Interfaces\IPointQueueRepository.cs" />
+    <Compile Include="Interfaces\IPointSystem.cs" />
+    <Compile Include="Interfaces\IQueue.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="IPlayerRespository.cs" />
-    <Compile Include="IWallet.cs" />
+    <Compile Include="Interfaces\IPoint.cs" />
+    <Compile Include="Interfaces\IPlayerRespository.cs" />
+    <Compile Include="Interfaces\IPointSystemRepository.cs" />
+    <Compile Include="Interfaces\IPointGiver.cs" />
+    <Compile Include="Interfaces\IWallet.cs" />
     <Compile Include="JBeanCollection.cs" />
-    <Compile Include="JBeanRequest.cs" />
+    <Compile Include="LanguageTense.cs" />
+    <Compile Include="ObjectConfig.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Dewdrop.cs" />
-    <Compile Include="IPlayerDewdrop.cs" />
+    <Compile Include="Interfaces\IPlayerDewdrop.cs" />
     <Compile Include="PlayerDewdrop.cs" />
     <Compile Include="PlayerInventoryItem.cs" />
+    <Compile Include="PointSystemConfig.cs" />
+    <Compile Include="PointTransaction.cs" />
+    <Compile Include="ProfileResource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Systems\PointSystem.cs" />
     <Compile Include="TokenName.cs" />
     <Compile Include="TreasuryAccessKey.cs" />
+    <Compile Include="TreasuryNotes.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="Wallet.cs" />
-    <Compile Include="WalletOwner.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="WalletReceipt.cs" />
     <Compile Include="WalletTransationType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\Solutions\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\Solutions\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

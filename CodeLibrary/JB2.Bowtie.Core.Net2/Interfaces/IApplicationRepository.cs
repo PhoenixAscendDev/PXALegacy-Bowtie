@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace JB2.Bowtie
+{
+    public interface IApplicationRepository : JB2.Common.IRepository<JB2.Bowtie.IApplication, string>
+    {
+        IApplication[] GetAPIAllowedApps();
+
+        IApplication[] GetApplicationsByClientID(string clientID);
+
+        IApplication GetApplicationByAPIKey(string publicKey);
+
+
+        string GetTreasuryRequestKey(string id, string treasuryID);
+
+        
+    }
+}

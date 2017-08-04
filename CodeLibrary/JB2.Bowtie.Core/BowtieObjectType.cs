@@ -31,6 +31,10 @@ namespace JB2.Bowtie.Enum
         [TokenName("Bowtie>*<GameObject")]
         bowtie_gameobject,
         [TokenName("Bowtie>*<Module")]
-        bowtie_module
+        bowtie_module,
+        [TokenName("Bowtie>*<AuthProvider")]
+        bowtie_auth,
+        [TokenName("Bowtie>*<Mission")]
+        bowtie_mission
     }
 }

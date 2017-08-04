@@ -110,16 +110,28 @@ namespace JB2.Bowtie.Data.Azure
             e.SetProperty<string>("Website", o.Website);
             e.SetProperty<string>("Name", o.Name);
 
-
-
             e.SetProperty<string>("CompanyID", o.Company != null ? o.Company.ID : string.Empty);
             e.SetProperty<string>("CompanyName", o.Company != null ? o.Company.Name : string.Empty);
 
-            
-            //System.Enum.TryParse<Enum.APIAuthorizeState>(e.Properties["AuthorizeState"].StringValue, out state);
-            //List<IModule> modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll().ToList();
-
             List<IModule> modules = new List<IModule>();
+
+            
+
+            List<string> pointsystems = new List<string>();  
+
+            foreach(var i in o.AllowedPointSystems)
+            {
+                pointsystems.Add(i.ID + ":" + i.Name);
+            }
+
+            List<string> currencySystems = new List<string>();
+            foreach (var i in o.AllowedCurrencySystems)
+            {
+                currencySystems.Add(i.ID + ":" + i.Name);
+            }
+
+            e.SetProperty<string>("PointSystems", string.Join(",", pointsystems.ToArray()));
+            e.SetProperty<string>("CurrencySystems", string.Join(",", currencySystems.ToArray()));
 
             return e;
         }
@@ -176,6 +188,8 @@ namespace JB2.Bowtie.Data.Azure
                 }
             }
 
+
+
             //System.Enum.TryParse<Enum.APIAuthorizeState>(e.Properties["AuthorizeState"].StringValue, out state);
             //List<IModule> modules = JB2.Settings.Bowtie.UnitOfWork.ModuleRepository.GetAll().ToList();
 
@@ -189,9 +203,60 @@ namespace JB2.Bowtie.Data.Azure
             app.TreasuryKeys = treasuryKeys;
             app.Website = e.GetPropertyValue<string>("Website", string.Empty);
             app.Company = company;
-            
-            return app;
 
+
+            //Allowed Point Systems
+            string strPoints = e.GetPropertyValue<string>("PointSystems", string.Empty);
+            List<IIDNamePair<string, string>> pointList = new List<IIDNamePair<string, string>>();
+            if (!string.IsNullOrEmpty(strPoints))
+            {
+                foreach (string keypair in strPoints.Split(","))
+                {
+                    try
+                    {
+                        var id = keypair.Split(':')[0];
+                        var name = keypair.Split(':')[1];
+
+                        var result = new IDNamePair<string, string>(id, name);
+
+                        pointList.Add(result);                        
+                    }
+
+                    catch (Exception ex)
+                    {
+                        ex.BowtieLog();
+                    }
+                }
+            }
+            app.AllowedPointSystems = pointList;
+
+
+            //Allowed Currency Systems
+            string strCurrency = e.GetPropertyValue<string>("CurrencySystems", string.Empty);
+            List<IIDNamePair<string, string>> currencyList = new List<IIDNamePair<string, string>>();
+            if (!string.IsNullOrEmpty(strCurrency))
+            {
+                foreach (string keypair in strCurrency.Split(","))
+                {
+                    try
+                    {
+                        var id = keypair.Split(':')[0];
+                        var name = keypair.Split(':')[1];
+
+                        var result = new IDNamePair<string, string>(id, name);
+
+                        currencyList.Add(result);
+                    }
+
+                    catch (Exception ex)
+                    {
+                        ex.BowtieLog();
+                    }
+                }
+            }
+
+            app.AllowedCurrencySystems = currencyList;
+            return app;
         }
 
         protected override void deleteEntry(DynamicTableEntity e)

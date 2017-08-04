@@ -12,6 +12,9 @@ namespace JB2.Bowtie
     {
         IApplicationRepository ApplicationRepository { get; }
         IAchievementRepository AchievementRepository { get; }
+
+        IAuthProviderRepository AuthProviderRepository { get; }
+
         IGameCommandRepository GameCommandRepository { get; }
         ILeaderboardRepository LeaderboardRepository { get; }
         IGraphRepository GraphRepository { get; }
@@ -27,12 +30,31 @@ namespace JB2.Bowtie
         IBowtiePlayerRespository PlayerRepository { get; }
 
         IAuthorizeRepository AuthorizeRepository { get; }
+
+        IPointSystemRepository PointSystemRepository { get; }
+
+        IMissionRespository MissionRepository { get; }
+
+        ISystemRepository SystemRepository { get; }
         
         //IPlayerRepo PlayerRepository { get; }
         object GetRepository(Enum.RepositoryType respository);
 
         JB2.Common.Log.ILogRepo LogRepository { get; }
 
-      
+
+
+
+        #region Queues
+
+        IDewdropQueueRepo DewdropQueue { get; }
+        IMaintenanceQueueRepo MaintenanceQueue { get; }
+
+        IAchievementQueueRepo AchievementQueue { get; }
+
+        IPointQueueRepository PointQueue { get; }
+
+        #endregion Queues
+
     }
 }

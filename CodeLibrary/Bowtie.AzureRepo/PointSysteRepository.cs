@@ -1,0 +1,211 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.WindowsAzure.Storage.Table;
+
+using System.Reflection;
+
+
+using JB2.Common.Data;
+namespace JB2.Bowtie.Data.Azure
+{
+    public class PointSystemRepository : BowtieRepository<IPointSystem>, IPointSystemRepository
+    {
+
+        #region Constructors
+        public PointSystemRepository() : this(AzureStorage.PointSystemTable,AzureStorage.PointSystemTable,AzureStorage.GeneralBlob)
+        {
+
+        }
+
+        public PointSystemRepository(AzureTableRepository configTable, AzureTableRepository playerData, AzureBlobRepository blob)
+        {
+            _table = configTable;
+            _playerData = playerData;
+            _blob = blob;
+            _defaultPartitionKey = "pointsystem";
+        }
+
+        #endregion Constructors
+
+        public JB2.Common.ServiceResult Insert(PointTransaction tran)
+        {
+            try
+            {
+                bool replace = true;
+
+                var e = convertToEntity(tran);
+                var id = tran.ID;
+
+
+                e.PartitionKey = "pointtran";
+                e.RowKey = "id:" + id;
+                _playerData.Insert<DynamicTableEntity>(e,replace);
+              
+            }
+            catch (Exception ex)
+            {
+                ex.BowtieLog();
+                return new JB2.Common.ServiceResult(ex);
+            }
+
+            return true;
+        }
+
+        public void UpdateIndex(PointTransaction tran)
+        {
+            var e = convertToEntity(tran);
+            var id = tran.ID;
+            var replace = true;
+
+            e.PartitionKey = "pointtran:player:" + tran.GetPlayerID();
+            e.RowKey = "id:" + id;
+            _playerData.Insert<DynamicTableEntity>(e, replace);
+
+            e.PartitionKey = "pointtran:pointsystem:" + tran.PointSystem;
+            e.RowKey = "id:" + id;
+            _playerData.Insert<DynamicTableEntity>(e, replace);
+
+            e.PartitionKey = "pointtran:player:" + tran.GetPlayerID();
+            e.RowKey = "playerpoint:" + tran.ToString() + ":id:" + id;
+            _playerData.Insert<DynamicTableEntity>(e, replace);
+
+            e.PartitionKey = "pointtran:player:" + tran.GetPlayerID();
+            e.RowKey = "giver:" + tran.GiverID + ":id:" + id;
+            _playerData.Insert<DynamicTableEntity>(e, replace);
+
+            e.PartitionKey = "pointtran:giver:" + tran.ID;
+            e.RowKey = "id:" + id;
+            _playerData.Insert<DynamicTableEntity>(e, replace);
+
+            e.PartitionKey = "pointtran:giver:" + tran.ID;
+            e.RowKey = "point:" + tran.Points + ":id:" + id;
+            _playerData.Insert<DynamicTableEntity>(e, replace);
+
+
+
+        }
+
+        #region protected
+
+        protected  PointSystemConfig convertToConfig(DynamicTableEntity e)
+        {
+            var config = new PointSystemConfig();
+            config.ID = e.GetPropertyValue<string>("ID", string.Empty);
+            config.Name = e.GetPropertyValue<string>("Name", string.Empty);
+            config.Namespace = e.GetPropertyValue<string>("Namespace", string.Empty);
+            config.ClassName = e.GetPropertyValue<string>("Classname", string.Empty);
+
+
+            return config;
+        }
+
+        protected  DynamicTableEntity convertToEntity(PointTransaction tran)
+        {
+            var id = tran.ID;
+
+            DynamicTableEntity e = new DynamicTableEntity();
+            e.SetProperty<string>("ID", id);
+            e.SetProperty<int>("Points", tran.Points);
+            e.SetProperty<string>("PointSystem", tran.PointSystem);
+            e.SetProperty<string>("Description", tran.Description);
+            e.SetProperty<string>("GiverID", tran.GiverID);
+            e.SetProperty<string>("GiverName", tran.GiverName);
+            e.SetProperty<string>("GiverType", tran.PointGiverType);
+            e.SetProperty<long>("DateEnteredTicks", tran.TransactionDate.Ticks);
+            e.SetProperty<string>("ValidationKey", tran.ValidationKey);
+
+            return e;
+        }
+        protected override DynamicTableEntity convertToEntity(IPointSystem o)
+        {
+            DynamicTableEntity e = new DynamicTableEntity();
+            e.SetProperty<string>("ID", o.ID);
+            e.SetProperty<string>("Name", o.Name);
+            e.SetProperty<string>("Pural", o.Plural);
+            e.SetProperty<string>("Single", o.Single);
+            e.SetProperty<string>("ImperativeTense", o.ReceiveTense.ImperativeTense);
+            e.SetProperty<string>("Past", o.ReceiveTense.Past);
+            e.SetProperty<string>("PluralPast", o.ReceiveTense.PluralPast);
+            e.SetProperty<string>("PluralPresent", o.ReceiveTense.PluralPresent);
+            e.SetProperty<string>("Present",o.ReceiveTense.Present);
+            e.SetProperty<string>("Namespace", o.GetType().Namespace);
+            e.SetProperty<string>("Classname", o.GetType().Name);
+            e.SetProperty<string>("Assembly", o.GetType().Assembly.FullName);
+            e.SetProperty<string>("AssemblyQualifiedName", o.GetType().AssemblyQualifiedName);
+
+            return e;
+
+
+        }
+        protected override IEnumerable<IPointSystem> convertToObject(IEnumerable<DynamicTableEntity> list)
+        {
+            List<IPointSystem> points = new List<IPointSystem>();
+            foreach(var e in list)
+            {
+                points.Add(convertToObject(e));
+            }
+
+            return points;
+        }
+
+        protected override IPointSystem convertToObject(DynamicTableEntity e)
+        {
+            string namespaceString = e.GetPropertyValue<string>("Namespace", string.Empty);
+            string classString = e.GetPropertyValue<string>("Classname", string.Empty);
+            string qualifiedName = e.GetPropertyValue<string>("AssemblyQualifiedName", string.Empty);
+            try
+            {
+                var fullName = namespaceString + "." + classString;
+
+                // This is assuming that the type will be in the same assembly
+                // as the call. If that's not the case, we can look at that later.
+                Type type = Type.GetType(qualifiedName);
+                if (type == null)
+                {
+                    throw new ArgumentException("No such type: " + type);
+                }
+                if (!typeof(IPointSystem).IsAssignableFrom(type))
+                {
+                    throw new ArgumentException("Type " + type +
+                                                " is not compatible with FooParent.");
+                }
+
+                
+                Assembly a = Assembly.Load("JB2.BitScore");
+                return (IPointSystem)Activator.CreateInstance(type);
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+                return null;
+            }
+
+
+
+        }
+
+        protected override void deleteEntry(DynamicTableEntity e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void saveEntity(DynamicTableEntity e, bool replace)
+        {
+            e.PartitionKey = _defaultPartitionKey;
+            e.RowKey = "id:" + e.GetPropertyValue<string>("ID",string.Empty);
+            _table.Insert<DynamicTableEntity>(e, replace);
+
+            e.PartitionKey = _defaultPartitionKey + ":" + e.GetPropertyValue<string>("Assembly", string.Empty);
+            e.RowKey = "id:" + e.GetPropertyValue<string>("ID", string.Empty);
+            _table.Insert<DynamicTableEntity>(e, replace);
+
+            e.PartitionKey = _defaultPartitionKey;
+            e.RowKey = "id:" + e.GetPropertyValue<string>("ID", string.Empty);
+        }
+
+        #endregion protected
+    }
+}

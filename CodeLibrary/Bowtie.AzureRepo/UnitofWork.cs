@@ -117,15 +117,75 @@ namespace JB2.Bowtie.Data.Azure
                 return (JB2.Common.Log.ILogRepo)GetRepository(RepositoryType.Log);
             }
         }
-        
 
-        //public JB2.Common.IPlayerRepo PlayerRepository
-        //{
-        //    get
-        //    {
-        //        return (JB2.Common.IPlayerRepo)GetRepository(Enum.RepositoryType.Player);
-        //    }
-        //}
+        public IAuthProviderRepository AuthProviderRepository
+        {
+            get
+            {
+                return (JB2.Bowtie.IAuthProviderRepository)GetRepository(RepositoryType.AuthProvider);
+            }
+
+        }
+
+        public IPointSystemRepository PointSystemRepository
+        {
+            get
+            {
+                return (JB2.Bowtie.IPointSystemRepository)GetRepository(RepositoryType.PointSystem);
+            }
+        }
+
+        public IMissionRespository MissionRepository
+        {
+            get
+            {
+                return (JB2.Bowtie.IMissionRespository)GetRepository(RepositoryType.Mission);
+            }
+        }
+
+        public IDewdropQueueRepo DewdropQueue
+        {
+            get
+            {
+                return new JB2.Bowtie.Queue.Azure.DewdropQueue(AzureStorage.DewdropQueue);
+            }
+        }
+
+        public IAchievementQueueRepo AchievementQueue 
+        {
+            get
+            {
+                return new JB2.Bowtie.Queue.Azure.AchievementQueue(AzureStorage.AchievementQueue);
+            }
+        }
+
+
+
+
+        public IMaintenanceQueueRepo MaintenanceQueue
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IPointQueueRepository PointQueue
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public ISystemRepository SystemRepository
+        {
+            get
+            {
+                return (JB2.Bowtie.ISystemRepository)GetRepository(RepositoryType.ClassConfig);
+            }
+        }
+
 
         public object GetRepository(JB2.Bowtie.Enum.RepositoryType repository)
         {
@@ -177,6 +237,18 @@ namespace JB2.Bowtie.Data.Azure
                                 break;
                             case RepositoryType.Log:
                                 _repos.Add(repository, new JB2.Common.Log.AzureRepo(AzureStorage.LogTable));
+                                break;
+                            case RepositoryType.AuthProvider:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.AuthProviderRepository());
+                                break;
+                            case RepositoryType.PointSystem:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.PointSystemRepository());
+                                break;
+                            case RepositoryType.Mission:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.MissionRespository());
+                                break;
+                            case RepositoryType.ClassConfig:
+                                _repos.Add(repository, new JB2.Bowtie.Data.Azure.SystemRepository());
                                 break;
                         }
                     }

@@ -48,10 +48,10 @@ namespace JB2.Bowtie.Data.Azure
                 return null;
         }
 
-        public BowtieMetadata GetMetaDataByPlayerID(string playerID)
-        {
-            throw new NotImplementedException();
-        }
+        //public BowtieMetadata GetMetaDataByPlayerID(string playerID)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
 
         public void Insert(ApplicationPlayer player)
@@ -131,10 +131,21 @@ namespace JB2.Bowtie.Data.Azure
 
             e.Properties.Add("ID", new EntityProperty(o.GetID()));
             e.Properties.Add("DisplayName", new EntityProperty(o.DisplayName));
-            e.Properties.Add("Age", new EntityProperty(o.Age));
-            e.Properties.Add("Gender", new EntityProperty(o.Gender));
+            //e.Properties.Add("Age", new EntityProperty(o.Age));
+            //e.Properties.Add("Gender", new EntityProperty(o.Gender));
             e.Properties.Add("PlayerID", new EntityProperty(o.GetPlayerID()));
             //e.Properties.Add("AuthProvider", new EntityProperty(o.AuthProvider));
+
+            e.SetProperty<short>("BirthMonth", o.BirthMonth);
+            e.SetProperty<short>("BirthDayOfMonth", o.BirthDayOfMonth);
+
+            e.SetProperty<string>("FirstName", ((IPlayer)o).Name.First);
+            e.SetProperty<string>("LastName", ((IPlayer)o).Name.Last);
+            e.SetProperty<string>("MiddleName", ((IPlayer)o).Name.Middle);
+
+            e.SetProperty<byte>("AgeMin", o.AgeRange.Min);
+            e.SetProperty<byte>("AgeMax", o.AgeRange.Max);
+
 
             return e;
         }
@@ -168,8 +179,20 @@ namespace JB2.Bowtie.Data.Azure
 
             player.ID = id;
             player.DisplayName = e.Properties.ContainsKey("DisplayName") ? e.Properties["DisplayName"].StringValue : string.Empty;
-            player.Age = e.Properties.ContainsKey("Age") ? e.Properties["Age"].Int32Value.GetValueOrDefault() : 0;
-            player.Gender = e.Properties.ContainsKey("Gender") ? e.Properties["Gender"].StringValue : string.Empty;
+            player.BirthMonth = e.GetPropertyValue<short>("BirthMonth", 1);
+            player.BirthDayOfMonth = e.GetPropertyValue<short>("BirthDayOfMonth", 1);
+
+            player.Name.First = e.GetPropertyValue<string>("FirstName", string.Empty);
+            player.Name.Last = e.GetPropertyValue<string>("LastName", string.Empty);
+            player.Name.Middle = e.GetPropertyValue<string>("MiddleName", string.Empty);
+
+
+            byte ageMin = e.GetPropertyValue<byte>("AgeMin", 0);
+            byte ageMax = e.GetPropertyValue<byte>("AgeMax", 100);
+
+            player.AgeRange = new SmallNumberRange() { Min = ageMin, Max = ageMax };
+            //player.Age = e.Properties.ContainsKey("Age") ? e.Properties["Age"].Int32Value.GetValueOrDefault() : 0;
+            //player.Gender = e.Properties.ContainsKey("Gender") ? e.Properties["Gender"].StringValue : string.Empty;
             //player.AuthProvider = e.Properties.ContainsKey("AuthProvider") ? e.Properties["AuthProvider"].StringValue : string.Empty;          
             return player;
         }
@@ -178,14 +201,28 @@ namespace JB2.Bowtie.Data.Azure
         {
             
             var id = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
-            var applicationid = e.Properties.ContainsKey("AppllicationID") ? e.Properties["AppllicationID"].StringValue : string.Empty;
+            var applicationid = e.Properties.ContainsKey("ApplicationID") ? e.Properties["ApplicationID"].StringValue : string.Empty;
 
 
             ApplicationPlayer player = new ApplicationPlayer(id, applicationid);
             player.ID = e.Properties.ContainsKey("ID") ? e.Properties["ID"].StringValue : string.Empty;
             player.DisplayName = e.Properties.ContainsKey("DisplayName") ? e.Properties["DisplayName"].StringValue : string.Empty;
-            player.Age = e.Properties.ContainsKey("Age") ? e.Properties["Age"].Int32Value.GetValueOrDefault() : 0;
-            player.Gender = e.Properties.ContainsKey("Gender") ? e.Properties["Gender"].StringValue : string.Empty;
+
+            player.BirthMonth = e.GetPropertyValue<short>("BirthMonth", 1);
+            player.BirthDayOfMonth = e.GetPropertyValue<short>("BirthDayOfMonth", 1);
+
+            player.Name.First = e.GetPropertyValue<string>("FirstName", string.Empty);
+            player.Name.Last = e.GetPropertyValue<string>("LastName", string.Empty);
+            player.Name.Middle = e.GetPropertyValue<string>("MiddleName", string.Empty);
+
+
+
+            byte ageMin = e.GetPropertyValue<byte>("AgeMin", 0);
+            byte ageMax = e.GetPropertyValue<byte>("AgeMax", 100);
+
+            player.AgeRange = new SmallNumberRange() { Min = ageMin, Max = ageMax };
+            //player.Age = e.Properties.ContainsKey("Age") ? e.Properties["Age"].Int32Value.GetValueOrDefault() : 0;
+            //player.Gender = e.Properties.ContainsKey("Gender") ? e.Properties["Gender"].StringValue : string.Empty;
             //player.AuthProvider = e.Properties.ContainsKey("AuthProvider") ? e.Properties["AuthProvider"].StringValue : string.Empty;
             player.DateRegistered = e.Properties.ContainsKey("DateRegistered") ? e.Properties["DateRegistered"].DateTime.GetValueOrDefault() : DateTime.MinValue;
 
@@ -202,6 +239,11 @@ namespace JB2.Bowtie.Data.Azure
 
             person.Name = new Name();
 
+            person.Name.First = e.GetPropertyValue<string>("FirstName", string.Empty);
+            person.Name.Last = e.GetPropertyValue<string>("LastName", string.Empty);
+            person.Name.Middle = e.GetPropertyValue<string>("MiddleName", string.Empty);
+
+
             return person;
         }
 
@@ -212,9 +254,9 @@ namespace JB2.Bowtie.Data.Azure
 
         protected override void saveEntity(DynamicTableEntity e, bool replace)
         {
-            e.PartitionKey = "profile";
-            e.RowKey = "id:" + e.Properties["ID"].StringValue;
-            _table.Insert<DynamicTableEntity>(e, true);
+            //e.PartitionKey = "profile";
+            //e.RowKey = "id:" + e.Properties["ID"].StringValue;
+            //_table.Insert<DynamicTableEntity>(e, true);
 
             e.PartitionKey = "player";
             e.RowKey = "id:" + e.Properties["PlayerID"].StringValue;

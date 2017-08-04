@@ -15,6 +15,8 @@ namespace JB2.Settings
     
         public delegate ServiceResult CheckAuthorize(IApplication application, string authorizeKey);
 
+        public delegate int NewRNG();
+
         public static event Action<IEnumerable<ISetting>> ConfiguredSuccess;
 
         public static event Action<IEnumerable<ISetting>, ServiceResult> ConfiguredFailed;
@@ -24,6 +26,8 @@ namespace JB2.Settings
         public static event Action<IApplication,string, DateTime> ApplicationAuthCheck;
 
         public static CheckAuthorize CheckAuthorizeMethod;
+
+        public static NewRNG RNGMethod;
 
         //public delegate void MoveDelegate(object o);
         //public static MoveDelegate MoveMethod;

@@ -94,6 +94,11 @@ namespace JB2.Bowtie.Service
         {
             var pa = _repo.GetPlayerAchievement(player.GetPlayerID(), achievementid);
 
+
+            //if already earned then no calculation needed
+            if (pa != null && pa.AchievementFlags.Contains(Enum.AchievementFlag.Earned))
+                return pa;
+
             if (pa != null)
             {
                 var a = _repo.GetById(pa.AchievementID);
@@ -116,20 +121,15 @@ namespace JB2.Bowtie.Service
                             pa.CurrentStep++;
                         break;
                 }
-
-
                 //if we achieved then set it
                 if(!pa.AchievementFlags.Contains(Enum.AchievementFlag.Earned) && pa.CurrentStep >= a.StepsRequired)
-                {
-                    pa.Achieve(a.Points);
-                }
+                    pa.Achieve();
             }
-
             _repo.Insert(pa);
-
-            return pa;
-
-           
+            if(pa.AchievementFlags.Contains(Enum.AchievementFlag.Earned))
+                //add achievement to queue for future processing
+                _uofw.AchievementQueue.PushAchievement(pa);
+            return pa; 
         } 
 
 

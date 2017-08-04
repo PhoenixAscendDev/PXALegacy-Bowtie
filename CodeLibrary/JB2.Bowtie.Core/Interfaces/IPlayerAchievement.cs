@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IPlayerAchievement : IBowtieObject , JB2.Common.IIDNamePair<string,string>
+    public interface IPlayerAchievement : IBowtieObject , JB2.Common.IIDNamePair<string,string>, IPlayerable<string>
     {
         string PlayerID { get; set; }
         string AchievementID { get; set; }
         int CurrentStep { get; set; }
         Enum.AchievementFlag[] AchievementFlags { get; set; }
-        int PointsEarned { get; set; }
+        int GetPointsEarned(string pointSystemId);
 
-        void Achieve(int pointsEarned);
-
+        IEnumerable<string> GetPointSystems();
+        
+        void Achieve();
 
         DateTime DateAchieved { get; set; }
 

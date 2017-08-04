@@ -11,16 +11,15 @@ namespace Bowtie.WebMain
     {
         public static void RegisterMappings()
         {
-
-
-            
             AutoMapper.Mapper.Initialize(cfg => {
                 cfg.CreateMap<JB2.Bowtie.IApplication, JB2.Bowtie.Web.Models.ApplicationViewModel>()
                         .ForMember(dest => dest.CompanyID, opts => opts.MapFrom(src => src.Company.ID))
                         .ForMember(dest => dest.CompanyName, opts => opts.MapFrom(src => src.Company.Name))
-                        .ForMember(dest => dest.jBeanKey, opts => opts.MapFrom(src => src.GetTreasuryRequestKey("jBean").Key));
+                        .ForMember(dest => dest.CurrencySystem, opts => opts.MapFrom(src => src.AllowedCurrencySystems.FirstOrDefault().ID))
+                        .ForMember(dest => dest.PointSystem, opts => opts.MapFrom(src => src.AllowedPointSystems.FirstOrDefault().ID))
+                        .ForMember(dest => dest.jBeanKey, opts => opts.MapFrom(src => src.GetTreasuryRequestKey("jBean").Key));                  
                 cfg.CreateMap<JB2.Bowtie.IDewdrop, JB2.Bowtie.Web.Models.DewdropViewModel>()
-                        .ForMember(dest => dest.jBeanCost, opts => opts.MapFrom(src => src.GetjBeanCost()))
+                        //.ForMember(dest => dest.jBeanCost, opts => opts.MapFrom(src => src.GetjBeanCost()))
                         .ForMember(dest => dest.GraphID, opts => opts.MapFrom(src => src.GetGraphID()))
                         .ForMember(dest => dest.ApplicationID, opts => opts.MapFrom(src => src.GetApplicationID()))
                         .ForMember(dest => dest.Description, opts => opts.MapFrom(src => src.GetDescription()));

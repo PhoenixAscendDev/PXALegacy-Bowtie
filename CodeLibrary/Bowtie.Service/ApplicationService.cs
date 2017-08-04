@@ -62,8 +62,12 @@ namespace JB2.Bowtie.Service
 
         public IApplication GenerateNewApplication()
         {
+            
             try
             {
+
+                var currencySystems = _uofw.SystemRepository.GetCurrencySystems();
+                var pointSystems = _uofw.SystemRepository.GetPointSystems();
                 var apikey = new JB2.Common.ApiKeySecretPair();
                 apikey.APIkey = "BT-" + JB2.Common.NewID.UriHash(new Uri("http://bowtie.io?ticks=" + JB2.Common.NewID.TickHash())).ToUpper();
                 apikey.Secret = JB2.Common.NewID.Guid();
@@ -73,12 +77,33 @@ namespace JB2.Bowtie.Service
                 var app = new Application(apikey.APIkey, apikey.Secret, APIAuthorizeState.Authorized, modules);
 
                 //setup TreasuryKeys
-                //jBean
-                var jbeanRequestor = JB2.Settings.Jbean.Factory.Treasury.RegisterNewRequestor(app.ID);
-                var jBean = new TreasuryRequestKey("jBean", jbeanRequestor.RequestValidationKey);
+                
+                foreach (var s in currencySystems)
+                {
+                    var system = s.Construct();
+                    var requestKey = system.Treasury.RegisterApplication(app);
+                    if( !string.IsNullOrEmpty(requestKey.Key))
+                        app.TreasuryKeys.ToList().Add(requestKey);
+                }
+                ////jBean
+                //var jbeanRequestor = JB2.Settings.Jbean.Factory.Treasury.RegisterNewRequestor(app.ID);
+                //var jBean = new TreasuryRequestKey("jBean", jbeanRequestor.RequestValidationKey);
+                //app.TreasuryKeys = new TreasuryRequestKey[1] { jBean };
+
+                //setup CurrencySystems
+                var c = app.AllowedCurrencySystems.ToList();
+                
+                foreach (var s in currencySystems)
+                    c.Add( (IIDNamePair<string,string>)s);
+                app.AllowedCurrencySystems = c;
 
 
-                app.TreasuryKeys = new TreasuryRequestKey[1] { jBean };
+                //setup Point Systems
+                var p = app.AllowedCurrencySystems.ToList();
+                foreach (var s in pointSystems)
+                    p.Add((IIDNamePair<string, string>)s);
+                app.AllowedPointSystems = p;
+
 
                 //save app to repo
                 _repo.Insert(app);
@@ -121,7 +146,6 @@ namespace JB2.Bowtie.Service
 
             return base.Save(entity);
         }
-
 
         public JB2.Common.ServiceResult isAuthorized(JB2.Common.IAPIKeySecretPair api)
         {

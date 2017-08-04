@@ -15,8 +15,6 @@ namespace JB2.Bowtie
         protected string _playerID;
         protected string _applicationID;
 
-
-
         #endregion Fields
 
 

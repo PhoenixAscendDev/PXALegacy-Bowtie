@@ -27,6 +27,7 @@ namespace JB2.Bowtie.Data.Azure
         #region Fields
         protected bool _useCache;
         protected IUnitOfWork _uofw;
+        protected AzureTableRepository _playerData;
 
         #endregion Fields
 

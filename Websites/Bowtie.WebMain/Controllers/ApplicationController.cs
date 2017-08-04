@@ -57,6 +57,7 @@ namespace JB2.Bowtie.Web.Controllers
         public ActionResult Edit(ApplicationViewModel m)
         {
             var appService = this.ApplicationService;
+            var systemService = this.SystemService;
 
             var app = appService.RetrieveById(m.ID);
 
@@ -69,6 +70,40 @@ namespace JB2.Bowtie.Web.Controllers
             tkey.Key = m.jBeanKey;
 
             ((Application)app).TreasuryKeys = new TreasuryRequestKey[1] {  tkey};
+
+
+            //currency
+            try
+            {
+                var c = systemService.RetrieveConfigByID(m.CurrencySystem);
+                if (c == null)
+                    app.AllowedCurrencySystems = new JB2.Common.IIDNamePair<string, string>[0];
+                else
+                app.AllowedCurrencySystems = new JB2.Common.IIDNamePair<string, string>[1] { (JB2.Common.IIDNamePair<string, string>)c };
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+                app.AllowedCurrencySystems = new JB2.Common.IIDNamePair<string, string>[0];
+            }
+
+            //point system
+            try
+            {
+                var p = systemService.RetrieveConfigByID(m.PointSystem);
+                if (p == null)
+                    app.AllowedPointSystems = new JB2.Common.IIDNamePair<string, string>[0];
+                else
+                    app.AllowedPointSystems = new JB2.Common.IIDNamePair<string, string>[1] { (JB2.Common.IIDNamePair<string, string>)p };
+            }
+            catch (Exception ex)
+            {
+                ex.BowtieLog();
+                app.AllowedPointSystems = new JB2.Common.IIDNamePair<string, string>[0];
+            }
+
+
+
 
             appService.Save(app);
 

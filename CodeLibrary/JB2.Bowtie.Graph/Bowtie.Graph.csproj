@@ -34,8 +34,8 @@
       <HintPath>..\..\Solutions\packages\Hyak.Common.1.0.2\lib\net45\Hyak.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Core, Version=0.4.0.28091, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.0\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.4.1.42060, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.1\lib\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Data.AzureStorage, Version=0.3.0.482, Culture=neutral, processorArchitecture=MSIL">
@@ -78,8 +78,8 @@
       <HintPath>..\..\Solutions\packages\JB2.Grab.Queue.0.2.0\lib\JB2.Grab.Queue.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Infrastructure, Version=0.2.22.22366, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.22\lib\JB2.Infrastructure.dll</HintPath>
+    <Reference Include="JB2.Infrastructure, Version=0.2.23.5477, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.23\lib\JB2.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -158,6 +158,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extenstions\GraphExtension.cs" />
     <Compile Include="GraphAction.cs" />
     <Compile Include="GraphDelimiter.cs" />
     <Compile Include="GraphElement.cs" />
@@ -167,7 +168,6 @@
     <Compile Include="GraphPropertyType.cs" />
     <Compile Include="GraphStory.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="LanguageTense.cs" />
     <Compile Include="PlayerStory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,0 +1,178 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace JB2.Bowtie
+{
+    [GraphStory("sD1275546")]
+    public class PlayerAchievement : BowtieObject, IPlayerAchievement
+    {
+        protected string _playerid;
+        protected string _achievementid;
+        protected int _currentStep;
+        protected Enum.AchievementFlag[] _flags;
+        //protected int _points;
+        protected DateTime _dateachieved;
+        protected Dictionary<string, int> _points;
+
+
+
+        public PlayerAchievement() : this(null)
+        {
+
+        }
+
+        public PlayerAchievement(string id) : base(Enum.BowtieObjectType.bowtie_playerachievement, id)
+        {
+            _points = new Dictionary<string, int>();
+        }
+
+        public string PlayerID
+        {
+            get
+            {
+                return _playerid;
+            }
+            set
+            {
+                _playerid = value;
+            }
+        }
+
+        public string AchievementID
+        {
+            get
+            {
+                return _achievementid;
+            }
+            set
+            {
+                _achievementid = value;
+            }
+        }
+
+        public int CurrentStep
+        {
+            get
+            {
+                return _currentStep;
+            }
+            set
+            {
+                _currentStep = value;
+            }
+        }
+
+        public Enum.AchievementFlag[] AchievementFlags
+        {
+            get
+            {
+                return _flags;
+            }
+            set
+            {
+                _flags = value;
+            }
+        }
+
+        public Dictionary<string, int> PointsEarned
+        {
+            get
+            {
+                return _points;
+            }
+            set
+            {
+                _points = value;
+            }
+        }
+
+        public IEnumerable<string> GetPointSystems()
+        {
+            return _points.Keys.ToArray();
+        }
+
+        //public int PointsEarned
+        //{
+        //    get
+        //    {
+        //        return _points;
+        //    }
+        //    set
+        //    {
+        //        _points = value;
+        //    }
+        //}
+
+        public int GetPointsEarned(string pointSystemID)
+        {
+            return _points[pointSystemID];
+        }
+
+        public DateTime DateAchieved
+        {
+            get
+            {
+                return _dateachieved;
+            }
+
+            set
+            {
+                _dateachieved = value;
+            }
+        }
+
+        public bool isAchieved
+        {
+            get
+            {
+                return _flags.Contains(Enum.AchievementFlag.Earned);
+            }
+        }
+
+
+
+
+        #region Methods
+
+        public string GetPlayerID()
+        {
+            return _playerid;
+        }
+
+        public void Achieve()
+        {
+            List<Enum.AchievementFlag> flags = this._flags.ToList();
+            flags.Add(Enum.AchievementFlag.Earned);
+            this._flags = flags.ToArray();
+            this._dateachieved = System.DateTime.Now;
+        }
+
+        #endregion Methods
+
+
+        #region Static
+
+        public static PlayerAchievement Empty()
+        {
+            var result = new PlayerAchievement();
+            result._currentStep = 0;
+            result._flags = new Enum.AchievementFlag[0];
+            return result;
+        }
+
+        public static PlayerAchievement New(string playerID, IAchievement a)
+        {
+            var result = PlayerAchievement.Empty();
+            result._playerid = playerID;
+            result._achievementid = a.GetID();
+            result._name = a.GetName();
+
+            return result;
+        }
+
+        #endregion Static
+    }
+}

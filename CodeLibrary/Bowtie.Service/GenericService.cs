@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using JB2.Economy;
 
+using JB2.Bowtie.Service;
+
 namespace JB2.Bowtie
 {
     public class GenericService<Tobject,Trepo> : JB2.Common.IObjectService<Tobject, bool, string> 
@@ -83,6 +85,35 @@ namespace JB2.Bowtie
         {
            _repo.Insert(entity);
            return true;
+        }
+
+      
+        public static JB2.Common.ServiceResult DoTheDew(string playerID, string dewdropID, string dewValue, IUnitOfWork unitOfWork = null)
+        {
+            if (unitOfWork == null)
+                unitOfWork = JB2.Settings.Bowtie.UnitOfWork;
+            try
+            {
+                DewdropService dservice = new DewdropService(unitOfWork);
+                PlayerService pservice = new PlayerService(unitOfWork);
+
+                var dew = dservice.RetrieveById(dewdropID);
+                var player = pservice.RetrieveById(playerID);
+
+                var pdew = dservice.GenerateNewPlayerDewdrop(player, dew, dewValue);
+
+                var isValid = dservice.Validate(player, dew);
+                if(isValid)
+                    dservice.Save(pdew);
+
+                return isValid;
+            }
+            catch(Exception ex)
+            {
+                ex.BowtieLog();
+                return new Common.ServiceResult(ex);
+            }
+
         }
     }
 }

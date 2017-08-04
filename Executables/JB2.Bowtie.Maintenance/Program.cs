@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using JB2.Bowtie;
+using JB2.Bowtie.Service;
 using JB2.Common;
 
 namespace JB2.Bowtie.Maintenance
@@ -152,6 +153,11 @@ namespace JB2.Bowtie.Maintenance
 
         }
 
+        static void SetupPointSystem()
+        {
+            PointSystemService pservice = new PointSystemService();
+            pservice.Save(new JB2.BitScore.BitScoreSystem());
+        }
 
         static void OnApplInitialized(IApplication application, string authorizeKey)
         {
@@ -163,6 +169,84 @@ namespace JB2.Bowtie.Maintenance
             ConfigureBowtie();
 
             var appService = new JB2.Bowtie.Service.ApplicationService();
+
+
+            var currencyConfig = new JB2.JBeanCurrency.CurrencySystem();
+
+
+            JB2.Bowtie.SystemConfig exClass = new SystemConfig();
+
+            exClass.Assembly = currencyConfig.GetType().Assembly.ToString();
+            exClass.AssemblyQualifiedName = currencyConfig.GetType().AssemblyQualifiedName;
+            exClass.ClassConfigID = "jbeanCurrencyConfig";
+            exClass.Name = "jBean Currency";
+            exClass.Classname = currencyConfig.GetType().Name;
+            exClass.ClassType = Common.Enum.ClassType.NewInstance;
+            exClass.ConstructorParameters = new string[0];
+            exClass.Namespace = currencyConfig.GetType().Namespace;
+            exClass.Category = "Currency".ToUpper();
+
+            var classRepo = JB2.Settings.Bowtie.UnitOfWork.SystemRepository;
+
+            classRepo.Insert(exClass);
+
+            JB2.Bowtie.SystemConfig bConfig = new SystemConfig();
+
+            var bitscore = new JB2.BitScore.BitScoreSystem();
+
+            bConfig.Assembly = bitscore.GetType().Assembly.ToString();
+            bConfig.AssemblyQualifiedName = bitscore.GetType().AssemblyQualifiedName;
+            bConfig.ClassConfigID = "bitscoreConfig";
+            bConfig.Classname = bitscore.GetType().Name;
+            bConfig.ClassType = Common.Enum.ClassType.NewInstance;
+            bConfig.ConstructorParameters = new string[0];
+            bConfig.Namespace = bitscore.GetType().Namespace;
+            bConfig.Category = "Point".ToUpper();
+            bConfig.Name = "Bitscore Points";
+
+            classRepo.Insert(bConfig);
+
+
+
+            var systemService = new SystemService();
+
+            var systems = systemService.RetrievePointConfigs();
+
+            var t = systems[0].Construct();
+
+
+            var id = JB2.Common.NewID.ShortGuid();
+            var tick = System.DateTime.Now.Ticks.ToString();
+
+            string url = string.Format("http://foreverlife.jbsquared?id={0}&ticks={1}", id, tick);
+
+            Console.WriteLine(id);
+            Console.WriteLine(tick);
+            Console.WriteLine(JB2.Common.NewID.UriHash(new Uri(url)));
+
+
+            //Console.WriteLine(JB2.Settings.Jbean.Factory.Treasury.GetType().AssemblyQualifiedName);
+
+            //Console.WriteLine(JB2.Settings.Jbean.Factory.Treasury.GetType().Name);
+
+            //var t = Type.GetType("JB2.Settings.Jbean.Factory.Treasury");
+
+            //Console.WriteLine(t);
+
+            //var t2 = JB2.Settings.Jbean.Factory.Treasury;
+
+            //Console.WriteLine(t2);
+            //SetupPointSystem();
+
+
+
+            //var pservice = new PointSystemService();
+
+            //var all = pservice.RetrieveConfigs();
+
+            //var test = pservice.RetrieveById(all[0].ID);
+
+
 
             //SetupModules();
 

@@ -10,5 +10,7 @@ namespace JB2.Bowtie
     {
         public string ProviderID { get; set; }
         public string UserID { get; set; }
+
+        public object AccessToken { get; set; }
     }
 }

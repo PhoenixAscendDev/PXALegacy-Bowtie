@@ -99,7 +99,10 @@ namespace JB2.Bowtie.Web
                 Value = new JB2.Infrastructure.ProjectLogger(uofw.LogRepository)
             });
 
+
+            // assigning delegates
             JB2.Settings.Bowtie.CheckAuthorizeMethod = CheckApplicationAuthorization;
+            JB2.Settings.Bowtie.RNGMethod = NewRNG;
 
             JB2.Settings.Bowtie.Configure(bowtieSettings);
 
@@ -119,6 +122,11 @@ namespace JB2.Bowtie.Web
             return true;
         }
 
+
+        public static int NewRNG()
+        {
+            return JB2.Global.RNG;
+        }
 
         public static ServiceResult CheckApplicationAuthorization(IApplication application, string authorizeKey)
         {

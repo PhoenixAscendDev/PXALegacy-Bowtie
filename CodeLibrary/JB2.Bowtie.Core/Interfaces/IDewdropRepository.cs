@@ -14,5 +14,22 @@ namespace JB2.Bowtie
         IEnumerable<IPlayerDewdrop> GetPlayerDewsBySearch(object search);
 
         void InsertPlayerDew(IPlayerDewdrop playerdew);
+
+
+        #region DewdropTriggers
+
+        IEnumerable<DewdropTriggerInfo> GetDewdropTriggersByDewdrop(string dewdropID);
+
+        void InsertTriggerInfo(DewdropTriggerInfo info);
+
+        DewdropTriggerInfo GetDewdropTriggerByID(string id);
+
+        void DeleteTriggerInfo(DewdropTriggerInfo info);
+
+
+
+
+
+        #endregion DewdropTriggers
     }
 }

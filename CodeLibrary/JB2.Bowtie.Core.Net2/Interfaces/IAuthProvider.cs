@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace JB2.Bowtie
+{
+    public interface IAuthProvider : JB2.Common.IIDNamePair<string,string> , IBowtieObject
+    {
+        string ProfileResourceEndpoint { get; set; }
+
+    }
+}

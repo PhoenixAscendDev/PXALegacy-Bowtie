@@ -25,7 +25,6 @@ namespace JB2.Bowtie
 
         #endregion Fields
 
-
         #region Constructors
         public GameEngine()
         {
@@ -100,8 +99,7 @@ namespace JB2.Bowtie
             {
 
                 //add jBeans to Wallet
-                int amount = dewdrop.GetjBeanCost();
-
+                int amount = dewdrop.GetCurrencyCost(JB2.Settings.Jbean.Factory.Currencies[0].ID);
                 if (amount > 0)
                 {
                     var tNote = addAmountToWallet(JB2.Settings.Jbean.Factory.Currencies[0], amount, player);
@@ -115,15 +113,11 @@ namespace JB2.Bowtie
                 //add dewdrop
                 var dewdropService = new JB2.Bowtie.Service.DewdropService();
                 PlayerDewdrop pdew = dewdropService.GenerateNewPlayerDewdrop(btplayer, dewdrop, value.ToString());
-                dewdropService.Save(pdew);
+                dewdropService.Save(pdew,false);
 
                 btplayer.AddDewDrop(dewdrop);
 
                 this._dewdrops.Add(pdew);
-
-               
-
-
 
                 //fire event
                 if (DewdropIssued != null)
@@ -170,7 +164,7 @@ namespace JB2.Bowtie
             if (currency.GetID() == JB2.Configuration.GetjBeanCurrencyID() && wallet != null)
             {
                 int jBeanAmount = (JBeanBag)amount;
-                walletService.RemoveJBeansToWallet(wallet, jBeanAmount);
+                //walletService.RemoveJBeansToWallet(wallet, jBeanAmount);
             }
         }
 

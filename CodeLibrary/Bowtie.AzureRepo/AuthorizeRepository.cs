@@ -11,9 +11,6 @@ using JB2.Common.Data;
 namespace JB2.Bowtie.Data.Azure
 {
 
-
-
-
     public class AuthorizeRepository : IAuthorizeRepository
     {
 

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using JB2.Common;
+
 namespace JB2.Bowtie.Service
 {
     public class PlayerService : GenericService<IBowtiePlayer, IBowtiePlayerRespository>
@@ -28,10 +30,95 @@ namespace JB2.Bowtie.Service
         }
 
         #endregion Constructors
+
         public IBowtiePlayer RetrieveByAuth(AuthInfo info)
         {
             return _repo.GetPlayerByAuth(info.UserID, info.ProviderID);
         }
+
+        public ApplicationPlayer Signin(IApplicationable<string> application, AuthInfo authInfo)
+        {
+            //test to make sure Application exists and is valid
+            ApplicationService appService = new ApplicationService(_uofw);
+            AuthProviderService authService = new AuthProviderService(_uofw);
+            try
+            {
+                ApplicationPlayer result = null;
+                ServiceResult isAuthorized = appService.isAuthorized(application.GetApplicationID());
+
+                if (!isAuthorized)
+                    throw new Exception("Application Not Authorized during Signin");
+
+                IBowtiePlayer player = RetrieveByAuth(authInfo);
+                var app = appService.RetrieveById(application.GetApplicationID());
+
+                var profilePacket = authService.GetProfilePacket(authInfo);
+                //player null means never used this Auth before, so get profile info and create user
+                if (player == null)
+                {
+                    player = CreateNewPlayer(profilePacket);
+                    ((Player)player).AuthInfo = authInfo;
+                    _repo.InsertAuthInfo(player.GetID(), authInfo);
+                }
+
+                result = _repo.GetAppPlayerByID(player.GetID(), application.GetApplicationID());
+
+                //player exists but never was registered for app;
+                if (result == null)
+                    result = RegisterPlayer(player, app, authInfo.ProviderID);
+
+
+                //if we finally have a player and we have a signin dewdrop then DO THE DEW
+                if (result != null && !string.IsNullOrEmpty(app.GetDewdropID(ApplicationDewdrop.SIGNIN)))
+                {
+
+                    DoTheDew(result.GetPlayerID(), app.GetDewdropID(ApplicationDewdrop.SIGNIN), DateTime.Now.Ticks.ToString(), this._uofw);
+
+                    //DewdropService dservice = new DewdropService(this._uofw);
+                    //var dew = dservice.RetrieveById(app.GetDewdropID(ApplicationDewdrop.SIGNIN));
+                    //var pdew = dservice.GenerateNewPlayerDewdrop(player, dew, DateTime.Now.Ticks.ToString());
+
+                    //if (dservice.Validate(player, dew))
+                    //    dservice.Save(pdew);
+                }
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                ex.BowtieLog();
+                return null;
+            }         
+        }
+
+
+        public IBowtiePlayer CreateNewPlayer()
+        {
+            return CreateNewPlayer(new ProfileResourcePacket());
+        }
+
+        public IBowtiePlayer CreateNewPlayer(ProfileResourcePacket packet)
+        {
+            string id = JB2.Helper.Bowtie.GenerateID<BowtiePlayer>();
+
+            var modules = _uofw.ModuleRepository.GetAll();
+
+            BowtiePlayer newPlayer = new BowtiePlayer(id, modules);
+            newPlayer.Name.First = packet.FirstName;
+            newPlayer.Name.Middle = string.Empty;
+            newPlayer.Name.Last = packet.LastName;
+            newPlayer.AgeRange = new SmallNumberRange() { Max = packet.AgeRangeMax, Min = packet.AgeRangeMin };
+            newPlayer.BirthDayOfMonth = packet.BirthDay;
+            newPlayer.BirthMonth = packet.BirthMonth;
+            newPlayer.DisplayName = packet.DisplayName;
+
+
+            _repo.Insert(newPlayer);
+            return newPlayer;
+        }
+
+
 
         //public IBowtiePlayer RetrieveByAppPlayerID(string id,IApplication app)
         //{
@@ -59,15 +146,7 @@ namespace JB2.Bowtie.Service
             aservice.InitilizePlayerAchievements(player, app);
 
             // do the dew
-            DewdropService dservice = new DewdropService(this._uofw);
-            var dew = dservice.RetrieveById("dew_4CBg");
-            var pdew = dservice.GenerateNewPlayerDewdrop(player, dew, "REGISTER");
-
-
-            if(dservice.Validate(player, dew))
-            {
-                dservice.Save(pdew);
-            }
+            DoTheDew(result.GetPlayerID(), app.GetDewdropID(ApplicationDewdrop.REGISTRATION), DateTime.Now.Ticks.ToString(), this._uofw);
             return result;
         }
 

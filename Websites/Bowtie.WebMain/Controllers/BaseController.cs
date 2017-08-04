@@ -155,6 +155,28 @@ namespace JB2.Bowtie.Web.Controllers
 
         #endregion Graph
 
+        #region System
+
+        private JB2.Bowtie.Service.SystemService GetSystemService(int? testCount)
+        {
+            return new Service.SystemService(_unitOfWork);
+        }
+
+        private JB2.Bowtie.Service.SystemService GetSystemService()
+        {
+            return this.GetSystemService(null);
+        }
+
+        protected JB2.Bowtie.Service.SystemService SystemService
+        {
+            get
+            {
+                return this.GetSystemService();
+            }
+        }
+
+        #endregion System
+
         protected List<SelectListItem> applicationSelectList()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -181,6 +203,7 @@ namespace JB2.Bowtie.Web.Controllers
             return items;
 
         }
+
 
         #endregion
     }

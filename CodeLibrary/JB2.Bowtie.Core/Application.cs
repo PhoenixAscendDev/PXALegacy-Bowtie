@@ -17,6 +17,7 @@ namespace JB2.Bowtie
         protected IDictionary<string, IModule> _modules;
         protected IDictionary<string, ApplicationModulePermission> _modulePermission;
         protected BaseCollection<TreasuryRequestKey> _treasuryKeys;
+        protected IDictionary<string, string> _dewdrops;
         #endregion Fields
 
         #region Constructors
@@ -96,6 +97,10 @@ namespace JB2.Bowtie
             }
         }
 
+        public IEnumerable<IIDNamePair<string,string>> AllowedPointSystems { get; set; }
+
+        public IEnumerable<IIDNamePair<string,string>> AllowedCurrencySystems { get; set; }
+
         #region IAPIKeySecretPair
 
         public string Secret
@@ -167,6 +172,13 @@ namespace JB2.Bowtie
         {
             return _modules.Values;
         }
+
+        public string GetDewdropID(string code)
+        {
+            return _dewdrops[code];
+        }
+
+
 
         public ApplicationModulePermission GetModulePermission(string moduleID)
         {

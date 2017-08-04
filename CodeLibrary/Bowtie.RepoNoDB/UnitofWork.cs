@@ -118,6 +118,72 @@ namespace JB2.Bowtie.Data.NoDB
             }
         }
 
+        public IDewdropQueueRepo DewdropQueue
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IMaintenanceQueueRepo MaintenanceQueue
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IAuthProviderRepository AuthProviderRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public ISystemRepository SystemRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IAchievementQueueRepo AchievementQueue
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IPointSystemRepository PointSystemRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IPointQueueRepository PointQueue
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IMissionRespository MissionRepository
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+
+
         public object GetRepository(Enum.RepositoryType respository)
         {
             switch(respository)

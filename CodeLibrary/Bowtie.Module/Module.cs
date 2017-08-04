@@ -74,7 +74,7 @@ namespace JB2.Bowtie
         {
             get
             {
-                return JB2.Common.RNG.Randy;
+                return JB2.Helper.Bowtie.NewRNG();
             }
 
             set

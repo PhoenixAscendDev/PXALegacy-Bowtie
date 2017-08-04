@@ -10,6 +10,7 @@ namespace JB2.Bowtie.Enum
     {
         Standard,
         TimeBound,
-        LabelPin
+        LabelPin,
+        Task
     }
 }

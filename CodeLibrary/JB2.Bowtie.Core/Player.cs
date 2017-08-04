@@ -57,29 +57,38 @@ namespace JB2.Bowtie
             }
         }
 
-        public int Age
+        public virtual JB2.Common.IRange<byte> AgeRange
         {
             get
             {
-                return _metadata["Age"].GetValue().IntValue;
+                return _props.GetProperty<IRange<byte>>("AgeRange");
             }
-
             set
             {
-                _metadata["Age"].UpdateValue(value);
+                _props.SetProperty<IRange<byte>>("AgeRange", value);
             }
         }
 
-        public string Gender
+        public virtual short BirthMonth
         {
             get
             {
-                return _metadata["Gender"].GetValue().StringValue;
+                return _props.GetProperty<short>("BirthMonth");
             }
-
             set
             {
-                _metadata["Gender"].UpdateValue(value);
+                _props.SetProperty<short>("BirthMonth", value);
+            }
+        }
+        public virtual short BirthDayOfMonth
+        {
+            get
+            {
+                return _props.GetProperty<short>("BirthDayOfMonth");
+            }
+            set
+            {
+                _props.SetProperty<short>("BirthDayOfMonth", value);
             }
         }
 
@@ -199,7 +208,7 @@ namespace JB2.Bowtie
 
         Name INameProp<Name>.GetName()
         {
-            throw new NotImplementedException();
+            return _name;
         }
 
         #endregion IBowtiePlayer
