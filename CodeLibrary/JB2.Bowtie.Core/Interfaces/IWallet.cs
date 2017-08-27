@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IWallet : JB2.Economy.IApplicationWallet<JB2.Common.IPerson<string>, string>, JB2.Identity.IPlayerable<string>
+    public interface IWallet : JB2.Economy.IApplicationWallet<JB2.Common.IPerson<string>, string>, JB2.Bowtie.IPlayerable<string>
     {
         //JB2.Economy.JBeanBag JBeanTotal { get; }
 

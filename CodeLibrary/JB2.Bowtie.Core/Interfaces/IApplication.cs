@@ -22,7 +22,7 @@ namespace JB2.Bowtie
 
         JB2.Common.IBusiness Company{ get; set; }
 
-        IEnumerable<JB2.Identity.IPlayer> GetAdmins();
+        IEnumerable<JB2.Common.IPerson<string>> GetAdmins();
 
         IEnumerable<IModule> GetModules();
         ApplicationModulePermission GetModulePermission(string moduleID);

@@ -148,20 +148,17 @@ namespace JB2.Bowtie
         #region Public Methods
 
         #region IApplication
-        public IEnumerable<JB2.Identity.IPlayer> GetAdmins()
+        public IEnumerable<JB2.Common.IPerson<string>> GetAdmins()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<JB2.Identity.IApplicationVersion>  GetVersions()
+        public IEnumerable<JB2.Common.IVersionNumber>  GetVersions()
         {
             throw new NotImplementedException();
         }
 
-        public JB2.Identity.IAuthClient GetAuthClient()
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public JB2.Common.IMetaData GetMetaData(string propertyName)
         {
