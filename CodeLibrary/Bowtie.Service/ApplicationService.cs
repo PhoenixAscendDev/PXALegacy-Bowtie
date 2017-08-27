@@ -255,14 +255,14 @@ namespace JB2.Bowtie.Service
             }
         }
 
-        public JB2.Economy.jBeanAppSettings RetrievejBeanSettings(string applicationID)
-        {
-            var jbeanRepo = _uofw.JbeanRepository;
+        //public JB2.Economy.jBeanAppSettings RetrievejBeanSettings(string applicationID)
+        //{
+        //    var jbeanRepo = _uofw.JbeanRepository;
 
-            var settings = jbeanRepo.GetApplicationSettingsByID(applicationID);
+        //    var settings = jbeanRepo.GetApplicationSettingsByID(applicationID);
 
-            return settings;
+        //    return settings;
 
-        }
+        //}
     }
 }

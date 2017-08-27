@@ -195,12 +195,12 @@ namespace JB2.Bowtie
         #endregion Public Methods
 
         #region Idenitity IApplication
-        public string GetjBeanSecret()
-        {
-            var jBeanID = JB2.Settings.Jbean.Factory.Treasury.GetID();
-            var key = this.GetTreasuryRequestKey(jBeanID);
-            return key.Key;
-        }
+        //public string GetjBeanSecret()
+        //{
+        //    var jBeanID = JB2.Settings.Jbean.Factory.Treasury.GetID();
+        //    var key = this.GetTreasuryRequestKey(jBeanID);
+        //    return key.Key;
+        //}
 
         public JB2Image GetIcon()
         {

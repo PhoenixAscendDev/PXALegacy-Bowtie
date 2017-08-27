@@ -23,7 +23,7 @@ namespace JB2.Bowtie
 
         IModuleRepository ModuleRepository { get; }
 
-        JB2.Economy.IJBeanRepository JbeanRepository { get;}
+        //JB2.Economy.IJBeanRepository JbeanRepository { get;}
 
         IWalletRepository WalletRepository { get; }
 

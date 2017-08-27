@@ -150,8 +150,10 @@ namespace JB2.Bowtie
         {
             var result = _treasuryNotes.Add(note);
 
-            if (result)
-                this.AddAmount(JB2.Settings.Jbean.Factory.Currencies[0], note.Amount);
+            //if(result)
+            //    this.AddAmount()
+            //if (result)
+            //    this.AddAmount(JB2.Settings.Jbean.Factory.Currencies[0], note.Amount);
             //_amounts[JB2.Settings.Jbean.Factory.Currencies[0].ID] = _amounts[JB2.Settings.Jbean.Factory.Currencies[0].ID] + note.Amount;
 
             return result;
