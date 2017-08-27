@@ -17,6 +17,15 @@ namespace JB2.Bowtie
 
         #endregion Fields
 
+
+        #region Constructor
+
+        public BowtieGroup()
+        {
+            _collection = new BaseCollection<Tplayer>();
+        }
+        #endregion Constructor
+
         #region IBowtieGroup
         public virtual Tplayer this[int index]
         {
