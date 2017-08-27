@@ -32,8 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="JB2.Common.Core.Net2, Version=0.4.4.4247, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.Net35.0.4.4.2\lib\JB2.Common.Core.Net2.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.Net2.0.4.4.1\lib\JB2.Common.Core.Net2.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Common.Date.Net2, Version=0.2.2.36005, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\JB2.Common.Date.Net35.0.2.2\lib\JB2.Common.Date.Net2.dll</HintPath>

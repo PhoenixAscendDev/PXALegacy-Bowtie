@@ -30,9 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common.Core, Version=0.4.0.28091, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.0\lib\JB2.Common.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="JB2.Common.Core, Version=0.4.16.31656, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.16\lib\JB2.Common.Core.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Common.Data.AzureStorage, Version=0.3.0.482, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.3.0.482\lib\JB2.Common.Data.AzureStorage.dll</HintPath>

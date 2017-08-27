@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IBowtieObject : JB2.Common.IObject<Enum.BowtieObjectType, string, JB2.Common.ObjectTag>
+    public interface IBowtieObject : JB2.Common.IObject<Enum.BowtieObjectType, string, JB2.Common.Tag>
     {
         string UniqueToken { get; }
 

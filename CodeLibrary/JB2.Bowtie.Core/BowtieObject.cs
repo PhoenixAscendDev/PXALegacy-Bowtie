@@ -13,7 +13,7 @@ namespace JB2.Bowtie
     public abstract class BowtieObject : IDNamePair, IBowtieObject, IClass
     {
         #region Fields
-        protected List<ObjectTag> _tags;
+        protected List<Tag> _tags;
         protected BowtieObjectType _kind;
         protected int _rng = 0;
         protected MetaDataCollection _props;
@@ -36,7 +36,7 @@ namespace JB2.Bowtie
 
         public BowtieObject()
         {
-            this._tags = new List<ObjectTag>();
+            this._tags = new List<Tag>();
             this._name = string.Empty;
             this._kind = BowtieObjectType.unknown;
             this._rng = JB2.Helper.Bowtie.NewRNG();
@@ -59,7 +59,7 @@ namespace JB2.Bowtie
             }
         }
 
-        public bool AddTag(Common.ObjectTag tag)
+        public bool AddTag(Common.Tag tag)
         {
             _tags.Add(tag);
             return true;
@@ -74,13 +74,13 @@ namespace JB2.Bowtie
 
         }
 
-        public bool RemoveTag(Common.ObjectTag tag)
+        public bool RemoveTag(Common.Tag tag)
         {
             return _tags.Remove(tag);
 
         }
 
-        public Common.ObjectTag[] Tags
+        public Common.Tag[] Tags
         {
             get
             {
@@ -102,7 +102,7 @@ namespace JB2.Bowtie
             return DateTime.Now;
         }
 
-        public IEnumerable<ObjectTag> GetTags()
+        public IEnumerable<Tag> GetTags()
         {
             return _tags;
         }
@@ -115,6 +115,20 @@ namespace JB2.Bowtie
         public void SetProperty<T>(string index, T newValue, bool changeLastUpdate)
         {
             _props.SetProperty<T>(index, newValue, changeLastUpdate);
+        }
+
+        public ServiceResult LoadTags(IEnumerable<Tag> tags)
+        {
+            try
+            {
+                _tags.AddRange(tags);
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return new ServiceResult(ex);
+            }
+            
         }
 
         public int RNG

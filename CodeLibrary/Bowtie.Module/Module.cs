@@ -183,6 +183,26 @@ namespace JB2.Bowtie
             return true;
         }
 
+        IEnumerable<Tag> ITagable<Tag>.GetTags()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AddTag(Tag tag)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveTag(Tag tag)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ServiceResult LoadTags(IEnumerable<Tag> tags)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion Tags
     }
 }
