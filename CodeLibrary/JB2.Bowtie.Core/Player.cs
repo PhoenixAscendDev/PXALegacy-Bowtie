@@ -206,7 +206,7 @@ namespace JB2.Bowtie
             return -1;
         }
 
-        Name INameProp<Name>.GetName()
+        public new Name GetName()
         {
             return _name;
         }

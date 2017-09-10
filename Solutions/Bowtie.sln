@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.Lib", "..\CodeLibrary\Bowtie.Lib\Bowtie.Lib.csproj", "{488D241B-CBA6-4096-B76F-A1FB03EA5F76}"
 EndProject
@@ -63,6 +63,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework Net2.0", "Framework Net2.0", "{69FFF043-0784-4DD7-92F0-776A25A670AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.Gamification.Net2", "..\CodeLibrary\Bowtie.Gamification.Net2\Bowtie.Gamification.Net2.csproj", "{A5BF4496-EBA5-41ED-A8D1-3AF0FE72ECEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.Core.V3", "..\CodeLibrary\JB2.Bowtie.Core.V3\JB2.Bowtie.Core.V3.csproj", "{CCF6425A-B249-4559-92EC-4B317D557B14}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version 3.0", "Version 3.0", "{3FB72731-CBE4-4171-8C86-977534E52321}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.ConsoleTest.V3", "..\Executables\JB2.Bowtie.ConsoleTest.V3\JB2.Bowtie.ConsoleTest.V3.csproj", "{3DBE871F-829A-4CDD-B630-0AAC71152E86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -227,6 +233,18 @@ Global
 		{A5BF4496-EBA5-41ED-A8D1-3AF0FE72ECEF}.NoDB|Any CPU.Build.0 = Release|Any CPU
 		{A5BF4496-EBA5-41ED-A8D1-3AF0FE72ECEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5BF4496-EBA5-41ED-A8D1-3AF0FE72ECEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCF6425A-B249-4559-92EC-4B317D557B14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCF6425A-B249-4559-92EC-4B317D557B14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCF6425A-B249-4559-92EC-4B317D557B14}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{CCF6425A-B249-4559-92EC-4B317D557B14}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{CCF6425A-B249-4559-92EC-4B317D557B14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCF6425A-B249-4559-92EC-4B317D557B14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DBE871F-829A-4CDD-B630-0AAC71152E86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DBE871F-829A-4CDD-B630-0AAC71152E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DBE871F-829A-4CDD-B630-0AAC71152E86}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{3DBE871F-829A-4CDD-B630-0AAC71152E86}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{3DBE871F-829A-4CDD-B630-0AAC71152E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DBE871F-829A-4CDD-B630-0AAC71152E86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -252,6 +270,8 @@ Global
 		{E3E58567-B135-4264-BA5A-CFCE0B7C5D52} = {69FFF043-0784-4DD7-92F0-776A25A670AB}
 		{69FFF043-0784-4DD7-92F0-776A25A670AB} = {0D87BE5D-A853-4475-87CC-0264CF853746}
 		{A5BF4496-EBA5-41ED-A8D1-3AF0FE72ECEF} = {69FFF043-0784-4DD7-92F0-776A25A670AB}
+		{CCF6425A-B249-4559-92EC-4B317D557B14} = {3FB72731-CBE4-4171-8C86-977534E52321}
+		{3DBE871F-829A-4CDD-B630-0AAC71152E86} = {3FB72731-CBE4-4171-8C86-977534E52321}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

@@ -26,5 +26,11 @@ namespace JB2.Bowtie
         //string Gender { get; set; }
         IDictionary<string,int> DewdropCounts { get; set; }
         void AddDewDrop(IDewdrop dewdrop);
+
+        new JB2.Common.Name Name { get; set; }
+
+        new string ID { get; set; }
+        new JB2.Common.Name GetName();
+        new string GetID();
     }
 }
