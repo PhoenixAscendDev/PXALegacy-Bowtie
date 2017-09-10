@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using System.Diagnostics;
 
 namespace JB2.Bowtie.ConsoleTest.V3
 {
@@ -127,7 +128,11 @@ namespace JB2.Bowtie.ConsoleTest.V3
                 Console.Write(ba[i] ? 1 : 0);
             }
 
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             dataset.IncrementDrewDrop(1);
+            sw.Stop();
+            Console.WriteLine(sw.Elapsed);
             dataset.IncrementDrewDrop(2);
 
             Console.WriteLine("ID -> " + dataset.DewDropDataID);
@@ -148,7 +153,7 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             BitArray hacked = (BitArray)dataset;
 
-            hacked[14] = true;
+            //hacked[14] = true;
 
             dataset = new DrewdropData(hacked);
 

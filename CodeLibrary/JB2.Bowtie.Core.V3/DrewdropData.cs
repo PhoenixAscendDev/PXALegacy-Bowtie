@@ -89,16 +89,35 @@ namespace JB2.Bowtie
             }
         }
 
+        public bool isValid
+        {
+            get
+            {
+                return Validate();
+            }
+        }
+
 
         public bool Validate()
         {
             bool result = true;
 
+            //validate the rows
             for(int i=0;i < 250;i++)
             {
                 if (!validateRow(i + 1))
                     result = false;
             }
+
+            //validate the checksum
+
+
+            BitArray checksum_bit = this.getSubSet(CHECKSUM_INDEX, 16);
+
+            var testCheckSum = convertToNumber<ushort>(checksum_bit);
+
+            if (testCheckSum != calculateCheckSum())
+                result = false;
 
             return result;
         }
@@ -383,6 +402,57 @@ namespace JB2.Bowtie
 
         }
 
+        private ushort calculateCheckSum()
+        {
+            //add up all row ticks (even taking tick2 odd tick1)
+
+            long sum = 0;
+            for(int i=1;i<=250;i++)
+            {
+               
+                var tick_bit = new BitArray(8);
+                var index = 0;
+                if (i % 2 == 0)
+                    index = 0;
+                else
+                    index = 1;
+
+                for (int j = 0; j < 4; j++)
+                {
+                    tick_bit[j] = _bitarray[(DEWDROPSIZE * (i - 1)) + TICK1_INDEX + j];
+                }
+
+                for (int j = 0; j < 4; j++)
+                {
+                    tick_bit[j + 4] = _bitarray[(DEWDROPSIZE * (i - 1)) + TICK2_INDEX + j];
+                }
+
+                var rowTickValue = convertToNumber<ushort>(tick_bit);
+
+                int tick = (rowTickValue >> (4 * index)) & 0xf;
+
+                sum = sum + tick;
+            }
+
+            //determine the seed for the rng
+            BitArray seedbit = getSubSet(DATASETID_INDEX, 16);
+
+
+
+
+            ushort rng = JB2.Common.RNG.Plumber(0, convertToNumber<ushort>(seedbit)).LastOrDefault();
+
+            for(int i=0;i<sum;i++)
+            {
+                rng = JB2.Common.RNG.Plumber(rng);
+            }
+
+            return rng;
+
+
+
+        }
+
 
 
         private bool validateRow(int rowNumber)
@@ -411,6 +481,8 @@ namespace JB2.Bowtie
 
             var tick = calculateRowTick(rowNumber);
 
+
+            //update the row ticks
             BitArray tick_bit = convertToBitArray(tick, 8);
 
             for(int i = 0; i< 4;i++)
@@ -418,10 +490,24 @@ namespace JB2.Bowtie
                 _bitarray[(DEWDROPSIZE * (rowNumber - 1)) + TICK1_INDEX + i] = tick_bit[i];
             }
 
-            for (int i = 0; i< 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 _bitarray[(DEWDROPSIZE * (rowNumber - 1)) + TICK2_INDEX + i] = tick_bit[i + 4];
             }
+
+
+            //reapply the dataset Checksum
+            var checksum = calculateCheckSum();
+
+            var checksum_bit = convertToBitArray(checksum, 16);
+
+            for(int i=0;i < checksum_bit.Length; i++)
+            {
+                _bitarray[CHECKSUM_INDEX + i] = checksum_bit[i];
+            }
+
+
+
         }
 
 
