@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JB2.Common.Core, Version=0.4.4.31793, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.4\lib\JB2.Common.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="JB2.Common.RNG, Version=0.1.2.3989, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.RNG.0.1.2.0\lib\JB2.Common.RNG.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Core.V3\JB2.Bowtie.Core.V3.csproj">

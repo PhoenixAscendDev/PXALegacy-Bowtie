@@ -111,23 +111,14 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             var dataset = DrewdropData.Empty;
 
-            dataset.DewDropDataID = 5660304; // ulong.MinValue;
+            //dataset.DewDropDataID = 5660304; // ulong.MinValue;
 
             var test = BitConverter.GetBytes(ulong.MaxValue);
 
             ulong foo = ulong.MinValue;
             Console.WriteLine(Convert.ToString((long)foo, 2));
 
-            //for (int i = 1; i <= 250; i++)
-            //{
-            //    var ba = dataset.GetDrewDropRow(i);
-            //    Console.Write("row " + i.ToString().PadLeft(3, '0') + " -> ");
-            //    foreach (bool b in ba)
-            //    {
-            //        Console.Write(b ? 1 : 0);
-            //    }
-            //    Console.Write("\n");
-            //}
+            
 
             BitArray ba = (BitArray)dataset;
 
@@ -136,91 +127,130 @@ namespace JB2.Bowtie.ConsoleTest.V3
                 Console.Write(ba[i] ? 1 : 0);
             }
 
-            Console.WriteLine(5660304);
-            Console.WriteLine(dataset.DewDropDataID);
+            dataset.IncrementDrewDrop(1);
+            dataset.IncrementDrewDrop(2);
+
+            Console.WriteLine("ID -> " + dataset.DewDropDataID);
+            Console.WriteLine("Count -> " + dataset.GetDrewDropCount(1));
 
 
-            BitArray t = new BitArray(64);
-
-            string s = Convert.ToString(3, 2);
-
-            int[] bits = s.PadLeft(8, '0') // Add 0's from left
-             .Select(c => int.Parse(c.ToString())) // convert each char to int
-             .ToArray(); // Convert IEnumerable from select to Array
-
-            BitArray t2 = new BitArray(8);
-
-
-            Array.Reverse(bits);
-
-            for (int i=0;i < 8; i++)
+            for (int i = 1; i <= 250; i++)
             {
-                t[10+i] = bits[i] == 1 ? true : false;
-
-                
+                ba = dataset.GetDrewDropRow(i);
+                Console.Write("row " + i.ToString().PadLeft(3, '0') + " -> ");
+                foreach (bool b in ba)
+                {
+                    Console.Write(b ? 1 : 0);
+                }
+                Console.Write("\n");
             }
 
-    
+
+            BitArray hacked = (BitArray)dataset;
+
+            hacked[14] = true;
+
+            dataset = new DrewdropData(hacked);
+
+            Console.Write(dataset.Validate());
 
 
-            for (int i = 0; i < 8; i++)
-            {
-                t2[i] = t[10+i];
 
 
-            }
 
-            
+            //ushort rng = 0256;
 
-            foreach (var b in t)
-            {
-                Console.Write( (bool)b == false ? 0 : 1);
- 
-            }
-            Console.WriteLine();
-            foreach (var b in t2)
-            {
-                Console.Write((bool)b == false ? 0 : 1);
+            //int x = (rng >> ( * 3)) & 0xf;
 
-            }
-            Console.WriteLine();
-
-            bool[] b2 = new bool[t2.Count];
-            t2.CopyTo(b2, 0);
-
-            foreach (var b in b2)
-            {
-                Console.Write((bool)b == false ? 0 : 1);
-
-            }
-
-            Console.WriteLine();
-            
-            int[] final = new int[1];
-
-            t2.CopyTo(final, 0);
-            Console.WriteLine(final[0]);
-
-            BitArray smallInt = convertToBitArray(short.MaxValue);
+            //Console.WriteLine(x);
 
 
-            foreach (var b in smallInt)
-            {
-                Console.Write((bool)b == false ? 0 : 1);
 
-            }
-            Console.WriteLine();
 
-            var array = new byte[8];
-            smallInt.CopyTo(array, 0);
-            Console.WriteLine(BitConverter.ToUInt64(array, 0));
+            //BitArray t = new BitArray(64);
 
-            Console.WriteLine(convertToNumber<ulong>(smallInt));
+            //string s = Convert.ToString(3, 2);
+
+            //int[] bits = s.PadLeft(8, '0') // Add 0's from left
+            // .Select(c => int.Parse(c.ToString())) // convert each char to int
+            // .ToArray(); // Convert IEnumerable from select to Array
+
+            //BitArray t2 = new BitArray(8);
+
+
+            //Array.Reverse(bits);
+
+            //for (int i=0;i < 8; i++)
+            //{
+            //    t[10+i] = bits[i] == 1 ? true : false;
+
+
+            //}
+
+
+
+
+            //for (int i = 0; i < 8; i++)
+            //{
+            //    t2[i] = t[10+i];
+
+
+            //}
+
+
+
+            //foreach (var b in t)
+            //{
+            //    Console.Write( (bool)b == false ? 0 : 1);
+
+            //}
+            //Console.WriteLine();
+            //foreach (var b in t2)
+            //{
+            //    Console.Write((bool)b == false ? 0 : 1);
+
+            //}
+            //Console.WriteLine();
+
+            //bool[] b2 = new bool[t2.Count];
+            //t2.CopyTo(b2, 0);
+
+            //foreach (var b in b2)
+            //{
+            //    Console.Write((bool)b == false ? 0 : 1);
+
+            //}
+
+            //Console.WriteLine();
+
+            //int[] final = new int[1];
+
+            //t2.CopyTo(final, 0);
+            //Console.WriteLine(final[0]);
+
+            //BitArray smallInt = convertToBitArray(short.MaxValue);
+
+
+            //foreach (var b in smallInt)
+            //{
+            //    Console.Write((bool)b == false ? 0 : 1);
+
+            //}
+            //Console.WriteLine();
+
+            //var array = new byte[8];
+            //smallInt.CopyTo(array, 0);
+            //Console.WriteLine(BitConverter.ToUInt64(array, 0));
+
+            //Console.WriteLine(convertToNumber<ulong>(smallInt));
+
 
 
 
 
             Console.ReadLine();
+
+
 
            
 

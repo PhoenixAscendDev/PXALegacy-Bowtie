@@ -10,9 +10,24 @@ namespace JB2.Bowtie
     public class DrewdropData
     {
 
+        #region Const
+
+        private const int TOTALSIZE = 10200;
+        private const int DEWDROPSIZE = 40;
+        private const int TICK2_INDEX = 0;
+        private const int TICK1_INDEX = 36;
+        private const int ID_INDEX = 4;
+        private const int VALUE_INDEX = 12;
+        private const int INTERNAL_INDEX = 28;
+        private const int TOTALROWS = 255;
+        private const int DATASETID_INDEX = 10120;
+        private const int CHECKSUM_INDEX = 10184;
+        private readonly DateTime TICKSTART = new DateTime(1980, 2, 22);
+        
+        #endregion Const
+
         #region Fields
         protected BitArray _bitarray;
-
         #endregion Fields
 
         #region Constructor
@@ -24,7 +39,7 @@ namespace JB2.Bowtie
 
         protected DrewdropData()
         {
-            _bitarray = new BitArray(10200);
+            initdataset();
         }
 
         #endregion Constructor
@@ -36,7 +51,7 @@ namespace JB2.Bowtie
         {
             get
             {
-                BitArray a = getSubSet(10120, 64);
+                BitArray a = getSubSet(DATASETID_INDEX, 64);
 
                 return convertToNumber<ulong>(a);
 
@@ -53,7 +68,7 @@ namespace JB2.Bowtie
                 //return (uint)array[0] + ((ulong)(uint)array[1] << 32);
             }
 
-            set
+            internal set
             {
 
                 
@@ -74,6 +89,20 @@ namespace JB2.Bowtie
             }
         }
 
+
+        public bool Validate()
+        {
+            bool result = true;
+
+            for(int i=0;i < 250;i++)
+            {
+                if (!validateRow(i + 1))
+                    result = false;
+            }
+
+            return result;
+        }
+
         public BitArray GetDrewDropRow(int rowNum)
         {
             if ((rowNum < 0) || (rowNum > 250))
@@ -81,22 +110,65 @@ namespace JB2.Bowtie
             return getRow(rowNum);
         }
 
+
+        public int GetDrewDropCount(int drewdropID)
+        {
+            var rowNumber = getDewdropRowNumber(drewdropID);
+
+            var row = GetDrewDropRow(rowNumber);
+
+            var b = new BitArray(16);
+
+            var index = VALUE_INDEX;
+
+            for(int i = 0; i< 16; i++)
+            {
+                b[i] = row[index + i];
+            }
+
+            return convertToNumber<int>(b);
+
+        }
+
+        public void IncrementDrewDrop(int drewdropID)
+        {
+            int current = GetDrewDropCount(drewdropID);
+
+            int newValue = current + 1;
+
+            var rowNumber = getDewdropRowNumber(drewdropID);
+
+            var b = convertToBitArray(newValue, 16);
+
+
+            var index = (40 * (rowNumber-1)) + VALUE_INDEX;
+
+            for (int i = 0; i < 16; i++)
+            {
+                _bitarray[index + i] = b[i];
+            }
+
+            updateRow(rowNumber);
+
+        }
+
         #endregion Properties
 
         #region Helpers
+
 
         private BitArray getRow(int rowid)
         {
             try
             {
-                if ((rowid < 0) || (rowid > 255))
-                    throw new ArgumentException("Rowid should be between 1 and 255");
+                if ((rowid < 0) || (rowid > TOTALROWS))
+                    throw new ArgumentException("Rowid should be between 1 and " + TOTALROWS);
 
                 rowid = rowid - 1;
-                int index = rowid * 40;
-                bool[] data = new bool[40];
+                int index = rowid * DEWDROPSIZE;
+                bool[] data = new bool[DEWDROPSIZE];
 
-                for (int i = 0; i < 40; i++)
+                for (int i = 0; i < DEWDROPSIZE; i++)
                 {
                     data[i] = _bitarray[index + i];
                 }
@@ -108,7 +180,6 @@ namespace JB2.Bowtie
                 return new BitArray(0);
             }
 
-            #endregion Helpers
 
         }
 
@@ -134,6 +205,8 @@ namespace JB2.Bowtie
             return b;
 
         }
+
+
 
 
 
@@ -268,6 +341,137 @@ namespace JB2.Bowtie
 
 
         }
+
+
+
+        private int getDewdropRowNumber(int dewdropID)
+        {
+            return dewdropID;
+
+        }
+
+
+        private int calculateRowTick(int rowNumber)
+        {         
+            var b = getRow(rowNumber);
+
+            //get the value and use it to seed the RNG
+            var bvalue = new BitArray(16);
+            var index = VALUE_INDEX;
+            for (int i = 0; i < 16; i++)
+            {
+                bvalue[i] = b[index + i];
+            }
+
+            var value =  convertToNumber<ushort>(bvalue);
+
+            //get the seed
+            ushort seed = 0;
+            for(int i=0;i < rowNumber;i++)
+            {
+                seed = JB2.Common.RNG.Plumber(seed);
+            }
+
+            ushort rng = 0;
+
+            rng = JB2.Common.RNG.Plumber(seed, value == 0 ? (ushort)1 : value).LastOrDefault();
+
+
+            int tick = (rng >> (8 * 0)) & 0xff;
+
+            return tick;
+
+        }
+
+
+
+        private bool validateRow(int rowNumber)
+        {
+            var tick_bit = new BitArray(8);
+
+            for (int i = 0; i < 4; i++)
+            {
+                tick_bit[i] = _bitarray[(DEWDROPSIZE * (rowNumber - 1)) + TICK1_INDEX + i];
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                tick_bit[i + 4] = _bitarray[(DEWDROPSIZE * (rowNumber - 1)) + TICK2_INDEX + i];
+            }
+
+            var testValue = convertToNumber<int>(tick_bit);
+
+            return testValue == calculateRowTick(rowNumber);
+
+
+        }
+
+        private void updateRow(int rowNumber)
+        {
+
+            var tick = calculateRowTick(rowNumber);
+
+            BitArray tick_bit = convertToBitArray(tick, 8);
+
+            for(int i = 0; i< 4;i++)
+            {
+                _bitarray[(DEWDROPSIZE * (rowNumber - 1)) + TICK1_INDEX + i] = tick_bit[i];
+            }
+
+            for (int i = 0; i< 4; i++)
+            {
+                _bitarray[(DEWDROPSIZE * (rowNumber - 1)) + TICK2_INDEX + i] = tick_bit[i + 4];
+            }
+        }
+
+
+
+
+
+        private void initdataset()
+        {
+            _bitarray = new BitArray(10200);
+
+
+            //set the drewdrop IDs
+            for (int i = 0; i < 250; i++)
+            {
+                var rowNumber = i + 1;
+
+                BitArray b = convertToBitArray(rowNumber, 16);
+
+                for (int j = 0; j < b.Length; j++)
+                {
+                    _bitarray[(40 * i) + 4 + j] = b[j];
+                }
+            }
+
+
+            //set the dataset uniqueID
+            var timediff = DateTime.UtcNow - TICKSTART;
+
+            var ticks = timediff.Ticks;
+
+            this.DewDropDataID = (ulong)ticks;
+
+
+            for (int i = 0; i < 250; i++)
+            {
+                updateRow(i+1);
+            }
+        }
+
+
+
+
+
+        #endregion Helpers
+
+
+
+
+
+
 
         public static DrewdropData Empty
         {
