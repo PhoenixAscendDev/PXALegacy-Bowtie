@@ -70,6 +70,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version 3.0", "Version 3.0"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.ConsoleTest.V3", "..\Executables\JB2.Bowtie.ConsoleTest.V3\JB2.Bowtie.ConsoleTest.V3.csproj", "{3DBE871F-829A-4CDD-B630-0AAC71152E86}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.UnitofWork.V3", "..\CodeLibrary\JB2.Bowtie.UnitofWork.V3\JB2.Bowtie.UnitofWork.V3.csproj", "{E4D3FD33-233B-43F7-82FE-8FF6C52BE623}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.LocalRepo.V3", "..\CodeLibrary\JB2.Bowtie.LocalRepo.V3\JB2.Bowtie.LocalRepo.V3.csproj", "{AFA6D776-0C74-4180-899B-A8ECDA68A23B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -245,6 +249,18 @@ Global
 		{3DBE871F-829A-4CDD-B630-0AAC71152E86}.NoDB|Any CPU.Build.0 = Release|Any CPU
 		{3DBE871F-829A-4CDD-B630-0AAC71152E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DBE871F-829A-4CDD-B630-0AAC71152E86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4D3FD33-233B-43F7-82FE-8FF6C52BE623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4D3FD33-233B-43F7-82FE-8FF6C52BE623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4D3FD33-233B-43F7-82FE-8FF6C52BE623}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{E4D3FD33-233B-43F7-82FE-8FF6C52BE623}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{E4D3FD33-233B-43F7-82FE-8FF6C52BE623}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4D3FD33-233B-43F7-82FE-8FF6C52BE623}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFA6D776-0C74-4180-899B-A8ECDA68A23B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFA6D776-0C74-4180-899B-A8ECDA68A23B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFA6D776-0C74-4180-899B-A8ECDA68A23B}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{AFA6D776-0C74-4180-899B-A8ECDA68A23B}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{AFA6D776-0C74-4180-899B-A8ECDA68A23B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFA6D776-0C74-4180-899B-A8ECDA68A23B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -272,6 +288,8 @@ Global
 		{A5BF4496-EBA5-41ED-A8D1-3AF0FE72ECEF} = {69FFF043-0784-4DD7-92F0-776A25A670AB}
 		{CCF6425A-B249-4559-92EC-4B317D557B14} = {3FB72731-CBE4-4171-8C86-977534E52321}
 		{3DBE871F-829A-4CDD-B630-0AAC71152E86} = {3FB72731-CBE4-4171-8C86-977534E52321}
+		{E4D3FD33-233B-43F7-82FE-8FF6C52BE623} = {3FB72731-CBE4-4171-8C86-977534E52321}
+		{AFA6D776-0C74-4180-899B-A8ECDA68A23B} = {3FB72731-CBE4-4171-8C86-977534E52321}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

@@ -536,7 +536,7 @@ namespace JB2.Bowtie
             //set the dataset uniqueID
             var timediff = DateTime.UtcNow - TICKSTART;
 
-            var ticks = timediff.Ticks;
+            var ticks = timediff.Ticks + JB2.Common.RNG.Randy;
 
             this.DewDropDataID = (ulong)ticks;
 

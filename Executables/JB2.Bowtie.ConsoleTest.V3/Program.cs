@@ -153,7 +153,7 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             BitArray hacked = (BitArray)dataset;
 
-            //hacked[14] = true;
+           // hacked[] = true;
 
             dataset = new DrewdropData(hacked);
 
