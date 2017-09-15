@@ -32,11 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common.Core, Version=0.4.4.31793, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.4\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.4.16.31656, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.16\lib\JB2.Common.Core.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Common.RNG, Version=0.1.2.3989, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\JB2.Common.RNG.0.1.2.0\lib\JB2.Common.RNG.dll</HintPath>
+    </Reference>
+    <Reference Include="JB2.Common.Serialization.Json, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Serialization.Json.0.1.1\lib\JB2.Common.Serialization.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -59,6 +65,14 @@
     <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Core.V3\JB2.Bowtie.Core.V3.csproj">
       <Project>{ccf6425a-b249-4559-92ec-4b317d557b14}</Project>
       <Name>JB2.Bowtie.Core.V3</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.LocalRepo.V3\JB2.Bowtie.LocalRepo.V3.csproj">
+      <Project>{afa6d776-0c74-4180-899b-a8ecda68a23b}</Project>
+      <Name>JB2.Bowtie.LocalRepo.V3</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.UnitofWork.V3\JB2.Bowtie.UnitofWork.V3.csproj">
+      <Project>{e4d3fd33-233b-43f7-82fe-8ff6c52be623}</Project>
+      <Name>JB2.Bowtie.UnitofWork.V3</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

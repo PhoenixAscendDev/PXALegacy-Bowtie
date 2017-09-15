@@ -110,54 +110,90 @@ namespace JB2.Bowtie.ConsoleTest.V3
         static void Main(string[] args)
         {
 
+            var JB2 = new JB2.Common.Business();
+            JB2.ID = "jb2-centreville";
+            JB2.Name = "JBsquared LLC";
+
             var dataset = DrewdropData.Empty;
+
+            Application a = new Application();
+
+            a.ID = "a600dcba";
+            a.Name = "Link Fence";
+            a.Website = "http://linkfence.io";
+            a.Company = JB2;
+
+            Application a2 = new Application();
+            a2.ID = "a4cc70f2";
+            a2.Name = "FiveTwo";
+            a2.Website = "http://fivetwo.io";
+            a2.Company = JB2;
+
+
+            List<Application> apps = new List<Application>();
+
+            apps.Add(a);
+            apps.Add(a2);
+            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(apps));
+
+
+
+            var uofw = new JB2.Bowtie.UnitofWork();
+
+
+            var a3 = uofw.ApplicationRepository.GetById("a600dcba");
+
+            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(a3));
+
+
+
 
             //dataset.DewDropDataID = 5660304; // ulong.MinValue;
 
-            var test = BitConverter.GetBytes(ulong.MaxValue);
+            // var test = BitConverter.GetBytes(ulong.MaxValue);
 
-            ulong foo = ulong.MinValue;
-            Console.WriteLine(Convert.ToString((long)foo, 2));
-
-            
-
-            BitArray ba = (BitArray)dataset;
-
-            for (int i = 0; i < ba.Length;i++)
-            {
-                Console.Write(ba[i] ? 1 : 0);
-            }
-
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            dataset.IncrementDrewDrop(1);
-            sw.Stop();
-            Console.WriteLine(sw.Elapsed);
-            dataset.IncrementDrewDrop(2);
-
-            Console.WriteLine("ID -> " + dataset.DewDropDataID);
-            Console.WriteLine("Count -> " + dataset.GetDrewDropCount(1));
+            // ulong foo = ulong.MinValue;
+            // Console.WriteLine(Convert.ToString((long)foo, 2));
 
 
-            for (int i = 1; i <= 250; i++)
-            {
-                ba = dataset.GetDrewDropRow(i);
-                Console.Write("row " + i.ToString().PadLeft(3, '0') + " -> ");
-                foreach (bool b in ba)
-                {
-                    Console.Write(b ? 1 : 0);
-                }
-                Console.Write("\n");
-            }
+
+            // BitArray ba = (BitArray)dataset;
+
+            // for (int i = 0; i < ba.Length;i++)
+            // {
+            //     Console.Write(ba[i] ? 1 : 0);
+            // }
+
+            // Stopwatch sw = new Stopwatch();
+            // sw.Start();
+            // dataset.IncrementDrewDrop(1);
+            // sw.Stop();
+            // Console.WriteLine(sw.Elapsed);
+            // dataset.IncrementDrewDrop(2);
+
+            // Console.WriteLine("ID -> " + dataset.DewDropDataID);
+            // Console.WriteLine("Count -> " + dataset.GetDrewDropCount(1));
 
 
-            BitArray hacked = (BitArray)dataset;
+            // for (int i = 1; i <= 250; i++)
+            // {
+            //     ba = dataset.GetDrewDropRow(i);
+            //     Console.Write("row " + i.ToString().PadLeft(3, '0') + " -> ");
+            //     foreach (bool b in ba)
+            //     {
+            //         Console.Write(b ? 1 : 0);
+            //     }
+            //     Console.Write("\n");
+            // }
 
-           // hacked[] = true;
 
-            dataset = new DrewdropData(hacked);
+            // BitArray hacked = (BitArray)dataset;
 
-            Console.Write(dataset.Validate());
+            //// hacked[] = true;
+
+            // dataset = new DrewdropData(hacked);
+
+            // Console.Write(dataset.Validate());
 
 
 

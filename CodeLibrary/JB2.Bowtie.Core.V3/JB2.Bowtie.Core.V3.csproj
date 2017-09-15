@@ -49,10 +49,10 @@
     <Compile Include="Application.cs" />
     <Compile Include="ApplicationStatePair.cs" />
     <Compile Include="BowtieObjectType.cs" />
+    <Compile Include="Business.cs" />
     <Compile Include="DewDrop.cs" />
     <Compile Include="Enum\APIAuthorizeState.cs" />
     <Compile Include="DrewdropData.cs" />
-    <Compile Include="Enum\BowtieObjectType.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Interfaces\IApplication.cs" />
     <Compile Include="Interfaces\IApplicationRepository.cs" />

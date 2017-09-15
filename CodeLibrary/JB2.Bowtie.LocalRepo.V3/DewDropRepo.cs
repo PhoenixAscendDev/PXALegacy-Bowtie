@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Data
+namespace JB2.Bowtie.Data.Local
 {
-    public class DewDropRepo : IDewdropRepository
+    public class DewDropRepo : JB2.Common.Singleton<DewDropRepo>, IDewdropRepository
     {
         public void Delete(IDewdrop entity)
         {

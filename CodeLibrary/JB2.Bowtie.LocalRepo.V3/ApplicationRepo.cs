@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Data
+namespace JB2.Bowtie.Data.Local
 {
-    public class ApplicationRepo : IApplicationRepository
+    public class ApplicationRepo : JB2.Common.Singleton<ApplicationRepo>, IApplicationRepository
     {
         public void Delete(IApplication entity)
         {
@@ -15,12 +15,12 @@ namespace JB2.Bowtie.Data
 
         public IApplication[] GetAll()
         {
-            throw new NotImplementedException();
+            return GetAll(0);
         }
 
         public IApplication[] GetAll(int? maxRecordCount)
         {
-            throw new NotImplementedException();
+            return getall().ToArray();
         }
 
         public IApplication[] GetAPIAllowedApps()
@@ -40,7 +40,7 @@ namespace JB2.Bowtie.Data
 
         public IApplication GetById(string id)
         {
-            throw new NotImplementedException();
+            return getall().Where(x => x.ID == id).FirstOrDefault();
         }
 
         public void Insert(IApplication entity)
@@ -57,5 +57,22 @@ namespace JB2.Bowtie.Data
         {
             throw new NotImplementedException();
         }
+
+
+        #region Helpers
+
+        public IEnumerable<IApplication> getall()
+        {
+            var json = "[{\"Website\":\"http://linkfence.io\",\"IsAuthorized\":true,\"AuthorizedState\":3,\"Company\":{\"POC\":null,\"MailingAddress\":null,\"ID\":\"jb2-centreville\",\"Name\":\"JBsquared LLC\"},\"APIkey\":null,\"Secret\":null,\"ID\":\"a600dcba\",\"Name\":\"Link Fence\"},{\"Website\":\"http://fivetwo.io\",\"IsAuthorized\":true,\"AuthorizedState\":3,\"Company\":{\"POC\":null,\"MailingAddress\":null,\"ID\":\"jb2-centreville\",\"Name\":\"JBsquared LLC\"},\"APIkey\":null,\"Secret\":null,\"ID\":\"a4cc70f2\",\"Name\":\"FiveTwo\"}]";
+
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<List<LocalApplication>>(json);
+
+
+        }
+
+
+
+
+        #endregion Helpers
     }
 }

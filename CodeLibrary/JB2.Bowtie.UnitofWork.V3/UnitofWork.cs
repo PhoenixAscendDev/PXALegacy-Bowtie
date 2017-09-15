@@ -8,11 +8,11 @@ namespace JB2.Bowtie
 {
     public class UnitofWork : IUnitOfWork
     {
-        public IApplicationRepository ApplicationRepository => throw new NotImplementedException();
+        public IApplicationRepository ApplicationRepository => JB2.Bowtie.Data.Local.ApplicationRepo.Instance;
 
-        public IDewdropRepository DewdropRepository => throw new NotImplementedException();
+        public IDewdropRepository DewdropRepository => JB2.Bowtie.Data.Local.DewDropRepo.Instance;
 
-        public IAuthorizeRepository AuthorizeRepository => throw new NotImplementedException();
+        public IAuthorizeRepository AuthorizeRepository => JB2.Bowtie.Data.Local.AuthorizeRepo.Instance;
 
         public IDewdropQueueRepo DewdropQueue => throw new NotImplementedException();
 
