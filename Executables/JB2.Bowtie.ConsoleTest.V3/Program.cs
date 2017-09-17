@@ -313,6 +313,8 @@ namespace JB2.Bowtie.ConsoleTest.V3
             
 
             var thisthatdewdata = dds.RetrieveDewdropData(p, thisthat).ToObject();
+
+            var dewdroplog = p.GetDewdropLog();
            
 
             //var result = dds.SaveDewdropData("m1", "LS-001", mydataset2);

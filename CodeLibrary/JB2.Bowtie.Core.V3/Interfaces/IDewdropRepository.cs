@@ -15,6 +15,12 @@ namespace JB2.Bowtie
 
         JB2.Bowtie.DewdropData GetDataByPlayer(string applicationID, string playerID);
 
+        IEnumerable<IDewdropEntry> GetDewdropLog(string applicationID, string playerID);
+
+
+
+
+        void Insert(IDewdropEntry entry);
 
         JB2.Common.ServiceResult InsertDewdropData(string applicationID, string playerID, DewdropData data);
 

@@ -64,7 +64,45 @@ namespace JB2.Bowtie.Service
             
         }
 
-       public JB2.Common.ServiceResult<IDewdropEntry> AddDewdropEntry(IPlayer player, IApplication application, ushort value,string message,string GDID)
+        public JB2.Common.ServiceResult<IEnumerable<IDewdropEntry>> RetrieveDewdropLog(IPlayer player, IApplication application)
+        {
+            try
+            {
+                var list = _uofw.DewdropRepository.GetDewdropLog(application.ID, player.ID);
+                return new JB2.Common.ServiceResult<IEnumerable<IDewdropEntry>>(list);
+            }
+            catch(Exception ex)
+            {
+                return ex.ToServiceResult<IEnumerable<IDewdropEntry>>();
+            }
+        }
+
+
+        public JB2.Common.ServiceResult<IEnumerable<IDewdropEntry>> RetrieveDewdropLogByPlayer(IPlayer player)
+        {
+            try
+            {
+                var apps = _uofw.ApplicationRepository.GetAll();
+
+                var result = new List<IDewdropEntry>();
+
+                foreach(var a in apps)
+                {
+                    var list = _uofw.DewdropRepository.GetDewdropLog(a.ID, player.ID);
+                    result.AddRange(list);
+                }
+
+                return new Common.ServiceResult<IEnumerable<IDewdropEntry>>(result);
+
+            }
+            catch(Exception ex)
+            {
+                return ex.ToServiceResult<IEnumerable<IDewdropEntry>>();
+            }
+
+        }
+
+        public JB2.Common.ServiceResult<IDewdropEntry> AddDewdropEntry(IPlayer player, IApplication application, ushort value,string message,string GDID)
         {
             try
             {
@@ -114,6 +152,7 @@ namespace JB2.Bowtie.Service
                 e.SubmittedDate = dateSubmit;
                 e.Value = dataset.GetDewDropValue(dewdrops.Where(x => x.GDID == GDID).First().ID);
 
+                _uofw.DewdropRepository.Insert(e);
 
                 _uofw.DewdropRepository.InsertDewdropData(applicationID, playerID, dataset);
 
@@ -141,8 +180,6 @@ namespace JB2.Bowtie.Service
                 return new Common.ServiceResult(ex);
             }
         }
-
-
 
         public DewdropData GenerateDewdropData(IPlayer player, IApplication application)
         {

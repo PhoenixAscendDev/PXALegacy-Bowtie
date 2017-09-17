@@ -19,6 +19,8 @@ namespace JB2.Bowtie.Data.Local
 
         private Dictionary<string, IDewdrop> _dewdrops;
 
+        private Dictionary<string, List<IDewdropEntry>> _dewdropsLog;
+
         #endregion Fields
 
         #region Constructor
@@ -36,11 +38,16 @@ namespace JB2.Bowtie.Data.Local
                 var json = "[{\"ApplicationID\":\"0\",\"GDID\":\"A07A16EE\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":201,\"Name\":\"Login\",\"ValueType\":0},{\"ApplicationID\":\"0\",\"GDID\":\"8D38169B\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":202,\"Name\":\"ButtonClick\",\"ValueType\":0},{\"ApplicationID\":\"0\",\"GDID\":\"8676164D\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":203,\"Name\":\"LastLoginDay\",\"ValueType\":1},{\"ApplicationID\":\"0\",\"GDID\":\"90FC16DB\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":204,\"Name\":\"LastLoginTime\",\"ValueType\":1},{\"ApplicationID\":\"0\",\"GDID\":\"77B61679\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":205,\"Name\":\"AddToInventory\",\"ValueType\":0},{\"ApplicationID\":\"0\",\"GDID\":\"5A6015BF\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":206,\"Name\":\"MinutesPlayed\",\"ValueType\":0},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"9B7616C6\",\"ParentGDID\":\"8D38169B\",\"IsActive\":true,\"ID\":1,\"Name\":\"Vote\",\"ValueType\":0},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"708C1604\",\"ParentGDID\":\"9B7616C6\",\"IsActive\":true,\"ID\":2,\"Name\":\"ThisVote\",\"ValueType\":0},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"A51816AC\",\"ParentGDID\":\"9B7616C6\",\"IsActive\":true,\"ID\":3,\"Name\":\"ThatVote\",\"ValueType\":0},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"DDB01769\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":4,\"Name\":\"LastVoteDate\",\"ValueType\":2},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"BFC2171B\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":5,\"Name\":\"ConsecutiveVotes\",\"ValueType\":1}]";
                 var dewdropList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<BasicDewdrop>>(json);
                 _dewdrops = new Dictionary<string, IDewdrop>();
-                foreach(var d in dewdropList)
+                foreach (var d in dewdropList)
                 {
                     _dewdrops.Add(d.GDID, d);
                 }
 
+            }
+
+            if (_dewdropsLog == null)
+            {
+                _dewdropsLog = new Dictionary<string, List<IDewdropEntry>>();
             }
 
 
@@ -74,7 +81,7 @@ namespace JB2.Bowtie.Data.Local
             list.AddRange(getglobal());
 
             return list;
-            
+
         }
 
         public IDewdrop GetByGDID(string gdid)
@@ -95,6 +102,36 @@ namespace JB2.Bowtie.Data.Local
         public void Insert(IDewdrop entity)
         {
             throw new NotImplementedException();
+        }
+
+        public void Insert(IDewdropEntry entity)
+        {
+            var playerID = entity.PlayerID;
+            var applicationID = entity.ApplicationID;
+
+            string key = applicationID + ">*<" + playerID;
+
+            if (!_dewdropsLog.ContainsKey(key) || _dewdropsLog[key] == null)
+            {
+                List<IDewdropEntry> list = new List<IDewdropEntry>();
+
+                _dewdropsLog[key] = list;
+            }
+
+            _dewdropsLog[key].Add(entity);
+
+
+
+        }
+
+        public IEnumerable<IDewdropEntry> GetDewdropLog(string applicationID, string playerID)
+        {
+            string key = applicationID + ">*<" + playerID;
+
+            if (_dewdropsLog.ContainsKey(key))
+                return _dewdropsLog[key];
+            else
+                return new IDewdropEntry[0];
         }
 
         public IDewdrop[] SearchFor()

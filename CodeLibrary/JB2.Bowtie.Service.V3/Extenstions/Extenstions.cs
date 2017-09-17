@@ -31,6 +31,28 @@ namespace JB2.Bowtie.Extensions
 
             return data;
         }
+
+        public static IEnumerable<IDewdropEntry> GetDewdropLog(this IPlayer player)
+        {
+            var dds = JB2.Bowtie.Service.DewdropService.Instance;
+            var result = dds.RetrieveDewdropLogByPlayer(player);
+
+            if (result)
+                return result.ToObject();
+            else
+                return new IDewdropEntry[0];
+        }
+
+        public static IEnumerable<IDewdropEntry> GetDewdropLog(this IPlayer player, IApplication application)
+        {
+            var dds = JB2.Bowtie.Service.DewdropService.Instance;
+            var result = dds.RetrieveDewdropLog(player, application);
+
+            if (result)
+                return result.ToObject();
+            else
+                return new IDewdropEntry[0];
+        }
     }
 
 
