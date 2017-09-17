@@ -153,7 +153,50 @@ namespace JB2.Bowtie.ConsoleTest.V3
             d6.ValueType = Enum.DewDropValueType.Count;
             d6.IsActive = true;
 
+
+            var tt1 = new BasicDewdrop();
+            tt1.ID = 1;
+            tt1.Name = "Vote";
+            tt1.ParentGDID = d2.GDID;
+            tt1.ValueType = Enum.DewDropValueType.Count;
+            tt1.IsActive = true;
+
+
+            var tt2 = new BasicDewdrop();
+            tt2.ID = 2;
+            tt2.Name = "ThisVote";
+            tt2.ParentGDID = tt1.GDID;
+            tt2.ValueType = Enum.DewDropValueType.Count;
+            tt2.IsActive = true;
+
+            var tt3 = new BasicDewdrop();
+            tt3.ID = 3;
+            tt3.Name = "ThatVote";
+            tt3.ParentGDID = tt1.GDID;
+            tt3.ValueType = Enum.DewDropValueType.Count;
+            tt3.IsActive = true;
+
+            var tt4 = new BasicDewdrop();
+            tt4.ID = 4;
+            tt4.Name = "LastVoteDate";
+            tt4.ParentGDID = 0.ToString();
+            tt4.ValueType = Enum.DewDropValueType.DateTick;
+            tt4.IsActive = true;
+
+            var tt5 = new BasicDewdrop();
+            tt5.ID = 5;
+            tt5.Name = "ConsecutiveVotes";
+            tt5.ParentGDID = 0.ToString();
+            tt5.ValueType = Enum.DewDropValueType.Flags;
+            tt5.IsActive = true;
+
+
+
+
+
             d1.ApplicationID = d2.ApplicationID = d3.ApplicationID = d4.ApplicationID = d5.ApplicationID = d6.ApplicationID = 0.ToString();
+
+            tt1.ApplicationID = tt2.ApplicationID = tt3.ApplicationID = tt4.ApplicationID = tt5.ApplicationID = "9F0199E";
 
             List<BasicDewdrop> list = new List<BasicDewdrop>();
             list.Add(d1);
@@ -163,11 +206,17 @@ namespace JB2.Bowtie.ConsoleTest.V3
             list.Add(d5);
             list.Add(d6);
 
+            list.Add(tt1);
+            list.Add(tt2);
+            list.Add(tt3);
+            list.Add(tt4);
+            list.Add(tt5);
+
 
             return list;
         }
 
-
+        
         static void InitBowtie()
         {
             var uofw = new JB2.Bowtie.UnitofWork();
@@ -207,10 +256,15 @@ namespace JB2.Bowtie.ConsoleTest.V3
             a2.Company = JB2Company;
 
 
-            List<BasicApplication> apps = new List<BasicApplication>();
+            var aservice = JB2.Bowtie.Service.ApplicationService.Instance;
 
-            apps.Add(a);
-            apps.Add(a2);
+           // var a3 = aservice.GenerateNewApplication("ThisThat", "http://bluffstreet.fun/thisthat", JB2Company).ToObject();
+
+            List<IApplication> apps = new List<IApplication>();
+
+            //apps.Add(a);
+            //apps.Add(a2);
+            //apps.Add(a3);
             Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(apps));
 
             IApplication app = new BasicApplication();
@@ -222,7 +276,6 @@ namespace JB2.Bowtie.ConsoleTest.V3
             var uofw = new JB2.Bowtie.UnitofWork();
 
 
-            var a3 = uofw.ApplicationRepository.GetById("a600dcba");
 
             Console.WriteLine();
 
@@ -249,7 +302,18 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
 
 
-           var e = dds.AddDewdropEntry(p,app,1, "Message", "5E0215BA");
+           //var e = dds.AddDewdropEntry(p,app,1, "Message", "5E0215BA");
+
+            var thisthat = aservice.RetrieveApplicationById("9F0199E").ToObject() ;
+
+            var thisthatdewdrops = dds.RetrieveByApplication(thisthat).ToObject();
+
+            var e = dds.AddDewdropEntry(p, thisthat, 1, string.Empty, "708C1604");
+            var e2 = dds.AddDewdropEntry(p, thisthat, 1, string.Empty, "A51816AC");
+            
+
+            var thisthatdewdata = dds.RetrieveDewdropData(p, thisthat).ToObject();
+           
 
             //var result = dds.SaveDewdropData("m1", "LS-001", mydataset2);
 

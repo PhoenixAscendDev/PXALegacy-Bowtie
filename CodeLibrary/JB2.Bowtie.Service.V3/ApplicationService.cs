@@ -40,9 +40,29 @@ namespace JB2.Bowtie.Service
             }
             catch(Exception ex)
             {
-                ex.BowtieLogIt();
-                return new ServiceResult<IApplication>(ex);
+                return ex.ToServiceResult<IApplication>();
             }
+        }
+
+        public ServiceResult<IApplication> GenerateNewApplication(string name, string website,JB2.Common.IBusiness company)
+        {
+            try
+            {
+
+                var a = BasicApplication.New;
+                a.Name = name;
+                a.Website = website;
+                a.Company = company;
+
+                _uofw.ApplicationRepository.Insert(a);
+
+                return new ServiceResult<IApplication>(a);
+            }
+            catch(Exception ex)
+            {
+                return ex.ToServiceResult<IApplication>();
+            }
+
         }
     }
 }

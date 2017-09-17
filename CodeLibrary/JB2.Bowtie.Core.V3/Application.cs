@@ -5,6 +5,11 @@ namespace JB2.Bowtie
 {
     public class BasicApplication : IApplication
     {
+
+
+
+
+
         public string Website { get; set; }
 
         public bool IsAuthorized => true;
@@ -26,5 +31,18 @@ namespace JB2.Bowtie
         {
             return Name;
         }
+
+
+        public static BasicApplication New
+        {
+            get
+            {
+                var a = new BasicApplication();
+                a.ID = JB2.Helper.Bowtie.GenerateID<BasicApplication>();
+
+                return a;
+            }
+        }
+        
     }
 }
