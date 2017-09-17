@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Collections;
 using System.Diagnostics;
 
+using JB2.Common;
+
 namespace JB2.Bowtie.ConsoleTest.V3
 {
     class Program
@@ -107,35 +109,35 @@ namespace JB2.Bowtie.ConsoleTest.V3
         static IEnumerable<Dewdrop> GetStandardDewdrops()
         {
             var d1 = new Dewdrop();
-            d1.ID = 201.ToString();
+            d1.ID = 201;
             d1.Name = "Login";
             d1.ParentGDID = 0.ToString();
             d1.ValueType = Enum.DewDropValueType.Count;
             d1.IsActive = true;
 
             var d2 = new Dewdrop();
-            d2.ID = 202.ToString();
+            d2.ID = 202;
             d2.Name = "ButtonClick";
             d2.ParentGDID = 0.ToString();
             d2.ValueType = Enum.DewDropValueType.Count;
             d2.IsActive = true;
 
             var d3 = new Dewdrop();
-            d3.ID = 203.ToString();
+            d3.ID = 203;
             d3.Name = "LastLoginDay";
             d3.ParentGDID = 0.ToString();
             d3.ValueType = Enum.DewDropValueType.Flags;
             d3.IsActive = true;
 
             var d4 = new Dewdrop();
-            d4.ID = 204.ToString();
+            d4.ID = 204;
             d4.Name = "LastLoginTime";
             d4.ParentGDID = 0.ToString();
             d4.ValueType = Enum.DewDropValueType.Flags;
             d4.IsActive = true;
 
             var d5 = new Dewdrop();
-            d5.ID = 205.ToString();
+            d5.ID = 205;
             d5.Name = "AddToInventory";
             d5.ParentGDID = 0.ToString();
             d5.ValueType = Enum.DewDropValueType.Count;
@@ -143,7 +145,7 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
 
             var d6 = new Dewdrop();
-            d6.ID = 206.ToString();
+            d6.ID = 206;
             d6.Name = "MinutesPlayed";
             d6.ParentGDID = 0.ToString();
             d6.ValueType = Enum.DewDropValueType.Count;
@@ -164,27 +166,36 @@ namespace JB2.Bowtie.ConsoleTest.V3
         }
 
 
+        static void InitBowtie()
+        {
+            var uofw = new JB2.Bowtie.UnitofWork();
+
+            var configure = new JB2.Configure.Bowtie();
+
+            configure.AddUnitOfWork(uofw);
+        }
+
         static void Main(string[] args)
         {
+            InitBowtie();
+            var JB2Company = new JB2.Common.Business();
+            JB2Company.ID = "jb2-centreville";
+            JB2Company.Name = "JBsquared LLC";
 
-            var JB2 = new JB2.Common.Business();
-            JB2.ID = "jb2-centreville";
-            JB2.Name = "JBsquared LLC";
-
-            var dataset = DrewdropData.Empty;
+            var dataset = DewdropData.Empty;
 
             Application a = new Application();
 
             a.ID = "a600dcba";
             a.Name = "Link Fence";
             a.Website = "http://linkfence.io";
-            a.Company = JB2;
+            a.Company = JB2Company;
 
             Application a2 = new Application();
             a2.ID = "a4cc70f2";
             a2.Name = "FiveTwo";
             a2.Website = "http://fivetwo.io";
-            a2.Company = JB2;
+            a2.Company = JB2Company;
 
 
             List<Application> apps = new List<Application>();
@@ -211,6 +222,18 @@ namespace JB2.Bowtie.ConsoleTest.V3
             var dew = uofw.DewdropRepository.GetByGDID("5E0215BA");
 
 
+            var dds = JB2.Bowtie.Service.DewdropService.Instance;
+
+            var mydataset = dds.GenerateDewdropData("LS-001", "m1");
+            var mydataset2 = dds.GenerateDewdropData("LS-001", "m2");
+
+            dds.RetrieveDewdropData("m1", "LS-001").ToObject();
+
+  
+
+            var e = dds.AddDewdropEntry("m1", "LS-001", 1, "Message", "5E0215BA");
+
+            var result = dds.SaveDewdropData("m1", "LS-001", mydataset2);
 
 
 
@@ -351,10 +374,6 @@ namespace JB2.Bowtie.ConsoleTest.V3
             //Console.WriteLine(BitConverter.ToUInt64(array, 0));
 
             //Console.WriteLine(convertToNumber<ulong>(smallInt));
-
-
-
-
 
             Console.ReadLine();
 

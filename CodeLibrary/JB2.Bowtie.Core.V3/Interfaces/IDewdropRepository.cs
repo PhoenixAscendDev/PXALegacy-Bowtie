@@ -13,6 +13,13 @@ namespace JB2.Bowtie
         IDewdrop GetByGDID(string gdid);
 
 
+        JB2.Bowtie.DewdropData GetDataByPlayer(string applicationID, string playerID);
+
+
+        JB2.Common.ServiceResult InsertDewdropData(string applicationID, string playerID, DewdropData data);
+
+
+
         //IEnumerable<IPlayerDewdrop> GetPlayerDewsByPlayerID(string playerID);
         //IEnumerable<IPlayerDewdrop> GetPlayerDews(string playerID, string dewdropID);
         //IEnumerable<IPlayerDewdrop> GetPlayerDewsBySearch(object search);

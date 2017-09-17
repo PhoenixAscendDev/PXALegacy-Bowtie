@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace JB2.Bowtie
 {
-    public class DrewdropData
+    public class DewdropData
     {
 
         #region Const
@@ -32,12 +32,12 @@ namespace JB2.Bowtie
 
         #region Constructor
 
-        public DrewdropData(BitArray dataset)
+        public DewdropData(BitArray dataset)
         {
             _bitarray = dataset;
         }
 
-        protected DrewdropData()
+        protected DewdropData()
         {
             initdataset();
         }
@@ -122,7 +122,7 @@ namespace JB2.Bowtie
             return result;
         }
 
-        public BitArray GetDrewDropRow(int rowNum)
+        public BitArray GetDewDropRow(int rowNum)
         {
             if ((rowNum < 0) || (rowNum > 250))
                 throw new ArgumentException("Rowid should be between 1 and 250");
@@ -130,11 +130,11 @@ namespace JB2.Bowtie
         }
 
 
-        public int GetDrewDropCount(int drewdropID)
+        public int GetDewDropValue(int drewdropID)
         {
             var rowNumber = getDewdropRowNumber(drewdropID);
 
-            var row = GetDrewDropRow(rowNumber);
+            var row = GetDewDropRow(rowNumber);
 
             var b = new BitArray(16);
 
@@ -149,9 +149,9 @@ namespace JB2.Bowtie
 
         }
 
-        public void IncrementDrewDrop(int drewdropID)
+        public void IncrementDewDrop(int drewdropID)
         {
-            int current = GetDrewDropCount(drewdropID);
+            int current = GetDewDropValue(drewdropID);
 
             int newValue = current + 1;
 
@@ -161,6 +161,23 @@ namespace JB2.Bowtie
 
 
             var index = (40 * (rowNumber-1)) + VALUE_INDEX;
+
+            for (int i = 0; i < 16; i++)
+            {
+                _bitarray[index + i] = b[i];
+            }
+
+            updateRow(rowNumber);
+
+        }
+
+        public void SetDewdropValue(int drewdropID, ushort value)
+        {
+            var rowNumber = getDewdropRowNumber(drewdropID);
+
+            var b = convertToBitArray(value, 16);
+
+            var index = (40 * (rowNumber - 1)) + VALUE_INDEX;
 
             for (int i = 0; i < 16; i++)
             {
@@ -362,7 +379,7 @@ namespace JB2.Bowtie
         }
 
 
-
+  
         private int getDewdropRowNumber(int dewdropID)
         {
             return dewdropID;
@@ -452,7 +469,6 @@ namespace JB2.Bowtie
 
 
         }
-
 
 
         private bool validateRow(int rowNumber)
@@ -559,16 +575,16 @@ namespace JB2.Bowtie
 
 
 
-        public static DrewdropData Empty
+        public static DewdropData Empty
         {
             get
             {
-                return new DrewdropData();
+                return new DewdropData();
             }
         }
 
 
-        public static implicit operator BitArray(DrewdropData d)
+        public static implicit operator BitArray(DewdropData d)
         {
             return d._bitarray;
         }

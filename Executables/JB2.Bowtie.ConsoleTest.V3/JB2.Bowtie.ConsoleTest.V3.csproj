@@ -66,9 +66,17 @@
       <Project>{ccf6425a-b249-4559-92ec-4b317d557b14}</Project>
       <Name>JB2.Bowtie.Core.V3</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Events.V3\JB2.Bowtie.Events.V3.csproj">
+      <Project>{d3c66fe4-4ac2-4c57-8b7c-e91a4028be39}</Project>
+      <Name>JB2.Bowtie.Events.V3</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.LocalRepo.V3\JB2.Bowtie.LocalRepo.V3.csproj">
       <Project>{afa6d776-0c74-4180-899b-a8ecda68a23b}</Project>
       <Name>JB2.Bowtie.LocalRepo.V3</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Service.V3\JB2.Bowtie.Service.V3.csproj">
+      <Project>{01987754-a78c-4e45-bef8-3ebc696e4995}</Project>
+      <Name>JB2.Bowtie.Service.V3</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.UnitofWork.V3\JB2.Bowtie.UnitofWork.V3.csproj">
       <Project>{e4d3fd33-233b-43f7-82fe-8ff6c52be623}</Project>

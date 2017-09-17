@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CCF6425A-B249-4559-92EC-4B317D557B14}</ProjectGuid>
+    <ProjectGuid>{D3C66FE4-4AC2-4C57-8B7C-E91A4028BE39}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JB2.Bowtie</RootNamespace>
-    <AssemblyName>JB2.Bowtie.Core</AssemblyName>
+    <RootNamespace>JB2.Bowtie.Events</RootNamespace>
+    <AssemblyName>JB2.Bowtie.Events</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,9 +33,6 @@
     <Reference Include="JB2.Common.Core, Version=0.4.16.31656, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.16\lib\JB2.Common.Core.dll</HintPath>
     </Reference>
-    <Reference Include="JB2.Common.RNG, Version=0.1.2.3989, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.RNG.0.1.2.0\lib\JB2.Common.RNG.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,33 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application.cs" />
-    <Compile Include="ApplicationStatePair.cs" />
-    <Compile Include="BowtieObjectType.cs" />
-    <Compile Include="Business.cs" />
-    <Compile Include="DewDrop.cs" />
-    <Compile Include="DewdropEntry.cs" />
-    <Compile Include="Enum\APIAuthorizeState.cs" />
-    <Compile Include="DrewdropData.cs" />
-    <Compile Include="Enum\DewDropValueType.cs" />
-    <Compile Include="Helper.cs" />
-    <Compile Include="Interfaces\IDewdropEntry.cs" />
-    <Compile Include="Initialize.cs" />
-    <Compile Include="Interfaces\IApplication.cs" />
-    <Compile Include="Interfaces\IApplicationRepository.cs" />
-    <Compile Include="Interfaces\IAuthorizeRepository.cs" />
-    <Compile Include="Interfaces\IBowtieObject.cs" />
-    <Compile Include="Interfaces\IDewdrop.cs" />
-    <Compile Include="Interfaces\IDewdropQueue.cs" />
-    <Compile Include="Interfaces\IDewdropRepository.cs" />
-    <Compile Include="Interfaces\IQueue.cs" />
-    <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Events.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="TokenName.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JB2.Bowtie.Core.V3\JB2.Bowtie.Core.V3.csproj">
+      <Project>{ccf6425a-b249-4559-92ec-4b317d557b14}</Project>
+      <Name>JB2.Bowtie.Core.V3</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,7 +13,9 @@ namespace JB2.Bowtie.Data.Local
 
         #region Fields
 
-        private Dictionary<string, DrewdropData> _playerdata;
+        private Dictionary<string, DewdropData> _playerdata;
+
+        private Dictionary<string, ulong> _playerdataKeys;
 
         private Dictionary<string, IDewdrop> _dewdrops;
 
@@ -24,7 +26,10 @@ namespace JB2.Bowtie.Data.Local
         public DewdropRepo()
         {
             if (_playerdata == null)
-                _playerdata = new Dictionary<string, DrewdropData>();
+            {
+                _playerdata = new Dictionary<string, DewdropData>();
+                _playerdataKeys = new Dictionary<string, ulong>();
+            }
 
             if (_dewdrops == null)
             {
@@ -62,7 +67,8 @@ namespace JB2.Bowtie.Data.Local
 
         public IEnumerable<IDewdrop> GetByApplicationID(string appID)
         {
-            return getall().Where(x => x.ApplicationID == appID);
+            return getall().ToList();
+            //return getall().Where(x => x.ApplicationID == appID);
         }
 
         public IDewdrop GetByGDID(string gdid)
@@ -70,9 +76,14 @@ namespace JB2.Bowtie.Data.Local
             return getall().Where(x => x.GDID == gdid).FirstOrDefault();
         }
 
+
+        public IDewdrop GetById(string applicationid, byte id)
+        {
+            return getall().Where(x => x.ID == id && x.ApplicationID == applicationid).FirstOrDefault();
+        }
         public IDewdrop GetById(string id)
         {
-            return getall().Where(x => x.ID == id).FirstOrDefault();
+            return getall().Where(x => x.GDID == id).FirstOrDefault();
         }
 
         public void Insert(IDewdrop entity)
@@ -95,21 +106,52 @@ namespace JB2.Bowtie.Data.Local
 
         #region DewdropDataSet
 
-        public JB2.Bowtie.DrewdropData GetDataByPlayer(string applicationID, string playerID)
+        public JB2.Bowtie.DewdropData GetDataByPlayer(string applicationID, string playerID)
         {
             string key = applicationID + ">*<" + playerID;
-            var result = _playerdata[key];
+            DewdropData result = null;
+            if (_playerdata.ContainsKey(key))
+                result = _playerdata[key];
+            else
+                result = null;
+
             return result;
         }
 
-        public JB2.Common.ServiceResult InsertDewdropData(string applicationID, string playerID, DrewdropData data)
+        public JB2.Common.ServiceResult InsertDewdropData(string applicationID, string playerID, DewdropData data)
         {
 
             try
             {
+                if (!data.isValid)
+                    throw new Exception("DewdropData is not valid");
+
                 string key = applicationID + ">*<" + playerID;
 
-                _playerdata[key] = data;
+                if(_playerdataKeys.ContainsKey(key))
+                {
+                    var playerDataID = _playerdataKeys[key];
+
+                    var verify = data.DewDropDataID;
+
+                    if (verify == playerDataID)
+                    {
+                        _playerdata[key] = data;
+                    }
+                    else
+                    {
+                        throw new Exception("DewdropDataID does not match the one saved in the records");
+                    }
+
+                }
+                else
+                {
+                    _playerdata[key] = data;
+                    _playerdataKeys[key] = data.DewDropDataID;
+                }
+                
+
+
 
                 return true;
             }
@@ -119,6 +161,7 @@ namespace JB2.Bowtie.Data.Local
             }
         }
 
+       
 
         #endregion DewdropDataSet
 
@@ -133,6 +176,8 @@ namespace JB2.Bowtie.Data.Local
 
 
         }
+
+
 
 
 
