@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationService.cs" />
     <Compile Include="DewdropService.cs" />
     <Compile Include="Extenstions\Extenstions.cs" />
+    <Compile Include="LogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

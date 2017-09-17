@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using JB2.Common;
+using JB2.Bowtie.Extensions;
 
 namespace JB2.Bowtie.Service
 {
@@ -39,6 +40,7 @@ namespace JB2.Bowtie.Service
             }
             catch(Exception ex)
             {
+                ex.BowtieLogIt();
                 return new ServiceResult<IApplication>(ex);
             }
         }

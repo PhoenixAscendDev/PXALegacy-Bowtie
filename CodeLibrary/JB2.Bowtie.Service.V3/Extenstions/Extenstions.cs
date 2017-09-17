@@ -32,4 +32,20 @@ namespace JB2.Bowtie.Extensions
             return data;
         }
     }
+
+
+    public static class ServiceExceptionExtenstions
+    {
+
+        public static void BowtieLogIt(this Exception ex, string message = "", string logcode="")
+        {
+            var logger = JB2.Settings.Bowtie.Logger;
+
+            var ls = JB2.Bowtie.Service.LogService.Instance;
+
+            ls.LogError(ex, message, logcode);
+
+
+        }
+    }
 }
