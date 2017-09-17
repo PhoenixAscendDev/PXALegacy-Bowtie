@@ -177,9 +177,16 @@ namespace JB2.Bowtie.ConsoleTest.V3
             configure.AddUnitOfWork(uofw);
         }
 
+        static void dewdropAdded(DewdropData data, IDewdropEntry entry)
+        {
+            Console.WriteLine(entry.SubmittedDate);
+        }
+
         static void Main(string[] args)
         {
             InitBowtie();
+            JB2.Events.Bowtie.Instance.DewdropDataUpdated += dewdropAdded;
+
             var JB2Company = new JB2.Common.Business();
             JB2Company.ID = "jb2-centreville";
             JB2Company.Name = "JBsquared LLC";
@@ -206,7 +213,8 @@ namespace JB2.Bowtie.ConsoleTest.V3
             apps.Add(a2);
             Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(apps));
 
-
+            IApplication app = new BasicApplication();
+            app.ID = "LS-001";
 
             var dewdrops = GetStandardDewdrops();
 
@@ -241,7 +249,7 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
 
 
-           // var e = dds.AddDewdropEntry("m1", "LS-001", 1, "Message", "5E0215BA");
+           var e = dds.AddDewdropEntry(p,app,1, "Message", "5E0215BA");
 
             //var result = dds.SaveDewdropData("m1", "LS-001", mydataset2);
 
