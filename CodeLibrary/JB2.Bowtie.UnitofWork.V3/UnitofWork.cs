@@ -10,7 +10,7 @@ namespace JB2.Bowtie
     {
         public IApplicationRepository ApplicationRepository => JB2.Bowtie.Data.Local.ApplicationRepo.Instance;
 
-        public IDewdropRepository DewdropRepository => JB2.Bowtie.Data.Local.DewDropRepo.Instance;
+        public IDewdropRepository DewdropRepository => JB2.Bowtie.Data.Local.DewdropRepo.Instance;
 
         public IAuthorizeRepository AuthorizeRepository => JB2.Bowtie.Data.Local.AuthorizeRepo.Instance;
 

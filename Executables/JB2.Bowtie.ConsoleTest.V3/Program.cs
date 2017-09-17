@@ -104,7 +104,64 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
         }
 
+        static IEnumerable<Dewdrop> GetStandardDewdrops()
+        {
+            var d1 = new Dewdrop();
+            d1.ID = 201.ToString();
+            d1.Name = "Login";
+            d1.ParentGDID = 0.ToString();
+            d1.ValueType = Enum.DewDropValueType.Count;
+            d1.IsActive = true;
 
+            var d2 = new Dewdrop();
+            d2.ID = 202.ToString();
+            d2.Name = "ButtonClick";
+            d2.ParentGDID = 0.ToString();
+            d2.ValueType = Enum.DewDropValueType.Count;
+            d2.IsActive = true;
+
+            var d3 = new Dewdrop();
+            d3.ID = 203.ToString();
+            d3.Name = "LastLoginDay";
+            d3.ParentGDID = 0.ToString();
+            d3.ValueType = Enum.DewDropValueType.Flags;
+            d3.IsActive = true;
+
+            var d4 = new Dewdrop();
+            d4.ID = 204.ToString();
+            d4.Name = "LastLoginTime";
+            d4.ParentGDID = 0.ToString();
+            d4.ValueType = Enum.DewDropValueType.Flags;
+            d4.IsActive = true;
+
+            var d5 = new Dewdrop();
+            d5.ID = 205.ToString();
+            d5.Name = "AddToInventory";
+            d5.ParentGDID = 0.ToString();
+            d5.ValueType = Enum.DewDropValueType.Count;
+            d5.IsActive = true;
+
+
+            var d6 = new Dewdrop();
+            d6.ID = 206.ToString();
+            d6.Name = "MinutesPlayed";
+            d6.ParentGDID = 0.ToString();
+            d6.ValueType = Enum.DewDropValueType.Count;
+            d6.IsActive = true;
+
+            d1.ApplicationID = d2.ApplicationID = d3.ApplicationID = d4.ApplicationID = d5.ApplicationID = d6.ApplicationID = 0.ToString();
+
+            List<Dewdrop> list = new List<Dewdrop>();
+            list.Add(d1);
+            list.Add(d2);
+            list.Add(d3);
+            list.Add(d4);
+            list.Add(d5);
+            list.Add(d6);
+
+
+            return list;
+        }
 
 
         static void Main(string[] args)
@@ -138,12 +195,22 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
 
 
+            var dewdrops = GetStandardDewdrops();
+
+
             var uofw = new JB2.Bowtie.UnitofWork();
 
 
             var a3 = uofw.ApplicationRepository.GetById("a600dcba");
 
-            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(a3));
+            Console.WriteLine();
+
+            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(dewdrops));
+
+
+            var dew = uofw.DewdropRepository.GetByGDID("5E0215BA");
+
+
 
 
 

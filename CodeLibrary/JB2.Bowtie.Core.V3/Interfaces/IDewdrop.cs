@@ -14,5 +14,7 @@ namespace JB2.Bowtie
         string GDID { get; set; }
         string ParentGDID { get; set; }
         bool IsActive { get; set; }
+
+        Enum.DewDropValueType ValueType { get; set; }
     }
 }

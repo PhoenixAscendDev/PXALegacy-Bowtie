@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JB2.Bowtie.Enum;
 
 namespace JB2.Bowtie
 {
-    public class DewDrop : IDewdrop
+    public class Dewdrop : IDewdrop
     {
 
         #region Constructors
 
-        public DewDrop()
+        public Dewdrop()
         {
 
 
@@ -33,6 +34,7 @@ namespace JB2.Bowtie
         public bool IsActive { get; set; }
         public string ID { get; set; }
         public string Name { get; set; }
+        public DewDropValueType ValueType { get; set; }
 
         public string GetID()
         {
