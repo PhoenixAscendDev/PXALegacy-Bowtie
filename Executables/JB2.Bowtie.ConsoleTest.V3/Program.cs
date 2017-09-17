@@ -8,6 +8,8 @@ using System.Diagnostics;
 
 using JB2.Common;
 
+using JB2.Bowtie.Extensions;
+
 namespace JB2.Bowtie.ConsoleTest.V3
 {
     class Program
@@ -106,37 +108,37 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
         }
 
-        static IEnumerable<Dewdrop> GetStandardDewdrops()
+        static IEnumerable<BasicDewdrop> GetStandardDewdrops()
         {
-            var d1 = new Dewdrop();
+            var d1 = new BasicDewdrop();
             d1.ID = 201;
             d1.Name = "Login";
             d1.ParentGDID = 0.ToString();
             d1.ValueType = Enum.DewDropValueType.Count;
             d1.IsActive = true;
 
-            var d2 = new Dewdrop();
+            var d2 = new BasicDewdrop();
             d2.ID = 202;
             d2.Name = "ButtonClick";
             d2.ParentGDID = 0.ToString();
             d2.ValueType = Enum.DewDropValueType.Count;
             d2.IsActive = true;
 
-            var d3 = new Dewdrop();
+            var d3 = new BasicDewdrop();
             d3.ID = 203;
             d3.Name = "LastLoginDay";
             d3.ParentGDID = 0.ToString();
             d3.ValueType = Enum.DewDropValueType.Flags;
             d3.IsActive = true;
 
-            var d4 = new Dewdrop();
+            var d4 = new BasicDewdrop();
             d4.ID = 204;
             d4.Name = "LastLoginTime";
             d4.ParentGDID = 0.ToString();
             d4.ValueType = Enum.DewDropValueType.Flags;
             d4.IsActive = true;
 
-            var d5 = new Dewdrop();
+            var d5 = new BasicDewdrop();
             d5.ID = 205;
             d5.Name = "AddToInventory";
             d5.ParentGDID = 0.ToString();
@@ -144,7 +146,7 @@ namespace JB2.Bowtie.ConsoleTest.V3
             d5.IsActive = true;
 
 
-            var d6 = new Dewdrop();
+            var d6 = new BasicDewdrop();
             d6.ID = 206;
             d6.Name = "MinutesPlayed";
             d6.ParentGDID = 0.ToString();
@@ -153,7 +155,7 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             d1.ApplicationID = d2.ApplicationID = d3.ApplicationID = d4.ApplicationID = d5.ApplicationID = d6.ApplicationID = 0.ToString();
 
-            List<Dewdrop> list = new List<Dewdrop>();
+            List<BasicDewdrop> list = new List<BasicDewdrop>();
             list.Add(d1);
             list.Add(d2);
             list.Add(d3);
@@ -184,21 +186,21 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             var dataset = DewdropData.Empty;
 
-            Application a = new Application();
+            BasicApplication a = new BasicApplication();
 
             a.ID = "a600dcba";
             a.Name = "Link Fence";
             a.Website = "http://linkfence.io";
             a.Company = JB2Company;
 
-            Application a2 = new Application();
+            BasicApplication a2 = new BasicApplication();
             a2.ID = "a4cc70f2";
             a2.Name = "FiveTwo";
             a2.Website = "http://fivetwo.io";
             a2.Company = JB2Company;
 
 
-            List<Application> apps = new List<Application>();
+            List<BasicApplication> apps = new List<BasicApplication>();
 
             apps.Add(a);
             apps.Add(a2);
@@ -224,16 +226,24 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             var dds = JB2.Bowtie.Service.DewdropService.Instance;
 
-            var mydataset = dds.GenerateDewdropData("LS-001", "m1");
-            var mydataset2 = dds.GenerateDewdropData("LS-001", "m2");
+            //var mydataset = dds.GenerateDewdropData("LS-001", "m1");
+            //var mydataset2 = dds.GenerateDewdropData("LS-001", "m2");
 
-            dds.RetrieveDewdropData("m1", "LS-001").ToObject();
+           // dds.RetrieveDewdropData("m1", "LS-001").ToObject();
 
-  
 
-            var e = dds.AddDewdropEntry("m1", "LS-001", 1, "Message", "5E0215BA");
 
-            var result = dds.SaveDewdropData("m1", "LS-001", mydataset2);
+            IPlayer p = new BasicPlayer();
+            p.ID = "m3";
+
+            var mydataset = p.GetDewdropData("LS-001");
+
+
+
+
+           // var e = dds.AddDewdropEntry("m1", "LS-001", 1, "Message", "5E0215BA");
+
+            //var result = dds.SaveDewdropData("m1", "LS-001", mydataset2);
 
 
 
@@ -374,6 +384,8 @@ namespace JB2.Bowtie.ConsoleTest.V3
             //Console.WriteLine(BitConverter.ToUInt64(array, 0));
 
             //Console.WriteLine(convertToNumber<ulong>(smallInt));
+
+
 
             Console.ReadLine();
 

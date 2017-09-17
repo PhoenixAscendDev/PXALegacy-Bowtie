@@ -33,10 +33,12 @@ namespace JB2.Bowtie.Service
 
 
 
-        public JB2.Common.ServiceResult<JB2.Bowtie.DewdropData> RetrieveDewdropData(string playerID, string applicationID)
+        public JB2.Common.ServiceResult<JB2.Bowtie.DewdropData> RetrieveDewdropData(IPlayer player, IApplication application)
         {
             try
             {
+                var playerID = player.ID;
+                var applicationID = application.ID;
                 return _uofw.DewdropRepository.GetDataByPlayer(applicationID, playerID);
 
             }
@@ -47,10 +49,12 @@ namespace JB2.Bowtie.Service
             
         }
 
-       public JB2.Common.ServiceResult<IDewdropEntry> AddDewdropEntry(string playerID, string applicationID,ushort value,string message,string GDID)
+       public JB2.Common.ServiceResult<IDewdropEntry> AddDewdropEntry(IPlayer player, IApplication application, ushort value,string message,string GDID)
         {
             try
             {
+                var playerID = player.ID;
+                var applicationID = application.ID;
                 var dewdrops = _uofw.DewdropRepository.GetByApplicationID(applicationID);
 
                 //var dewdrop = dewdrops.Where(x => x.GDID == GDID).First();
@@ -59,7 +63,7 @@ namespace JB2.Bowtie.Service
 
                 if(dataset == null)
                 {
-                    dataset = this.GenerateDewdropData(applicationID, playerID);
+                    dataset = this.GenerateDewdropData(player,application);
                 }
 
                 var dateSubmit = System.DateTime.UtcNow;
@@ -108,10 +112,12 @@ namespace JB2.Bowtie.Service
             };
         }
 
-        public JB2.Common.ServiceResult SaveDewdropData(string playerID,string applicationID,DewdropData data)
+        public JB2.Common.ServiceResult SaveDewdropData(IPlayer player, IApplication application, DewdropData data)
         {
             try
             {
+                var playerID = player.ID;
+                var applicationID = application.ID;
                 _uofw.DewdropRepository.InsertDewdropData(applicationID, playerID, data);
                 return true;
             }
@@ -123,13 +129,15 @@ namespace JB2.Bowtie.Service
 
 
 
-        public DewdropData GenerateDewdropData(string applicationID, string playerID)
+        public DewdropData GenerateDewdropData(IPlayer player, IApplication application)
         {
-                var dd = DewdropData.Empty;
+            var playerID = player.ID;
+            var applicationID = application.ID;
+            var dd = DewdropData.Empty;
 
-                _uofw.DewdropRepository.InsertDewdropData(applicationID, playerID, dd);
+            _uofw.DewdropRepository.InsertDewdropData(applicationID, playerID, dd);
 
-                return dd;
+            return dd;
 
         }
     }

@@ -8,12 +8,12 @@ using JB2.Common;
 
 namespace JB2.Bowtie
 {
-    public class Dewdrop : IDewdrop
+    public class BasicDewdrop : IDewdrop
     {
 
         #region Constructors
 
-        public Dewdrop()
+        public BasicDewdrop()
         {
 
 

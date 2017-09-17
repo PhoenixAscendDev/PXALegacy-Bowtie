@@ -40,7 +40,7 @@ namespace JB2.Settings
 
         internal const string _headerDelimiter = ":";
 
-        internal static IEnumerable<Dewdrop> _dewdrops;
+        internal static IEnumerable<BasicDewdrop> _dewdrops;
 
         internal static ILogger _logger;
 
