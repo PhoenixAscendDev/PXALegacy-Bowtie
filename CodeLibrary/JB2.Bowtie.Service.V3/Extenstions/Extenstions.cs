@@ -32,6 +32,15 @@ namespace JB2.Bowtie.Extensions
             return data;
         }
 
+        public static JB2.Common.ServiceResult SetDewdropData(this IPlayer player, IApplication application, DewdropData data)
+        {
+            var dds = JB2.Bowtie.Service.DewdropService.Instance;
+
+            var result = dds.SaveDewdropData(player, application, data);
+
+            return result;
+        }
+
         public static IEnumerable<IDewdropEntry> GetDewdropLog(this IPlayer player)
         {
             var dds = JB2.Bowtie.Service.DewdropService.Instance;
@@ -53,8 +62,20 @@ namespace JB2.Bowtie.Extensions
             else
                 return new IDewdropEntry[0];
         }
-    }
 
+        public static IDewdropEntry AddDewdrop(this IPlayer player, IApplication application, string GDID, ushort value = 0, string message = "" )
+        {
+            var dds = JB2.Bowtie.Service.DewdropService.Instance;
+
+            var result = dds.AddDewdropEntry(player, application, value, message, GDID);
+
+            if (result)
+                return result.ToObject();
+            else
+                return null;
+        }
+
+    }
 
     public static class ServiceExceptionExtenstions
     {

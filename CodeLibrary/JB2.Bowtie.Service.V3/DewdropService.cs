@@ -77,6 +77,31 @@ namespace JB2.Bowtie.Service
             }
         }
 
+        public JB2.Common.ServiceResult<int> RetrieveDewdropValue(IPlayer player, IApplication application, string GDID)
+        {
+            try
+            {
+                var dataset = _uofw.DewdropRepository.GetDataByPlayer(application.ID, player.ID);
+                var dewdrops = _uofw.DewdropRepository.GetByApplicationID(application.ID);
+                var dewdrop = dewdrops.Where(x => x.GDID == GDID).FirstOrDefault();
+
+                if (dataset == null)
+                {
+                    dataset = this.GenerateDewdropData(player, application);
+                }
+
+                int result = dataset.GetDewDropValue(dewdrop.ID);
+
+
+            }
+            catch(Exception ex)
+            {
+                ex.ToServiceResult<ushort>();
+            }
+            
+
+        }
+
 
         public JB2.Common.ServiceResult<IEnumerable<IDewdropEntry>> RetrieveDewdropLogByPlayer(IPlayer player)
         {

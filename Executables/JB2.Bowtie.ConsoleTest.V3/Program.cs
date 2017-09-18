@@ -308,8 +308,8 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             var thisthatdewdrops = dds.RetrieveByApplication(thisthat).ToObject();
 
-            var e = dds.AddDewdropEntry(p, thisthat, 1, string.Empty, "708C1604");
-            var e2 = dds.AddDewdropEntry(p, thisthat, 1, string.Empty, "A51816AC");
+            var e = p.AddDewdrop(thisthat, "708C1604"); // "dds.AddDewdropEntry(p, thisthat, 1, string.Empty, "708C1604");
+            var e2 = p.AddDewdrop(thisthat, "A51816AC"); // dds.AddDewdropEntry(p, thisthat, 1, string.Empty, "A51816AC");
             
 
             var thisthatdewdata = dds.RetrieveDewdropData(p, thisthat).ToObject();
