@@ -3,11 +3,13 @@ using JB2.Common;
 
 namespace JB2.Bowtie
 {
-    public class BasicApplication : IApplication
+    public class BasicApplication : BowtieObject,  IApplication
     {
 
-
-
+        public BasicApplication()
+        {
+            _kind = BowtieObjectType.bowtie_application;
+        }
 
 
         public string Website { get; set; }
@@ -19,19 +21,6 @@ namespace JB2.Bowtie
         public IBusiness Company { get; set; }
         public string APIkey { get; set; }
         public string Secret { get; set; }
-        public string ID { get; set; }
-        public string Name { get; set; }
-
-        public string GetID()
-        {
-            return ID;
-        }
-
-        public string GetName()
-        {
-            return Name;
-        }
-
 
         public static BasicApplication New
         {

@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common.Core, Version=0.4.16.31656, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.16\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.4.18.2330, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.18\lib\JB2.Common.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,9 +48,6 @@
     <Compile Include="UnitofWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\JB2.Bowtie.Core.V3\JB2.Bowtie.Core.V3.csproj">
       <Project>{ccf6425a-b249-4559-92ec-4b317d557b14}</Project>
       <Name>JB2.Bowtie.Core.V3</Name>
@@ -59,6 +56,9 @@
       <Project>{afa6d776-0c74-4180-899b-a8ecda68a23b}</Project>
       <Name>JB2.Bowtie.LocalRepo.V3</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

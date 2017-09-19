@@ -26,6 +26,16 @@ namespace JB2.Configure
             setIsConfigured();
         }
 
+        public void AddRNG( JB2.Bowtie.NewRNG method )
+        {
+            JB2.Settings.Bowtie.RNGMethod = method;
+        }
+
+        public void AddJsonSerializer( JB2.Bowtie.JsonSerializer method)
+        {
+            JB2.Settings.Bowtie.JsonSerializerMethod = method;
+        }
+
 
         private void setIsConfigured()
         {

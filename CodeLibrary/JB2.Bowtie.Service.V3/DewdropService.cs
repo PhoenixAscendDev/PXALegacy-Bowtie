@@ -92,11 +92,12 @@ namespace JB2.Bowtie.Service
 
                 int result = dataset.GetDewDropValue(dewdrop.ID);
 
+                return new Common.ServiceResult<int>(result);
 
             }
             catch(Exception ex)
             {
-                ex.ToServiceResult<ushort>();
+                return ex.ToServiceResult<int>();
             }
             
 

@@ -12,8 +12,7 @@ namespace JB2.Bowtie.Data
     {
         public override bool CanConvert(Type objectType) => true;
 
-        public override object ReadJson(JsonReader reader,
-         Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
         {
             return serializer.Deserialize<T>(reader);
         }

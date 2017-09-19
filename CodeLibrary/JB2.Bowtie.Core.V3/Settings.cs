@@ -8,14 +8,18 @@ using JB2.Bowtie;
 using JB2.Bowtie.Enum;
 using JB2.Common;
 
+
+
+
+
 namespace JB2.Settings
 {
+
+
     public static class Bowtie
     { 
     
-        public delegate ServiceResult CheckAuthorize(IApplication application, string authorizeKey);
 
-        public delegate int NewRNG();
 
         public static event Action<IEnumerable<ISetting>> ConfiguredSuccess;
 
@@ -28,6 +32,8 @@ namespace JB2.Settings
         public static CheckAuthorize CheckAuthorizeMethod;
 
         public static NewRNG RNGMethod;
+
+        public static JsonSerializer JsonSerializerMethod;
 
         //public delegate void MoveDelegate(object o);
         //public static MoveDelegate MoveMethod;

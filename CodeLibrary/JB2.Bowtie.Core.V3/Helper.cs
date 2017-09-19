@@ -22,5 +22,31 @@ namespace JB2.Helper
 
                 return result;
             }
+
+        public static ushort NewRNG()
+        {
+            var result = (ushort)0;
+
+            if (JB2.Settings.Bowtie.RNGMethod != null)
+                result = JB2.Settings.Bowtie.RNGMethod();
+            else
+                result = JB2.Common.RNG.Randy;
+
+
+            return result;
+        }
+
+
+        public static string ConvertToJsonString(object obj)
+        {
+            var result = obj.ToString();
+
+            if(JB2.Settings.Bowtie.JsonSerializerMethod != null)
+            {
+                result = JB2.Settings.Bowtie.JsonSerializerMethod(obj);
+            }
+
+            return result;
+        }
     }
 }

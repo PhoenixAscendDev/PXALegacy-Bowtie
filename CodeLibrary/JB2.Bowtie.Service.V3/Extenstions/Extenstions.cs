@@ -8,6 +8,13 @@ namespace JB2.Bowtie.Extensions
 {
     public static class ServicePlayerExtenstions
     {
+
+        public static string ToJson(this IBowtieObject obj)
+        {
+            return JB2.Helper.Bowtie.ConvertToJsonString(obj);
+        }
+
+
         public static JB2.Bowtie.DewdropData GetDewdropData(this IPlayer player, string applicationID)
         {
 
@@ -73,6 +80,18 @@ namespace JB2.Bowtie.Extensions
                 return result.ToObject();
             else
                 return null;
+        }
+
+        public static int GetDewdropValue(this IPlayer player, IApplication application, string GDID)
+        {
+            var dds = JB2.Bowtie.Service.DewdropService.Instance;
+
+            var result = dds.RetrieveDewdropValue(player, application, GDID);
+
+            if (result)
+                return result.ToObject();
+            else
+                return 0;
         }
 
     }

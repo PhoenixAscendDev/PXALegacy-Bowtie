@@ -46,6 +46,8 @@ namespace JB2.Bowtie.ConsoleTest.V3
             return convertToBitArray((long)number, size);
         }
 
+        
+
 
 
         static private T convertToNumber<T>(BitArray b)
@@ -224,6 +226,8 @@ namespace JB2.Bowtie.ConsoleTest.V3
             var configure = new JB2.Configure.Bowtie();
 
             configure.AddUnitOfWork(uofw);
+            configure.AddRNG(delegate () { return 1; });
+            configure.AddJsonSerializer(delegate (object obj) { return Newtonsoft.Json.JsonConvert.SerializeObject(obj); });
         }
 
         static void dewdropAdded(DewdropData data, IDewdropEntry entry)
@@ -265,7 +269,7 @@ namespace JB2.Bowtie.ConsoleTest.V3
             //apps.Add(a);
             //apps.Add(a2);
             //apps.Add(a3);
-            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(apps));
+            Console.WriteLine(JB2.Helper.Bowtie.ConvertToJsonString(apps));
 
             IApplication app = new BasicApplication();
             app.ID = "LS-001";
@@ -279,7 +283,7 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             Console.WriteLine();
 
-            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(dewdrops));
+            Console.WriteLine(JB2.Helper.Bowtie.ConvertToJsonString(dewdrops));
 
 
             var dew = uofw.DewdropRepository.GetByGDID("5E0215BA");
@@ -310,7 +314,8 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             var e = p.AddDewdrop(thisthat, "708C1604"); // "dds.AddDewdropEntry(p, thisthat, 1, string.Empty, "708C1604");
             var e2 = p.AddDewdrop(thisthat, "A51816AC"); // dds.AddDewdropEntry(p, thisthat, 1, string.Empty, "A51816AC");
-            
+
+            Console.WriteLine(p.GetDewdropValue(thisthat, "A51816AC"));
 
             var thisthatdewdata = dds.RetrieveDewdropData(p, thisthat).ToObject();
 
