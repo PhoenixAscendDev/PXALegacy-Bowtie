@@ -229,7 +229,7 @@ namespace JB2.Bowtie.Extensions
                     case Enum.StepFxType.DewdropIncrement:
                     case Enum.StepFxType.DewdropValue:
                         string[] parts = r.StepFx.Split('|');
-                        string GDID = parts[0];
+                        string GDID = parts[0].Trim();
                         list.Add(GDID);
                         break;
                 }

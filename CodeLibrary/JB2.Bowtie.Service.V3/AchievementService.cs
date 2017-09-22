@@ -125,8 +125,43 @@ namespace JB2.Bowtie.Service
 
 
 
-        public ServiceResult EvaluateAchievement(IAchievement achievement, IPlayer player)
+        public ServiceResult<Enum.AchievementStatusType> EvaluateAchievement(IAchievement achievement, IPlayer player)
         {
+            try
+            {
+
+                Enum.AchievementStatusType result = Enum.AchievementStatusType.NotAcheived;
+                var rules = achievement.GetStepRules();
+
+                foreach(var rule in rules)
+                {
+                    switch(rule.StepType)
+                    {
+                        case Enum.StepFxType.DewdropIncrement:
+                            string[] parts = new string[2];
+
+                            var GDID = rule.StepFx.TrySplit('|', 0).Trim();
+                            var mult = rule.StepFx.TrySplit('|', 1).Trim();
+                            var dewdrop = _uofw.DewdropRepository.GetByGDID(GDID);
+                            var ddata = player.GetDewdropData(achievement.ApplicationID);
+                            ddata.IncrementDewDrop(dewdrop.ID);
+                            var newValue = ddata.GetDewDropValue(dewdrop.ID);
+                            break;
+
+
+                    }
+                }
+
+                return result;
+            }
+            catch(Exception ex)
+            {
+                ex.ToServiceResult<int>();
+            }
+
+
+
+
             return true;
         }
     }

@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common.Core, Version=0.4.18.2330, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.18\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.4.18.6283, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.18.1\lib\JB2.Common.Core.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Common.RNG, Version=0.1.2.3989, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\JB2.Common.RNG.0.1.2.0\lib\JB2.Common.RNG.dll</HintPath>
@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AchievementData.cs" />
     <Compile Include="AchievementStepRule.cs" />
     <Compile Include="BasicAchievement.cs" />
     <Compile Include="BowtieObject.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Business.cs" />
     <Compile Include="DewDrop.cs" />
     <Compile Include="DewdropEntry.cs" />
+    <Compile Include="Enum\ActivementStatusType.cs" />
     <Compile Include="Enum\APIAuthorizeState.cs" />
     <Compile Include="DrewdropData.cs" />
     <Compile Include="Enum\Comparisons.cs" />

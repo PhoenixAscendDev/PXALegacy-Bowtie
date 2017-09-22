@@ -353,7 +353,7 @@ namespace JB2.Bowtie.ConsoleTest.V3
         static void ConfigureThisThatApp()
         {
             var aservice = JB2.Bowtie.Service.ApplicationService.Instance;
-            var thisthatjson = "{\"Dewdrops\":[{\"ApplicationID\":\"9F0199E\",\"GDID\":\"9B7616C6\",\"ParentGDID\":\"8D38169B\",\"IsActive\":true,\"ID\":1,\"Name\":\"Vote\",\"ValueType\":0},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"708C1604\",\"ParentGDID\":\"9B7616C6\",\"IsActive\":true,\"ID\":2,\"Name\":\"ThisVote\",\"ValueType\":0},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"A51816AC\",\"ParentGDID\":\"9B7616C6\",\"IsActive\":true,\"ID\":3,\"Name\":\"ThatVote\",\"ValueType\":0},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"DDB01769\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":4,\"Name\":\"LastVoteDate\",\"ValueType\":2},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"BFC2171B\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":5,\"Name\":\"ConsecutiveVotes\",\"ValueType\":1}],\"Achievements\":[{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":1,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":1,\"UniqueToken\":\"86A19AC > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"86A19AC\",\"Name\":\"First Vote\"},{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":10,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":2,\"UniqueToken\":\"39F01A29 > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"39F01A29\",\"Name\":\"10 This Votes\"},{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":10,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":3,\"UniqueToken\":\"C58198F > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"C58198F\",\"Name\":\"10 That Votes\"},{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":100,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":4,\"UniqueToken\":\"FAEF1947 > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"FAEF1947\",\"Name\":\"100 This Votes\"},{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":100,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":5,\"UniqueToken\":\"3F521A16 > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"3F521A16\",\"Name\":\"100 That Votes\"},{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":8,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":6,\"UniqueToken\":\"73301A98 > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"73301A98\",\"Name\":\"8 Votes in a Row\"},{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":12,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":7,\"UniqueToken\":\"3B4E1A2E > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"3B4E1A2E\",\"Name\":\"Vote every month\"},{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":50,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":8,\"UniqueToken\":\"26DC1A0D > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"26DC1A0D\",\"Name\":\"50 Votes in a Row\"}],\"AchievementStepRules\":[{\"AchievementID\":\"86A19AC\",\"StepType\":3,\"StepFx\":\"9B7616C6 | 1\",\"IsActive\":true},{\"AchievementID\":\"39F01A29\",\"StepType\":3,\"StepFx\":\"708C1604 | 1\",\"IsActive\":true},{\"AchievementID\":\"C58198F\",\"StepType\":3,\"StepFx\":\"A51816AC | 1\",\"IsActive\":true},{\"AchievementID\":\"FAEF1947\",\"StepType\":3,\"StepFx\":\"708C1604 | 1\",\"IsActive\":true},{\"AchievementID\":\"3F521A16\",\"StepType\":3,\"StepFx\":\"A51816AC | 1\",\"IsActive\":true},{\"AchievementID\":\"73301A98\",\"StepType\":2,\"StepFx\":\"DDB01769 | 1 | 0\",\"IsActive\":true},{\"AchievementID\":\"26DC1A0D\",\"StepType\":2,\"StepFx\":\"DDB01769 | 1 | 0\",\"IsActive\":true}],\"Website\":\"http://bluffstreet.fun/thisthat\",\"IsAuthorized\":true,\"AuthorizedState\":3,\"Company\":{\"POC\":null,\"MailingAddress\":null,\"ID\":\"jb2-centreville\",\"Name\":\"JBsquared LLC\"},\"APIkey\":null,\"Secret\":null,\"UniqueToken\":\"9F0199E>*<Bowtie>*<Application\",\"Kind\":3,\"Tags\":[],\"RNG\":1,\"ID\":\"9F0199E\",\"Name\":\"ThisThat\"}";
+            var thisthatjson = "{\"Dewdrops\":[{\"ApplicationID\":\"9F0199E\",\"GDID\":\"9B7616C6\",\"ParentGDID\":\"883C167E\",\"IsActive\":true,\"ID\":1,\"Name\":\"Vote\",\"ValueType\":0},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"708C1604\",\"ParentGDID\":\"9B7616C6\",\"IsActive\":true,\"ID\":2,\"Name\":\"ThisVote\",\"ValueType\":0},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"A51816AC\",\"ParentGDID\":\"9B7616C6\",\"IsActive\":true,\"ID\":3,\"Name\":\"ThatVote\",\"ValueType\":0},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"DDB01769\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":4,\"Name\":\"LastVoteDate\",\"ValueType\":2},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"BFC2171B\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":5,\"Name\":\"ConsecutiveVotes\",\"ValueType\":1}],\"Achievements\":[{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":1,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":1,\"UniqueToken\":\"86A19AC > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"86A19AC\",\"Name\":\"First Vote\"},{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":10,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":2,\"UniqueToken\":\"39F01A29 > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"39F01A29\",\"Name\":\"10 This Votes\"},{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":10,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":3,\"UniqueToken\":\"C58198F > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"C58198F\",\"Name\":\"10 That Votes\"},{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":100,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":4,\"UniqueToken\":\"FAEF1947 > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"FAEF1947\",\"Name\":\"100 This Votes\"},{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":100,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":5,\"UniqueToken\":\"3F521A16 > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"3F521A16\",\"Name\":\"100 That Votes\"},{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":8,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":6,\"UniqueToken\":\"73301A98 > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"73301A98\",\"Name\":\"8 Votes in a Row\"},{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":12,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":7,\"UniqueToken\":\"3B4E1A2E > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"3B4E1A2E\",\"Name\":\"Vote every month\"},{\"ApplicationID\":\"9F0199E\",\"SortOrder\":0,\"AchievementType\":0,\"Category\":\"\",\"StepsRequired\":50,\"EarnedIconUrl\":null,\"HiddenIconUrl\":null,\"ShownIconUrl\":null,\"TimeBoundStart\":\"0001 - 01 - 01T00: 00:00\",\"TimeBoundEnd\":\"9999 - 12 - 31T23: 59:59.9999999\",\"Points\":10,\"StorageSlot\":8,\"UniqueToken\":\"26DC1A0D > *< Bowtie > *< Achievement\",\"Kind\":7,\"Tags\":[],\"RNG\":1,\"ID\":\"26DC1A0D\",\"Name\":\"50 Votes in a Row\"}],\"AchievementStepRules\":[{\"AchievementID\":\"86A19AC\",\"StepType\":3,\"StepFx\":\"9B7616C6 | 1\",\"IsActive\":true},{\"AchievementID\":\"39F01A29\",\"StepType\":3,\"StepFx\":\"708C1604 | 1\",\"IsActive\":true},{\"AchievementID\":\"C58198F\",\"StepType\":3,\"StepFx\":\"A51816AC | 1\",\"IsActive\":true},{\"AchievementID\":\"FAEF1947\",\"StepType\":3,\"StepFx\":\"708C1604 | 1\",\"IsActive\":true},{\"AchievementID\":\"3F521A16\",\"StepType\":3,\"StepFx\":\"A51816AC | 1\",\"IsActive\":true},{\"AchievementID\":\"73301A98\",\"StepType\":2,\"StepFx\":\"DDB01769 | 1 | 0\",\"IsActive\":true},{\"AchievementID\":\"26DC1A0D\",\"StepType\":2,\"StepFx\":\"DDB01769 | 1 | 0\",\"IsActive\":true}],\"Website\":\"http://bluffstreet.fun/thisthat\",\"IsAuthorized\":true,\"AuthorizedState\":3,\"Company\":{\"POC\":null,\"MailingAddress\":null,\"ID\":\"jb2-centreville\",\"Name\":\"JBsquared LLC\"},\"APIkey\":null,\"Secret\":null,\"UniqueToken\":\"9F0199E>*<Bowtie>*<Application\",\"Kind\":3,\"Tags\":[],\"RNG\":1,\"ID\":\"9F0199E\",\"Name\":\"ThisThat\"}";
 
 
             Bowtie.Manager.LoadApplication(thisthatjson);
@@ -411,9 +411,6 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             var thisthat = aservice.RetrieveApplicationById("9F0199E").ToObject();
 
-  
-
-
            // var thisthatdewdrops = dds.RetrieveByApplication(thisthat).ToObject();
             //var thisthatAchievements = vservice.RetrieveByApplication(thisthat).ToObject();
 
@@ -421,6 +418,8 @@ namespace JB2.Bowtie.ConsoleTest.V3
             p.ID = "m3";
 
             var dataset = DewdropData.Empty;
+
+            var e = p.AddDewdrop(thisthat, "708C1604");
 
             //BasicApplication a = new BasicApplication();
 
@@ -446,14 +445,6 @@ namespace JB2.Bowtie.ConsoleTest.V3
             //apps.Add(a3);
             //Console.WriteLine(JB2.Helper.Bowtie.ConvertToJsonString(apps));
 
-
-
-
-
-           
-
-
-
             //Console.WriteLine();
 
             //Console.WriteLine(JB2.Helper.Bowtie.ConvertToJsonString(thisthat.GetAchievements()));
@@ -471,9 +462,9 @@ namespace JB2.Bowtie.ConsoleTest.V3
             //}
 
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
-            Console.WriteLine(aservice.ExportApplicationToJson(thisthat).ToObject());
+            //Console.WriteLine(aservice.ExportApplicationToJson(thisthat).ToObject());
 
 
 
@@ -661,7 +652,7 @@ namespace JB2.Bowtie.ConsoleTest.V3
             //Console.WriteLine(convertToNumber<ulong>(smallInt));
 
 
-           
+
             Console.ReadLine();
 
 
