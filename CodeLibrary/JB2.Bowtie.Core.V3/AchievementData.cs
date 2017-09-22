@@ -29,7 +29,7 @@ namespace JB2.Bowtie
         
         private const int DATASETID_INDEX = 7920;
         private const int CHECKSUM_INDEX = 7984;
-        private readonly DateTime TICKSTART = new DateTime(1980, 2, 22).ToUniversalTime();
+        private readonly DateTime TICKSTART = new DateTime(2017, 9, 22).ToUniversalTime();
 
         #endregion Const
 
@@ -138,13 +138,46 @@ namespace JB2.Bowtie
             return value_bit.ToNumber<int>();
         }
 
-        public byte GetPoints(int storageID)
+        public ServiceResult SetStepValue(int storageID, int step)
+        {
+            var step_bit = step.ToBitArray(16);
+
+
+            var index = (ACHIEVEMENTSIZE * (storageID - 1)) + STEP_INDEX;
+
+            for (int i = 0; i < 16; i++)
+            {
+                _bitarray[index + i] = step_bit[i];
+            }
+
+            updateRow(storageID);
+
+            return true;
+        }
+
+        public int GetPoints(int storageID)
         {
             var a_bit = GetStorage(storageID);
 
             var point_bit = a_bit.GetSubSet(POINTS_INDEX, 8);
 
-            return point_bit.ToNumber<byte>();
+            return point_bit.ToNumber<int>();
+        }
+
+        public ServiceResult SetPoints(int storageID, byte points)
+        {
+            var points_bit = points.ToBitArray(8);
+
+            var index = (ACHIEVEMENTSIZE * (storageID - 1)) + POINTS_INDEX;
+
+            for (int i = 0; i < 8; i++)
+            {
+                _bitarray[index + i] = points_bit[i];
+            }
+
+            updateRow(storageID);
+
+            return true;
         }
 
         public Enum.AchievementStatusType GetStatus(int storageID)
@@ -156,6 +189,26 @@ namespace JB2.Bowtie
             int status_int = status_bit.ToNumber<int>();
 
             return (Enum.AchievementStatusType)status_int;
+        }
+
+        public ServiceResult SetStatus(int storageID, Enum.AchievementStatusType status)
+        {
+            var a_bit = GetStorage(storageID);
+
+            var status_bit = ((int)status).ToBitArray(4);
+
+            var index = (ACHIEVEMENTSIZE * (storageID - 1)) + STATUS_INDEX;
+
+            for (int i = 0; i < 4; i++)
+            {
+                _bitarray[index + i] = status_bit[i];
+            }
+
+            updateRow(storageID);
+
+            return true;
+
+
         }
 
         public DateTime GetDateAchieved(int storageID)
@@ -175,7 +228,7 @@ namespace JB2.Bowtie
             var day = day_bit.ToNumber<int>();
 
             DateTime start = new DateTime(TICKSTART.Year, TICKSTART.Month, TICKSTART.Day, hr, min, sec, DateTimeKind.Utc);
-            start.AddDays(day);
+            start = start.AddDays(day);
 
             return start;
         }
@@ -225,7 +278,7 @@ namespace JB2.Bowtie
         {
             int rowNum = storageID;
             if ((rowNum < 0) || (rowNum > TOTALROWS))
-                throw new ArgumentException("StorageID should be between 1 and 95");
+                throw new ArgumentException("StorageID should be between 1 and " + TOTALROWS);
             return getRow(rowNum);
         }
 
@@ -268,7 +321,7 @@ namespace JB2.Bowtie
 
 
             //set the drewdrop IDs
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < TOTALROWS; i++)
             {
                 var rowNumber = i + 1;
 
@@ -289,13 +342,13 @@ namespace JB2.Bowtie
             this.AchievementDataID = (ulong)ticks;
 
 
-            for (int i = 0; i < 250; i++)
+            for (int i = 0; i < TOTALROWS; i++)
             {
                 updateRow(i + 1);
             }
 
 
-           
+
         }
 
         private int calculateRowTick(int rowNumber)
@@ -336,7 +389,7 @@ namespace JB2.Bowtie
             //add up all row ticks (even taking tick2 odd tick1)
 
             long sum = 0;
-            for (int i = 1; i <= 95; i++)
+            for (int i = 1; i <= TOTALROWS; i++)
             {
 
                 var tick_bit = new BitArray(8);
