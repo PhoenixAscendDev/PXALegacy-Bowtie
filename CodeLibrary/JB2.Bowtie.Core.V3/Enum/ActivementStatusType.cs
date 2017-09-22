@@ -8,8 +8,8 @@ namespace JB2.Bowtie.Enum
 {
     public enum AchievementStatusType
     {
-        AlreadyAchieved = 0,
-        NotAcheived = 1,
+        NotAcheived = 0,
+        AlreadyAchieved = 1,
         Achieved = 2
     }
 }

@@ -17,7 +17,12 @@ namespace JB2.Bowtie
 
         void Delete(AchievementStepRule rule);
 
-        
+
+
+        JB2.Bowtie.AchievementData GetDataByPlayer(string applicationID, string playerID);
+        JB2.Common.ServiceResult InsertAchievementData(string applicationID, string playerID, AchievementData data);
+
+
 
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using JB2.Bowtie;
+using JB2.Common;
 
 namespace JB2.Bowtie.Data.Local
 {
@@ -14,7 +15,13 @@ namespace JB2.Bowtie.Data.Local
 
         protected Dictionary<string, IAchievement> _items;
         protected List<AchievementStepRule> _steprules;
+
+        private Dictionary<string, AchievementData> _playerdata;
+
+        private Dictionary<string, ulong> _playerdataKeys;
+        
         protected IUnitOfWork _uofw;
+
 
         #endregion Fields
 
@@ -33,6 +40,9 @@ namespace JB2.Bowtie.Data.Local
 
             _items = new Dictionary<string, IAchievement>();
             _steprules = new List<AchievementStepRule>();
+
+            _playerdata = new Dictionary<string, AchievementData>();
+            _playerdataKeys = new Dictionary<string, ulong>();
 
             //if (_apps == null)
             //{
@@ -72,6 +82,67 @@ namespace JB2.Bowtie.Data.Local
 
 
         #endregion AchievementStep
+
+
+        #region AchievementData
+
+        public AchievementData GetDataByPlayer(string applicationID, string playerID)
+        {
+            string key = applicationID + ">*<" + playerID;
+            AchievementData result = null;
+
+            if (_playerdata.ContainsKey(key))
+                result = _playerdata[key];
+            else
+                result = null;
+
+            return result;
+        }
+
+        public ServiceResult InsertAchievementData(string applicationID, string playerID, AchievementData data)
+        {
+            try
+            {
+                if (!data.isValid)
+                    throw new Exception("AchievementData is not valid");
+
+                string key = applicationID + ">*<" + playerID;
+
+                if (_playerdataKeys.ContainsKey(key))
+                {
+                    var playerDataID = _playerdataKeys[key];
+
+                    var verify = data.AchievementDataID;
+
+                    if (verify == playerDataID)
+                    {
+                        _playerdata[key] = data;
+                    }
+                    else
+                    {
+                        throw new Exception("AchievementData does not match the one saved in the records");
+                    }
+
+                }
+                else
+                {
+                    _playerdata[key] = data;
+                    _playerdataKeys[key] = data.AchievementDataID;
+                }
+
+
+
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return new Common.ServiceResult(ex);
+            }
+        }
+
+
+        #endregion AchievementData
 
 
         public void Delete(IAchievement entity)
@@ -136,7 +207,8 @@ namespace JB2.Bowtie.Data.Local
 
         }
 
-        
+
+
 
 
 

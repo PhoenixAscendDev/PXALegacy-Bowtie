@@ -37,14 +37,32 @@ namespace JB2.Bowtie
         {
             var dservice = JB2.Bowtie.Service.DewdropService.Instance;
             var aservice = JB2.Bowtie.Service.AchievementService.Instance;
+            var appservice = JB2.Bowtie.Service.ApplicationService.Instance;
+
             
+            var player = new BasicPlayer() { ID = entry.PlayerID };
 
             //only care if this app has a trigger on the dewdrop
-            if(_dewdropTriggers.ContainsKey(entry.GDID))
+            if (_dewdropTriggers.ContainsKey(entry.GDID))
             {
                 foreach(var a in _dewdropTriggers[entry.GDID])
                 {
-                    aservice.EvaluateAchievement(a, new BasicPlayer() { ID = entry.PlayerID });
+                    var status = aservice.EvaluateAchievement(a,player );
+                    var application = appservice.RetrieveApplicationById(a.ApplicationID);
+
+                    if ( (status) && (status.ToObject() == Enum.AchievementStatusType.Achieved))
+                    {
+                        var dataset = aservice.RetrieveAchievementData(player,application.ToObject() );
+
+                        if(dataset)
+                        {
+                            var points = dataset.ToObject().GetPoints(a.StorageSlot);
+                            var dt = dataset.ToObject().GetDateAchieved(a.StorageSlot);
+
+                            JB2.Events.Bowtie.OnAchievementAchieved(a, player, dt, Convert.ToByte(points));
+                        }
+
+                    }
                 }
             }
 

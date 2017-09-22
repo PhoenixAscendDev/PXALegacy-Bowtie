@@ -122,7 +122,36 @@ namespace JB2.Bowtie.Service
 
         }
 
+        public AchievementData GenerateAchievementData(IPlayer player, IApplication application)
+        {
+            var playerID = player.ID;
+            var applicationID = application.ID;
+            var dd = AchievementData.Empty;
 
+            _uofw.AchievementRepository.InsertAchievementData(applicationID, playerID, dd);
+
+            return dd;
+
+        }
+
+        public ServiceResult<AchievementData> RetrieveAchievementData(IPlayer player, IApplication application)
+        {
+            try
+            {
+                var result = _uofw.AchievementRepository.GetDataByPlayer(application.ID, player.ID);
+
+                if(result == null)
+                {
+                    result = GenerateAchievementData(player, application);
+                }
+
+                return new ServiceResult<AchievementData>(result);
+            }
+            catch(Exception ex)
+            {
+                return ex.ToServiceResult<AchievementData>();
+            }
+        }
 
 
         public ServiceResult<Enum.AchievementStatusType> EvaluateAchievement(IAchievement achievement, IPlayer player)
@@ -133,26 +162,69 @@ namespace JB2.Bowtie.Service
                 Enum.AchievementStatusType result = Enum.AchievementStatusType.NotAcheived;
                 var rules = achievement.GetStepRules();
 
-                foreach(var rule in rules)
+                var dataset = _uofw.AchievementRepository.GetDataByPlayer(achievement.ApplicationID, player.ID);
+                var application = _uofw.ApplicationRepository.GetById(achievement.ApplicationID);
+
+                if (dataset == null)
+                {                  
+                    dataset = this.GenerateAchievementData(player, application);
+                }
+
+
+                var status = dataset.GetStatus(achievement.StorageSlot);
+
+                if(status != Enum.AchievementStatusType.NotAcheived)
                 {
-                    switch(rule.StepType)
+                    return new ServiceResult<Enum.AchievementStatusType>(Enum.AchievementStatusType.AlreadyAchieved);
+                }
+
+
+
+                foreach (var rule in rules)
+                {
+                    int newValue = 0;
+                    byte slot = achievement.StorageSlot;
+                    string GDID = string.Empty;
+                    var oldValue = dataset.GetStepValue(slot);
+                    var stepRequested = achievement.StepsRequired;
+                    switch (rule.StepType)
                     {
                         case Enum.StepFxType.DewdropIncrement:
-                            string[] parts = new string[2];
-
-                            var GDID = rule.StepFx.TrySplit('|', 0).Trim();
-                            var mult = rule.StepFx.TrySplit('|', 1).Trim();
-                            var dewdrop = _uofw.DewdropRepository.GetByGDID(GDID);
-                            var ddata = player.GetDewdropData(achievement.ApplicationID);
-                            ddata.IncrementDewDrop(dewdrop.ID);
-                            var newValue = ddata.GetDewDropValue(dewdrop.ID);
+                            string[] parts = rule.StepFx.Split('|');
+                            GDID = parts[0].Trim();
+                            var mult = parts[1].Trim();                       
+                            newValue = oldValue + (1 * Convert.ToInt32(mult));
                             break;
+
+                        case Enum.StepFxType.DewdropValue:
+                            GDID = rule.StepFx.TrySplit('|', 0).Trim();
+                            var dewdropValue = player.GetDewdropValue(application, GDID);
+                            newValue = dewdropValue;
+                            break;
+                    }
+
+                    dataset.SetStepValue(slot,newValue);
+
+                    _uofw.AchievementRepository.InsertAchievementData(application.ID, player.ID, dataset);
+
+                    if (newValue >= stepRequested)
+                    {
+                        dataset.SetDateAcheived(slot, DateTime.UtcNow);
+                        dataset.SetPoints(slot, Convert.ToByte(achievement.Points));
+                        dataset.SetStatus(slot, Enum.AchievementStatusType.Achieved);
+                        dataset.SetStepValue(slot, newValue);
+
+                        _uofw.AchievementRepository.InsertAchievementData(application.ID, player.ID, dataset);
+
+                        return new ServiceResult<Enum.AchievementStatusType>(Enum.AchievementStatusType.Achieved);
 
 
                     }
+
+
                 }
 
-                return result;
+                return new ServiceResult<Enum.AchievementStatusType>(result);
             }
             catch(Exception ex)
             {
