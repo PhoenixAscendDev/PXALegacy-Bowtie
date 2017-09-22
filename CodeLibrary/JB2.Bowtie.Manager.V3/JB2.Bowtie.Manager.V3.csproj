@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3DBE871F-829A-4CDD-B630-0AAC71152E86}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>JB2.Bowtie.ConsoleTest.V3</RootNamespace>
-    <AssemblyName>JB2.Bowtie.ConsoleTest.V3</AssemblyName>
+    <ProjectGuid>{5AAB920D-A129-444A-8188-04EDFD86930D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JB2.Bowtie.Manager</RootNamespace>
+    <AssemblyName>JB2.Bowtie.Manager</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -35,15 +33,6 @@
     <Reference Include="JB2.Common.Core, Version=0.4.18.2330, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.18\lib\JB2.Common.Core.dll</HintPath>
     </Reference>
-    <Reference Include="JB2.Common.RNG, Version=0.1.2.3989, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.RNG.0.1.2.0\lib\JB2.Common.RNG.dll</HintPath>
-    </Reference>
-    <Reference Include="JB2.Common.Serialization.Json, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Serialization.Json.0.1.1\lib\JB2.Common.Serialization.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,38 +43,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Core.V3\JB2.Bowtie.Core.V3.csproj">
+    <ProjectReference Include="..\JB2.Bowtie.Core.V3\JB2.Bowtie.Core.V3.csproj">
       <Project>{ccf6425a-b249-4559-92ec-4b317d557b14}</Project>
       <Name>JB2.Bowtie.Core.V3</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Events.V3\JB2.Bowtie.Events.V3.csproj">
+    <ProjectReference Include="..\JB2.Bowtie.Events.V3\JB2.Bowtie.Events.V3.csproj">
       <Project>{d3c66fe4-4ac2-4c57-8b7c-e91a4028be39}</Project>
       <Name>JB2.Bowtie.Events.V3</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.LocalRepo.V3\JB2.Bowtie.LocalRepo.V3.csproj">
-      <Project>{afa6d776-0c74-4180-899b-a8ecda68a23b}</Project>
-      <Name>JB2.Bowtie.LocalRepo.V3</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Manager.V3\JB2.Bowtie.Manager.V3.csproj">
-      <Project>{5aab920d-a129-444a-8188-04edfd86930d}</Project>
-      <Name>JB2.Bowtie.Manager.V3</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.Service.V3\JB2.Bowtie.Service.V3.csproj">
+    <ProjectReference Include="..\JB2.Bowtie.Service.V3\JB2.Bowtie.Service.V3.csproj">
       <Project>{01987754-a78c-4e45-bef8-3ebc696e4995}</Project>
       <Name>JB2.Bowtie.Service.V3</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CodeLibrary\JB2.Bowtie.UnitofWork.V3\JB2.Bowtie.UnitofWork.V3.csproj">
-      <Project>{e4d3fd33-233b-43f7-82fe-8ff6c52be623}</Project>
-      <Name>JB2.Bowtie.UnitofWork.V3</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

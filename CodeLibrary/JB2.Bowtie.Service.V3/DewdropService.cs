@@ -33,7 +33,19 @@ namespace JB2.Bowtie.Service
 
         #endregion Constructors
 
+        public JB2.Common.ServiceResult<IDewdrop> RetrieveByGDID(string gdid)
+        {
+            try
+            {
+                var dewdrop = _uofw.DewdropRepository.GetByGDID(gdid);
 
+                return new Common.ServiceResult<IDewdrop>(dewdrop);
+            }
+            catch(Exception ex)
+            {
+                return ex.ToServiceResult<IDewdrop>();
+            }
+        }
 
         public JB2.Common.ServiceResult<IEnumerable<IDewdrop>> RetrieveByApplication(IApplication application)
         {

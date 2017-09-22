@@ -42,6 +42,11 @@ namespace JB2.Configure
         }
 
 
+        public void InitalizeApplication(string json)
+        {
+
+        }
+
         private void setIsConfigured()
         {
             try

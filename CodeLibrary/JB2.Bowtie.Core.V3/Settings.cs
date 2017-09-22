@@ -53,10 +53,14 @@ namespace JB2.Settings
 
         internal static ILogger _logger;
 
+
         internal static int _authCheckInterval = 5;
+
         private static JB2.Common.SettingCollection<string> _settings;
         internal static bool _isConfigured = false;
+
         internal static IUnitOfWork _unitofWork;
+
         private static string _authorizekey;
 
 
