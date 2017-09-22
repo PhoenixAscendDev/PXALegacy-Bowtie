@@ -12,7 +12,7 @@ namespace JB2.Bowtie
     public class AchievementData
     {
         #region Const
-        private const int TOTALSIZE = 8000;
+        private const int TOTALSIZE = 10240;
         private const int ACHIEVEMENTSIZE = 80;
         private const int STEP_INDEX = 0;
         private const int TIME_INDEX = 16;

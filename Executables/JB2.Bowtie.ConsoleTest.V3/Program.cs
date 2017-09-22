@@ -175,7 +175,6 @@ namespace JB2.Bowtie.ConsoleTest.V3
             return list;
         }
 
-
         static void InitBowtie()
         {
             var uofw = new JB2.Bowtie.UnitofWork();
@@ -187,6 +186,7 @@ namespace JB2.Bowtie.ConsoleTest.V3
             configure.AddJsonSerializer(delegate (object obj) { return Newtonsoft.Json.JsonConvert.SerializeObject(obj); });
 
             configure.AddJsonDeserializer(delegate (string json, Type type) { return Newtonsoft.Json.JsonConvert.DeserializeObject(json, type); });
+            configure.AddOnlineCheck(delegate () { return true; });
         }
 
         static void dewdropAdded(DewdropData data, IDewdropEntry entry)

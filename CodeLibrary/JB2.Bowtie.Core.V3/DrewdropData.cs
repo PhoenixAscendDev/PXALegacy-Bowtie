@@ -12,7 +12,7 @@ namespace JB2.Bowtie
 
         #region Const
 
-        private const int TOTALSIZE = 10200;
+        private const int TOTALSIZE = 10240;
         private const int DEWDROPSIZE = 40;
         private const int TICK2_INDEX = 0;
         private const int TICK1_INDEX = 36;

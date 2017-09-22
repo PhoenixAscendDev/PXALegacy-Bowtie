@@ -14,4 +14,6 @@ namespace JB2.Bowtie
 
     public delegate T JsonDeserializer<T>(string json, Type type);
 
+    public delegate bool OnlineCheck();
+
 }

@@ -21,13 +21,13 @@ namespace JB2.Settings
     
 
 
-        public static event Action<IEnumerable<ISetting>> ConfiguredSuccess;
+        //public static event Action<IEnumerable<ISetting>> ConfiguredSuccess;
 
-        public static event Action<IEnumerable<ISetting>, ServiceResult> ConfiguredFailed;
+        //public static event Action<IEnumerable<ISetting>, ServiceResult> ConfiguredFailed;
 
-        public static event Action<IApplication> ApplicationNotAuthorized;
+        //public static event Action<IApplication> ApplicationNotAuthorized;
 
-        public static event Action<IApplication,string, DateTime> ApplicationAuthCheck;
+        //public static event Action<IApplication,string, DateTime> ApplicationAuthCheck;
 
         public static CheckAuthorize CheckAuthorizeMethod;
 
@@ -35,33 +35,47 @@ namespace JB2.Settings
 
         public static JsonSerializer JsonSerializerMethod;
 
+        internal static OnlineCheck _onlineCheckMethod;
+
 
         public static JsonDeserializer<object> JsonDeserializerMethod;
 
         //public delegate void MoveDelegate(object o);
         //public static MoveDelegate MoveMethod;
 
-        internal static IApplication _application = null;
+        //internal static IApplication _application = null;
 
-        internal static DateTime _lastAPIAuthCheck;
+        //internal static DateTime _lastAPIAuthCheck;
 
-        internal static string _sigFormat = "{0}>*<{1}{2}{3}{4}";
+        //internal static string _sigFormat = "{0}>*<{1}{2}{3}{4}";
 
-        internal const string _headerDelimiter = ":";
+        //internal const string _headerDelimiter = ":";
 
-        internal static IEnumerable<BasicDewdrop> _dewdrops;
+        //internal static IEnumerable<BasicDewdrop> _dewdrops;
 
         internal static ILogger _logger;
 
 
         internal static int _authCheckInterval = 5;
 
-        private static JB2.Common.SettingCollection<string> _settings;
+        //private static JB2.Common.SettingCollection<string> _settings;
         internal static bool _isConfigured = false;
 
         internal static IUnitOfWork _unitofWork;
 
-        private static string _authorizekey;
+        //private static string _authorizekey;
+
+
+        public static bool IsOnline
+        {
+           get
+            {
+                if (JB2.Settings.Bowtie._onlineCheckMethod != null)
+                    return JB2.Settings.Bowtie._onlineCheckMethod();
+                else
+                    return false;
+            }
+        }
 
 
         public static ILogger Logger
@@ -239,10 +253,10 @@ namespace JB2.Settings
         //    }
         //}
 
-        public static ISetting GetSetting(string settingName)
-        {
-            return _settings[settingName];
-        }
+        //public static ISetting GetSetting(string settingName)
+        //{
+        //    return _settings[settingName];
+        //}
 
         private static void checkIfConfigured()
         {

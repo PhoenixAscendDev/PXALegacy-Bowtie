@@ -41,6 +41,11 @@ namespace JB2.Configure
             JB2.Settings.Bowtie.JsonDeserializerMethod = method;
         }
 
+        public void AddOnlineCheck( JB2.Bowtie.OnlineCheck method)
+        {
+            JB2.Settings.Bowtie._onlineCheckMethod = method;
+        }
+
 
         public void InitalizeApplication(string json)
         {

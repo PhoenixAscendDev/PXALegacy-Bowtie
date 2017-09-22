@@ -31,6 +31,10 @@ namespace JB2.Bowtie
 
         }
 
+
+
+
+
         internal void CheckAchievement(JB2.Bowtie.DewdropData data, JB2.Bowtie.IDewdropEntry entry)
         {
             var dservice = JB2.Bowtie.Service.DewdropService.Instance;
@@ -81,6 +85,9 @@ namespace JB2.Bowtie
 
 
         }
+
+
+
 
 
     }
