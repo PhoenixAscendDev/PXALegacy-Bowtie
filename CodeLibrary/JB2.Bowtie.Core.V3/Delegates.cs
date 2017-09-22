@@ -11,4 +11,7 @@ namespace JB2.Bowtie
     public delegate ushort NewRNG();
 
     public delegate string JsonSerializer(object obj);
+
+    public delegate T JsonDeserializer<T>(string json, Type type);
+
 }

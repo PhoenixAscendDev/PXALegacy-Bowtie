@@ -15,8 +15,14 @@ namespace JB2.Bowtie
         IApplication GetApplicationByAPIKey(string publicKey);
 
 
+        string ExportApplicationToJson(IApplication app);
+
+        IApplication ImportApplicationFromJson(string json);
+
+       
+
         //string GetTreasuryRequestKey(string id, string treasuryID);
 
-        
+
     }
 }

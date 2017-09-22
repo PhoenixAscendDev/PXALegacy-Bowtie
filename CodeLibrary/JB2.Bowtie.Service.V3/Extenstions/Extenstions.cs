@@ -108,6 +108,20 @@ namespace JB2.Bowtie.Extensions
             ls.LogError(ex, message, logcode);
         }
 
+        public static JB2.Common.ServiceResult ToServiceResult(this Exception ex, string message = "", string logcode = "", bool logit = true)
+        {
+            var r = new JB2.Common.ServiceResult(ex);
+            message = String.IsNullOrEmpty(message) ? ex.Message : message;
+            r.Validation[0].Message = message;
+
+            if (logit)
+            {
+                ex.BowtieLogIt(message, logcode);
+            }
+
+            return r;
+        }
+
         public static JB2.Common.ServiceResult<T> ToServiceResult<T>(this Exception ex, string message = "", string logcode = "", bool logit = true)
         {
             var r = new JB2.Common.ServiceResult<T>(ex);
@@ -147,5 +161,81 @@ namespace JB2.Bowtie.Extensions
         }
 
 
+    }
+
+
+    public static class ServiceApplicationExtenstions
+    {
+        public static IEnumerable<IAchievement> GetAchievements(this IApplication application)
+        {
+            var dds = JB2.Bowtie.Service.AchievementService.Instance;
+
+            var data = dds.RetrieveByApplication(application);
+
+            if ((data) && (data.ToObject() == null))
+            {
+                return new IAchievement[0];
+            }
+
+            return data.ToObject();
+        }
+
+        public static IEnumerable<IDewdrop> GetDewdrops(this IApplication application)
+        {
+            var dds = JB2.Bowtie.Service.DewdropService.Instance;
+
+            var data = dds.RetrieveByApplication(application);
+
+            if ((data) && (data.ToObject() == null))
+            {
+                return new IDewdrop[0];
+            }
+
+            return data.ToObject();
+        }
+
+
+    }
+
+
+    public static class ServiceAchievementExtenstions
+    {
+        public static IEnumerable<AchievementStepRule> GetStepRules(this IAchievement achievement)
+        {
+            var dds = JB2.Bowtie.Service.AchievementService.Instance;
+
+            var data = dds.RetrieveStepRules(achievement);
+
+            if ((data) && (data.ToObject() == null))
+            {
+                return new AchievementStepRule[0];
+            }
+
+            return data.ToObject();
+        }
+
+        public static IEnumerable<string> GetDewdropTriggers(this IAchievement achievement)
+        {
+            var dds = JB2.Bowtie.Service.AchievementService.Instance;
+
+            var rules = achievement.GetStepRules();
+
+            List<string> list = new List<string>();
+
+            foreach(var r in rules)
+            {
+                switch(r.StepType)
+                {
+                    case Enum.StepFxType.DewdropIncrement:
+                    case Enum.StepFxType.DewdropValue:
+                        string[] parts = r.StepFx.Split('|');
+                        string GDID = parts[0];
+                        list.Add(GDID);
+                        break;
+                }
+            }
+
+            return list;
+        }
     }
 }

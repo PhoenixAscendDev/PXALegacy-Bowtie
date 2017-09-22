@@ -14,7 +14,11 @@ namespace JB2.Bowtie
 
         public IAuthorizeRepository AuthorizeRepository => JB2.Bowtie.Data.Local.AuthorizeRepo.Instance;
 
+        public IAchievementRepository AchievementRepository => JB2.Bowtie.Data.Local.AchievementRepo.Instance;
+
         public IDewdropQueueRepo DewdropQueue => throw new NotImplementedException();
+
+
 
         public void Dispose()
         {

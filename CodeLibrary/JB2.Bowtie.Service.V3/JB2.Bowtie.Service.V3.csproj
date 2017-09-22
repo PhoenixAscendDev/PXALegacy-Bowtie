@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AchievementService.cs" />
     <Compile Include="ApplicationService.cs" />
+    <Compile Include="ConfireApplication.cs" />
     <Compile Include="DewdropService.cs" />
     <Compile Include="Extenstions\Extenstions.cs" />
     <Compile Include="LogService.cs" />

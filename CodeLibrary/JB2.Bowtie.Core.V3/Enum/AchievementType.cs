@@ -8,7 +8,7 @@ namespace JB2.Bowtie.Enum
 {
     public enum AchievementType
     {
-        Standard,
+        Standard = 0,
         TimeBound,
         LabelPin,
         Task

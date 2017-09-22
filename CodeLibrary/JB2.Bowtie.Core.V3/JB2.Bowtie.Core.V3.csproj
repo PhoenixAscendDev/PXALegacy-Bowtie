@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AchievementStepRule.cs" />
     <Compile Include="BasicAchievement.cs" />
     <Compile Include="BowtieObject.cs" />
     <Compile Include="Delegates.cs" />
@@ -58,10 +59,12 @@
     <Compile Include="DewdropEntry.cs" />
     <Compile Include="Enum\APIAuthorizeState.cs" />
     <Compile Include="DrewdropData.cs" />
+    <Compile Include="Enum\Comparisons.cs" />
     <Compile Include="Enum\DewDropValueType.cs" />
     <Compile Include="Enum\StepFxType.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Interfaces\IAchievement.cs" />
+    <Compile Include="Interfaces\IAchievementRepository.cs" />
     <Compile Include="Interfaces\IDewdropEntry.cs" />
     <Compile Include="Initialize.cs" />
     <Compile Include="Interfaces\IApplication.cs" />

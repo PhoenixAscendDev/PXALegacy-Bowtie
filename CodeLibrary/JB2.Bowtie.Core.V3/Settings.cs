@@ -35,6 +35,9 @@ namespace JB2.Settings
 
         public static JsonSerializer JsonSerializerMethod;
 
+
+        public static JsonDeserializer<object> JsonDeserializerMethod;
+
         //public delegate void MoveDelegate(object o);
         //public static MoveDelegate MoveMethod;
 

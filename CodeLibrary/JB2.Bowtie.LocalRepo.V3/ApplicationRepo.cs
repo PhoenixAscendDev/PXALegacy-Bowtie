@@ -85,6 +85,10 @@ namespace JB2.Bowtie.Data.Local
 
         public void Insert(IApplication entity)
         {
+            if (_apps.ContainsKey(entity.ID))
+                _apps[entity.ID] = entity;
+            else
+
             _apps.Add(entity.ID, entity);
           
         }
@@ -97,6 +101,54 @@ namespace JB2.Bowtie.Data.Local
         public IApplication[] SearchFor(string filter)
         {
             throw new NotImplementedException();
+        }
+
+
+        public string ExportApplicationToJson(IApplication application)
+        {
+            ExportApplication a = new ExportApplication(application);
+
+            a.Dewdrops = _uofw.DewdropRepository.GetByApplicationID(application.ID).Cast<BasicDewdrop>().Where(x => x.ApplicationID != 0.ToString()).ToList();
+            a.Achievements = _uofw.AchievementRepository.GetByApplicationID(application.ID).Cast<BasicAchievement>().ToList();
+
+            foreach (var s in a.Achievements)
+            {
+                foreach (var s1 in _uofw.AchievementRepository.GetStepsByAchievementID(s.ID))
+                {
+                    a.AchievementStepRules.Add(s1);
+                }
+
+            }
+            return JB2.Helper.Bowtie.ConvertToJsonString(a);
+        }
+
+        public IApplication ImportApplicationFromJson(string json)
+        {
+
+
+
+            var a = JB2.Helper.Bowtie.ConvertToObjectFromJsonString<ExportApplication>(json);
+
+            _uofw.ApplicationRepository.Insert(a);
+
+            foreach (var d in a.Dewdrops)
+            {
+                _uofw.DewdropRepository.Insert(d);
+            }
+
+            foreach(var c in a.Achievements)
+            {
+                _uofw.AchievementRepository.Insert(c);
+            }
+
+            foreach(var s in a.AchievementStepRules)
+            {
+                _uofw.AchievementRepository.Insert(s);
+            }
+
+            return a;
+
+
         }
 
 
@@ -113,6 +165,10 @@ namespace JB2.Bowtie.Data.Local
 
 
         }
+
+
+
+
 
 
 

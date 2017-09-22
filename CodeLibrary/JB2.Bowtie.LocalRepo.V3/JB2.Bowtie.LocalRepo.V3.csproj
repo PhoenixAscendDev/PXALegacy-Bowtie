@@ -46,9 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AchievementRepo.cs" />
     <Compile Include="ApplicationRepo.cs" />
     <Compile Include="AuthorizeRepo.cs" />
     <Compile Include="ConcreteConverter.cs" />
+    <Compile Include="ConfireApplication.cs" />
     <Compile Include="DewDropRepo.cs" />
     <Compile Include="LocalApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

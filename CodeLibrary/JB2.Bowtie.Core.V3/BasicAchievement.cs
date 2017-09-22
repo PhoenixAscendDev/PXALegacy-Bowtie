@@ -16,9 +16,7 @@ namespace JB2.Bowtie
             _kind = BowtieObjectType.bowtie_achievement;
             TimeBoundStart = DateTime.MinValue;
             TimeBoundEnd = DateTime.MaxValue;
-            
-
-            DewdropTriggers = new List<string>();
+            //DewdropTriggers = new List<string>();
 
         }
 
@@ -32,9 +30,11 @@ namespace JB2.Bowtie
         public string ShownIconUrl { get; set; }
         public DateTime TimeBoundStart { get; set; }
         public DateTime TimeBoundEnd { get; set; }
-        public string StepFx { get; set; }
-        public StepFxType StepType { get; set; }
-        public IEnumerable<string> DewdropTriggers { get; set; }
+        //public string StepFx { get; set; }
+        //public StepFxType StepType { get; set; }
+        //public IEnumerable<string> DewdropTriggers { get; set; }
         public int Points { get; set; }
+
+        public byte StorageSlot { get; set; }
     }
 }

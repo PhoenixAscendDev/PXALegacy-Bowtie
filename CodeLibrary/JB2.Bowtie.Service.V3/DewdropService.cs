@@ -218,5 +218,19 @@ namespace JB2.Bowtie.Service
             return dd;
 
         }
+
+        public JB2.Common.ServiceResult Save(IDewdrop dewdrop)
+        {
+            try
+            {
+                _uofw.DewdropRepository.Insert(dewdrop);
+
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return ex.ToServiceResult();
+            }
+        }
     }
 }

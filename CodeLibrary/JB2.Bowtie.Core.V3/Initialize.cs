@@ -36,6 +36,11 @@ namespace JB2.Configure
             JB2.Settings.Bowtie.JsonSerializerMethod = method;
         }
 
+        public void AddJsonDeserializer( JB2.Bowtie.JsonDeserializer<object> method)
+        {
+            JB2.Settings.Bowtie.JsonDeserializerMethod = method;
+        }
+
 
         private void setIsConfigured()
         {

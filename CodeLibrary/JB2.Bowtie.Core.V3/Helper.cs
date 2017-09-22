@@ -10,18 +10,18 @@ namespace JB2.Helper
     {
         public static string GenerateID<T>()
             where T : class
-            {
-                var guid = JB2.Common.NewID.Guid();
-                var result = JB2.Common.NewID.UriHash(new Uri("http://bowtie.io/?=" + guid + typeof(T).ToString()));
-                Type type = typeof(T);
+        {
+            var guid = JB2.Common.NewID.Guid();
+            var result = JB2.Common.NewID.UriHash(new Uri("http://bowtie.io/?=" + guid + typeof(T).ToString()));
+            Type type = typeof(T);
 
-                if (type is JB2.Bowtie.IApplication)
-                    result = "001-" + result;
-                if (type is JB2.Bowtie.IDewdrop)
-                    result = guid;
+            if (type is JB2.Bowtie.IApplication)
+                result = "001-" + result;
+            if (type is JB2.Bowtie.IDewdrop)
+                result = guid;
 
-                return result;
-            }
+            return result;
+        }
 
         public static ushort NewRNG()
         {
@@ -41,9 +41,25 @@ namespace JB2.Helper
         {
             var result = obj.ToString();
 
-            if(JB2.Settings.Bowtie.JsonSerializerMethod != null)
+            if (JB2.Settings.Bowtie.JsonSerializerMethod != null)
             {
                 result = JB2.Settings.Bowtie.JsonSerializerMethod(obj);
+            }
+
+            return result;
+        }
+
+        public static T ConvertToObjectFromJsonString<T>(string json)
+            where T : class
+        {
+            var result = default(T);
+
+            if (JB2.Settings.Bowtie.JsonDeserializerMethod != null)
+            {
+                var obj = JB2.Settings.Bowtie.JsonDeserializerMethod(json, typeof(T));
+
+                result = (T)obj;
+                //result = (T)Convert.ChangeType(obj, typeof(T));
             }
 
             return result;

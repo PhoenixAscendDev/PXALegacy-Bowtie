@@ -15,5 +15,7 @@ namespace JB2.Bowtie
         Enum.APIAuthorizeState AuthorizedState { get; }
 
         JB2.Common.IBusiness Company { get; set; }
+
+
     }
 }

@@ -35,7 +35,7 @@ namespace JB2.Bowtie.Data.Local
 
             if (_dewdrops == null)
             {
-                var json = "[{\"ApplicationID\":\"0\",\"GDID\":\"A07A16EE\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":201,\"Name\":\"Login\",\"ValueType\":0},{\"ApplicationID\":\"0\",\"GDID\":\"8D38169B\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":202,\"Name\":\"ButtonClick\",\"ValueType\":0},{\"ApplicationID\":\"0\",\"GDID\":\"8676164D\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":203,\"Name\":\"LastLoginDay\",\"ValueType\":1},{\"ApplicationID\":\"0\",\"GDID\":\"90FC16DB\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":204,\"Name\":\"LastLoginTime\",\"ValueType\":1},{\"ApplicationID\":\"0\",\"GDID\":\"77B61679\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":205,\"Name\":\"AddToInventory\",\"ValueType\":0},{\"ApplicationID\":\"0\",\"GDID\":\"5A6015BF\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":206,\"Name\":\"MinutesPlayed\",\"ValueType\":0},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"9B7616C6\",\"ParentGDID\":\"8D38169B\",\"IsActive\":true,\"ID\":1,\"Name\":\"Vote\",\"ValueType\":0},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"708C1604\",\"ParentGDID\":\"9B7616C6\",\"IsActive\":true,\"ID\":2,\"Name\":\"ThisVote\",\"ValueType\":0},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"A51816AC\",\"ParentGDID\":\"9B7616C6\",\"IsActive\":true,\"ID\":3,\"Name\":\"ThatVote\",\"ValueType\":0},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"DDB01769\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":4,\"Name\":\"LastVoteDate\",\"ValueType\":2},{\"ApplicationID\":\"9F0199E\",\"GDID\":\"BFC2171B\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":5,\"Name\":\"ConsecutiveVotes\",\"ValueType\":1}]";
+                var json = "[{\"ApplicationID\":\"0\",\"GDID\":\"AE0A1711\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":201,\"Name\":\"Login\",\"ValueType\":0},{\"ApplicationID\":\"0\",\"GDID\":\"883C167E\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":202,\"Name\":\"ButtonClick\",\"ValueType\":0},{\"ApplicationID\":\"0\",\"GDID\":\"DF001794\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":203,\"Name\":\"LastLoginDay\",\"ValueType\":1},{\"ApplicationID\":\"0\",\"GDID\":\"4190157E\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":204,\"Name\":\"LastLoginTime\",\"ValueType\":1},{\"ApplicationID\":\"0\",\"GDID\":\"707E1642\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":205,\"Name\":\"AddToInventory\",\"ValueType\":0},{\"ApplicationID\":\"0\",\"GDID\":\"898E1697\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":206,\"Name\":\"MinutesPlayed\",\"ValueType\":0}]";
                 var dewdropList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<BasicDewdrop>>(json);
                 _dewdrops = new Dictionary<string, IDewdrop>();
                 foreach (var d in dewdropList)
@@ -101,7 +101,8 @@ namespace JB2.Bowtie.Data.Local
 
         public void Insert(IDewdrop entity)
         {
-            throw new NotImplementedException();
+            _dewdrops.Add(entity.GDID, entity);
+            
         }
 
         public void Insert(IDewdropEntry entity)

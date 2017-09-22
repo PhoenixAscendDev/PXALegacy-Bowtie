@@ -19,13 +19,16 @@ namespace JB2.Bowtie
         //Enum.AchievementRarityType Rarity { get; set; }
         DateTime TimeBoundStart { get; set; }
         DateTime TimeBoundEnd { get; set; }
-        string StepFx { get; set; }
-        Enum.StepFxType StepType { get; set; }
-        IEnumerable<string> DewdropTriggers { get; set; }
+
+        //string StepFx { get; set; }
+        //Enum.StepFxType StepType { get; set; }
+        //IEnumerable<string> DewdropTriggers { get; set; }
 
         int Points { get; set; }
 
-       // IEnumerable<string> PointSystems { get; set; }
-       // int GetPoints(string pointSystemID);
+        byte StorageSlot { get; set; }
+
+        // IEnumerable<string> PointSystems { get; set; }
+        // int GetPoints(string pointSystemID);
     }
 }

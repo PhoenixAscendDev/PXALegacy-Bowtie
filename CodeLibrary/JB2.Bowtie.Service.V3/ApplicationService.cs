@@ -64,5 +64,35 @@ namespace JB2.Bowtie.Service
             }
 
         }
+
+
+        public ServiceResult<string> ExportApplicationToJson(IApplication application)
+        {
+            try
+            {
+                var str = _uofw.ApplicationRepository.ExportApplicationToJson(application);
+
+                return new ServiceResult<string>(str);
+            }
+            catch(Exception ex)
+            {
+                return ex.ToServiceResult<string>();
+            }
+        }
+
+
+        public ServiceResult<IApplication> ImportApplication(string json)
+        {
+           try
+            {
+                var a = _uofw.ApplicationRepository.ImportApplicationFromJson(json);
+
+                return new ServiceResult<IApplication>(a);
+            }
+            catch(Exception ex)
+            {
+                return ex.ToServiceResult<IApplication>();
+            }
+        }
     }
 }

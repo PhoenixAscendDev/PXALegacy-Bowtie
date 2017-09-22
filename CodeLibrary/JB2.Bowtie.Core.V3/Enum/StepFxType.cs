@@ -10,6 +10,7 @@ namespace JB2.Bowtie.Enum
     {
         Empty,
         RegexMatchSingle,
-        DewdropCount     
+        DewdropValue,
+        DewdropIncrement
     }
 }

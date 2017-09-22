@@ -11,7 +11,7 @@ namespace JB2.Bowtie
     public interface IUnitOfWork: IDisposable
     {
         IApplicationRepository ApplicationRepository { get; }
-        //IAchievementRepository AchievementRepository { get; }
+        IAchievementRepository AchievementRepository { get; }
 
         //IAuthProviderRepository AuthProviderRepository { get; }
 

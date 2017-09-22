@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JB2.Bowtie
+{
+    public interface IAchievementRepository :  JB2.Common.IRepository<JB2.Bowtie.IAchievement, string>
+    {
+        IEnumerable<IAchievement> GetByApplicationID(string applicationID);
+
+
+        IEnumerable<AchievementStepRule> GetStepsByAchievementID(string achievementID);
+
+        void Insert(AchievementStepRule rule);
+
+        void Delete(AchievementStepRule rule);
+
+        
+
+    }
+}
