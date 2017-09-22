@@ -20,7 +20,6 @@ namespace JB2.Bowtie
 
         }
 
-
         public IApplication CurrentApplication { get; internal set; }
 
         public IEnumerable<string> DewdropTriggers
@@ -31,7 +30,6 @@ namespace JB2.Bowtie
             }
 
         }
-
 
         internal void CheckAchievement(JB2.Bowtie.DewdropData data, JB2.Bowtie.IDewdropEntry entry)
         {
