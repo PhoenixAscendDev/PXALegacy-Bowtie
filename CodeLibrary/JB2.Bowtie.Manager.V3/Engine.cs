@@ -48,19 +48,28 @@ namespace JB2.Bowtie
                 foreach(var a in _dewdropTriggers[entry.GDID])
                 {
                     var status = aservice.EvaluateAchievement(a,player );
-                    var application = appservice.RetrieveApplicationById(a.ApplicationID);
+                    var application = appservice.RetrieveApplicationById(a.ApplicationID).ToObject();
+
+
+                    var dataset = aservice.RetrieveAchievementData(player, application).ToObject();
+                    var aentry = new AchievementEntry();
+
+                    aentry.AchievementID = a.ID;
+                    aentry.ApplicationID = application.ID;
+                    aentry.PlayerID = player.ID;
+                    aentry.PercentComplete = (dataset.GetStepValue(a.StorageSlot) / a.StepsRequired) * 100;
+                    aentry.DateEarned = DateTime.MinValue;
+                    aentry.PointsEarned = 0;
 
                     if ( (status) && (status.ToObject() == Enum.AchievementStatusType.Achieved))
                     {
-                        var dataset = aservice.RetrieveAchievementData(player,application.ToObject() );
+                        var points = dataset.GetPoints(a.StorageSlot);
+                        var dt = dataset.GetDateAchieved(a.StorageSlot);
 
-                        if(dataset)
-                        {
-                            var points = dataset.ToObject().GetPoints(a.StorageSlot);
-                            var dt = dataset.ToObject().GetDateAchieved(a.StorageSlot);
+                        aentry.DateEarned = dt;
+                        aentry.PointsEarned = points;
 
-                            JB2.Events.Bowtie.OnAchievementAchieved(a, player, dt, Convert.ToByte(points));
-                        }
+                        JB2.Events.Bowtie.OnAchievementAchieved(a, aentry);
 
                     }
                 }

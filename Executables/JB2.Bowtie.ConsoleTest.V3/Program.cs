@@ -194,10 +194,10 @@ namespace JB2.Bowtie.ConsoleTest.V3
             Console.WriteLine(entry.SubmittedDate);
         }
 
-        static void achievementComplated(JB2.Bowtie.IAchievement achievement, JB2.Bowtie.IPlayer player, DateTime datetime, byte points)
+        static void achievementComplated(JB2.Bowtie.IAchievement achievement, IAchievementEntry entry)
         {
 
-            Console.WriteLine(achievement.Name + ":" + datetime);
+            Console.WriteLine(achievement.Name + ":" + entry.DateEarned);
         }
 
         static IEnumerable<IDewdrop> ConfigureThisThatDewdrops()

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AchievementData.cs" />
+    <Compile Include="AchievementEntry.cs" />
     <Compile Include="AchievementStepRule.cs" />
     <Compile Include="BasicAchievement.cs" />
     <Compile Include="BowtieObject.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Enum\StepFxType.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Interfaces\IAchievement.cs" />
+    <Compile Include="Interfaces\IAchievementEntry.cs" />
     <Compile Include="Interfaces\IAchievementRepository.cs" />
     <Compile Include="Interfaces\IDewdropEntry.cs" />
     <Compile Include="Initialize.cs" />

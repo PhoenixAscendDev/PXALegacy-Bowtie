@@ -160,8 +160,8 @@ namespace JB2.Bowtie.Service
                 var dateSubmit = System.DateTime.UtcNow;
                 var parent = GDID;
 
-                
-                while(parent != 0.ToString())
+                DewdropEntry e = new DewdropEntry();
+                while (parent != 0.ToString())
                 {
                     var dewdrop = dewdrops.Where(x => x.GDID == parent).FirstOrDefault();
 
@@ -175,26 +175,34 @@ namespace JB2.Bowtie.Service
                             break;
                     }
 
+
+                    e = new DewdropEntry();
+                    e.ApplicationID = applicationID;
+                    e.GDID = parent;
+                    e.PlayerID = playerID;
+                    e.SubmittedDate = dateSubmit;
+                    e.Value = dataset.GetDewDropValue(dewdrop.ID);
+
+                    _uofw.DewdropRepository.Insert(e);
+
+                    _uofw.DewdropRepository.InsertDewdropData(applicationID, playerID, dataset);
+
+                    JB2.Events.Bowtie.OnDewdropDataUpdated(dataset, e);
+
+
+
                     parent = dewdrop.ParentGDID;
                 }
 
 
-                
-
-                DewdropEntry e = new DewdropEntry();
-                
-
+                e = new DewdropEntry();
                 e.ApplicationID = applicationID;
                 e.GDID = GDID;
                 e.PlayerID = playerID;
                 e.SubmittedDate = dateSubmit;
                 e.Value = dataset.GetDewDropValue(dewdrops.Where(x => x.GDID == GDID).First().ID);
 
-                _uofw.DewdropRepository.Insert(e);
 
-                _uofw.DewdropRepository.InsertDewdropData(applicationID, playerID, dataset);
-
-                JB2.Events.Bowtie.OnDewdropDataUpdated(dataset, e);
 
                 return new JB2.Common.ServiceResult<IDewdropEntry>(e);
             }
