@@ -22,6 +22,8 @@ namespace JB2.Bowtie
         JB2.Bowtie.AchievementData GetDataByPlayer(string applicationID, string playerID);
         JB2.Common.ServiceResult InsertAchievementData(string applicationID, string playerID, AchievementData data);
 
+        IEnumerable<IAchievementEntry> GetEntriesByPlayer(string applicationID, string playerID);
+
 
 
     }

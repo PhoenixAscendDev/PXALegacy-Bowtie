@@ -145,6 +145,39 @@ namespace JB2.Bowtie.Data.Local
         #endregion AchievementData
 
 
+        #region AchievementEntry
+
+        public IEnumerable<IAchievementEntry> GetEntriesByPlayer(string applicationID, string playerID)
+        {
+            var achievements = GetByApplicationID(applicationID);
+            var ds = GetDataByPlayer(applicationID, playerID);
+            List<IAchievementEntry> list = new List<IAchievementEntry>();
+
+            foreach(var a in achievements)
+            {
+                var pts = ds.GetPoints(a.StorageSlot);
+                var status = ds.GetStatus(a.StorageSlot);
+                var dt = (status != Enum.AchievementStatusType.NotAcheived) ?  ds.GetDateAchieved(a.StorageSlot) : DateTime.MinValue;
+                var steps = ds.GetStepValue(a.StorageSlot);
+
+                IAchievementEntry e = new AchievementEntry();
+                e.AchievementID = a.ID;
+                e.ApplicationID = applicationID;
+                e.PlayerID = playerID;
+                e.DateEarned = dt;
+                e.PercentComplete = steps != 0 ? (a.StepsRequired / steps) * 100 : 0;
+                e.PointsEarned = pts;
+                e.Status = status;
+
+                list.Add(e);        
+            }
+
+            return list;
+        }
+
+
+        #endregion AchievementEntry
+
         public void Delete(IAchievement entity)
         {
             _items.Remove(entity.ID);
@@ -206,6 +239,8 @@ namespace JB2.Bowtie.Data.Local
 
 
         }
+
+
 
 
 

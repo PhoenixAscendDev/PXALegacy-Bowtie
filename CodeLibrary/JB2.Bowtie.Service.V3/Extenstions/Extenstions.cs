@@ -53,6 +53,15 @@ namespace JB2.Bowtie.Extensions
             return data.ToObject();
         }
 
+        public static IEnumerable<JB2.Bowtie.IAchievementEntry> GetAchievements(this IPlayer player, IApplication application)
+        {
+            var aservice = JB2.Bowtie.Service.AchievementService.Instance;
+
+            var data = aservice.RetrievePlayerAcheivements(player,application );
+
+            return data.ToObject();
+        }
+
         public static JB2.Common.ServiceResult SetDewdropData(this IPlayer player, IApplication application, DewdropData data)
         {
             var dds = JB2.Bowtie.Service.DewdropService.Instance;

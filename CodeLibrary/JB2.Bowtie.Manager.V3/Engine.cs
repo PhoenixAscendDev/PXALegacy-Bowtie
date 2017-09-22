@@ -54,12 +54,16 @@ namespace JB2.Bowtie
                     var dataset = aservice.RetrieveAchievementData(player, application).ToObject();
                     var aentry = new AchievementEntry();
 
+
+                    var steps = dataset.GetStepValue(a.StorageSlot);
                     aentry.AchievementID = a.ID;
                     aentry.ApplicationID = application.ID;
                     aentry.PlayerID = player.ID;
-                    aentry.PercentComplete = (dataset.GetStepValue(a.StorageSlot) / a.StepsRequired) * 100;
+                    aentry.PercentComplete = steps != 0 ? (a.StepsRequired / steps) * 100 : 0;
                     aentry.DateEarned = DateTime.MinValue;
                     aentry.PointsEarned = 0;
+
+
 
                     if ( (status) && (status.ToObject() == Enum.AchievementStatusType.Achieved))
                     {
@@ -68,6 +72,8 @@ namespace JB2.Bowtie
 
                         aentry.DateEarned = dt;
                         aentry.PointsEarned = points;
+
+                            
 
                         JB2.Events.Bowtie.OnAchievementAchieved(a, aentry);
 

@@ -432,27 +432,40 @@ namespace JB2.Bowtie.ConsoleTest.V3
             {
                 e = p.AddDewdrop(thisthat, "708C1604");
             }
+
+
+            var achievements = p.GetAchievements(thisthat);
+
+            foreach(var a in achievements)
+            {
+                var ac = vservice.RetrieveByID(a.AchievementID);
+
+                if(ac)
+                {
+                    Console.WriteLine(ac.ToObject().Name + " : " + a.Status + " : " + a.PointsEarned);
+                }
+            }
            
 
 
-            var adata = AchievementData.Empty;
+            //var adata = AchievementData.Empty;
 
 
-            adata.SetDateAcheived(1, DateTime.UtcNow);
-            adata.SetStepValue(1, 9);
-            adata.SetPoints(1, 100);
-            adata.SetStatus(1, Enum.AchievementStatusType.Achieved);
+            //adata.SetDateAcheived(1, DateTime.UtcNow);
+            //adata.SetStepValue(1, 9);
+            //adata.SetPoints(1, 100);
+            //adata.SetStatus(1, Enum.AchievementStatusType.Achieved);
 
-            Console.WriteLine(((BitArray)adata).ToBitString());
+            //Console.WriteLine(((BitArray)adata).ToBitString());
 
-            Console.WriteLine(adata.AchievementDataID);
-            Console.WriteLine(adata.GetDateAchieved(1));
-            Console.WriteLine(adata.GetStepValue(1));
-            Console.WriteLine(adata.GetPoints(1));
+            //Console.WriteLine(adata.AchievementDataID);
+            //Console.WriteLine(adata.GetDateAchieved(1));
+            //Console.WriteLine(adata.GetStepValue(1));
+            //Console.WriteLine(adata.GetPoints(1));
             
-            Console.WriteLine(adata.GetStatus(1));
+            //Console.WriteLine(adata.GetStatus(1));
 
-            Console.WriteLine(adata.isValid);
+            //Console.WriteLine(adata.isValid);
 
             //BasicApplication a = new BasicApplication();
 

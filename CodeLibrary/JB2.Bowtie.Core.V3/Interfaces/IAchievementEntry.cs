@@ -15,5 +15,7 @@ namespace JB2.Bowtie
         int PointsEarned { get; set; }
         decimal PercentComplete { get; set; }
 
+        Enum.AchievementStatusType Status { get; set; }
+
     }
 }

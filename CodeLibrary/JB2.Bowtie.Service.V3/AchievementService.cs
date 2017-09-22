@@ -32,6 +32,22 @@ namespace JB2.Bowtie.Service
         #endregion Constructors
 
 
+        public ServiceResult<IAchievement> RetrieveByID(string id)
+        {
+            try
+
+            {
+                var result = _uofw.AchievementRepository.GetById(id);
+
+                return new ServiceResult<IAchievement>(result);
+            }
+            catch (Exception ex)
+            {
+                return ex.ToServiceResult<IAchievement>();
+            }
+        }
+
+
         public ServiceResult<IEnumerable<IAchievement>> RetrieveByApplication(IApplication application)
         {
             try
@@ -150,6 +166,21 @@ namespace JB2.Bowtie.Service
             catch(Exception ex)
             {
                 return ex.ToServiceResult<AchievementData>();
+            }
+        }
+
+
+        public ServiceResult<IEnumerable<IAchievementEntry>> RetrievePlayerAcheivements(IPlayer player, IApplication application)
+        {
+            try
+            {
+                var result = _uofw.AchievementRepository.GetEntriesByPlayer(application.ID, player.ID);
+
+                return new ServiceResult<IEnumerable<IAchievementEntry>>(result);
+            }
+            catch (Exception ex)
+            {
+                return ex.ToServiceResult<IEnumerable<IAchievementEntry>>();
             }
         }
 
