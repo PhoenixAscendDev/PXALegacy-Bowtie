@@ -148,7 +148,7 @@ namespace JB2.Bowtie.ConsoleTest.V3
             d6.ID = 206;
             d6.Name = "MinutesPlayed";
             d6.ParentGDID = 0.ToString();
-            d6.ValueType = Enum.DewDropValueType.Count;
+            d6.ValueType = Enum.DewDropValueType.Flags;
             d6.IsActive = true;
 
 
@@ -188,6 +188,8 @@ namespace JB2.Bowtie.ConsoleTest.V3
             configure.AddJsonDeserializer(delegate (string json, Type type) { return Newtonsoft.Json.JsonConvert.DeserializeObject(json, type); });
             configure.AddOnlineCheck(delegate () { return true; });
             configure.AddDateTimeNow(delegate () { return DateTime.UtcNow; });
+
+            
         }
 
         static void dewdropAdded(DewdropData data, IDewdropEntry entry)
@@ -401,6 +403,8 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             ConfigureThisThatApp();
 
+           
+
             var uofw = new JB2.Bowtie.UnitofWork();
             var aservice = JB2.Bowtie.Service.ApplicationService.Instance;
             var vservice = JB2.Bowtie.Service.AchievementService.Instance;
@@ -424,6 +428,9 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             IPlayer p = new BasicPlayer();
             p.ID = "m3";
+
+
+            JB2.Bowtie.Engine.Instance.StartTimer(p);
 
             var dataset = DewdropData.Empty;
 
@@ -740,9 +747,27 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             Console.ReadLine();
 
+            JB2.Bowtie.Engine.Instance.PauseTimer(p);
 
 
-           
+            Console.WriteLine(p.GetDewdropValue(thisthat, "898E1697"));
+
+            Console.ReadLine();
+
+            JB2.Bowtie.Engine.Instance.StartTimer(p);
+
+
+            Console.ReadLine();
+
+            JB2.Bowtie.Engine.Instance.PauseTimer(p);
+
+
+            Console.WriteLine(p.GetDewdropValue(thisthat, "898E1697"));
+
+            Console.ReadLine();
+
+
+
 
 
 

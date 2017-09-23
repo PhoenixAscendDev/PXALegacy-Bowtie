@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using JB2.Bowtie.Extensions;
+
 namespace JB2.Bowtie
 {
     public class Engine : JB2.Common.Singleton<Engine>
@@ -11,12 +13,19 @@ namespace JB2.Bowtie
 
         #region fields
 
-       internal Dictionary<string,List<IAchievement>> _dewdropTriggers;
+        internal Dictionary<string,List<IAchievement>> _dewdropTriggers;
+        internal System.Timers.Timer _timer;
+        internal Dictionary<string,DateTime> _stopwatch;
+        //internal Dictionary<string,DateTime> _timelastupdate;
+        private const string GAMETIME_GDID = "898E1697";
 
         #endregion Fields
         public Engine()
         {
             _dewdropTriggers = new Dictionary<string, List<IAchievement>>();
+            _stopwatch = new Dictionary<string, DateTime>();
+            //_timelastupdate = new Dictionary<string, TimeSpan>();
+
 
         }
 
@@ -28,12 +37,60 @@ namespace JB2.Bowtie
             {
                 return _dewdropTriggers.Keys;
             }
+        }
+
+        public void StartTimer(IPlayer p)
+        {
+            if (!_stopwatch.ContainsKey(p.ID))
+            {
+                //var sw = new System.Diagnostics.Stopwatch();
+                //sw
+                _stopwatch.Add(p.ID, JB2.Helper.Bowtie.Now() );
+            }
+
+            _stopwatch[p.ID] = JB2.Helper.Bowtie.Now();
+        }
+
+        public void PauseTimer(IPlayer p)
+        {
+            if (_stopwatch[p.ID] != DateTime.MinValue)
+            {
+                TimeSpan ts = JB2.Helper.Bowtie.Now() - _stopwatch[p.ID];
+                updateGameTime(p, ts);
+            }
+
+            _stopwatch[p.ID] = DateTime.MinValue;
+
 
         }
 
+        public void StopTime(IPlayer p)
+        {
+            if (_stopwatch[p.ID] != DateTime.MinValue)
+            {
+                TimeSpan ts = JB2.Helper.Bowtie.Now() - _stopwatch[p.ID];
+                updateGameTime(p, ts);
+            }
+
+            _stopwatch[p.ID] = DateTime.MinValue;
+        }
 
 
+        protected virtual void updateGameTime(IPlayer p,TimeSpan ts)
+        {
 
+
+            var lasttime = ts;
+
+
+            var current = p.GetDewdropValue(this.CurrentApplication, GAMETIME_GDID);
+
+            var dservice = JB2.Bowtie.Service.DewdropService.Instance;
+
+            ushort value = (current + lasttime.Minutes) >= 65535 ? (ushort)65535 : Convert.ToUInt16((current + lasttime.Minutes));
+
+            dservice.AddDewdropEntry(p, this.CurrentApplication, value, "from Engine", GAMETIME_GDID);
+        }
 
         internal void CheckAchievement(JB2.Bowtie.DewdropData data, JB2.Bowtie.IDewdropEntry entry)
         {
