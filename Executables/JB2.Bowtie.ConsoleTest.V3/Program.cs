@@ -747,10 +747,11 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             Console.ReadLine();
 
-            JB2.Bowtie.Engine.Instance.PauseTimer(p);
+            JB2.Bowtie.Engine.Instance.StopTimer(p);
 
 
-            Console.WriteLine(p.GetDewdropValue(thisthat, "898E1697"));
+            Console.WriteLine(JB2.Bowtie.Engine.Instance.MinutesPlayed(p));
+           
 
             Console.ReadLine();
 
@@ -759,10 +760,10 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             Console.ReadLine();
 
-            JB2.Bowtie.Engine.Instance.PauseTimer(p);
+            JB2.Bowtie.Engine.Instance.StopTimer(p);
 
 
-            Console.WriteLine(p.GetDewdropValue(thisthat, "898E1697"));
+            Console.WriteLine(JB2.Bowtie.Engine.Instance.MinutesPlayed(p));
 
             Console.ReadLine();
 

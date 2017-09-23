@@ -50,8 +50,7 @@ namespace JB2.Bowtie
 
             _stopwatch[p.ID] = JB2.Helper.Bowtie.Now();
         }
-
-        public void PauseTimer(IPlayer p)
+        public void StopTimer(IPlayer p)
         {
             if (_stopwatch[p.ID] != DateTime.MinValue)
             {
@@ -60,19 +59,14 @@ namespace JB2.Bowtie
             }
 
             _stopwatch[p.ID] = DateTime.MinValue;
-
-
         }
 
-        public void StopTime(IPlayer p)
-        {
-            if (_stopwatch[p.ID] != DateTime.MinValue)
-            {
-                TimeSpan ts = JB2.Helper.Bowtie.Now() - _stopwatch[p.ID];
-                updateGameTime(p, ts);
-            }
 
-            _stopwatch[p.ID] = DateTime.MinValue;
+        public ushort MinutesPlayed(IPlayer p)
+        {
+            var v = p.GetDewdropValue(this.CurrentApplication, GAMETIME_GDID);
+
+            return v >= ushort.MaxValue ? ushort.MaxValue : Convert.ToUInt16(v);
         }
 
 
