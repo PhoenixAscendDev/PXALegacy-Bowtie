@@ -53,6 +53,7 @@
     <Compile Include="AchievementEntry.cs" />
     <Compile Include="AchievementStepRule.cs" />
     <Compile Include="BasicAchievement.cs" />
+    <Compile Include="BitDataSet.cs" />
     <Compile Include="BowtieObject.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="Enum\AchievementType.cs" />

@@ -532,7 +532,7 @@ namespace JB2.Bowtie
 
         private void initdataset()
         {
-            _bitarray = new BitArray(10200);
+            _bitarray = new BitArray(TOTALSIZE);
 
 
             //set the drewdrop IDs

@@ -426,26 +426,64 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             var dataset = DewdropData.Empty;
 
-            var e = p.AddDewdrop(thisthat, "708C1604");
+            var bits = (BitArray)dataset;
 
-            for (int i = 0; i < 110; i++)
-            {
-                e = p.AddDewdrop(thisthat, "708C1604");
-            }
+            byte[] ret = new byte[(bits.Length - 1) / 8 + 1];
+            bits.CopyTo(ret, 0);
 
+            var bitstr = Convert.ToBase64String(ret);
 
-            var achievements = p.GetAchievements(thisthat);
+            //var bits2 = new BitArray(ret);
 
-            foreach(var a in achievements)
-            {
-                var ac = vservice.RetrieveByID(a.AchievementID);
+            Console.WriteLine(bitstr.Length);
 
-                if(ac)
-                {
-                    Console.WriteLine(ac.ToObject().Name + " : " + a.Status + " : " + a.PointsEarned);
-                }
-            }
+            //Console.WriteLine(ret.Length);
+            //Console.WriteLine(bits.Length);
+
+            //Console.WriteLine();
+
+            //Console.WriteLine(bits2.Length);
+
+            //for(int i = 0; i < bits.Length; i++)
+            //{
+            //    if (bits[i] != bits2[i])
+            //        Console.WriteLine(i.ToString().PadLeft(5, '0') + " : " + bits[i] + "|" + bits2[i]);
+            //}
+
            
+
+            //Console.WriteLine(bitstr);
+
+            //ret = new byte[(bits.Length - 1) / 8 + 1];
+            //bits2.CopyTo(ret, 0);
+
+            //var bitstr2 = Convert.ToBase64String(ret);
+
+            //Console.WriteLine(bitstr == bitstr2);
+
+
+
+            //Console.WriteLine(bits == bits2);
+
+
+            //for (int i = 0; i < 110; i++)
+            //{
+            //    var e = p.AddDewdrop(thisthat, "708C1604");
+            //}
+
+
+            //var achievements = p.GetAchievements(thisthat);
+
+            //foreach(var a in achievements)
+            //{
+            //    var ac = vservice.RetrieveByID(a.AchievementID);
+
+            //    if(ac)
+            //    {
+            //        Console.WriteLine(ac.ToObject().Name + " : " + a.Status + " : " + a.PointsEarned);
+            //    }
+            //}
+
 
 
             //var adata = AchievementData.Empty;
@@ -462,7 +500,7 @@ namespace JB2.Bowtie.ConsoleTest.V3
             //Console.WriteLine(adata.GetDateAchieved(1));
             //Console.WriteLine(adata.GetStepValue(1));
             //Console.WriteLine(adata.GetPoints(1));
-            
+
             //Console.WriteLine(adata.GetStatus(1));
 
             //Console.WriteLine(adata.isValid);
