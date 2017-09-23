@@ -157,7 +157,7 @@ namespace JB2.Bowtie.Service
                     dataset = this.GenerateDewdropData(player,application);
                 }
 
-                var dateSubmit = System.DateTime.UtcNow;
+                var dateSubmit = JB2.Helper.Bowtie.Now();
                 var parent = GDID;
 
                 DewdropEntry e = new DewdropEntry();

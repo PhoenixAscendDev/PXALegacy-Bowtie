@@ -16,4 +16,6 @@ namespace JB2.Bowtie
 
     public delegate bool OnlineCheck();
 
+    public delegate DateTime DateTimeNow();
+
 }

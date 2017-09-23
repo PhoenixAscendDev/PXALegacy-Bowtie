@@ -335,7 +335,7 @@ namespace JB2.Bowtie
 
 
             //set the dataset uniqueID
-            var timediff = DateTime.UtcNow - TICKSTART;
+            var timediff = JB2.Helper.Bowtie.Now() - TICKSTART;
 
             var ticks = timediff.Ticks + JB2.Common.RNG.Randy;
 

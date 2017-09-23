@@ -101,7 +101,7 @@ namespace JB2.Bowtie
 
         public DateTime GetLastUpdate()
         {
-            return DateTime.Now;
+            return JB2.Helper.Bowtie.Now();
         }
 
         public IEnumerable<Tag> GetTags()

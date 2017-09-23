@@ -64,5 +64,13 @@ namespace JB2.Helper
 
             return result;
         }
+
+        public static DateTime Now()
+        {
+            if (JB2.Settings.Bowtie.NowMethod != null)
+                return JB2.Settings.Bowtie.NowMethod();
+            else
+                return DateTime.UtcNow;
+        }
     }
 }

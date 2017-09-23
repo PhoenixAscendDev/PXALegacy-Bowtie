@@ -240,7 +240,7 @@ namespace JB2.Bowtie.Service
 
                     if (newValue >= stepRequested)
                     {
-                        dataset.SetDateAcheived(slot, DateTime.UtcNow);
+                        dataset.SetDateAcheived(slot, JB2.Helper.Bowtie.Now());
                         dataset.SetPoints(slot, Convert.ToByte(achievement.Points));
                         dataset.SetStatus(slot, Enum.AchievementStatusType.Achieved);
                         dataset.SetStepValue(slot, newValue);

@@ -187,6 +187,7 @@ namespace JB2.Bowtie.ConsoleTest.V3
 
             configure.AddJsonDeserializer(delegate (string json, Type type) { return Newtonsoft.Json.JsonConvert.DeserializeObject(json, type); });
             configure.AddOnlineCheck(delegate () { return true; });
+            configure.AddDateTimeNow(delegate () { return DateTime.UtcNow; });
         }
 
         static void dewdropAdded(DewdropData data, IDewdropEntry entry)

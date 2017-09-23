@@ -40,6 +40,8 @@ namespace JB2.Settings
 
         public static JsonDeserializer<object> JsonDeserializerMethod;
 
+        public static DateTimeNow NowMethod;
+
         //public delegate void MoveDelegate(object o);
         //public static MoveDelegate MoveMethod;
 
