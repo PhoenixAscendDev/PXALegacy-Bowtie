@@ -218,20 +218,63 @@ namespace JB2.Bowtie.Service
                     string GDID = string.Empty;
                     var oldValue = dataset.GetStepValue(slot);
                     var stepRequested = achievement.StepsRequired;
+                    string[] parts = new string[0];
                     switch (rule.StepType)
                     {
                         case Enum.StepFxType.DewdropIncrement:
-                            string[] parts = rule.StepFx.Split('|');
+                            parts = rule.StepFx.Split('|');
                             GDID = parts[0].Trim();
                             var mult = parts[1].Trim();                       
                             newValue = oldValue + (1 * Convert.ToInt32(mult));
                             break;
 
                         case Enum.StepFxType.DewdropValue:
-                            GDID = rule.StepFx.TrySplit('|', 0).Trim();
+                            parts = rule.StepFx.Split('|');
+                            GDID = parts[0].Trim();
                             var dewdropValue = player.GetDewdropValue(application, GDID);
-                            newValue = dewdropValue;
-                            break;
+                            Enum.Comparisons com = Enum.Comparisons.Equal;
+                            int valueToTest = 0;
+                            bool steptest = false;
+                            try
+                            {
+                                int comint = Convert.ToInt32(parts[1].Trim());
+                                com = (Enum.Comparisons)comint;
+
+                                valueToTest = Convert.ToInt32(parts[2].Trim());
+                            }
+                            catch { }
+
+                            switch(com)
+                            {
+                                case Enum.Comparisons.Equal:
+                                    steptest = dewdropValue == valueToTest;
+                                    break;
+                                case Enum.Comparisons.GreaterThan:
+                                    steptest = dewdropValue > valueToTest;
+                                    break;
+                                case Enum.Comparisons.GreaterThanOrEqual:
+                                    steptest = dewdropValue >= valueToTest;
+                                    break;
+                                case Enum.Comparisons.LessThan:
+                                    steptest = dewdropValue < valueToTest;
+                                    break;
+                                case Enum.Comparisons.LessThanOrEqual:
+                                    steptest = dewdropValue <= valueToTest;
+                                    break;
+                                case Enum.Comparisons.NotEqual:
+                                    steptest = dewdropValue != valueToTest;
+                                    break;
+                            }
+
+                            if(steptest)
+                            {
+                                newValue = dewdropValue;
+                            }
+                            else
+                            {
+                                newValue = oldValue;
+                            }
+                            break;                      
                     }
 
                     dataset.SetStepValue(slot,newValue);

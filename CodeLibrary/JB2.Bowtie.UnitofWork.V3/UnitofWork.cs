@@ -16,6 +16,8 @@ namespace JB2.Bowtie
 
         public IAchievementRepository AchievementRepository => JB2.Bowtie.Data.Local.AchievementRepo.Instance;
 
+        public ILeaderboardRepository LeaderboardRepository => JB2.Bowtie.Data.Local.LeaderboardRepo.Instance;
+
         public IDewdropQueueRepo DewdropQueue => throw new NotImplementedException();
 
 

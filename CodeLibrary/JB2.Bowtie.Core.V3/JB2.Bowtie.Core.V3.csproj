@@ -53,6 +53,7 @@
     <Compile Include="AchievementEntry.cs" />
     <Compile Include="AchievementStepRule.cs" />
     <Compile Include="BasicAchievement.cs" />
+    <Compile Include="BasicLeaderboard.cs" />
     <Compile Include="BitDataSet.cs" />
     <Compile Include="BowtieObject.cs" />
     <Compile Include="Delegates.cs" />
@@ -68,8 +69,12 @@
     <Compile Include="DrewdropData.cs" />
     <Compile Include="Enum\Comparisons.cs" />
     <Compile Include="Enum\DewDropValueType.cs" />
+    <Compile Include="Enum\LeaderboardScoreType.cs" />
+    <Compile Include="Enum\LeaderboardType.cs" />
+    <Compile Include="Enum\ScoreOrderType.cs" />
     <Compile Include="Enum\StepFxType.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="Interfaces\ILeaderboard.cs" />
     <Compile Include="Interfaces\IAchievement.cs" />
     <Compile Include="Interfaces\IAchievementEntry.cs" />
     <Compile Include="Interfaces\IAchievementRepository.cs" />
@@ -82,6 +87,7 @@
     <Compile Include="Interfaces\IDewdrop.cs" />
     <Compile Include="Interfaces\IDewdropQueue.cs" />
     <Compile Include="Interfaces\IDewdropRepository.cs" />
+    <Compile Include="Interfaces\ILeadershipRepository.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IQueue.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />

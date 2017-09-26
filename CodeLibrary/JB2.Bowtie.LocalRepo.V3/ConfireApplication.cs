@@ -16,6 +16,7 @@ namespace JB2.Bowtie.Data
             Dewdrops = new List<BasicDewdrop>();
             Achievements = new List<BasicAchievement>();
             AchievementStepRules = new List<AchievementStepRule>();
+            Leaderboards = new List<BasicLeaderboard>();
         }
 
         public ExportApplication(IApplication a) : this()
@@ -50,6 +51,8 @@ namespace JB2.Bowtie.Data
         public List<BasicAchievement> Achievements { get; set; }
 
         public List<AchievementStepRule> AchievementStepRules { get; set; }
+
+        public List<BasicLeaderboard> Leaderboards { get; set; }
 
     }
 }

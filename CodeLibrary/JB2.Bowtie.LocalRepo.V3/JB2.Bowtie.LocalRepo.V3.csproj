@@ -52,6 +52,7 @@
     <Compile Include="ConcreteConverter.cs" />
     <Compile Include="ConfireApplication.cs" />
     <Compile Include="DewDropRepo.cs" />
+    <Compile Include="LeaderboardRepo.cs" />
     <Compile Include="LocalApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -165,6 +165,9 @@ namespace JB2.Bowtie.Service
                 {
                     var dewdrop = dewdrops.Where(x => x.GDID == parent).FirstOrDefault();
 
+                    if (dewdrop == null)
+                        throw new Exception("Dewdrop [" + parent + "] was not found in application [" + application.ID + "]");
+
                     switch (dewdrop.ValueType)
                     {
                         case Enum.DewDropValueType.Count:

@@ -16,7 +16,7 @@ namespace JB2.Bowtie
         //IAuthProviderRepository AuthProviderRepository { get; }
 
         //IGameCommandRepository GameCommandRepository { get; }
-        //ILeaderboardRepository LeaderboardRepository { get; }
+        ILeaderboardRepository LeaderboardRepository { get; }
         //IGraphRepository GraphRepository { get; }
 
         IDewdropRepository DewdropRepository { get; }
