@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IAchievement : IBowtieObject, JB2.Common.IIDNamePair<string, string>
+    public interface IAchievement : IBowtieObject, JB2.Common.IIDNamePair<string, string>, IApplicationable<string>
     {
         string ApplicationID { get; set; }
         int SortOrder { get; set; }

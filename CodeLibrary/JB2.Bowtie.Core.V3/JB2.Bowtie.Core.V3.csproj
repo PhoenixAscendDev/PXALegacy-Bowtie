@@ -74,6 +74,7 @@
     <Compile Include="Enum\ScoreOrderType.cs" />
     <Compile Include="Enum\StepFxType.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="Interfaces\IApplicationable.cs" />
     <Compile Include="Interfaces\IInventoryItem.cs" />
     <Compile Include="Interfaces\IInventoryRepository.cs" />
     <Compile Include="Interfaces\ILeaderboard.cs" />

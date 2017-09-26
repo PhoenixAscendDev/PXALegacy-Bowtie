@@ -36,5 +36,10 @@ namespace JB2.Bowtie
         public int Points { get; set; }
 
         public byte StorageSlot { get; set; }
+
+        public string GetApplicationID()
+        {
+            return ApplicationID;
+        }
     }
 }

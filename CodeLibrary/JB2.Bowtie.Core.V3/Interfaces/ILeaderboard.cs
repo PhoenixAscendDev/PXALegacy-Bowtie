@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface ILeaderboard : IBowtieObject, JB2.Common.IIDNamePair<string, string>
+    public interface ILeaderboard : IBowtieObject, JB2.Common.IIDNamePair<string, string>, IApplicationable<string>
     {
 
         string ApplicationID { get; set; }

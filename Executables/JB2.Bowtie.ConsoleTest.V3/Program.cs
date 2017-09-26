@@ -214,6 +214,7 @@ namespace JB2.Bowtie.ConsoleTest.V3
             tt1.ValueType = Enum.DewDropValueType.Count;
             tt1.IsActive = true;
             tt1.GDID = "9B7616C6";
+            
 
 
             var tt2 = new BasicDewdrop();

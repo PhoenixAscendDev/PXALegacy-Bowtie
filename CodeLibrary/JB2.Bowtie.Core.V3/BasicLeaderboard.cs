@@ -20,5 +20,10 @@ namespace JB2.Bowtie
         public DateTime DateRangeStart { get; set; }
         public DateTime DateRangeEnd { get; set; }
         public string ParentID { get; set; }
+
+        public string GetApplicationID()
+        {
+            return ApplicationID;
+        }
     }
 }

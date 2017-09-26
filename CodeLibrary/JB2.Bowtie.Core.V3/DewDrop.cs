@@ -47,6 +47,11 @@ namespace JB2.Bowtie
             return Name;
         }
 
-        
+        public string GetApplicationID()
+        {
+            return ApplicationID;
+        }
+
+
     }
 }

@@ -13,5 +13,10 @@ namespace JB2.Bowtie
         public string InventoryCategory { get; set; }
         public string PuralName { get; set; }
         public string StorageSlot { get; set; }
+
+        public string GetApplicationID()
+        {
+            return ApplicationID;
+        }
     }
 }

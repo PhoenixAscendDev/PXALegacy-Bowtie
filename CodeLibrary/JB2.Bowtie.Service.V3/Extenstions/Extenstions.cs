@@ -186,6 +186,23 @@ namespace JB2.Bowtie.Extensions
 
     }
 
+    public static class ServiceApplicationableExtenstions
+    {
+        public static IApplication GetApplication(this IApplicationable<string> a)
+        {
+            var dds = JB2.Bowtie.Service.ApplicationService.Instance;
+
+            var data = dds.RetrieveApplicationById(a.GetApplicationID());
+
+            if ((data) && (data.ToObject() == null))
+            {
+                return new IApplication[0].FirstOrDefault();
+            }
+
+            return data.ToObject();
+        }
+    }
+
 
     public static class ServiceApplicationExtenstions
     {
@@ -212,6 +229,34 @@ namespace JB2.Bowtie.Extensions
             if ((data) && (data.ToObject() == null))
             {
                 return new IDewdrop[0];
+            }
+
+            return data.ToObject();
+        }
+
+        public static IEnumerable<IInventoryItem> GetInventoryItems(this IApplication application)
+        {
+            var dds = JB2.Bowtie.Service.InventoryService.Instance;
+
+            var data = dds.RetrieveByApplication(application);
+
+            if ((data) && (data.ToObject() == null))
+            {
+                return new IInventoryItem[0];
+            }
+
+            return data.ToObject();
+        }
+
+        public static IEnumerable<ILeaderboard> GetLeaderboards(this IApplication application)
+        {
+            var dds = JB2.Bowtie.Service.LeaderboardService.Instance;
+
+            var data = dds.RetrieveByApplication(application);
+
+            if ((data) && (data.ToObject() == null))
+            {
+                return new ILeaderboard[0];
             }
 
             return data.ToObject();

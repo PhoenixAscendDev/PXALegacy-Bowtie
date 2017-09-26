@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IInventoryItem : JB2.Common.IIDNamePair<string, string>
+    public interface IInventoryItem : JB2.Common.IIDNamePair<string, string>, IApplicationable<string>
     {
         //int Quanity { get; set; }
 

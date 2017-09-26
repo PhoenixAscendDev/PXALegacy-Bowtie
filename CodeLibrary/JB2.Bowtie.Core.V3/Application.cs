@@ -22,6 +22,11 @@ namespace JB2.Bowtie
         public string APIkey { get; set; }
         public string Secret { get; set; }
 
+        public string GetApplicationID()
+        {
+            return ID;
+        }
+
         public static BasicApplication New
         {
             get
