@@ -18,6 +18,8 @@ namespace JB2.Bowtie
 
         public ILeaderboardRepository LeaderboardRepository => JB2.Bowtie.Data.Local.LeaderboardRepo.Instance;
 
+        public IInventoryRepository InventoryRepository => JB2.Bowtie.Data.Local.InventoryRepo.Instance;
+
         public IDewdropQueueRepo DewdropQueue => throw new NotImplementedException();
 
 

@@ -111,6 +111,7 @@ namespace JB2.Bowtie.Data.Local
             a.Dewdrops = _uofw.DewdropRepository.GetByApplicationID(application.ID).Cast<BasicDewdrop>().Where(x => x.ApplicationID != 0.ToString()).ToList();
             a.Achievements = _uofw.AchievementRepository.GetByApplicationID(application.ID).Cast<BasicAchievement>().ToList();
             a.Leaderboards = _uofw.LeaderboardRepository.GetByApplicationID(application.ID).Cast<BasicLeaderboard>().ToList();
+            a.InventoryItems = _uofw.InventoryRepository.GetByApplicationID(application.ID).Cast<BasicInventoryItem>().ToList();
             foreach (var s in a.Achievements)
             {
                 foreach (var s1 in _uofw.AchievementRepository.GetStepsByAchievementID(s.ID))
@@ -149,6 +150,11 @@ namespace JB2.Bowtie.Data.Local
             foreach(var l in a.Leaderboards)
             {
                 _uofw.LeaderboardRepository.Insert(l);
+            }
+
+            foreach(var i in a.InventoryItems)
+            {
+                _uofw.InventoryRepository.Insert(i);
             }
 
             return a;

@@ -17,6 +17,7 @@ namespace JB2.Bowtie.Data
             Achievements = new List<BasicAchievement>();
             AchievementStepRules = new List<AchievementStepRule>();
             Leaderboards = new List<BasicLeaderboard>();
+            InventoryItems = new List<BasicInventoryItem>();
         }
 
         public ExportApplication(IApplication a) : this()
@@ -53,6 +54,8 @@ namespace JB2.Bowtie.Data
         public List<AchievementStepRule> AchievementStepRules { get; set; }
 
         public List<BasicLeaderboard> Leaderboards { get; set; }
+
+        public List<BasicInventoryItem> InventoryItems { get; set; }
 
     }
 }

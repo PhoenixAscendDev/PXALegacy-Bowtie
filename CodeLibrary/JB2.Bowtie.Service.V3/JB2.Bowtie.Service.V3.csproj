@@ -48,6 +48,7 @@
     <Compile Include="ConfireApplication.cs" />
     <Compile Include="DewdropService.cs" />
     <Compile Include="Extenstions\Extenstions.cs" />
+    <Compile Include="InventoryService.cs" />
     <Compile Include="LeaderboardService.cs" />
     <Compile Include="LogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -74,6 +74,8 @@
     <Compile Include="Enum\ScoreOrderType.cs" />
     <Compile Include="Enum\StepFxType.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="Interfaces\IInventoryItem.cs" />
+    <Compile Include="Interfaces\IInventoryRepository.cs" />
     <Compile Include="Interfaces\ILeaderboard.cs" />
     <Compile Include="Interfaces\IAchievement.cs" />
     <Compile Include="Interfaces\IAchievementEntry.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IQueue.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="InventoryItem.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
