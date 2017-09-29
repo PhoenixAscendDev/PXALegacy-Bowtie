@@ -47,10 +47,12 @@
     <Compile Include="ApplicationService.cs" />
     <Compile Include="ConfireApplication.cs" />
     <Compile Include="DewdropService.cs" />
+    <Compile Include="DictionaryService.cs" />
     <Compile Include="Extenstions\Extenstions.cs" />
     <Compile Include="InventoryService.cs" />
     <Compile Include="LeaderboardService.cs" />
     <Compile Include="LogService.cs" />
+    <Compile Include="PlayerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

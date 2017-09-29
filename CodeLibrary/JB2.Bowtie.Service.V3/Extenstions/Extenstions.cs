@@ -202,7 +202,23 @@ namespace JB2.Bowtie.Extensions
             return data.ToObject();
         }
     }
+    
+    public static class ServicePlayerableExtenstions
+    {
+        public static IPlayer GetPlayer(this IPlayerable<string> p)
+        {
+            var dds = JB2.Bowtie.Service.PlayerService.Instance;
 
+            var data = dds.RetrievePlayerById(p.GetPlayerID());
+
+            if ((data) && (data.ToObject() == null))
+            {
+                return new IPlayer[0].FirstOrDefault();
+            }
+
+            return data.ToObject();
+        }
+    }
 
     public static class ServiceApplicationExtenstions
     {

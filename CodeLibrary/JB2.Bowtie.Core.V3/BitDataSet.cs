@@ -10,7 +10,7 @@ using JB2.Common;
 
 namespace JB2.Bowtie
 {
-    public abstract class BitDataSet
+    public abstract class BitDataSet : IBitDataSet
     {
         #region Fields
         protected BitArray _bitarray;
@@ -18,8 +18,8 @@ namespace JB2.Bowtie
 
         #region Const
 
-        private const int TOTALSIZE = 10240;
-        protected static readonly  int ROWSIZE = 80;
+        protected static readonly int TOTALSIZE = 10240;
+        protected static readonly int ROWSIZE = 80;
         protected static readonly int TOTALROWS = 95;
 
         protected static readonly int TICK1_INDEX = 72;

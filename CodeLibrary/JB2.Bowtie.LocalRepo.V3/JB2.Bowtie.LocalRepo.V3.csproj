@@ -52,9 +52,12 @@
     <Compile Include="ConcreteConverter.cs" />
     <Compile Include="ConfireApplication.cs" />
     <Compile Include="DewDropRepo.cs" />
+    <Compile Include="DictionaryRepository.cs" />
     <Compile Include="InventoryRepo.cs" />
     <Compile Include="LeaderboardRepo.cs" />
     <Compile Include="LocalApplication.cs" />
+    <Compile Include="LogRepo.cs" />
+    <Compile Include="PlayerRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

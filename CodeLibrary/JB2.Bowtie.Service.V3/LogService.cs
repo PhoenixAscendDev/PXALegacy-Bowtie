@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using JB2.Common;
+using JB2.Bowtie.Extensions;
 
 namespace JB2.Bowtie.Service
 {
@@ -46,9 +47,47 @@ namespace JB2.Bowtie.Service
 
         }
 
+
+        public void LogPlayerActivity(IPlayerActivity pa)
+        {
+
+            try
+            {
+                var r = _uofw.LogRepository;
+
+                r.Insert(pa);
+
+                JB2.Events.Bowtie.OnNewPlayerActivity(pa, pa.GetPlayer(), pa.GetApplication());
+            }
+            catch(Exception ex)
+            {
+                ex.ToServiceResult();
+            }
+
+        }
+
+
+        public void LogPlayerActivity(string playerID, string applicationID, byte[] data,string code)
+        {
+            var pa = new IPlayerActivity[0].FirstOrDefault();
+
+            LogPlayerActivity(pa);
+        }
+
+
         private void onEntryLogged(ILogger<JB2.Common.Enum.LogServerityType,string,ILogEntry> logger,JB2.Common.Enum.LogServerityType serverity, ILogEntry entry)
         {
             JB2.Events.Bowtie.OnLogEntryLogged(logger, entry);
+        }
+
+
+        public void LoadPlayerActivity( IEnumerable<IPlayerActivity> list)
+        {
+            var r = _uofw.LogRepository;
+            foreach (var pa in list)
+            {
+                r.Insert(pa);
+            }
         }
 
 

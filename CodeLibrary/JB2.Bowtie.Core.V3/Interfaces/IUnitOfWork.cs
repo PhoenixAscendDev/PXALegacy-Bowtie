@@ -23,6 +23,12 @@ namespace JB2.Bowtie
 
         IDewdropRepository DewdropRepository { get; }
 
+        IPlayerRepository PlayerRepository { get; }
+
+        ILogRepository LogRepository { get; }
+
+        IDictionaryRepository DictionaryRepository { get; }
+
         //IModuleRepository ModuleRepository { get; }
 
         ////JB2.Economy.IJBeanRepository JbeanRepository { get;}

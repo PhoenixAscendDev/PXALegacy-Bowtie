@@ -52,6 +52,7 @@
     <Compile Include="AchievementData.cs" />
     <Compile Include="AchievementEntry.cs" />
     <Compile Include="AchievementStepRule.cs" />
+    <Compile Include="ActivityDataset.cs" />
     <Compile Include="BasicAchievement.cs" />
     <Compile Include="BasicLeaderboard.cs" />
     <Compile Include="BitDataSet.cs" />
@@ -75,6 +76,8 @@
     <Compile Include="Enum\StepFxType.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Interfaces\IApplicationable.cs" />
+    <Compile Include="Interfaces\IBitDataSet.cs" />
+    <Compile Include="Interfaces\IDictionaryRepsository.cs" />
     <Compile Include="Interfaces\IInventoryItem.cs" />
     <Compile Include="Interfaces\IInventoryRepository.cs" />
     <Compile Include="Interfaces\ILeaderboard.cs" />
@@ -91,7 +94,11 @@
     <Compile Include="Interfaces\IDewdropQueue.cs" />
     <Compile Include="Interfaces\IDewdropRepository.cs" />
     <Compile Include="Interfaces\ILeadershipRepository.cs" />
+    <Compile Include="Interfaces\ILogRepository.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
+    <Compile Include="Interfaces\IPlayerable.cs" />
+    <Compile Include="Interfaces\IPlayerActivity.cs" />
+    <Compile Include="Interfaces\IPlayerRepository.cs" />
     <Compile Include="Interfaces\IQueue.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="InventoryItem.cs" />

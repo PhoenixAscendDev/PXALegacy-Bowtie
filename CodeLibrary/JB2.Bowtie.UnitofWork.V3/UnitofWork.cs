@@ -20,7 +20,13 @@ namespace JB2.Bowtie
 
         public IInventoryRepository InventoryRepository => JB2.Bowtie.Data.Local.InventoryRepo.Instance;
 
+        public IPlayerRepository PlayerRepository => JB2.Bowtie.Data.Local.PlayerRepo.Instance;
+
         public IDewdropQueueRepo DewdropQueue => throw new NotImplementedException();
+
+        public ILogRepository LogRepository => JB2.Bowtie.Data.Local.LogRepo.Instance;
+
+        public IDictionaryRepository DictionaryRepository => JB2.Bowtie.Data.Local.DictionaryRepository.Instance;
 
 
 

@@ -30,7 +30,6 @@ namespace JB2.Bowtie.Service
 
         #endregion Constructors
 
-
         public ServiceResult<IApplication> RetrieveApplicationById(string id)
         {
             try
@@ -93,6 +92,25 @@ namespace JB2.Bowtie.Service
             {
                 return ex.ToServiceResult<IApplication>();
             }
+        }
+
+
+        public ServiceResult<IEnumerable<IPlayerActivity>> RetrievePlayerActivity(IApplication application, IPlayer player)
+        {
+
+            try
+            {
+                var r = _uofw.LogRepository;
+
+                var result = r.GetPlayerActivityByApplicationID(application.ID, player.ID);
+
+                return new ServiceResult<IEnumerable<IPlayerActivity>>(result);
+            }
+            catch(Exception ex)
+            {
+                return ex.ToServiceResult<IEnumerable<IPlayerActivity>>();
+            }
+
         }
     }
 }
