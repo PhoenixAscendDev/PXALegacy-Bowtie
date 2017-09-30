@@ -19,7 +19,7 @@ namespace JB2.Bowtie.Data.Local
 
         public DictionaryRepository()
         {
-
+            _activities = new Dictionary<string, Dictionary<string, string>>();
         }
 
        

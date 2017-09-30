@@ -112,6 +112,16 @@ namespace JB2.Bowtie.Data.Local
             a.Achievements = _uofw.AchievementRepository.GetByApplicationID(application.ID).Cast<BasicAchievement>().ToList();
             a.Leaderboards = _uofw.LeaderboardRepository.GetByApplicationID(application.ID).Cast<BasicLeaderboard>().ToList();
             a.InventoryItems = _uofw.InventoryRepository.GetByApplicationID(application.ID).Cast<BasicInventoryItem>().ToList();
+            a.Activities = new List<Common.CodeNamePair>();
+            var activites = _uofw.DictionaryRepository.GetApplicationActivities(application.ID);
+
+
+            foreach(var act in activites)
+            {
+                a.Activities.Add(new Common.CodeNamePair(act.Key, act.Value));
+            }
+
+            
             foreach (var s in a.Achievements)
             {
                 foreach (var s1 in _uofw.AchievementRepository.GetStepsByAchievementID(s.ID))
@@ -157,6 +167,14 @@ namespace JB2.Bowtie.Data.Local
                 _uofw.InventoryRepository.Insert(i);
             }
 
+            Dictionary<string, string> actdic = new Dictionary<string, string>();
+
+            foreach(var act in a.Activities)
+            {
+                actdic.Add(act.Code, act.Name);
+            }
+
+            _uofw.DictionaryRepository.InsertActivities(a.ID, actdic);
             return a;
 
 

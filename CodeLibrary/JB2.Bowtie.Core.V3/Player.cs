@@ -22,5 +22,10 @@ namespace JB2.Bowtie
         {
             return Name;
         }
+
+        public string GetPlayerID()
+        {
+            return ID;
+        }
     }
 }

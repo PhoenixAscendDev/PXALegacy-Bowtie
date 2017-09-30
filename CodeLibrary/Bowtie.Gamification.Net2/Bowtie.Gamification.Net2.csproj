@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common.Core, Version=0.4.18.6283, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.18.1\lib\JB2.Common.Core.dll</HintPath>
+    <Reference Include="JB2.Common.Core, Version=0.4.19.2858, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.19.2\lib\JB2.Common.Core.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Common.Core.Net2, Version=0.4.4.4247, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\JB2.Common.Core.Net35.0.4.4.2\lib\JB2.Common.Core.Net2.dll</HintPath>

@@ -13,7 +13,7 @@ namespace JB2.Bowtie.Data.Local
 
         protected List<ILogEntry> _items;
         protected IUnitOfWork _uofw;
-        protected Dictionary<string, List<IPlayerActivity>> _playeractivities;
+        protected Dictionary<string, List<IActivityEntry>> _playeractivities;
 
 
         #endregion Fields
@@ -33,7 +33,7 @@ namespace JB2.Bowtie.Data.Local
 
             _items = new List<ILogEntry>();
 
-            _playeractivities = new Dictionary<string, List<IPlayerActivity>>();
+            _playeractivities = new Dictionary<string, List<IActivityEntry>>();
 
 
         }
@@ -80,18 +80,18 @@ namespace JB2.Bowtie.Data.Local
             throw new NotImplementedException();
         }
 
-        public void Insert(IPlayerActivity pa)
+        public void Insert(IActivityEntry pa)
         {
             string pakey = pa.GetApplicationID() + "<*>" + pa.GetPlayerID();
 
 
             if(!_playeractivities.ContainsKey(pakey))
-                _playeractivities.Add(pakey, new List<IPlayerActivity>());
+                _playeractivities.Add(pakey, new List<IActivityEntry>());
 
             _playeractivities[pakey].Add(pa);
         }
 
-        public IEnumerable<IPlayerActivity> GetPlayerActivityByApplicationID(string applicationid, string playerid)
+        public IEnumerable<IActivityEntry> GetPlayerActivityByApplicationID(string applicationid, string playerid)
         {
             string pakey = applicationid + "<*>" + playerid;
 
@@ -99,7 +99,7 @@ namespace JB2.Bowtie.Data.Local
                 return _playeractivities[pakey];
 
             else
-                return new IPlayerActivity[0];
+                return new IActivityEntry[0];
         }
 
 

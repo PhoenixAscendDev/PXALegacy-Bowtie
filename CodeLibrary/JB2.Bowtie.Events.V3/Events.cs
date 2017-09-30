@@ -18,7 +18,7 @@ namespace JB2.Events
 
         public event Action<JB2.Bowtie.IAchievement, JB2.Bowtie.IAchievementEntry> AchievementAchieved;
 
-        public event Action<JB2.Bowtie.IPlayerActivity, JB2.Bowtie.IPlayer, JB2.Bowtie.IApplication> NewPlayerActivity; 
+        public event Action<JB2.Bowtie.IActivityEntry, JB2.Bowtie.IPlayer, JB2.Bowtie.IApplication> NewPlayerActivity; 
 
 
         public static void OnLogEntryLogged(ILogger<JB2.Common.Enum.LogServerityType, string, ILogEntry> logger, ILogEntry entry)
@@ -39,7 +39,7 @@ namespace JB2.Events
                 JB2.Events.Bowtie.Instance.AchievementAchieved(achievement, entry);
         }
 
-        public static void OnNewPlayerActivity(JB2.Bowtie.IPlayerActivity act, JB2.Bowtie.IPlayer player, JB2.Bowtie.IApplication application)
+        public static void OnNewPlayerActivity(JB2.Bowtie.IActivityEntry act, JB2.Bowtie.IPlayer player, JB2.Bowtie.IApplication application)
         {
             if (JB2.Events.Bowtie.Instance.NewPlayerActivity != null)
                 JB2.Events.Bowtie.Instance.NewPlayerActivity(act, player, application);

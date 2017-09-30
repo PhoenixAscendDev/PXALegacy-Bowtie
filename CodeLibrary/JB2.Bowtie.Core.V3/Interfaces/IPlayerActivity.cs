@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IPlayerActivity : IBowtieObject, IApplicationable<string>, IPlayerable<string>
+    public interface IActivityEntry : IBowtieObject, IApplicationable<string>, IPlayerable<string>
     {
         DateTime ActivityDate { get; set; }
 

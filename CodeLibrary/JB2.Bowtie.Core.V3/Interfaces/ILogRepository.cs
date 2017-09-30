@@ -8,8 +8,8 @@ namespace JB2.Bowtie
 {
     public interface ILogRepository : JB2.Common.IRepository<JB2.Common.ILogEntry, string>
     {
-        void Insert(IPlayerActivity pa);
+        void Insert(IActivityEntry pa);
 
-        IEnumerable<IPlayerActivity> GetPlayerActivityByApplicationID(string applicationID, string playerID);
+        IEnumerable<IActivityEntry> GetPlayerActivityByApplicationID(string applicationID, string playerID);
     }
 }

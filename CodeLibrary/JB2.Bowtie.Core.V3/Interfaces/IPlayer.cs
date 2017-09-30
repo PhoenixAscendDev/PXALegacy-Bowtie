@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 { 
-    public interface IPlayer : JB2.Common.IPerson<string>
+    public interface IPlayer : JB2.Common.IPerson<string>, IPlayerable<string>
     {
         
     }

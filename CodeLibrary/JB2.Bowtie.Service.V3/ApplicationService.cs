@@ -95,7 +95,7 @@ namespace JB2.Bowtie.Service
         }
 
 
-        public ServiceResult<IEnumerable<IPlayerActivity>> RetrievePlayerActivity(IApplication application, IPlayer player)
+        public ServiceResult<IEnumerable<IActivityEntry>> RetrievePlayerActivity(IApplication application, IPlayer player)
         {
 
             try
@@ -104,11 +104,11 @@ namespace JB2.Bowtie.Service
 
                 var result = r.GetPlayerActivityByApplicationID(application.ID, player.ID);
 
-                return new ServiceResult<IEnumerable<IPlayerActivity>>(result);
+                return new ServiceResult<IEnumerable<IActivityEntry>>(result);
             }
             catch(Exception ex)
             {
-                return ex.ToServiceResult<IEnumerable<IPlayerActivity>>();
+                return ex.ToServiceResult<IEnumerable<IActivityEntry>>();
             }
 
         }

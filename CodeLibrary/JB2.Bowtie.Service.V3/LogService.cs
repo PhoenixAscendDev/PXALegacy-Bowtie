@@ -48,7 +48,7 @@ namespace JB2.Bowtie.Service
         }
 
 
-        public void LogPlayerActivity(IPlayerActivity pa)
+        public void LogPlayerActivity(IActivityEntry pa)
         {
 
             try
@@ -69,7 +69,7 @@ namespace JB2.Bowtie.Service
 
         public void LogPlayerActivity(string playerID, string applicationID, byte[] data,string code)
         {
-            var pa = new IPlayerActivity[0].FirstOrDefault();
+            var pa = new IActivityEntry[0].FirstOrDefault();
 
             LogPlayerActivity(pa);
         }
@@ -81,7 +81,7 @@ namespace JB2.Bowtie.Service
         }
 
 
-        public void LoadPlayerActivity( IEnumerable<IPlayerActivity> list)
+        public void LoadPlayerActivity( IEnumerable<IActivityEntry> list)
         {
             var r = _uofw.LogRepository;
             foreach (var pa in list)

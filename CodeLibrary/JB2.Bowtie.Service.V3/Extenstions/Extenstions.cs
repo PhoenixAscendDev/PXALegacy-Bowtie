@@ -278,6 +278,20 @@ namespace JB2.Bowtie.Extensions
             return data.ToObject();
         }
 
+        public static Dictionary<string,string> GetActivityDictionary(this IApplication application)
+        {
+            var dds = JB2.Bowtie.Service.DictionaryService.Instance;
+
+            var data = dds.RetrieveApplicationActivities(application);
+
+            if ((data) && (data.ToObject() == null))
+            {
+                return new Dictionary<string, string>();
+            }
+
+            return data.ToObject();
+        }
+
 
     }
 
