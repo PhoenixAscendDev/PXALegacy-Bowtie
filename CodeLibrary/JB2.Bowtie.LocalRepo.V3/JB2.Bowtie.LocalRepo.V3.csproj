@@ -61,13 +61,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\JB2.Bowtie.Core.V3\JB2.Bowtie.Core.V3.csproj">
       <Project>{ccf6425a-b249-4559-92ec-4b317d557b14}</Project>
       <Name>JB2.Bowtie.Core.V3</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

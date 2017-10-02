@@ -8,6 +8,8 @@ namespace JB2.Bowtie
 {
     public interface IAchievementEntry
     {
+
+        string ID { get; set; }
         string AchievementID { get; set; }
         string PlayerID { get; set; }
         string ApplicationID { get; set; }

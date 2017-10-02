@@ -12,7 +12,10 @@ namespace JB2.Bowtie
         public AchievementStepRule()
         {
             IsActive = true;
+            ID = JB2.Helper.Bowtie.GenerateID<AchievementStepRule>();
         }
+
+        public string ID { get; set; }
         public string AchievementID { get; set; }
         public Enum.StepFxType StepType { get; set; }
         public string StepFx { get; set; }

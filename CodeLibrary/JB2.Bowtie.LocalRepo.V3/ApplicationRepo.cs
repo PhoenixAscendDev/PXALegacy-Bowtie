@@ -32,7 +32,7 @@ namespace JB2.Bowtie.Data.Local
             {
                 _apps = new Dictionary<string, IApplication>();
                 var json = "[{\"Website\":\"http://linkfence.io\",\"IsAuthorized\":true,\"AuthorizedState\":3,\"Company\":{\"POC\":null,\"MailingAddress\":null,\"ID\":\"jb2-centreville\",\"Name\":\"JBsquared LLC\"},\"APIkey\":null,\"Secret\":null,\"ID\":\"a600dcba\",\"Name\":\"Link Fence\"},{\"Website\":\"http://fivetwo.io\",\"IsAuthorized\":true,\"AuthorizedState\":3,\"Company\":{\"POC\":null,\"MailingAddress\":null,\"ID\":\"jb2-centreville\",\"Name\":\"JBsquared LLC\"},\"APIkey\":null,\"Secret\":null,\"ID\":\"a4cc70f2\",\"Name\":\"FiveTwo\"},{\"Website\":\"http://bluffstreet.fun/thisthat\",\"IsAuthorized\":true,\"AuthorizedState\":3,\"Company\":{\"POC\":null,\"MailingAddress\":null,\"ID\":\"jb2-centreville\",\"Name\":\"JBsquared LLC\"},\"APIkey\":null,\"Secret\":null,\"ID\":\"9F0199E\",\"Name\":\"ThisThat\"}]";
-                var list =  Newtonsoft.Json.JsonConvert.DeserializeObject<List<LocalApplication>>(json);
+                var list = JB2.Helper.Bowtie.ConvertToObjectFromJsonString<List<LocalApplication>>(json); // Newtonsoft.Json.JsonConvert.DeserializeObject<List<LocalApplication>>(json);
 
                 foreach(var a in list)
                 {

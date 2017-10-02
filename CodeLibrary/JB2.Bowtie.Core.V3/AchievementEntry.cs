@@ -9,6 +9,12 @@ namespace JB2.Bowtie
 {
     public class AchievementEntry : IAchievementEntry
     {
+        public AchievementEntry()
+        {
+            ID = JB2.Helper.Bowtie.GenerateID<AchievementEntry>();
+        }
+
+        public string ID { get; set; }
         public string AchievementID { get; set; }
         public string PlayerID { get; set; }
         public string ApplicationID { get; set; }

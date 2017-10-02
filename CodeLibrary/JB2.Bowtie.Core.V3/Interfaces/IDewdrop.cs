@@ -8,7 +8,7 @@ using JB2.Common;
 
 namespace JB2.Bowtie
 {
-    public interface IDewdrop : IIDNamePair<byte,string>, IApplicationable<string>
+    public interface IDewdrop : IIDNamePair<byte,string>, IApplicationable<string>, JB2.Common.IIDProp<byte>
     {
         string ApplicationID { get; set; }
         string GDID { get; set; }

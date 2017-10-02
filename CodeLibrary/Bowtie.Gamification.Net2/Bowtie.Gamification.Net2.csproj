@@ -36,18 +36,50 @@
     </Reference>
     <Reference Include="JB2.Common.Core.Net2, Version=0.4.4.4247, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\JB2.Common.Core.Net35.0.4.4.2\lib\JB2.Common.Core.Net2.dll</HintPath>
-      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Common.Data.AzureStorage, Version=0.3.0.482, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.3.0.482\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="JB2.Common.Date, Version=0.2.2.22361, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Date.0.2.2\lib\JB2.Common.Date.dll</HintPath>
+    </Reference>
+    <Reference Include="JB2.Common.Image, Version=0.2.2.30380, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Image.0.2.2\lib\JB2.Common.Image.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Common.Image.Net2, Version=0.2.2.37556, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\JB2.Common.Image.Net35.0.2.2\lib\JB2.Common.Image.Net2.dll</HintPath>
-      <Private>True</Private>
+    </Reference>
+    <Reference Include="JB2.Common.Log, Version=0.3.0.28091, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Log.0.3.0\lib\JB2.Common.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="JB2.Common.Log.AzureRepo, Version=0.2.3.3738, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Log.AzureRepo.0.2.3.1\lib\JB2.Common.Log.AzureRepo.dll</HintPath>
+    </Reference>
+    <Reference Include="JB2.Common.Map, Version=0.2.3.3053, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Map.0.2.3\lib\JB2.Common.Map.dll</HintPath>
+    </Reference>
+    <Reference Include="JB2.Common.Ultities, Version=0.2.2.37707, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Utility.0.2.2\lib\JB2.Common.Ultities.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Economy.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\JB2.Economy.Core.0.4.0\lib\JB2.Economy.Core.dll</HintPath>
     </Reference>
+    <Reference Include="JB2.Economy.jBean, Version=0.3.0.36926, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Economy.jBean.0.3.0\lib\JB2.Economy.jBean.dll</HintPath>
+    </Reference>
+    <Reference Include="JB2.Identity.Core, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Identity.Core.0.1.4.1\lib\JB2.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="JB2.Infrastructure, Version=0.2.23.5477, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Infrastructure.0.2.23\lib\JB2.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\Newtonsoft.Json.6.0.8\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseAchievement.cs" />
@@ -63,13 +95,13 @@
     <Compile Include="StandardAchievement.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\JB2.Bowtie.Core.Net2\Bowtie.Core.Net2.csproj">
       <Project>{e3e58567-b135-4264-ba5a-cfce0b7c5d52}</Project>
       <Name>Bowtie.Core.Net2</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

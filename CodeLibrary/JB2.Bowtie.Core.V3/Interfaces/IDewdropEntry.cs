@@ -8,6 +8,8 @@ namespace JB2.Bowtie
 {
     public interface IDewdropEntry 
     {
+
+        string ID { get; set; }
         string PlayerID { get; set; }
         int Value { get; set; }
         string GDID { get; set; }

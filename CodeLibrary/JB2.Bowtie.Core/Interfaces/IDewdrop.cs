@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JB2.Bowtie
 {
-    public interface IDewdrop : JB2.Common.IIDNamePair<string, string>, JB2.Common.IClass
+    public interface IDewdrop : JB2.Common.IIDNamePair<string, string>, JB2.Common.IClass, JB2.Common.IIDProp<string>
     {
         string GetGraphID();
         string GetDescription();

@@ -36,7 +36,7 @@ namespace JB2.Bowtie.Data.Local
             if (_dewdrops == null)
             {
                 var json = "[{\"ApplicationID\":\"0\",\"GDID\":\"AE0A1711\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":201,\"Name\":\"Login\",\"ValueType\":0},{\"ApplicationID\":\"0\",\"GDID\":\"883C167E\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":202,\"Name\":\"ButtonClick\",\"ValueType\":0},{\"ApplicationID\":\"0\",\"GDID\":\"DF001794\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":203,\"Name\":\"LastLoginDay\",\"ValueType\":1},{\"ApplicationID\":\"0\",\"GDID\":\"4190157E\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":204,\"Name\":\"LastLoginTime\",\"ValueType\":1},{\"ApplicationID\":\"0\",\"GDID\":\"707E1642\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":205,\"Name\":\"AddToInventory\",\"ValueType\":0},{\"ApplicationID\":\"0\",\"GDID\":\"898E1697\",\"ParentGDID\":\"0\",\"IsActive\":true,\"ID\":206,\"Name\":\"MinutesPlayed\",\"ValueType\":1}]";
-                var dewdropList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<BasicDewdrop>>(json);
+                var dewdropList = JB2.Helper.Bowtie.ConvertToObjectFromJsonString<List<BasicDewdrop>>(json); // Newtonsoft.Json.JsonConvert.DeserializeObject<List<BasicDewdrop>>(json);
                 _dewdrops = new Dictionary<string, IDewdrop>();
                 foreach (var d in dewdropList)
                 {
