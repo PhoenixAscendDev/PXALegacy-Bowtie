@@ -74,6 +74,22 @@ namespace JB2.Bowtie.Service
             LogPlayerActivity(pa);
         }
 
+        public void LogPointEntry(IPointEntry p)
+        {
+            try
+            {
+                var r = _uofw.LogRepository;
+
+                r.Insert(p);
+
+                JB2.Events.Bowtie.OnNewPointEntry(p, p.GetPlayer(), p.GetApplication());
+            }
+            catch (Exception ex)
+            {
+                ex.ToServiceResult();
+            }
+        }
+
 
         private void onEntryLogged(ILogger<JB2.Common.Enum.LogServerityType,string,ILogEntry> logger,JB2.Common.Enum.LogServerityType serverity, ILogEntry entry)
         {
@@ -89,8 +105,5 @@ namespace JB2.Bowtie.Service
                 r.Insert(pa);
             }
         }
-
-
-
     }
 }

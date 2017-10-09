@@ -10,6 +10,14 @@ namespace JB2.Bowtie
     {
         void Insert(IActivityEntry pa);
 
+        void Insert(IPointEntry p);
+
+       // void Insert(IAchievementEntry pa);
+
         IEnumerable<IActivityEntry> GetPlayerActivityByApplicationID(string applicationID, string playerID);
+
+        IEnumerable<IPointEntry> GetPointEntryByApplicationID(string applicationID, string playerID);
+
+      //  IEnumerable<IAchievementEntry> GetPlayerAchievementByApplicationID(string applicationID, string playerID);
     }
 }

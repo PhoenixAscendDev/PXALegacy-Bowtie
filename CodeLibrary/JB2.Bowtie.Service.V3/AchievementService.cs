@@ -169,7 +169,6 @@ namespace JB2.Bowtie.Service
             }
         }
 
-
         public ServiceResult<IEnumerable<IAchievementEntry>> RetrievePlayerAcheivements(IPlayer player, IApplication application)
         {
             try

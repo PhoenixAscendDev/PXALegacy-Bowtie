@@ -91,6 +91,7 @@ namespace JB2.Bowtie
             var dservice = JB2.Bowtie.Service.DewdropService.Instance;
             var aservice = JB2.Bowtie.Service.AchievementService.Instance;
             var appservice = JB2.Bowtie.Service.ApplicationService.Instance;
+            var lservice = JB2.Bowtie.Service.LogService.Instance;
 
             
             var player = new BasicPlayer() { ID = entry.PlayerID };
@@ -113,7 +114,7 @@ namespace JB2.Bowtie
                     aentry.ApplicationID = application.ID;
                     aentry.PlayerID = player.ID;
                     aentry.PercentComplete = steps != 0 ? (a.StepsRequired / steps) * 100 : 0;
-                    aentry.DateEarned = DateTime.MinValue;
+                    aentry.DateEarned =  DateTime.MinValue;
                     aentry.PointsEarned = 0;
 
 
@@ -124,11 +125,22 @@ namespace JB2.Bowtie
                         var dt = dataset.GetDateAchieved(a.StorageSlot);
 
                         aentry.DateEarned = dt;
-                        aentry.PointsEarned = points;
-
-                            
+                        aentry.PointsEarned = points;                      
 
                         JB2.Events.Bowtie.OnAchievementAchieved(a, aentry);
+
+                       
+                        var pentry = new JB2.Bowtie.PointEntry();
+                        pentry.ApplicationID = application.ID;
+                        pentry.PlayerID = player.ID;
+                        pentry.PointsEarned = points;
+                        pentry.ReferenceCode = "achievement/" + a.ID;
+                        pentry.SubmittedDate = dt;
+
+                        lservice.LogPointEntry(pentry);
+
+                        JB2.Events.Bowtie.OnNewPointEntry(pentry, player, application);
+                        
 
                     }
                 }

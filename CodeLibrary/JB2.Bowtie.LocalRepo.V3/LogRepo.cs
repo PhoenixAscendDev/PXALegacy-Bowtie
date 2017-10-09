@@ -14,6 +14,7 @@ namespace JB2.Bowtie.Data.Local
         protected List<ILogEntry> _items;
         protected IUnitOfWork _uofw;
         protected Dictionary<string, List<IActivityEntry>> _playeractivities;
+        protected Dictionary<string, List<IPointEntry>> _playerpoints;
 
 
         #endregion Fields
@@ -40,6 +41,8 @@ namespace JB2.Bowtie.Data.Local
 
 
         #endregion Constructors
+
+        
 
 
         public void Delete(ILogEntry entity)
@@ -91,6 +94,16 @@ namespace JB2.Bowtie.Data.Local
             _playeractivities[pakey].Add(pa);
         }
 
+        public void Insert(IPointEntry p)
+        {
+            string pakey = p.GetApplicationID() + "<*>" + p.GetPlayerID();
+
+            if (!_playerpoints.ContainsKey(pakey))
+                _playerpoints.Add(pakey, new List<IPointEntry>());
+
+            _playerpoints[pakey].Add(p);
+        }
+
         public IEnumerable<IActivityEntry> GetPlayerActivityByApplicationID(string applicationid, string playerid)
         {
             string pakey = applicationid + "<*>" + playerid;
@@ -100,6 +113,16 @@ namespace JB2.Bowtie.Data.Local
 
             else
                 return new IActivityEntry[0];
+        }
+
+        public IEnumerable<IPointEntry> GetPointEntryByApplicationID(string applicationID, string playerID)
+        {
+            string pakey = applicationID + "<*>" + playerID;
+
+            if (_playerpoints.ContainsKey(pakey))
+                return _playerpoints[pakey];
+            else
+                return new IPointEntry[0];
         }
 
 
