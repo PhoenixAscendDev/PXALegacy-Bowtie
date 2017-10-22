@@ -43,6 +43,21 @@ namespace JB2.Bowtie.Service
             }
         }
 
+        public ServiceResult<IEnumerable<IApplication>> RetrieveAllApplications()
+        {
+            try
+            {
+                var apps = _uofw.ApplicationRepository.GetAll();
+
+                return new ServiceResult<IEnumerable<IApplication>>(apps);
+
+            }
+            catch (Exception ex)
+            {
+                return ex.ToServiceResult<IEnumerable<IApplication>>();
+            }
+        }
+
         public ServiceResult<IApplication> GenerateNewApplication(string name, string website,JB2.Common.IBusiness company)
         {
             try

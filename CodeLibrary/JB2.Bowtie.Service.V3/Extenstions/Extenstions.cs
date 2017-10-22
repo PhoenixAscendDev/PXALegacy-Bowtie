@@ -82,6 +82,19 @@ namespace JB2.Bowtie.Extensions
                 return new IDewdropEntry[0];
         }
 
+        public static int GetPoints(this IPlayer player, IApplication application)
+        {
+            var ls = JB2.Bowtie.Service.PointService.Instance;
+            var result = ls.RetrieveTotalPoints(player, application);
+
+            if (result)
+                return result.ToObject();
+            else
+                return 0;
+        }
+
+
+
         public static IEnumerable<IDewdropEntry> GetDewdropLog(this IPlayer player, IApplication application)
         {
             var dds = JB2.Bowtie.Service.DewdropService.Instance;

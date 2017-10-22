@@ -54,6 +54,7 @@
     <Compile Include="AchievementStepRule.cs" />
     <Compile Include="ActivityDataset.cs" />
     <Compile Include="BasicAchievement.cs" />
+    <Compile Include="BasicApplicationPair.cs" />
     <Compile Include="BasicLeaderboard.cs" />
     <Compile Include="BitDataSet.cs" />
     <Compile Include="BowtieGroup.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Enum\ScoreOrderType.cs" />
     <Compile Include="Enum\StepFxType.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="Interfaces\IApplicationPlayerPair.cs" />
     <Compile Include="Interfaces\IBowtieGroup.cs" />
     <Compile Include="Interfaces\IApplicationable.cs" />
     <Compile Include="Interfaces\IBitDataSet.cs" />
