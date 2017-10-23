@@ -53,6 +53,7 @@
     <Compile Include="AchievementEntry.cs" />
     <Compile Include="AchievementStepRule.cs" />
     <Compile Include="ActivityDataset.cs" />
+    <Compile Include="ActivityEntry.cs" />
     <Compile Include="BasicAchievement.cs" />
     <Compile Include="BasicApplicationPair.cs" />
     <Compile Include="BasicLeaderboard.cs" />
