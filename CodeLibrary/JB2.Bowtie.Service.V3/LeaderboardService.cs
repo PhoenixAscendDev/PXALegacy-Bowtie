@@ -214,6 +214,10 @@ namespace JB2.Bowtie.Service
             {
                 _uofw.LogRepository.Insert(entry);
 
+                var player = _uofw.PlayerRepository.GetById(entry.GetPlayerID());
+
+                JB2.Events.Bowtie.OnNewLeaderboardScore(entry, player, leaderboard);
+
                 return true;
             }
             catch (Exception ex)

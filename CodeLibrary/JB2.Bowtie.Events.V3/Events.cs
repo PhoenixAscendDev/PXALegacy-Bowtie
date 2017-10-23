@@ -22,6 +22,8 @@ namespace JB2.Events
 
         public event Action<JB2.Bowtie.IPointEntry, JB2.Bowtie.IPlayer, JB2.Bowtie.IApplication> NewPointEntry;
 
+        public event Action<JB2.Bowtie.ILeaderboardEntry, JB2.Bowtie.IPlayer, JB2.Bowtie.ILeaderboard> NewLeaderboardScore;
+
 
         public static void OnLogEntryLogged(ILogger<JB2.Common.Enum.LogServerityType, string, ILogEntry> logger, ILogEntry entry)
         {
@@ -52,6 +54,12 @@ namespace JB2.Events
         {
             if (JB2.Events.Bowtie.Instance.NewPointEntry != null)
                 JB2.Events.Bowtie.Instance.NewPointEntry(act, player, application);
+        }
+
+        public static void OnNewLeaderboardScore(JB2.Bowtie.ILeaderboardEntry entry, JB2.Bowtie.IPlayer player, JB2.Bowtie.ILeaderboard leaderboard)
+        {
+            if (JB2.Events.Bowtie.Instance.NewLeaderboardScore != null)
+                JB2.Events.Bowtie.Instance.NewLeaderboardScore(entry, player, leaderboard);
         }
 
 
