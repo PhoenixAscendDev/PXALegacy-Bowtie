@@ -93,7 +93,54 @@ namespace JB2.Bowtie.Extensions
                 return 0;
         }
 
+        public static IEnumerable<ILeaderboardRankedScore> GetScores(this IPlayer player, ILeaderboard leaderboard )
+        {
+            var lbs = JB2.Bowtie.Service.LeaderboardService.Instance;
+            var result = lbs.RetrieveAllScoresByPlayer(leaderboard, player);
 
+            if (result)
+                return result.ToObject();
+            else
+                return new ILeaderboardRankedScore[0];
+        }
+
+        public static Dictionary<ILeaderboardable<string>,IEnumerable<ILeaderboardRankedScore>> GetScores(this IPlayer player, IApplication application)
+        {
+            var lbs = JB2.Bowtie.Service.LeaderboardService.Instance;
+
+            var boards = lbs.RetrieveByApplication(application);
+
+            var result = new Dictionary<ILeaderboardable<string>, IEnumerable<ILeaderboardRankedScore>>();
+
+            if (boards)
+            {
+
+                foreach(var board in boards.ToObject())
+                {
+                    var scores = lbs.RetrieveAllScoresByPlayer(board, player);
+
+                    if(scores)
+                    {
+                        result.Add(board, scores.ToObject());
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public static int GetScoreRank(this IPlayer player, ILeaderboard leaderboard)
+        {
+            var scores = player.GetScores(leaderboard);
+
+            if (scores.Count() > 0)
+            {
+                return scores.OrderBy(x => x.Ranked).FirstOrDefault().Ranked;
+            }
+
+            else
+                return 0;
+        }
 
         public static IEnumerable<IDewdropEntry> GetDewdropLog(this IPlayer player, IApplication application)
         {
@@ -306,6 +353,51 @@ namespace JB2.Bowtie.Extensions
         }
 
 
+    }
+
+    public static class ServiceApplicationPlayerableExtentions
+    {
+        public static Dictionary<ILeaderboardable<string>, IEnumerable<ILeaderboardRankedScore>> GetScores(this IApplicationPlayerPair<string,string> pair)
+        {
+            var p = pair.GetPlayer();
+            var a = pair.GetApplication();
+
+            return p.GetScores(a);
+        }
+    }
+
+
+    public static class ServiceLeaderboardableExtenstions
+    {
+        public static IEnumerable<ILeaderboardRankedScore> GetScores(this ILeaderboardable<string> lb)
+        {
+
+            var lbs = JB2.Bowtie.Service.LeaderboardService.Instance;
+            var leaderboard = lbs.RetrieveByID(lb.GetLeaderboardID());
+
+            if (leaderboard)
+                return leaderboard.ToObject().GetScores();
+
+            else
+                return new ILeaderboardRankedScore[0];
+        }
+    }
+
+    public static class ServiceLeaderboardExtenstions
+    {
+
+
+        public static IEnumerable<ILeaderboardRankedScore> GetScores(this ILeaderboard leaderboard)
+        {
+            var lbs = JB2.Bowtie.Service.LeaderboardService.Instance;
+
+            var scores = lbs.RetrieveScores(leaderboard);
+
+            if (scores)
+                return scores.ToObject();
+            else
+                return new ILeaderboardRankedScore[0];
+        }
     }
 
 

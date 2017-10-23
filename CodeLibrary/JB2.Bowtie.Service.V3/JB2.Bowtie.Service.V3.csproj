@@ -50,6 +50,7 @@
     <Compile Include="DictionaryService.cs" />
     <Compile Include="Extenstions\Extenstions.cs" />
     <Compile Include="InventoryService.cs" />
+    <Compile Include="LeaderboardRankedScore.cs" />
     <Compile Include="LeaderboardService.cs" />
     <Compile Include="LogService.cs" />
     <Compile Include="PlayerService.cs" />
@@ -77,8 +78,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

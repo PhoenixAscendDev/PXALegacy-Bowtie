@@ -4,14 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JB2.Bowtie.Enum
+namespace JB2.Bowtie
 {
-    public enum NumberFormatType
+    public interface  ILeaderboardRankedScore: ILeaderboardEntry
     {
-        Number,
-        Time,
-        Currency,
-        Decimal
-
+        int Ranked { get; set; }
     }
 }

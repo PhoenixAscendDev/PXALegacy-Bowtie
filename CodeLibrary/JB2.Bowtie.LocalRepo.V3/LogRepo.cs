@@ -15,10 +15,10 @@ namespace JB2.Bowtie.Data.Local
         protected IUnitOfWork _uofw;
         protected Dictionary<string, List<IActivityEntry>> _playeractivities;
         protected Dictionary<string, List<IPointEntry>> _playerpoints;
+        protected List<ILeaderboardEntry> _scores;
 
 
         #endregion Fields
-
 
         #region Constructors
 
@@ -36,14 +36,13 @@ namespace JB2.Bowtie.Data.Local
 
             _playeractivities = new Dictionary<string, List<IActivityEntry>>();
 
+            _scores = new List<ILeaderboardEntry>();
+
 
         }
 
 
         #endregion Constructors
-
-        
-
 
         public void Delete(ILogEntry entity)
         {
@@ -104,6 +103,11 @@ namespace JB2.Bowtie.Data.Local
             _playerpoints[pakey].Add(p);
         }
 
+        public void Insert(ILeaderboardEntry e)
+        {
+            _scores.Add(e);
+        }
+
         public IEnumerable<IActivityEntry> GetPlayerActivityByApplicationID(string applicationid, string playerid)
         {
             string pakey = applicationid + "<*>" + playerid;
@@ -126,14 +130,38 @@ namespace JB2.Bowtie.Data.Local
         }
 
 
+        public IEnumerable<ILeaderboardEntry> GetScoresByLeaderboard(string leaderboardID)
+        {
+            return _scores.Where(x => x.GetLeaderboardID() == leaderboardID);
+        }
+
+        public IEnumerable<ILeaderboardEntry> GetScoresByPlayerID(string leaderboardID, string playerID)
+        {
+            return _scores.Where(x => x.GetLeaderboardID() == leaderboardID && x.GetPlayerID() == playerID);
+        }
+
+        public IEnumerable<ILeaderboardEntry> GetScoresByPlayerID(string playerID)
+        {
+            return _scores.Where(x => x.GetPlayerID() == playerID);
+        }
+
+        public IEnumerable<ILeaderboardEntry> GetScores(IApplicationPlayerPair<string, string> pair)
+        {
+            return _scores.Where(x => x.GetPlayerID() == pair.GetPlayerID() && x.GetApplicationID() == pair.GetApplicationID());
+            
+        }
+
+        public IEnumerable<ILeaderboardEntry> GetScoresByApplicationID(string applicationID)
+        {
+            return _scores.Where(x => x.GetApplicationID() == applicationID);
+        }
+
         #region Helpers
 
         public IEnumerable<ILogEntry> getall()
         {
             return _items;
         }
-
-        
 
         #endregion Helpers
     }

@@ -25,5 +25,10 @@ namespace JB2.Bowtie
         {
             return ApplicationID;
         }
+
+        public string GetLeaderboardID()
+        {
+            return ID;
+        }
     }
 }

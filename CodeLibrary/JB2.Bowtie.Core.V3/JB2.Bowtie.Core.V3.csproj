@@ -56,6 +56,7 @@
     <Compile Include="BasicAchievement.cs" />
     <Compile Include="BasicApplicationPair.cs" />
     <Compile Include="BasicLeaderboard.cs" />
+    <Compile Include="BasicLeaderboardEntry.cs" />
     <Compile Include="BitDataSet.cs" />
     <Compile Include="BowtieGroup.cs" />
     <Compile Include="BowtieObject.cs" />
@@ -97,6 +98,9 @@
     <Compile Include="Interfaces\IDewdrop.cs" />
     <Compile Include="Interfaces\IDewdropQueue.cs" />
     <Compile Include="Interfaces\IDewdropRepository.cs" />
+    <Compile Include="Interfaces\ILeaderboardable.cs" />
+    <Compile Include="Interfaces\ILeaderboardEntry.cs" />
+    <Compile Include="Interfaces\ILeaderboardRankedScore.cs" />
     <Compile Include="Interfaces\ILeadershipRepository.cs" />
     <Compile Include="Interfaces\ILogRepository.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
@@ -108,6 +112,7 @@
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="InventoryItem.cs" />
     <Compile Include="IPointSystem.cs" />
+    <Compile Include="LeaderboardScore.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PointEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
