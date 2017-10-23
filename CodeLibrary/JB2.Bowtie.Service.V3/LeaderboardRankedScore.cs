@@ -23,6 +23,8 @@ namespace JB2.Bowtie.Service
             _rank = rank;
         }
 
+        public string ID { get => _entry.ID; set => _entry.ID = value; }
+
         public int Ranked { get => _rank; set => _rank = value; }
         public DateTime ScoreDate { get => _entry.ScoreDate; set => _entry.ScoreDate = value; }
         public LeaderboardScore Score { get => _entry.Score; set => _entry.Score = value; }

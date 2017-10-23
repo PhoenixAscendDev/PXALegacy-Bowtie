@@ -24,5 +24,17 @@ namespace JB2.Bowtie
         {
             return PlayerID;
         }
+
+
+        public static PointEntry New
+        {
+            get
+            {
+                var r = new PointEntry();
+                r.ID = JB2.Common.NewID.Guid();
+
+                return r;
+            }
+        }
     }
 }

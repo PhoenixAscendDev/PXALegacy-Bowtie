@@ -118,6 +118,19 @@ namespace JB2.Bowtie
 
         #endregion IComparable
 
+        public Enum.NumberFormatType FormatType
+        {
+            get
+            {
+                return _type;
+            }
+            internal set
+            {
+                _type = value;
+            }
+
+        }
+
         #region Helpers
 
 
@@ -175,7 +188,29 @@ namespace JB2.Bowtie
 
         #endregion Static Implicit
 
+
         #region To
+
+        public override string ToString()
+        {
+             switch(this._type)
+            {
+                case Enum.NumberFormatType.Currency:
+                    var c = (decimal)this;
+                    return c.ToString();
+                case Enum.NumberFormatType.Decimal:
+                    var d = (double)this;
+                    return d.ToString();
+                case Enum.NumberFormatType.Number:
+                    var l = (long)this;
+                    return l.ToString();
+                case Enum.NumberFormatType.Time:
+                    var t = (TimeSpan)this;
+                    return t.ToString();
+                default:
+                    return this._score.ToString();
+            }
+        }
 
         public long ToNumber()
         {
@@ -198,6 +233,8 @@ namespace JB2.Bowtie
         }
 
         #endregion To
+
+
 
     }
 }

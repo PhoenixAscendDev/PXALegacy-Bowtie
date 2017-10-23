@@ -9,7 +9,15 @@ namespace JB2.Bowtie
     public class BasicLeaderboardEntry : ILeaderboardEntry
     {
 
+        #region Constructors
 
+        public BasicLeaderboardEntry()
+        {
+            
+        }
+
+        #endregion Constructors
+        public string ID { get; set; }
         public DateTime ScoreDate { get; set; }
         public LeaderboardScore Score { get; set; }
 
@@ -30,6 +38,17 @@ namespace JB2.Bowtie
         public string GetPlayerID()
         {
             return PlayerID;
+        }
+
+        public static BasicLeaderboardEntry New
+        {
+            get
+            {
+                var r = new BasicLeaderboardEntry();
+                r.ID = JB2.Common.NewID.Guid();
+
+                return r;
+            }
         }
     }
 }
