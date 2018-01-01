@@ -40,17 +40,14 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JB2.Common.Color, Version=0.1.7.16772, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Color.0.1.7\lib\JB2.Common.Color.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="JB2.Common.Color, Version=0.2.0.26478, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Color.0.2.0.1\lib\net45\JB2.Common.Color.dll</HintPath>
     </Reference>
-    <Reference Include="JB2.Common.Core, Version=0.1.2.16771, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Core.0.1.2\lib\JB2.Common.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="JB2.Common.Core, Version=0.4.20.15147, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.20.2\lib\net45\JB2.Common.Core.dll</HintPath>
     </Reference>
-    <Reference Include="JB2.Common.Date, Version=0.1.1.16771, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Date.0.1.1\lib\JB2.Common.Date.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="JB2.Common.Date, Version=0.3.2.24132, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Date.0.3.2.1\lib\net45\JB2.Common.Date.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Common.Image, Version=0.1.6.28890, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JB2.Common.0.1.6\lib\JB2.Common.Image.dll</HintPath>
@@ -62,10 +59,6 @@
     </Reference>
     <Reference Include="JB2.Common.Player, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JB2.Player.0.1.2\lib\JB2.Common.Player.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="JB2.Common.Ultities, Version=0.1.1.13899, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JB2.Common.Utility.0.1.1\lib\JB2.Common.Ultities.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -117,6 +110,12 @@
     <None Include="Bowtie.dbml.layout">
       <DependentUpon>Bowtie.dbml</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JB2.Bowtie.Core\Bowtie.Core.csproj">
+      <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>
+      <Name>Bowtie.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

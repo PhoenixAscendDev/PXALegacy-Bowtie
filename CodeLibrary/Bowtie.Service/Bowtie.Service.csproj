@@ -48,9 +48,8 @@
       <HintPath>..\..\Solutions\packages\JB2.Common.0.1.6\lib\JB2.Common.Color.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JB2.Common.Core, Version=0.4.1.42060, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.1\lib\JB2.Common.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="JB2.Common.Core, Version=0.4.20.15147, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.20.2\lib\net45\JB2.Common.Core.dll</HintPath>
     </Reference>
     <Reference Include="JB2.Common.Data.AzureStorage, Version=0.3.0.482, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Solutions\packages\JB2.Data.Azure.0.3.0.482\lib\JB2.Common.Data.AzureStorage.dll</HintPath>
@@ -221,10 +220,6 @@
     <ProjectReference Include="..\Bowtie.Gamification\Bowtie.Gamification.csproj">
       <Project>{40f36cd2-7823-4f26-9f85-473367db4013}</Project>
       <Name>Bowtie.Gamification</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JB2.BitScore\JB2.BitScore.csproj">
-      <Project>{a2f4485b-d33f-48b6-85c7-a9178a04798c}</Project>
-      <Name>JB2.BitScore</Name>
     </ProjectReference>
     <ProjectReference Include="..\JB2.Bowtie.Core\Bowtie.Core.csproj">
       <Project>{99e5812c-bc21-4722-a8f1-75a6715b21a8}</Project>

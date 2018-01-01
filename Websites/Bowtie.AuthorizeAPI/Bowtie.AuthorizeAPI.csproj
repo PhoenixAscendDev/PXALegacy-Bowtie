@@ -26,6 +26,7 @@
     <WebGreaseLibPath>..\..\Solutions\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,7 +51,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Core, Version=0.4.1.42060, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.1\lib\JB2.Common.Core.dll</HintPath>
+      <HintPath>..\..\Solutions\packages\JB2.Common.Core.0.4.20.2\lib\net45\JB2.Common.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JB2.Common.Data.AzureStorage, Version=0.3.0.482, Culture=neutral, processorArchitecture=MSIL">

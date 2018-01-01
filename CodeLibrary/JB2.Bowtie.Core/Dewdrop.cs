@@ -108,6 +108,11 @@ namespace JB2.Bowtie
             return _prop.GetProperty<T>(index, defaultValue);
         }
 
+        public T GetProperty<T>(string index, T defaultValue)
+        {
+            return _prop.GetProperty<T>(index, defaultValue);
+        }
+
         public void SetProperty<T>(string index, T newValue, bool changeLastUpdate)
         {
             _prop.SetProperty<T>(index, newValue, changeLastUpdate);

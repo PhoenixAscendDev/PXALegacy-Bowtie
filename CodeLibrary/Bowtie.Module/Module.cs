@@ -160,27 +160,46 @@ namespace JB2.Bowtie
 
 
         #region Tags
-        public virtual bool AddTag(ObjectTag tag)
+        public virtual bool AddTag(Tag tag)
         {
-            var listTags = this.GetProperity<List<ObjectTag>>("Tags", new List<ObjectTag>());
+            var listTags = this.GetProperity<List<Tag>>("Tags", new List<Tag>());
             listTags.Add(tag);
 
-            this.SetProperty<List<ObjectTag>>("Tags", listTags);
+            this.SetProperty<List<Tag>>("Tags", listTags);
             return true;
         }
 
-        public virtual IEnumerable<ObjectTag> GetTags()
+        public virtual IEnumerable<Tag> GetTags()
         {
-            return this.GetProperity<List<ObjectTag>>("Tags", new List<ObjectTag>());
+            return this.GetProperity<List<Tag>>("Tags", new List<Tag>());
         }
 
-        public virtual bool RemoveTag(ObjectTag tag)
+        public virtual bool RemoveTag(Tag tag)
         {
-            var listTags = this.GetProperity<List<ObjectTag>>("Tags", new List<ObjectTag>());
+            var listTags = this.GetProperity<List<Tag>>("Tags", new List<Tag>());
             listTags.Remove(tag);
 
-            this.SetProperty<List<ObjectTag>>("Tags", listTags);
+            this.SetProperty<List<Tag>>("Tags", listTags);
             return true;
+        }
+
+        public ServiceResult LoadTags(IEnumerable<Tag> tags)
+        {
+            try
+            {
+                var listTags = this.GetProperity<List<Tag>>("Tags", new List<Tag>());
+                listTags.AddRange(tags);
+
+                this.SetProperty<List<Tag>>("Tags", listTags);
+
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return new ServiceResult(ex);
+            }
+
+
         }
 
         #endregion Tags
