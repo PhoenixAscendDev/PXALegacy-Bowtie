@@ -107,6 +107,11 @@ namespace JB2.Bowtie
             return _tags;
         }
 
+        public T GetProperty<T>(string index, T defaultValue)
+        {
+            return _props.GetProperty<T>(index);
+        }
+
         public T GetProperity<T>(string index, T defaultValue)
         {
             return _props.GetProperty<T>(index);

@@ -103,6 +103,12 @@ namespace JB2.Bowtie
         #endregion Methods
 
         #region IClass
+
+        public T GetProperty<T>(string index, T defaultValue)
+        {
+            return _prop.GetProperty<T>(index, defaultValue);
+        }
+
         public T GetProperity<T>(string index, T defaultValue)
         {
             return _prop.GetProperty<T>(index, defaultValue);
