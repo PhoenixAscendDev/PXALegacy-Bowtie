@@ -8,12 +8,12 @@ using JB2.Common;
 
 namespace JB2.Bowtie
 {
-    public class BasicDewdrop : IDewdrop
+    public class BasicDewdrop : JB2.Sprog.SprogItem, IDewdrop
     {
 
         #region Constructors
 
-        public BasicDewdrop()
+        public BasicDewdrop() : base(JB2.Helper.Bowtie.DewDropSprog)
         {
 
 
@@ -29,13 +29,83 @@ namespace JB2.Bowtie
         #endregion Constructors
 
 
-        public string ApplicationID { get; set; }
-        public string GDID { get; set; }
-        public string ParentGDID { get; set; }
-        public bool IsActive { get; set; }
-        public byte ID { get; set; }
-        public string Name { get; set; }
-        public DewDropValueType ValueType { get; set; }
+        public string ApplicationID
+        {
+            get
+            {
+                return this.GetProperty<string>("APPLICATIONID", string.Empty);
+            }
+            set
+            {
+                this.SetProperty<string>("APPLICATIONID", value);
+            }
+        }
+        public string GDID
+        {
+            get
+            {
+                return this.GetProperty<string>("GDID", string.Empty);
+            }
+            set
+            {
+                this.SetProperty<string>("GDID", value);
+            }
+        }
+        public string ParentGDID
+        {
+            get
+            {
+                return this.GetProperty<string>("PARENTGDID", string.Empty);
+            }
+            set
+            {
+                this.SetProperty<string>("PARENTGDID", value);
+            }
+        }
+        public bool IsActive
+        {
+            get
+            {
+                return this.GetProperty<bool>("ISACTIVE", false);
+            }
+            set
+            {
+                this.SetProperty<bool>("ISACTIVE", value);
+            }
+        }
+        public byte ID
+        {
+            get
+            {
+                return this.GetProperty<byte>("ID", 0);
+            }
+            set
+            {
+                this.SetProperty<byte>("ID", value);
+            }
+        }
+        public string Name
+        {
+            get
+            {
+                return this.GetProperty<string>("NAME", string.Empty);
+            }
+            set
+            {
+                this.SetProperty<string>("NAME", value);
+            }
+        }
+        public DewDropValueType ValueType
+        {
+            get
+            {
+                return (DewDropValueType)this.GetProperty<int>("VALUETYPE", (int)DewDropValueType.Count);
+            }
+            set
+            {
+                this.SetProperty<int>("VALUETYPE", (int)value);
+            }
+        }
 
         public byte GetID()
         {

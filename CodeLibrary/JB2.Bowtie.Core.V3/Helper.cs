@@ -8,6 +8,22 @@ namespace JB2.Helper
 {
     public class Bowtie
     {
+
+        private const string _dewdropSprogJson = "";
+        private static Sprog.ISprogType _dewdropSprog { get; set; }
+
+        internal static Sprog.ISprogType DewDropSprog
+        {
+            get
+            {
+                if (_dewdropSprog != null)
+                    _dewdropSprog = Sprog.SprogItemType.FromJson(_dewdropSprogJson);
+
+                return _dewdropSprog;
+            }
+        }
+         
+
         public static string GenerateID<T>()
             where T : class
         {

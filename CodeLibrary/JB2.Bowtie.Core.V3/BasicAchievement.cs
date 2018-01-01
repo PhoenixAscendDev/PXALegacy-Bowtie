@@ -13,7 +13,7 @@ namespace JB2.Bowtie
 
         public BasicAchievement() : base()
         {
-            _kind = BowtieObjectType.bowtie_achievement;
+            _kind = (int)BowtieObjectType.bowtie_achievement;
             TimeBoundStart = DateTime.MinValue;
             TimeBoundEnd = DateTime.MaxValue;
             //DewdropTriggers = new List<string>();

@@ -8,7 +8,7 @@ namespace JB2.Bowtie
 
         public BasicApplication()
         {
-            _kind = BowtieObjectType.bowtie_application;
+            _kind = (int)BowtieObjectType.bowtie_application;
         }
 
 
