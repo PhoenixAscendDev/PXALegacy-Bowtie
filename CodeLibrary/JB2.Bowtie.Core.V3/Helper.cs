@@ -9,7 +9,7 @@ namespace JB2.Helper
     public class Bowtie
     {
 
-        private const string _dewdropSprogJson = "";
+        private const string _dewdropSprogJson = "{\"Key\":\"JB2-dewdrop\",\"Name\":\"Dewdrop\",\"Definition\":{\"Version\":{\"Major\":1,\"Minor\":0,\"Build\":0,\"Revision\":0,\"isPreRelease\":false},\"Name\":\"Dewdrop\",\"ID\":\"JB2-dewdrop\",\"Owner\":\"JBsquared LLC\",\"Properties\":[{\"PropertyName\":\"APPLICATIONID\",\"DataType\":0,\"IsIndex\":false},{\"PropertyName\":\"GDID\",\"DataType\":0,\"IsIndex\":false},{\"PropertyName\":\"PARENTGDID\",\"DataType\":0,\"IsIndex\":false},{\"PropertyName\":\"ISACTIVE\",\"DataType\":9,\"IsIndex\":false},{\"PropertyName\":\"ID\",\"DataType\":1,\"IsIndex\":false},{\"PropertyName\":\"NAME\",\"DataType\":0,\"IsIndex\":false},{\"PropertyName\":\"VALUETYPE\",\"DataType\":1,\"IsIndex\":false}]}}";
         private static Sprog.ISprogType _dewdropSprog { get; set; }
 
         internal static Sprog.ISprogType DewDropSprog

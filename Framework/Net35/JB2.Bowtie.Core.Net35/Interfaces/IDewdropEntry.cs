@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace JB2.Bowtie
+{
+    public interface IDewdropEntry 
+    {
+
+        string ID { get; set; }
+        string PlayerID { get; set; }
+        int Value { get; set; }
+        string GDID { get; set; }
+
+        DateTime SubmittedDate { get; set; }
+
+        string ApplicationID { get; set; }
+
+
+
+    }
+}

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowtie.Lib", "..\CodeLibrary\Bowtie.Lib\Bowtie.Lib.csproj", "{488D241B-CBA6-4096-B76F-A1FB03EA5F76}"
 EndProject
@@ -79,6 +79,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.Events.V3", "..\CodeLibrary\JB2.Bowtie.Events.V3\JB2.Bowtie.Events.V3.csproj", "{D3C66FE4-4AC2-4C57-8B7C-E91A4028BE39}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.Manager.V3", "..\CodeLibrary\JB2.Bowtie.Manager.V3\JB2.Bowtie.Manager.V3.csproj", "{5AAB920D-A129-444A-8188-04EDFD86930D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net 3.5", "Net 3.5", "{65C8E2AA-8EA9-4090-A75E-81261990C171}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JB2.Bowtie.Core.Net35", "..\Framework\Net35\JB2.Bowtie.Core.Net35\JB2.Bowtie.Core.Net35.csproj", "{2D9F56ED-CF1D-48ED-A5DA-61882FF40E00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -285,6 +289,12 @@ Global
 		{5AAB920D-A129-444A-8188-04EDFD86930D}.NoDB|Any CPU.Build.0 = Release|Any CPU
 		{5AAB920D-A129-444A-8188-04EDFD86930D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AAB920D-A129-444A-8188-04EDFD86930D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D9F56ED-CF1D-48ED-A5DA-61882FF40E00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D9F56ED-CF1D-48ED-A5DA-61882FF40E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D9F56ED-CF1D-48ED-A5DA-61882FF40E00}.NoDB|Any CPU.ActiveCfg = Release|Any CPU
+		{2D9F56ED-CF1D-48ED-A5DA-61882FF40E00}.NoDB|Any CPU.Build.0 = Release|Any CPU
+		{2D9F56ED-CF1D-48ED-A5DA-61882FF40E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D9F56ED-CF1D-48ED-A5DA-61882FF40E00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -317,8 +327,11 @@ Global
 		{01987754-A78C-4E45-BEF8-3EBC696E4995} = {3FB72731-CBE4-4171-8C86-977534E52321}
 		{D3C66FE4-4AC2-4C57-8B7C-E91A4028BE39} = {3FB72731-CBE4-4171-8C86-977534E52321}
 		{5AAB920D-A129-444A-8188-04EDFD86930D} = {3FB72731-CBE4-4171-8C86-977534E52321}
+		{65C8E2AA-8EA9-4090-A75E-81261990C171} = {3FB72731-CBE4-4171-8C86-977534E52321}
+		{2D9F56ED-CF1D-48ED-A5DA-61882FF40E00} = {65C8E2AA-8EA9-4090-A75E-81261990C171}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2417AFE0-2285-4C44-83C5-C35037C3CF5C}
 	EndGlobalSection
 EndGlobal

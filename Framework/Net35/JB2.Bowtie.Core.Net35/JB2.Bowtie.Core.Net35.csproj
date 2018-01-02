@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2D9F56ED-CF1D-48ED-A5DA-61882FF40E00}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JB2.Bowtie.Core</RootNamespace>
+    <AssemblyName>JB2.Bowtie.Core</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JB2.Common.Core, Version=0.4.20.15148, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Solutions\packages\JB2.Common.Core.0.4.20.2\lib\net35\JB2.Common.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="JB2.Common.RNG, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Solutions\packages\JB2.Common.RNG.0.1.4.1\lib\net35\JB2.Common.RNG.dll</HintPath>
+    </Reference>
+    <Reference Include="JB2.Sprog.Core, Version=0.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Solutions\packages\JB2.Sprog.Core.0.4.1\lib\net35\JB2.Sprog.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AchievementData.cs" />
+    <Compile Include="AchievementEntry.cs" />
+    <Compile Include="AchievementStepRule.cs" />
+    <Compile Include="ActivityDataset.cs" />
+    <Compile Include="ActivityEntry.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="ApplicationStatePair.cs" />
+    <Compile Include="BasicAchievement.cs" />
+    <Compile Include="BasicApplicationPair.cs" />
+    <Compile Include="BasicLeaderboard.cs" />
+    <Compile Include="BasicLeaderboardEntry.cs" />
+    <Compile Include="BitDataSet.cs" />
+    <Compile Include="BowtieGroup.cs" />
+    <Compile Include="BowtieObject.cs" />
+    <Compile Include="BowtieObjectType.cs" />
+    <Compile Include="Business.cs" />
+    <Compile Include="Delegates.cs" />
+    <Compile Include="DewDrop.cs" />
+    <Compile Include="DewdropEntry.cs" />
+    <Compile Include="DrewdropData.cs" />
+    <Compile Include="Enum\AchievementType.cs" />
+    <Compile Include="Enum\ActivementStatusType.cs" />
+    <Compile Include="Enum\APIAuthorizeState.cs" />
+    <Compile Include="Enum\Comparisons.cs" />
+    <Compile Include="Enum\DewDropValueType.cs" />
+    <Compile Include="Enum\LeaderboardScoreType.cs" />
+    <Compile Include="Enum\LeaderboardType.cs" />
+    <Compile Include="Enum\ScoreOrderType.cs" />
+    <Compile Include="Enum\StepFxType.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="Initialize.cs" />
+    <Compile Include="Interfaces\IAchievement.cs" />
+    <Compile Include="Interfaces\IAchievementEntry.cs" />
+    <Compile Include="Interfaces\IAchievementRepository.cs" />
+    <Compile Include="Interfaces\IApplication.cs" />
+    <Compile Include="Interfaces\IApplicationable.cs" />
+    <Compile Include="Interfaces\IApplicationPlayerPair.cs" />
+    <Compile Include="Interfaces\IApplicationRepository.cs" />
+    <Compile Include="Interfaces\IAuthorizeRepository.cs" />
+    <Compile Include="Interfaces\IBitDataSet.cs" />
+    <Compile Include="Interfaces\IBowtieGroup.cs" />
+    <Compile Include="Interfaces\IBowtieObject.cs" />
+    <Compile Include="Interfaces\IDewdrop.cs" />
+    <Compile Include="Interfaces\IDewdropEntry.cs" />
+    <Compile Include="Interfaces\IDewdropQueue.cs" />
+    <Compile Include="Interfaces\IDewdropRepository.cs" />
+    <Compile Include="Interfaces\IDictionaryRepsository.cs" />
+    <Compile Include="Interfaces\IInventoryItem.cs" />
+    <Compile Include="Interfaces\IInventoryRepository.cs" />
+    <Compile Include="Interfaces\ILeaderboard.cs" />
+    <Compile Include="Interfaces\ILeaderboardable.cs" />
+    <Compile Include="Interfaces\ILeaderboardEntry.cs" />
+    <Compile Include="Interfaces\ILeaderboardRankedScore.cs" />
+    <Compile Include="Interfaces\ILeadershipRepository.cs" />
+    <Compile Include="Interfaces\ILogRepository.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
+    <Compile Include="Interfaces\IPlayerable.cs" />
+    <Compile Include="Interfaces\IPlayerActivity.cs" />
+    <Compile Include="Interfaces\IPlayerRepository.cs" />
+    <Compile Include="Interfaces\IPointEntry.cs" />
+    <Compile Include="Interfaces\IQueue.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="InventoryItem.cs" />
+    <Compile Include="IPointSystem.cs" />
+    <Compile Include="LeaderboardScore.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="PointEntry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="SystemType.cs" />
+    <Compile Include="TokenName.cs" />
+    <Compile Include="WordTense.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

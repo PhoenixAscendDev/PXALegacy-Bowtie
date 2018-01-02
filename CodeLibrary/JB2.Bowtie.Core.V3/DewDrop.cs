@@ -73,7 +73,7 @@ namespace JB2.Bowtie
                 this.SetProperty<bool>("ISACTIVE", value);
             }
         }
-        public byte ID
+        public  byte ID
         {
             get
             {
@@ -84,7 +84,7 @@ namespace JB2.Bowtie
                 this.SetProperty<byte>("ID", value);
             }
         }
-        public string Name
+        public  string Name
         {
             get
             {
@@ -107,12 +107,12 @@ namespace JB2.Bowtie
             }
         }
 
-        public byte GetID()
+        public  byte GetID()
         {
             return ID;
         }
 
-        public string GetName()
+        public  string GetName()
         {
             return Name;
         }
